@@ -9,6 +9,10 @@ import TextInfoForm from "./components/forms/TextInfoForm";
 import ContactDetailForm from "./components/forms/ContactDetailForm";
 import RegisterForms from "./components/forms/RegisterForms";
 import RegisterFormLayout from "./layouts/RegisterFormLayout";
+import AimContent from "./components/forms/onboarding-forms/AimContent";
+import OnboardingLayout from "./layouts/OnboardingLayout";
+import OnboardingForm from "./components/forms/OnboardingForm";
+import OnboardingFormLayout from "./layouts/OnboardingFormLayout";
 
 const WebRoutes = () => {
   return (
@@ -20,9 +24,12 @@ const WebRoutes = () => {
           </Route>
 
           <Route path="/register" element={<RegistrationLayout />}>
-            <Route  path="/register/form" element={<RegisterFormLayout />}>
+            <Route path="/register/form" element={<RegisterFormLayout />}>
               <Route index element={<TextInfoForm />} />
-              <Route path="/register/form/contact-details" element={<ContactDetailForm />} />
+              <Route
+                path="/register/form/contact-details"
+                element={<ContactDetailForm />}
+              />
             </Route>
           </Route>
 
@@ -30,7 +37,11 @@ const WebRoutes = () => {
             <Route path="/text-info" element={<TextInfoForm />} />
             <Route path="/contact-details" element={<ContactDetailForm />} />
           </Route> */}
-          <Route path="/onboarding" element={<Onboarding />} />
+          <Route path="/onboarding" element={<OnboardingLayout />}>
+            <Route path="/onboarding/form" element={<OnboardingFormLayout />}>
+              <Route index element={<TextInfoForm />} />
+            </Route>
+          </Route>
         </Routes>
       </BrowserRouter>
     </>
