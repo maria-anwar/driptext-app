@@ -9,6 +9,13 @@ import TextInfoForm from "./components/forms/TextInfoForm";
 import ContactDetailForm from "./components/forms/ContactDetailForm";
 import RegisterForms from "./components/forms/RegisterForms";
 import RegisterFormLayout from "./layouts/RegisterFormLayout";
+import AimContent from "./components/forms/onboarding-forms/AimContent";
+import OnboardingLayout from "./layouts/OnboardingLayout";
+import OnboardingForm from "./components/forms/OnboardingForm";
+import OnboardingFormLayout from "./layouts/OnboardingFormLayout";
+import GeneralInfo from "./components/forms/onboarding-forms/GeneralInfo";
+import CompanyInfo from "./components/forms/onboarding-forms/CompanyInfo";
+import TargetCustomers from "./components/forms/onboarding-forms/TargetCustomers";
 
 const WebRoutes = () => {
   return (
@@ -20,17 +27,31 @@ const WebRoutes = () => {
           </Route>
 
           <Route path="/register" element={<RegistrationLayout />}>
-            <Route  path="/register/form" element={<RegisterFormLayout />}>
+            <Route path="/register/form" element={<RegisterFormLayout />}>
               <Route index element={<TextInfoForm />} />
-              <Route path="/register/form/contact-details" element={<ContactDetailForm />} />
+              <Route
+                path="/register/form/contact-details"
+                element={<ContactDetailForm />}
+              />
             </Route>
           </Route>
-
-          {/* <Route element={<RegistrationLayout />}>
-            <Route path="/text-info" element={<TextInfoForm />} />
-            <Route path="/contact-details" element={<ContactDetailForm />} />
-          </Route> */}
-          <Route path="/onboarding" element={<Onboarding />} />
+          <Route path="/onboarding" element={<OnboardingLayout />}>
+            <Route path="/onboarding/form" element={<OnboardingFormLayout />}>
+              <Route index element={<GeneralInfo />} />
+              <Route
+                path="/onboarding/form/company-info"
+                element={<CompanyInfo />}
+              />
+              <Route
+                path="/onboarding/form/customers-info"
+                element={<TargetCustomers />}
+              />
+              <Route
+                path="/onboarding/form/content-info"
+                element={<AimContent />}
+              />
+            </Route>
+          </Route>
         </Routes>
       </BrowserRouter>
     </>
