@@ -1,9 +1,9 @@
 import React from "react";
-// import FormDetail from "../../components/forms/FormDetail";
+import { Outlet } from "react-router-dom";
 // import { GroupField } from "../../components/forms/mobile/GroupField";
 // import RegistrationForm from "../../components/forms/mobile/RegistrationForm";
-// import RegisterForms from "../../components/forms/RegisterForms";
-import { Outlet } from "react-router-dom";
+//  import RegisterForms from "../../components/forms/RegisterForms";
+
 
 const Registration = () => {
   return (
@@ -20,8 +20,8 @@ const Registration = () => {
             </p>
           </div>
           {/* <RegistrationForm/> */}
-          <RegisterForms />
-          
+          {/* <RegisterForms /> */}
+          <Outlet />
         </div>
       </div>
     </>

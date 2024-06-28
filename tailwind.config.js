@@ -32,6 +32,7 @@ export default {
       colors: {
         'custom-blue': '#1985C2',
         'custom-yellow': '#FFCE22',
+        'dark-blue': '#101E33',
         // Add more custom colors as needed
       },
     },
