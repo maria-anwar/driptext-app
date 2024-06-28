@@ -40,16 +40,16 @@ const TextInfoForm = () => {
               <GroupField
                 label={"Your Project"}
                 type={"text"}
-                placeholder={"Your project name"}
+                placeholder={"Example.com"}
                 id={"project"}
                 name={"project"}
                 value={props.values.project}
                 errors={props.errors.project}
                 onChange={props.handleChange}
               />
-
               <GroupField
                 label={"Desired Keyword"}
+                placeholder={"Example keyword"}
                 type={"text"}
                 id={"keyword"}
                 name={"keyword"}
@@ -58,8 +58,9 @@ const TextInfoForm = () => {
                 onChange={props.handleChange}
               />
               <div className="">
-                <button className="bg-blue-900 border-none text-white text-lg font-normal px-10 py-2 rounded-md cursor-pointer shadow-md"
-                type="submit"
+                <button
+                  className="bg-custom-yellow border-none text-dark-blue text-lg font-medium px-10 py-2 rounded-md cursor-pointer shadow-md"
+                  type="submit"
                 >
                   Next
                 </button>

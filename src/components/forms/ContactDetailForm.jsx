@@ -70,11 +70,11 @@ const ContactDetailForm = () => {
                   onChange={props.handleChange}                
                 />
               </div>
-              <div className="max-w-max">
-                <button className="bg-blue-900 border-none text-white text-lg font-normal px-10 py-2 rounded-md cursor-pointer shadow-md"
+              <div className="">
+                <button className="bg-custom-yellow border-none text-dark-blue text-lg font-medium px-10 py-2 rounded-md cursor-pointer shadow-md"
                 type="submit"
                 >
-                  Submit Order
+                  Next
                 </button>
               </div>
             </Form>

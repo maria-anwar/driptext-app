@@ -1,10 +1,12 @@
 import React from 'react'
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate, Link, useLocation } from "react-router-dom";
 import { IoPersonOutline, IoBookSharp, IoBookOutline } from "react-icons/io5";
+
 const RegisterFormLayout = () => {
+  const location = useLocation();
   return (
-    <div className="w-full flex border rounded-lg shadow-lg">
-    <div className="w-[30%] bg-blue-900 rounded-l-lg px-8 py-14 ">
+    <div className="hidden w-full xl:flex border rounded-lg shadow-lg">
+    <div className="w-[32%] 3xl:w-[30%] bg-dark-blue rounded-l-lg px-5 4xl:px-8 py-14 ">
       <div className="w-full flex flex-col gap-8 ">
         <div className="w-full flex items-center">
           <div className="w-[17%] ">
@@ -12,7 +14,7 @@ const RegisterFormLayout = () => {
               <IoBookOutline size={18} color="blue-900" />
             </div>
           </div>
-          <div className="w-[80%] text-white text-md">Text Information</div>
+          <div className= {`max-w-max text-white xl:text-base 4xl:text-md font-light ${location.pathname === "/register/form" ? 'border-b-2 border-b-custom-yellow' : ''} `}>Text Information</div>
         </div>
         <div className="w-full flex items-center">
           <div className="w-[17%] ">
@@ -20,7 +22,7 @@ const RegisterFormLayout = () => {
               <IoPersonOutline size={18} color="blue-900" />
             </div>
           </div>
-          <div className="w-[80%] text-white">Contact Details</div>
+          <div className={`max-w-max text-white xl:text-base 4xl:text-md font-light ${location.pathname === "/register/form/contact-details" ? 'border-b-2 border-b-custom-yellow' : ''} `}>Contact Details</div>
         </div>
       </div>
     </div>

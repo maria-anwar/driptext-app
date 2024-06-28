@@ -16,13 +16,14 @@ import OnboardingFormLayout from "./layouts/OnboardingFormLayout";
 import GeneralInfo from "./components/forms/onboarding-forms/GeneralInfo";
 import CompanyInfo from "./components/forms/onboarding-forms/CompanyInfo";
 import TargetCustomers from "./components/forms/onboarding-forms/TargetCustomers";
+import SuccessPage from "./views/client/SuccessPage";
 
 const WebRoutes = () => {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route element={<HomeLayout />}>
+          <Route element={<HomeLayout />}> 
             <Route path="/" element={<Home />} />
           </Route>
 
@@ -52,6 +53,7 @@ const WebRoutes = () => {
               />
             </Route>
           </Route>
+          <Route path="/success" element={<SuccessPage />} />
         </Routes>
       </BrowserRouter>
     </>

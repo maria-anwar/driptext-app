@@ -33,8 +33,8 @@ const RegistrationForm = () => {
       >
         {(props) => (
           <Form>
-            <div className="xl:hidden w-full bg-dark-blue xxxs:flex xxxs:flex-col gap-8 px-3 xs:px-4 xs:py-10 sm:px-6 md:px-9 md:py-14 lg:px-10">
-              <div className="flex flex-col gap-3">
+            <div className="xl:hidden w-full bg-dark-blue flex flex-col gap-8  px-3 xs:px-4 xs:py-10 sm:px-6 md:px-9 md:py-14 lg:px-10">
+              <div className="flex flex-col gap-3 xs:gap-4">
                 <h2 className="text-white text-lg font-semibold">
                   1. Information About the Text
                 </h2>
@@ -60,7 +60,7 @@ const RegistrationForm = () => {
 
                 />
               </div>
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-3 xs:gap-4">
                 <h2 className="text-white text-lg font-semibold">
                   2. Contact details of the invoice receipient
                 </h2>

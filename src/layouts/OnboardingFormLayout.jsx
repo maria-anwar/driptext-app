@@ -8,42 +8,43 @@ const OnboardingFormLayout = () => {
   const location = useLocation();
 
   return (
-    <div className="w-full flex border rounded-lg shadow-lg">
-      <div className="w-[30%] bg-dark-blue rounded-l-lg px-8 py-14 ">
+    <div className="hidden w-full xl:flex border rounded-lg shadow-lg">
+      <div className="w-[32%] 3xl:w-[30%] bg-dark-blue rounded-l-lg px-5  4xl:px-8 py-14 ">
         <div className="w-full flex flex-col gap-8 ">
-          <div className="w-full flex items-center">
+
+          <div className="w-full flex items-center xl:gap-1 3xl:gap-0 ">
             <div className="w-[17%] ">
               <div className="w-[34px] h-[34px] bg-white rounded-full flex items-center justify-center">
                 <IoBookOutline size={18} color="blue-900" />
               </div>
             </div>
-            <Link to="#" className= {`max-w-max text-white text-md ${location.pathname === "/onboarding/form" ? 'border-b-2 border-b-custom-yellow' : ''} `}>
+            <Link to="#" className= {`max-w-max text-white xl:text-base 4xl:text-md font-light ${location.pathname === "/onboarding/form" ? 'border-b-2 border-b-custom-yellow' : ''} `}>
               General Information
             </Link>
           </div>
-          <div className="w-full flex items-center">
+          <div className="w-full flex items-center xl:gap-1 3xl:gap-0">
             <div className="w-[17%] ">
               <div className="w-[34px] h-[34px] bg-white rounded-full flex items-center justify-center">
                 <IoPersonOutline size={18} color="blue-900" />
               </div>
             </div>
-            <Link className={`max-w-max text-white text-md ${location.pathname === "/onboarding/form/company-info" ? 'border-b-2 border-b-custom-yellow' : ''} `}>Company Information</Link>
+            <Link className={`max-w-max text-white xl:text-base 4xl:text-md font-light ${location.pathname === "/onboarding/form/company-info" ? 'border-b-2 border-b-custom-yellow' : ''} `}>Company Information</Link>
           </div>
-          <div className="w-full flex items-center">
+          <div className="w-full flex items-center xl:gap-1 3xl:gap-0">
             <div className="w-[17%] ">
               <div className="w-[34px] h-[34px] bg-white rounded-full flex items-center justify-center">
                 <IoPersonOutline size={18} color="blue-900" />
               </div>
             </div>
-            <Link className= {`max-w-max text-white text-md ${location.pathname === "/onboarding/form/customers-info" ? 'border-b-2 border-b-custom-yellow' : ''} `}>Target Customers Info</Link>
+            <Link className= {`max-w-max text-white xl:text-base 4xl:text-md font-light ${location.pathname === "/onboarding/form/customers-info" ? 'border-b-2 border-b-custom-yellow' : ''} `}>Target Customers Info</Link>
           </div>
-          <div className="w-full flex items-center">
+          <div className="w-full flex items-center xl:gap-1 3xl:gap-0">
             <div className="w-[17%] ">
               <div className="w-[34px] h-[34px] bg-white rounded-full flex items-center justify-center">
                 <IoPersonOutline size={18} color="blue-900" />
               </div>
             </div>
-            <Link className={`max-w-max text-white text-md ${location.pathname === "/onboarding/form/content-info" ? 'border-b-2 border-b-custom-yellow' : ''} `}>Content Aim</Link>
+            <Link className={`max-w-max text-white xl:text-base 4xl:text-md font-light ${location.pathname === "/onboarding/form/content-info" ? 'border-b-2 border-b-custom-yellow' : ''} `}>Content Aim</Link>
           </div>
         </div>
       </div>
