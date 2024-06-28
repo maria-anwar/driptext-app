@@ -6,7 +6,7 @@ import RegistrationForm from "../components/forms/mobile/RegistrationForm";
 const Registration = () => {
   return (
     <>
-      <div className="px-4 sm:px-6 md-px-10 lg:px-14 xl:px-20 2xl:px-56 py-10">
+      <div className="px-4 sm:px-6 md-px-10 lg:px-14 xl:px-18 2xl:px-20 3xl:px-28 4xl:px-56 py-10">
         <div className="w-full flex items-center justify-center py-4 4xl:py-6 xs:pb-8 4xl:pb-12">
           <Link to="/">
             <img

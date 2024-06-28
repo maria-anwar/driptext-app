@@ -22,7 +22,7 @@ const ContactDetailForm = () => {
   };
   return (
     <>
-    <div className="w-[70%]  rounded-r-lg px-32 py-16">
+    <div className="w-[70%] rounded-r-lg px-24 2xl:px-28 4xl:px-32 py-16">
         <div className="w-full flex flex-col gap-4">
           <h2 className="text-dark-blue text-3xl font-medium">
            Contact details of the invoice recipient (m/f/d)
@@ -41,6 +41,7 @@ const ContactDetailForm = () => {
             <Form className="w-full flex flex-col gap-5 mt-4">
               <GroupField
                  label={"Email"}
+                 placeholder={"example@gmail.com"}
                  type={"text"}
                  id={'email'}
                  name={'email'}

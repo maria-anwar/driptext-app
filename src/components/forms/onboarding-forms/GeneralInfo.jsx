@@ -22,7 +22,7 @@ const GeneralInfo = () => {
     navigate("/onboarding/form/company-info");
   };
   return (
-    <div className="w-[70%] rounded-r-lg px-24 2xl:px-28 4xl:px-32 py-16">
+    <div className="w-[70%] rounded-r-lg px-20 2xl:px-24 3xl:px-28 4xl:px-32 py-16">
       <div className="w-full flex flex-col gap-4">
         <h2 className="text-dark-blue text-3xl font-medium">
           General Information
