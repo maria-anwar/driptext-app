@@ -24,6 +24,7 @@ const RegisterFormLayout = () => {
         </div>
       </div>
     </div>
+    
     <Outlet/>   
   </div>
   )

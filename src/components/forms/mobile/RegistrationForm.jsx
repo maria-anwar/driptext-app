@@ -33,7 +33,7 @@ const RegistrationForm = () => {
       >
         {(props) => (
           <Form>
-            <div className="xl:display-none w-full bg-dark-blue xxxs:flex xxxs:flex-col gap-8 px-3 xs:px-4 xs:py-10 sm:px-6 md:px-9 md:py-14 lg:px-10">
+            <div className="xl:hidden w-full bg-dark-blue xxxs:flex xxxs:flex-col gap-8 px-3 xs:px-4 xs:py-10 sm:px-6 md:px-9 md:py-14 lg:px-10">
               <div className="flex flex-col gap-3">
                 <h2 className="text-white text-lg font-semibold">
                   1. Information About the Text

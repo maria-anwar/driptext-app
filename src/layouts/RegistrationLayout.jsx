@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 // import { GroupField } from "../../components/forms/mobile/GroupField";
-// import RegistrationForm from "../../components/forms/mobile/RegistrationForm";
+ import RegistrationForm from "../components/forms/mobile/RegistrationForm";
 //  import RegisterForms from "../../components/forms/RegisterForms";
 
 
@@ -19,7 +19,7 @@ const Registration = () => {
               get to work right away to create an excellent sample text for you!
             </p>
           </div>
-          {/* <RegistrationForm/> */}
+          <RegistrationForm/>
           {/* <RegisterForms /> */}
           <Outlet />
         </div>
