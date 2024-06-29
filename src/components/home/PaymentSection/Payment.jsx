@@ -165,7 +165,7 @@ const PricingCard = ({ plan }) => (
       </ul>
     </div>
     <div className="mt-4">
-      <button className="bg-custom-yellow text-white py-2 px-4 rounded-md w-full hover:bg-gray-600 transition-colors duration-300 ease-in-out">Select Plan</button>
+      <button className="bg-custom-yellow text-dark-blue py-2 px-4 rounded-md w-full hover:bg-gray-600 transition-colors duration-300 ease-in-out">Select Plan</button>
     </div>
   </div>
 );
@@ -199,7 +199,7 @@ const PricingSection = () => {
       <div className="container mx-auto p-8 max-w-7xl mb-10">
         <div className="flex justify-center mb-8">
           <div className="flex rounded-md font-bold pb-16">
-            <label htmlFor="contacts_select" className="contactsSelect__label p-6 w-96 bg-gray-500 text-white text-lg">
+            <label htmlFor="contacts_select" className="contactsSelect__label p-6 w-96 bg-gray-300 text-dark-blue text-lg">
               How many texts per month?
             </label>
             <div className="relative">
@@ -207,7 +207,7 @@ const PricingSection = () => {
                 id="contacts_select"
                 name="Number of Texts"
                 autoComplete="off"
-                className="appearance-none bg-custom-yellow text-white border-none p-6 w-60 focus:outline-none focus:ring-0 text-lg"
+                className="appearance-none bg-custom-yellow text-dark-blue border-none p-6 w-60 focus:outline-none focus:ring-0 text-lg"
                 value={selectedTexts}
                 onChange={handleSelectChange}
               >
