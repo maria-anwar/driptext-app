@@ -11,9 +11,9 @@ const Header = () => {
           </div>
         </div>
         <div>
-          <button className="py-4 px-16 bg-custom-yellow text-dark-blue text-xl font-bold rounded-lg hover:bg-yellow-600 transition duration-200">
+          <Link to='/register/form' className="py-4 px-16 bg-custom-yellow text-dark-blue text-xl font-bold rounded-lg hover:bg-yellow-600 transition duration-200">
             Order Free Sample Text
-          </button>
+          </Link>
         </div>
       </header>
     </>
