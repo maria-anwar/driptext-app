@@ -20,7 +20,7 @@ const TextInfoForm = () => {
   };
   return (
     <>
-      <div className="w-[70%]  rounded-r-lg px-32 py-16">
+      <div className="w-[70%] rounded-r-lg px-32 py-16">
         <div className="w-full flex flex-col gap-4">
           <h2 className="text-dark-blue text-3xl font-medium">
             Information About the Text
@@ -40,7 +40,7 @@ const TextInfoForm = () => {
               <GroupField
                 label={"Your Project"}
                 type={"text"}
-                placeholder={"Your project name"}
+                placeholder={"Examle.com"}
                 id={"project"}
                 name={"project"}
                 value={props.values.project}
@@ -50,6 +50,7 @@ const TextInfoForm = () => {
 
               <GroupField
                 label={"Desired Keyword"}
+                placeholder={"example keyword"}
                 type={"text"}
                 id={"keyword"}
                 name={"keyword"}
@@ -58,7 +59,7 @@ const TextInfoForm = () => {
                 onChange={props.handleChange}
               />
               <div className="">
-                <button className="bg-blue-900 border-none text-white text-lg font-normal px-10 py-2 rounded-md cursor-pointer shadow-md"
+                <button className="bg-custom-yellow border-none text-dark-blue text-lg font-medium px-10 py-2 rounded-md cursor-pointer shadow-md"
                 type="submit"
                 >
                   Next
