@@ -207,7 +207,7 @@ const PricingSection = () => {
                 id="contacts_select"
                 name="Number of Texts"
                 autoComplete="off"
-                className="appearance-none bg-yellow-500 text-white border-none p-6 w-60 focus:outline-none focus:ring-0 text-lg"
+                className="appearance-none bg-custom-yellow text-white border-none p-6 w-60 focus:outline-none focus:ring-0 text-lg"
                 value={selectedTexts}
                 onChange={handleSelectChange}
               >
