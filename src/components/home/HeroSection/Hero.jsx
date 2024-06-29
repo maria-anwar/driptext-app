@@ -36,7 +36,7 @@ const Hero = () => {
   
         {/* Button Section */}
         <div className="mt-8 flex justify-center">
-          <button className="py-4 px-16 bg-custom-yellow text-gray-600 text-xl font-bold rounded-lg hover:bg-yellow-600 transition duration-200">
+          <Link className="py-4 px-16 bg-custom-yellow text-gray-600 text-xl font-bold rounded-lg hover:bg-yellow-600 transition duration-200">
             Order Free Sample Text
           </Link>
         </div>
