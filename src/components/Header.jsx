@@ -5,6 +5,7 @@ const Header = () => {
     <>
       <header className="flex justify-between items-center py-14 px-36 text-white h-24 ">
         <div className="flex items-center">
+          
           <div className="mr-4  rounded p-5">
             <img src={Logo} alt="Logo" className="h-10 " />
           </div>
