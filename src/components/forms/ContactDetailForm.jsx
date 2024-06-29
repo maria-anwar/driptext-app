@@ -18,7 +18,7 @@ const ContactDetailForm = () => {
   });
   const onSubmit = (values) => {
     console.log("Im Clicked");
-    navigate('/onboarding');
+    navigate('/onboarding/form');
   };
   return (
     <>

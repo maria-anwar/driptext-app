@@ -3,6 +3,8 @@ import CarousalCards from '../Cards/carousalcards';
 import img1 from '../../../assets/homeimages/DripText-Features-3.png';
 import img2 from '../../../assets/homeimages/DripText-Features-1.png';
 import img3 from '../../../assets/homeimages/DripText-Features-2.png';
+import { Link } from "react-router-dom";
+
 const Hero = () => {
   return (
     <div className="relative mt-2 px-36">
@@ -34,9 +36,9 @@ const Hero = () => {
   
         {/* Button Section */}
         <div className="mt-8 flex justify-center">
-          <button className="py-4 px-16 bg-custom-yellow text-gray-600 text-xl font-bold rounded-lg hover:bg-yellow-600 transition duration-200">
+          <Link to="/register/form" className="py-4 px-16 bg-custom-yellow text-gray-600 text-xl font-bold rounded-lg hover:bg-yellow-600 transition duration-200">
             Order Free Sample Text
-          </button>
+          </Link>
         </div>
       </div>
   

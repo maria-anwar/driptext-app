@@ -1,5 +1,5 @@
 import Logo from "../assets/homeimages/driptext.png";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
