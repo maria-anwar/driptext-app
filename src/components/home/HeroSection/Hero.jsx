@@ -41,33 +41,7 @@ const Hero = () => {
       </div>
   
       {/* Cards Section */}
-<div className="relative w-full h-64 mb-64"> 
-  <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 text-center max-w-7xl mt-16">
-    <div className="bg-[#101E33] text-white  shadow-2xl h-auto md:h-auto flex flex-col justify-between w-full md:w-80 lg:w-96 mx-auto">
-      <div>
-        <h3 className="font-bold text-xl mb-2 p-3 text-white">Low cost</h3>
-        <p>Ready-made text packages in subscription model starting from 75€ per guide text</p>
-      </div>
-      <img src={img3} alt="" className="w-full" />
-    </div>
 
-    <div className="bg-[#101E33] text-white shadow-2xl h-auto md:h-auto flex flex-col justify-between w-full md:w-80 lg:w-96 mx-auto">
-      <div>
-        <h3 className="font-bold text-xl mb-2 p-3 text-white">Quality of content</h3>
-        <p>Product-related SEO guide texts with satisfaction guarantee</p>
-      </div>
-      <img src={img2} alt="" className="w-full" />
-    </div>
-    
-    <div className="bg-[#101E33] text-white shadow-2xl h-auto md:h-auto flex flex-col justify-between w-full md:w-80 lg:w-96 mx-auto">
-      <div>
-        <h3 className="font-bold text-xl mb-2 p-3 text-white">Easy to use</h3>
-        <p>Manage your DripTexts conveniently via our WebApp</p>
-      </div>
-      <img src={img1} alt="" className="w-full" />
-    </div>
-  </div>
-</div>
 
     </div>
   );
