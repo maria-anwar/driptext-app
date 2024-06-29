@@ -50,7 +50,7 @@ const FAQs = () => {
         <div className="mt-14 max-w-4xl mx-auto">
           {Questions.map((question, i) => (
           
-            <Accordion key={i} title={<span className="text-2xl font-semibold">{question.question}</span>}>
+            <Accordion key={i} title={<span className="text-xl font-normal">{question.question}</span>}>
           
               <p className="text-2xl text-white font-normal">
                 {question.answer}
