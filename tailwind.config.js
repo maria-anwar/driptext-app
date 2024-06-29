@@ -26,16 +26,22 @@ export default {
       '11xl': '4300px',
       '12xl': '4700px',
       '13xl': '5000px',
-
     },
     extend: {
       colors: {
         'custom-blue': '#1985C2',
         'custom-yellow': '#FFCE22',
         'dark-blue': '#101E33',
-        // Add more custom colors as needed
+       
+      },
+      fontFamily: {
+        sans: ['sans-serif'], 
+
       },
     },
   },
   plugins: [],
+
+
 }
+

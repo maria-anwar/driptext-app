@@ -33,7 +33,11 @@ const cards = [
 
 const Card = ({ image, title, description }) => (
   <div className='w-full mt-10'>
+
   <div className="p-4 rounded-lg shadow-md bg-[#101E33]  flex flex-col w-5/6 h-auto ml-10">
+=======
+  <div className="p-4 rounded-lg shadow-md bg-[#101E33]  flex flex-col w-full h-full">
+
     <img src={image} alt={title} className="w-full object-cover mb-4 rounded-t-lg" />
     <h3 className="text-xl font-semibold mb-2 text-white">{title}</h3>
     <p className="text-white text-lg">{description}</p>
@@ -48,7 +52,11 @@ Card.propTypes = {
 };
 
 const FullWidthCard = ({ image, title, description }) => (
+
   <div className="p-4 border rounded-lg shadow-md bg-[#101E33]  flex flex-row max-w-7xl ml-28">
+
+  <div className="p-4 border rounded-lg shadow-md bg-[#101E33]  flex flex-row ">
+
     <img src={image} alt={title} className="w-1/2 h-full object-cover rounded-l-lg" />
     <div className="p-4 flex flex-col justify-center w-1/2">
       <h3 className="text-lg font-semibold mb-2 text-white">{title}</h3>
@@ -65,8 +73,13 @@ FullWidthCard.propTypes = {
 
 const CardSection = () => (
   <div className="py-8">
+
     <div className="container mx-auto px-4">
     <div className="mt-10 max-w-5xl mx-auto text-center ">
+
+    <div className="px-36">
+    <div className="mt-10 text-center ">
+>>>>>>> home-page
           <h2 className="elementor-heading-title elementor-size-default text-4xl font-bold text-[#101E33] ">
           With our SEO guides to more traffic, trust and sales
           </h2>
