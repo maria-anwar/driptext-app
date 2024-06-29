@@ -1,4 +1,5 @@
 import Image from '../../../assets/homeimages/Design.png'; 
+import { Link } from "react-router-dom";
 
 const CallToActionSection = () => {
   return (
@@ -10,9 +11,9 @@ const CallToActionSection = () => {
             Do you want to become the category king of your niche and finally find the right customers for your products? 
             <span className="font-bold text-white">Then start with a free sample text!</span>
           </p>
-          <button className="bg-custom-yellow text-dark-blue font-semibold py-3 px-6 rounded-full shadow-md hover:bg-gray-100 transition duration-300">
+          <button className="bg-custom-yellow text-gray-600 font-semibold py-3 px-6 rounded-full shadow-md hover:bg-gray-100 transition duration-300">
             Order free sample text
-          </button>
+          </Link>
         </div>
         <div className="flex-1 lg:mt-0 lg:ml-20 relative flex justify-center items-center">
           <img src={Image} alt="Person" className="h-full object-cover" />
