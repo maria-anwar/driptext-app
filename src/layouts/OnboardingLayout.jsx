@@ -7,7 +7,7 @@ const OnboardingLayout = () => {
     <div className="w-full flex d-flex flex-col gap-10">
       <div className="flex flex-col gap-4 px-4 xs:px-6 md:px-9">
         <h1 className="text-dark-blue text-2xl md:text-3xl font-bold text-center md:px-8">
-        Thank you for your booking!
+        Thank you for your booking !
         </h1>
         <h3 className='text-center text-dark-blue text-xl font-bold'>Here's what happens next:</h3>
         <p className="text-center text-dark-blue text-lg px-2">
