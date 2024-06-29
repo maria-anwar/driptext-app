@@ -1,4 +1,3 @@
-
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -36,12 +35,8 @@ export default {
       },
       fontFamily: {
         sans: ['sans-serif'], 
-
       },
     },
   },
   plugins: [],
-
-
 }
-
