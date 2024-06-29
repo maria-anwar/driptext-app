@@ -12,6 +12,7 @@ import FAQs from "../components/home/question/FAQs";
 import TrafficCommponent from "../components/home/TrafficChallange/TraficChallange"
 import AboutUs from "../components/home/AboutUs/AboutUs";
 import OrderComponent from "../components/home/OrderNow/OrderNow"
+
 const HomeLayout = () => {
   return (
     
