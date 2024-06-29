@@ -1,5 +1,5 @@
 import React from 'react'
-import { Outlet } from "react-router-dom";
+import { Outlet} from "react-router-dom";
 import { IoPersonOutline, IoBookSharp, IoBookOutline } from "react-icons/io5";
 const RegisterFormLayout = () => {
   return (
