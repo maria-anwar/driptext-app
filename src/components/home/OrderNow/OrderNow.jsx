@@ -10,7 +10,7 @@ const CallToActionSection = () => {
             Do you want to become the category king of your niche and finally find the right customers for your products? 
             <span className="font-bold text-white">Then start with a free sample text!</span>
           </p>
-          <button className="bg-yellow-500 text-gray-600 font-semibold py-3 px-6 rounded-full shadow-md hover:bg-gray-100 transition duration-300">
+          <button className="bg-custom-yellow text-gray-600 font-semibold py-3 px-6 rounded-full shadow-md hover:bg-gray-100 transition duration-300">
             Order free sample text
           </button>
         </div>

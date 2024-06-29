@@ -49,7 +49,7 @@ const Footer = () => {
               className="my-2 w-full px-5 py-3 border border-solid border-neutral-300 bg-transparent bg-clip-padding text-base font-normal text-neutral-700 outline-none placeholder:text-neutral-500"
               placeholder="Enter your email address here"
             />
-            <button className="my-2 px-5 py-3 bg-yellow-600 text-white">
+            <button className="my-2 px-5 py-3 bg-custom-yellow text-white">
               Subscribe
             </button>
           </form>

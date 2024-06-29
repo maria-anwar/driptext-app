@@ -165,7 +165,7 @@ const PricingCard = ({ plan }) => (
       </ul>
     </div>
     <div className="mt-4">
-      <button className="bg-yellow-500 text-white py-2 px-4 rounded-md w-full hover:bg-gray-600 transition-colors duration-300 ease-in-out">Select Plan</button>
+      <button className="bg-custom-yellow text-white py-2 px-4 rounded-md w-full hover:bg-gray-600 transition-colors duration-300 ease-in-out">Select Plan</button>
     </div>
   </div>
 );
