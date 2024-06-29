@@ -1,5 +1,4 @@
 import Logo from "../assets/homeimages/driptext.png";
-import { useNavigate, Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -11,9 +10,9 @@ const Header = () => {
           </div>
         </div>
         <div>
-          <button className="py-4 px-16 bg-custom-yellow text-gray-600 text-xl font-bold rounded-lg hover:bg-yellow-600 transition duration-200">
+          <button className="py-4 px-16 bg-custom-yellow text-dark-blue text-xl font-bold rounded-lg hover:bg-yellow-600 transition duration-200">
             Order Free Sample Text
-          </Link>
+          </button>
         </div>
       </header>
     </>
