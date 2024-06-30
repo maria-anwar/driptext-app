@@ -23,7 +23,9 @@ const WebRoutes = () => {
       <BrowserRouter>
         <Routes>
           <Route element={<HomeLayout />}>
-            <Route path="/" element={<Home />} />
+            <Route index element={<Home />} />
+            {/* <Route path="/" element={<Home />} /> */}
+            
           </Route>
 
           <Route path="/register" element={<RegistrationLayout />}>

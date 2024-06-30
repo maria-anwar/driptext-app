@@ -1,11 +1,12 @@
-
+import React from 'react'
+import HeroSection from '../components/landing-page/HeroSection'
 
 const Home = () => {
   return (
-    <div>
-      <h1>Home</h1>
-    </div>
-  );
-};
+   <>
+   <HeroSection />
+   </>
+  )
+}
 
-export default Home;
+export default Home
