@@ -1,4 +1,4 @@
-import React from "react";
+
 import Hero from "../components/home/HeroSection/Hero";
 import Content from "../components/home/UpcomingContent/UpcomingContent";
 import SeoCard from "../components/home/Cards/SeoCard";

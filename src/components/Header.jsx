@@ -1,22 +1,21 @@
 import Logo from "../assets/homeimages/driptext.png";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <>
-      <header className="flex justify-between items-center py-14 px-36 text-white h-24 ">
-        <div className="flex items-center">
-          <div className="mr-4  rounded p-5">
-            <img src={Logo} alt="Logo" className="h-10 " />
-          </div>
-        </div>
-        <div>
-          <Link to='/register/form' className="py-4 px-16 bg-custom-yellow text-dark-blue text-xl font-bold rounded-lg hover:bg-yellow-600 transition duration-200">
-            Order Free Sample Text
-          </Link>
-        </div>
-      </header>
-    </>
+    <header className="w-full flex justify-between items-center px-1 xxs:px-2 xs:px-3 sm:px-5 md:px-6 lg:px-7 xl:px-9 2xl:px-14 3xl:px-20 4xl:px-52 py-4 ">
+      <div className="flex items-center">
+        <img src={Logo} alt="Logo" className="h-6 xs:h-8 sm:h-10 md:h-12 lg:h-14" />
+      </div>
+      <div>
+        <Link
+          to="/register/form"
+          className="py-4 px-2 xs:py-2 xs:px-4 sm:py-2 sm:px-5 md:py-2 md:px-6 lg:py-6 lg:px-8 xl:py-4 bg-gradient-to-r from-sky-300 to-sky-600 text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-white font-bold rounded-lg"
+        >
+          Order Free Sample Text
+        </Link>
+      </div>
+    </header>
   );
 };
 
