@@ -6,13 +6,13 @@ import logo5 from "../../../assets/homeimages/logo5.png";
 
 const UpcomingContent = () => {
   return (
-    <div className="w-full">
+    <div className="w-full  xxs:mt-16 lg:mt-64 ">
       <div className="w-full flex justify-center px-2 xs:px-3 sm:px-5 lg:px-7 2xl:px-12">
         <h1 className="text-[#101E33] text-center">
           We live SEO & content. The following specialist portals have published our content.
         </h1>
       </div>
-      <div className="flex justify-between items-center mt-8 px-2 xs:px-3 sm:px-5 lg:px-7 2xl:px-20 overflow-x-auto">
+      <div className="flex 2xl:justify-center 2xl:gap-10 xxs:justify-between items-center mt-8 px-2 xs:px-3 sm:px-5 lg:px-7 2xl:px-20 overflow-x-auto">
         <img src={logo1} alt="Partner 1" className="h-16 md:h-12 sm:h-10 xs:h-8 xxs:h-6" />
         <img src={logo2} alt="Partner 2" className="h-16 md:h-12 sm:h-10 xs:h-8 xxs:h-6" />
         <img src={logo3} alt="Partner 3" className="h-16 md:h-12 sm:h-10 xs:h-8 xxs:h-6" />

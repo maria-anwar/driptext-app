@@ -48,9 +48,9 @@ Card.propTypes = {
 };
 
 const FullWidthCard = ({ image, title, description }) => (
-  <div className="p-4 border rounded-lg shadow-md bg-[#101E33]  flex flex-row ">
-    <img src={image} alt={title} className="w-1/2 h-full object-cover rounded-l-lg" />
-    <div className="p-4 flex flex-col justify-center w-1/2">
+  <div className="p-4 border rounded-lg shadow-md bg-[#101E33]  flex 2xl:flex-row xxs:flex-col">
+    <img src={image} alt={title} className="2xl:w-1/2  h-full object-cover rounded-l-lg" />
+    <div className="py-4 xxs:px-1 px-4 flex flex-col justify-center 2xl:w-1/2">
       <h3 className="text-lg font-semibold mb-2 text-white">{title}</h3>
       <p className="text-white text-lg">{description}</p>
     </div>
@@ -65,12 +65,11 @@ FullWidthCard.propTypes = {
 
 const CardSection = () => (
   <div className="py-8">
-    <div className="px-36">
-    <div className="mt-10 text-center ">
-          <h2 className="elementor-heading-title elementor-size-default text-4xl font-bold text-[#101E33] ">
+    <div className="mt-10 text-center 2xl:px-40">
+          <h2 className="text-4xl font-bold text-[#101E33] ">
           With our SEO guides to more traffic, trust and sales
           </h2>
-          <p className="text-xl mt-4 text-gray-900 max-w-4xl pl-24">
+          <p className="text-lg mt-4 text-gray-900 ">
           The exact steps to give your online store an SEO performance upgrade with sales uplift:
           </p>
         </div>
@@ -82,7 +81,7 @@ const CardSection = () => (
       <div className="mt-10">
         <FullWidthCard {...cards[3]} />
       </div>
-    </div>
+    
   </div>
 );
 

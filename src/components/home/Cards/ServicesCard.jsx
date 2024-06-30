@@ -1,4 +1,5 @@
 
+
 const InfoSection = () => {
   const items = [
     {
@@ -14,7 +15,7 @@ const InfoSection = () => {
     {
       title: 'Building your authority',
       description: 'The more topics you cover sensibly within the user journey, the greater the reputation and authority of your shop. With a product-related advice section, we connect your topic with your brand.',
-      icon: '/path/to/icon3.svg', 
+      icon: '/path/to/icon3.svg',
     },
     {
       title: 'Blog as a sustainable seller',
@@ -34,13 +35,13 @@ const InfoSection = () => {
   ];
 
   return (
-    <div className="bg-gray-900 rounded-xl text-white py-16 px-12">
-      <div className="text-center mb-12 px-40">
-        <h2 className="text-sm text-gray-400">All-round carefree text service</h2>
-        <h1 className="text-4xl font-bold my-4">Our texts provide the answers to the questions of your potential customers</h1>
-        <p className="text-xl">With our SEO guide texts, you can build a <span className="font-bold">topic-relevant blog</span> for your online shop without any effort on your part to generate <span className="font-bold">more traffic, customers and sales</span>.</p>
+    <div className="bg-gray-900 text-white py-16 2xl:px-12 xxs:px-3">
+      <div className="text-center mb-12 2xl:px-40">
+        <h2 className="text-sm text-gray-400 ">All-round carefree text service</h2>
+        <h1 className="text-3xl font-bold my-4">Our texts provide the answers to the questions of your potential customers</h1>
+        <p className="text-lg">With our SEO guide texts, you can build a <span className="font-bold">topic-relevant blog</span> for your online shop without any effort on your part to generate <span className="font-bold">more traffic, customers and sales</span>.</p>
       </div>
-      <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className=" px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
         {items.map((item, index) => (
           <div key={index} className="flex flex-col items-start text-start ">
             <div className="bg-gray-800 p-4 w-16 h-16 border border-gray-400 rounded-lg mb-4">

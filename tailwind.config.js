@@ -32,6 +32,7 @@ export default {
         'custom-yellow': '#FFCE22',
         'dark-blue': '#101E33',
        
+       
       },
       fontFamily: {
         sans: ['sans-serif'], 
