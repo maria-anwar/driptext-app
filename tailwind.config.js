@@ -31,7 +31,7 @@ export default {
         'custom-blue': '#1985C2',
         'custom-yellow': '#FFCE22',
         'dark-blue': '#101E33',
-       
+        'custom-black':'#313C49',
       },
       fontFamily: {
         sans: ['sans-serif'], 
