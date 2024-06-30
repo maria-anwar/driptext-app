@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
-    <div className="relative w-full flex flex-col gap-10 xs:gap-14 justify-center items-center bg-dark-blue rounded-xl 4xl:rounded-2xl mt-4 border px-3 py-6 xxs:px-8 xxs:py-10 xs:px-7 xs:py-20">
+    <div className="relative w-full flex flex-col gap-10 xs:gap-14 justify-center items-center bg-gradient-to-r from-dark-blue to-sky-800 rounded-xl 4xl:rounded-2xl mt-4 border px-3 py-6 xxs:px-8 xxs:py-10 xs:px-7 xs:py-20">
       <div className="w-full grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 justify-center items-center px-5 xxs:px-4">
         <div className="w-full flex flex-col gap-1 justify-center items-center">
           <div className="text-white">★ ★ ★ ★ ★</div>
@@ -36,7 +36,7 @@ const HeroSection = () => {
         </div>
       </div>
       
-        <div className="px-40">
+        <div className="2xl:px-40">
           <h1 className=" text-4xl font-bold text-center text-white">
             We deliver the copy your customers need to buy from you.
           </h1>
@@ -45,13 +45,13 @@ const HeroSection = () => {
           </p>
         </div>
         <div className="flex justify-center">
-  <button className="py-4 px-8 bg-gradient-to-r from-sky-400 to-sky-800 text-sm md:text-xl text-gray-600 font-bold rounded-lg transform transition duration-300 ease-in-out hover:scale-110 whitespace-nowrap">
+  <button className="py-4 px-8  text-sm md:text-xl bg-gradient-to-r from-sky-300 to-sky-600 text-white font-bold rounded-lg transform transition duration-300 ease-in-out hover:scale-110 whitespace-nowrap">
     Order Free Sample Text
   </button>
 </div>
 
 
-      {/* <div className="relative w-full lg:mb-[-16rem] z-10 px-2">
+      <div className="relative w-full lg:mb-[-16rem] z-10 px-2">
         <div className="container  mx-auto grid grid-cols-1 xl:grid-cols-3 gap-6 xl:gap-3 4xl:gap-4 text-center">
           <div className="w-full bg-[#fffff1] shadow-2xl h-auto md:h-auto flex flex-col justify-between rounded-lg">
             <div className="px-2">
@@ -89,7 +89,7 @@ const HeroSection = () => {
             <img src={img1} alt="" className="w-full rounded-b-lg" />
           </div>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };

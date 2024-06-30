@@ -15,23 +15,23 @@ const RecognitionSection = () => {
             Do you want to make your online shop less dependent on expensive performance measures ? But generating organic traffic has been a major challenge for you so far :
             </p>
           </div>
-      <div className="flex flex-wrap justify-center ">
-        <div className="flex items-center justify-center bg-gray-300 px-4 py-2 rounded-full">
+      <div className="flex flex-wrap justify-center gap-4">
+        <div className="flex items-center justify-center bg-gray-200 px-4 py-2 rounded-full">
           <span className="mr-2">🚧</span> SEO & Content – one of many open construction sites
         </div>
-        <div className="flex items-center justify-center bg-gray-300 px-4 py-2 rounded-full">
+        <div className="flex items-center justify-center bg-gray-200 px-4 py-2 rounded-full">
           <span className="mr-2">😕</span> Own guide content brought no success
         </div>
-        <div className="flex items-center justify-center bg-gray-100 px-4 py-2 rounded-full">
+        <div className="flex items-center justify-center bg-gray-200 px-4 py-2 rounded-full">
           <span className="mr-2">👨‍💼</span> You lack the in-house resources
         </div>
-        <div className="flex items-center justify-center bg-gray-100 px-4 py-2 rounded-full">
+        <div className="flex items-center justify-center bg-gray-200 px-4 py-2 rounded-full">
           <span className="mr-2">🌸</span> Lack of know-how makes implementation difficult
         </div>
-        <div className="flex items-center justify-center bg-gray-100 px-4 py-2 rounded-full">
+        <div className="flex items-center justify-center bg-gray-200 px-4 py-2 rounded-full">
           <span className="mr-2">💵</span> Agency service providers are expensive
         </div>
-        <div className="flex items-center justify-center bg-gray-100 px-4 py-2 rounded-full">
+        <div className="flex items-center justify-center bg-gray-200 px-4 py-2 rounded-full">
           <span className="mr-2">📉</span> Bad experiences with external copywriters
         </div>
       </div>
