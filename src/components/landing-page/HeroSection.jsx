@@ -5,8 +5,9 @@ import img3 from "../../assets/homeimages/DripText-Features-2.png";
 
 import { Link } from "react-router-dom";
 const HeroSection = () => {
-  return (
   
+  return (
+
       <div className="w-full flex flex-col gap-10 xs:gap-14 justify-center items-center bg-dark-blue rounded-xl 4xl:rounded-2xl  mt-4 border px-3 py-6 xxs:px-8 xxs:py-10 xs:px-7 xs:py-20">
         <div className="w-full grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 justify-center items-center px-5 xxs:px-4">
           <div className="w-full flex flex-col gap-1 justify-center items-center">

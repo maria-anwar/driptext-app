@@ -7,10 +7,8 @@ const HomeLayout = () => {
   return (
     <>
       <div className=''>
-      {/* <Header />  */}
-      
-      <Outlet/>
-      
+      <Header /> 
+        <Outlet/>
       </div>
       {/* <Footer /> */}
     </>
