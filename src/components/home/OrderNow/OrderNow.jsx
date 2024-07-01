@@ -14,10 +14,7 @@ const CallToActionSection = () => {
               Then start with a free sample text!
             </span>
           </p>
-          <Link
-            to="/register/form"
-            className="bg-white  text-gray-600 font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-gray-100 transition duration-300"
-          >
+          <Link to='/register/form' className="bg-custom-yellow text-gray-600 font-semibold py-3 px-6 rounded-full shadow-md hover:bg-gray-100 transition duration-300">
             Order free sample text
           </Link>
         </div>
