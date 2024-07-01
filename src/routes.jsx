@@ -19,6 +19,7 @@ import TargetCustomers from "./components/forms/onboarding-forms/TargetCustomers
 import RegistrationForm from "./components/client-forms/RegistrationForm";
 import RegisterPage from "./views/client/RegisterPage";
 import ThankYouPage from "./components/landing-page/ThankyouSection";
+import OnboardingPage from "./views/client/OnboardingPage";
 
 const WebRoutes = () => {
   return (
@@ -27,11 +28,12 @@ const WebRoutes = () => {
         <Routes>
           <Route element={<HomeLayout />}>
             <Route index element={<Home />} />
-            {/* <Route path="/" element={<Home />} /> */}
             <Route path="/client-register" element={<RegisterPage />} />            
           </Route>
-          <Route path="/success" element={<ThankYouPage />}/>
-          <Route path="/register" element={<RegistrationLayout />}>
+          <Route path="/client-onboarding" element={<OnboardingPage />} />            
+          <Route path="/thankyou-page" element={<ThankYouPage />}/>
+
+          {/* <Route path="/register" element={<RegistrationLayout />}>
             <Route path="/register/form" element={<RegisterFormLayout />}>
               <Route index element={<TextInfoForm />} />
               <Route
@@ -39,8 +41,8 @@ const WebRoutes = () => {
                 element={<ContactDetailForm />}
               />
             </Route>
-          </Route>
-          <Route path="/onboarding" element={<OnboardingLayout />}>
+          </Route> */}
+          {/* <Route path="/onboarding" element={<OnboardingLayout />}>
             <Route path="/onboarding/form" element={<OnboardingFormLayout />}>
               <Route index element={<GeneralInfo />} />
               <Route
@@ -56,7 +58,7 @@ const WebRoutes = () => {
                 element={<AimContent />}
               />
             </Route>
-          </Route>
+          </Route> */}
         </Routes>
       </BrowserRouter>
     </>

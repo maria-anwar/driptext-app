@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Logo from "../assets/homeimages/driptext.png";
+import Logo from "../../assets/homeimages/driptext.png";
+import OnboardingForm from "../../components/client-forms/OnboardingForm";
 
 const OnboardingPage = () => {
   return (
-    <div className="px-4 sm:px-6 md-px-10 lg:px-14 xl:px-20 2xl:px-56 py-10">
+    <div className="px-4 sm:px-6 md-px-10 lg:px-14 xl:px-20 2xl:px-56 4xl:px-80 py-10">
       <Link
         to="/"
         className="w-full flex items-center justify-center py-2 pb-5 sm:pb-7 md:pb-8"
@@ -28,6 +29,7 @@ const OnboardingPage = () => {
             company and your content goals better.
           </p>
         </div>
+        <OnboardingForm />
       </div>
     </div>
   );
