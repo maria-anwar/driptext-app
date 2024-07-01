@@ -6,7 +6,7 @@ import SeoTips from "../components/home/Cards/SeoTips";
 import Services from "../components/home/Cards/ServicesCard";
 import Payment from "../components/home/PaymentSection/Payment";
 import ReviewCarousal from "../components/home/Cards/ReviewCarousal";
-import FAQs from "../components/home/question/FAQs";
+import FAQs from "../components/home/Faq/FAQs";
 import TrafficCommponent from "../components/home/TrafficChallange/TraficChallange";
 import AboutUs from "../components/home/AboutUs/AboutUs";
 import OrderComponent from "../components/home/OrderNow/OrderNow";

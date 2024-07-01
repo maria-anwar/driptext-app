@@ -8,6 +8,9 @@ import PaymentComponent from '../components/home/PaymentSection/Payment'
 import SeoContent from '../components/landing-page/SeoContent';
 import AboutUs from "../components/home/AboutUs/AboutUs"
 import OrderNow from "../components/home/OrderNow/OrderNow"
+import ReviewComponent from '../components/home/Reviews/Reviews';
+import Collaborate from '../components/home/Collaborate/Collaborate';
+import FaqComponent from '../components/home/Faq/Faq';
 
 
 const Home = () => {
@@ -21,9 +24,13 @@ const Home = () => {
         <ServicesComponent />
         <SeoTips/>
         <PaymentComponent/>
+        <ReviewComponent />
+        <Collaborate />
         <AboutUs />
+        <FaqComponent />
         <OrderNow />
         <SeoContent/>
+       
        
       </div>
      

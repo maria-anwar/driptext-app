@@ -152,7 +152,7 @@ const PricingSection = () => {
   const [selectedTexts, setSelectedTexts] = useState(8);
 
   return (
-    <div className="bg-gray-100 py-12">
+    <div className="bg-gray-100 rounded-xl py-12 mb-10">
       <div className="text-center mb-8">
         <h2 className="text-sm text-cyan-500">DripText Prices</h2>
         <h1 className="text-3xl font-bold my-4">Choose between our flexible package prices</h1>
