@@ -35,7 +35,7 @@ const InfoSection = () => {
   ];
 
   return (
-    <div className="bg-gray-900 text-white py-16 2xl:px-12 xxs:px-3">
+    <div className="bg-gradient-to-r from-dark-blue to-sky-800 rounded-xl 4xl:rounded-2xl text-white py-16 2xl:px-12 xxs:px-3">
       <div className="text-center mb-12 2xl:px-40">
         <h2 className="text-sm text-cyan-500 ">All-round carefree text service</h2>
         <h1 className="text-3xl font-bold my-4">Our texts provide the answers to the questions of your potential customers</h1>

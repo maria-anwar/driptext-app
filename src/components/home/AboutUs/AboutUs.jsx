@@ -27,7 +27,7 @@ const teamMembers = [
 
 const AboutSection = () => {
   return (
-    <div className="bg-gradient-to-r from-dark-blue to-sky-900 py-12 my-24">
+    <div className="bg-gradient-to-r from-dark-blue to-sky-900 py-12 my-24 rounded-xl 4xl:rounded-2xl">
       <div className="text-center mb-8 2xl:px-40">
         <h2 className="text-cyan-400 text-sm">About Us</h2>
         <h1 className="text-custom-white text-3xl font-bold my-4">The team behind DripText</h1>

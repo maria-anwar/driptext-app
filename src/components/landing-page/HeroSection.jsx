@@ -45,9 +45,9 @@ const HeroSection = () => {
           </p>
         </div>
         <div className="flex justify-center">
-  <button className="py-4 px-8  text-sm md:text-xl bg-gradient-to-r from-sky-700 to-cyan-500  text-white font-bold rounded-lg transform transition duration-300 ease-in-out hover:scale-110 whitespace-nowrap">
+  <Link to='/register/form' className="py-4 px-8  text-sm md:text-xl bg-gradient-to-r from-sky-700 to-cyan-500  text-white font-bold rounded-lg transform transition duration-300 ease-in-out hover:scale-110 whitespace-nowrap">
     Order Free Sample Text
-  </button>
+  </Link>
 </div>
 
 
