@@ -162,7 +162,7 @@ const PricingSection = () => {
             <button
               key={plan}
               onClick={() => setSelectedTexts(plan)}
-              className={`py-4 px-4 text-lg rounded-lg ${selectedTexts === plan ? 'bg-sky-700 text-white' : 'bg-gray-300 text-gray-700'} mx-2 mb-2 sm:mb-0`}
+              className={`py-4 px-4 text-lg rounded-lg ${selectedTexts === plan ? 'bg-gray-700 text-white' : 'bg-gray-300 text-gray-700'} mx-2 mb-2 sm:mb-0`}
             >
               {`${plan} texts per month`}
             </button>
