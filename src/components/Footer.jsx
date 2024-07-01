@@ -31,7 +31,7 @@ const Footer = () => {
                             Office 301<br/>
                             6017 Larnaca, Cyprus
                         </p>
-                    </div>
+                    </div> 
                     <div className="md:w-1/4">
                         <h3 className="text-gray-900 font-bold mb-2">Legal</h3>
                         <ul className="text-gray-700">
