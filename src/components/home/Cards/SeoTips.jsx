@@ -33,10 +33,10 @@ const cards = [
 
 const Card = ({ image, title, description }) => (
   <div className='w-full mt-10'>
-  <div className="p-4 rounded-lg shadow-md bg-[#101E33]  flex flex-col w-full h-full">
+  <div className=" rounded-lg shadow-md bg-gray-100  flex flex-col w-full h-full">
     <img src={image} alt={title} className="w-full object-cover mb-4 rounded-t-lg" />
-    <h3 className="text-xl font-semibold mb-2 text-white">{title}</h3>
-    <p className="text-white text-lg">{description}</p>
+    <h3 className="px-6 text-xl font-semibold mb-2 text-black">{title}</h3>
+    <p className=" px-6 mb-5 text-black">{description}</p>
   </div>
   </div>
 );
@@ -48,11 +48,11 @@ Card.propTypes = {
 };
 
 const FullWidthCard = ({ image, title, description }) => (
-  <div className="p-4 border rounded-lg shadow-md bg-[#101E33]  flex 2xl:flex-row xxs:flex-col">
+  <div className="p-4 border rounded-lg shadow-md bg-gray-100  flex 2xl:flex-row xxs:flex-col">
     <img src={image} alt={title} className="2xl:w-1/2  h-full object-cover rounded-l-lg" />
     <div className="py-4 xxs:px-1 px-4 flex flex-col justify-center 2xl:w-1/2">
-      <h3 className="text-lg font-semibold mb-2 text-white">{title}</h3>
-      <p className="text-white text-lg">{description}</p>
+      <h3 className="text-lg font-semibold mb-2 text-black">{title}</h3>
+      <p className="text-black text-lg">{description}</p>
     </div>
   </div>
 );
@@ -66,7 +66,10 @@ FullWidthCard.propTypes = {
 const CardSection = () => (
   <div className="py-8">
     <div className="mt-10 text-center 2xl:px-40">
-          <h2 className="text-4xl font-bold text-[#101E33] ">
+      <h1 className='text-cyan-500 mb-4'>
+      That’s why our customers ❤️ us
+      </h1>
+          <h2 className="text-3xl font-bold text-[#101E33] ">
           With our SEO guides to more traffic, trust and sales
           </h2>
           <p className="text-lg mt-4 text-gray-900 ">

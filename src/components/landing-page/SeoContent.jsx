@@ -1,15 +1,10 @@
-import React from "react";
 
 const SeoContent = () => {
   const seocontent = [
     {
       title: "Why DripText is your content creation agency Are",
       detail:
-        "you looking for unique content that will take your website to the next SEO level? Do you need informative texts for your online shop or\
-          corporate blog that will generate more traffic and conversions? Then\
-          you have come to the right place. We at DripText take the stress off\
-          your hands and ensure that your content is always fresh, relevant and\
-          SEO-optimized.",
+        "you looking for unique content that will take your website to the next SEO level? Do you need informative texts for your online shop or corporate blog that will generate more traffic and conversions? Then you have come to the right place. We at DripText take the stress off your hands and ensure that your content is always fresh, relevant and SEO-optimized.",
     },
     {
       title: "Our USP - more than just a content marketing agency",
@@ -37,30 +32,24 @@ const SeoContent = () => {
         "Order your free sample today and discover the DripText difference! We look forward to working with you.",
     },
   ];
+
   return (
     <div className="w-full flex flex-col justify-center items-center gap-8 py-4 px-4 sm:px-3 xl:px-12 2xl:px-18 3xl:px-24">
       <div className="w-full">
         <h3 className="w-full text-custom-black text-center font-bold text-[24px] lg:text-[30px] 3xl:px-5">
-          Welcome to DripText: your innovative text agency for high-quality SEO
-          content.
+          Welcome to DripText: your innovative text agency for high-quality SEO content.
         </h3>
       </div>
-        {
-          seocontent.map((item,index)=>{
-            return (
-              <div className="flex flex-col">
-              <h4 className="text-custom-black text-base xl:text-lg font-semibold ">
-                {item.title}
-              </h4>
-              <p className="text-custom-black text-base xl:text-lg">
-                {item.detail}
-              </p>
-            </div>
-           
-            )
-          })
-        }
-     
+      {seocontent.map((item, index) => (
+        <div key={index} className="flex flex-col">
+          <h4 className="text-custom-black text-base xl:text-lg font-semibold">
+            {item.title}
+          </h4>
+          <p className="text-custom-black text-base xl:text-lg">
+            {item.detail}
+          </p>
+        </div>
+      ))}
     </div>
   );
 };
