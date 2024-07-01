@@ -1,4 +1,4 @@
-import React from 'react';
+
 import logo from "../assets/homeimages/driptext.png";
 
 const Footer = () => {
