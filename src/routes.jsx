@@ -16,6 +16,8 @@ import OnboardingFormLayout from "./layouts/OnboardingFormLayout";
 import GeneralInfo from "./components/forms/onboarding-forms/GeneralInfo";
 import CompanyInfo from "./components/forms/onboarding-forms/CompanyInfo";
 import TargetCustomers from "./components/forms/onboarding-forms/TargetCustomers";
+import RegistrationForm from "./components/client-forms/RegistrationForm";
+import RegisterPage from "./views/client/RegisterPage";
 import ThankYouPage from "./components/landing-page/ThankyouSection";
 
 const WebRoutes = () => {
@@ -25,9 +27,8 @@ const WebRoutes = () => {
         <Routes>
           <Route element={<HomeLayout />}>
             <Route index element={<Home />} />
-
             {/* <Route path="/" element={<Home />} /> */}
-            
+            <Route path="/client-register" element={<RegisterPage />} />            
           </Route>
           <Route path="/success" element={<ThankYouPage />}/>
           <Route path="/register" element={<RegistrationLayout />}>

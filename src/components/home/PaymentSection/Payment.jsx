@@ -1,10 +1,14 @@
 import { useState } from 'react';
 import PricingCard from '../Cards/PricingCard';
+import PricingCard from '../Cards/PricingCard';
 
 const plansForTexts = {
   4: [
     {
       name: '3 months duration',
+      price: '420€ ',
+      month: 'per month',
+      wordPrice: 'Word price: 0.07 EUR/net',
       price: '420€ ',
       month: 'per month',
       wordPrice: 'Word price: 0.07 EUR/net',
@@ -23,6 +27,9 @@ const plansForTexts = {
       price: '360€ ',
       month: 'per month',
       wordPrice: 'Word price: 0.06 EUR/net',
+      price: '360€ ',
+      month: 'per month',
+      wordPrice: 'Word price: 0.06 EUR/net',
       features: [
         '4 SEO-optimized texts per month with at least 1,500 words per text',
         'Proofreading using the 6-eyes principle',
@@ -38,6 +45,9 @@ const plansForTexts = {
       price: '300€',
       month: 'per month',
       wordPrice: 'Word price: 0.05 EUR/net',
+      price: '300€',
+      month: 'per month',
+      wordPrice: 'Word price: 0.05 EUR/net',
       features: [
         '4 SEO-optimized texts per month with at least 1,500 words per text',
         'Proofreading using the 6-eyes principle',
@@ -48,11 +58,15 @@ const plansForTexts = {
         'Incl. satisfaction guarantee'
       ],
       bestValue: true,
+      bestValue: true,
     },
   ],
   8: [
     {
       name: '3 months duration',
+      price: '840€ ',
+      month: 'per month',
+      wordPrice: 'Word price: 0.14 EUR/net',
       price: '840€ ',
       month: 'per month',
       wordPrice: 'Word price: 0.14 EUR/net',
@@ -68,6 +82,9 @@ const plansForTexts = {
     },
     {
       name: '6 months term',
+      price: '720€ ',
+      month: 'per month',
+      wordPrice: 'Word price: 0.12 EUR/net',
       price: '720€ ',
       month: 'per month',
       wordPrice: 'Word price: 0.12 EUR/net',
@@ -96,11 +113,15 @@ const plansForTexts = {
         'Incl. satisfaction guarantee'
       ],
       bestValue: true,
+      bestValue: true,
     },
   ],
   12: [
     {
       name: '3 months duration',
+      price: '1260€ ',
+      month: 'per month',
+      wordPrice: 'Word price: 0.20 EUR/net',
       price: '1260€ ',
       month: 'per month',
       wordPrice: 'Word price: 0.20 EUR/net',
@@ -119,6 +140,9 @@ const plansForTexts = {
       price: '1080€ ',
       month: 'per month',
       wordPrice: 'Word price: 0.18 EUR/net',
+      price: '1080€ ',
+      month: 'per month',
+      wordPrice: 'Word price: 0.18 EUR/net',
       features: [
         '12 SEO-optimized texts per month with at least 1,500 words per text',
         'Proofreading using the 6-eyes principle',
@@ -134,6 +158,9 @@ const plansForTexts = {
       price: '900€ ',
       month: 'per month',
       wordPrice: 'Word price: 0.15 EUR/net',
+      price: '900€ ',
+      month: 'per month',
+      wordPrice: 'Word price: 0.15 EUR/net',
       features: [
         '12 SEO-optimized texts per month with at least 1,500 words per text',
         'Proofreading using the 6-eyes principle',
@@ -144,11 +171,13 @@ const plansForTexts = {
         'Incl. satisfaction guarantee'
       ],
       bestValue: true,
+      bestValue: true,
     },
   ],
 };
 
 const PricingSection = () => {
+  const [selectedTexts, setSelectedTexts] = useState(8);
   const [selectedTexts, setSelectedTexts] = useState(8);
 
   return (
@@ -168,6 +197,11 @@ const PricingSection = () => {
             </button>
           ))}
         </div>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {plansForTexts[selectedTexts].map((plan, index) => (
+          <PricingCard key={index} plan={plan} />
+        ))}
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {plansForTexts[selectedTexts].map((plan, index) => (
