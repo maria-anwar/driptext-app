@@ -6,6 +6,9 @@ import ServicesComponent from "../components/home/Cards/ServicesCard"
 import SeoTips from "../components/home/Cards/SeoTips"
 import PaymentComponent from '../components/home/PaymentSection/Payment'
 import SeoContent from '../components/landing-page/SeoContent';
+import AboutUs from "../components/home/AboutUs/AboutUs"
+import OrderNow from "../components/home/OrderNow/OrderNow"
+
 
 const Home = () => {
   return (
@@ -18,7 +21,10 @@ const Home = () => {
         <ServicesComponent />
         <SeoTips/>
         <PaymentComponent/>
+        <AboutUs />
+        <OrderNow />
         <SeoContent/>
+       
       </div>
      
       

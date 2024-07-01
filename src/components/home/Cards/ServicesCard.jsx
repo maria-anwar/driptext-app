@@ -44,8 +44,8 @@ const InfoSection = () => {
       <div className=" px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
         {items.map((item, index) => (
           <div key={index} className="flex flex-col items-start text-start ">
-            <div className="bg-gray-800 p-4 w-16 h-16 border border-gray-400 rounded-lg mb-4">
-              <img src={item.icon} alt={item.title} className="w-12 h-12"/>
+            <div className="bg-gray-900 p-4 w-16 h-16 border-2 border-white rounded-lg mb-4">
+            <i className="fa-solid fa-people-roof text-gray-600 text-2xl"></i>
             </div>
             <h3 className="text-xl font-bold mb-2">{item.title}</h3>
             <p className="text-gray-400">{item.description}</p>
