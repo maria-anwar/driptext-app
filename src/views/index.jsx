@@ -29,9 +29,7 @@ const Home = () => {
         <AboutUs />
         <FaqComponent />
         <OrderNow />
-        <SeoContent/>
-       
-       
+        <SeoContent/> 
       </div>
      
       
