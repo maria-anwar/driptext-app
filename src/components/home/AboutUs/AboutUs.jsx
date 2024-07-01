@@ -41,15 +41,8 @@ const AboutSection = () => {
               <h3 className="text-xl font-semibold">{member.name}</h3>
               <p className="text-sm text-cyan-200">{member.position}</p>
             </div>
-            <div className="p-6 ">
-              <h3 className="text-2xl font-semibold text--[#101E33] mb-2 justify-center">{person.name}</h3>
-              <p className="text-sm font-medium text-gray-6000 mb-2">{person.title}</p>
-              <p className="text-gray-700 mb-4">{person.details}</p>
-              <div className="absolute bottom-0 left-0 right-0 bg-custom-yellow p-4 shadow-inner transform translate-y-full transition-transform duration-300 group-hover:translate-y-0">
-                <p className="text-sm text-[#101E33] font-semibold">Achievement:</p>
-                <p className="text-sm text-dark-blue">{person.achievement}</p>
-              </div>
-            </div>
+            <p className="mt-4">{member.description}</p>
+            <p className="mt-2 text-sm text-custom-white">{member.additionalInfo}</p>
           </div>
         ))}
       </div>
