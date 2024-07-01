@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import PricingCard from '../Cards/PricingCard';
-import PricingCard from '../Cards/PricingCard';
+
 
 const plansForTexts = {
   4: [
@@ -178,7 +178,7 @@ const plansForTexts = {
 
 const PricingSection = () => {
   const [selectedTexts, setSelectedTexts] = useState(8);
-  const [selectedTexts, setSelectedTexts] = useState(8);
+  // const [selectedTexts, setSelectedTexts] = useState(8);
 
   return (
     <div className="bg-gray-100 rounded-xl py-12 mb-10">
