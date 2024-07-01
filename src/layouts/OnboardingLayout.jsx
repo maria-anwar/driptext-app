@@ -4,7 +4,7 @@ import Logo from "../assets/homeimages/driptext.png";
 
 const OnboardingLayout = () => {
   return (
-    <div className="border border-red-500 px-4 sm:px-6 md-px-10 lg:px-14 xl:px-20 2xl:px-56 py-10">
+    <div className="px-4 sm:px-6 md-px-10 lg:px-14 xl:px-20 2xl:px-56 py-10">
        <Link to='/' className="w-full flex items-center justify-center py-2 pb-5 sm:pb-7 md:pb-8">
            <img src={Logo} alt='driptext' className=" w-20 xs:w-24 md:w-28 xl:w-32 3xl:w-36 4xl:w-40" /> 
         </Link>

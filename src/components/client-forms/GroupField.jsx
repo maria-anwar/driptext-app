@@ -12,10 +12,10 @@ export const GroupField = ({
 }) => {
   return (
     <>
-      <div className="flex flex-col gap-1">
-        <label className="text-custom-black text-sm font-semibold">
+      <div className="w-full flex flex-col gap-1">
+        <label className="text-custom-black text-sm lg:text-sm font-semibold  2xl:font-semibold">
           {label}
-          <sup className="text-red-600">*</sup>
+          <span className="text-red-600 text-xl mt-6 pl-1">*</span>
         </label>
         <input
           className="w-full text-[#e5e5e7] text-sm px-2 xs:px-3.5 font-extralight py-3 focus:outline-none focus:ring-none  rounded-xl"
