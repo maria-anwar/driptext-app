@@ -35,6 +35,7 @@ export default {
         'dark2-blue': '#1a202c', 
         'dark-blue-light': '#2d3748', 
         'custom-white': '#f7fafc', 
+        'custom-gray':'#EAEAEA',
       },
       fontFamily: {
         sans: ['sans-serif'], 

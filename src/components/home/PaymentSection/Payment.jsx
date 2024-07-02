@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import PricingCard from '../Cards/PricingCard';
 
+
 const plansForTexts = {
   4: [
     {
@@ -48,6 +49,7 @@ const plansForTexts = {
         'Incl. satisfaction guarantee'
       ],
       bestValue: true,
+      
     },
   ],
   8: [
@@ -96,6 +98,7 @@ const plansForTexts = {
         'Incl. satisfaction guarantee'
       ],
       bestValue: true,
+     
     },
   ],
   12: [
@@ -143,6 +146,7 @@ const plansForTexts = {
         '100% reliability',
         'Incl. satisfaction guarantee'
       ],
+    
       bestValue: true,
     },
   ],
@@ -150,6 +154,7 @@ const plansForTexts = {
 
 const PricingSection = () => {
   const [selectedTexts, setSelectedTexts] = useState(8);
+  // const [selectedTexts, setSelectedTexts] = useState(8);
 
   return (
     <div className="bg-gray-100 rounded-xl py-12 mb-10">
@@ -168,6 +173,11 @@ const PricingSection = () => {
             </button>
           ))}
         </div>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {plansForTexts[selectedTexts].map((plan, index) => (
+          <PricingCard key={index} plan={plan} />
+        ))}
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {plansForTexts[selectedTexts].map((plan, index) => (

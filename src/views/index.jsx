@@ -11,7 +11,6 @@ import OrderNow from "../components/home/OrderNow/OrderNow"
 import ReviewComponent from '../components/home/Reviews/Reviews';
 import Collaborate from '../components/home/Collaborate/Collaborate';
 import FaqComponent from '../components/home/Faq/Faq';
-import ThankYouPage from '../components/landing-page/ThankyouSection';
 
 
 const Home = () => {
@@ -30,10 +29,7 @@ const Home = () => {
         <AboutUs />
         <FaqComponent />
         <OrderNow />
-        <SeoContent/>
-        {/* <ThankYouPage /> */}
-       
-       
+        <SeoContent/> 
       </div>
      
       
