@@ -42,10 +42,10 @@ const SeoContent = () => {
       </div>
       {seocontent.map((item, index) => (
         <div key={index} className="flex flex-col">
-          <h4 className="text-custom-black text-base xl:text-lg font-semibold">
+          <h4 className="text-custom-black text-base xl:text-sm font-semibold mb-1">
             {item.title}
           </h4>
-          <p className="text-custom-black text-base xl:text-lg">
+          <p className="text-custom-black text-base xl:text-sm">
             {item.detail}
           </p>
         </div>
