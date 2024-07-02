@@ -1,12 +1,13 @@
 import logo from "../../assets/homeimages/driptext.png";
+import { Link } from "react-router-dom";
 
 const ThankYouPage = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center pt-5 pb-12 px-4 sm:px-6 lg:px-6">
       {/* Top section with logo */}
-      <div className="w-full max-w-xl text-center mb-8">
+      <Link to='/' className="w-full max-w-xl text-center mb-8">
         <img src={logo} alt="Logo" className="mx-auto h-8 4xl:h-10 w-44 " />
-      </div>
+      </Link>
 
       {/* Main text content */}
 

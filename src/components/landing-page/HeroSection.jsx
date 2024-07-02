@@ -53,7 +53,7 @@ const HeroSection = () => {
 
       <div className="relative w-full lg:mb-[-16rem] z-10 px-2">
         <div className="container  mx-auto grid grid-cols-1 xl:grid-cols-3 gap-6 xl:gap-3 4xl:gap-4 text-center">
-          <div className="w-full bg-gray-200 shadow-2xl h-auto md:h-auto flex flex-col justify-between rounded-2xl">
+          <div className="w-full bg-custom-gray shadow-2xl h-auto md:h-auto flex flex-col justify-between rounded-2xl">
             <div className="px-2">
               <h3 className="font-bold text-xl mb-2 p-3 text-dark-blue">
                 Low cost
