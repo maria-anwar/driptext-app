@@ -13,8 +13,8 @@ const Footer = () => {
                         </p>
                     </div>
                     <div className="md:w-1/4">
-                        <h3 className="text-gray-900 font-bold mb-2">Navigation</h3>
-                        <ul className="text-gray-700">
+                        <h3 className="text-gray-600 font-bold mb-2">Navigation</h3>
+                        <ul className="text-gray-600">
                             <li><a href="#" className="hover:underline">Home</a></li>
                             <li><a href="#" className="hover:underline">Magazine</a></li>
                             <li><a href="#" className="hover:underline">Services</a></li>
@@ -23,8 +23,8 @@ const Footer = () => {
                         </ul>
                     </div>
                     <div className="md:w-1/4">
-                        <h3 className="text-gray-900 font-bold mb-2">Address</h3>
-                        <p className="text-gray-700">
+                        <h3 className="text-gray-600 font-bold mb-2">Address</h3>
+                        <p className="text-gray-600">
                             DripText Ltd.<br/>
                             Makariou Avenue 59,<br/>
                             Mouyias Tower, 3rd Floor,<br/>
@@ -33,8 +33,8 @@ const Footer = () => {
                         </p>
                     </div> 
                     <div className="md:w-1/4">
-                        <h3 className="text-gray-900 font-bold mb-2">Legal</h3>
-                        <ul className="text-gray-700">
+                        <h3 className="text-gray-600 font-bold mb-2">Legal</h3>
+                        <ul className="text-gray-600">
                             <li><a href="#" className="hover:underline">Conditions</a></li>
                             <li><a href="#" className="hover:underline">Imprint</a></li>
                             <li><a href="#" className="hover:underline">Data protection</a></li>
