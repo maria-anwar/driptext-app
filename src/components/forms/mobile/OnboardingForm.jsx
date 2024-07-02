@@ -24,9 +24,7 @@ const OnboardingForm = () => {
     perspective: Yup.string().required("Please enter writing perspective"),
     project: Yup.string().required("Please enter project"),
     companyInfo: Yup.string().required("Please enter company information"),
-    companyAttributes: Yup.string().required(
-      "Please enter company's attributes"
-    ),
+    companyAttributes: Yup.string().required( "Please enter company's attributes"),
     services: Yup.string().required("Please enter company's services"),
     content: Yup.string().required("Above information is required"),
     customers: Yup.string().required("Above information is required"),
@@ -35,7 +33,7 @@ const OnboardingForm = () => {
   });
   const onSubmit = (values) => {
     console.log("Im Clicked");
-    navigate("/success");
+    navigate("/thankyou-page");
   };
 
   return (

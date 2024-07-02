@@ -18,7 +18,7 @@ export const GroupField = ({
           <span className="text-red-600 text-xl mt-6 pl-1">*</span>
         </label>
         <input
-          className="w-full text-[#e5e5e7] text-sm px-2 xs:px-3.5 font-extralight py-3 focus:outline-none focus:ring-none  rounded-xl"
+          className="w-full text-custom-black text-sm px-2 xs:px-3.5 font-extralight py-3 focus:outline-none focus:ring-none  rounded-xl"
           type={type}
           placeholder={placeholder}
           name={name}
