@@ -34,7 +34,7 @@ const SeoContent = () => {
   ];
 
   return (
-    <div className="w-full flex flex-col justify-center items-center gap-8 bg-gray-100 rounded-xl py-4 px-4 sm:px-3 xl:px-12 2xl:px-18 3xl:px-24 mt-12 4xl:mt-20 mb-12">
+    <div className="w-full flex flex-col justify-center items-center gap-8 py-4 px-4 sm:px-3 xl:px-12 2xl:px-18 3xl:px-24 mt-12 4xl:mt-20 mb-12">
       <div className="w-full">
         <h3 className="w-full text-custom-black text-center font-bold text-[24px] lg:text-[30px] 3xl:px-5">
           Welcome to DripText: your innovative text agency for high-quality SEO content.
