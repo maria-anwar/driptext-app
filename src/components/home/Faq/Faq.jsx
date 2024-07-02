@@ -15,7 +15,7 @@ const Questions = [
   },
   {
     question: "What tools do you use to ensure the quality of your output?",
-    answer: "We utilize a range of tools to streamline our processes and enhance our content quality. For keyword research, we rely on the KW-Finder from Mangools and ahrefs.com, which also aids in content gap analysis. Project management is handled through Nifty PM and Motion.io. To adjust and optimize voice quality, we use Textmetrics.com, targeting a level of B-1, while DeepL Write helps us linguistically refine our output. ChatGPT and NeuroFlash are employed for uniform reader address adaptation. Document storage and customer backend are managed via Google Drive, and we integrate Formaloo within our digital processes. For offers and contracts, we use PandaDocs. Additionally, we have developed our own tools to help our copywriters and editors maintain a consistent structural approach during text creation.",
+    answer: "We use a number of different tools:The KW-Finder from Mangools for keyword researchahrefs.com for content gap analysis & keyword researchNifty PM for our project managementMotion.io for our project managementTextmetrics.com for adjusting & optimizing voice quality (usually level B-1)DeepL Write to linguistically optimize our outputChatGPT and NeuroFlash for uniform adaptation of the reader addressGoogle Drive as document storage & customer backendFormaloo within our digital processesPandaDocs for offers & contractsAt the same time, we use some of our own developments that allow our copywriters and editors to adhere to the structural approach during text creation.",
   },
   {
     question: "Why can you offer your content comparatively cheaply?",
@@ -27,7 +27,7 @@ const Questions = [
   },
   {
     question: "What skills do you have that I should trust you?",
-    answer: "Our founding team consists of four people: Karolin, Daniel, Markus, and Mirco. Karolin is our Head of Back Office, handling all administrative threads in the company. With years of experience in the agency business, she set up all structures at DripText for maximum efficiency. Daniel, as Head of Operations, manages the operational business and the detailed structuring of all processes. His meticulous planning ensures high-quality output, even during workload peaks. Mirco, our Head of Marketing, oversees all measures to attract potential clients. As a trained advertising psychologist and former head of one of Germany's largest digital agencies, he knows how to present DripText effectively. Markus, a seasoned SEO expert since 2011, trains the copywriters and directs the agency's strategic approach. He has been recognized as one of the most influential online personalities in the German-speaking SEO scene.",
+    answer: "Our founding team consists of four people: Karolin, Daniel, Markus and Mirco Karolin is our Head of Back Office. All of the administrative threads in the company converge with her. Thanks to her years of experience in the agency business, she was able to set up all of the structures at DripText so that we operate with maximum efficiency. Daniel is Head of Operations and is therefore responsible for the operational business and management of DripText. Since there is nothing that Daniel does not translate into structures and processes, all of our processes are structured and planned in detail. This allows us to keep the quality of our output consistently very high - even when there are peaks in workload - because of course Daniel has also built a process for this 😀 Mirco is Head of Marketing and in this role is responsible for all measures that ensure that we come into contact with potential interested parties.  As a trained advertising psychologist and former head of one of Germany's largest digital agencies, Mirco knows exactly how to present DripText in the right light.Markus is a full-blooded SEO and is responsible for training the copywriters and the strategic direction of the agency. He has been active in the German-speaking SEO scene since 2011 and has been voted one of the most influential online personalities of the year several times"
   },
   {
     question: "How big is your team?",
@@ -59,7 +59,7 @@ const FAQs = () => {
           <div>
             {rightColumn.map((question, i) => (
               <Accordion key={i} title={<span className="text-sm font-semibold">{question.question}</span>}>
-                <p className="text-2xl text-white font-normal">{question.answer}</p>
+                <p className="text-sm text-gray-800 font-normal px-4">{question.answer}</p>
               </Accordion>
             ))}
           </div>
