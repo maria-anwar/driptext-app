@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <header className="w-full flex justify-between items-center px-1 xxs:px-2 xs:px-3 sm:px-5 md:px-6 lg:px-7 xl:px-9 2xl:px-14 3xl:px-20 4xl:px-52 py-4 ">
-      <div className="flex items-center">
+      <Link to='/' className="flex items-center">
         <img src={Logo} alt="Logo" className="xxs:h-6 lg:h-8 " />
-      </div>
+      </Link>
       <div>
         <Link
           to="/client-register"
