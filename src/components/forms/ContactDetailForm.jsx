@@ -18,7 +18,7 @@ const ContactDetailForm = () => {
   });
   const onSubmit = (values) => {
     console.log("Im Clicked");
-    navigate('/onboarding');
+    navigate('/onboarding/form');
   };
   return (
     <>
@@ -41,6 +41,7 @@ const ContactDetailForm = () => {
             <Form className="w-full flex flex-col gap-5 mt-4">
               <GroupField
                  label={"Email"}
+                 placeholder={"examle@gmail.com"}
                  type={"text"}
                  id={'email'}
                  name={'email'}
@@ -52,7 +53,7 @@ const ContactDetailForm = () => {
               <div className='w-full flex gap-4 items-center justify-between'>
               <GroupField
                   label={"First Name"}
-                  placeholder={"Your first name"}
+                  placeholder={"first name"}
                   id={'fname'}
                   name={'fname'}
                   value={props.values.fname}
@@ -62,7 +63,7 @@ const ContactDetailForm = () => {
 
                 <GroupField
                   label={"Last Name"}
-                  placeholder={"Your last name"}
+                  placeholder={"last name"}
                   id={'lname'}
                   name={'lname'}
                   value={props.values.lname}
@@ -70,11 +71,11 @@ const ContactDetailForm = () => {
                   onChange={props.handleChange}                
                 />
               </div>
-              <div className="max-w-max">
-                <button className="bg-blue-900 border-none text-white text-lg font-normal px-10 py-2 rounded-md cursor-pointer shadow-md"
+              <div className="">
+                <button className="bg-custom-yellow border-none text-dark-blue text-lg font-medium px-10 py-2 rounded-md cursor-pointer shadow-md"
                 type="submit"
                 >
-                  Submit Order
+                  Next
                 </button>
               </div>
             </Form>
