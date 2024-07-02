@@ -77,7 +77,7 @@ const OnboardingForm = () => {
                   type={"text"}
                   id={"project"}
                   name={"project"}
-                  placeholder={"write here"}
+                  placeholder={"example.com"}
                   value={props.values.project}
                   errors={props.errors.project}
                   onChange={props.handleChange}
