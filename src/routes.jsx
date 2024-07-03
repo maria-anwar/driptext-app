@@ -32,33 +32,6 @@ const WebRoutes = () => {
           </Route>
           <Route path="/client-onboarding" element={<OnboardingPage />} />            
           <Route path="/thankyou-page" element={<ThankYouPage />}/>
-
-          {/* <Route path="/register" element={<RegistrationLayout />}>
-            <Route path="/register/form" element={<RegisterFormLayout />}>
-              <Route index element={<TextInfoForm />} />
-              <Route
-                path="/register/form/contact-details"
-                element={<ContactDetailForm />}
-              />
-            </Route>
-          </Route> */}
-          {/* <Route path="/onboarding" element={<OnboardingLayout />}>
-            <Route path="/onboarding/form" element={<OnboardingFormLayout />}>
-              <Route index element={<GeneralInfo />} />
-              <Route
-                path="/onboarding/form/company-info"
-                element={<CompanyInfo />}
-              />
-              <Route
-                path="/onboarding/form/customers-info"
-                element={<TargetCustomers />}
-              />
-              <Route
-                path="/onboarding/form/content-info"
-                element={<AimContent />}
-              />
-            </Route>
-          </Route> */}
         </Routes>
       </BrowserRouter>
     </>
