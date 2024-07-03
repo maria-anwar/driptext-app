@@ -36,7 +36,8 @@ const OnboardingForm = () => {
   });
   const onSubmit = (values) => {
     console.log("Im Clicked");
-    navigate("/thankyou-page");
+    window.location.href = 'https://driptext.de/danke-probetext/';
+    // navigate("https://driptext.de/danke-probetext/");
   };
 
   return (
