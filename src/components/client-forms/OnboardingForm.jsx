@@ -9,7 +9,7 @@ import { GroupDropdownField } from "./GroupDropdownField";
 const OnboardingForm = () => {
   const navigate = useNavigate();
   const initialValues = {
-    speech: "",
+    speech: "", 
     project: "",
     perspective: "",
     companyInfo: "",
