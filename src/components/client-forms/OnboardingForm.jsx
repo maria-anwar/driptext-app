@@ -4,6 +4,7 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { useNavigate, Link } from "react-router-dom";
 import { GroupTextArea } from "./GroupTextArea";
+import { GroupDropdownField } from "./GroupDropdownField";
 
 const OnboardingForm = () => {
   const navigate = useNavigate();
@@ -20,24 +21,24 @@ const OnboardingForm = () => {
     brand: "",
   };
   const validationSchema = Yup.object().shape({
-    speech: Yup.string().required("Please enter  speech"),
-    perspective: Yup.string().required("Please enter writing perspective"),
-    project: Yup.string().required("Please enter project"),
-    companyInfo: Yup.string().required("Please enter company information"),
+    speech: Yup.string().required("please select speech"),
+    perspective: Yup.string().required("please enter writing perspective"),
+    project: Yup.string().required("please enter project"),
+    companyInfo: Yup.string().required("please enter company information"),
     companyAttributes: Yup.string().required(
       "Please enter company's attributes"
     ),
-    services: Yup.string().required("Please enter company's services"),
-    content: Yup.string().required("Above information is required"),
-    customers: Yup.string().required("Above information is required"),
-    contentPurpose: Yup.string().required("Above information is required"),
-    brand: Yup.string().required("Above information is required"),
+    services: Yup.string().required("please enter company's services"),
+    content: Yup.string().required("above information is required"),
+    customers: Yup.string().required("above information is required"),
+    contentPurpose: Yup.string().required("above information is required"),
+    brand: Yup.string().required("above information is required"),
   });
   const onSubmit = (values) => {
     console.log("Im Clicked");
     navigate("/thankyou-page");
   };
-  
+
   return (
     <>
       <Formik
@@ -52,25 +53,39 @@ const OnboardingForm = () => {
                 <h2 className="text-custom-black text-base font-semibold">
                   1. General Information
                 </h2>
-                <GroupField
+                <GroupDropdownField
                   label={"Speech"}
                   type={"text"}
                   id={"speech"}
                   name={"speech"}
-                  placeholder={"write here"}
+                  placeholder={""}
+                  option1={'She'}
+                  option2={'You (capitalized)'}
+                  option3={'you (lowercase)'}
+                  option4={'you'}
+                  option5={'no direct address'}
                   value={props.values.speech}
                   errors={props.errors.speech}
                   onChange={props.handleChange}
+
                 />
-                <GroupField
-                  label={" Writing Perspective"}
-                  placeholder={"write here"}
-                  type={"text"}
-                  id={"perspective"}
-                  name={"perspective"}
-                  value={props.values.perspective}
-                  errors={props.errors.perspective}
-                  onChange={props.handleChange}
+                <GroupDropdownField
+                 label={" Writing Perspective"}
+                 placeholder={"write here"}
+                 type={"text"}
+                 id={"perspective"}
+                 name={"perspective"}
+                 value={props.values.perspective}
+                 errors={props.errors.perspective}
+                 onChange={props.handleChange}
+                  option1={'we/our shop/our company'}
+                  option2={'the company/shop'}
+                  option3={'the editorial office'}
+                  option4={'I'}
+                  option5={'neutral'}
+                  option6={'uniform/but fundamentally irrelevant'}
+                  
+
                 />
                 <GroupField
                   label={"Project"}
@@ -92,7 +107,7 @@ const OnboardingForm = () => {
                   label={"Background information about the company"}
                   type={"text"}
                   placeholder={
-                    "Explain a sentence what you do as a company, what you offer and how it helps the customer."
+                    "Please describe here, ideally in just one sentence, what you do as a company, what you offer and how it helps the customer."
                   }
                   id={"companyInfo"}
                   name={"companyInfo"}

@@ -27,7 +27,7 @@ export const GroupTextArea = ({
           onChange={onChange}
           errors={errors}
         />
-        {errors ? <div className="text-red-700">{errors}</div> : ""}
+        {errors ? <div className="text-sm text-red-700">{errors}</div> : ""}
         {/* <div className="text-red-700">'Erroe here'</div> */}
       </div>
     </>
