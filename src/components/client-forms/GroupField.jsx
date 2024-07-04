@@ -15,10 +15,10 @@ export const GroupField = ({
       <div className="w-full flex flex-col gap-1">
         <label className="text-custom-black text-sm lg:text-sm font-semibold  2xl:font-semibold">
           {label}
-          <span className="text-red-600 text-xl mt-6 pl-1">*</span>
+          <span className="text-red-600 text:lg xl:text-xl mt-6 pl-1">*</span>
         </label>
         <input
-          className="w-full text-custom-black text-sm px-2 xs:px-3.5 font-extralight py-3 focus:outline-none focus:ring-none  rounded-xl"
+          className="w-full text-custom-black text-xs xs:text-sm px-2 xs:px-3.5 font-normal py-3 focus:outline-none focus:ring-none  rounded-xl"
           type={type}
           placeholder={placeholder}
           name={name}
