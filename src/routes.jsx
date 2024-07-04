@@ -37,5 +37,4 @@ const WebRoutes = () => {
     </>
   );
 };
-
 export default WebRoutes;
