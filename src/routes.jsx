@@ -20,6 +20,8 @@ import RegistrationForm from "./components/client-forms/RegistrationForm";
 import RegisterPage from "./views/client/RegisterPage";
 import ThankYouPage from "./components/landing-page/ThankyouSection";
 import OnboardingPage from "./views/client/OnboardingPage";
+import Login from "./views/LoginPage/Login";
+import Forgot from "./views/LoginPage/Forgot";
 
 const WebRoutes = () => {
   return (
@@ -28,10 +30,15 @@ const WebRoutes = () => {
         <Routes>
           <Route element={<HomeLayout />}>
             <Route index element={<Home />} />
-            <Route path="/client-register" element={<RegisterPage />} />            
+            <Route path="/client-register" element={<RegisterPage />} />  
+          
+
           </Route>
           <Route path="/client-onboarding" element={<OnboardingPage />} />            
           <Route path="/thankyou-page" element={<ThankYouPage />}/>
+          <Route path="/login" element={<Login />} />
+          <Route path="/forgot" element={<Forgot />} />
+
         </Routes>
       </BrowserRouter>
     </>
