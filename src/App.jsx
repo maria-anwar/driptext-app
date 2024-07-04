@@ -2,7 +2,6 @@
 import WebRoutes from './routes'
 
 function App() {
- 
 
   return (
     <>
