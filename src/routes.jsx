@@ -31,14 +31,11 @@ const WebRoutes = () => {
           <Route element={<HomeLayout />}>
             <Route index element={<Home />} />
             <Route path="/client-register" element={<RegisterPage />} />  
-          
-
           </Route>
           <Route path="/client-onboarding" element={<OnboardingPage />} />            
           <Route path="/thankyou-page" element={<ThankYouPage />}/>
           <Route path="/login" element={<Login />} />
           <Route path="/forgot" element={<Forgot />} />
-
         </Routes>
       </BrowserRouter>
     </>
