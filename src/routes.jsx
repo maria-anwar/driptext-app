@@ -19,9 +19,10 @@ import TargetCustomers from "./components/forms/onboarding-forms/TargetCustomers
 import RegistrationForm from "./components/client-forms/RegistrationForm";
 import RegisterPage from "./views/client/RegisterPage";
 import ThankYouPage from "./components/landing-page/ThankyouSection";
+import Booking from "./components/Pages/Booking/Booking"
 import OnboardingPage from "./views/client/OnboardingPage";
-import Login from "./views/LoginPage/Login";
-import Forgot from "./views/LoginPage/Forgot";
+import Login from "./components/Pages/LoginPage/Login";
+import Forgot from "./components/Pages/LoginPage/Forgot";
 
 const WebRoutes = () => {
   return (
@@ -34,6 +35,7 @@ const WebRoutes = () => {
           </Route>
           <Route path="/client-onboarding" element={<OnboardingPage />} />            
           <Route path="/thankyou-page" element={<ThankYouPage />}/>
+          <Route path="/booking" element={<Booking />}/>
           <Route path="/login" element={<Login />} />
           <Route path="/forgot" element={<Forgot />} />
         </Routes>

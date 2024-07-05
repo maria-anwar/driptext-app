@@ -14,19 +14,19 @@ const AuthLayout = ({ children }) => {
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-1 2xl:grid-cols-12 min-h-screen overflow-hidden">
+    <div className="grid grid-cols-1 2xl:grid-cols-12 h-screen ">
       {/* Left Column */}
-      <div className="col-span-1 2xl:col-span-4 flex flex-col justify-between bg-white p-10 h-screen border-r-2 border-gray-200">
+      <div className="col-span-1 2xl:col-span-6 flex flex-col justify-between items-center  py-10 xxs:px-10 2xl:px-10 bg-dark-blue border-r-2 border-gray-200">
         <div className="flex items-center mb-8">
-          <img src={logo} alt="Logo" className="mr-4 w-12 h-12" />
+          <img src={logo} alt="Logo" className="mr-4 w-14 h-14 rounded-md" />
           <div>
-            <h1 className="text-xl font-bold text-gray-900">DRIPTEXT</h1>
-            <p className="text-gray-600 text-sm">We love SEO & Content</p>
+            <h1 className="text-xl font-bold text-cyan-500">DRIPTEXT</h1>
+            <p className="text-cyan-600 text-sm">We love SEO & Content</p>
           </div>
-        </div>
-
+        
+          </div>
         {children}
-
+       
         <div className="relative z-20">
           <img
             src={germanFlag}
@@ -50,11 +50,11 @@ const AuthLayout = ({ children }) => {
       </div>
 
       {/* Right Column */}
-      <div className="hidden 2xl:flex 2xl:col-span-8 flex-col h-screen">
+      <div className="hidden 2xl:flex 2xl:col-span-6 flex-col h-screen py-6 ">
         <div className="flex-grow flex items-center justify-center">
           <img src={backgroundImage} alt="Background" className="h-full w-full object-cover" />
         </div>
-        <div className="p-4 text-sm text-gray-400 flex justify-end border-gray-200">
+        <div className="p-4 text-sm text-gray-700 flex justify-end border-gray-200">
           <Link to="/imprint" className="mr-2 hover:underline">Imprint</Link>
           <Link to="/privacy-policy" className="mr-2 hover:underline">Privacy Policy</Link>
           <Link to="/developer" className="hover:underline">Developed by TECOYO</Link>
