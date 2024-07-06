@@ -21,7 +21,7 @@ export const GroupDropdownField = ({
       <div className="w-full flex flex-col gap-1">
         <label className="text-custom-black text-sm lg:text-sm font-semibold  2xl:font-semibold">
           {label}
-          <span className="text-red-600 text-xl mt-6 pl-1">*</span>
+          <span className="text-red-600 text:lg xl:text-xl mt-6 pl-1">*</span>
         </label>
         <div className="relative">
           <select

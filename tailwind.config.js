@@ -38,7 +38,8 @@ export default {
         'custom-gray':'#EAEAEA',
       },
       fontFamily: {
-        sans: ['sans-serif'], 
+        // sans: ['sans-serif'], 
+        'roboto': ['Roboto', 'sans-serif'],
       },
     },
   },

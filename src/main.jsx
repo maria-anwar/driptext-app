@@ -5,7 +5,7 @@ import App from './App';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <div className="font-sans">
+    <div className="font-roboto">
       <App />
     </div>
   </React.StrictMode>

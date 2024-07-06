@@ -31,9 +31,9 @@ const WebRoutes = () => {
         <Routes>
           <Route element={<HomeLayout />}>
             <Route index element={<Home />} />
-            <Route path="/client-register" element={<RegisterPage />} />  
+            <Route path="/probetext" element={<RegisterPage />} />            
           </Route>
-          <Route path="/client-onboarding" element={<OnboardingPage />} />            
+          <Route path="/onboarding-probetext" element={<OnboardingPage />} />            
           <Route path="/thankyou-page" element={<ThankYouPage />}/>
           <Route path="/booking" element={<Booking />}/>
           <Route path="/login" element={<Login />} />
@@ -43,5 +43,4 @@ const WebRoutes = () => {
     </>
   );
 };
-
 export default WebRoutes;

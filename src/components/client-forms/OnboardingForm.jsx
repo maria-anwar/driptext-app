@@ -86,7 +86,6 @@ const OnboardingForm = () => {
                   option5={'neutral'}
                   option6={'uniform/but fundamentally irrelevant'}
                   
-
                 />
                 <GroupField
                   label={"Project"}
