@@ -9,7 +9,7 @@ const Header = () => {
       </Link>
       <div>
         <Link
-          to="/client-register"
+          to="/probetext"
           className="py-4 px-2 xs:py-2 xs:px-4 sm:py-2 sm:px-5 md:py-2 md:px-6 lg:py-6 lg:px-8 xl:py-4 bg-gradient-to-r from-sky-700 to-cyan-500 text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-white font-bold rounded-lg"
         >
           Order Free Sample Text
