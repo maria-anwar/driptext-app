@@ -15,7 +15,7 @@ const CallToActionSection = () => {
             </span>
           </p>
           <Link
-            to="/client-register"
+            to="/probetext"
             className="bg-white  text-gray-600 font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-gray-100 transition duration-300"
           >
             Order free sample text

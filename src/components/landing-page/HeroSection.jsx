@@ -47,7 +47,7 @@ const HeroSection = () => {
       </div>
       <div className="flex justify-center">
         <Link
-          to="/client-register"
+          to="/probetext"
           className="py-4 px-8  text-sm md:text-xl bg-gradient-to-r from-sky-700 to-cyan-500  text-white font-bold rounded-lg transform transition duration-300 ease-in-out hover:scale-110 whitespace-nowrap"
         >
           Order Free Sample Text

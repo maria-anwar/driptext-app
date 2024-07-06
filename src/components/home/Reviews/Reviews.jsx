@@ -76,7 +76,7 @@ const ReviewComponent = () => {
         </div>
         <div className="text-center">
           <Link
-            to="/client-register"
+            to="/probetext"
             className="mt-4 bg-gradient-to-r from-sky-700 to-cyan-500 text-white py-4 px-4 rounded-lg "
           >
             Order free sample text

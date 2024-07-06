@@ -22,7 +22,7 @@ const RegistrationForm = () => {
   });
   const onSubmit = (values) => {
     console.log("Im Clicked");
-    navigate("/client-onboarding");
+    navigate("/onboarding-probetext");
   };
   return (
     <>
