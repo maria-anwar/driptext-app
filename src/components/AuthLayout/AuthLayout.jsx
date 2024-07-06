@@ -16,15 +16,18 @@ const AuthLayout = ({ children }) => {
   return (
     <div className="grid grid-cols-1 2xl:grid-cols-12 h-screen ">
       {/* Left Column */}
-      <div className="col-span-1 2xl:col-span-6 flex flex-col justify-between items-center  py-10 xxs:px-10 2xl:px-10 bg-dark-blue border-r-2 border-gray-200">
+      <div className="border col-span-1 2xl:col-span-6 flex flex-col justify-between items-center  py-10 xxs:px-10 2xl:px-10 bg-dark-blue border-r-2 border-gray-200">
+        <div className='w-full'>
+
         <div className="flex items-center mb-8">
           <img src={logo} alt="Logo" className="mr-4 w-14 h-14 rounded-md" />
           <div>
             <h1 className="text-xl font-bold text-cyan-500">DRIPTEXT</h1>
             <p className="text-cyan-600 text-sm">We love SEO & Content</p>
           </div>
-        
           </div>
+        </div>
+
         {children}
        
         <div className="relative z-20">
