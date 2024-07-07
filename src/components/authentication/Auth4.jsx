@@ -61,7 +61,7 @@ const Auth4 = () => {
                 name="password"
                 id="password"
                 type="password"
-                placeholder="max@mustermann.com"
+                placeholder="*******"
                 className="w-full bg-inherit border-0.02 border-zinc-400 py-2 px-4 rounded-md  shadow-sm focus:outline-none focus:border-cyan-600 focus:appearance-none focus:ring-none"
               />
             </div>
