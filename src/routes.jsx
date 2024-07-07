@@ -21,8 +21,10 @@ import RegisterPage from "./views/client/RegisterPage";
 import ThankYouPage from "./components/landing-page/ThankyouSection";
 import Booking from "./components/Pages/Booking/Booking"
 import OnboardingPage from "./views/client/OnboardingPage";
-import Login from "./components/Pages/LoginPage/Login";
-import Forgot from "./components/Pages/LoginPage/Forgot";
+import Auth from "./components/authentication/Auth";
+import Auth3 from "./components/authentication/Auth3";
+import Auth2 from "./components/authentication/Auth2";
+import SignIn from "./views/auth/SignIn";
 
 const WebRoutes = () => {
   return (
@@ -36,8 +38,10 @@ const WebRoutes = () => {
           <Route path="/onboarding-probetext" element={<OnboardingPage />} />            
           <Route path="/thankyou-page" element={<ThankYouPage />}/>
           <Route path="/booking" element={<Booking />}/>
-          <Route path="/login" element={<Login />} />
-          <Route path="/forgot" element={<Forgot />} />
+          <Route path="/login" element={<SignIn />} />
+          <Route path="/auth" element={<Auth />} />
+          <Route path="/auth3" element={<Auth3 />} />
+          <Route path="/auth2" element={<Auth2 />} />
         </Routes>
       </BrowserRouter>
     </>
