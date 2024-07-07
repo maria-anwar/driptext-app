@@ -80,7 +80,7 @@ const Auth4 = () => {
               </Link>
             </div>
             <div className="w-full flex justify-between items-center">
-              <Link to='/onboarding-probetext' className="w-full text-white text-lg font-semibold border-none border  bg-sky-800 py-2 rounded-md">
+              <Link to='/onboarding-probetext' className="w-full text-center text-white text-lg font-semibold border-none border  bg-sky-800 py-2 rounded-md">
                 Login
               </Link>
             </div>

@@ -32,13 +32,13 @@ const WebRoutes = () => {
       <BrowserRouter>
         <Routes>
           <Route element={<HomeLayout />}>
-            <Route index element={<SignIn />} />
+            {/* <Route index element={<SignIn />} /> */}
             <Route path="/probetext" element={<RegisterPage />} />            
           </Route>
           <Route path="/onboarding-probetext" element={<OnboardingPage />} />            
           <Route path="/thankyou-page" element={<ThankYouPage />}/>
           <Route path="/booking" element={<Booking />}/>
-          <Route path="/login" element={<SignIn />} />
+          <Route path="/" element={<SignIn />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/auth3" element={<Auth3 />} />
           <Route path="/auth2" element={<Auth2 />} />
