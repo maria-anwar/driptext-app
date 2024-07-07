@@ -80,9 +80,9 @@ const Auth4 = () => {
               </Link>
             </div>
             <div className="w-full flex justify-between items-center">
-              <button className="w-full text-white text-lg font-semibold border-none border  bg-sky-800 py-2 rounded-md">
+              <Link to='/onboarding-probetext' className="w-full text-white text-lg font-semibold border-none border  bg-sky-800 py-2 rounded-md">
                 Login
-              </button>
+              </Link>
             </div>
             <div className="w-full flex justify-center items-center gap-1.5 py-2 mt-3 rounded-md border-0.2 border-zinc-400 cursor-pointer">
               <img src={googlelogo} alt="Google logo" className="w-6 h-6" />

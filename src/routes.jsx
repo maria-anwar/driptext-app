@@ -32,7 +32,7 @@ const WebRoutes = () => {
       <BrowserRouter>
         <Routes>
           <Route element={<HomeLayout />}>
-            <Route index element={<Home />} />
+            <Route index element={<SignIn />} />
             <Route path="/probetext" element={<RegisterPage />} />            
           </Route>
           <Route path="/onboarding-probetext" element={<OnboardingPage />} />            
