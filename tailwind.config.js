@@ -41,6 +41,13 @@ export default {
         // sans: ['sans-serif'], 
         'roboto': ['Roboto', 'sans-serif'],
       },
+      borderWidth: {
+        '0.02': '0.02px',
+        '0.2': '0.2px',
+        '0.5': '0.5px',
+        '1': '1px',
+        '1.5': '1.5px',
+      }
     },
   },
   plugins: [],
