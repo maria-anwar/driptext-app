@@ -47,7 +47,7 @@ const Auth4 = () => {
                 id="email"
                 type="email"
                 placeholder="max@mustermann.com"
-                className="w-full py-2 px-4 border-0.2 border-zinc-400 rounded-md bg-inherit shadow-sm focus:outline-none focus:border-cyan-600 focus:appearance-none focus:ring-none"
+                className="w-full text-zinc-300 py-2 px-4 border-0.2 border-zinc-400 rounded-md bg-inherit shadow-sm focus:outline-none focus:border-cyan-600 focus:appearance-none focus:ring-none"
               />
             </div>
             <div className="w-full flex flex-col gap-1">
@@ -62,7 +62,7 @@ const Auth4 = () => {
                 id="password"
                 type="password"
                 placeholder="*******"
-                className="w-full bg-inherit border-0.02 border-zinc-400 py-2 px-4 rounded-md  shadow-sm focus:outline-none focus:border-cyan-600 focus:appearance-none focus:ring-none"
+                className="w-full text-zinc-300 bg-inherit border-0.02 border-zinc-400 py-2 px-4 rounded-md  shadow-sm focus:outline-none focus:border-cyan-600 focus:appearance-none focus:ring-none"
               />
             </div>
             <div className="w-full flex justify-between items-center mt-1.5">
