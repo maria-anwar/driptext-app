@@ -21,7 +21,7 @@ const Auth2 = () => {
   const toggleLanguageDropdown = () => {
     setShowLanguageDropdown((prevState) => !prevState);
   };
-const handleLogoClick = () =>{
+const handleLogoClick = ({children}) =>{
   window.location.href = 'https://driptext.de/';
 }
   return (
@@ -171,7 +171,8 @@ const handleLogoClick = () =>{
          
         </div>
         </div> */}
-        <LoginForm/>
+        {/* <LoginForm/> */}
+        {children}
       </div>
 
       {/* Right Column */}

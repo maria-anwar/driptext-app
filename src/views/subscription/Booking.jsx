@@ -1,223 +1,36 @@
-import logo from "../../../assets/homeimages/driptext.png";
-import { useState } from 'react';
+import React from "react";
 import { Link } from "react-router-dom";
-import PricingCard from '../../home/Cards/PricingCard';
-
-
-
-const plansForTexts = {
-  4: [
-    {
-      name: '3 months duration',
-      price: '420€ ',
-      month: 'per month',
-      wordPrice: 'Word price: 0.07 EUR/net',
-      features: [
-        '4 SEO-optimized texts per month with at least 1,500 words per text',
-        'Proofreading using the 6-eyes principle',
-        'Detailed keyword analysis',
-        'Creation of an editorial plan',
-        'Own customer backend',
-        '100% reliability',
-        'Incl. satisfaction guarantee'
-      ],
-    },
-    {
-      name: '6 months term',
-      price: '360€ ',
-      month: 'per month',
-      wordPrice: 'Word price: 0.06 EUR/net',
-      features: [
-        '4 SEO-optimized texts per month with at least 1,500 words per text',
-        'Proofreading using the 6-eyes principle',
-        'Detailed keyword analysis',
-        'Creation of an editorial plan',
-        'Own customer backend',
-        '100% reliability',
-        'Incl. satisfaction guarantee'
-      ],
-    },
-    {
-      name: '12 months term',
-      price: '300€',
-      month: 'per month',
-      wordPrice: 'Word price: 0.05 EUR/net',
-      features: [
-        '4 SEO-optimized texts per month with at least 1,500 words per text',
-        'Proofreading using the 6-eyes principle',
-        'Detailed keyword analysis',
-        'Creation of an editorial plan',
-        'Own customer backend',
-        '100% reliability',
-        'Incl. satisfaction guarantee'
-      ],
-      bestValue: true,
-    },
-  ],
-  8: [
-    {
-      name: '3 months duration',
-      price: '840€ ',
-      month: 'per month',
-      wordPrice: 'Word price: 0.14 EUR/net',
-      features: [
-        '8 SEO-optimized texts per month with at least 1,500 words per text',
-        'Proofreading using the 6-eyes principle',
-        'Detailed keyword analysis',
-        'Creation of an editorial plan',
-        'Own customer backend',
-        '100% reliability',
-        'Incl. satisfaction guarantee'
-      ],
-    },
-    {
-      name: '6 months term',
-      price: '720€ ',
-      month: 'per month',
-      wordPrice: 'Word price: 0.12 EUR/net',
-      features: [
-        '8 SEO-optimized texts per month with at least 1,500 words per text',
-        'Proofreading using the 6-eyes principle',
-        'Detailed keyword analysis',
-        'Creation of an editorial plan',
-        'Own customer backend',
-        '100% reliability',
-        'Incl. satisfaction guarantee'
-      ],
-    },
-    {
-      name: '12 months term',
-      price: '600€ ',
-      month: 'per month',
-      wordPrice: 'Word price: 0.10 EUR/net',
-      features: [
-        '8 SEO-optimized texts per month with at least 1,500 words per text',
-        'Proofreading using the 6-eyes principle',
-        'Detailed keyword analysis',
-        'Creation of an editorial plan',
-        'Own customer backend',
-        '100% reliability',
-        'Incl. satisfaction guarantee'
-      ],
-      bestValue: true,
-
-    },
-  ],
-  12: [
-    {
-      name: '3 months duration',
-      price: '1260€ ',
-      month: 'per month',
-      wordPrice: 'Word price: 0.20 EUR/net',
-      features: [
-        '12 SEO-optimized texts per month with at least 1,500 words per text',
-        'Proofreading using the 6-eyes principle',
-        'Detailed keyword analysis',
-        'Creation of an editorial plan',
-        'Own customer backend',
-        '100% reliability',
-        'Incl. satisfaction guarantee'
-      ],
-    },
-    {
-      name: '6 months term',
-      price: '1080€ ',
-      month: 'per month',
-      wordPrice: 'Word price: 0.18 EUR/net',
-      features: [
-        '12 SEO-optimized texts per month with at least 1,500 words per text',
-        'Proofreading using the 6-eyes principle',
-        'Detailed keyword analysis',
-        'Creation of an editorial plan',
-        'Own customer backend',
-        '100% reliability',
-        'Incl. satisfaction guarantee'
-      ],
-    },
-    {
-      name: '12 months term',
-      price: '900€ ',
-      month: 'per month',
-      wordPrice: 'Word price: 0.15 EUR/net',
-      features: [
-        '12 SEO-optimized texts per month with at least 1,500 words per text',
-        'Proofreading using the 6-eyes principle',
-        'Detailed keyword analysis',
-        'Creation of an editorial plan',
-        'Own customer backend',
-        '100% reliability',
-        'Incl. satisfaction guarantee'
-      ],
-      bestValue: true,
-     
-    },
-  ],
-};
+import Logo from "../../assets/homeimages/driptext.png";
+import OnboardingForm from "../../components/client-forms/OnboardingForm";
 
 const Booking = () => {
-  const [selectedTexts, setSelectedTexts] = useState(8);
-
-
   return (
-    <div >
-        <Link to='/' className=" items-center ">
-        <img src={logo} alt="Logo" className="mx-auto h-8 4xl:h-10 w-44 mt-6 mb-24" />
+    <div className="px-4 sm:px-6 md-px-10 lg:px-14 xl:px-20 2xl:px-56 4xl:px-80 py-10">
+      <Link
+        to="/"
+        className="w-full flex items-center justify-center py-2 pb-5 sm:pb-7 md:pb-8"
+      >
+        <img
+          src={Logo}
+          alt="driptext"
+          className=" w-20 xs:w-24 md:w-28 xl:w-32 3xl:w-36 4xl:w-40"
+        />
       </Link>
-  
-   <div className='w-full flex-col justify-center px-1 xxs:px-2 xs:px-3 sm:px-5 md:px-6 lg:px-7 xl:px-9 2xl:px-14 3xl:px-20 4xl:px-52'>
-       
-
-      <div className="text-center mb-8  ">
-        <h1 className="text-3xl font-bold my-4">Book the DripText package of your choice now</h1>
-        <p className="text-lg">If you have any questions or problems when booking, please contact us by email .</p>
-        <div className="flex flex-col sm:flex-row justify-center mt-10 ">
-          {[4, 8, 12].map((plan) => (
-            <button
-              key={plan}
-              onClick={() => setSelectedTexts(plan)}
-              className={`py-4 px-4 text-lg rounded-lg ${selectedTexts === plan ? 'bg-gray-700 text-white' : 'bg-gray-300 text-gray-700'} mx-2 mb-2 sm:mb-0`}
-            >
-              {`${plan} texts per month`}
-            </button>
-          ))}
+      <div className="w-full flex d-flex flex-col gap-10">
+        <div className="flex flex-col gap-4 px-4 xs:px-6 md:px-9">
+          <h1 className="text-dark-blue text-2xl md:text-3xl font-bold text-center md:px-8">
+            Thank you for your booking !
+          </h1>
+          <h3 className="text-center text-dark-blue text-xl font-bold">
+            Here's what happens next:
+          </h3>
+          <p className="text-center text-dark-blue text-lg px-2">
+            Fill out the onboarding form below so we can get to know your
+            company and your content goals better.
+          </p>
         </div>
-        
+        <OnboardingForm />
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {plansForTexts[selectedTexts].map((plan, index) => (
-          <PricingCard key={index} plan={plan} />
-        ))}
-      </div>
-      
-      <div className="xxs:px-6 2xl:px-40 mt-8">
-      <p className="text-sm">By submitting the order, I agree to the general terms and conditions of DripText Ltd. and understand that our offers are aimed exclusively at commercial customers. All prices are exclusive of VAT. Sales only to entrepreneurs, tradespeople, associations, authorities or self-employed persons (§ 14 BGB). No sales to consumers within the meaning of § 13 BGB.</p>
-      </div>  
-      <div className="w-full mt-24 flex flex-col md:flex-row justify-between items-center py-8  border-gray-300 ">
-  <div className="flex items-center mb-4 md:mb-0">
-    <img src={logo} alt="Footer Logo" className="h-6 w-auto mr-2" />
-    <span className="text-gray-700 font-semibold">DRIPTEXT</span>
-  </div>
-
-  <div className="flex flex-col md:flex-row gap-2 md:gap-6 text-center md:text-left">
-    <a href="/conditions" className="text-gray-600 hover:text-gray-800">
-      Conditions
-    </a>
-    <a href="/imprint" className="text-gray-600 hover:text-gray-800">
-      Imprint
-    </a>
-    <a href="/data-protection" className="text-gray-600 hover:text-gray-800">
-      Data protection
-    </a>
-    <a href="/cookie-settings" className="text-gray-600 hover:text-gray-800">
-      Cookie settings
-    </a>
-  </div>
-</div>
-
-    </div>
-
-
-   
     </div>
   );
 };
