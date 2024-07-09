@@ -1,6 +1,6 @@
 import React from "react";
 
-export const GroupDropdownField = ({
+export const CountryDropdownField = ({
   label,
   type,
   placeholder,
@@ -9,12 +9,7 @@ export const GroupDropdownField = ({
   value,
   onChange,
   errors,
-  option1,
-  option2,
-  option3,
-  option4,
-  option5,
-  option6,
+  countriesList,
 }) => {
   return (
     <>
@@ -34,12 +29,13 @@ export const GroupDropdownField = ({
             onChange={onChange}
             errors={errors}
           >
-            <option selected="she">{option1}</option>
-            <option value="youcap">{option2}</option>
-            <option value="youlc">{option3}</option>
-            {option4 && (<option value="you">{option4}</option>)}
-            {option5 && (<option value="no-direct">{option5}</option>)}
-            {option6 && (<option value="no-direct">{option6}</option>)}
+            {
+              countriesList.map((country,index)=>{
+                return(
+                  <option selected={country.value}>{country.name}</option>
+                )
+              })
+            }
             
           </select>
           <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">

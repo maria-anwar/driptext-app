@@ -24,6 +24,7 @@ import Auth from "./components/authentication/Auth";
 import Auth3 from "./components/authentication/Auth3";
 import Auth2 from "./components/authentication/Auth2";
 import SignIn from "./views/auth/SignIn";
+import OrderForm from "./views/subscription/OrderBooking";
 
 const WebRoutes = () => {
   return (
@@ -36,7 +37,7 @@ const WebRoutes = () => {
           </Route>
           <Route path="/onboarding-probetext" element={<OnboardingPage />} />            
           <Route path="/thankyou-page" element={<ThankYouPage />}/>
-          {/* <Route path="/booking" element={<Booking />}/> */}
+          <Route path="/bestellformular" element={<OrderForm />}/>
           <Route path="/" element={<SignIn />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/auth3" element={<Auth3 />} />
