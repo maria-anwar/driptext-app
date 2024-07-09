@@ -6,9 +6,9 @@ import Auth4 from '../../components/authentication/Auth4'
 const SignIn = () => {
   return (
     <>
-    {/* <Auth2/> */}
+    <Auth2/>
     {/* <Auth/> */}
-    <Auth4/>
+    {/* <Auth4/> */}
     </>
   )
 }

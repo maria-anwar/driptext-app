@@ -19,7 +19,6 @@ import TargetCustomers from "./components/forms/onboarding-forms/TargetCustomers
 import RegistrationForm from "./components/client-forms/RegistrationForm";
 import RegisterPage from "./views/client/RegisterPage";
 import ThankYouPage from "./components/landing-page/ThankyouSection";
-import Booking from "./components/Pages/Booking/Booking"
 import OnboardingPage from "./views/client/OnboardingPage";
 import Auth from "./components/authentication/Auth";
 import Auth3 from "./components/authentication/Auth3";
@@ -37,7 +36,7 @@ const WebRoutes = () => {
           </Route>
           <Route path="/onboarding-probetext" element={<OnboardingPage />} />            
           <Route path="/thankyou-page" element={<ThankYouPage />}/>
-          <Route path="/booking" element={<Booking />}/>
+          {/* <Route path="/booking" element={<Booking />}/> */}
           <Route path="/" element={<SignIn />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/auth3" element={<Auth3 />} />
