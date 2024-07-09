@@ -16,12 +16,12 @@ import {
 } from "@material-tailwind/react";
 import LoginForm from "./LoginForm";
 
-const Auth2 = () => {
+const Auth2 = ({children}) => {
   const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
   const toggleLanguageDropdown = () => {
     setShowLanguageDropdown((prevState) => !prevState);
   };
-const handleLogoClick = ({children}) =>{
+const handleLogoClick = () =>{
   window.location.href = 'https://driptext.de/';
 }
   return (
@@ -171,7 +171,7 @@ const handleLogoClick = ({children}) =>{
          
         </div>
         </div> */}
-        {/* <LoginForm/> */}
+        
         {children}
       </div>
 
