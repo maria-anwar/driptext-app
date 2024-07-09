@@ -14,6 +14,7 @@ import {
   Button,
   Typography,
 } from "@material-tailwind/react";
+
 const Auth2 = () => {
   const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
   const toggleLanguageDropdown = () => {
@@ -23,15 +24,22 @@ const Auth2 = () => {
   return (
     <div className="grid grid-cols-1 2xl:grid-cols-12 h-screen ">
       {/* Left Column */}
-      <div className="col-span-1 2xl:col-span-7 flex flex-col  justify-between 4xl:justify-normal items-center  py-10 xxs:px-10 2xl:px-10 4xl:px-52 border border-r-gray-200">
-        <div className="text-center mt-10">
-          <Typography variant="h2" className="font-bold mb-4">
+      <div className="col-span-1 2xl:col-span-7 flex flex-col  justify-between 4xl:justify-normal items-center  py-10 xxs:px-10 2xl:px-24 3xl:px-36 4xl:px-52 border border-r-gray-200">
+        <div className=" mt-10">
+          <div className="w-full flex items-center justify-center gap-1.5 mb-8">
+            <img src={logo} alt="Logo" className="w-12 h-12 rounded-md" />
+            <div>
+              <h1 className="text-[17px] 4xl:text-lg font-bold text-black">DRIPTEXT</h1>
+              <p className="text-gray-500 text-[13px] 4xl:text-sm">We love SEO & Content</p>
+            </div>
+          </div>
+          {/* <Typography variant="h2" className="font-bold mb-4">
             Sign In
-          </Typography>
+          </Typography> */}
           <Typography
             variant="paragraph"
             color="blue-gray"
-            className="text-lg font-normal"
+            className="text-lg font-normal text-center"
           >
             Enter your email and password to Sign In.
           </Typography>
@@ -48,7 +56,7 @@ const Auth2 = () => {
             <Input
               size="lg"
               placeholder="name@mail.com"
-              className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+              className=" !border-t-blue-gray-200 focus:!border-t-gray-900 focus:ring:none"
               labelProps={{
                 className: "before:content-none after:content-none",
               }}
@@ -64,7 +72,7 @@ const Auth2 = () => {
               type="password"
               size="lg"
               placeholder="********"
-              className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+              className=" !border-t-blue-gray-200 focus:!border-t-gray-900 focus:ring:none"
               labelProps={{
                 className: "before:content-none after:content-none",
               }}
@@ -148,11 +156,24 @@ const Auth2 = () => {
               </Link>
             </Typography>
           </div>
-          <div className="relative z-20">
+          
+          <div className="xl:hidden w-full flex justify-center gap-2.5 p-4 text-sm text-gray-700  border-gray-200">
+          <Link to="/imprint" className="hover:underline">
+            Imprint
+          </Link>
+          <Link
+            to="/privacy-policy"
+            className=" hover:underline"
+          >
+            Privacy Policy
+          </Link>
+         
+        </div>
+        {/* <div className="w-full relative z-20 flex justify-center">
             <img
               src={germanFlag}
               alt="Language"
-              className="w-8 h-8 cursor-pointer hover:opacity-80 transition duration-200 ease-in-out"
+              className="w-6 h-6 cursor-pointer hover:opacity-80 transition duration-200 ease-in-out"
               onClick={toggleLanguageDropdown}
             />
             {showLanguageDropdown && (
@@ -171,29 +192,30 @@ const Auth2 = () => {
                 </div>
               </div>
             )}
-          </div>
+          </div> */}
         </div>
       </div>
 
       {/* Right Column */}
-      <div className="hidden 2xl:flex 2xl:col-span-5 flex-col h-screen py-6 ">
-        <div className="flex-grow flex items-center justify-center">
+      <div className="hidden 2xl:flex 2xl:col-span-5 flex-col gap-9 3xl:gap-12 4xl:h-screen py-12  4xl:py-6">
+        <div className="flex 3xl:flex-grow h-[90%] 3xl:h-[90%] pl-5 items-center justify-center">
           <img
             src={backgroundImage}
             alt="Background"
-            className="h-full w-full object-cover"
+            className="h-full 3xl:h-full w-full object-cover"
           />
         </div>
-        <div className="p-4 text-sm text-gray-700 flex justify-end border-gray-200">
+        <div className="text-sm text-gray-700 flex justify-end border-gray-200">
           <Link to="/imprint" className="mr-2 4xl:mr-3.5 hover:underline">
             Imprint
           </Link>
-          <Link to="/privacy-policy" className="mr-2 4xl:mr-3.5 hover:underline">
+          <Link
+            to="/privacy-policy"
+            className="mr-2 4xl:mr-3.5 hover:underline"
+          >
             Privacy Policy
           </Link>
-          <Link to="/developer" className="hover:underline">
-            Developed by TECOYO
-          </Link>
+         
         </div>
       </div>
     </div>
