@@ -14,28 +14,28 @@ import {
   Button,
   Typography,
 } from "@material-tailwind/react";
+import LoginForm from "./LoginForm";
 
 const Auth2 = () => {
   const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
   const toggleLanguageDropdown = () => {
     setShowLanguageDropdown((prevState) => !prevState);
   };
-
+const handleLogoClick = () =>{
+  window.location.href = 'https://driptext.de/';
+}
   return (
     <div className="grid grid-cols-1 2xl:grid-cols-12 h-screen ">
       {/* Left Column */}
       <div className="col-span-1 2xl:col-span-7 flex flex-col  justify-between 4xl:justify-normal items-center  py-10 xxs:px-10 2xl:px-24 3xl:px-36 4xl:px-52 border border-r-gray-200">
         <div className=" mt-10">
-          <div className="w-full flex items-center justify-center gap-1.5 mb-8">
+          <div className="w-full flex items-center justify-center gap-1.5 mb-8 cursor-pointer" onClick={handleLogoClick}>
             <img src={logo} alt="Logo" className="w-12 h-12 rounded-md" />
             <div>
               <h1 className="text-[17px] 4xl:text-lg font-bold text-black">DRIPTEXT</h1>
               <p className="text-gray-500 text-[13px] 4xl:text-sm">We love SEO & Content</p>
             </div>
           </div>
-          {/* <Typography variant="h2" className="font-bold mb-4">
-            Sign In
-          </Typography> */}
           <Typography
             variant="paragraph"
             color="blue-gray"
@@ -44,7 +44,8 @@ const Auth2 = () => {
             Enter your email and password to Sign In.
           </Typography>
         </div>
-        <div className="w-full flex flex-col mt-10">
+
+        {/* <div className="w-full flex flex-col mt-10">
           <form className="mb-1 flex flex-col gap-6">
             <Typography
               variant="small"
@@ -169,31 +170,8 @@ const Auth2 = () => {
           </Link>
          
         </div>
-        {/* <div className="w-full relative z-20 flex justify-center">
-            <img
-              src={germanFlag}
-              alt="Language"
-              className="w-6 h-6 cursor-pointer hover:opacity-80 transition duration-200 ease-in-out"
-              onClick={toggleLanguageDropdown}
-            />
-            {showLanguageDropdown && (
-              <div className="absolute bottom-12 left-0 mt-2 py-2 w-40 bg-white border rounded shadow-xl">
-                <div className="flex items-center px-4 py-2 cursor-pointer hover:bg-gray-200">
-                  <img
-                    src={englishFlag}
-                    alt="English"
-                    className="w-5 h-5 mr-2"
-                  />
-                  <span>English</span>
-                </div>
-                <div className="flex items-center px-4 py-2 cursor-pointer hover:bg-gray-200">
-                  <img src={germanFlag} alt="German" className="w-5 h-5 mr-2" />
-                  <span>German</span>
-                </div>
-              </div>
-            )}
-          </div> */}
-        </div>
+        </div> */}
+        <LoginForm/>
       </div>
 
       {/* Right Column */}
