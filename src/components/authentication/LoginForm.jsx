@@ -30,7 +30,7 @@ const LoginForm = () => {
 
     console.log("Im Clicked");
     // window.location.href = "https://driptext.de/danke-probetext/";
-     navigate("/onboarding-probetext");
+     navigate("/bestellformular");
   };
 
   return (
