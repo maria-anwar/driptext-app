@@ -87,6 +87,9 @@ const TaskTable = () => {
                   <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
                     Order Id
                   </th>
+                  <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
+                    Status
+                  </th>
                   <th className="min-w-[170px] py-4 px-4 font-medium text-black dark:text-white">
                     Service Duration
                   </th>
@@ -96,9 +99,7 @@ const TaskTable = () => {
                   <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
                    Published
                   </th>
-                  <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
-                    Status
-                  </th>
+                 
                   {/* <th className="py-4 px-4 font-medium text-black dark:text-white">
                   Actions
                 </th> */}
@@ -109,6 +110,23 @@ const TaskTable = () => {
                   <tr key={key}>
                     <td className="border-b border-[#eee] py-5 px-4 pl-5 sm:pl-9 dark:border-strokedark xl:pl-11">
                       <p className="text-sm"> {product.orderId}</p>
+                    </td>
+                    <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                      <p
+                        className={`inline-flex rounded-full bg-opacity-10 py-1 px-3 text-sm font-medium ${
+                          product.status === "Final"
+                            ? "bg-success text-success"
+                            : product.status === "Uninitialized"
+                            ? "bg-danger text-danger"
+                            : product.status === "Ready to Start" ?
+                            "bg-warning text-warning" 
+                            :product.status === "Ready For Proofreading" ? 
+                            "bg-warning text-warning" 
+                            : 'bg-blue-400 text-blue-400'
+                        }`}
+                      >
+                        {product.status}
+                      </p>
                     </td>
                     <td className="border-b border-[#eee] py-5 px-4 pl-5  dark:border-strokedark ">
                       <p className="text-sm">{product.duration}</p>
@@ -131,23 +149,7 @@ const TaskTable = () => {
                     }
                       </p>
                     </td>
-                    <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                      <p
-                        className={`inline-flex rounded-full bg-opacity-10 py-1 px-3 text-sm font-medium ${
-                          product.status === "Final"
-                            ? "bg-success text-success"
-                            : product.status === "Uninitialized"
-                            ? "bg-danger text-danger"
-                            : product.status === "Ready to Start" ?
-                            "bg-warning text-warning" 
-                            :product.status === "Ready For Proofreading" ? 
-                            "bg-warning text-warning" 
-                            : 'bg-blue-400 text-blue-400'
-                        }`}
-                      >
-                        {product.status}
-                      </p>
-                    </td>
+                   
                     {/* <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                     <div className="flex items-center space-x-3.5">
                       <button className="hover:text-primary">
