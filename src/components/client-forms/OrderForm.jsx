@@ -1,3 +1,4 @@
+import React, {useState} from 'react';
 import { GroupField } from "./GroupField";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -7,6 +8,7 @@ import { GroupDropdownField } from "./GroupDropdownField";
 import { CountryDropdownField } from "./CountryDropdownField";
 
 const OrderForm = () => {
+  const [isSuccess,setIsSuccess] = useState(false);
   const navigate = useNavigate();
   const initialValues = {
     duration: "",
@@ -34,6 +36,7 @@ const OrderForm = () => {
   });
   const onSubmit = (values) => {
     console.log("Im Clicked");
+   // setIsSuccess(true);
     window.location.href = "https://driptext.de/danke-probetext/";
     // navigate("https://driptext.de/danke-probetext/");
   };
@@ -330,7 +333,7 @@ const countriesList = [
                   </button>
                 </div>
               </div>
-    
+                 {isSuccess && (<p className='text-green-600 3xl:text-lg'>Order booking information is successfully saved</p>)} 
               <p className="text-custom-black text-sm font-normal">
                 By submitting the order, I agree to the{" "}
                 <Link className="text-[#63B4D0]">

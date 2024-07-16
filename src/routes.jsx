@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomeLayout from "./layouts/HomeLayout";
 import RegistrationLayout from "./layouts/RegistrationLayout";
@@ -25,8 +25,21 @@ import Auth3 from "./components/authentication/Auth3";
 import Auth2 from "./components/authentication/Auth2";
 import SignIn from "./views/auth/SignIn";
 import OrderForm from "./views/subscription/OrderBooking";
+import Sidebar from "./components/client/Sidebar";
+import Header from "./components/client/Headder";
+import DefaultLayout from "./layouts/client/DashboardLayout";
+import Projects from "./views/client/dashboard/Projects";
+import ProjectDataTable from "./components/client/tables/ProjectDataTable";
+import TextTable from "./components/client/tables/ProjectTable";
+import Settings from "./views/client/dashboard/Settings";
+import Support from "./views/client/dashboard/Support";
+import Profile from "./views/client/dashboard/Profile";
+import ForgotPassword from "./views/auth/ForgotPassword";
+import PassRequest from "./views/auth/PassRequest";
+import TaskTable from "./components/client/tables/TaskTable";
 
 const WebRoutes = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
     <>
       <BrowserRouter>
@@ -39,9 +52,21 @@ const WebRoutes = () => {
           <Route path="/thankyou-page" element={<ThankYouPage />}/>
           <Route path="/bestellformular" element={<OrderForm />}/>
           <Route path="/" element={<SignIn />} />
-          <Route path="/auth" element={<Auth />} />
+          {/* <Route path="/auth" element={<SignIn />} /> */}
+          <Route path="/auth/forgetkey" element={<ForgotPassword />} />
+          <Route path="/auth/lost/request" element={<PassRequest />} />
           <Route path="/auth3" element={<Auth3 />} />
           <Route path="/auth2" element={<Auth2 />} />
+          <Route path="/client-header" element={<Header />} />
+          {/* <Route path="/client-dashboard" element={<Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />} /> */}
+          <Route path="/client-dashboard" element={ <DefaultLayout/>} >
+            <Route index element={<Projects />} />
+            <Route path="text-table" element={<TextTable />} />
+            <Route path="task-table" element={<TaskTable />} />
+            <Route path="contact" element={<Support />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="settings" element={<Settings />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </>
