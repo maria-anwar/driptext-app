@@ -76,7 +76,7 @@ const PassRequestForm = () => {
       </Formik>
       <div className="space-y-4  mt-8">
         <Link
-          to="/auth"
+          to="/"
           size="lg"
           color="white"
           className="flex items-center gap-2 justify-center py-2.5 shadow-md"
@@ -99,7 +99,7 @@ const PassRequestForm = () => {
           </svg>
           <span>Back to Sign in</span>
         </Link>
-        <Typography
+        {/* <Typography
           variant="paragraph"
           className="text-center text-blue-gray-500 font-medium mt-4"
         >
@@ -107,7 +107,7 @@ const PassRequestForm = () => {
           <Link to="/probetext" className="text-gray-900 ml-1">
             Create account
           </Link>
-        </Typography>
+        </Typography> */}
       </div>
     </div>
   );

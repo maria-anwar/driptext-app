@@ -121,7 +121,7 @@ const LoginForm = () => {
         )}
       </Formik>
 
-      <div className="space-y-4  mt-8">
+      {/* <div className="space-y-4  mt-8">
         <Button
           size="lg"
           color="white"
@@ -175,7 +175,8 @@ const LoginForm = () => {
             Create account
           </Link>
         </Typography>
-      </div>
+      </div> */}
+
 
       <div className="xl:hidden w-full flex justify-center gap-2.5 p-4 text-sm text-gray-700  border-gray-200">
         <Link to="/imprint" className="hover:underline">
