@@ -11,7 +11,7 @@ import CheckboxTwo from "../buttons/CheckboxTwo";
 
 const productData: Product[] = [
   {
-    select: "In progress",
+    select: "Published",
     orderId: "96-DT-1",
     title: "Apple Watch Series 7",
     duration: "June 2024",
@@ -35,7 +35,7 @@ const productData: Product[] = [
     status: "Uninitialized",
   },
   {
-    select: "Unpublished",
+    select: "Published",
     orderId: "96-DT-3",
     title: "Apple Watch Series 7",
     duration: "June 2024",
@@ -43,7 +43,7 @@ const productData: Product[] = [
     status: "Ready to Start",
   },
   {
-    select: "unselect",
+    select: "Published",
     orderId: "96-DT-4",
     title: "Apple Watch Series 7",
     duration: "June 2024",
@@ -51,7 +51,7 @@ const productData: Product[] = [
     status: "In progress",
   },
   {
-    select: "unselect",
+    select: "Published",
     orderId: "96-DT-4",
     title: "Apple Watch Series 7",
     duration: "June 2024",
@@ -59,7 +59,7 @@ const productData: Product[] = [
     status: "Ready For Proofreading",
   },
   {
-    select: "unselect",
+    select: "Published",
     orderId: "96-DT-4",
     title: "Apple Watch Series 7",
     duration: "June 2024",
@@ -94,7 +94,7 @@ const TaskTable = () => {
                     Keyword
                   </th>
                   <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
-                   
+                   Published
                   </th>
                   <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
                     Status
@@ -110,7 +110,7 @@ const TaskTable = () => {
                     <td className="border-b border-[#eee] py-5 px-4 pl-5 sm:pl-9 dark:border-strokedark xl:pl-11">
                       <p className="text-sm"> {product.orderId}</p>
                     </td>
-                    <td className="border-b border-[#eee] py-5 px-4 pl-5 sm:pl-9 dark:border-strokedark xl:pl-11">
+                    <td className="border-b border-[#eee] py-5 px-4 pl-5  dark:border-strokedark ">
                       <p className="text-sm">{product.duration}</p>
                     </td>
                     <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
@@ -119,7 +119,7 @@ const TaskTable = () => {
                       </p>
                     </td>
                     <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                      <p className="text-black dark:text-white">
+                      <p className="text-black dark:text-white flex-inline justify-center pl-5">
                       {
                       product.status === 'Final'? (<CheckboxTwo/> ) : product.status === 'Uninitialized' ? ( <CheckboxThree/>) : (<input
                         disabled
