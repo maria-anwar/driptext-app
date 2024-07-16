@@ -30,7 +30,7 @@ const LoginForm = () => {
 
     console.log("Im Clicked");
     // window.location.href = "https://driptext.de/danke-probetext/";
-     navigate("/bestellformular");
+     navigate("/client-dashboard");
   };
 
   return (
@@ -111,7 +111,7 @@ const LoginForm = () => {
                 </Typography>
               </div>
               <Typography variant="small" className="font-medium text-gray-900">
-                <a href="#">Forgot Password</a>
+                <Link to="/auth/lost/request">Forgot Password</Link>
               </Typography>
             </div>
             <Button className="mt-6 bg-black text-white text-sm" fullWidth type="submit">
@@ -171,7 +171,7 @@ const LoginForm = () => {
           className="text-center text-blue-gray-500 font-medium mt-4"
         >
           Not registered?
-          <Link to="/auth/sign-up" className="text-gray-900 ml-1">
+          <Link to="/probetext" className="text-gray-900 ml-1">
             Create account
           </Link>
         </Typography>

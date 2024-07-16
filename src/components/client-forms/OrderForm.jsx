@@ -36,8 +36,8 @@ const OrderForm = () => {
   });
   const onSubmit = (values) => {
     console.log("Im Clicked");
-    setIsSuccess(true);
-    //window.location.href = "https://driptext.de/danke-probetext/";
+   // setIsSuccess(true);
+    window.location.href = "https://driptext.de/danke-probetext/";
     // navigate("https://driptext.de/danke-probetext/");
   };
 const countriesList = [
