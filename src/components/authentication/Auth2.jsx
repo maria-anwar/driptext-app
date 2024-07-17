@@ -28,7 +28,7 @@ const handleLogoClick = () =>{
   return (
     <div className="grid grid-cols-1 2xl:grid-cols-12 h-screen ">
       {/* Left Column */}
-      <div className="col-span-1 2xl:col-span-7 flex flex-col  justify-between 4xl:justify-normal items-center  py-10 xxs:px-10 2xl:px-24 3xl:px-36 4xl:px-52 border-r border-r-zinc-200">
+      <div className="col-span-1 2xl:col-span-7 flex flex-col  justify-between 2xl:justify-normal items-center  py-10 xxs:px-10 2xl:px-24 3xl:px-36 4xl:px-52 border-r border-r-zinc-200">
         <div className=" mt-10">
           <div className="w-full flex items-center justify-center gap-1.5 mb-8 cursor-pointer" onClick={handleLogoClick}>
             <img src={logo} alt="Logo" className="w-12 h-12 rounded-md" />
