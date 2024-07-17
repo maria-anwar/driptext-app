@@ -29,14 +29,14 @@ import Sidebar from "./components/client/Sidebar";
 import Header from "./components/client/Headder";
 import DefaultLayout from "./layouts/client/DashboardLayout";
 import Projects from "./views/client/dashboard/Projects";
-import ProjectDataTable from "./components/client/tables/ProjectDataTable";
-import TextTable from "./components/client/tables/ProjectTable";
 import Settings from "./views/client/dashboard/Settings";
 import Support from "./views/client/dashboard/Support";
 import Profile from "./views/client/dashboard/Profile";
 import ForgotPassword from "./views/auth/ForgotPassword";
 import PassRequest from "./views/auth/PassRequest";
 import TaskTable from "./components/client/tables/TaskTable";
+import TableWithCheckbox from "./views/checkTable";
+import Table2 from "./components/client/tables/Table2";
 
 const WebRoutes = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -61,11 +61,13 @@ const WebRoutes = () => {
           {/* <Route path="/client-dashboard" element={<Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />} /> */}
           <Route path="/client-dashboard" element={ <DefaultLayout/>} >
             <Route index element={<Projects />} />
-            <Route path="text-table" element={<TextTable />} />
             <Route path="task-table" element={<TaskTable />} />
             <Route path="contact" element={<Support />} />
             <Route path="profile" element={<Profile />} />
             <Route path="settings" element={<Settings />} />
+            <Route path="check" element={<TableWithCheckbox />} />
+            <Route path="table2" element={<Table2 />} />
+
           </Route>
         </Routes>
       </BrowserRouter>
