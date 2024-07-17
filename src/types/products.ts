@@ -1,8 +1,9 @@
-// import { ReactNode } from 'react';
+import { ReactNode } from 'react';
 export type Product = {
     
-    
-    select: string;
+    id:number;
+    // published: ReactNode;
+    select: Boolean;
     orderId: string;
     duration:string;
     title: string;
