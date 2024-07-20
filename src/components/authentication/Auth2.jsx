@@ -37,13 +37,6 @@ const handleLogoClick = () =>{
               <p className="text-gray-500 text-[13px] 4xl:text-sm">We love SEO & Content</p>
             </div>
           </div>
-          {/* <Typography
-            variant="paragraph"
-            color="blue-gray"
-            className="text-lg font-normal text-center"
-          >
-            Enter your email and password to Sign In.
-          </Typography> */}
           <AuthTagline authline={authline}/>
         </div>
         {children}
