@@ -1,8 +1,11 @@
-
+import { useState, useEffect } from "react";
 import { GroupField } from "./GroupField";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { useNavigate, Link } from "react-router-dom";
+import axios from "axios";
+
+//http://localhost:8000/api/users/create
 
 const RegistrationForm = () => {
   const navigate = useNavigate();
@@ -20,9 +23,27 @@ const RegistrationForm = () => {
     fname: Yup.string().required("Please enter your first name"),
     lname: Yup.string().required("Please enter your last name"),
   });
-  const onSubmit = (values) => {
-    console.log("Im Clicked");
-    navigate("/onboarding-probetext");
+  const onSubmit = async (values) => {
+    const registerData = {
+      project : values.project,
+      keyword: values.keyword,
+      email: values.email,
+      fname:values.fname,
+      lname: values.lname,
+
+    }
+   // console.log("Im Clicked,", registerData);
+   
+    const apiUrl = 'http://localhost:8000/api/users/create';
+    console.log('API:' , apiUrl);
+   try {
+    const response = await axios.post(apiUrl, registerData);
+    console.log('Data submitted successfully:', response.registerData);
+    // navigate("/onboarding-probetext");
+
+   } catch (error) {
+    console.error('Error submitting data:', error);
+   }
   };
   return (
     <>
