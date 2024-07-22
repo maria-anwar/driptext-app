@@ -37,6 +37,7 @@ import PassRequest from "./views/auth/PassRequest";
 import TaskTable from "./components/client/tables/TaskTable";
 import TableWithCheckbox from "./views/checkTable";
 import Table2 from "./components/client/tables/Table2";
+import Register from "./views/freelancer/auth/Register";
 
 const WebRoutes = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -49,16 +50,15 @@ const WebRoutes = () => {
             <Route path="/probetext" element={<RegisterPage />} />            
           </Route>
           <Route path="/onboarding-probetext" element={<OnboardingPage />} />            
+          <Route path="/onboarding-formular-freelancer" element={<Register />} />            
           <Route path="/thankyou-page" element={<ThankYouPage />}/>
           <Route path="/bestellformular" element={<OrderForm />}/>
           <Route path="/" element={<SignIn />} />
-          {/* <Route path="/auth" element={<SignIn />} /> */}
           <Route path="/auth/forgetkey" element={<ForgotPassword />} />
           <Route path="/auth/lost/request" element={<PassRequest />} />
           <Route path="/auth3" element={<Auth3 />} />
           <Route path="/auth2" element={<Auth2 />} />
           <Route path="/client-header" element={<Header />} />
-          {/* <Route path="/client-dashboard" element={<Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />} /> */}
           <Route path="/client-dashboard" element={ <DefaultLayout/>} >
             <Route index element={<Projects />} />
             <Route path="task-table" element={<TaskTable />} />
@@ -67,7 +67,6 @@ const WebRoutes = () => {
             <Route path="settings" element={<Settings />} />
             <Route path="check" element={<TableWithCheckbox />} />
             <Route path="table2" element={<Table2 />} />
-
           </Route>
         </Routes>
       </BrowserRouter>

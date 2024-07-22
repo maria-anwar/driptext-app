@@ -23,6 +23,7 @@ const RegistrationForm = () => {
     fname: Yup.string().required("Please enter your first name"),
     lname: Yup.string().required("Please enter your last name"),
   });
+  
   const onSubmit = async (values) => {
     const registerData = {
       project : values.project,
