@@ -9,6 +9,29 @@ import axios from "axios";
 
 const RegistrationForm = () => {
   const navigate = useNavigate();
+  const[roleID,setRoleID]= useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.post('http://localhost:8000/api/roles/list');
+        const data = response.data.data; // Adjust this line based on the actual structure
+        
+        if (Array.isArray(data)) {
+          data.forEach((value) => {
+            if (value.title === 'Client') {
+              setRoleID(value)
+            }
+          });
+        } 
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  
+    fetchData();
+  }, []);
+
   const initialValues = {
     project: "",
     keyword: "",
@@ -26,12 +49,12 @@ const RegistrationForm = () => {
   
   const onSubmit = async (values) => {
     const registerData = {
-      project : values.project,
-      keyword: values.keyword,
+      firstName:values.fname,
+      lastName: values.lname,
       email: values.email,
-      fname:values.fname,
-      lname: values.lname,
-
+      roleId: roleID._id,
+      projectName : values.project,
+      keywords: values.keyword,
     }
    // console.log("Im Clicked,", registerData);
    
@@ -40,11 +63,12 @@ const RegistrationForm = () => {
    try {
     const response = await axios.post(apiUrl, registerData);
     console.log('Data submitted successfully:', response.registerData);
-    // navigate("/onboarding-probetext");
+     //navigate("/onboarding-probetext");
 
    } catch (error) {
     console.error('Error submitting data:', error);
    }
+   navigate("/onboarding-probetext");
   };
   return (
     <>
