@@ -53,7 +53,8 @@ const OnboardingForm = () => {
     try {
       //const response = await axios.post(apiUrl, registerData);
       console.log('Data submitted successfully:', onBoardingData);
-      navigate("/thankyou-page");
+      //navigate("/thankyou-page");
+      window.location.href = 'https://driptext.de/danke-probetext/';
 
     } catch (error) {
       console.error('Error submitting data:', error);

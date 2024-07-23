@@ -9,6 +9,9 @@ import {
   Button,
   Typography,
 } from "@material-tailwind/react";
+import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -22,15 +25,26 @@ const LoginForm = () => {
     password: Yup.string().min(8).required("password is required"),
   });
 
-  const onSubmit = (values) => {
+  const onSubmit = async(values) => {
+    
     let userData = {
       email: values.email,
       password: values.password,
     };
+    const apiUrl = 'http://localhost:8000/api/auth/login';
+    console.log('API:' , apiUrl);
+   try {
+    const response = await axios.post(apiUrl, userData);
+    toast.success("Login successfully")
+    console.log('Data submitted successfully:', response.userData);
+    navigate("/client-dashboard");
 
-    console.log("Im Clicked");
+   } catch (error) {
+    toast.error('Error logging');
+   }
+
     // window.location.href = "https://driptext.de/danke-probetext/";
-     navigate("/client-dashboard");
+    
   };
 
   return (
@@ -42,6 +56,7 @@ const LoginForm = () => {
       >
         {(props) => (
           <Form>
+          <ToastContainer/>
             <div className="mb-1 flex flex-col gap-6">
               <Typography
                 variant="small"

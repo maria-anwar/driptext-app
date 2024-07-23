@@ -56,19 +56,17 @@ const RegistrationForm = () => {
       projectName : values.project,
       keywords: values.keyword,
     }
-   // console.log("Im Clicked,", registerData);
    
     const apiUrl = 'http://localhost:8000/api/users/create';
     console.log('API:' , apiUrl);
    try {
     const response = await axios.post(apiUrl, registerData);
     console.log('Data submitted successfully:', response.registerData);
-     //navigate("/onboarding-probetext");
+     navigate("/onboarding-probetext");
 
    } catch (error) {
     console.error('Error submitting data:', error);
    }
-   navigate("/onboarding-probetext");
   };
   return (
     <>
