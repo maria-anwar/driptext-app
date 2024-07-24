@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { useNavigate, Link } from "react-router-dom";
@@ -12,9 +12,11 @@ import {
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { UserContext } from "../../views/auth/AuthContext";
 
 const LoginForm = () => {
   const navigate = useNavigate();
+  const {user,setUser}= useContext(UserContext)
   const initialValues = {
     email: "",
     password: "",
@@ -35,8 +37,9 @@ const LoginForm = () => {
     console.log('API:' , apiUrl);
    try {
     const response = await axios.post(apiUrl, userData);
+    setUser(response.data)
     toast.success("Login successfully")
-    console.log('Data submitted successfully:', response.userData);
+    
     navigate("/client-dashboard");
 
    } catch (error) {

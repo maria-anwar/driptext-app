@@ -1,8 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import SidebarLinkGroup from "./SidebarLinkGroup";
 import logo from "../../../assets/homeimages/driptext-logo.png";
 import SidebarIcons from "../icons/SidebarIcons";
+import { UserContext } from "../../../views/auth/AuthContext";
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -12,6 +13,7 @@ interface SidebarProps {
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   const location = useLocation();
   const { pathname } = location;
+  const {setUser} = useContext(UserContext)
 
   const trigger = useRef<any>(null);
   const sidebar = useRef<any>(null);
@@ -54,6 +56,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
     }
   }, [sidebarExpanded]);
 
+
+  const handleLogout = ()=>{
+    setUser(null);
+  }
   return (
     <aside
       ref={sidebar}
@@ -171,6 +177,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
         <ul>
           <li className="">
             <NavLink
+            onClick={()=>handleLogout}
               to="/"
               className={`group relative flex items-center gap-2.5 rounded-sm py-4 px-4  lg:px-8 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 `}
             >
