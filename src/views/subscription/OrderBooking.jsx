@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/homeimages/driptext.png";
-import OnboardingForm from "../../components/client-forms/OnboardingForm";
 import OrderForm from "../../components/client-forms/OrderForm";
 
 const OrderBooking = () => {
