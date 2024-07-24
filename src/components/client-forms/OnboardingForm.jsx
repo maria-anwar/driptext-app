@@ -95,7 +95,6 @@ const OnboardingForm = () => {
                   value={props.values.speech}
                   errors={props.errors.speech}
                   onChange={props.handleChange}
-
                 />
                 <GroupDropdownField
                  label={" Writing Perspective"}
