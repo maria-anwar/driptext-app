@@ -351,7 +351,7 @@ const RegisterForm = () => {
                     className="border-none text-white font-medium text-base cursor-pointer "
                     type="submit"
                   >
-                    Submit Order
+                    Submit Now
                   </button>
                 </div>
               </div>
