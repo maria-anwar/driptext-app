@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { useNavigate, Link } from "react-router-dom";
@@ -9,9 +9,14 @@ import {
   Button,
   Typography,
 } from "@material-tailwind/react";
+import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { UserContext } from "../../views/auth/AuthContext";
 
 const LoginForm = () => {
   const navigate = useNavigate();
+  const {user,setUser}= useContext(UserContext)
   const initialValues = {
     email: "",
     password: "",
@@ -22,15 +27,27 @@ const LoginForm = () => {
     password: Yup.string().min(8).required("password is required"),
   });
 
-  const onSubmit = (values) => {
+  const onSubmit = async(values) => {
+    
     let userData = {
       email: values.email,
       password: values.password,
     };
+    const apiUrl = 'http://localhost:8000/api/auth/login';
+    console.log('API:' , apiUrl);
+   try {
+    const response = await axios.post(apiUrl, userData);
+    setUser(response.data)
+    toast.success("Login successfully")
+    
+    navigate("/client-dashboard");
 
-    console.log("Im Clicked");
+   } catch (error) {
+    toast.error('Error logging');
+   }
+
     // window.location.href = "https://driptext.de/danke-probetext/";
-     navigate("/client-dashboard");
+    
   };
 
   return (
@@ -42,6 +59,7 @@ const LoginForm = () => {
       >
         {(props) => (
           <Form>
+          <ToastContainer/>
             <div className="mb-1 flex flex-col gap-6">
               <Typography
                 variant="small"

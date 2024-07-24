@@ -38,6 +38,8 @@ import TaskTable from "./components/client/tables/TaskTable";
 import TableWithCheckbox from "./views/checkTable";
 import Table2 from "./components/client/tables/Table2";
 import Register from "./views/freelancer/auth/Register";
+import RedirectHandler from "./views/auth/RedirectHandler";
+
 
 const WebRoutes = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -54,6 +56,7 @@ const WebRoutes = () => {
           <Route path="/thankyou-page" element={<ThankYouPage />}/>
           <Route path="/bestellformular" element={<OrderForm />}/>
           <Route path="/" element={<SignIn />} />
+          <Route path="/auth/forgetkey/:token" element={<RedirectHandler />} />
           <Route path="/auth/forgetkey" element={<ForgotPassword />} />
           <Route path="/auth/lost/request" element={<PassRequest />} />
           <Route path="/auth3" element={<Auth3 />} />
