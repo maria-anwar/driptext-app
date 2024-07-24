@@ -34,11 +34,38 @@ const OnboardingForm = () => {
     contentPurpose: Yup.string().required("above information is required"),
     brand: Yup.string().required("above information is required"),
   });
-  const onSubmit = (values) => {
-    console.log("Im Clicked");
-    window.location.href = 'https://driptext.de/danke-probetext/';
+  const onSubmit = async (values) => {
+    const onBoardingData = {
+      speech: values.speech, 
+      project: values.project,
+      perspective: values.perspective,
+      companyInfo: values.companyInfo,
+      companyAttributes: values.companyAttributes,
+      services: values.services,
+      content: values.content,
+      customers: values.customers,
+      contentPurpose: values.contentPurpose,
+      brand: values.brand,
+    }
+
+      const apiUrl = 'http://localhost:8000/api/users/create';
+      console.log('API:' , apiUrl);
+    try {
+      //const response = await axios.post(apiUrl, registerData);
+      console.log('Data submitted successfully:', onBoardingData);
+      //navigate("/thankyou-page");
+      window.location.href = 'https://driptext.de/danke-probetext/';
+
+    } catch (error) {
+      console.error('Error submitting data:', error);
+    }
+    // console.log("Im Clicked");
+    // window.location.href = 'https://driptext.de/danke-probetext/';
     // navigate("https://driptext.de/danke-probetext/");
-  };
+
+    };
+
+ 
 
   return (
     <>

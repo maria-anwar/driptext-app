@@ -1,12 +1,13 @@
 
 import WebRoutes from './routes'
+import { UserProvider } from './views/auth/AuthContext'
 
 function App() {
 
   return (
-    <>
-     <WebRoutes/>
-    </>
+    <UserProvider>
+      <WebRoutes/>
+    </UserProvider>
   )
 }
 

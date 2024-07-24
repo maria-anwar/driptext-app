@@ -9,6 +9,9 @@ import {
   Button,
   Typography,
 } from "@material-tailwind/react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import axios from "axios";
 
 const PassRequestForm = () => {
   const navigate = useNavigate();
@@ -20,11 +23,23 @@ const PassRequestForm = () => {
     email: Yup.string().email().required("email is required"),
   });
 
-  const onSubmit = (values) => {
+  const onSubmit = async (values) => {
 
-    console.log("Im Clicked");
-    // window.location.href = "https://driptext.de/danke-probetext/";
-    navigate("/auth/forgetkey");
+    const emailData = {
+      email: values.email
+    }
+
+    const apiUrl = 'http://localhost:8000/api/forgot/password';
+    console.log('API:' , apiUrl);
+   try {
+    const response = await axios.post(apiUrl, emailData);
+    console.log('Data submitted successfully:', response.emailData);
+    toast.error("Link sent successfully, click the link to reset password")
+
+   } catch (error) {
+    toast.error("Error sending the link")
+   }
+
   };
 
   return (
@@ -37,6 +52,7 @@ const PassRequestForm = () => {
         {(props) => (
           <Form>
             <div className="mb-1 flex flex-col gap-6">
+            <ToastContainer/>
               <Typography
                 variant="small"
                 color="blue-gray"

@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Breadcrumb from "../../../components/client/breeadcrumbs/Breadcrumb";
 import SidebarIcons from "../../../components/client/icons/SidebarIcons";
+import { UserContext } from "../../auth/AuthContext";
 const Settings = () => {
+  const {user} = useContext(UserContext)
+
   return (
     <>
       <div className="mx-auto max-w-270 3xl:px-6">
@@ -56,8 +59,8 @@ const Settings = () => {
                           type="text"
                           name="fullName"
                           id="fullName"
-                          placeholder="Devid Jhon"
-                          defaultValue="Devid Jhon"
+                          placeholder="firstname"
+                          defaultValue={user.data.user.firstName || ''}
                         />
                       </div>
                     </div>
@@ -100,14 +103,14 @@ const Settings = () => {
                           type="text"
                           name="fullName"
                           id="fullName"
-                          placeholder="Devid Jhon"
-                          defaultValue="Devid Jhon"
+                          placeholder="lastname"
+                          defaultValue={user.data.user.lastName|| ''}
                         />
                       </div>
                     </div>
                   </div>
 
-                  {/* <div className="mb-5.5">
+                  <div className="mb-5.5">
                     <label
                       className="mb-3 block text-sm font-medium text-black dark:text-white"
                       htmlFor="emailAddress"
@@ -145,11 +148,12 @@ const Settings = () => {
                         type="email"
                         name="emailAddress"
                         id="emailAddress"
-                        placeholder="devidjond45@gmail.com"
-                        defaultValue="devidjond45@gmail.com"
+                        placeholder="xyz@gmail.com"
+                        defaultValue={user.data.user.email||''}
+                        disabled={true}
                       />
                     </div>
-                  </div> */}
+                  </div>
 
                   <div className="mb-5.5">
                     <label

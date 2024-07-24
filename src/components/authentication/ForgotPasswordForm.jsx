@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { useNavigate, Link } from "react-router-dom";
@@ -9,9 +9,22 @@ import {
   Button,
   Typography,
 } from "@material-tailwind/react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import axios from "axios";
 
 const ForgotPasswordForm = () => {
+  const [token, setToken] = useState('');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem('resetToken');
+    if (storedToken) {
+      setToken(storedToken);
+    }
+  }, []);
+  console.log(token)
+
   const initialValues = {
     reEnterPass: "",
     password: "",
@@ -22,10 +35,27 @@ const ForgotPasswordForm = () => {
     reEnterPass: Yup.string().min(8).required("please re-enter your password"),
   });
 
-  const onSubmit = (values) => {
-    console.log("Im Clicked");
-    // window.location.href = "https://driptext.de/danke-probetext/";
-     navigate("/");
+  const onSubmit = async(values) => {
+
+    let passwordValue = {
+      password:values.password,
+      confirmPassword:values.reEnterPass
+    }
+     
+    if(values.password!==values.reEnterPass){
+      toast.error('Both password not matched');
+      return;
+    }
+    const apiUrl = `http://localhost:8000/api/auth/reset/password/${token}`;
+    console.log('API:' , apiUrl);
+   try {
+    const response = await axios.post(apiUrl, passwordValue);
+    toast.success("Password set successfully")
+    navigate("/");
+
+   } catch (error) {
+    toast.error('Error logging');
+   }
   };
 
   return (
@@ -38,7 +68,7 @@ const ForgotPasswordForm = () => {
         {(props) => (
           <Form>
             <div className="mb-1 flex flex-col gap-6">
-              
+              <ToastContainer/>
 
               <Typography
                 variant="small"

@@ -4,11 +4,37 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 //http://localhost:8000/api/users/create
 
 const RegistrationForm = () => {
   const navigate = useNavigate();
+  const[roleID,setRoleID]= useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.post('http://localhost:8000/api/roles/list');
+        const data = response.data.data; // Adjust this line based on the actual structure
+        
+        if (Array.isArray(data)) {
+          data.forEach((value) => {
+            if (value.title === 'leads') {
+              setRoleID(value)
+            }
+          });
+        } 
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  
+    fetchData();
+  }, []);
+
   const initialValues = {
     project: "",
     keyword: "",
@@ -26,24 +52,24 @@ const RegistrationForm = () => {
   
   const onSubmit = async (values) => {
     const registerData = {
-      project : values.project,
-      keyword: values.keyword,
+      firstName:values.fname,
+      lastName: values.lname,
       email: values.email,
-      fname:values.fname,
-      lname: values.lname,
-
+      roleId: roleID._id,
+      projectName : values.project,
+      keywords: values.keyword,
     }
-   // console.log("Im Clicked,", registerData);
    
     const apiUrl = 'http://localhost:8000/api/users/create';
     console.log('API:' , apiUrl);
    try {
     const response = await axios.post(apiUrl, registerData);
-    console.log('Data submitted successfully:', response.registerData);
-    // navigate("/onboarding-probetext");
+    toast.success('Data submitted successfully:', response.registerData);
+     navigate("/onboarding-probetext");
 
    } catch (error) {
-    console.error('Error submitting data:', error);
+    toast.error('Error submitting data:', error);
+    console.log(error);
    }
   };
   return (
@@ -55,6 +81,7 @@ const RegistrationForm = () => {
       >
         {(props) => (
           <Form>
+          <ToastContainer/>
             <div className="w-full bg-gradient-to-r from-custom-gray to-[#F7F7F7] flex flex-col gap-6 px-3 xs:px-8 xs:py-10  md:px-9 md:py-14 lg:px-10 mt-6 mb-8 rounded-xl">
               <div className="flex flex-col gap-6">
                 <h2 className="text-custom-black text-base font-semibold">
