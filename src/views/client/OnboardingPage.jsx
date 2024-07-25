@@ -1,9 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link,useLocation } from "react-router-dom";
 import Logo from "../../assets/homeimages/driptext.png";
 import OnboardingForm from "../../components/client-forms/OnboardingForm";
 
 const OnboardingPage = () => {
+  const location = useLocation();
+  const { projectName } = location.state || {};
   return (
     <div className="px-4 sm:px-6 md-px-10 lg:px-14 xl:px-20 2xl:px-56 4xl:px-80 py-10">
       <Link
@@ -29,7 +31,7 @@ const OnboardingPage = () => {
             company and your content goals better.
           </p>
         </div>
-        <OnboardingForm />
+        <OnboardingForm projectName={projectName}/>
       </div>
     </div>
   );
