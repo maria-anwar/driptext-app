@@ -12,11 +12,13 @@ import {
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { UserContext } from "../../views/auth/AuthContext";
-
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../redux/userSlice.js';
 const LoginForm = () => {
+  const dispatch = useDispatch();
+ 
   const navigate = useNavigate();
-  const {user,setUser}= useContext(UserContext)
+ 
   const initialValues = {
     email: "",
     password: "",
@@ -34,10 +36,11 @@ const LoginForm = () => {
       password: values.password,
     };
     const apiUrl = 'http://localhost:8000/api/auth/login';
-    console.log('API:' , apiUrl);
+    
    try {
     const response = await axios.post(apiUrl, userData);
-    setUser(response.data)
+    console.log(response.data)
+    dispatch(setUser(response?.data?.data));
     toast.success("Login successfully")
     
     navigate("/client-dashboard");

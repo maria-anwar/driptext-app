@@ -3,7 +3,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { combineReducers } from 'redux';
 import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
-import userReducer from '../features/user/userSlice';
+import userReducer from './userSlice.js';
 
 const persistConfig = {
   key: 'root',
@@ -26,4 +26,5 @@ export const store = configureStore({
       },
     }),
 });
+export const persistor = persistStore(store);
  

@@ -2,11 +2,13 @@ import React, { useState, ReactNode, useContext } from "react";
 import Header from "../../components/client/Headder";
 import Sidebar from "../../components/client/Sidebar";
 import { Outlet } from "react-router-dom";
-import { UserContext } from "../../views/auth/AuthContext";
+import { useSelector } from "react-redux";
 
 const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const user = useSelector((state:any) => state.user.user);
+  console.log((user ))
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const {user,setUser} = useContext(UserContext)
+ 
   return (
     <div className="dark:bg-boxdark-2 dark:text-bodydark">
       {/* <!-- ===== Page Wrapper Start ===== --> */}
