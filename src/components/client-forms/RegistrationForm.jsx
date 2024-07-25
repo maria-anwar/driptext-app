@@ -65,7 +65,7 @@ const RegistrationForm = () => {
    try {
     const response = await axios.post(apiUrl, registerData);
     toast.success('Data submitted successfully:', response.registerData);
-     navigate("/onboarding-probetext");
+     navigate("/onboarding-probetext"),{state:{projectName:values.project}};
 
    } catch (error) {
     toast.error('Error submitting data:', error);

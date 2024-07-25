@@ -1,14 +1,56 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import CardDataStats from "../../../components/client/CardDataStats";
 import DarkBtn from "../../../components/client/buttons/DarkBtn";
+import axios from "axios";
+import { UserContext } from "../../auth/AuthContext";
+import setAuthHeader from "./axios";
 
 const Projects: React.FC = () => {
+  const {user} = useContext(UserContext)
+  const [projectData, setProjectData] = useState(null);
+  const [userId,setUserID]=useState(user?.data?.user?._id)
+  const [token, setToken] = useState(user?.token || '');
+
+
+  
+  // useEffect(() => {
+  //   const fetchProjectData = () => {
+  //     if (userId && token) {
+  //       setAuthHeader(token);
+    
+        
+  //       axios.post('http://localhost:8000/api/projects/detail', {
+  //         userid: userId,
+  //       })
+  //       .then((response) => {
+  //         if (response.status === 200) {
+  //           setProjectData(response.data);
+  //           console.log(response.data);
+  //         }
+  //       })
+  //       .catch((error) => {
+  //         console.error('There was an error!', error);
+  //       });
+  //     }
+  //   };
+  
+  //   fetchProjectData();
+  // }, [userId, token]);
+  
+
 
   const tasks = [
     {
       id: "1",
       domain: "example.com | 96 - DT",
+      texts:'0/5',
+      createdOn:"08-06-2024",
+      servicePeriod:"12 Aug",
+      ordersPerMonth:1,
+      maximumOrders:12,
+      projectDuration:1
+      
     },
     {
       id: "2",
@@ -42,6 +84,12 @@ const Projects: React.FC = () => {
             <CardDataStats
               title="Texts"
               domain = {task.domain}
+              texts={task.texts}
+              createdOn={task.createdOn}
+              servicePeriod={task.servicePeriod}
+              ordersPerMonth= {task.ordersPerMonth}
+              maximumOrders= {task.maximumOrders}
+              projectDuration={task.projectDuration}
               rate="0.43%"
               levelUp
             >

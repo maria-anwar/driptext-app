@@ -6,7 +6,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { GroupTextArea } from "./GroupTextArea";
 import { GroupDropdownField } from "./GroupDropdownField";
 
-const OnboardingForm = () => {
+const OnboardingForm = ({projectName}) => {
   const navigate = useNavigate();
   const initialValues = {
     speech: "", 
@@ -120,7 +120,7 @@ const OnboardingForm = () => {
                   id={"project"}
                   name={"project"}
                   placeholder={"example.com"}
-                  value={props.values.project}
+                  value={projectName}
                   errors={props.errors.project}
                   onChange={props.handleChange}
                 />
