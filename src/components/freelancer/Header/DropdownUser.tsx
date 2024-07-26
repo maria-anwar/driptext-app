@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import ClickOutside from "../tables/ClickOutside";
+import ClickOutside from "../tables/ClickOutside"
 
 
 
@@ -108,7 +108,7 @@ const DropdownUser = () => {
             </li> */}
             <li>
               <Link
-                to="settings"
+                to="freelancer-setting"
                 className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
               >
                 <svg

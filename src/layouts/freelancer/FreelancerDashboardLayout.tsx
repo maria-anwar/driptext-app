@@ -1,10 +1,10 @@
 import React, { useState, ReactNode, useContext } from "react";
-import Header from "../../components/client/Headder";
-import Sidebar from "../../components/client/Sidebar";
+import Header from "../../components/freelancer/Header"
+import Sidebar from "../../components/freelancer/Sidebar";
 import { Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
+const FreelancerDashboardLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
   
   const [sidebarOpen, setSidebarOpen] = useState(false);
  
@@ -38,4 +38,4 @@ const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
   );
 };
 
-export default DefaultLayout;
+export default FreelancerDashboardLayout;
