@@ -37,19 +37,13 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
   children,
 }) => {
   const navigate = useNavigate()
-
-  const tasks = [{
-    id:id,
-    keyword:keywords,
-    projectStatus:projectStatus
-  }]
-
+  
  const handleBoarding = ()=> {
     navigate('/onboarding-probetext',{state:{projectName:domain}})
   } 
 
   const handleProjectTask = () => {
-    navigate('task-table',{state:{tasks}})
+    navigate('task-table',{state:{projectId:id}})
   }
 
   // Check if any required prop for the Link is missing

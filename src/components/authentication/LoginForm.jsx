@@ -40,7 +40,7 @@ const LoginForm = () => {
    try {
     const response = await axios.post(apiUrl, userData);
     console.log(response.data)
-    dispatch(setUser(response?.data?.data));
+    dispatch(setUser(response?.data));
     toast.success("Login successfully")
     
     navigate("/client-dashboard");

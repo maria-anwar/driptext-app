@@ -1,10 +1,56 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Breadcrumb from "../../../components/client/breeadcrumbs/Breadcrumb";
 import SidebarIcons from "../../../components/client/icons/SidebarIcons";
-import { UserContext } from "../../auth/AuthContext";
+import { useDispatch, useSelector } from "react-redux";
+import { updateUserFields } from "../../../redux/userSlice";
+import axios from "axios";
+
 const Settings = () => {
-  const {user} = useContext(UserContext)
+  const user = useSelector((state) => state.user);
+  console.log(user.user);
+  const dispatch = useDispatch();
+  const [firstName, setFirstName] = useState(
+    user.user.data.user.firstName || ""
+  );
+  const [lastName, setLastName] = useState(user.user.data.user.lastName || "");
+  const [loading, setLoading] = useState(false);
+
+  const handleUpdate = async (e) => {
+    setLoading(true);
+    e.preventDefault();
+
+    let token = user.user.token;
+    axios.defaults.headers.common["access-token"] = token;
+
+    let payload = {
+      firstName: firstName,
+      lastName: lastName,
+    };
+
+    await axios
+      .post("http://localhost:8000/api/users/update", payload)
+      .then((response) => {
+        dispatch(
+          updateUserFields({ path: "data.user.firstName", value: firstName })
+        );
+        dispatch(
+          updateUserFields({ path: "data.user.lastName", value: lastName })
+        );
+      })
+      .catch((err) => {
+        console.error("Error fetching project details:", err);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
+  const handleCancel = (e) => {
+    e.preventDefault();
+    setFirstName(user.user.data.user.firstName);
+    setLastName(user.user.data.user.lastName);
+  };
 
   return (
     <>
@@ -60,7 +106,8 @@ const Settings = () => {
                           name="fullName"
                           id="fullName"
                           placeholder="firstname"
-                          defaultValue={user.data.user.firstName || ''}
+                          onChange={(e) => setFirstName(e.target.value)}
+                          value={firstName}
                         />
                       </div>
                     </div>
@@ -104,7 +151,8 @@ const Settings = () => {
                           name="fullName"
                           id="fullName"
                           placeholder="lastname"
-                          defaultValue={user.data.user.lastName|| ''}
+                          onChange={(e) => setLastName(e.target.value)}
+                          value={lastName}
                         />
                       </div>
                     </div>
@@ -149,13 +197,13 @@ const Settings = () => {
                         name="emailAddress"
                         id="emailAddress"
                         placeholder="xyz@gmail.com"
-                        defaultValue={user.data.user.email||''}
+                        defaultValue={user.user.data.user.email || ""}
                         disabled={true}
                       />
                     </div>
                   </div>
 
-                  <div className="mb-5.5">
+                  {/* <div className="mb-5.5">
                     <label
                       className="mb-3 block text-sm font-medium text-black dark:text-white"
                       htmlFor="Username"
@@ -170,7 +218,7 @@ const Settings = () => {
                       placeholder="devidjhon24"
                       defaultValue="devidjhon24"
                     />
-                  </div>
+                  </div> */}
 
                   {/* <div className="mb-5.5">
                     <label
@@ -226,14 +274,17 @@ const Settings = () => {
                     <button
                       className="flex justify-center rounded border border-stroke py-2 px-6 font-medium text-black hover:shadow-1 dark:border-strokedark dark:text-white"
                       type="submit"
+                      onClick={handleCancel}
                     >
                       Cancel
                     </button>
                     <button
+                      onClick={handleUpdate}
                       className="flex justify-center rounded bg-primary py-2 px-6 font-medium text-gray hover:bg-opacity-90"
                       type="submit"
+                      disabled={loading}
                     >
-                      Save
+                      {loading ? "Saving..." : "Save"}
                     </button>
                   </div>
                 </form>
@@ -246,7 +297,7 @@ const Settings = () => {
             Security
           </h2>
           <Link
-            to='/auth/lost/request'
+            to="/auth/lost/request"
             className="inline-flex items-center justify-center gap-2.5 bg-black py-4 px-10 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
           >
             <span>{SidebarIcons[3].auth}</span>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Product } from "../../../types/products";
 import Breadcrumb from "../breeadcrumbs/Breadcrumb";
 import { Checkbox } from "@material-tailwind/react";
@@ -8,6 +8,8 @@ import DarkBtn from "../buttons/DarkBtn";
 import { Link, useLocation } from "react-router-dom";
 import CheckboxThree from "../buttons/CheckboxThree";
 import CheckboxTwo from "../buttons/CheckboxTwo";
+import axios from "axios";
+import { useSelector } from "react-redux";
 
 const productData: Product[] = [
   {
@@ -140,7 +142,38 @@ const Checkbox2 = () => (
 
 const TaskTable = () => {
   const location = useLocation();
-  const { tasks } = location.state || {};
+  const { projectId } = location.state || {};
+
+  const user = useSelector(state=>state.user)
+
+  const [taskData, setTaskData] = useState([]);
+  const [userToken, setUserToken] = useState(user.user.token);
+
+  useEffect(() => {
+    let token = userToken;
+    axios.defaults.headers.common['access-token'] = token;
+    let payload = {
+      projectId: projectId
+    };
+
+    axios.post('http://localhost:8000/api/project/tasks/detail', payload)
+      .then((response) => {
+        const tasks = response.data.data;
+        console.log(tasks)
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+        setTaskData(tasks); 
+      })
+      .catch((err) => {
+        console.error('Error fetching project details:', err);
+      });
+  }, [projectId]); 
+
+  useEffect(() => {
+    const storedTasks = localStorage.getItem('tasks');
+    if (storedTasks) {
+      setTaskData(JSON.parse(storedTasks));
+    }
+  }, []);
 
   const [currentComponent, setCurrentComponent] = useState(
     new Array(productData.length).fill("checkbox1")
@@ -216,12 +249,12 @@ const TaskTable = () => {
                 </tr>
               </thead>
               <tbody>
-                {tasks.map((task, index, ) => (
-                  <tr key={task.id}>
+                {taskData.map((task, index, ) => (
+                  <tr key={task._id}>
                     <td className="border-b border-[#eee] py-5 px-4 pl-5 sm:pl-9 dark:border-strokedark xl:pl-11">
                       <Link to="#" className="text-blue-500 text-sm">
                         {" "}
-                        {task.id}
+                        {task._id}
                       </Link>
                     </td>
                     <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
@@ -242,11 +275,11 @@ const TaskTable = () => {
                       </p>
                     </td>
                     <td className="border-b border-[#eee] py-5 px-4 pl-5  dark:border-strokedark ">
-                      <p className="text-sm">{"empty"}</p>
+                      <p className="text-sm">{task.serviceDuration}</p>
                     </td>
                     <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                       <p className="text-black dark:text-white">
-                        {task.keyword}
+                        {task.keywords}
                       </p>
                     </td>
                     <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark ">

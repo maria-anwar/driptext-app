@@ -3,13 +3,15 @@ import { Link } from "react-router-dom";
 import CardDataStats from "../../../components/client/CardDataStats";
 import DarkBtn from "../../../components/client/buttons/DarkBtn";
 import axios from "axios";
-import { UserContext } from "../../auth/AuthContext";
+import { useSelector } from "react-redux";
+
 
 const Projects: React.FC = () => {
-  const { user } = useContext(UserContext);
+  const user = useSelector(state=>state.user)
+
   const [projectData, setProjectData] = useState([]);
-  const [userId, setUserID] = useState('66a03863e382a7458fcdc844');
-  const [userToken, setUserToken] = useState('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmEwMzg2M2UzODJhNzQ1OGZjZGM4NDQiLCJyb2xlSWQiOnsiX2lkIjoiNjZhMDIyOTBhZTg1NzY1YjNhNTU5N2Q5IiwidGl0bGUiOiJDbGllbnQifSwicm9sZSI6IkNsaWVudCIsImlhdCI6MTcyMjAzNzI3MywiZXhwIjoxNzI0NjI5MjczfQ.5GmHl5bJqgLhQDmTBAKCtZCrGZDQDkUkv8gJwaSTaz0');
+  const [userId, setUserID] = useState(user.user.data.user._id);
+  const [userToken, setUserToken] = useState(user.user.token);
 
   useEffect(() => {
     let token = userToken;
@@ -34,9 +36,10 @@ const Projects: React.FC = () => {
     if (storedProjects) {
       setProjectData(JSON.parse(storedProjects));
     }
+    
   }, []);
 
-  console.log(projectData)
+console.log(projectData)
   
   return (
     <>
