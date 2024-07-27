@@ -20,6 +20,7 @@ const RegistrationForm = () => {
         const response = await axios.post('http://localhost:8000/api/roles/list');
         const data = response.data.data; // Adjust this line based on the actual structure
         
+        console.log("jgjhgjhg")
         if (Array.isArray(data)) {
           data.forEach((value) => {
             if (value.title === 'leads') {

@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import ClickOutside from "../tables/ClickOutside";
 
 
-
 const DropdownUser = () => {
 
   const navigate = useNavigate();

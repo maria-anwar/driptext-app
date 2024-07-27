@@ -5,7 +5,7 @@ import { Checkbox } from "@material-tailwind/react";
 import TableCheckbox from "../TableCheckbox";
 import BlueBtn from "../buttons/BlueBtn";
 import DarkBtn from "../buttons/DarkBtn";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import CheckboxThree from "../buttons/CheckboxThree";
 import CheckboxTwo from "../buttons/CheckboxTwo";
 
@@ -139,6 +139,9 @@ const Checkbox2 = () => (
 );
 
 const TaskTable = () => {
+  const location = useLocation();
+  const { tasks } = location.state || {};
+
   const [currentComponent, setCurrentComponent] = useState(
     new Array(productData.length).fill("checkbox1")
   );
@@ -213,37 +216,37 @@ const TaskTable = () => {
                 </tr>
               </thead>
               <tbody>
-                {productData.map((product, index, key) => (
-                  <tr>
+                {tasks.map((task, index, ) => (
+                  <tr key={task.id}>
                     <td className="border-b border-[#eee] py-5 px-4 pl-5 sm:pl-9 dark:border-strokedark xl:pl-11">
                       <Link to="#" className="text-blue-500 text-sm">
                         {" "}
-                        {product.orderId}
+                        {task.id}
                       </Link>
                     </td>
                     <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                       <p
                         className={`inline-flex rounded-full bg-opacity-10 py-1 px-3 text-sm font-medium ${
-                          product.status === "Final"
+                          task.projectStatus === "Final"
                             ? "bg-success text-success"
-                            : product.status === "Uninitialized"
+                            : task.projectStatus === "Not initalized"
                             ? "bg-danger text-danger"
-                            : product.status === "Ready to Start"
+                            : task.projectStatus === "Ready to Start"
                             ? "bg-warning text-warning"
-                            : product.status === "Ready For Proofreading"
+                            : task.projectStatus === "Ready For Proofreading"
                             ? "bg-warning text-warning"
                             : "bg-blue-400 text-blue-400"
                         }`}
                       >
-                        {product.status}
+                        {task.projectStatus}
                       </p>
                     </td>
                     <td className="border-b border-[#eee] py-5 px-4 pl-5  dark:border-strokedark ">
-                      <p className="text-sm">{product.duration}</p>
+                      <p className="text-sm">{"empty"}</p>
                     </td>
                     <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                       <p className="text-black dark:text-white">
-                        {product.keyword}
+                        {task.keyword}
                       </p>
                     </td>
                     <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark ">
