@@ -7,8 +7,10 @@ import { GroupDropdownField } from "./GroupDropdownField";
 import axios from "axios";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useState } from "react";
 
-const OnboardingForm = ({projectName}) => {
+const OnboardingForm = ({projectName,userId}) => {
+  const [loading,setLoading] = useState(false);
   
 
   const initialValues = {
@@ -39,34 +41,43 @@ const OnboardingForm = ({projectName}) => {
   });
 
 
-const onSubmit = async (values) => {
-  const onBoardingData = {
-    speech: values.speech, 
-    perspective: values.perspective,
-    projectName: values.project,
-    userId: "", // Assign appropriate value
-    companyBackgorund: values.companyInfo,
-    companyAttributes: values.companyAttributes,
-    comapnyServices: values.services,
-    customerContent: values.content,
-    customerIntrest: values.customers,
-    contentPurpose: values.contentPurpose,
-    contentInfo: values.brand,
-  };
-
-  const apiUrl = 'http://localhost:8000/api/users/create';
-  console.log('API:', apiUrl);
-
-  try {
-    const response = await axios.post(apiUrl, onBoardingData);
-    console.log('Data submitted successfully:', response.data);
-    window.location.href = 'https://driptext.de/danke-probetext/';
-  } catch (error) {
-      console.error('Server responded with an error:', error.response.data);
-      toast.error(`Error: ${'Server error'}`);
+  const onSubmit = async (values) => {
+    
+    const onBoardingData = {
+      speech: values.speech,
+      prespective: values.perspective,
+      projectName: values.project,
+      userId: userId, // Assign appropriate value
+      companyBackgorund: values.companyInfo,
+      companyAttributes: values.companyAttributes,
+      comapnyServices: values.services,
+      customerContent: values.content,
+      customerIntrest: values.customers,
+      contentPurpose: values.contentPurpose,
+      contentInfo: values.brand,
+    };
+  
+    const apiUrl = 'http://localhost:8000/api/users/create/onboarding';
+    console.log(onBoardingData);
+    setLoading(true)
+    try {
+      const response = await axios.post(apiUrl, onBoardingData);
+      setLoading(false)
+      console.log('Data submitted successfully:', response.data);
+      window.location.href = 'https://driptext.de/danke-probetext/';
+    } catch (error) {
+      
+      if (error.response) {
+        console.error('Server responded with an error:', error.response);
+        toast.error(`Error: ${error.response.data.message || 'Server error'}`);
+      } else {
+        console.error('Error:', error.message);
+        toast.error(`Errorjghjg : ${error.message}`);
+      }
+      setLoading(false)
     }
   };
- 
+  
 
   return (
     <>
@@ -230,12 +241,13 @@ const onSubmit = async (values) => {
                   errors={props.errors.brand}
                   onChange={props.handleChange}
                 />
-                <div className="w-full bg-custom-black flex justify-center py-2 xs:py-2.5 mt-1 rounded-xl">
+                <div className="w-full relative bg-custom-black flex justify-center py-2 xs:py-2.5 mt-1 rounded-xl">
                   <button
-                    className="border-none text-white font-medium text-base cursor-pointer "
+                    className={`border-none w-full text-white font-medium text-base cursor-pointer ${loading? 'cursor-not-allowed':'cursor-pointer'}`}
                     type="submit"
+                    disabled={loading}
                   >
-                    Submit Order
+                  {loading ? 'submitting' : 'Submit Order'}
                   </button>
                 </div>
               </div>
