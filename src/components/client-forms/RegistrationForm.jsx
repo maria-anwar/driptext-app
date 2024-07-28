@@ -20,7 +20,6 @@ const RegistrationForm = () => {
         const response = await axios.post('http://localhost:8000/api/roles/list');
         const data = response.data.data; // Adjust this line based on the actual structure
         
-        console.log("jgjhgjhg")
         if (Array.isArray(data)) {
           data.forEach((value) => {
             if (value.title === 'leads') {
@@ -66,8 +65,7 @@ const RegistrationForm = () => {
    try {
     const response = await axios.post(apiUrl, registerData);
     toast.success('Data submitted successfully:', response.registerData);
-     navigate("/onboarding-probetext"),{state:{projectName:values.project}};
-
+     navigate("/onboarding-probetext",{state:{projectName:values.project}});
    } catch (error) {
     toast.error('Error submitting data:', error);
     console.log(error);

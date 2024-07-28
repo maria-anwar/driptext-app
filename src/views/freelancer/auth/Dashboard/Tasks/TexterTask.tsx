@@ -1,13 +1,38 @@
 import React from "react";
 import TasksCard from "../../../../../components/freelancer/TasksCard";
 
-const TexterTasks: React.FC = () => {
+// Define the type for the task object
+interface Task {
+  projectName: string;
+  deadline: string;
+  taskStatus: string;
+  activeRole: string;
+  googleLink: string;
+  wordCount: string;
+  labels: {
+    project: string;
+    deadline: string;
+    taskStatus: string;
+    activeRole: string;
+    googleLink: string;
+    wordCount: string;
+  };
+  isStart: boolean;
+  isAccepted: boolean;
+  isFinish: boolean;
+}
+
+// Define the type for the props
+interface TexterTasksProps {
+  taskDataArray: Task[];
+}
+
+const TexterTasks: React.FC<TexterTasksProps> = ({ taskDataArray }) => {
   return (
     <>
-    <TasksCard/>
-    <TasksCard/>
-    <TasksCard/>
-    <TasksCard/>
+      {taskDataArray.map((task, index) => (
+        <TasksCard key={index} task={task} />
+      ))}
     </>
   );
 };

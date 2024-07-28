@@ -12,7 +12,7 @@ const Tasks: React.FC = () => {
       deadline: "2 months ago",
       taskStatus: "Ready to start",
       activeRole: "TEXTER",
-      googleLink: "campaign-63",
+      googleLink: "https://docs.google.com/document/d/1lth731M_StJek0kU3dsV8bmilAqfEkq3KixXJTlbsNU/edit?addon_store",
       wordCount: "0/1500",
       labels: {
         project: "PROJECTS",
@@ -21,14 +21,17 @@ const Tasks: React.FC = () => {
         activeRole: "ACTIVE ROLE",
         googleLink: "GOOGLE-LINK",
         wordCount: "WORDCOUNT",
-      }
+      },
+      isStart: false,
+      isAccepted: false,
+      isFinish: false,
     },
     {
       projectName: "Website Redesign",
       deadline: "1 month ago",
       taskStatus: "In Progress",
       activeRole: "REVIEWER",
-      googleLink: "redesign-72",
+      googleLink: "https://docs.google.com/document/d/1lth731M_StJek0kU3dsV8bmilAqfEkq3KixXJTlbsNU/edit?addon_store",
       wordCount: "500/2000",
       labels: {
         project: "PROJECTS",
@@ -37,14 +40,17 @@ const Tasks: React.FC = () => {
         activeRole: "ACTIVE ROLE",
         googleLink: "GOOGLE-LINK",
         wordCount: "WORDCOUNT",
-      }
+      },
+      isStart: false,
+      isAccepted: false,
+      isFinish: false,
     },
     {
       projectName: "App Development",
       deadline: "3 weeks ago",
       taskStatus: "Completed",
       activeRole: "EDITOR",
-      googleLink: "appdev-84",
+      googleLink: "https://docs.google.com/document/d/1lth731M_StJek0kU3dsV8bmilAqfEkq3KixXJTlbsNU/edit?addon_store",
       wordCount: "2000/2000",
       labels: {
         project: "PROJECTS",
@@ -53,14 +59,17 @@ const Tasks: React.FC = () => {
         activeRole: "ACTIVE ROLE",
         googleLink: "GOOGLE-LINK",
         wordCount: "WORDCOUNT",
-      }
+      },
+      isStart: false,
+      isAccepted: false,
+      isFinish: false,
     },
     {
       projectName: "Content Creation",
       deadline: "1 week ago",
       taskStatus: "Not Started",
       activeRole: "WRITER",
-      googleLink: "content-91",
+      googleLink: "https://docs.google.com/document/d/content-91",
       wordCount: "0/2500",
       labels: {
         project: "PROJECTS",
@@ -69,14 +78,17 @@ const Tasks: React.FC = () => {
         activeRole: "ACTIVE ROLE",
         googleLink: "GOOGLE-LINK",
         wordCount: "WORDCOUNT",
-      }
+      },
+      isStart: false,
+      isAccepted: false,
+      isFinish: false,
     },
     {
       projectName: "SEO Optimization",
       deadline: "5 days ago",
       taskStatus: "Review Pending",
       activeRole: "SUPERVISOR",
-      googleLink: "seo-47",
+      googleLink: "https://docs.google.com/document/d/seo-47",
       wordCount: "1500/1500",
       labels: {
         project: "PROJECTS",
@@ -85,14 +97,17 @@ const Tasks: React.FC = () => {
         activeRole: "ACTIVE ROLE",
         googleLink: "GOOGLE-LINK",
         wordCount: "WORDCOUNT",
-      }
+      },
+      isStart: false,
+      isAccepted: false,
+      isFinish: false,
     },
     {
       projectName: "Market Research",
       deadline: "2 days ago",
       taskStatus: "On Hold",
       activeRole: "MANAGER",
-      googleLink: "research-58",
+      googleLink: "https://docs.google.com/document/d/research-58",
       wordCount: "750/3000",
       labels: {
         project: "PROJECTS",
@@ -101,27 +116,31 @@ const Tasks: React.FC = () => {
         activeRole: "ACTIVE ROLE",
         googleLink: "GOOGLE-LINK",
         wordCount: "WORDCOUNT",
-      }
-    }
+      },
+      isStart: false,
+      isAccepted: false,
+      isFinish: false,
+    },
   ];
+  
 
   const [activeButton, setActiveButton] = useState("All");
-  const [component, setComponent] = useState(<AllTasks />);
+  const [component, setComponent] = useState(<AllTasks taskDataArray={taskDataArray} />);
 
   const handleTasks = (name) => {
     setActiveButton(name);
     switch (name) {
       case "All":
-        setComponent(<AllTasks />);
+        setComponent(<AllTasks taskDataArray={taskDataArray} />);
         break;
       case "Texter":
-        setComponent(<TexterTasks />);
+        setComponent(<TexterTasks taskDataArray={taskDataArray} />);
         break;
       case "Lector":
-        setComponent(<LectorTasks />);
+        setComponent(<LectorTasks taskDataArray={taskDataArray} />);
         break;
       case "Seo Optimizer":
-        setComponent(<SeoTasks />);
+        setComponent(<SeoTasks taskDataArray={taskDataArray} />);
         break;
       default:
         break;
@@ -152,7 +171,7 @@ const Tasks: React.FC = () => {
           <button
             key={button.name}
             onClick={() => handleTasks(button.name)}
-            className={`py-1 px-4 mx-1 font-medium outline-none border-sky-500 rounded-sm sm
+            className={`py-1 px-4 mx-1 my-1 font-medium outline-none border-sky-500 rounded-sm sm
             ${
               activeButton === button.name
                 ? "bg-sky-500 text-white font-semibold"

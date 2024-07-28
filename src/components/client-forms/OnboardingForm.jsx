@@ -2,15 +2,18 @@
 import { GroupField } from "./GroupField";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import { useNavigate, Link } from "react-router-dom";
 import { GroupTextArea } from "./GroupTextArea";
 import { GroupDropdownField } from "./GroupDropdownField";
+import axios from "axios";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const OnboardingForm = ({projectName}) => {
-  const navigate = useNavigate();
+  
+
   const initialValues = {
     speech: "", 
-    project: "",
+    project: projectName,
     perspective: "",
     companyInfo: "",
     companyAttributes: "",
@@ -34,37 +37,35 @@ const OnboardingForm = ({projectName}) => {
     contentPurpose: Yup.string().required("above information is required"),
     brand: Yup.string().required("above information is required"),
   });
-  const onSubmit = async (values) => {
-    const onBoardingData = {
-      speech: values.speech, 
-      project: values.project,
-      perspective: values.perspective,
-      companyInfo: values.companyInfo,
-      companyAttributes: values.companyAttributes,
-      services: values.services,
-      content: values.content,
-      customers: values.customers,
-      contentPurpose: values.contentPurpose,
-      brand: values.brand,
+
+
+const onSubmit = async (values) => {
+  const onBoardingData = {
+    speech: values.speech, 
+    perspective: values.perspective,
+    projectName: values.project,
+    userId: "", // Assign appropriate value
+    companyBackgorund: values.companyInfo,
+    companyAttributes: values.companyAttributes,
+    comapnyServices: values.services,
+    customerContent: values.content,
+    customerIntrest: values.customers,
+    contentPurpose: values.contentPurpose,
+    contentInfo: values.brand,
+  };
+
+  const apiUrl = 'http://localhost:8000/api/users/create';
+  console.log('API:', apiUrl);
+
+  try {
+    const response = await axios.post(apiUrl, onBoardingData);
+    console.log('Data submitted successfully:', response.data);
+    window.location.href = 'https://driptext.de/danke-probetext/';
+  } catch (error) {
+      console.error('Server responded with an error:', error.response.data);
+      toast.error(`Error: ${'Server error'}`);
     }
-
-      const apiUrl = 'http://localhost:8000/api/users/create';
-      console.log('API:' , apiUrl);
-    try {
-      //const response = await axios.post(apiUrl, registerData);
-      console.log('Data submitted successfully:', onBoardingData);
-      //navigate("/thankyou-page");
-      window.location.href = 'https://driptext.de/danke-probetext/';
-
-    } catch (error) {
-      console.error('Error submitting data:', error);
-    }
-    // console.log("Im Clicked");
-    // window.location.href = 'https://driptext.de/danke-probetext/';
-    // navigate("https://driptext.de/danke-probetext/");
-
-    };
-
+  };
  
 
   return (
@@ -81,6 +82,7 @@ const OnboardingForm = ({projectName}) => {
                 <h2 className="text-custom-black text-base font-semibold">
                   1. General Information
                 </h2>
+                <ToastContainer/>
                 <GroupDropdownField
                   label={"Speech"}
                   type={"text"}

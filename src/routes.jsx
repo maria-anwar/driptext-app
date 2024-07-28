@@ -47,7 +47,7 @@ import Tasks from "./views/freelancer/auth/Dashboard/Tasks/Tasks";
 import Earning from "./views/freelancer/auth/Dashboard/Earning";
 import DriptextAcademy from "./views/freelancer/auth/Dashboard/DriptextAcademy";
 import FreelancerSettings from "./views/freelancer/auth/Dashboard/FreelancerSettings";
-
+import PackageBooking from "./views/subscription/PackageBooking";
 
 const WebRoutes = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -59,7 +59,8 @@ const WebRoutes = () => {
             {/* <Route index element={<SignIn />} /> */}
             <Route path="/probetext" element={<RegisterPage />} />            
           </Route>
-          <Route path="/onboarding-probetext" element={<OnboardingPage />} />            
+          <Route path="/onboarding-probetext" element={<OnboardingPage />} />   
+          <Route path="/package-booking" element={<PackageBooking />} />         
           <Route path="/onboarding-formular-freelancer" element={<Register />} />            
           <Route path="/thankyou-page" element={<ThankYouPage />}/>
           <Route path="/bestellformular" element={<OrderForm />}/>
