@@ -81,10 +81,7 @@ const WebRoutes = () => {
             <Route path="check" element={<TableWithCheckbox />} />
             <Route path="table2" element={<Table2 />} />
           </Route>
-
-
           {/* Freelancer Dashboard */}
-
           <Route path="/freelancer-dashboard" element={ <FreelancerLayout/>} >
             <Route index element={<Tasks />}/>
             <Route path="earning" element={<Earning />} />
