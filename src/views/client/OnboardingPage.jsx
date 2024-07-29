@@ -5,7 +5,8 @@ import OnboardingForm from "../../components/client-forms/OnboardingForm";
 
 const OnboardingPage = () => {
   const location = useLocation();
-  const { projectName } = location.state || {};
+  const { projectName,userId } = location.state || {};
+
   return (
     <div className="px-4 sm:px-6 md-px-10 lg:px-14 xl:px-20 2xl:px-56 4xl:px-80 py-10">
       <Link
@@ -31,7 +32,7 @@ const OnboardingPage = () => {
             company and your content goals better.
           </p>
         </div>
-        <OnboardingForm projectName={projectName}/>
+        <OnboardingForm projectName={projectName} userId={userId}/>
       </div>
     </div>
   );

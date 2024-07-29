@@ -2,8 +2,11 @@ import React, { ReactNode } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 interface CardDataStatsProps {
+  id:Object;
   title: string;
   domain: string;
+  keywords:string,
+  projectStatus:string,
   texts:string;
   createdOn:string;
   servicePeriod:string;
@@ -17,8 +20,11 @@ interface CardDataStatsProps {
 }
 
 const CardDataStats: React.FC<CardDataStatsProps> = ({
+  id,
   title,
   domain,
+  keywords,
+  projectStatus,
   texts,
   createdOn,
   servicePeriod,
@@ -31,10 +37,14 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
   children,
 }) => {
   const navigate = useNavigate()
-
+  
  const handleBoarding = ()=> {
     navigate('/onboarding-probetext',{state:{projectName:domain}})
   } 
+
+  const handleProjectTask = () => {
+    navigate('task-table',{state:{projectId:id}})
+  }
 
   // Check if any required prop for the Link is missing
   const hasAllProps = title && domain && texts && createdOn && servicePeriod && ordersPerMonth !== undefined && maximumOrders !== undefined && projectDuration !== undefined;
@@ -64,7 +74,7 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
   }
 
   return (
-    <Link to='task-table' className="rounded-sm border border-stroke bg-white py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark">
+    <div  onClick={handleProjectTask} className="cursor-pointer rounded-sm border border-stroke bg-white py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark">
       <div className="flex h-11.5 w-11.5 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4">
         {children}
       </div>
@@ -88,7 +98,7 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
          <div className="text-sm font-medium text-dark-gray">Project Duration <div className="text-meta-5 flex justify-end">{projectDuration}</div></div>
       </div>
      
-    </Link>
+    </div>
   );
 };
 

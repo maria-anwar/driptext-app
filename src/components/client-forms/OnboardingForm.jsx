@@ -2,15 +2,20 @@
 import { GroupField } from "./GroupField";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import { useNavigate, Link } from "react-router-dom";
 import { GroupTextArea } from "./GroupTextArea";
 import { GroupDropdownField } from "./GroupDropdownField";
+import axios from "axios";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useState } from "react";
 
-const OnboardingForm = ({projectName}) => {
-  const navigate = useNavigate();
+const OnboardingForm = ({projectName,userId}) => {
+  const [loading,setLoading] = useState(false);
+  
+
   const initialValues = {
     speech: "", 
-    project: "",
+    project: projectName,
     perspective: "",
     companyInfo: "",
     companyAttributes: "",
@@ -34,38 +39,45 @@ const OnboardingForm = ({projectName}) => {
     contentPurpose: Yup.string().required("above information is required"),
     brand: Yup.string().required("above information is required"),
   });
+
+
   const onSubmit = async (values) => {
+    
     const onBoardingData = {
-      speech: values.speech, 
-      project: values.project,
-      perspective: values.perspective,
-      companyInfo: values.companyInfo,
+      speech: values.speech,
+      prespective: values.perspective,
+      projectName: values.project,
+      userId: userId, // Assign appropriate value
+      companyBackgorund: values.companyInfo,
       companyAttributes: values.companyAttributes,
-      services: values.services,
-      content: values.content,
-      customers: values.customers,
+      comapnyServices: values.services,
+      customerContent: values.content,
+      customerIntrest: values.customers,
       contentPurpose: values.contentPurpose,
-      brand: values.brand,
-    }
-
-      const apiUrl = 'http://localhost:8000/api/users/create';
-      console.log('API:' , apiUrl);
-    try {
-      //const response = await axios.post(apiUrl, registerData);
-      console.log('Data submitted successfully:', onBoardingData);
-      //navigate("/thankyou-page");
-      window.location.href = 'https://driptext.de/danke-probetext/';
-
-    } catch (error) {
-      console.error('Error submitting data:', error);
-    }
-    // console.log("Im Clicked");
-    // window.location.href = 'https://driptext.de/danke-probetext/';
-    // navigate("https://driptext.de/danke-probetext/");
-
+      contentInfo: values.brand,
     };
-
- 
+  
+    const apiUrl = 'http://localhost:8000/api/users/create/onboarding';
+    console.log(onBoardingData);
+    setLoading(true)
+    try {
+      const response = await axios.post(apiUrl, onBoardingData);
+      setLoading(false)
+      console.log('Data submitted successfully:', response.data);
+      window.location.href = 'https://driptext.de/danke-probetext/';
+    } catch (error) {
+      
+      if (error.response) {
+        console.error('Server responded with an error:', error.response);
+        toast.error(`Error: ${error.response.data.message || 'Server error'}`);
+      } else {
+        console.error('Error:', error.message);
+        toast.error(`Errorjghjg : ${error.message}`);
+      }
+      setLoading(false)
+    }
+  };
+  
 
   return (
     <>
@@ -81,6 +93,7 @@ const OnboardingForm = ({projectName}) => {
                 <h2 className="text-custom-black text-base font-semibold">
                   1. General Information
                 </h2>
+                <ToastContainer/>
                 <GroupDropdownField
                   label={"Speech"}
                   type={"text"}
@@ -228,12 +241,13 @@ const OnboardingForm = ({projectName}) => {
                   errors={props.errors.brand}
                   onChange={props.handleChange}
                 />
-                <div className="w-full bg-custom-black flex justify-center py-2 xs:py-2.5 mt-1 rounded-xl">
+                <div className="w-full relative bg-custom-black flex justify-center py-2 xs:py-2.5 mt-1 rounded-xl">
                   <button
-                    className="border-none text-white font-medium text-base cursor-pointer "
+                    className={`border-none w-full text-white font-medium text-base cursor-pointer ${loading? 'cursor-not-allowed':'cursor-pointer'}`}
                     type="submit"
+                    disabled={loading}
                   >
-                    Submit Order
+                  {loading ? 'submitting' : 'Submit Order'}
                   </button>
                 </div>
               </div>

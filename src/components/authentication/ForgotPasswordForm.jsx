@@ -117,7 +117,7 @@ const ForgotPasswordForm = () => {
               />
               {props.errors.reEnterPass && (
                 <div id="password" className="-mt-4 text-red-500 text-sm">
-                  {props.errors.password}
+                  {props.errors.reEnterPass}
                 </div>
               )}
             </div>
@@ -127,10 +127,6 @@ const ForgotPasswordForm = () => {
           </Form>
         )}
       </Formik>
-
-     
-
-      
     </div>
   );
 };

@@ -61,12 +61,12 @@ const RegistrationForm = () => {
     }
    
     const apiUrl = 'http://localhost:8000/api/users/create';
-    console.log('API:' , apiUrl);
+
    try {
     const response = await axios.post(apiUrl, registerData);
+    console.log(response.data.data._id)
     toast.success('Data submitted successfully:', response.registerData);
-     navigate("/onboarding-probetext"),{state:{projectName:values.project}};
-
+     navigate("/onboarding-probetext",{state:{projectName:values.project,userId:response.data.data._id}});
    } catch (error) {
     toast.error('Error submitting data:', error);
     console.log(error);

@@ -43,7 +43,7 @@ import RedirectHandler from "./views/auth/RedirectHandler";
 
 // Freelancer import
 import FreelancerLayout from "./layouts/freelancer/FreelancerDashboardLayout";
-import Tasks from "./views/freelancer/auth/Dashboard/Tasks";
+import Tasks from "./views/freelancer/auth/Dashboard/Tasks/Tasks";
 import Earning from "./views/freelancer/auth/Dashboard/Earning";
 import DriptextAcademy from "./views/freelancer/auth/Dashboard/DriptextAcademy";
 import FreelancerSettings from "./views/freelancer/auth/Dashboard/FreelancerSettings";
@@ -60,8 +60,8 @@ const WebRoutes = () => {
             {/* <Route index element={<SignIn />} /> */}
             <Route path="/probetext" element={<RegisterPage />} />            
           </Route>
-          <Route path="/onboarding-probetext" element={<OnboardingPage />} />            
-          <Route path="/package-booking" element={<PackageBooking />} />            
+          <Route path="/onboarding-probetext" element={<OnboardingPage />} />   
+          <Route path="/package-booking" element={<PackageBooking />} />         
           <Route path="/onboarding-formular-freelancer" element={<Register />} />            
           <Route path="/thankyou-page" element={<ThankYouPage />}/>
           <Route path="/bestellformular" element={<OrderForm />}/>
@@ -86,7 +86,7 @@ const WebRoutes = () => {
           {/* Freelancer Dashboard */}
 
           <Route path="/freelancer-dashboard" element={ <FreelancerLayout/>} >
-            <Route index element={<Tasks />} />
+            <Route index element={<Tasks />}/>
             <Route path="earning" element={<Earning />} />
             <Route path="driptext-academy" element={<DriptextAcademy />} />
             <Route path="freelancer-setting" element={<FreelancerSettings />} />

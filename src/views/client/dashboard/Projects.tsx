@@ -3,64 +3,43 @@ import { Link } from "react-router-dom";
 import CardDataStats from "../../../components/client/CardDataStats";
 import DarkBtn from "../../../components/client/buttons/DarkBtn";
 import axios from "axios";
-import { UserContext } from "../../auth/AuthContext";
-import setAuthHeader from "./axios";
+import { useSelector } from "react-redux";
+
 
 const Projects: React.FC = () => {
-  const {user} = useContext(UserContext)
-  const [projectData, setProjectData] = useState(null);
-  const [userId,setUserID]=useState(user?.data?.user?._id)
-  const [token, setToken] = useState(user?.token || '');
+  const user = useSelector(state=>state.user)
 
+  const [projectData, setProjectData] = useState([]);
+  const [userId, setUserID] = useState(user.user.data.user._id);
+  const [userToken, setUserToken] = useState(user.user.token);
 
-  
-  // useEffect(() => {
-  //   const fetchProjectData = () => {
-  //     if (userId && token) {
-  //       setAuthHeader(token);
+  useEffect(() => {
+    let token = userToken;
+    axios.defaults.headers.common['access-token'] = token;
+    let payload = {
+      userId: userId
+    };
+
+    axios.post('http://localhost:8000/api/projects/detail', payload)
+      .then((response) => {
+        const projects = response.data.data;
+        localStorage.setItem('projects', JSON.stringify(projects));
+        setProjectData(projects); // Set project data to state
+      })
+      .catch((err) => {
+        console.error('Error fetching project details:', err);
+      });
+  }, [userId,userToken]); // Add dependencies here
+
+  useEffect(() => {
+    const storedProjects = localStorage.getItem('projects');
+    if (storedProjects) {
+      setProjectData(JSON.parse(storedProjects));
+    }
     
-        
-  //       axios.post('http://localhost:8000/api/projects/detail', {
-  //         userid: userId,
-  //       })
-  //       .then((response) => {
-  //         if (response.status === 200) {
-  //           setProjectData(response.data);
-  //           console.log(response.data);
-  //         }
-  //       })
-  //       .catch((error) => {
-  //         console.error('There was an error!', error);
-  //       });
-  //     }
-  //   };
-  
-  //   fetchProjectData();
-  // }, [userId, token]);
-  
+  }, []);
 
-
-  const tasks = [
-    {
-      id: "1",
-      domain: "example.com | 96 - DT",
-      texts:'0/5',
-      createdOn:"08-06-2024",
-      servicePeriod:"12 Aug",
-      ordersPerMonth:1,
-      maximumOrders:12,
-      projectDuration:1
-      
-    },
-    {
-      id: "2",
-      domain: "Instance.com | 74 - DT",
-    },
-    {
-      id: "3",
-      domain: "Driptext.com | 62 - DT",
-    },
-  ];
+console.log(projectData)
   
   return (
     <>
@@ -79,19 +58,23 @@ const Projects: React.FC = () => {
       </div>
      
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 2xl:grid-cols-3 5xl:grid-cols-4 4xl:px-14">
-        {tasks.map((task, index) => {
-          return (
+      {projectData.map((project) => (
             <CardDataStats
-              title="Texts"
-              domain = {task.domain}
-              texts={task.texts}
-              createdOn={task.createdOn}
-              servicePeriod={task.servicePeriod}
-              ordersPerMonth= {task.ordersPerMonth}
-              maximumOrders= {task.maximumOrders}
-              projectDuration={task.projectDuration}
-              rate="0.43%"
-              levelUp
+            key={project._id}
+            id={project._id}
+            title={project.projectName}
+            domain={project.projectName} 
+            keywords={project.keywords} 
+            projectStatus={project.projectStatus} 
+            texts={"project.text" || ''} // Assuming texts are available in project data
+            createdOn={"project.createdOn" || ''}
+            servicePeriod={"project.servicePeriod" || ''}
+            ordersPerMonth={5|| ''}
+            maximumOrders={54|| ''}
+            projectDuration={3|| ''}
+            rate={"project.rate" || ''} // Assuming rate is available
+            levelUp={true|| true} // Assuming levelUp is available
+            
             >
               <svg
                 className="fill-primary dark:fill-white"
@@ -123,8 +106,7 @@ const Projects: React.FC = () => {
                 />
               </svg>
             </CardDataStats>
-          );
-        })}
+            ))}
       </div>
     </>
   );

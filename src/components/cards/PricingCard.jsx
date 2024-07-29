@@ -1,12 +1,12 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 const PricingCard = ({ plan }) => (
-  <div className="relative flex flex-col bg-white border rounded-lg shadow-2xl max-w-xs mx-auto my-4">
-    {/* {plan.bestValue && (
-      <div className="absolute top-0 right-0 bg-black text-white text-xs px-2 py-1 transform translate-x-1/2 -translate-y-1/2 rounded">
+  <div className="relative mx-3 rounded-lg my-4 justify-self-center shadow-2xl shadow-slate-400 bg-blend-multiply overflow-hidden">
+    {plan.bestValue && (
+      <div className="absolute -left-7.5 top-4.5 -rotate-45 bg-black text-white text-xs px-8 py-1 font-semibold">
         POPULAR
       </div>
-    )} */}
+    )}
     <div className="bg-sky-700 text-white text-center py-6 rounded-t-lg w-full">
       <h2 className="font-bold text-2xl">{plan.name}</h2>
       {plan.wordPrice && <p className="text-sm">{plan.wordPrice}</p>}
@@ -17,13 +17,43 @@ const PricingCard = ({ plan }) => (
         <p className="text-lg">{plan.month}</p>
       </div>
       <ul className="text-center pb-8">
-        {plan.features.map((feature, index) => (
-          <li key={index} className="text-gray-700 pt-4">
-            {feature}
-          </li>
-        ))}
+        <li className="text-gray-700 pt-4">
+          {" "}
+          <span className="text-slate-900 font-semibold">
+            {plan.features} SEO-optimized texts
+          </span>{" "}
+          per month with at least 1,500 words per text
+        </li>
+        <li className="text-gray-700 pt-4">
+          {" "}
+          <span className="text-slate-900 font-semibold">
+            Proofreading
+          </span>{" "}
+          using the 6-eyes principle
+        </li>
+        <li className="text-gray-700 pt-4">
+          Detailed{" "}
+          <span className="text-slate-900 font-semibold">keyword analysis</span>
+        </li>
+        <li className="text-gray-700 pt-4">
+          Creation of an{" "}
+          <span className="text-slate-900 font-semibold">editorial plan</span>
+        </li>
+        <li className="text-gray-700 pt-4">
+          Own{" "}
+          <span className="text-slate-900 font-semibold">customer backend</span>
+        </li>
+        <li className="text-gray-700 pt-4">
+          100% <span className="text-slate-900 font-semibold">reliability</span>
+        </li>
+        <li className="text-gray-700 pt-4">
+          Incl.{" "}
+          <span className="text-slate-900 font-semibold">
+            satisfaction guarantee
+          </span>
+        </li>
       </ul>
-      <button className="w-full mt-4 bg-gradient-to-r from-sky-700 to-cyan-500 text-white py-4 px-4 rounded-lg ">
+      <button className="w-full mt-4 bg-gradient-to-r from-sky-700 to-cyan-500 text-white py-4 px-4 rounded-lg font-medium ">
         Order free sample text
       </button>
     </div>
@@ -37,7 +67,7 @@ PricingCard.propTypes = {
     price: PropTypes.string.isRequired,
     wordPrice: PropTypes.string,
     description: PropTypes.string,
-    features: PropTypes.arrayOf(PropTypes.string).isRequired,
+    features: PropTypes.number,
     bestValue: PropTypes.bool,
   }).isRequired,
 };

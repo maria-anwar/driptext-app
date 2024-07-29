@@ -4,28 +4,100 @@ import CardDataStats from "../../../components/client/CardDataStats";
 import DarkBtn from "../../../components/client/buttons/DarkBtn";
 import axios from "axios";
 
-
 const Earning: React.FC = () => {
+  const tableData = [
+    {
+      performancePeriod: "2024 Q1",
+      orderNumber: "12345",
+      date: "2024-01-15",
+      role: "Content Writer",
+      articleKeyword: "SEO Optimization",
+      targetNumberOfWords: 500,
+      actualNumberOfWords: 550,
+      billedWords: 550,
+      difference: 50,
+      price: "$100",
+    },
+    {
+      performancePeriod: "2024 Q1",
+      orderNumber: "12346",
+      date: "2024-01-20",
+      role: "Editor",
+      articleKeyword: "Market Analysis",
+      targetNumberOfWords: 800,
+      actualNumberOfWords: 750,
+      billedWords: 750,
+      difference: -50,
+      price: "$120",
+    },
+    {
+      performancePeriod: "2024 Q1",
+      orderNumber: "12347",
+      date: "2024-01-25",
+      role: "Content Writer",
+      articleKeyword: "Product Review",
+      targetNumberOfWords: 600,
+      actualNumberOfWords: 600,
+      billedWords: 600,
+      difference: 0,
+      price: "$110",
+    },
+  ];
 
-  
   return (
     <>
       <div className="w-full flex flex-col gap-3 2xl:gap-0 2xl:flex-row 2xl:justify-between items-center 4xl:px-14 mb-3 4xl:mb-6 mt-2 lg:mt-1">
         <div className="w-full 2xl:max-w-max">
           <h1 className="text-title-md font-bold text-black dark:text-white mb-2">
-          Earning
+            Earning
           </h1>
           <p className="text-dark-gray">
             Here you can see all the earning from all your DripTexts projects.
           </p>
         </div>
         <div className=" w-full 2xl:max-w-max flex justify-start 2xl:justify-end mt-2 ">
-        {/* <DarkBtn name={"Add Project"} url={"/onboarding-probetext"} /> */}
+          {/* <DarkBtn name={"Add Project"} url={"/onboarding-probetext"} /> */}
         </div>
       </div>
-     
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 2xl:grid-cols-3 5xl:grid-cols-4 4xl:px-14">
-        {/* {tasks.map((task, index) => {
+
+      <div className="overflow-x-auto">
+        <table className=" w-full border-collapse rounded-sm border border-stroke bg-white py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark">
+          <thead>
+            <tr className="bg-gray-100 border-b text-left">
+              <th className="px-4 py-2 text-white">Performance Period</th>
+              <th className="px-4 py-2 text-white">Order Number</th>
+              <th className="px-4 py-2 text-white">Date</th>
+              <th className="px-4 py-2 text-white">Role</th>
+              <th className="px-4 py-2 text-white">Article/Keyword</th>
+              <th className="px-4 py-2 text-white">Target Number of Words</th>
+              <th className="px-4 py-2 text-white">Actual Number of Words</th>
+              <th className="px-4 py-2 text-white">Billed Words</th>
+              <th className="px-4 py-2 text-white">Difference</th>
+              <th className="px-4 py-2 text-white">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tableData.map((value) => (
+              <tr
+                key={value.orderNumber}
+                className="border-b  hover:dark:bg-boxdark-2 cursor-text"
+              >
+                <td className="px-4 py-2">{value.performancePeriod}</td>
+                <td className="px-4 py-2"><Link onClick={()=>alert(value.orderNumber)} to={''}>{value.orderNumber}</Link></td>
+                <td className="px-4 py-2">{value.date}</td>
+                <td className="px-4 py-2">{value.role}</td>
+                <td className="px-4 py-2">{value.articleKeyword}</td>
+                <td className="px-4 py-2">{value.targetNumberOfWords}</td>
+                <td className="px-4 py-2">{value.actualNumberOfWords}</td>
+                <td className="px-4 py-2">{value.billedWords}</td>
+                <td className="px-4 py-2">{value.difference}</td>
+                <td className="px-4 py-2">{value.price}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {/* {tasks.map((task, index) => {
           return (
             <CardDataStats
               title="Texts"
@@ -71,7 +143,6 @@ const Earning: React.FC = () => {
             </CardDataStats>
           );
         })} */}
-      </div>
     </>
   );
 };

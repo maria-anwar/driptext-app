@@ -1,12 +1,65 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Breadcrumb from "../../../components/client/breeadcrumbs/Breadcrumb";
 import SidebarIcons from "../../../components/client/icons/SidebarIcons";
+import { useSelector } from "react-redux";
+import emailjs from 'emailjs-com';
+import { EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_USER_ID } from './emailjs-config';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+
 const Support = () => {
+  const user = useSelector((state)=> state.user)
+  const [email,setEmail]= useState(user.user.data.user.email||'')
+  const [firstName,setFirstName]= useState(user.user.data.user.firstName||'')
+  const [lastName,setLastName]= useState(user.user.data.user.lastName||'')
+  const [message,setMessage]= useState('')
+  const [loading,setLoading]=useState(false)
+  const [status, setStatus] = useState('');
+
+  const handleEmailSubmit = (e) => {
+    e.preventDefault();
+
+    // Basic validation
+    if (!email || !firstName || !lastName || !message) {
+      toast.error('Please fill in all fields.');
+      return;
+    }
+
+    setLoading(true);
+
+    emailjs.send(
+      EMAILJS_SERVICE_ID,
+      EMAILJS_TEMPLATE_ID,
+      {
+        to_email: email,
+        to_name: `${firstName} ${lastName}`,
+        from_name: `${firstName} ${lastName}`,
+        message: message,
+      },
+      EMAILJS_USER_ID
+    )
+    .then((response) => {
+      console.log('Email sent successfully:', response);
+      toast.success('Email sent successfully!');
+      setMessage('')
+    })
+    .catch((error) => {
+      console.error('Error sending email:', error);
+      toast.error('Failed to send email.');
+    })
+    .finally(() => {
+      setLoading(false);
+
+    });
+  };
   return (
     <>
       <div className="mx-auto max-w-270 3xl:px-6">
         <Breadcrumb pageName="Our Support" />
+        <ToastContainer/>
         <div className="grid grid-cols-5  gap-8">
           <div className="col-span-5 3xl:col-span-8  xl:col-span-3">
             <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -56,8 +109,10 @@ const Support = () => {
                           type="text"
                           name="fullName"
                           id="fullName"
-                          placeholder="Devid Jhon"
-                          defaultValue="Devid Jhon"
+                          placeholder="firstname"
+                          value={firstName}
+                          onChange={(e)=>setFirstName(e.target.value)}
+                          
                         />
                       </div>
                     </div>
@@ -100,8 +155,9 @@ const Support = () => {
                           type="text"
                           name="fullName"
                           id="fullName"
-                          placeholder="Devid Jhon"
-                          defaultValue="Devid Jhon"
+                          placeholder="lastname"
+                          value={lastName}
+                          onChange={(e)=>setLastName(e.target.value)}
                         />
                       </div>
                     </div>
@@ -145,8 +201,9 @@ const Support = () => {
                         type="email"
                         name="emailAddress"
                         id="emailAddress"
-                        placeholder="devidjond45@gmail.com"
-                        defaultValue="devidjond45@gmail.com"
+                        placeholder="example@gmail.com"
+                        value={email}
+                        onChange={(e)=>setEmail(e.target.value)}
                       />
                     </div>
                   </div>
@@ -196,7 +253,8 @@ const Support = () => {
                         id="bio"
                         rows={6}
                         placeholder="Write your message here..."
-                        defaultValue="Write your message here..."
+                        value={message}
+                        onChange={(e)=>setMessage(e.target.value)}
                       ></textarea>
                     </div>
                   </div>
@@ -204,14 +262,18 @@ const Support = () => {
                   <div className="flex justify-end gap-4.5">
                    
                     <button
-                      className="flex justify-center rounded bg-primary py-2 px-6 font-medium text-gray hover:bg-opacity-90"
+                      className={`flex justify-center rounded bg-primary py-2 px-6 font-medium text-gray hover:bg-opacity-90 ${loading ? "cursor-not-allowed":"cursor-pointer"}`}
                       type="submit"
+                      onClick={handleEmailSubmit}
+                      disabled={loading}
                     >
-                      Submit
+                      {loading ? "Submitting..." : "Submit"}
                     </button>
                   </div>
                 </form>
+                
               </div>
+    
             </div>
           </div>
         </div>

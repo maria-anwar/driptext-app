@@ -1,11 +1,12 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ClickOutside from "../tables/ClickOutside";
-
+import { useSelector } from "react-redux";
+import { setUser } from "../../../redux/userSlice";
 
 
 const DropdownUser = () => {
-
+  const user = useSelector(state=>state.user)
   const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   // const [firstName,setFirstName]=useState(user.data.user.firstName);
@@ -17,7 +18,7 @@ const DropdownUser = () => {
   };
 
   const handleLogout= ()=>{
-
+    navigate('/')
   }
   return (
     <ClickOutside onClick={() => setDropdownOpen(false)} className="relative">
@@ -29,13 +30,13 @@ const DropdownUser = () => {
       >
         <span className="hidden text-right lg:block">
           <span className="block text-sm  font-medium text-black dark:text-white">
-            {"firstName"} {"lastName"}
+            {user.user.data.user.firstName} {user.user.data.user.lastName}
           </span>
           {/* <span className="block text-xs">UX Designer</span> */}
         </span>
 
         <span className="h-12 w-12 rounded-full font-medium flex items-center justify-center bg-zinc-100">
-        {capitalizeFirstLetter("firstName")}{capitalizeFirstLetter("lastName")}  
+        {capitalizeFirstLetter(user.user.data.user.firstName)}{capitalizeFirstLetter(user.user.data.user.lastName)}  
           {/* <img src={UserOne} alt="User" /> */}
         </span>
         <svg
@@ -132,7 +133,7 @@ const DropdownUser = () => {
               </Link>
             </li>
           </ul>
-          <Link onClick={()=>handleLogout} to='/' className="flex items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
+          <div onClick={handleLogout}  className="cursor-pointer flex items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
             <svg
               className="fill-current"
               width="22"
@@ -151,7 +152,7 @@ const DropdownUser = () => {
               />
             </svg>
             Sign Out
-          </Link>
+          </div>
         </div>
       )}
       {/* <!-- Dropdown End --> */} 
