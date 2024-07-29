@@ -28,9 +28,12 @@ interface LectorTasksProps {
 }
 
 const LectorTasks: React.FC<LectorTasksProps> = ({ taskDataArray }) => {
+  // Example filtering based on taskStatus
+const  filteredTasks = taskDataArray.filter(task => task.activeRole.toLowerCase() === 'lector');
+
   return (
     <>
-      {taskDataArray.map((task, index) => (
+      {filteredTasks.map((task, index) => (
         <TasksCard key={index} task={task} />
       ))}
     </>

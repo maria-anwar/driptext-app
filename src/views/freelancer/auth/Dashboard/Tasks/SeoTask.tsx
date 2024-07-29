@@ -28,9 +28,10 @@ interface SeoTasksProps {
 }
 
 const SeoTasks: React.FC<SeoTasksProps> = ({ taskDataArray }) => {
+  const  filteredTasks = taskDataArray.filter(task => task.activeRole.toLowerCase() === 'seo');
   return (
     <>
-      {taskDataArray.map((task, index) => (
+      {filteredTasks.map((task, index) => (
         <TasksCard key={index} task={task} />
       ))}
     </>
