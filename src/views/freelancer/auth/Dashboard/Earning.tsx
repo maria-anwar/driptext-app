@@ -61,26 +61,26 @@ const Earning: React.FC = () => {
       </div>
 
       <div className="overflow-x-auto">
-        <table className=" w-full border-collapse rounded-sm border border-stroke bg-white py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark">
+        <table className=" w-full border-collapse rounded-sm border dark:border-stroke bg-slate-50 py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark">
           <thead>
-            <tr className="bg-gray-100 border-b text-left">
-              <th className="px-4 py-2 text-white">Performance Period</th>
-              <th className="px-4 py-2 text-white">Order Number</th>
-              <th className="px-4 py-2 text-white">Date</th>
-              <th className="px-4 py-2 text-white">Role</th>
-              <th className="px-4 py-2 text-white">Article/Keyword</th>
-              <th className="px-4 py-2 text-white">Target Number of Words</th>
-              <th className="px-4 py-2 text-white">Actual Number of Words</th>
+            <tr className="dark:bg-gray-100 border-b text-left">
+              <th className="px-4 py-2 dark:text-white">Performance Period</th>
+              <th className="px-4 py-2 dark:text-white">Order Number</th>
+              <th className="px-4 py-2 dark:text-white">Date</th>
+              <th className="px-4 py-2 dark:text-white">Role</th>
+              <th className="px-4 py-2 dark:text-white">Article/Keyword</th>
+              <th className="px-4 py-2 dark:text-white">Target Number of Words</th>
+              <th className="px-4 py-2 dark:dark:text-white">Actual Number of Words</th>
               <th className="px-4 py-2 text-white">Billed Words</th>
-              <th className="px-4 py-2 text-white">Difference</th>
-              <th className="px-4 py-2 text-white">Price</th>
+              <th className="px-4 py-2 dark:text-white">Difference</th>
+              <th className="px-4 py-2 dark:text-white">Price</th>
             </tr>
           </thead>
           <tbody>
             {tableData.map((value) => (
               <tr
                 key={value.orderNumber}
-                className="border-b  hover:dark:bg-boxdark-2 cursor-text"
+                className="border-b hover:bg-slate-200 hover:dark:bg-boxdark-2 cursor-text"
               >
                 <td className="px-4 py-2">{value.performancePeriod}</td>
                 <td className="px-4 py-2"><Link onClick={()=>alert(value.orderNumber)} to={''}>{value.orderNumber}</Link></td>

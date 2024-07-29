@@ -71,6 +71,13 @@ export default {
         success: '#219653',
         danger: '#D34053',
         warning: '#FFA70B',
+        cardHeading: '#1A6694',
+        buttonStart: '#33669A',
+        buttonEnd: '#63B4D0',
+      },
+      gradientColorStops: {
+        'button-gradient-start': '#33669A',
+        'button-gradient-end': '#63B4D0',
       },
 
       fontFamily: {

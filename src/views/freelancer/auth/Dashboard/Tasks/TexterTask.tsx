@@ -28,9 +28,10 @@ interface TexterTasksProps {
 }
 
 const TexterTasks: React.FC<TexterTasksProps> = ({ taskDataArray }) => {
+  const  filteredTasks = taskDataArray.filter(task => task.activeRole.toLowerCase() === 'texter');
   return (
     <>
-      {taskDataArray.map((task, index) => (
+      {filteredTasks.map((task, index) => (
         <TasksCard key={index} task={task} />
       ))}
     </>
