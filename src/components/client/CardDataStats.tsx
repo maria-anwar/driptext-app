@@ -1,4 +1,5 @@
 import React, { ReactNode } from "react";
+import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
 interface CardDataStatsProps {
@@ -37,10 +38,13 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
   children,
 }) => {
   const navigate = useNavigate()
+  const user= useSelector((state)=>state.user)
+
   
  const handleBoarding = ()=> {
-    navigate('/onboarding-probetext',{state:{projectName:domain}})
+    navigate('/onboarding-probetext',{state:{projectName:domain,userId:user.user.data.user._id}})
   } 
+  console.log(id)
 
   const handleProjectTask = () => {
     navigate('task-table',{state:{projectId:id}})

@@ -1,14 +1,12 @@
 
-import { Navigate, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
 
-const ProtectedRoute = ( element) => {
-  const user = useSelector((state) => state.user.user); 
-  const { token } = user.token;
-  const location = useLocation();
+const ProtectedRoute = ( {element}) => {
+
+  const  token  = localStorage.getItem("token")
 
   if (!token) {
-    return <Navigate to="/" state={{ from: location }} />;
+    return <Navigate to="/" />;
   }
 
   return element;
