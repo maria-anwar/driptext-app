@@ -23,23 +23,23 @@ const Projects: React.FC = () => {
     axios.post('http://localhost:8000/api/projects/detail', payload)
       .then((response) => {
         const projects = response.data.data;
-        localStorage.setItem('projects', JSON.stringify(projects));
+        // localStorage.setItem('projects', JSON.stringify(projects));
         setProjectData(projects); // Set project data to state
+        console.log(projects)
       })
       .catch((err) => {
         console.error('Error fetching project details:', err);
       });
-  }, [userId,userToken]); // Add dependencies here
+  }, [user]); // Add dependencies here
 
-  useEffect(() => {
-    const storedProjects = localStorage.getItem('projects');
-    if (storedProjects) {
-      setProjectData(JSON.parse(storedProjects));
-    }
+  // useEffect(() => {
+  //   const storedProjects = localStorage.getItem('projects');
+  //   if (storedProjects) {
+  //     setProjectData(JSON.parse(storedProjects));
+  //   }
     
-  }, []);
+  // }, []);
 
-console.log(projectData)
   
   return (
     <>

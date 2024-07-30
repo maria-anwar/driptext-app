@@ -39,14 +39,13 @@ const LoginForm = () => {
     
    try {
     const response = await axios.post(apiUrl, userData);
-    console.log(response.data)
     dispatch(setUser(response?.data));
     toast.success("Login successfully")
-    
+    localStorage.setItem("token",response.data.token)
     navigate("/client-dashboard");
 
    } catch (error) {
-    toast.error('Error logging');
+    toast.error('Error logging',error.message);
    }
 
     // window.location.href = "https://driptext.de/danke-probetext/";

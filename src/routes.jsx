@@ -39,6 +39,7 @@ import TableWithCheckbox from "./views/checkTable";
 import Table2 from "./components/client/tables/Table2";
 import Register from "./views/freelancer/auth/Register";
 import RedirectHandler from "./views/auth/RedirectHandler";
+import ProtectedRoute from "./ProtectedRoutes";
 
 
 // Freelancer import
@@ -72,7 +73,8 @@ const WebRoutes = () => {
           <Route path="/auth3" element={<Auth3 />} />
           <Route path="/auth2" element={<Auth2 />} />
           <Route path="/client-header" element={<Header />} />
-          <Route path="/client-dashboard" element={ <DefaultLayout/>} >
+
+          <Route path="/client-dashboard" element={<ProtectedRoute element={<DefaultLayout />} />}>
             <Route index element={<Projects />} />
             <Route path="task-table" element={<TaskTable />} />
             <Route path="contact" element={<Support />} />
@@ -81,6 +83,8 @@ const WebRoutes = () => {
             <Route path="check" element={<TableWithCheckbox />} />
             <Route path="table2" element={<Table2 />} />
           </Route>
+
+
           {/* Freelancer Dashboard */}
           <Route path="/freelancer-dashboard" element={ <FreelancerLayout/>} >
             <Route index element={<Tasks />}/>

@@ -58,7 +58,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
 
 
   const handleLogout = ()=>{
-    setUser(null);
+    localStorage.removeItem('token')
   }
   return (
     <aside

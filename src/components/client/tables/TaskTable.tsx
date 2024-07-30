@@ -260,18 +260,18 @@ const TaskTable = () => {
                     <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                       <p
                         className={`inline-flex rounded-full bg-opacity-10 py-1 px-3 text-sm font-medium ${
-                          task.projectStatus === "Final"
+                          task.status === "Final"
                             ? "bg-success text-success"
-                            : task.projectStatus === "Not initalized"
+                            : task.status === "Not initalized"
                             ? "bg-danger text-danger"
-                            : task.projectStatus === "Ready to Start"
+                            : task.status === "Ready to Start"
                             ? "bg-warning text-warning"
-                            : task.projectStatus === "Ready For Proofreading"
+                            : task.status === "Ready For Proofreading"
                             ? "bg-warning text-warning"
                             : "bg-blue-400 text-blue-400"
                         }`}
                       >
-                        {task.projectStatus}
+                        {task.status}
                       </p>
                     </td>
                     <td className="border-b border-[#eee] py-5 px-4 pl-5  dark:border-strokedark ">
