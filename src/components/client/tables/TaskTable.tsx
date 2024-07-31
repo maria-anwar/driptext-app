@@ -156,7 +156,7 @@ const TaskTable = () => {
       projectId: projectId
     };
 
-    axios.post('http://localhost:8000/api/project/tasks/detail', payload)
+    axios.post('https://driptext-api.vercel.app/api/project/tasks/detail', payload)
       .then((response) => {
         const tasks = response.data.data;
         console.log(tasks)

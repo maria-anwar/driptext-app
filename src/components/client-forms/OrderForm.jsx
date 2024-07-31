@@ -72,7 +72,7 @@ const OrderForm = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/users/create",
+        "https://driptext-api.vercel.app/api/users/create",
         payload
       );
 

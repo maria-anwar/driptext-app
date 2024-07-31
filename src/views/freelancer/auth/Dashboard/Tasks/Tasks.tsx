@@ -4,6 +4,7 @@ import AllTasks from "./AllTask";
 import TexterTasks from "./TexterTask";
 import LectorTasks from "./LectorTask";
 import SeoTasks from "./SeoTask";
+import Proofreader from "./Proofreader";
 
 const Tasks: React.FC = () => {
   const taskDataArray = [
@@ -410,6 +411,9 @@ const Tasks: React.FC = () => {
       case "Seo Optimizer":
         setComponent(<SeoTasks taskDataArray={taskDataArray} />);
         break;
+      case "Meta lector":
+        setComponent(<Proofreader taskDataArray={taskDataArray} />);
+        break;
       default:
         break;
     }
@@ -419,10 +423,11 @@ const Tasks: React.FC = () => {
     { name: "Texter", label: "Texter" },
     { name: "Lector", label: "Lector" },
     { name: "Seo Optimizer", label: "Seo Optimizer" },
+    { name: "Meta lector", label: "Meta lector" },
   ];
   return (
     <>
-      <div className="w-full flex flex-col gap-3 2xl:gap-0 2xl:flex-row 2xl:justify-between items-center 4xl:px-14 mb-3 4xl:mb-6 mt-2 lg:mt-1">
+      <div className="w-full flex flex-col gap-3 2xl:gap-0 2xl:flex-row 2xl:justify-between items-center  mb-3 4xl:mb-6 mt-2 lg:mt-1">
         <div className="w-full 2xl:max-w-max">
           <h1 className="text-title-md font-bold text-black dark:text-white mb-2">
             Your Tasks Overview

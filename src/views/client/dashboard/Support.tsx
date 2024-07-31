@@ -37,6 +37,7 @@ const Support = () => {
         to_email: email,
         to_name: `${firstName} ${lastName}`,
         from_name: `${firstName} ${lastName}`,
+        from_email: email,
         message: message,
       },
       EMAILJS_USER_ID
