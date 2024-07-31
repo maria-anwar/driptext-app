@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import CardDataStats from "../../../components/client/CardDataStats";
-import DarkBtn from "../../../components/client/buttons/DarkBtn";
+import Breadcrumb from "../../../../components/freelancer/breeadcrumbs/Breadcrumb";
 import axios from "axios";
 
 const Earning: React.FC = () => {
@@ -46,57 +45,116 @@ const Earning: React.FC = () => {
 
   return (
     <>
-      <div className="w-full flex flex-col gap-3 2xl:gap-0 2xl:flex-row 2xl:justify-between items-center 4xl:px-14 mb-3 4xl:mb-6 mt-2 lg:mt-1">
-        <div className="w-full 2xl:max-w-max">
-          <h1 className="text-title-md font-bold text-black dark:text-white mb-2">
-            Earning
-          </h1>
-          <p className="text-dark-gray">
-            Here you can see all the earning from all your DripTexts projects.
-          </p>
-        </div>
-        <div className=" w-full 2xl:max-w-max flex justify-start 2xl:justify-end mt-2 ">
-          {/* <DarkBtn name={"Add Project"} url={"/onboarding-probetext"} /> */}
-        </div>
-      </div>
+    
+      <div className="2xl:px-6 3xl:px-10">
+        <Breadcrumb pageName="Earning" />
+        <div className="rounded-sm border border-stroke bg-white pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
+          <div className="max-w-full overflow-x-auto">
+            <table className="w-full table-auto">
+              <thead>
+                <tr className="bg-gray-2 text-left dark:bg-meta-4 ">
+                  <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
+                  Performance Period
+                  </th>
+                  <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
+                  Order Number
+                  </th>
+                  <th className="min-w-[170px] py-4 px-4 font-medium text-black dark:text-white">
+                  Date
+                  </th>
+                  <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
+                  Role
+                  </th>
+                  <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
+                  Article/Keyword
+                  </th>
+                  <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
+                  Target Number of Words
+                  </th>
+                  <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
+                  Actual Number of Words
+                  </th>
+                  <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
+                  Billed Words
+                  </th>
+                  <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
+                  Difference
+                  </th>
+                  <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
+                  Price
+                  </th>
+                </tr>
 
-      <div className="overflow-x-auto">
-        <table className=" w-full border-collapse rounded-sm border dark:border-stroke bg-slate-50 py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark">
-          <thead>
-            <tr className="dark:bg-gray-100 border-b text-left">
-              <th className="px-4 py-2 dark:text-white">Performance Period</th>
-              <th className="px-4 py-2 dark:text-white">Order Number</th>
-              <th className="px-4 py-2 dark:text-white">Date</th>
-              <th className="px-4 py-2 dark:text-white">Role</th>
-              <th className="px-4 py-2 dark:text-white">Article/Keyword</th>
-              <th className="px-4 py-2 dark:text-white">Target Number of Words</th>
-              <th className="px-4 py-2 dark:dark:text-white">Actual Number of Words</th>
-              <th className="px-4 py-2 text-white">Billed Words</th>
-              <th className="px-4 py-2 dark:text-white">Difference</th>
-              <th className="px-4 py-2 dark:text-white">Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            {tableData.map((value) => (
-              <tr
-                key={value.orderNumber}
-                className="border-b hover:bg-slate-200 hover:dark:bg-boxdark-2 cursor-text"
-              >
-                <td className="px-4 py-2">{value.performancePeriod}</td>
-                <td className="px-4 py-2"><Link onClick={()=>alert(value.orderNumber)} to={''}>{value.orderNumber}</Link></td>
-                <td className="px-4 py-2">{value.date}</td>
-                <td className="px-4 py-2">{value.role}</td>
-                <td className="px-4 py-2">{value.articleKeyword}</td>
-                <td className="px-4 py-2">{value.targetNumberOfWords}</td>
-                <td className="px-4 py-2">{value.actualNumberOfWords}</td>
-                <td className="px-4 py-2">{value.billedWords}</td>
-                <td className="px-4 py-2">{value.difference}</td>
-                <td className="px-4 py-2">{value.price}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+                
+              </thead>
+              <tbody>
+                {tableData.map((value) => (
+                  <tr key={value.orderNumber}>
+                                        <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                      <p className="text-black dark:text-white">
+                      {value.performancePeriod}
+                      </p>
+                    </td>
+
+                    <td className="border-b border-[#eee] py-5 px-4 pl-5 sm:pl-9 dark:border-strokedark xl:pl-11">
+                      <Link to="#" className="text-blue-500 text-sm" onClick={()=>alert(value.orderNumber)} >
+                        {value.orderNumber}
+                      </Link>
+                    </td>
+                    <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                      <p className="text-black dark:text-white">
+                      
+                      {value.date}
+                      </p>
+                    </td>
+                    <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                      <p className="text-black dark:text-white">
+                   
+                      {value.role}
+                      </p>
+                    </td>
+                    <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                      <p className="text-black dark:text-white">
+                     
+                      {value.articleKeyword}
+                      </p>
+                    </td>
+                    <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                      <p className="text-black dark:text-white">
+                      
+                      {value.targetNumberOfWords}
+                      </p>
+                    </td>
+                    <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                      <p className="text-black dark:text-white">
+                    
+                      {value.actualNumberOfWords}
+                      </p>
+                    </td>
+                    <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                      <p className="text-black dark:text-white">
+                   
+                      {value.billedWords}
+                      </p>
+                    </td>
+                    <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                      <p className="text-black dark:text-white">
+                      {value.difference}
+                      </p>
+                    </td>
+                    <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                      <p className="text-black dark:text-white">
+                      {value.price}
+                      </p>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        </div>
+   
       {/* {tasks.map((task, index) => {
           return (
             <CardDataStats
