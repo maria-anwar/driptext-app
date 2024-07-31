@@ -8,7 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-//http://localhost:8000/api/users/create
+//https://driptext-api.vercel.app/api/users/create
 
 const RegistrationForm = () => {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const RegistrationForm = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.post('http://localhost:8000/api/roles/list');
+        const response = await axios.post('https://driptext-api.vercel.app/api/roles/list');
         const data = response.data.data; // Adjust this line based on the actual structure
         
         if (Array.isArray(data)) {
@@ -60,7 +60,7 @@ const RegistrationForm = () => {
       keywords: values.keyword,
     }
    
-    const apiUrl = 'http://localhost:8000/api/users/create';
+    const apiUrl = 'https://driptext-api.vercel.app/api/users/create';
 
    try {
     const response = await axios.post(apiUrl, registerData);

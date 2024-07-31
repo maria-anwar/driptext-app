@@ -4,10 +4,21 @@ import CardDataStats from "../../../components/client/CardDataStats";
 import DarkBtn from "../../../components/client/buttons/DarkBtn";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { format } from 'date-fns';
 
 
 const Projects: React.FC = () => {
   const user = useSelector(state=>state.user)
+
+
+
+
+    const formatDate =(dateString) => {
+    const date = new Date(dateString);
+
+    return format(date, 'MMMM d, yyyy');
+    }
+
 
   const [projectData, setProjectData] = useState([]);
   const [userId, setUserID] = useState(user.user.data.user._id);
@@ -20,7 +31,7 @@ const Projects: React.FC = () => {
       userId: userId
     };
 
-    axios.post('http://localhost:8000/api/projects/detail', payload)
+    axios.post('https://driptext-api.vercel.app/api/projects/detail', payload)
       .then((response) => {
         const projects = response.data.data;
         // localStorage.setItem('projects', JSON.stringify(projects));
@@ -62,12 +73,12 @@ const Projects: React.FC = () => {
             <CardDataStats
             key={project._id}
             id={project._id}
-            title={project.projectName}
+            title={project.texts}
             domain={project.projectName} 
             keywords={project.keywords} 
-            projectStatus={project.projectStatus} 
+            projectStatus={project.projectStatus}
+            createdOn= {formatDate(project.createdAt)} 
             texts={"project.text" || ''} // Assuming texts are available in project data
-            createdOn={"project.createdOn" || ''}
             servicePeriod={"project.servicePeriod" || ''}
             ordersPerMonth={5|| ''}
             maximumOrders={54|| ''}

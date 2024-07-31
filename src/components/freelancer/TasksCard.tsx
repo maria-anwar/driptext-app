@@ -113,7 +113,7 @@ const TasksCard: React.FC<TasksCardProps> = ({ task }) => {
   };
 
   return (
-    <div className="w-full my-5 rounded-sm border  dark:border-stroke bg-slate-50 py-1 px-7.5 shadow-default dark:border-strokedark  dark:bg-boxdark">
+    <div className="w-full my-10 rounded-sm ring-1 ring-slate-200 dark:border-stroke  py-1 px-7.5 shadow-2 dark:border-strokedark  dark:bg-boxdark">
       <div className="py-2 dark:text-white text-xl font-semibold">
         <h4>{task.projectName}</h4>
       </div>
@@ -121,13 +121,13 @@ const TasksCard: React.FC<TasksCardProps> = ({ task }) => {
       <div className="pb-4">
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 md:grid-rows-2 lg:grid-cols-7 lg:grid-rows-1">
           <div className="flex flex-col pr-3">
-            <span className="text-base font-medium dark:text-slate-200">
+            <span className="text-base font-semibold text-dark-gray dark:text-slate-200 py-4">
               {task.labels.project}
             </span>
             <span>{task.projectName}</span>
           </div>
           <div className="flex flex-col pr-3">
-            <span className="text-base font-medium dark:text-slate-200">
+            <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-4">
               {task.labels.deadline}
             </span>
             <span className="w-fit bg-red-600 text-white px-2 text-center rounded-full">
@@ -135,19 +135,19 @@ const TasksCard: React.FC<TasksCardProps> = ({ task }) => {
             </span>
           </div>
           <div className="flex flex-col pr-3">
-            <span className="text-base font-medium dark:text-slate-200">
+            <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-4">
               {task.labels.taskStatus}
             </span>
             <span className="text-yellow-500">{task.taskStatus}</span>
           </div>
           <div className="flex flex-col pr-3">
-            <span className="text-base font-medium dark:text-slate-200">
+            <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-4">
               {task.labels.activeRole}
             </span>
-            <span className="font-medium">{task.activeRole}</span>
+            <span >{task.activeRole}</span>
           </div>
           <div className="flex flex-col pr-3">
-            <span className="text-base font-medium dark:text-slate-200">
+            <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-4">
               {task.labels.googleLink}
             </span>
             <span className="text-sky-500">
@@ -161,13 +161,13 @@ const TasksCard: React.FC<TasksCardProps> = ({ task }) => {
             </span>
           </div>
           <div className="flex flex-col pr-3">
-            <span className="text-base font-medium dark:text-slate-200">
+            <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-4">
               {task.labels.wordCount}
             </span>
             <span className="font-medium">{task.wordCount}</span>
           </div>
         </div>
-        <div className="mt-4">
+        <div className="mt-4 flex flex-row justify-end items-end">
           {!isStart && !isAccepted && (
             <>
               <button
@@ -202,9 +202,9 @@ const TasksCard: React.FC<TasksCardProps> = ({ task }) => {
 
       <div
         onClick={() => alert("show more details")}
-        className="flex justify-center items-center border-t py-2 dark:text-white cursor-pointer font-medium"
+        className="flex justify-center items-center border-t py-2 border-slate-700 dark:border-slate-200 cursor-pointer font-medium"
       >
-        <span>Show more details</span>
+        <span className="text-slate-800 hover:text-slate-600 dark:text-slate-200 dark:hover:text-slate-300">Show more details</span>
       </div>
       {showDialog && (
         <div className="fixed inset-0 flex items-center justify-center z-9999 bg-neutral-200 dark:bg-slate dark:bg-opacity-15 bg-opacity-60">

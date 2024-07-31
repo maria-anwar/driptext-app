@@ -35,18 +35,19 @@ const LoginForm = () => {
       email: values.email,
       password: values.password,
     };
-    const apiUrl = 'http://localhost:8000/api/auth/login';
+    const apiUrl = 'https://driptext-api.vercel.app/api/auth/login';
     
-   try {
-    const response = await axios.post(apiUrl, userData);
-    dispatch(setUser(response?.data));
-    toast.success("Login successfully")
-    localStorage.setItem("token",response.data.token)
-    navigate("/client-dashboard");
-
-   } catch (error) {
-    toast.error('Error logging',error.message);
-   }
+    try {
+      const response = await axios.post(apiUrl, userData);
+      dispatch(setUser(response?.data));
+      toast.success("Login successfully");
+      localStorage.setItem("token", response.data.token);
+      navigate("/client-dashboard");
+    } catch (error) {
+      const errorMessage = error.response?.data?.message || error.message || 'Error logging in';
+      toast.error(`Error logging in: ${errorMessage}`);
+    }
+    
 
     // window.location.href = "https://driptext.de/danke-probetext/";
     

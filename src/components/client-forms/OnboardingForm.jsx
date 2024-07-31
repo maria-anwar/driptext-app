@@ -57,7 +57,7 @@ const OnboardingForm = ({projectName,userId}) => {
       contentInfo: values.brand,
     };
   
-    const apiUrl = 'http://localhost:8000/api/users/create/onboarding';
+    const apiUrl = 'https://driptext-api.vercel.app/api/users/create/onboarding';
     console.log(onBoardingData);
     setLoading(true)
     try {

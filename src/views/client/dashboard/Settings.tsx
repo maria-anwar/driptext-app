@@ -28,7 +28,7 @@ const Settings = () => {
     };
 
     await axios
-      .post("http://localhost:8000/api/users/update", payload)
+      .post("https://driptext-api.vercel.app/api/users/update", payload)
       .then((response) => {
         dispatch(
           updateUserFields({ path: "data.user.firstName", value: firstName })

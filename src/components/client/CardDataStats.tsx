@@ -44,7 +44,7 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
  const handleBoarding = ()=> {
     navigate('/onboarding-probetext',{state:{projectName:domain,userId:user.user.data.user._id}})
   } 
-  console.log(id)
+
 
   const handleProjectTask = () => {
     navigate('task-table',{state:{projectId:id}})
@@ -89,7 +89,7 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
         <hr className="text-custom-gray" />
       </div>
       <div className="mt-3 mb-3 flex items-end justify-between">
-         <div className="text-sm font-medium text-dark-gray">{title} <div className="text-meta-5">{texts}</div></div>
+         <div className="text-sm font-medium text-dark-gray">Text <div className="text-meta-5">{title}</div></div>
          <div className="text-sm font-medium text-dark-gray">Created on: <div className="text-meta-3 flex justify-end">{createdOn}</div></div>
          
       </div>

@@ -46,7 +46,7 @@ const ForgotPasswordForm = () => {
       toast.error('Both password not matched');
       return;
     }
-    const apiUrl = `http://localhost:8000/api/auth/reset/password/${token}`;
+    const apiUrl = `https://driptext-api.vercel.app/api/auth/reset/password/${token}`;
     console.log('API:' , apiUrl);
    try {
     const response = await axios.post(apiUrl, passwordValue);
