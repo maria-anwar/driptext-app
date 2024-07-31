@@ -202,9 +202,9 @@ const TasksCard: React.FC<TasksCardProps> = ({ task }) => {
 
       <div
         onClick={() => alert("show more details")}
-        className="flex justify-center items-center border-t py-2 border-slate-700 dark:border-slate-200 cursor-pointer font-medium"
+        className="flex justify-center items-center border-t mt-1 py-2 lg:py-4 border-slate-300 dark:border-slate-200 cursor-pointer font-medium"
       >
-        <span className="text-slate-800 hover:text-slate-600 dark:text-slate-200 dark:hover:text-slate-300">Show more details</span>
+        <span className="text-slate-600 hover:text-slate-800 dark:text-slate-200 dark:hover:text-slate-300">Show more details</span>
       </div>
       {showDialog && (
         <div className="fixed inset-0 flex items-center justify-center z-9999 bg-neutral-200 dark:bg-slate dark:bg-opacity-15 bg-opacity-60">
