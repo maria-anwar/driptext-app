@@ -8,12 +8,19 @@ import { GroupDropdownField } from "./GroupDropdownField";
 import { CountryDropdownField } from "./CountryDropdownField";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import ChargebeeWidgets from "./chargeebeewidgets";
+import Modal from "./Modal";
+ 
+
 
 const OrderForm = () => {
   const user = useSelector((state) => state.user);
   const [isSuccess, setIsSuccess] = useState(false);
   const [countries, setCountries] = useState([]);
+  const [showPayment, setShowPayment] = useState(false);
   const navigate = useNavigate();
+  const [formData, setFormData] = useState({});
+  
 
   useEffect(() => {
     const fetchCoutries = async () => {
@@ -54,29 +61,24 @@ const OrderForm = () => {
     vatId: Yup.string().required("VAT ID is required"),
   });
 
-  const onSubmit = async (values) => {
 
-    const payload = {
-      firstName: values.firstName,
-      lastName: values.lastName,
-      email: values.email,
-      roleId: values.roleId,
-      projectName: values.projectName,
-      companyName: values.companyName,
-      country: values.country,
-      vatId: values.vatId,
-      keywords: values.keywords,
-      planId: values.planId,
-      subPlanId: values.subPlanId,
-    };
+  const onSubmit = (values) => {
+    console.log("values", values)
+    setFormData(values);  
+    setShowPayment(true);  
+  };
+ 
+  const handlePaymentSuccess = async (result) => {
+    console.log("Payment successful:", result);
 
     try {
       const response = await axios.post(
         "http://localhost:8000/api/users/create",
-        payload
+        formData
       );
 
       if (response.status === 200) {
+        setIsSuccess(true);  
         window.location.href = "https://driptext.de/danke-probetext/";
       } else {
         console.error("Failed to submit data");
@@ -84,6 +86,10 @@ const OrderForm = () => {
     } catch (error) {
       console.error("Error submitting data:", error);
     }
+  };
+  const handlePaymentError = (error) => {
+    console.error("Payment error:", error);
+    
   };
 
   const countriesList = [
@@ -399,6 +405,14 @@ const OrderForm = () => {
           </Form>
         )}
       </Formik>
+      <Modal isVisible={showPayment} onClose={() => setShowPayment(false)}>
+        <ChargebeeWidgets
+          onSuccess={handlePaymentSuccess}
+          onError={handlePaymentError}
+          userData={formData}
+        />
+      </Modal>
+
     </>
   );
 };

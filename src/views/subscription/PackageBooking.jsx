@@ -10,14 +10,16 @@ const plansForTexts = {
       price: "420€ ",
       month: "per month",
       wordPrice: "Word price: 0.07 EUR/net",
-      features: 4
+      features: 4,
+      id:"driptext_4f_3m"
     },
     {
       name: "6 months term",
       price: "360€ ",
       month: "per month",
       wordPrice: "Word price: 0.06 EUR/net",
-      features: 4
+      features: 4,
+      id:"driptext_4f_6m"
     },
     {
       name: "12 months term",
@@ -26,6 +28,7 @@ const plansForTexts = {
       wordPrice: "Word price: 0.05 EUR/net",
       features: 4,
       bestValue: true,
+      id:"driptext_4f_12m"
     },
   ],
   8: [
@@ -34,14 +37,16 @@ const plansForTexts = {
       price: "840€ ",
       month: "per month",
       wordPrice: "Word price: 0.14 EUR/net",
-      features: 8
+      features: 8,
+      id:"driptext_8f_3m"
     },
     {
       name: "6 months term",
       price: "720€ ",
       month: "per month",
       wordPrice: "Word price: 0.12 EUR/net",
-      features: 8
+      features: 8,
+      id:"driptext_8f_6m"
     },
     {
       name: "12 months term",
@@ -50,6 +55,7 @@ const plansForTexts = {
       wordPrice: "Word price: 0.10 EUR/net",
       features: 8,
       bestValue: true,
+      id:"driptext_8f_12m"
     },
   ],
   12: [
@@ -58,14 +64,16 @@ const plansForTexts = {
       price: "1260€ ",
       month: "per month",
       wordPrice: "Word price: 0.20 EUR/net",
-      features: 12
+      features: 12,
+      id:"driptext_12f_3m"
     },
     {
       name: "6 months term",
       price: "1080€ ",
       month: "per month",
       wordPrice: "Word price: 0.18 EUR/net",
-      features:12
+      features:12,
+      id:"driptext_12f_6m"
     },
     {
       name: "12 months term",
@@ -74,6 +82,7 @@ const plansForTexts = {
       wordPrice: "Word price: 0.15 EUR/net",
       features: 12,
       bestValue: true,
+      id:"driptext_12f_12m"
     },
   ],
 };

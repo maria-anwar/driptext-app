@@ -4,15 +4,17 @@ import storage from 'redux-persist/lib/storage';
 import { combineReducers } from 'redux';
 import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import userReducer from './userSlice.js';
+import planReducer from './planSlice.js';
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['user'], //  all here will presiste
+  whitelist: ['user', 'plan'], //  all here will presiste
 };
 
 const rootReducer = combineReducers({
   user: userReducer,
+  plan : planReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
