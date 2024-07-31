@@ -24,11 +24,11 @@ interface Task {
 }
 
 // Define the type for the props
-interface TasksCardProps {
+interface LectorCardProps {
   task: Task;
 }
 
-const TasksCard: React.FC<TasksCardProps> = ({ task }) => {
+const LectorCard: React.FC<LectorCardProps> = ({ task }) => {
   const [isStart, setIsStart] = useState(task.isStart);
   const [isAccepted, setIsAccepted] = useState(task.isAccepted);
   const [isFinish, setIsFinish] = useState(task.isFinish);
@@ -603,4 +603,4 @@ const TasksCard: React.FC<TasksCardProps> = ({ task }) => {
   );
 };
 
-export default TasksCard;
+export default LectorCard;

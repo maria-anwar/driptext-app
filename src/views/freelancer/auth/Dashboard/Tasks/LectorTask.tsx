@@ -1,5 +1,6 @@
 import React from "react";
 import TasksCard from "../../../../../components/freelancer/TasksCard";
+import LectorCard from "../../../../../components/freelancer/LectorCard";
 
 // Define the type for the task object
 interface Task {
@@ -34,7 +35,7 @@ const  filteredTasks = taskDataArray.filter(task => task.activeRole.toLowerCase(
   return (
     <>
       {filteredTasks.map((task, index) => (
-        <TasksCard key={index} task={task} />
+        <LectorCard key={index} task={task} />
       ))}
     </>
   );

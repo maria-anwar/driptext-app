@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import CardDataStats from "../../../components/client/CardDataStats";
-import DarkBtn from "../../../components/client/buttons/DarkBtn";
+import Breadcrumb from "../../../../components/freelancer/breeadcrumbs/Breadcrumb";
 import axios from "axios";
 
 
@@ -10,19 +9,10 @@ const DriptextAcademy: React.FC = () => {
   
   return (
     <>
-      <div className="w-full flex flex-col gap-3 2xl:gap-0 2xl:flex-row 2xl:justify-between items-center 4xl:px-14 mb-3 4xl:mb-6 mt-2 lg:mt-1">
-        <div className="w-full 2xl:max-w-max">
-          <h1 className="text-title-md font-bold text-black dark:text-white mb-2">
-          DripText Academy
-          </h1>
-          <p className="text-dark-gray">
-            Here you can see all the earning from all your DripTexts projects.
-          </p>
-        </div>
-        <div className=" w-full 2xl:max-w-max flex justify-start 2xl:justify-end mt-2 ">
-        {/* <DarkBtn name={"Add Project"} url={"/onboarding-probetext"} /> */}
-        </div>
-      </div>
+          <div className="2xl:px-6 3xl:px-10">
+          <Breadcrumb pageName="DripText Academy" pageData="Here you can see all the earning from all your DripTexts projects." />
+          </div>
+  
      
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 2xl:grid-cols-3 5xl:grid-cols-4 4xl:px-14">
         {/* {tasks.map((task, index) => {

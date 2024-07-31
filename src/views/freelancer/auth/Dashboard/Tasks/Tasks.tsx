@@ -5,6 +5,7 @@ import TexterTasks from "./TexterTask";
 import LectorTasks from "./LectorTask";
 import SeoTasks from "./SeoTask";
 import Proofreader from "./Proofreader";
+import Breadcrumb from "../../../../../components/freelancer/breeadcrumbs/Breadcrumb";
 
 const Tasks: React.FC = () => {
   const taskDataArray = [
@@ -13,7 +14,8 @@ const Tasks: React.FC = () => {
       deadline: "2 months ago",
       taskStatus: "Ready to start",
       activeRole: "TEXTER",
-      googleLink: "https://docs.google.com/document/d/1lth731M_StJek0kU3dsV8bmilAqfEkq3KixXJTlbsNU/edit?addon_store",
+      googleLink:
+        "https://docs.google.com/document/d/1lth731M_StJek0kU3dsV8bmilAqfEkq3KixXJTlbsNU/edit?addon_store",
       wordCount: "0/1500",
       labels: {
         project: "PROJECTS",
@@ -32,7 +34,8 @@ const Tasks: React.FC = () => {
       deadline: "1 month ago",
       taskStatus: "In Progress",
       activeRole: "TEXTER",
-      googleLink: "https://docs.google.com/document/d/1lth731M_StJek0kU3dsV8bmilAqfEkq3KixXJTlbsNU/edit?addon_store",
+      googleLink:
+        "https://docs.google.com/document/d/1lth731M_StJek0kU3dsV8bmilAqfEkq3KixXJTlbsNU/edit?addon_store",
       wordCount: "500/2000",
       labels: {
         project: "PROJECTS",
@@ -51,7 +54,8 @@ const Tasks: React.FC = () => {
       deadline: "3 weeks ago",
       taskStatus: "Completed",
       activeRole: "LECTOR",
-      googleLink: "https://docs.google.com/document/d/1lth731M_StJek0kU3dsV8bmilAqfEkq3KixXJTlbsNU/edit?addon_store",
+      googleLink:
+        "https://docs.google.com/document/d/1lth731M_StJek0kU3dsV8bmilAqfEkq3KixXJTlbsNU/edit?addon_store",
       wordCount: "2000/2000",
       labels: {
         project: "PROJECTS",
@@ -388,13 +392,13 @@ const Tasks: React.FC = () => {
       isStart: false,
       isAccepted: false,
       isFinish: false,
-    }
+    },
   ];
-  
-  
 
   const [activeButton, setActiveButton] = useState("All");
-  const [component, setComponent] = useState(<AllTasks taskDataArray={taskDataArray} />);
+  const [component, setComponent] = useState(
+    <AllTasks taskDataArray={taskDataArray} />
+  );
 
   const handleTasks = (name) => {
     setActiveButton(name);
@@ -427,35 +431,26 @@ const Tasks: React.FC = () => {
   ];
   return (
     <>
-      <div className="w-full flex flex-col gap-3 2xl:gap-0 2xl:flex-row 2xl:justify-between items-center  mb-3 4xl:mb-6 mt-2 lg:mt-1">
-        <div className="w-full 2xl:max-w-max">
-          <h1 className="text-title-md font-bold text-black dark:text-white mb-2">
-            Your Tasks Overview
-          </h1>
-          <p className="text-dark-gray">Here you can view your tasks.</p>
-        </div>
-
-        <div className=" w-full 2xl:max-w-max flex justify-start 2xl:justify-end mt-2 ">
-          {/* <DarkBtn name={"Add Project"} url={"/onboarding-probetext"} /> */}
-        </div>
-      </div>
-      <div className="w-full">
-        {buttons.map((button) => (
-          <button
-            key={button.name}
-            onClick={() => handleTasks(button.name)}
-            className={`py-1 px-4 mx-1 my-1 font-medium outline-none bg-cardHeadingborder-sky-500 rounded-sm sm
+      <div className="2xl:px-6 3xl:px-10">
+        <Breadcrumb pageName="Your tasks overview" pageData="Here you can view your tasks." />
+        <div className="w-full">
+          {buttons.map((button) => (
+            <button
+              key={button.name}
+              onClick={() => handleTasks(button.name)}
+              className={`py-1 px-4 mx-1 my-1 font-medium outline-none bg-cardHeadingborder-sky-500 rounded-sm sm
             ${
               activeButton === button.name
                 ? "bg-cardHeading text-white font-semibold"
                 : "bg-slate-200 dark:bg-white dark:text-black hover:bg-cardHeading hover:text-white"
             }`}
-          >
-            {button.label}
-          </button>
-        ))}
+            >
+              {button.label}
+            </button>
+          ))}
+        </div>
+        {component}
       </div>
-      {component}
     </>
   );
 };
