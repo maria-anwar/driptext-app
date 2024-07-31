@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import SidebarLinkGroup from "./SidebarLinkGroup";
 import logo from "../../../assets/homeimages/driptext-logo.png";
-import SidebarIcons from "../icons/SidebarIcons"
+import SidebarIcons from "../icons/SidebarIcons";
 import { UserContext } from "../../../views/auth/AuthContext";
 
 interface SidebarProps {
@@ -13,7 +13,7 @@ interface SidebarProps {
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   const location = useLocation();
   const { pathname } = location;
-  const {setUser} = useContext(UserContext)
+  const { setUser } = useContext(UserContext);
 
   const trigger = useRef<any>(null);
   const sidebar = useRef<any>(null);
@@ -56,10 +56,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
     }
   }, [sidebarExpanded]);
 
-
-  const handleLogout = ()=>{
+  const handleLogout = () => {
     setUser(null);
-  }
+  };
   return (
     <aside
       ref={sidebar}
@@ -113,10 +112,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
       <div className="no-scrollbar h-full flex flex-col overflow-y-auto duration-300 ease-linear">
         <nav className="h-full mt-5 py-4 px-4 lg:mt-6 lg:px-6">
           <div className="h-full">
-            {/* <h3 className="mb-4 ml-4 text-sm font-semibold text-bodydark2">
-              MENU
-            </h3> */}
-
             <div className="mb-6 h-full flex flex-col justify-between">
               <ul className="flex flex-col gap-1.5">
                 <li>
@@ -131,18 +126,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     Tasks
                   </NavLink>
                 </li>
-                {/* <li>
-                  <NavLink
-                    to="profile"
-                    className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                      pathname.includes("profile") &&
-                      "bg-graydark dark:bg-meta-4"
-                    }`}
-                  >
-                    {SidebarIcons[2].profile}
-                    Profile
-                  </NavLink>
-                </li> */}
                 <li>
                   <NavLink
                     to="earning"
@@ -151,7 +134,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                       "bg-graydark dark:bg-meta-4"
                     }`}
                   >
-                    {SidebarIcons[4].contact}
+                    {SidebarIcons[5].earning}
+                   
                     Earnings
                   </NavLink>
                 </li>
@@ -189,7 +173,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
         <ul>
           <li className="">
             <NavLink
-            onClick={()=>handleLogout}
+              onClick={() => handleLogout}
               to="/"
               className={`group relative flex items-center gap-2.5 rounded-sm py-4 px-4  lg:px-8 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 `}
             >
