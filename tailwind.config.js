@@ -289,5 +289,23 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function({ addUtilities }) {
+      addUtilities(
+        {
+          '.scrollbar-hide': {
+            /* Hide scrollbar for Webkit browsers */
+            '&::-webkit-scrollbar': {
+              display: 'none',
+            },
+            /* Hide scrollbar for Firefox */
+            'scrollbar-width': 'none',
+            /* Hide scrollbar for Internet Explorer and Edge */
+            '-ms-overflow-style': 'none',
+          },
+        },
+        ['responsive', 'hover']
+      );
+    },
+  ],
 }

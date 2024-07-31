@@ -35,6 +35,9 @@ const TasksCard: React.FC<TasksCardProps> = ({ task }) => {
   const [showDialog, setShowDialog] = useState(false);
   const [showProjectInfo, setShowProjectInfo] = useState(false);
   const [showFinishDialog, setShowFinishDialog] = useState(false);
+  const [showDetailsDialog, setShowDetailsDialog] = useState(false);
+  const [showInfo, setShowInfo] = useState(true);
+  const [showFeedback, setShowFeedback] = useState(false);
   const [checkboxes, setCheckboxes] = useState({
     format1: false,
     format2: false,
@@ -103,6 +106,23 @@ const TasksCard: React.FC<TasksCardProps> = ({ task }) => {
     setShowFinishDialog(false);
   };
 
+  const hanldeShowAllInfo = () => {
+    setShowDetailsDialog(true);
+  };
+  const hanldeCloseAllInfo = () => {
+    setShowDetailsDialog(false);
+  };
+
+  const handleShowInfo = () => {
+    setShowInfo(true);
+    setShowFeedback(false);
+  };
+
+  const handleShowFeedback = () => {
+    setShowFeedback(true);
+    setShowInfo(false);
+  };
+
   const allChecked = Object.values(checkboxes).every(Boolean);
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -144,7 +164,7 @@ const TasksCard: React.FC<TasksCardProps> = ({ task }) => {
             <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-4">
               {task.labels.activeRole}
             </span>
-            <span >{task.activeRole}</span>
+            <span>{task.activeRole}</span>
           </div>
           <div className="flex flex-col pr-3">
             <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-4">
@@ -201,10 +221,12 @@ const TasksCard: React.FC<TasksCardProps> = ({ task }) => {
       </div>
 
       <div
-        onClick={() => alert("show more details")}
+        onClick={hanldeShowAllInfo}
         className="flex justify-center items-center border-t mt-1 py-2 lg:py-4 border-slate-300 dark:border-slate-200 cursor-pointer font-medium"
       >
-        <span className="text-slate-600 hover:text-slate-800 dark:text-slate-200 dark:hover:text-slate-300">Show more details</span>
+        <span className="text-slate-600 hover:text-slate-800 dark:text-slate-200 dark:hover:text-slate-300">
+          Show more details
+        </span>
       </div>
       {showDialog && (
         <div className="fixed inset-0 flex items-center justify-center z-9999 bg-neutral-200 dark:bg-slate dark:bg-opacity-15 bg-opacity-60">
@@ -232,39 +254,105 @@ const TasksCard: React.FC<TasksCardProps> = ({ task }) => {
         </div>
       )}
       {showProjectInfo && (
-        <div className="fixed inset-0 flex items-center justify-center z-9999 bg-neutral-200 dark:bg-slate dark:bg-opacity-15 bg-opacity-60">
-          <div className="bg-white dark:bg-black p-6 rounded shadow-lg">
-            <h2 className="text-xl font-bold mb-4 dark:text-white">
-              Project Information
-            </h2>
-            <p className="dark:text-white">Project Name: {task.projectName}</p>
-            <p className="dark:text-white">Deadline: {task.deadline}</p>
-            <p className="dark:text-white">Task Status: {task.taskStatus}</p>
-            <p className="dark:text-white">Active Role: {task.activeRole}</p>
-            <p className="dark:text-white">
-              Google Link:{" "}
-              <a
-                href={task.googleLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-500"
+        <div className="w-auto fixed inset-0 flex items-center justify-center z-[9999] bg-neutral-200 dark:bg-slate dark:bg-opacity-15 bg-opacity-60">
+          <div className="bg-white dark:bg-black p-6 rounded shadow-lg lg:w-5/12 xl:w-5/12 2xl:w-5/12 3xl:w-5/12 max-h-[80vh] overflow-y-auto scrollbar-hide">
+            <div className="flex justify-between items-center mb-2">
+              <h2 className="text-xl font-bold  dark:text-white">
+                Task Details
+              </h2>
+              <FontAwesomeIcon
+                className="cursor-pointer text-lg dark:text-white text-black"
+                onClick={closeProjectInfoDialog}
+                icon={faTimes}
+              />
+            </div>
+            <div className="flex justify-start items-center space-x-2 my-4 gap-60">
+              <div>
+                <button
+                  className={`px-4 py-2 rounded mr-2 cursor-pointer ${
+                    showFeedback
+                      ? "bg-white text-blue-500 border border-blue-500 hover:bg-slate-100"
+                      : "bg-blue-500 text-white"
+                  }`}
+                  onClick={handleShowInfo}
+                >
+                  Info
+                </button>
+                <button
+                  className={`cursor-pointer px-4 py-2 rounded ${
+                    showInfo
+                      ? "bg-white text-blue-500 border border-blue-500 hover:bg-slate-100"
+                      : "bg-blue-500 text-white"
+                  }`}
+                  onClick={handleShowFeedback}
+                >
+                  Feedback
+                </button>
+              </div>
+
+              <button
+                className=" bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                onClick={handleFinish}
               >
-                doc-link
-              </a>
-            </p>
-            <p className="text-white">Word Count: {task.wordCount}</p>
-            <button
-              className=" mr-4 mt-4 bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
-              onClick={handleFinish}
-            >
-              Finish
-            </button>
-            <button
-              className="mt-4 bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
-              onClick={closeProjectInfoDialog}
-            >
-              Close
-            </button>
+                Finish
+              </button>
+            </div>
+            {showInfo && (
+              <>
+                <div className="bg-slate-100 dark:bg-boxdark rounded py-4 px-4">
+                  <p className="dark:text-white font-semibold text-lg">Task</p>
+                  <p className="dark:text-white">
+                    Project Name: {task.projectName}
+                  </p>
+                  <p className="dark:text-white">
+                    Google Link:{" "}
+                    <a
+                      href={task.googleLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-500"
+                    >
+                      doc-link
+                    </a>
+                  </p>
+                  <p className="dark:text-white">
+                    Task Status: {task.taskStatus}
+                  </p>
+                  <p className="dark:text-white">Deadline: {task.deadline}</p>
+
+                  <p className="dark:text-white">
+                    Active Role: {task.activeRole}
+                  </p>
+
+                  <p className="dark:text-white">
+                    Word Count: {task.wordCount}
+                  </p>
+                </div>
+                <div className="bg-slate-100 dark:bg-boxdark rounded py-4 px-4 mt-6">
+                  <p className="dark:text-white font-semibold text-lg">
+                    Project
+                  </p>
+                  <p className="dark:text-white">
+                    1. Allgemeine informationen:
+                  </p>
+                  <div className="px-2">
+                    <p className="dark:text-white">Address of Speech</p>
+                    <p className="dark:text-white bg-white dark:bg-meta-4 py-2 px-4 mb-2 rounded">
+                      various
+                    </p>
+                    <p className="dark:text-white">Perspective:</p>
+                    <p className="dark:text-white bg-white dark:bg-meta-4 py-2 px-4 mb-2 rounded">
+                      me
+                    </p>
+                    <p className="dark:text-white">Website:</p>
+                    <p className="dark:text-white bg-white dark:bg-meta-4 py-2 px-4 mb-2 rounded">
+                      various
+                    </p>
+                  </div>
+                </div>
+              </>
+            )}
+            {showFeedback && <div>Feedback</div>}
           </div>
         </div>
       )}
@@ -300,17 +388,19 @@ const TasksCard: React.FC<TasksCardProps> = ({ task }) => {
               </div>
             ))}
             <div className="py-4 px-4 bg-slate-200 dark:bg-slate-700">
-            <input
-                  type="checkbox"
-                  id={"wordlimit"}
-                  name={"kewordlimity"}
-                  checked={false}
-                  
-                />
-                 <label className="ml-2 dark:text-white">
-                  <strong >Minimum Word Count</strong>
-                </label>
-                <p className="pl-5">Ensure that the text meets or exceeds the required minimum word count.</p>
+              <input
+                type="checkbox"
+                id={"wordlimit"}
+                name={"kewordlimity"}
+                checked={false}
+              />
+              <label className="ml-2 dark:text-white">
+                <strong>Minimum Word Count</strong>
+              </label>
+              <p className="pl-5">
+                Ensure that the text meets or exceeds the required minimum word
+                count.
+              </p>
             </div>
             <div className="flex justify-center items-center">
               <button
@@ -324,6 +414,103 @@ const TasksCard: React.FC<TasksCardProps> = ({ task }) => {
               >
                 Confirm Finish
               </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showDetailsDialog && (
+        <div className="w-auto fixed inset-0 flex items-center justify-center z-[9999] bg-neutral-200 dark:bg-slate dark:bg-opacity-15 bg-opacity-60">
+          <div className="bg-white dark:bg-black p-6 rounded shadow-lg lg:w-5/12 xl:w-5/12 2xl:w-5/12 3xl:w-5/12 max-h-[80vh] overflow-y-auto scrollbar-hide">
+            <div className="flex justify-between items-center mb-2">
+              <h2 className="text-xl font-bold dark:text-white">
+                Task Details
+              </h2>
+              <FontAwesomeIcon
+                className="cursor-pointer text-lg dark:text-white text-black"
+                onClick={hanldeCloseAllInfo}
+                icon={faTimes}
+              />
+            </div>
+            <div className="flex justify-start items-center space-x-2 my-4">
+              <button
+                className={`px-4 py-2 rounded mr-2 cursor-pointer ${
+                  showFeedback
+                    ? "bg-white text-blue-500 border border-blue-500 hover:bg-slate-100"
+                    : "bg-blue-500 text-white"
+                }`}
+                onClick={handleShowInfo}
+              >
+                Info
+              </button>
+              <button
+                className={`cursor-pointer px-4 py-2 rounded ${
+                  showInfo
+                    ? "bg-white text-blue-500 border border-blue-500 hover:bg-slate-100"
+                    : "bg-blue-500 text-white"
+                }`}
+                onClick={handleShowFeedback}
+              >
+                Feedback
+              </button>
+            </div>
+            <div className="space-y-4">
+              {showInfo && (
+                <>
+                  <div className="bg-slate-100 dark:bg-boxdark rounded py-4 px-4">
+                    <p className="dark:text-white font-semibold text-lg">
+                      Task
+                    </p>
+                    <p className="dark:text-white">
+                      Project Name: {task.projectName}
+                    </p>
+                    <p className="dark:text-white">
+                      Google Link:{" "}
+                      <a
+                        href={task.googleLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-500"
+                      >
+                        doc-link
+                      </a>
+                    </p>
+                    <p className="dark:text-white">
+                      Task Status: {task.taskStatus}
+                    </p>
+                    <p className="dark:text-white">Deadline: {task.deadline}</p>
+                    <p className="dark:text-white">
+                      Active Role: {task.activeRole}
+                    </p>
+                    <p className="dark:text-white">
+                      Word Count: {task.wordCount}
+                    </p>
+                  </div>
+                  <div className="bg-slate-100 dark:bg-boxdark rounded py-4 px-4 mt-6">
+                    <p className="dark:text-white font-semibold text-lg">
+                      Project
+                    </p>
+                    <p className="dark:text-white">
+                      1. Allgemeine informationen:
+                    </p>
+                    <div className="px-2">
+                      <p className="dark:text-white">Address of Speech</p>
+                      <p className="dark:text-white bg-white dark:bg-meta-4 py-2 px-4 mb-2 rounded">
+                        various
+                      </p>
+                      <p className="dark:text-white">Perspective:</p>
+                      <p className="dark:text-white bg-white dark:bg-meta-4 py-2 px-4 mb-2 rounded">
+                        me
+                      </p>
+                      <p className="dark:text-white">Website:</p>
+                      <p className="dark:text-white bg-white dark:bg-meta-4 py-2 px-4 mb-2 rounded">
+                        various
+                      </p>
+                    </div>
+                  </div>
+                </>
+              )}
+              {showFeedback && <div>Feedback</div>}
             </div>
           </div>
         </div>
