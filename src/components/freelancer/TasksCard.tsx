@@ -421,6 +421,7 @@ const TasksCard: React.FC<TasksCardProps> = ({ task }) => {
                   name={key}
                   checked={checkboxes[key as keyof typeof checkboxes]}
                   onChange={handleCheckboxChange}
+                  className="checked:accent-green-600"
                 />
                 <label htmlFor={key} className="ml-2 dark:text-white">
                   <strong>{h}</strong>

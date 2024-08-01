@@ -282,9 +282,9 @@ const TaskTable = () => {
                         {task.keywords}
                       </p>
                     </td>
-                    <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark ">
+                     <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark ">
                       <p className="text-black dark:text-white flex-inline justify-center pl-5">
-                        <div onClick={() => handleCheckboxClick(index)} className="cursor-pointer">
+                        <div onClick={() => task.status ===   'ready to start'? handleCheckboxClick(index): ''} className="cursor-pointer">
                           {currentComponent[index] === "checkbox1" ? (
                             <Checkbox1 />
                           ) : (
@@ -318,6 +318,7 @@ const TaskTable = () => {
                        
                       </p>
                     </td>
+                   
                   </tr>
                 ))}
               </tbody>
