@@ -51,16 +51,17 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
   }
 
   // Check if any required prop for the Link is missing
-  const hasAllProps = (texts !== 0) && createdOn;
+  const hasAllProps = (texts !== 0) ? true : false;
+
 
   if (!hasAllProps) {
     return (
       <div className="flex flex-col justify-start content-center rounded-sm border border-stroke bg-white py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark">
         <div className="flex h-11.5 w-11.5 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4">
-        {children}
+        {children} 
       </div>
       <h4 className="text-title-md font-bold text-black dark:text-white my-3">
-        {domain}
+        {domain} || DT-{id.slice(-4)}
       </h4>
       <div className="my-2">
         <hr className="text-custom-gray" />
@@ -83,7 +84,7 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
         {children}
       </div>
       <h4 className="text-title-md font-bold text-black dark:text-white my-3">
-        {domain}
+        {domain} || DT-{id.slice(-4)}
       </h4>
       <div className="my-6">
         <hr className="text-custom-gray" />
