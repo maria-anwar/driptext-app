@@ -253,8 +253,8 @@ const TaskTable = () => {
                   <tr key={task._id}>
                     <td className="border-b border-[#eee] py-5 px-4 pl-5 sm:pl-9 dark:border-strokedark xl:pl-11">
                       <Link to="#" className="text-blue-500 text-sm">
-                        {" "}
-                        {task._id}
+                        {"DT-"}
+                        {task._id.slice(-4)}
                       </Link>
                     </td>
                     <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
