@@ -8,7 +8,7 @@ interface CardDataStatsProps {
   domain: string;
   keywords:string,
   projectStatus:string,
-  texts:string;
+  texts:number;
   createdOn:string;
   servicePeriod:string;
   ordersPerMonth:number;
@@ -51,7 +51,7 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
   }
 
   // Check if any required prop for the Link is missing
-  const hasAllProps = title && domain && texts && createdOn && servicePeriod && ordersPerMonth !== undefined && maximumOrders !== undefined && projectDuration !== undefined;
+  const hasAllProps = (texts !== 0) && createdOn;
 
   if (!hasAllProps) {
     return (
