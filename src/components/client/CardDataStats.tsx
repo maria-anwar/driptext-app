@@ -51,7 +51,7 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
   }
 
   // Check if any required prop for the Link is missing
-  const hasAllProps = (texts !== 0) && createdOn;
+  const hasAllProps = (texts == 0) && createdOn;
 
   if (!hasAllProps) {
     return (
