@@ -330,62 +330,62 @@ const TasksCard: React.FC<TasksCardProps> = ({ task }) => {
                     <p className="dark:text-white font-semibold text-lg">
                       Project
                     </p>
-                    <p className="dark:text-white pt-2">
+                    <p className="dark:text-white pt-3">
                       1. General information:
                     </p>
                     <div className="px-2">
-                      <p className="dark:text-white">Address of Speech</p>
+                      <p className="dark:text py-1">Address of Speech</p>
                       <p className="dark:text-white bg-white dark:bg-meta-4 py-2 px-4 mb-2 rounded">
                         various
                       </p>
-                      <p className="dark:text-white">Perspective</p>
+                      <p className="dark:text-white py-1">Perspective</p>
                       <p className="dark:text-white bg-white dark:bg-meta-4 py-2 px-4 mb-2 rounded">
                         me
                       </p>
-                      <p className="dark:text-white">Website</p>
+                      <p className="dark:text-white py-1">Website</p>
                       <p className="dark:text-white bg-white dark:bg-meta-4 py-2 px-4 mb-2 rounded">
                         various
                       </p>
                     </div>
-                    <p className="dark:text-white pt-2">
+                    <p className="dark:text-white pt-3">
                       2. Information about the Company:
                     </p>
                     <div className="px-2">
-                      <p className="dark:text-white">Company Background</p>
+                      <p className="dark:text-white py-1">Company Background</p>
                       <p className="dark:text-white bg-white dark:bg-meta-4 py-2 px-4 mb-2 rounded">
                         various
                       </p>
-                      <p className="dark:text-white">Company Attributes</p>
+                      <p className="dark:text-white py-1">Company Attributes</p>
                       <p className="dark:text-white bg-white dark:bg-meta-4 py-2 px-4 mb-2 rounded">
                         me
                       </p>
-                      <p className="dark:text-white">Company Services</p>
+                      <p className="dark:text-white py-1">Company Services</p>
                       <p className="dark:text-white bg-white dark:bg-meta-4 py-2 px-4 mb-2 rounded">
                         various
                       </p>
                     </div>
-                    <p className="dark:text-white pt-2">
+                    <p className="dark:text-white pt-3">
                       3. Information about the target customers:
                     </p>
                     <div className="px-2">
-                      <p className="dark:text-white">Target Audience</p>
+                      <p className="dark:text-white py-1">Target Audience</p>
                       <p className="dark:text-white bg-white dark:bg-meta-4 py-2 px-4 mb-2 rounded">
                         various
                       </p>
-                      <p className="dark:text-white">Customer Interests</p>
+                      <p className="dark:text-white py-1">Customer Interests</p>
                       <p className="dark:text-white bg-white dark:bg-meta-4 py-2 px-4 mb-2 rounded">
                         me
                       </p>
                     </div>
-                    <p className="dark:text-white pt-2">
+                    <p className="dark:text-white pt-3">
                       4. Aim of content:
                     </p>
                     <div className="px-2">
-                      <p className="dark:text-white">Content Goal</p>
+                      <p className="dark:text-white py-1">Content Goal</p>
                       <p className="dark:text-white bg-white dark:bg-meta-4 py-2 px-4 mb-2 rounded">
                         various
                       </p>
-                      <p className="dark:text-white">Brand Content Information</p>
+                      <p className="dark:text-white py-1">Brand Content Information</p>
                       <p className="dark:text-white bg-white dark:bg-meta-4 py-2 px-4 mb-2 rounded">
                         me
                       </p>
@@ -532,62 +532,62 @@ const TasksCard: React.FC<TasksCardProps> = ({ task }) => {
                     <p className="dark:text-white font-semibold text-lg">
                       Project
                     </p>
-                    <p className="dark:text-white pt-2">
+                    <p className="dark:text-white pt-3">
                       1. General information:
                     </p>
                     <div className="px-2">
-                      <p className="dark:text-white">Address of Speech</p>
+                      <p className="dark:text py-1">Address of Speech</p>
                       <p className="dark:text-white bg-white dark:bg-meta-4 py-2 px-4 mb-2 rounded">
                         various
                       </p>
-                      <p className="dark:text-white">Perspective</p>
+                      <p className="dark:text-white py-1">Perspective</p>
                       <p className="dark:text-white bg-white dark:bg-meta-4 py-2 px-4 mb-2 rounded">
                         me
                       </p>
-                      <p className="dark:text-white">Website</p>
+                      <p className="dark:text-white py-1">Website</p>
                       <p className="dark:text-white bg-white dark:bg-meta-4 py-2 px-4 mb-2 rounded">
                         various
                       </p>
                     </div>
-                    <p className="dark:text-white pt-2">
+                    <p className="dark:text-white pt-3">
                       2. Information about the Company:
                     </p>
                     <div className="px-2">
-                      <p className="dark:text-white">Company Background</p>
+                      <p className="dark:text-white py-1">Company Background</p>
                       <p className="dark:text-white bg-white dark:bg-meta-4 py-2 px-4 mb-2 rounded">
                         various
                       </p>
-                      <p className="dark:text-white">Company Attributes</p>
+                      <p className="dark:text-white py-1">Company Attributes</p>
                       <p className="dark:text-white bg-white dark:bg-meta-4 py-2 px-4 mb-2 rounded">
                         me
                       </p>
-                      <p className="dark:text-white">Company Services</p>
+                      <p className="dark:text-white py-1">Company Services</p>
                       <p className="dark:text-white bg-white dark:bg-meta-4 py-2 px-4 mb-2 rounded">
                         various
                       </p>
                     </div>
-                    <p className="dark:text-white pt-2">
+                    <p className="dark:text-white pt-3">
                       3. Information about the target customers:
                     </p>
                     <div className="px-2">
-                      <p className="dark:text-white">Target Audience</p>
+                      <p className="dark:text-white py-1">Target Audience</p>
                       <p className="dark:text-white bg-white dark:bg-meta-4 py-2 px-4 mb-2 rounded">
                         various
                       </p>
-                      <p className="dark:text-white">Customer Interests</p>
+                      <p className="dark:text-white py-1">Customer Interests</p>
                       <p className="dark:text-white bg-white dark:bg-meta-4 py-2 px-4 mb-2 rounded">
                         me
                       </p>
                     </div>
-                    <p className="dark:text-white pt-2">
+                    <p className="dark:text-white pt-3">
                       4. Aim of content:
                     </p>
                     <div className="px-2">
-                      <p className="dark:text-white">Content Goal</p>
+                      <p className="dark:text-white py-1">Content Goal</p>
                       <p className="dark:text-white bg-white dark:bg-meta-4 py-2 px-4 mb-2 rounded">
                         various
                       </p>
-                      <p className="dark:text-white">Brand Content Information</p>
+                      <p className="dark:text-white py-1">Brand Content Information</p>
                       <p className="dark:text-white bg-white dark:bg-meta-4 py-2 px-4 mb-2 rounded">
                         me
                       </p>

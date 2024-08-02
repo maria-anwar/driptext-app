@@ -84,12 +84,7 @@ const data = [
 
 const Checkbox1 = () => (
   <div className="relative">
-    <input
-      type="checkbox"
-      id="checkboxLabelThree"
-      className="sr-only"
-      checked
-    />
+    <input type="checkbox" id="checkboxLabelThree" className="sr-only" />
     <div
       className={`box mr-4 flex h-4 w-4 items-center justify-center rounded border
       border-red-400 bg-gray dark:bg-transparent`}
@@ -115,7 +110,7 @@ const Checkbox1 = () => (
 
 const Checkbox2 = () => (
   <div className="relative">
-    <input type="checkbox" id="checkboxLabelTwo" className="sr-only" checked />
+    <input type="checkbox" id="checkboxLabelTwo" className="sr-only" />
     <div
       className={`mr-4 flex h-4 w-4 items-center justify-center rounded border border-success bg-gray dark:bg-transparent`}
     >
@@ -148,6 +143,9 @@ const TaskTable = () => {
 
   const [taskData, setTaskData] = useState([]);
   const [userToken, setUserToken] = useState(user.user.token);
+  const [openBarIndex, setOpenBarIndex] = useState(false);
+  const [refreshTrigger, setRefreshTrigger] = useState(0);
+
 
   useEffect(() => {
     let token = userToken;
@@ -157,40 +155,46 @@ const TaskTable = () => {
     };
 
     axios
-      .post("https://driptext-api.vercel.app/api/project/tasks/detail", payload)
-      .then((response) => {
-        const tasks = response.data.data;
-        console.log(tasks);
+    .post("https://driptext-api.vercel.app/api/project/tasks/detail", payload)
+    .then((response) => {
+      const tasks = response.data.data;
+      if (Array.isArray(tasks)) {
         localStorage.setItem("tasks", JSON.stringify(tasks));
         setTaskData(tasks);
-      })
-      .catch((err) => {
-        console.error("Error fetching project details:", err);
-      });
-  }, [projectId]);
+      } else {
+        console.error("Received data is not an array");
+      }
+      setRefreshTrigger(0);
+    })
+    .catch((err) => {
+      console.error("Error fetching project details:", err);
+      setRefreshTrigger(0);
+    });
+  }, [projectId,refreshTrigger]);
+
+
 
   useEffect(() => {
     const storedTasks = localStorage.getItem("tasks");
     if (storedTasks) {
-      setTaskData(JSON.parse(storedTasks));
+      try {
+        const tasks = JSON.parse(storedTasks);
+        if (Array.isArray(tasks)) {
+          setTaskData(tasks);
+        } else {
+          console.error("Stored data is not an array");
+        }
+        setRefreshTrigger(0);
+      } catch (error) {
+        console.error("Error parsing stored tasks:", error);
+        setRefreshTrigger(0);
+      }
     }
-  }, []);
+  }, [projectId,refreshTrigger]);
+  
 
-  const [currentComponent, setCurrentComponent] = useState(
-    new Array(productData.length).fill("checkbox1")
-  );
-
-  const [openBarIndex, setOpenBarIndex] = useState(null);
-
-  const handleCheckboxClick = (index) => {
-    setOpenBarIndex(openBarIndex === index ? null : index);
-  };
-
-  const handleComponentSelect = (index, component) => {
-    const newComponents = [...currentComponent];
-    newComponents[index] = component;
-    setCurrentComponent(newComponents);
-    setOpenBarIndex(null);
+  const handleCheckboxClick = () => {
+    setOpenBarIndex(!openBarIndex);
   };
 
   // const [data, setData] = useState(productData);
@@ -217,7 +221,7 @@ const TaskTable = () => {
   //   return React.cloneElement(symbol, { onClick: handleClick });
   // };
 
-  const handleCrossApi = async (projectTaskId) => {
+  const handleCrossApi =  (projectTaskId) => {
     let token = userToken;
     axios.defaults.headers.common["access-token"] = token;
     let payload = {
@@ -225,16 +229,14 @@ const TaskTable = () => {
       projectTaskId: projectTaskId,
     };
 
-    axios
+      axios
       .post(
         "https://driptext-api.vercel.app/api/project/tasks/projecttaskupdate",
         payload
       )
       .then((response) => {
-        const tasks = response.data.data;
-        console.log(tasks);
-        localStorage.setItem("tasks", JSON.stringify(tasks.data));
-        setTaskData(tasks.data);
+        setRefreshTrigger(prev => prev + 1);
+
       })
       .catch((err) => {
         console.error("Error fetching project details:", err);
@@ -242,7 +244,7 @@ const TaskTable = () => {
   };
 
   // Define handleTickApi using Axios
-  const handleTickApi = async (projectTaskId) => {
+  const handleTickApi =  (projectTaskId) => {
     let token = userToken;
     axios.defaults.headers.common["access-token"] = token;
     let payload = {
@@ -256,15 +258,15 @@ const TaskTable = () => {
         payload
       )
       .then((response) => {
-        const tasks = response.data;
-        console.log(tasks.data);
-        localStorage.setItem("tasks", JSON.stringify(tasks.data));
-        setTaskData(tasks.data);
+        setRefreshTrigger(prev => prev + 1);
+
       })
       .catch((err) => {
         console.error("Error fetching project details:", err);
       });
   };
+
+  
 
   return (
     <>
@@ -335,34 +337,26 @@ const TaskTable = () => {
                     <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark ">
                       <p className="text-black dark:text-white flex-inline justify-center pl-5">
                         <div
-                          onClick={() =>
+                          onClick={
                             task.status === "ready to start"
-                              ? handleCheckboxClick(index)
+                              ? handleCheckboxClick
                               : ""
                           }
                           className="cursor-pointer"
                         >
                           {task.published === false ? (
-                            currentComponent[index] === "checkbox1" ? (
-                              <Checkbox1 />
-                            ) : (
-                              <Checkbox2 />
-                            )
-                          ) : currentComponent[index] === "checkbox1" ? (
                             <Checkbox1 />
                           ) : (
                             <Checkbox2 />
                           )}
-
-          
                         </div>
                         <div className="relative w-full">
                           <div className="absolute right-20">
-                            {openBarIndex === index && (
+                            {openBarIndex && (
                               <div className="w-full py-2 pl-3 flex mt-2 space-x-2 border border-zinc-200 bg-white shadow-md">
                                 <div
                                   onClick={() => {
-                                    handleComponentSelect(index, "checkbox1");
+                                    handleCheckboxClick()
                                     if (task.published === true) {
                                       handleCrossApi(task._id);
                                     }
@@ -373,7 +367,7 @@ const TaskTable = () => {
                                 </div>
                                 <div
                                   onClick={() => {
-                                    handleComponentSelect(index, "checkbox2");
+                                    handleCheckboxClick()
                                     if (task.published === false) {
                                       handleTickApi(task._id);
                                     }
