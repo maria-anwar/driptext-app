@@ -8,8 +8,10 @@ import axios from "axios";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const OnboardingForm = ({projectName,userId}) => {
+  const navigate = useNavigate();
   const [loading,setLoading] = useState(false);
   
 
@@ -42,7 +44,7 @@ const OnboardingForm = ({projectName,userId}) => {
 
 
   const onSubmit = async (values) => {
-    
+    setLoading(true)
     const onBoardingData = {
       speech: values.speech,
       prespective: values.perspective,
@@ -59,12 +61,13 @@ const OnboardingForm = ({projectName,userId}) => {
   
     const apiUrl = 'https://driptext-api.vercel.app/api/users/create/onboarding';
     console.log(onBoardingData);
-    setLoading(true)
+
     try {
       const response = await axios.post(apiUrl, onBoardingData);
       setLoading(false)
       console.log('Data submitted successfully:', response.data);
-      window.location.href = 'https://driptext.de/danke-probetext/';
+      navigate('/danke-probetext')
+      // window.location.href = 'https://driptext.de/danke-probetext/';
     } catch (error) {
       
       if (error.response) {
@@ -243,7 +246,7 @@ const OnboardingForm = ({projectName,userId}) => {
                 />
                 <div className="w-full relative bg-custom-black flex justify-center py-2 xs:py-2.5 mt-1 rounded-xl">
                   <button
-                    className={`border-none w-full text-white font-medium text-base cursor-pointer ${loading? 'cursor-not-allowed':'cursor-pointer'}`}
+                    className={`border-none w-full text-white font-medium text-base ${loading? 'cursor-not-allowed':'cursor-pointer'}`}
                     type="submit"
                     disabled={loading}
                   >

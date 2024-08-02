@@ -438,11 +438,11 @@ const Tasks: React.FC = () => {
             <button
               key={button.name}
               onClick={() => handleTasks(button.name)}
-              className={`py-1 px-4 mx-1 my-1 font-medium outline-none bg-cardHeadingborder-sky-500 rounded-sm sm
+              className={`py-2 px-6 mx-1 my-1 font-medium outline-none bg-cardHeadingborder-sky-500
             ${
               activeButton === button.name
-                ? "bg-cardHeading text-white font-semibold"
-                : "bg-slate-200 dark:bg-white dark:text-black hover:bg-cardHeading hover:text-white"
+                ? "bg-cardHeading text-white font-semibold "
+                : "bg-white ring-1 ring-cardHeading dark:bg-white dark:text-black hover:bg-cardHeading hover:text-white"
             }`}
             >
               {button.label}
