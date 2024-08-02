@@ -90,7 +90,7 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
         <hr className="text-custom-gray" />
       </div>
       <div className="mt-3 mb-3 flex items-end justify-between">
-         <div className="text-sm font-medium text-dark-gray">Text <div className="text-meta-5">{title}</div></div>
+         <div className="text-sm font-medium text-dark-gray">Text <div className="text-meta-5">{title}/1</div></div>
          <div className="text-sm font-medium text-dark-gray">Created on: <div className="text-meta-3 flex justify-end">{createdOn}</div></div>
          
       </div>
