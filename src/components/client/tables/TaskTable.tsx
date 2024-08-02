@@ -144,32 +144,33 @@ const TaskTable = () => {
   const location = useLocation();
   const { projectId } = location.state || {};
 
-  const user = useSelector(state=>state.user)
+  const user = useSelector((state) => state.user);
 
   const [taskData, setTaskData] = useState([]);
   const [userToken, setUserToken] = useState(user.user.token);
 
   useEffect(() => {
     let token = userToken;
-    axios.defaults.headers.common['access-token'] = token;
+    axios.defaults.headers.common["access-token"] = token;
     let payload = {
-      projectId: projectId
+      projectId: projectId,
     };
 
-    axios.post('https://driptext-api.vercel.app/api/project/tasks/detail', payload)
+    axios
+      .post("https://driptext-api.vercel.app/api/project/tasks/detail", payload)
       .then((response) => {
         const tasks = response.data.data;
-        console.log(tasks)
-        localStorage.setItem('tasks', JSON.stringify(tasks));
-        setTaskData(tasks); 
+        console.log(tasks);
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+        setTaskData(tasks);
       })
       .catch((err) => {
-        console.error('Error fetching project details:', err);
+        console.error("Error fetching project details:", err);
       });
-  }, [projectId]); 
+  }, [projectId]);
 
   useEffect(() => {
-    const storedTasks = localStorage.getItem('tasks');
+    const storedTasks = localStorage.getItem("tasks");
     if (storedTasks) {
       setTaskData(JSON.parse(storedTasks));
     }
@@ -216,6 +217,55 @@ const TaskTable = () => {
   //   return React.cloneElement(symbol, { onClick: handleClick });
   // };
 
+  const handleCrossApi = async (projectTaskId) => {
+    let token = userToken;
+    axios.defaults.headers.common["access-token"] = token;
+    let payload = {
+      projectId: projectId,
+      projectTaskId: projectTaskId,
+    };
+
+    axios
+      .post(
+        "https://driptext-api.vercel.app/api/project/tasks/projecttaskupdate",
+        payload
+      )
+      .then((response) => {
+        const tasks = response.data.data;
+        console.log(tasks);
+        localStorage.setItem("tasks", JSON.stringify(tasks.data));
+        setTaskData(tasks.data);
+      })
+      .catch((err) => {
+        console.error("Error fetching project details:", err);
+      });
+  };
+
+  // Define handleTickApi using Axios
+  const handleTickApi = async (projectTaskId) => {
+    let token = userToken;
+    axios.defaults.headers.common["access-token"] = token;
+    let payload = {
+      projectId: projectId,
+      projectTaskId: projectTaskId,
+    };
+
+    axios
+      .post(
+        "https://driptext-api.vercel.app/api/project/tasks/projecttaskupdate",
+        payload
+      )
+      .then((response) => {
+        const tasks = response.data;
+        console.log(tasks.data);
+        localStorage.setItem("tasks", JSON.stringify(tasks.data));
+        setTaskData(tasks.data);
+      })
+      .catch((err) => {
+        console.error("Error fetching project details:", err);
+      });
+  };
+
   return (
     <>
       <div className="2xl:px-6 3xl:px-10">
@@ -249,7 +299,7 @@ const TaskTable = () => {
                 </tr>
               </thead>
               <tbody>
-                {taskData.map((task, index, ) => (
+                {taskData.map((task, index) => (
                   <tr key={task._id}>
                     <td className="border-b border-[#eee] py-5 px-4 pl-5 sm:pl-9 dark:border-strokedark xl:pl-11">
                       <Link to="#" className="text-blue-500 text-sm">
@@ -282,43 +332,62 @@ const TaskTable = () => {
                         {task.keywords}
                       </p>
                     </td>
-                     <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark ">
+                    <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark ">
                       <p className="text-black dark:text-white flex-inline justify-center pl-5">
-                        <div onClick={() => task.status ===   'ready to start'? handleCheckboxClick(index): ''} className="cursor-pointer">
-                          {currentComponent[index] === "checkbox1" ? (
+                        <div
+                          onClick={() =>
+                            task.status === "ready to start"
+                              ? handleCheckboxClick(index)
+                              : ""
+                          }
+                          className="cursor-pointer"
+                        >
+                          {task.published === false ? (
+                            currentComponent[index] === "checkbox1" ? (
+                              <Checkbox1 />
+                            ) : (
+                              <Checkbox2 />
+                            )
+                          ) : currentComponent[index] === "checkbox1" ? (
                             <Checkbox1 />
                           ) : (
                             <Checkbox2 />
                           )}
+
+          
                         </div>
                         <div className="relative w-full">
                           <div className="absolute right-20">
-                          {openBarIndex === index && (
-                          <div className="w-full py-2 pl-3 flex mt-2 space-x-2 border border-zinc-200 bg-white shadow-md">
-                            <div
-                              onClick={() =>
-                                handleComponentSelect(index, "checkbox1")
-                              }
-                              className="cursor-pointer"
-                            >
-                              <Checkbox1 />
-                            </div>
-                            <div
-                              onClick={() =>
-                                handleComponentSelect(index, "checkbox2")
-                              }
-                              className="cursor-pointer"
-                            >
-                              <Checkbox2 />
-                            </div>
-                          </div>
-                        )}
+                            {openBarIndex === index && (
+                              <div className="w-full py-2 pl-3 flex mt-2 space-x-2 border border-zinc-200 bg-white shadow-md">
+                                <div
+                                  onClick={() => {
+                                    handleComponentSelect(index, "checkbox1");
+                                    if (task.published === true) {
+                                      handleCrossApi(task._id);
+                                    }
+                                  }}
+                                  className="cursor-pointer"
+                                >
+                                  <Checkbox1 />
+                                </div>
+                                <div
+                                  onClick={() => {
+                                    handleComponentSelect(index, "checkbox2");
+                                    if (task.published === false) {
+                                      handleTickApi(task._id);
+                                    }
+                                  }}
+                                  className="cursor-pointer"
+                                >
+                                  <Checkbox2 />
+                                </div>
+                              </div>
+                            )}
                           </div>
                         </div>
-                       
                       </p>
                     </td>
-                   
                   </tr>
                 ))}
               </tbody>
