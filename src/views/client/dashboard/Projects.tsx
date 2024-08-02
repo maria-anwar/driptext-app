@@ -78,7 +78,7 @@ const Projects: React.FC = () => {
             keywords={project.keywords} 
             projectStatus={project.projectStatus}
             createdOn= {formatDate(project.createdAt)} 
-            texts={"project.text" || ''} // Assuming texts are available in project data
+            texts={project.text} // Assuming texts are available in project data
             servicePeriod={"project.servicePeriod" || ''}
             ordersPerMonth={5|| ''}
             maximumOrders={54|| ''}
