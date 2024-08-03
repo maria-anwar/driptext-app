@@ -13,6 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const RegistrationForm = () => {
   const navigate = useNavigate();
   const[roleID,setRoleID]= useState(null);
+  const [loading ,setLoading] = useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -51,6 +52,7 @@ const RegistrationForm = () => {
   });
   
   const onSubmit = async (values) => {
+    setLoading(true);
     const registerData = {
       firstName:values.fname,
       lastName: values.lname,
@@ -66,8 +68,10 @@ const RegistrationForm = () => {
     const response = await axios.post(apiUrl, registerData);
     console.log(response.data.data._id)
     toast.success('Data submitted successfully:', response.registerData);
+    setLoading(false);
      navigate("/onboarding-probetext",{state:{projectName:values.project,userId:response.data.data._id}});
    } catch (error) {
+    setLoading(false);
     toast.error('Error submitting data:', error);
     console.log(error);
    }
@@ -142,10 +146,11 @@ const RegistrationForm = () => {
 
                 <div className="w-full bg-custom-black flex justify-center py-2 xs:py-2.5 mt-1 rounded-xl">
                   <button
-                    className="border-none text-white font-medium text-base cursor-pointer "
+                    className={`border-none text-white font-medium text-base  ${loading?'cursor-not-allowed':'cursor-pointer'}`}
                     type="submit"
+                    disabled={loading}
                   >
-                    Submit Order
+                    {loading? 'Submitting' :'Submit Order'}
                   </button>
                 </div>
               </div>

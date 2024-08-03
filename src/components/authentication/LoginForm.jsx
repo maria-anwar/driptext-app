@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { useNavigate, Link } from "react-router-dom";
@@ -16,6 +16,7 @@ import { useDispatch } from 'react-redux';
 import { setUser } from '../../redux/userSlice.js';
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const [loading,setLoading] = useState(false)
  
   const navigate = useNavigate();
  
@@ -30,7 +31,7 @@ const LoginForm = () => {
   });
 
   const onSubmit = async(values) => {
-    
+    setLoading(true)
     let userData = {
       email: values.email,
       password: values.password,
@@ -135,7 +136,7 @@ const LoginForm = () => {
                 <Link to="/auth/lost/request">Forgot Password</Link>
               </Typography>
             </div>
-            <Button className="mt-6 bg-black text-white text-sm" fullWidth type="submit">
+            <Button className={`mt-6 bg-black text-white text-sm ${loading?'cursor-not-allowed':'cursor-pointer'}`} fullWidth type="submit">
               Sign In
             </Button>
           </Form>

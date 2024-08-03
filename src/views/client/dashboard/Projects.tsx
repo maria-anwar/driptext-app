@@ -10,15 +10,11 @@ import { format } from 'date-fns';
 const Projects: React.FC = () => {
   const user = useSelector(state=>state.user)
 
-
-
-
     const formatDate =(dateString) => {
     const date = new Date(dateString);
 
     return format(date, 'MMMM d, yyyy');
     }
-
 
   const [projectData, setProjectData] = useState([]);
   const [userId, setUserID] = useState(user.user.data.user._id);
@@ -78,11 +74,11 @@ const Projects: React.FC = () => {
             keywords={project.keywords} 
             projectStatus={project.projectStatus}
             createdOn= {formatDate(project.createdAt)} 
-            texts={project.text} // Assuming texts are available in project data
+            texts={project.texts} // Assuming texts are available in project data
             servicePeriod={"project.servicePeriod" || ''}
             ordersPerMonth={5|| ''}
             maximumOrders={54|| ''}
-            projectDuration={3|| ''}
+            projectDuration={project.duration}
             rate={"project.rate" || ''} // Assuming rate is available
             levelUp={true|| true} // Assuming levelUp is available
             

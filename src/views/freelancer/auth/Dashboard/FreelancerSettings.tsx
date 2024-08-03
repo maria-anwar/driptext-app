@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import Breadcrumb from "../../../components/client/breeadcrumbs/Breadcrumb";
+import Breadcrumb from "../../../../components/freelancer/breeadcrumbs/Breadcrumb";
 import SidebarIcons from "../../../components/client/icons/SidebarIcons";
 
 const FreelancerSettings = () => {
@@ -9,7 +9,7 @@ const FreelancerSettings = () => {
   return (
     <>
       <div className="mx-auto max-w-270 3xl:px-6">
-        {/* <Breadcrumb pageName="Settings" /> */}
+        <Breadcrumb pageName="Settings" pageData='' />
         <div className="grid grid-cols-5  gap-8">
           <div className="col-span-5 3xl:col-span-8  xl:col-span-3">
             <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">

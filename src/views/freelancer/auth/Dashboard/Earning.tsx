@@ -45,9 +45,9 @@ const Earning: React.FC = () => {
 
   return (
     <>
-    
+  
       <div className="2xl:px-6 3xl:px-10">
-        <Breadcrumb pageName="Earning" />
+        <Breadcrumb pageName="Project Tasks" pageData='Here you can see all the earning from all your DripTexts projects.'/>
         <div className="rounded-sm border border-stroke bg-white pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
           <div className="max-w-full overflow-x-auto">
             <table className="w-full table-auto">

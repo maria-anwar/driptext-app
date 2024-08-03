@@ -64,7 +64,7 @@ const WebRoutes = () => {
           <Route path="/onboarding-probetext" element={<OnboardingPage />} />   
           <Route path="/package-booking" element={<PackageBooking />} />         
           <Route path="/onboarding-formular-freelancer" element={<Register />} />            
-          <Route path="/thankyou-page" element={<ThankYouPage />}/>
+          <Route path="/danke-probetext" element={<ThankYouPage />}/>
           <Route path="/bestellformular" element={<OrderForm />}/>
           <Route path="/" element={<SignIn />} />
           <Route path="/auth/forgetkey/:token" element={<RedirectHandler />} />

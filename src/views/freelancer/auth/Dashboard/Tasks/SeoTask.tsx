@@ -1,5 +1,5 @@
 import React from "react";
-import TasksCard from "../../../../../components/freelancer/TasksCard";
+import SEOCard from "../../../../../components/freelancer/SEOCard";
 
 // Define the type for the task object
 interface Task {
@@ -32,7 +32,7 @@ const SeoTasks: React.FC<SeoTasksProps> = ({ taskDataArray }) => {
   return (
     <>
       {filteredTasks.map((task, index) => (
-        <TasksCard key={index} task={task} />
+        <SEOCard key={index} task={task} />
       ))}
     </>
   );
