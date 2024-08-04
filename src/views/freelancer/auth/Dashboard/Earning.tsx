@@ -45,106 +45,100 @@ const Earning: React.FC = () => {
 
   return (
     <>
-  
       <div className="2xl:px-6 3xl:px-10">
-        <Breadcrumb pageName="Project Tasks" pageData='Here you can see all the earning from all your DripTexts projects.'/>
+        <Breadcrumb
+          pageName="Earnings"
+          pageData="Here you can see all the earning from all your DripTexts projects."
+        />
         <div className="rounded-sm border border-stroke bg-white pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
-          <div className="max-w-full overflow-x-auto">
-            <table className="w-full table-auto">
+          <div className="max-w-full overflow-x-auto ">
+            <table className="w-full table-auto ">
               <thead>
                 <tr className="bg-gray-2 text-left dark:bg-meta-4 ">
-                  <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
-                  Performance Period
+                  <th className="min-w-[140px]  py-4 px-4 font-medium text-black dark:text-white ">
+                    Performance Period
                   </th>
-                  <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
-                  Order Number
+                  <th className="min-w-[120px] py-4 px-4 font-medium  text-black dark:text-white">
+                    Order Number
                   </th>
-                  <th className="min-w-[170px] py-4 px-4 font-medium text-black dark:text-white">
-                  Date
-                  </th>
-                  <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
-                  Role
+                  <th className="min-w-[130px] py-4 px-4 font-medium text-black dark:text-white">
+                    Date
                   </th>
                   <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
-                  Article/Keyword
+                    Role
                   </th>
                   <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
-                  Target Number of Words
+                    Article/Keyword
                   </th>
                   <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
-                  Actual Number of Words
+                    Target Number of Words
                   </th>
                   <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
-                  Billed Words
+                    Actual Number of Words
                   </th>
                   <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
-                  Difference
+                    Billed Words
                   </th>
                   <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
-                  Price
+                    Difference
+                  </th>
+                  <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
+                    Price
                   </th>
                 </tr>
-
-                
               </thead>
               <tbody>
                 {tableData.map((value) => (
-                  <tr key={value.orderNumber}>
-                                        <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                      <p className="text-black dark:text-white">
-                      {value.performancePeriod}
+                  <tr className="text-left" key={value.orderNumber}>
+                    <td className="border-b  border-[#eee] py-5 px-4 dark:border-strokedark">
+                      <p className="text-black  dark:text-white">
+                        {value.performancePeriod}
                       </p>
                     </td>
 
-                    <td className="border-b border-[#eee] py-5 px-4 pl-5 sm:pl-9 dark:border-strokedark xl:pl-11">
-                      <Link to="#" className="text-blue-500 text-sm" onClick={()=>alert(value.orderNumber)} >
+                    <td className="border-b border-[#eee]  py-5 px-4 dark:border-strokedark">
+                      <Link
+                        to="#"
+                        className="text-blue-500  text-sm"
+                        onClick={() => alert(value.orderNumber)}
+                      >
                         {value.orderNumber}
                       </Link>
                     </td>
                     <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                      <p className="text-black dark:text-white">{value.date}</p>
+                    </td>
+                    <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                      <p className="text-black dark:text-white">{value.role}</p>
+                    </td>
+                    <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                       <p className="text-black dark:text-white">
-                      
-                      {value.date}
+                        {value.articleKeyword}
                       </p>
                     </td>
                     <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                       <p className="text-black dark:text-white">
-                   
-                      {value.role}
+                        {value.targetNumberOfWords}
                       </p>
                     </td>
                     <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                       <p className="text-black dark:text-white">
-                     
-                      {value.articleKeyword}
+                        {value.actualNumberOfWords}
                       </p>
                     </td>
                     <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                       <p className="text-black dark:text-white">
-                      
-                      {value.targetNumberOfWords}
+                        {value.billedWords}
                       </p>
                     </td>
                     <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                       <p className="text-black dark:text-white">
-                    
-                      {value.actualNumberOfWords}
+                        {value.difference}
                       </p>
                     </td>
                     <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                       <p className="text-black dark:text-white">
-                   
-                      {value.billedWords}
-                      </p>
-                    </td>
-                    <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                      <p className="text-black dark:text-white">
-                      {value.difference}
-                      </p>
-                    </td>
-                    <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                      <p className="text-black dark:text-white">
-                      {value.price}
+                        {value.price}
                       </p>
                     </td>
                   </tr>
@@ -153,8 +147,8 @@ const Earning: React.FC = () => {
             </table>
           </div>
         </div>
-        </div>
-   
+      </div>
+
       {/* {tasks.map((task, index) => {
           return (
             <CardDataStats

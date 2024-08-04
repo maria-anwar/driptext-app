@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import SidebarLinkGroup from "./SidebarLinkGroup";
 import logo from "../../../assets/homeimages/driptext-logo.png";
 import SidebarIcons from "../icons/SidebarIcons";
 import { UserContext } from "../../../views/auth/AuthContext";
@@ -13,15 +12,16 @@ interface SidebarProps {
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   const location = useLocation();
   const { pathname } = location;
-  const {setUser} = useContext(UserContext)
+  const { setUser } = useContext(UserContext);
 
-  const trigger = useRef<any>(null);
-  const sidebar = useRef<any>(null);
+  const trigger = useRef<HTMLButtonElement>(null);
+  const sidebar = useRef<HTMLDivElement>(null);
 
   const storedSidebarExpanded = localStorage.getItem("sidebar-expanded");
   const [sidebarExpanded, setSidebarExpanded] = useState(
     storedSidebarExpanded === null ? false : storedSidebarExpanded === "true"
   );
+
   // close on click outside
   useEffect(() => {
     const clickHandler = ({ target }: MouseEvent) => {
@@ -36,7 +36,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
     };
     document.addEventListener("click", clickHandler);
     return () => document.removeEventListener("click", clickHandler);
-  });
+  }, [sidebarOpen, setSidebarOpen]);
+
   // close if the esc key is pressed
   useEffect(() => {
     const keyHandler = ({ keyCode }: KeyboardEvent) => {
@@ -45,7 +46,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
     };
     document.addEventListener("keydown", keyHandler);
     return () => document.removeEventListener("keydown", keyHandler);
-  });
+  }, [sidebarOpen, setSidebarOpen]);
 
   useEffect(() => {
     localStorage.setItem("sidebar-expanded", sidebarExpanded.toString());
@@ -56,10 +57,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
     }
   }, [sidebarExpanded]);
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setUser(null);
+  };
 
-  const handleLogout = ()=>{
-    localStorage.removeItem('token')
-  }
   return (
     <aside
       ref={sidebar}
@@ -67,10 +69,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
         sidebarOpen ? "translate-x-0" : "-translate-x-full"
       }`}
     >
-      {/* <!-- SIDEBAR HEADER --> */}
+      {/* SIDEBAR HEADER */}
       <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
         <NavLink to="/">
-          {/* <img src={logo} alt="Logo" /> */}
           <div className="w-full flex items-center justify-normal gap-1.5 cursor-pointer">
             <img src={logo} alt="Logo" className="w-12 h-12 rounded-md" />
             <div>
@@ -106,24 +107,19 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
           </svg>
         </button>
       </div>
-      {/* <!-- SIDEBAR HEADER Ends --> */}
+      {/* SIDEBAR HEADER Ends */}
 
-      {/* <!-- SIDEBAR MENU --> */}
-
+      {/* SIDEBAR MENU */}
       <div className="no-scrollbar h-full flex flex-col overflow-y-auto duration-300 ease-linear">
         <nav className="h-full mt-5 py-4 px-4 lg:mt-6 lg:px-6">
           <div className="h-full">
-            {/* <h3 className="mb-4 ml-4 text-sm font-semibold text-bodydark2">
-              MENU
-            </h3> */}
-
             <div className="mb-6 h-full flex flex-col justify-between">
               <ul className="flex flex-col gap-1.5">
                 <li>
                   <NavLink
                     to="/client-dashboard"
                     className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                      pathname.includes("calendar") &&
+                      pathname === "/client-dashboard" &&
                       "bg-graydark dark:bg-meta-4"
                     }`}
                   >
@@ -131,18 +127,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     My Projects
                   </NavLink>
                 </li>
-                {/* <li>
-                  <NavLink
-                    to="profile"
-                    className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                      pathname.includes("profile") &&
-                      "bg-graydark dark:bg-meta-4"
-                    }`}
-                  >
-                    {SidebarIcons[2].profile}
-                    Profile
-                  </NavLink>
-                </li> */}
                 <li>
                   <NavLink
                     to="contact"
@@ -177,9 +161,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
         <ul>
           <li className="">
             <NavLink
-            onClick={()=>handleLogout}
+              onClick={handleLogout}
               to="/"
-              className={`group relative flex items-center gap-2.5 rounded-sm py-4 px-4  lg:px-8 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 `}
+              className={`group relative flex items-center gap-2.5 rounded-sm py-4 px-4 lg:px-8 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4`}
             >
               {SidebarIcons[3].auth}
               Sign out
@@ -190,4 +174,5 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
     </aside>
   );
 };
+
 export default Sidebar;
