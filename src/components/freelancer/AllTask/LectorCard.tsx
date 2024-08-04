@@ -44,6 +44,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task }) => {
   const [showInfo, setShowInfo] = useState(true);
   const [showFeedback, setShowFeedback] = useState(false);
   const [comment, setComment] = useState("");
+  const [commentCheck, setCommentCheck] = useState(false);
   const [checkboxes, setCheckboxes] = useState({
     format1: false,
     format2: false,
@@ -108,8 +109,16 @@ const LectorCard: React.FC<LectorCardProps> = ({ task }) => {
   };
 
   const confirmFinish = () => {
-    setIsFinish(true);
-    setShowFinishDialog(false);
+    if(!allChecked && commentCheck){
+      setIsFinish(true);
+      setShowFinishDialog(false);
+        alert("feedback")
+        
+    }else if (allChecked){
+      setIsFinish(true);
+      setShowFinishDialog(false);
+      alert("comment")
+    }
   };
 
   const hanldeShowAllInfo = () => {
@@ -137,6 +146,13 @@ const LectorCard: React.FC<LectorCardProps> = ({ task }) => {
       [e.target.name]: e.target.checked,
     });
   };
+
+  const handleComment = (e) => {
+    setComment(e.target.value)
+    if(comment.length>0){
+      setCommentCheck(true)
+    }
+  }
 
   const ProjectHeader = () => {
     return (
@@ -317,7 +333,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task }) => {
                 </p>
                 <textarea
                   value={comment}
-                  onChange={(e) => setComment(e.target.value)}
+                  onChange={handleComment}
                   className="w-full h-30 py-3 px-4 outline-none focus:ring-2 text-black"
                 ></textarea>
               </div>
@@ -330,7 +346,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task }) => {
                     : "bg-bodydark dark:bg-slate-500 text-white cursor-not-allowed"
                 }`}
                 onClick={confirmFinish}
-                disabled={!allChecked}
+                // disabled={allChecked || commentCheck}
               >
                 Confirm Finish
               </button>
