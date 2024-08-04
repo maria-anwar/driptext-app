@@ -7,6 +7,8 @@ import emailjs from 'emailjs-com';
 import { EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_USER_ID } from './emailjs-config';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useForm, ValidationError } from "@formspree/react";
+
 
 
 
@@ -19,42 +21,46 @@ const Support = () => {
   const [loading,setLoading]=useState(false)
   const [status, setStatus] = useState('');
 
+
+ 
   const handleEmailSubmit = (e) => {
     e.preventDefault();
-
-    // Basic validation
-    if (!email || !firstName || !lastName || !message) {
-      toast.error('Please fill in all fields.');
-      return;
+    const [state, handleSubmit] = useForm("myzgwlqa");
+    if (state.succeeded) {
+  
+      console.log('Thanks for joining!');
     }
+    
+    // if (!email || !firstName || !lastName || !message) {
+    //   toast.error('Please fill in all fields.');
+    //   return;
+    // }
+    // setLoading(true);
+    // emailjs.send(
+    //   EMAILJS_SERVICE_ID,
+    //   EMAILJS_TEMPLATE_ID,
+    //   {
+    //     to_email: email,
+    //     to_name: `${firstName} ${lastName}`,
+    //     from_name: `${firstName} ${lastName}`,
+    //     from_email: email,
+    //     message: message,
+    //   },
+    //   EMAILJS_USER_ID
+    // )
+    // .then((response) => {
+    //   console.log('Email sent successfully:', response);
+    //   toast.success('Email sent successfully!');
+    //   setMessage('')
+    // })
+    // .catch((error) => {
+    //   console.error('Error sending email:', error);
+    //   toast.error('Failed to send email.');
+    // })
+    // .finally(() => {
+    //   setLoading(false);
 
-    setLoading(true);
-
-    emailjs.send(
-      EMAILJS_SERVICE_ID,
-      EMAILJS_TEMPLATE_ID,
-      {
-        to_email: email,
-        to_name: `${firstName} ${lastName}`,
-        from_name: `${firstName} ${lastName}`,
-        from_email: email,
-        message: message,
-      },
-      EMAILJS_USER_ID
-    )
-    .then((response) => {
-      console.log('Email sent successfully:', response);
-      toast.success('Email sent successfully!');
-      setMessage('')
-    })
-    .catch((error) => {
-      console.error('Error sending email:', error);
-      toast.error('Failed to send email.');
-    })
-    .finally(() => {
-      setLoading(false);
-
-    });
+    // });
   };
   return (
     <>
