@@ -284,7 +284,9 @@ const LectorCard: React.FC<LectorCardProps> = ({ task }) => {
                   name={key}
                   checked={checkboxes[key as keyof typeof checkboxes]}
                   onChange={handleCheckboxChange}
+                  className="h-4 w-4 accent-green-600 bg-gray-100 border-gray-300 rounded outline-none focus:ring-green-500 focus:ring-1"
                 />
+
                 <label htmlFor={key} className="ml-2 dark:text-white">
                   <strong>{h}</strong>
                 </label>
