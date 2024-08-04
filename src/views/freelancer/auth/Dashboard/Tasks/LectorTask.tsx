@@ -1,6 +1,6 @@
 import React from "react";
-import TasksCard from "../../../../../components/freelancer/TasksCard";
-import LectorCard from "../../../../../components/freelancer/LectorCard";
+import TasksCard from "../../../../../components/freelancer/AllTask/TasksCard";
+import LectorCard from "../../../../../components/freelancer/AllTask/LectorCard";
 
 // Define the type for the task object
 interface Task {

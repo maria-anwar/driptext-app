@@ -432,7 +432,7 @@ const Tasks: React.FC = () => {
   return (
     <>
       <div className="2xl:px-6 3xl:px-10">
-        <Breadcrumb pageName="Your tasks overview" pageData="Here you can view your tasks." />
+        <Breadcrumb pageName="Tasks" pageData="Here you can view your tasks." />
         <div className="w-full">
           {buttons.map((button) => (
             <button
@@ -442,7 +442,7 @@ const Tasks: React.FC = () => {
             ${
               activeButton === button.name
                 ? "bg-cardHeading text-white font-semibold "
-                : "bg-white ring-1 ring-cardHeading dark:bg-white dark:text-black hover:bg-cardHeading hover:text-white"
+                : "bg-white ring-1 ring-cardHeading dark:hover:ring-0 dark:ring-white  dark:text-white dark:bg-transparent hover:bg-cardHeading hover:text-white"
             }`}
             >
               {button.label}

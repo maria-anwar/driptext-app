@@ -88,7 +88,6 @@ const WebRoutes = () => {
           {/* Freelancer Dashboard */}
           <Route path="/freelancer-dashboard" element={ <FreelancerLayout/>} >
             <Route index element={<Tasks />}/>
-           
             <Route path="earning" element={<Earning />} />
             <Route path="driptext-academy" element={<DriptextAcademy />} />
             <Route path="freelancer-setting" element={<FreelancerSettings />} />

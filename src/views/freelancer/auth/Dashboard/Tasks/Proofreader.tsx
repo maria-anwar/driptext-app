@@ -1,5 +1,5 @@
 import React from "react";
-import TasksCard from "../../../../../components/freelancer/TasksCard";
+import TasksCard from "../../../../../components/freelancer/AllTask/TasksCard";
 
 // Define the type for the task object
 interface Task {

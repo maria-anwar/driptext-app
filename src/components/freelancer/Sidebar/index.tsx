@@ -22,6 +22,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   const [sidebarExpanded, setSidebarExpanded] = useState(
     storedSidebarExpanded === null ? false : storedSidebarExpanded === "true"
   );
+
   // close on click outside
   useEffect(() => {
     const clickHandler = ({ target }: MouseEvent) => {
@@ -37,6 +38,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
     document.addEventListener("click", clickHandler);
     return () => document.removeEventListener("click", clickHandler);
   });
+
   // close if the esc key is pressed
   useEffect(() => {
     const keyHandler = ({ keyCode }: KeyboardEvent) => {
@@ -59,6 +61,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   const handleLogout = () => {
     setUser(null);
   };
+
   return (
     <aside
       ref={sidebar}
@@ -66,10 +69,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
         sidebarOpen ? "translate-x-0" : "-translate-x-full"
       }`}
     >
-      {/* <!-- SIDEBAR HEADER --> */}
+      {/* SIDEBAR HEADER */}
       <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
         <NavLink to="/">
-          {/* <img src={logo} alt="Logo" /> */}
           <div className="w-full flex items-center justify-normal gap-1.5 cursor-pointer">
             <img src={logo} alt="Logo" className="w-12 h-12 rounded-md" />
             <div>
@@ -105,10 +107,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
           </svg>
         </button>
       </div>
-      {/* <!-- SIDEBAR HEADER Ends --> */}
+      {/* SIDEBAR HEADER Ends */}
 
-      {/* <!-- SIDEBAR MENU --> */}
-
+      {/* SIDEBAR MENU */}
       <div className="no-scrollbar h-full flex flex-col overflow-y-auto duration-300 ease-linear">
         <nav className="h-full mt-5 py-4 px-4 lg:mt-6 lg:px-6">
           <div className="h-full">
@@ -117,10 +118,12 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 <li>
                   <NavLink
                     to="/freelancer-dashboard"
-                    className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                      pathname.includes("calendar") &&
-                      "bg-graydark dark:bg-meta-4"
-                    }`}
+                    className={({ isActive }) =>
+                      `group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                        isActive ? "bg-graydark dark:bg-meta-4" : ""
+                      }`
+                    }
+                    end
                   >
                     {SidebarIcons[0].dashboard}
                     Tasks
@@ -128,24 +131,25 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 </li>
                 <li>
                   <NavLink
-                    to="earning"
-                    className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                      pathname.includes("contact") &&
-                      "bg-graydark dark:bg-meta-4"
-                    }`}
+                    to="/freelancer-dashboard/earning"
+                    className={({ isActive }) =>
+                      `group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                        isActive ? "bg-graydark dark:bg-meta-4" : ""
+                      }`
+                    }
                   >
                     {SidebarIcons[5].earning}
-                   
                     Earnings
                   </NavLink>
                 </li>
                 <li>
                   <NavLink
-                    to="driptext-academy"
-                    className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                      pathname.includes("contact") &&
-                      "bg-graydark dark:bg-meta-4"
-                    }`}
+                    to="/freelancer-dashboard/driptext-academy"
+                    className={({ isActive }) =>
+                      `group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                        isActive ? "bg-graydark dark:bg-meta-4" : ""
+                      }`
+                    }
                   >
                     {SidebarIcons[4].contact}
                     Driptext Academy
@@ -155,11 +159,12 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               <ul className="flex flex-col gap-1.5">
                 <li>
                   <NavLink
-                    to="freelancer-setting"
-                    className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                      pathname.includes("settings") &&
-                      "bg-graydark dark:bg-meta-4"
-                    }`}
+                    to="/freelancer-dashboard/freelancer-setting"
+                    className={({ isActive }) =>
+                      `group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                        isActive ? "bg-graydark dark:bg-meta-4" : ""
+                      }`
+                    }
                   >
                     {SidebarIcons[1].settings}
                     Settings
@@ -171,11 +176,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
         </nav>
         <hr className="text-zinc-600" />
         <ul>
-          <li className="">
+          <li>
             <NavLink
-              onClick={() => handleLogout}
+              onClick={handleLogout}
               to="/"
-              className={`group relative flex items-center gap-2.5 rounded-sm py-4 px-4  lg:px-8 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 `}
+              className={`group relative flex items-center gap-2.5 rounded-sm py-4 px-4  lg:px-8 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4`}
             >
               {SidebarIcons[3].auth}
               Sign out
@@ -186,4 +191,5 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
     </aside>
   );
 };
+
 export default Sidebar;
