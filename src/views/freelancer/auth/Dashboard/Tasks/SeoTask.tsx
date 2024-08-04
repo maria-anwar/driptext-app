@@ -1,5 +1,5 @@
 import React from "react";
-import SEOCard from "../../../../../components/freelancer/SEOCard";
+import SEOCard from "../../../../../components/freelancer/AllTask/SEOCard";
 
 // Define the type for the task object
 interface Task {

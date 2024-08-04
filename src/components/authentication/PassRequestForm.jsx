@@ -29,16 +29,16 @@ const PassRequestForm = () => {
       email: values.email
     }
 
-    const apiUrl = 'https://driptext-api.vercel.app/api/forgot/password';
+    const apiUrl = 'https://driptext-api.vercel.app/api/auth/forgot/password';
     console.log('API:' , apiUrl);
-   try {
-    const response = await axios.post(apiUrl, emailData);
-    console.log('Data submitted successfully:', response.emailData);
-    toast.error("Link sent successfully, click the link to reset password")
-
-   } catch (error) {
-    toast.error("Error sending the link")
-   }
+    try {
+      const response = await axios.post(apiUrl, emailData);
+      console.log('Data submitted successfully:', response.emailData);
+      toast.success("Link sent successfully, click the link to reset password");
+    } catch (error) {
+      const errorMessage = error.response?.data?.message || "Error sending the link";
+      toast.error(errorMessage);
+    }    
 
   };
 

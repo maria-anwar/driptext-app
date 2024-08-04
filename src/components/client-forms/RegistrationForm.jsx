@@ -72,7 +72,8 @@ const RegistrationForm = () => {
      navigate("/onboarding-probetext",{state:{projectName:values.project,userId:response.data.data._id}});
    } catch (error) {
     setLoading(false);
-    toast.error('Error submitting data:', error);
+    const errorMessage = error.response?.data?.message || error.message || 'Error submitting data';
+    toast.error(errorMessage);
     console.log(error);
    }
   };

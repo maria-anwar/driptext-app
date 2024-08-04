@@ -45,7 +45,7 @@ const LoginForm = () => {
       localStorage.setItem("token", response.data.token);
       navigate("/client-dashboard");
     } catch (error) {
-      const errorMessage = error.response?.data?.message || error.message || 'Error logging in';
+      const errorMessage = error.response?.data?.message || error.message || 'Error logging';
       toast.error(`Error logging in: ${errorMessage}`);
     }
     
