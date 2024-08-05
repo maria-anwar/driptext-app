@@ -15,7 +15,7 @@ const Earning: React.FC = () => {
       actualNumberOfWords: 550,
       billedWords: 550,
       difference: 50,
-      price: "$100",
+      price: "€100",
     },
     {
       performancePeriod: "2024 Q1",
@@ -27,7 +27,7 @@ const Earning: React.FC = () => {
       actualNumberOfWords: 750,
       billedWords: 750,
       difference: -50,
-      price: "$120",
+      price: "€120",
     },
     {
       performancePeriod: "2024 Q1",
@@ -39,7 +39,7 @@ const Earning: React.FC = () => {
       actualNumberOfWords: 600,
       billedWords: 600,
       difference: 0,
-      price: "$110",
+      price: "€110",
     },
   ];
 
