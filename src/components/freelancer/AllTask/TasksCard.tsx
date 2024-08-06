@@ -3,6 +3,7 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import TaskInfoCard from "./TaskComponents/TaskInfoCard";
 import Card from "./TaskComponents/TaskMainCard";
+import CheckboxThree from "../../client/buttons/CheckboxThree";
 
 // Define the type for the task prop
 interface Task {
@@ -133,7 +134,6 @@ const LectorCard: React.FC<LectorCardProps> = ({ task }) => {
       [e.target.name]: e.target.checked,
     });
   };
-
 
   const Checkbox1 = ({ isChecked }) => (
     <div className="relative">
@@ -351,16 +351,20 @@ const LectorCard: React.FC<LectorCardProps> = ({ task }) => {
         </div>
       ))}
             <div className="py-4 px-4 bg-slate-200 dark:bg-slate-700">
-              <input
+              {/* <input
                 type="checkbox"
                 id={"wordlimit"}
                 name={"kewordlimity"}
                 checked={false}
-              />
-              <label className="ml-2 dark:text-white">
+              /> */}
+              <div className="flex items-center">
+
+              <CheckboxThree/>
+              <label className=" dark:text-white">
                 <strong>Minimum Word Count</strong>
               </label>
-              <p className="pl-5">
+              </div>
+              <p className="pl-8">
                 Ensure that the text meets or exceeds the required minimum word
                 count.
               </p>
