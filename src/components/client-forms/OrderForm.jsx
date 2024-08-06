@@ -77,7 +77,11 @@ const OrderForm = () => {
       );
 
       if (response.status === 200) {
+        axios.post('https://driptext-api.vercel.app/api/auth/orderSuccessEamil',{
+          email:values.email
+        })
         window.location.href = "https://driptext.de/danke-probetext/";
+        
       } else {
         console.error("Failed to submit data");
       }

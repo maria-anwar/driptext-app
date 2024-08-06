@@ -289,7 +289,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task }) => {
         </span>
       </div>
       {showDialog && (
-        <div className="fixed inset-0 flex items-center justify-center z-9999 bg-neutral-200 dark:bg-slate dark:bg-opacity-15 bg-opacity-60">
+        <div className="fixed inset-0 flex items-center justify-center z-9999 bg-neutral-200 dark:bg-slate dark:bg-opacity-15 bg-opacity-60 px-4">
           <div className="bg-white dark:bg-black p-6 rounded shadow-lg">
             <h2 className="text-xl font-bold mb-4 dark:text-white">
               Accept order
@@ -314,8 +314,8 @@ const LectorCard: React.FC<LectorCardProps> = ({ task }) => {
         </div>
       )}
       {showProjectInfo && (
-        <div className="w-auto fixed inset-0 flex items-center justify-center z-[9999] bg-neutral-200 dark:bg-slate dark:bg-opacity-15 bg-opacity-60">
-          <div className="bg-white dark:bg-black p-6 rounded shadow-lg lg:w-5/12 xl:w-5/12 2xl:w-5/12 3xl:w-5/12 max-h-[80vh] overflow-y-auto scrollbar-hide">
+        <div className="w-auto fixed inset-0 flex items-center justify-center z-[9999] bg-neutral-200 dark:bg-slate dark:bg-opacity-15 bg-opacity-60 px-4">
+          <div className="bg-white dark:bg-black p-6 rounded shadow-lg lg:w-5/12 xl:w-5/12 2xl:w-5/12 3xl:w-5/12 max-h-[90vh] overflow-y-auto scrollbar-hide">
             <div className="flex justify-between items-center mb-2">
               <h2 className="text-xl font-bold  dark:text-white">
                 Task Details
@@ -326,10 +326,10 @@ const LectorCard: React.FC<LectorCardProps> = ({ task }) => {
                 icon={faTimes}
               />
             </div>
-            <div className="flex justify-start items-center space-x-2 my-4 gap-60">
+            <div className="flex justify-between items-center space-x-2 my-4">
               <ProjectHeader />
               <button
-                className=" bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                className=" bg-green-500 text-white font-bold py-2 px-4  rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
                 onClick={handleFinish}
               >
                 Finish
@@ -341,8 +341,8 @@ const LectorCard: React.FC<LectorCardProps> = ({ task }) => {
         </div>
       )}
       {showFinishDialog && (
-        <div className="w-auto fixed inset-0 flex items-center justify-center z-[9999] bg-neutral-200 dark:bg-slate dark:bg-opacity-15 bg-opacity-60">
-          <div className="bg-white dark:bg-black p-6 rounded shadow-lg lg:w-5/12 xl:w-5/12 2xl:w-5/12 3xl:w-5/12 max-h-[80vh] overflow-y-auto scrollbar-hide">
+        <div className="w-auto fixed inset-0 flex items-center justify-center z-[9999] bg-neutral-200 dark:bg-slate dark:bg-opacity-15 bg-opacity-60 px-4 pt-6">
+          <div className="bg-white dark:bg-black p-6 rounded shadow-lg lg:w-5/12 xl:w-5/12 2xl:w-5/12 3xl:w-5/12 max-h-[90vh] overflow-y-auto scrollbar-hide">
             <div className="flex justify-between items-center mb-2">
               <h2 className="text-xl font-bold  dark:text-white">
                 Finish order
@@ -415,10 +415,10 @@ const LectorCard: React.FC<LectorCardProps> = ({ task }) => {
       )}
 
       {showDetailsDialog && (
-        <div className="w-auto fixed inset-0 flex items-center justify-center z-[9999] bg-neutral-200 dark:bg-slate dark:bg-opacity-15 bg-opacity-60">
-          <div className="bg-white dark:bg-black p-6 rounded shadow-lg lg:w-5/12 xl:w-5/12 2xl:w-5/12 3xl:w-5/12 max-h-[80vh] overflow-y-auto scrollbar-hide">
-            <div className="flex justify-between items-center mb-2">
-              <h2 className="text-xl font-bold dark:text-white">
+        <div className="w-auto fixed inset-0 flex items-center justify-center z-[9999] bg-neutral-200 dark:bg-slate dark:bg-opacity-15 bg-opacity-60 px-4">
+        <div className="bg-white dark:bg-black p-6 rounded shadow-lg lg:w-5/12 xl:w-5/12 2xl:w-5/12 3xl:w-5/12 max-h-[90vh] overflow-y-auto scrollbar-hide">
+          <div className="flex justify-between items-center mb-2">
+            <h2 className="text-xl font-bold dark:text-white">
                 Task Details
               </h2>
               <FontAwesomeIcon
