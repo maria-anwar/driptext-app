@@ -11,7 +11,7 @@ const plansForTexts = {
       month: "per month",
       wordPrice: "Word price: 0.07 EUR/net",
       features: 4,
-      id:"driptext_4f_3m"
+      id:"cbdemo_advanced"
     },
     {
       name: "6 months term",

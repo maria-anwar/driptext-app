@@ -11,29 +11,20 @@ const ChargebeeWidgets = ({ onSuccess, onError, userData }) => {
     firstName: userData.fname || '',
     lastName: userData.lname || '',
     phone: userData.telNo || '',
-    addressLine1: '',
-    addressLine2: '',
-    city: '',
-    state: '',
-    stateCode: '',
-    countryCode: userData.country || '',
-    zip: '',
     email: userData.email || ''
   });
 
-  const extractPrice = (priceString) => {
-    return parseFloat(priceString.replace(/[^0-9.-]+/g, ""));
-  };
-
   const createPaymentIntent = async () => {
-    const amount = 0 // convert to cents if needed
-
     try {
-      const response = await axios.post("http://localhost:8000/api/chargebee/create_payment_intent", {
-        amount,
-        currency_code: "USD",
-        payment_method_type: 'card'
-      });
+     
+      const body = {
+        id: plan.plan.id,
+        firstName: billingDetails.firstName,
+        lastName: billingDetails.lastName,
+        email: billingDetails.email
+      }
+       
+      const response = await axios.post("http://localhost:8000/api/chargebee/create_payment_intent", body);
 
       if (response.status !== 200) {
         throw new Error('Failed to create payment intent');
@@ -51,7 +42,7 @@ const ChargebeeWidgets = ({ onSuccess, onError, userData }) => {
 
     try {
       const intent = await createPaymentIntent();
-      const result = await cardRef?.current?.authorizeWith3ds(intent.payment_intent, billingDetails);
+      window.location.href = intent.url;
       setLoading(false);
       onSuccess(result);
     } catch (error) {
@@ -69,7 +60,7 @@ const ChargebeeWidgets = ({ onSuccess, onError, userData }) => {
   };
 
   return (
-    <div className="bg-gray-50 rounded-lg shadow-md" style={{width:"100%"}}>
+    <div className="bg-gray-50 rounded-lg shadow-md" style={{ width: "100%" }}>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-2">
           <label className="block text-sm font-bold text-gray-700">First Name</label>
@@ -82,7 +73,7 @@ const ChargebeeWidgets = ({ onSuccess, onError, userData }) => {
             className="w-full p-2 border border-gray-300 rounded focus:border-blue-500"
           />
         </div>
-        <div className="space-y-2">
+        {/* <div className="space-y-2">
           <label className="block text-sm font-bold text-gray-700">Last Name</label>
           <input
             type="text"
@@ -93,7 +84,7 @@ const ChargebeeWidgets = ({ onSuccess, onError, userData }) => {
             className="w-full p-2 border border-gray-300 rounded focus:border-blue-500"
           />
         </div>
-        <div className="space-y-2">
+        <div className="space-y-2 col-span-2">
           <label className="block text-sm font-bold text-gray-700">Phone</label>
           <input
             type="text"
@@ -103,86 +94,7 @@ const ChargebeeWidgets = ({ onSuccess, onError, userData }) => {
             onChange={handleChange}
             className="w-full p-2 border border-gray-300 rounded focus:border-blue-500"
           />
-        </div>
-        <div className="col-span-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <div className="space-y-2">
-            <label className="block text-sm font-bold text-gray-700">Address Line 1</label>
-            <input
-              type="text"
-              name="addressLine1"
-              placeholder="Address Line 1"
-              value={billingDetails.addressLine1}
-              onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded focus:border-blue-500"
-            />
-          </div>
-          <div className="space-y-2">
-            <label className="block text-sm font-bold text-gray-700">Address Line 2</label>
-            <input
-              type="text"
-              name="addressLine2"
-              placeholder="Address Line 2"
-              value={billingDetails.addressLine2}
-              onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded focus:border-blue-500"
-            />
-          </div>
-          <div className="space-y-2">
-            <label className="block text-sm font-bold text-gray-700">City</label>
-            <input
-              type="text"
-              name="city"
-              placeholder="City"
-              value={billingDetails.city}
-              onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded focus:border-blue-500"
-            />
-          </div>
-          <div className="space-y-2">
-            <label className="block text-sm font-bold text-gray-700">State</label>
-            <input
-              type="text"
-              name="state"
-              placeholder="State"
-              value={billingDetails.state}
-              onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded focus:border-blue-500"
-            />
-          </div>
-          <div className="space-y-2">
-            <label className="block text-sm font-bold text-gray-700">State Code</label>
-            <input
-              type="text"
-              name="stateCode"
-              placeholder="State Code"
-              value={billingDetails.stateCode}
-              onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded focus:border-blue-500"
-            />
-          </div>
-          <div className="space-y-2">
-            <label className="block text-sm font-bold text-gray-700">Country Code</label>
-            <input
-              type="text"
-              name="countryCode"
-              placeholder="Country Code"
-              value={billingDetails.countryCode}
-              onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded focus:border-blue-500"
-            />
-          </div>
-          <div className="space-y-2">
-            <label className="block text-sm font-bold text-gray-700">Zip</label>
-            <input
-              type="text"
-              name="zip"
-              placeholder="Zip"
-              value={billingDetails.zip}
-              onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded focus:border-blue-500"
-            />
-          </div>
-        </div>
+        </div> */}
         <div className="space-y-2 col-span-2">
           <label className="block text-sm font-bold text-gray-700">Email</label>
           <input
@@ -195,7 +107,7 @@ const ChargebeeWidgets = ({ onSuccess, onError, userData }) => {
           />
         </div>
       </div>
-      <CardComponent ref={cardRef} className="mt-5">
+      {/* <CardComponent ref={cardRef} className="mt-5">
         <div className="space-y-4">
           <div className="space-y-2">
             <label className="block text-sm font-bold text-gray-700">Card Number</label>
@@ -212,12 +124,10 @@ const ChargebeeWidgets = ({ onSuccess, onError, userData }) => {
             </div>
           </div>
         </div>
-      </CardComponent>
+      </CardComponent> */}
       <button
         type="button"
-        className={`mt-5 w-full p-2 text-white font-bold rounded ${
-          loading ? "bg-gray-400" : "bg-blue-500 hover:bg-blue-600"
-        }`}
+        className={`mt-5 w-full p-2 text-white font-bold rounded ${loading ? "bg-gray-400" : "bg-blue-500 hover:bg-blue-600"}`}
         onClick={handlePayment}
         disabled={loading}
       >

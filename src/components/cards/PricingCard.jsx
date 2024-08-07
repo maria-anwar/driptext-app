@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setPlan } from "../../redux/planSlice";
+
 const PricingCard = ({ plan }) => {
   const dispatch = useDispatch()
   const navigate = useNavigate();
@@ -27,46 +28,53 @@ const PricingCard = ({ plan }) => {
         </div>
         <ul className="text-center pb-8">
           <li className="text-gray-700 pt-4">
-            {' '}
-            <span className="text-slate-900 font-semibold">{plan.features} SEO-optimized texts</span>{' '}
+            {" "}
+            <span className="text-slate-900 font-semibold">
+              {plan.features} SEO-optimized texts
+            </span>{" "}
             per month with at least 1,500 words per text
           </li>
           <li className="text-gray-700 pt-4">
-            {' '}
-            <span className="text-slate-900 font-semibold">Proofreading</span>{' '}
+            {" "}
+            <span className="text-slate-900 font-semibold">
+              Proofreading
+            </span>{" "}
             using the 6-eyes principle
           </li>
           <li className="text-gray-700 pt-4">
-            Detailed <span className="text-slate-900 font-semibold">keyword analysis</span>
+            Detailed{" "}
+            <span className="text-slate-900 font-semibold">keyword analysis</span>
           </li>
           <li className="text-gray-700 pt-4">
-            Creation of an <span className="text-slate-900 font-semibold">editorial plan</span>
+            Creation of an{" "}
+            <span className="text-slate-900 font-semibold">editorial plan</span>
           </li>
           <li className="text-gray-700 pt-4">
-            Own <span className="text-slate-900 font-semibold">customer backend</span>
+            Own{" "}
+            <span className="text-slate-900 font-semibold">customer backend</span>
           </li>
           <li className="text-gray-700 pt-4">
             100% <span className="text-slate-900 font-semibold">reliability</span>
           </li>
           <li className="text-gray-700 pt-4">
-            Incl. <span className="text-slate-900 font-semibold">satisfaction guarantee</span>
+            Incl.{" "}
+            <span className="text-slate-900 font-semibold">
+              satisfaction guarantee
+            </span>
           </li>
         </ul>
-
-        <button
+        <button 
           onClick={handleButtonClick}
-          className="w-full mt-4 bg-gradient-to-r from-buttonStart to-buttonEnd text-white py-4 px-4 rounded-lg font-medium"
-        >
+        className="w-full mt-4 bg-gradient-to-r from-buttonStart to-buttonEnd text-white py-4 px-4 rounded-lg font-medium ">
           Order free sample text
         </button>
       </div>
     </div>
-  );
+  )
 };
 
 PricingCard.propTypes = {
   plan: PropTypes.shape({
-    id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     month: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
