@@ -146,7 +146,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   <NavLink
                     to="#"
                     className={
-                      `group text-zinc-400 cursor-not-allowed relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium duration-300 ease-in-out 
+                      `group text-zinc-500 cursor-not-allowed relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium duration-300 ease-in-out 
                          "bg-graydark dark:bg-meta-4" : ""
                       }`
                     }
