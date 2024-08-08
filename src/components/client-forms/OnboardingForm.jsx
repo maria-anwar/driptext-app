@@ -64,10 +64,14 @@ const OnboardingForm = ({projectName,userId}) => {
 
     try {
       const response = await axios.post(apiUrl, onBoardingData);
+     
+      // {role==='Client'? window.location.href = 'https://driptext.de/danke-onboarding/':
+      //         window.location.href = 'https://driptext.de/danke-probetext/'
+      // }
       setLoading(false)
       console.log('Data submitted successfully:', response.data);
       navigate('/danke-probetext')
-      // window.location.href = 'https://driptext.de/danke-probetext/';
+   
     } catch (error) {
       
       if (error.response) {

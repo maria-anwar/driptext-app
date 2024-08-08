@@ -49,6 +49,7 @@ import Earning from "./views/freelancer/auth/Dashboard/Earning";
 import DriptextAcademy from "./views/freelancer/auth/Dashboard/DriptextAcademy";
 import FreelancerSettings from "./views/freelancer/auth/Dashboard/FreelancerSettings";
 import PackageBooking from "./views/subscription/PackageBooking";
+import NotFound from "./views/NotFound";
 
 
 const WebRoutes = () => {
@@ -92,6 +93,7 @@ const WebRoutes = () => {
             <Route path="driptext-academy" element={<DriptextAcademy />} />
             <Route path="freelancer-setting" element={<FreelancerSettings />} />
           </Route>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </>

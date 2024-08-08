@@ -10,12 +10,11 @@ import Breadcrumb from "../../../../../components/freelancer/breeadcrumbs/Breadc
 const Tasks: React.FC = () => {
   const taskDataArray = [
     {
-      projectName: "Marketing Campaign",
+      projectName: "MA-AB010 || Marketing Campaign",
       deadline: "2 months ago",
       taskStatus: "Ready to start",
       activeRole: "TEXTER",
-      googleLink:
-        "https://docs.google.com/document/d/1lth731M_StJek0kU3dsV8bmilAqfEkq3KixXJTlbsNU/edit?addon_store",
+      googleLink: "https://docs.google.com/document/d/1lth731M_StJek0kU3dsV8bmilAqfEkq3KixXJTlbsNU/edit?addon_store",
       wordCount: "0/1500",
       labels: {
         project: "PROJECTS",
@@ -30,12 +29,11 @@ const Tasks: React.FC = () => {
       isFinish: false,
     },
     {
-      projectName: "Website Redesign",
+      projectName: "WE-CD011 || Website Redesign",
       deadline: "1 month ago",
       taskStatus: "In Progress",
       activeRole: "TEXTER",
-      googleLink:
-        "https://docs.google.com/document/d/1lth731M_StJek0kU3dsV8bmilAqfEkq3KixXJTlbsNU/edit?addon_store",
+      googleLink: "https://docs.google.com/document/d/1lth731M_StJek0kU3dsV8bmilAqfEkq3KixXJTlbsNU/edit?addon_store",
       wordCount: "500/2000",
       labels: {
         project: "PROJECTS",
@@ -50,12 +48,11 @@ const Tasks: React.FC = () => {
       isFinish: false,
     },
     {
-      projectName: "App Development",
+      projectName: "AP-EF012 || App Development",
       deadline: "3 weeks ago",
       taskStatus: "Completed",
       activeRole: "LECTOR",
-      googleLink:
-        "https://docs.google.com/document/d/1lth731M_StJek0kU3dsV8bmilAqfEkq3KixXJTlbsNU/edit?addon_store",
+      googleLink: "https://docs.google.com/document/d/1lth731M_StJek0kU3dsV8bmilAqfEkq3KixXJTlbsNU/edit?addon_store",
       wordCount: "2000/2000",
       labels: {
         project: "PROJECTS",
@@ -70,7 +67,7 @@ const Tasks: React.FC = () => {
       isFinish: false,
     },
     {
-      projectName: "Content Creation",
+      projectName: "CO-FG013 || Content Creation",
       deadline: "1 week ago",
       taskStatus: "Not Started",
       activeRole: "LECTOR",
@@ -89,7 +86,7 @@ const Tasks: React.FC = () => {
       isFinish: false,
     },
     {
-      projectName: "SEO Optimization",
+      projectName: "SE-HI014 || SEO Optimization",
       deadline: "5 days ago",
       taskStatus: "Review Pending",
       activeRole: "SEO",
@@ -108,7 +105,7 @@ const Tasks: React.FC = () => {
       isFinish: false,
     },
     {
-      projectName: "Market Research",
+      projectName: "MA-JK015 || Market Research",
       deadline: "2 days ago",
       taskStatus: "On Hold",
       activeRole: "SEO",
@@ -126,9 +123,8 @@ const Tasks: React.FC = () => {
       isAccepted: false,
       isFinish: false,
     },
-    // Additional entries with varying active roles
     {
-      projectName: "Social Media Strategy",
+      projectName: "SO-LM016 || Social Media Strategy",
       deadline: "3 days ago",
       taskStatus: "In Progress",
       activeRole: "TEXTER",
@@ -147,7 +143,7 @@ const Tasks: React.FC = () => {
       isFinish: false,
     },
     {
-      projectName: "Email Campaign",
+      projectName: "EM-NO017 || Email Campaign",
       deadline: "1 month ago",
       taskStatus: "Review Pending",
       activeRole: "TEXTER",
@@ -166,7 +162,7 @@ const Tasks: React.FC = () => {
       isFinish: false,
     },
     {
-      projectName: "Blog Writing",
+      projectName: "BL-PQ018 || Blog Writing",
       deadline: "2 weeks ago",
       taskStatus: "Completed",
       activeRole: "TEXTER",
@@ -185,7 +181,7 @@ const Tasks: React.FC = () => {
       isFinish: false,
     },
     {
-      projectName: "Technical Documentation",
+      projectName: "TE-RS019 || Technical Documentation",
       deadline: "1 week ago",
       taskStatus: "Not Started",
       activeRole: "TEXTER",
@@ -204,7 +200,7 @@ const Tasks: React.FC = () => {
       isFinish: false,
     },
     {
-      projectName: "User Manual",
+      projectName: "US-TV020 || User Manual",
       deadline: "3 days ago",
       taskStatus: "On Hold",
       activeRole: "TEXTER",
@@ -223,7 +219,7 @@ const Tasks: React.FC = () => {
       isFinish: false,
     },
     {
-      projectName: "Proofreading",
+      projectName: "PR-WX021 || Proofreading",
       deadline: "5 days ago",
       taskStatus: "Review Pending",
       activeRole: "LECTOR",
@@ -242,12 +238,12 @@ const Tasks: React.FC = () => {
       isFinish: false,
     },
     {
-      projectName: "Editing",
+      projectName: "ED-YZ022 || Editing",
       deadline: "1 month ago",
       taskStatus: "In Progress",
       activeRole: "LECTOR",
-      googleLink: "https://docs.google.com/document/d/edit-51",
-      wordCount: "1200/2500",
+      googleLink: "https://docs.google.com/document/d/edit-47",
+      wordCount: "200/1000",
       labels: {
         project: "PROJECTS",
         deadline: "DEADLINE",
@@ -261,68 +257,11 @@ const Tasks: React.FC = () => {
       isFinish: false,
     },
     {
-      projectName: "Copywriting",
+      projectName: "CO-AA023 || Copywriting",
       deadline: "3 weeks ago",
       taskStatus: "Completed",
-      activeRole: "LECTOR",
-      googleLink: "https://docs.google.com/document/d/copy-47",
-      wordCount: "2000/2000",
-      labels: {
-        project: "PROJECTS",
-        deadline: "DEADLINE",
-        taskStatus: "TASK STATUS",
-        activeRole: "ACTIVE ROLE",
-        googleLink: "GOOGLE-LINK",
-        wordCount: "WORDCOUNT",
-      },
-      isStart: false,
-      isAccepted: false,
-      isFinish: false,
-    },
-    {
-      projectName: "Transcription",
-      deadline: "2 weeks ago",
-      taskStatus: "Ready to start",
-      activeRole: "LECTOR",
-      googleLink: "https://docs.google.com/document/d/transcribe-32",
-      wordCount: "0/5000",
-      labels: {
-        project: "PROJECTS",
-        deadline: "DEADLINE",
-        taskStatus: "TASK STATUS",
-        activeRole: "ACTIVE ROLE",
-        googleLink: "GOOGLE-LINK",
-        wordCount: "WORDCOUNT",
-      },
-      isStart: false,
-      isAccepted: false,
-      isFinish: false,
-    },
-    {
-      projectName: "SEO Analysis",
-      deadline: "1 week ago",
-      taskStatus: "Not Started",
-      activeRole: "SEO",
-      googleLink: "https://docs.google.com/document/d/seo-21",
-      wordCount: "0/3000",
-      labels: {
-        project: "PROJECTS",
-        deadline: "DEADLINE",
-        taskStatus: "TASK STATUS",
-        activeRole: "ACTIVE ROLE",
-        googleLink: "GOOGLE-LINK",
-        wordCount: "WORDCOUNT",
-      },
-      isStart: false,
-      isAccepted: false,
-      isFinish: false,
-    },
-    {
-      projectName: "Keyword Research",
-      deadline: "3 days ago",
-      taskStatus: "Review Pending",
-      activeRole: "SEO",
-      googleLink: "https://docs.google.com/document/d/keyword-45",
+      activeRole: "TEXTER",
+      googleLink: "https://docs.google.com/document/d/copy-31",
       wordCount: "1200/1200",
       labels: {
         project: "PROJECTS",
@@ -337,50 +276,12 @@ const Tasks: React.FC = () => {
       isFinish: false,
     },
     {
-      projectName: "Content Audit",
-      deadline: "1 month ago",
-      taskStatus: "In Progress",
-      activeRole: "SEO",
-      googleLink: "https://docs.google.com/document/d/audit-98",
-      wordCount: "950/1500",
-      labels: {
-        project: "PROJECTS",
-        deadline: "DEADLINE",
-        taskStatus: "TASK STATUS",
-        activeRole: "ACTIVE ROLE",
-        googleLink: "GOOGLE-LINK",
-        wordCount: "WORDCOUNT",
-      },
-      isStart: false,
-      isAccepted: false,
-      isFinish: false,
-    },
-    {
-      projectName: "Backlinking Strategy",
-      deadline: "2 weeks ago",
-      taskStatus: "Completed",
-      activeRole: "SEO",
-      googleLink: "https://docs.google.com/document/d/backlink-16",
-      wordCount: "2000/2000",
-      labels: {
-        project: "PROJECTS",
-        deadline: "DEADLINE",
-        taskStatus: "TASK STATUS",
-        activeRole: "ACTIVE ROLE",
-        googleLink: "GOOGLE-LINK",
-        wordCount: "WORDCOUNT",
-      },
-      isStart: false,
-      isAccepted: false,
-      isFinish: false,
-    },
-    {
-      projectName: "Website Audit",
+      projectName: "RE-BB024 || Research Paper",
       deadline: "1 week ago",
-      taskStatus: "Not Started",
-      activeRole: "SEO",
-      googleLink: "https://docs.google.com/document/d/audit-30",
-      wordCount: "0/2500",
+      taskStatus: "On Hold",
+      activeRole: "TEXTER",
+      googleLink: "https://docs.google.com/document/d/research-93",
+      wordCount: "300/2500",
       labels: {
         project: "PROJECTS",
         deadline: "DEADLINE",
@@ -394,7 +295,8 @@ const Tasks: React.FC = () => {
       isFinish: false,
     },
   ];
-
+  
+  
   const [activeButton, setActiveButton] = useState("All");
   const [component, setComponent] = useState(
     <AllTasks taskDataArray={taskDataArray} />
