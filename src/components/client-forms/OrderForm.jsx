@@ -9,6 +9,9 @@ import { CountryDropdownField } from "./CountryDropdownField";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const OrderForm = () => {
   const location = useLocation();
@@ -159,7 +162,7 @@ const OrderForm = () => {
           }
         })
       } else {
-        alert("No Plans Found");
+        toast.error("No Plans Found");
       }
 
       const { data: rolesList } = await axios.post(
@@ -198,13 +201,12 @@ const OrderForm = () => {
           body
         );
         window.location.href = data.url;
-        console.log("request success: ", data);
+        toast.success("request success: ", data);
       }
 
-     
     } catch (error) {
-      alert("Something went wrong")
-      console.log("error: ", error);
+      const errorMessage = error.response?.data?.message || error.message || "Something went wrong";
+      toast.error(errorMessage);
     }
 
     // try {
@@ -399,6 +401,7 @@ const OrderForm = () => {
                 <h2 className="text-custom-black text-base font-semibold">
                   1. Choose your DripText package:
                 </h2>
+                <ToastContainer/>
                 <GroupDropdownField
                   label={" Desired number of SEO-optimized texts per month? "}
                   placeholder={""}

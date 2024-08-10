@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { parseJSON } from "date-fns";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const ThankYouPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -22,7 +24,7 @@ const ThankYouPage = () => {
         body
       );
 
-      // console.log("success: ", data)
+
 
       const payload = JSON.parse(localStorage.getItem("orderPayload"));
       const orderPayload = { ...payload, response: data.data.content };
@@ -49,10 +51,12 @@ const ThankYouPage = () => {
         //   }
         // }
       } catch (error) {
-        console.log("create api error: ", error);
+        const errorMessage = error.response?.data?.message || error.message || "create api error";
+        toast.error(errorMessage);
       }
     } catch (error) {
-      console.log("hostpage response error: ", error);
+      const errorMessage = error.response?.data?.message || error.message || "hostpage response error";
+      toast.error(errorMessage);
     }
   };
 
@@ -72,6 +76,7 @@ const ThankYouPage = () => {
       </Link>
 
       {/* Main text content */}
+      <ToastContainer/>
 
       <div className="w-full max-w-4xl text-center 2xl:px-24 4xl:mt-14 mb-5">
         <h1 className="text-3xl font-bold text-gray-700">
