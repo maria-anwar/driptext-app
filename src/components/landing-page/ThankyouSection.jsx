@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { parseJSON } from "date-fns";
-
+import { useNavigate } from "react-router-dom";
 const ThankYouPage = () => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   // const [hostPageId, setHostPageId] = useState("")
 
@@ -80,10 +81,13 @@ const ThankYouPage = () => {
           You have successfully completed the form to order your sample text
           worth €105.00.
         </p>
-        <p className="mt-2 text-cyan-500 mb-8">
+        <p className="mt-2 text-cyan-500 mb-6">
           Because we know how good our texts are, you can get an overview of our
           packages today.
         </p>
+        <button onClick={() => navigate("/client-dashboard")} className="w-full md:w-[50%] bg-[#07B6D4] rounded-full mx-auto text-center text-white py-2 mb-8">
+          Go to Dashboard
+        </button>
         <p className="text-xl font-bold text-gray-800 ">
           Heres what happens next:
         </p>
