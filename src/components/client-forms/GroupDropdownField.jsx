@@ -16,6 +16,7 @@ export const GroupDropdownField = ({
   option5,
   option6,
 }) => {
+  console.log("value select: ", value)
   return (
     <>
       <div className="w-full flex flex-col gap-1">
@@ -34,9 +35,9 @@ export const GroupDropdownField = ({
             onChange={onChange}
             errors={errors}
           >
-            <option selected="she">{option1}</option>
-            <option value="youcap">{option2}</option>
-            <option value="youlc">{option3}</option>
+            <option   value={option1}>{option1}</option>
+            <option value={option2}>{option2}</option>
+            <option value={option3}>{option3}</option>
             {option4 && (<option value="you">{option4}</option>)}
             {option5 && (<option value="no-direct">{option5}</option>)}
             {option6 && (<option value="no-direct">{option6}</option>)}

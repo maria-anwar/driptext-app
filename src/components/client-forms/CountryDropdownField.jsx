@@ -32,7 +32,7 @@ export const CountryDropdownField = ({
             {
               countriesList.map((country,index)=>{
                 return(
-                  <option selected={country.value}>{country.name}</option>
+                  <option value={country.value}>{country.name}</option>
                 )
               })
             }
