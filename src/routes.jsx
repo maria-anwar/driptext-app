@@ -63,10 +63,10 @@ const WebRoutes = () => {
             <Route path="/probetext" element={<RegisterPage />} />            
           </Route>
           <Route path="/onboarding-probetext" element={<OnboardingPage />} />   
-          <Route path="/package-booking" element={<PackageBooking />} />         
+                 
           <Route path="/onboarding-formular-freelancer" element={<Register />} />            
           <Route path="/danke-probetext" element={<ThankYouPage />}/>
-          <Route path="/bestellformular" element={<OrderForm />}/>
+          
           <Route path="/" element={<SignIn />} />
           <Route path="/auth/forgetkey/:token" element={<RedirectHandler />} />
           <Route path="/auth/forgetkey" element={<ForgotPassword />} />
@@ -74,6 +74,9 @@ const WebRoutes = () => {
           <Route path="/auth3" element={<Auth3 />} />
           <Route path="/auth2" element={<Auth2 />} />
           <Route path="/client-header" element={<Header />} />
+
+          <Route path="/package-booking" element={<ProtectedRoute element={<PackageBooking />}/>} /> 
+          <Route path="/bestellformular" element={<ProtectedRoute element={<OrderForm />}/>}/>
 
           <Route path="/client-dashboard" element={<ProtectedRoute element={<DefaultLayout />} />}>
             <Route index element={<Projects />} />
