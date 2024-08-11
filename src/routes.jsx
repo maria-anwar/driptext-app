@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomeLayout from "./layouts/HomeLayout";
 import RegistrationLayout from "./layouts/RegistrationLayout";
@@ -41,7 +41,6 @@ import Register from "./views/freelancer/auth/Register";
 import RedirectHandler from "./views/auth/RedirectHandler";
 import ProtectedRoute from "./ProtectedRoutes";
 
-
 // Freelancer import
 import FreelancerLayout from "./layouts/freelancer/FreelancerDashboardLayout";
 import Tasks from "./views/freelancer/auth/Dashboard/Tasks/Tasks";
@@ -51,7 +50,6 @@ import FreelancerSettings from "./views/freelancer/auth/Dashboard/FreelancerSett
 import PackageBooking from "./views/subscription/PackageBooking";
 import NotFound from "./views/NotFound";
 
-
 const WebRoutes = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
@@ -60,13 +58,16 @@ const WebRoutes = () => {
         <Routes>
           <Route element={<HomeLayout />}>
             {/* <Route index element={<SignIn />} /> */}
-            <Route path="/probetext" element={<RegisterPage />} />            
+            <Route path="/probetext" element={<RegisterPage />} />
           </Route>
-          <Route path="/onboarding-probetext" element={<OnboardingPage />} />   
-                 
-          <Route path="/onboarding-formular-freelancer" element={<Register />} />            
-          <Route path="/danke-probetext" element={<ThankYouPage />}/>
-          
+          <Route path="/onboarding-probetext" element={<OnboardingPage />} />
+
+          <Route
+            path="/onboarding-formular-freelancer"
+            element={<Register />}
+          />
+          <Route path="/danke-probetext" element={<ThankYouPage />} />
+
           <Route path="/" element={<SignIn />} />
           <Route path="/auth/forgetkey/:token" element={<RedirectHandler />} />
           <Route path="/auth/forgetkey" element={<ForgotPassword />} />
@@ -75,10 +76,13 @@ const WebRoutes = () => {
           <Route path="/auth2" element={<Auth2 />} />
           <Route path="/client-header" element={<Header />} />
 
-          <Route path="/package-booking" element={<ProtectedRoute element={<PackageBooking />}/>} /> 
-          <Route path="/bestellformular" element={<ProtectedRoute element={<OrderForm />}/>}/>
+          <Route path="/package-booking" element={<PackageBooking />} />
+          <Route path="/bestellformular" element={<OrderForm />} />
 
-          <Route path="/client-dashboard" element={<ProtectedRoute element={<DefaultLayout />} />}>
+          <Route
+            path="/client-dashboard"
+            element={<ProtectedRoute element={<DefaultLayout />} />}
+          >
             <Route index element={<Projects />} />
             <Route path="task-table" element={<TaskTable />} />
             <Route path="contact" element={<Support />} />
@@ -88,10 +92,9 @@ const WebRoutes = () => {
             <Route path="table2" element={<Table2 />} />
           </Route>
 
-
           {/* Freelancer Dashboard */}
-          <Route path="/freelancer-dashboard" element={ <FreelancerLayout/>} >
-            <Route index element={<Tasks />}/>
+          <Route path="/freelancer-dashboard" element={<FreelancerLayout />}>
+            <Route index element={<Tasks />} />
             <Route path="earning" element={<Earning />} />
             <Route path="driptext-academy" element={<DriptextAcademy />} />
             <Route path="freelancer-setting" element={<FreelancerSettings />} />

@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const ThankYouPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
 
   // const [hostPageId, setHostPageId] = useState("")
 
@@ -35,6 +36,8 @@ const ThankYouPage = () => {
           "https://driptext-api.malhoc.com/api/users/create",
           orderPayload
         );
+
+        localStorage.removeItem("orderPayload");
 
         // if (response.status === 200) {
         //   console.log("user create request success");
@@ -63,10 +66,27 @@ const ThankYouPage = () => {
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     const hostId = queryParams.get("id");
-    if (hostId) {
+    if (hostId && localStorage.getItem("orderPayload")) {
       getHostPageResponse(hostId);
     }
   }, [location.search]);
+
+  const handleGotoClick = () => {
+    if (isAuthenticated) {
+      navigate("/client-dashboard")
+    } else {
+      navigate("/")
+    }
+  }
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setIsAuthenticated(true)
+    } else {
+      setIsAuthenticated(false)
+    }
+
+  },[])
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center pt-5 pb-12 px-4 sm:px-6 lg:px-6">
@@ -76,7 +96,7 @@ const ThankYouPage = () => {
       </Link>
 
       {/* Main text content */}
-      <ToastContainer/>
+      <ToastContainer />
 
       <div className="w-full max-w-4xl text-center 2xl:px-24 4xl:mt-14 mb-5">
         <h1 className="text-3xl font-bold text-gray-700">
@@ -90,8 +110,12 @@ const ThankYouPage = () => {
           Because we know how good our texts are, you can get an overview of our
           packages today.
         </p>
-        <button onClick={() => navigate("/client-dashboard")} className="w-full md:w-[50%] bg-[#07B6D4] rounded-full mx-auto text-center text-white py-2 mb-8">
-          Go to Dashboard
+        <button
+          onClick={() => navigate("/")}
+          className="w-full md:w-[50%] bg-[#07B6D4] rounded-full mx-auto text-center text-white py-2 mb-8"
+        >
+          {/* Go to {isAuthenticated ? "Dashboard" : "Login"} */}
+          Go to Login
         </button>
         <p className="text-xl font-bold text-gray-800 ">
           Heres what happens next:

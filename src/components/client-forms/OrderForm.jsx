@@ -83,10 +83,10 @@ const OrderForm = () => {
         texts: texts,
         domain: "",
         company: "",
-        fname: user.user.data.user.firstName,
-        lname: user.user.data.user.lastName,
+        fname: user?.user?.data?.user?.firstName || "",
+        lname: user?.user?.data?.user?.lastName || "",
         telNo: "",
-        email: user.user.data.user.email,
+        email: user?.user?.data?.user?.email || "",
         country: "DE",
         vatId: "",
       });
