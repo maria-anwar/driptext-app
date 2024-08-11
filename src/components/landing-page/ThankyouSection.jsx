@@ -111,11 +111,10 @@ const ThankYouPage = () => {
           packages today.
         </p>
         <button
-          onClick={() => navigate("/")}
+          onClick={handleGotoClick}
           className="w-full md:w-[50%] bg-[#07B6D4] rounded-full mx-auto text-center text-white py-2 mb-8"
         >
-          {/* Go to {isAuthenticated ? "Dashboard" : "Login"} */}
-          Go to Login
+          Go to {isAuthenticated ? "Dashboard" : "Login"}
         </button>
         <p className="text-xl font-bold text-gray-800 ">
           Heres what happens next:
