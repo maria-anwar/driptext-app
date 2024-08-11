@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ClickOutside from "../tables/ClickOutside";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { setUser } from "../../../redux/userSlice";
 
 

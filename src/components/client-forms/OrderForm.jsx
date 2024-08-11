@@ -8,12 +8,23 @@ import { GroupDropdownField } from "./GroupDropdownField";
 import { CountryDropdownField } from "./CountryDropdownField";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const OrderForm = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const user = useSelector((state) => state.user);
   const [isSuccess, setIsSuccess] = useState(false);
   const [countries, setCountries] = useState([]);
-  const navigate = useNavigate();
+  const [texts, setTexts] = useState("");
+  const [duration, setDuration] = useState("");
+  const [initialValues, setInitialValues] = useState(null);
+  console.log("texts: ", texts);
+  console.log("duration: ", duration);
 
   useEffect(() => {
     const fetchCoutries = async () => {
@@ -25,22 +36,80 @@ const OrderForm = () => {
     fetchCoutries();
   }, []);
 
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const textsParam = queryParams.get("texts");
+    const durationParam = queryParams.get("duration");
+
+    setTexts(textsParam || ""); // Set default value if param is missing
+    setDuration(durationParam || ""); // Set default value if param is missing
+  }, [location.search]);
+
+  useEffect(() => {
+    if (texts !== "" && duration !== "") {
+      const fourTextDurations = [
+        "3 months - word price 0.07 EUR/net",
+        "6 months - word price 0.06 EUR/net",
+        "12 months - word price 0.05 EUR/net",
+      ];
+      const EightTextDurations = [
+        "3 months - word price 0.14 EUR/net",
+        "6 months - word price 0.12 EUR/net",
+        "12 months - word price 0.10 EUR/net",
+      ];
+      const twelveTextDuration = [
+        "3 months - word price 0.20 EUR/net",
+        "6 months - word price 0.18 EUR/net",
+        "12 months - word price 0.15 EUR/net",
+      ];
+      let initialDurationValue = ""
+      if (texts.substring(0, 2) === "4 ") {
+        const temp = fourTextDurations.find(item => item.includes(duration))
+        initialDurationValue = temp
+      }
+      if (texts.substring(0, 2) === "8 ") {
+        const temp = EightTextDurations.find((item) => item.includes(duration));
+        initialDurationValue = temp;
+      }
+       if (texts.substring(0, 2) === "12") {
+         const temp = twelveTextDuration.find((item) =>
+           item.includes(duration)
+         );
+         initialDurationValue = temp;
+       }
+      // Set initial values only when texts and duration have been fetched or computed
+      setInitialValues({
+        duration: initialDurationValue,
+        texts: texts,
+        domain: "",
+        company: "",
+        fname: user.user.data.user.firstName,
+        lname: user.user.data.user.lastName,
+        telNo: "",
+        email: user.user.data.user.email,
+        country: "DE",
+        vatId: "",
+      });
+    }
+  }, [texts, duration, user.user.data.user]);
+
   countries.map((c) => {
     console.log(c.name);
   });
 
-  const initialValues = {
-    duration: "",
-    texts: "",
-    domain: "",
-    company: "",
-    fname: user.user.data.user.firstName,
-    lname: user.user.data.user.lastName,
-    telNo: "",
-    email: user.user.data.user.email,
-    country: "",
-    vatId: "",
-  };
+  // const initialValues = {
+  //   duration: "",
+  //   texts: texts,
+  //   domain: "",
+  //   company: "",
+  //   fname: user.user.data.user.firstName,
+  //   lname: user.user.data.user.lastName,
+  //   telNo: "",
+  //   email: user.user.data.user.email,
+  //   country: "",
+  //   vatId: "",
+  // };
+  console.log("initital values: ", initialValues);
   const validationSchema = Yup.object().shape({
     // duration: Yup.string().required("please select duration"),
     // texts: Yup.string().required("select no of seo texts"),
@@ -55,39 +124,111 @@ const OrderForm = () => {
   });
 
   const onSubmit = async (values) => {
+    
 
-    const payload = {
-      firstName: values.firstName,
-      lastName: values.lastName,
-      email: values.email,
-      roleId: values.roleId,
-      projectName: values.projectName,
-      companyName: values.companyName,
-      country: values.country,
-      vatId: values.vatId,
-      keywords: values.keywords,
-      planId: values.planId,
-      subPlanId: values.subPlanId,
-    };
+    console.log("duration: ", values.duration);
+    console.log("texts: ", values.texts);
 
+    // const chargeBeePayload = {
+    //   id: user.user.data.user.id,
+    //   firstName: user.user.data.user.firstName,
+    //   lastName: user.user.data.user.lastName,
+    //   email: user.user.data.user.email,
+    //   duration: values.duration,
+    //   texts: values.texts,
+    // };
+
+    // console.log("cargebee payload: ", chargeBeePayload);
     try {
-      const response = await axios.post(
-        "https://driptext-api.vercel.app/api/users/create",
-        payload
+
+      let item_price_id = ""
+      let planId = ""
+      let subPlanId = ""
+     
+      const { data: planList } = await axios.post(
+        `https://driptext-api.vercel.app/api/plans/list`
       );
 
-      if (response.status === 200) {
-        axios.post('https://driptext-api.vercel.app/api/auth/orderSuccessEamil',{
-          email:values.email
+      if (planList.data.length > 0) {
+        planList.data.forEach(item => {
+          if (parseInt(values.texts.substring(0, 2)) === item.value) {
+            item.subplan.forEach(subPlan => {
+              if (subPlan.duration === parseInt(values.duration.substring(0, 2))) {
+                item_price_id = subPlan.chargebeeId
+                planId = item._id
+                subPlanId = subPlan._id
+              }
+            })
+          }
         })
-        window.location.href = "https://driptext.de/danke-probetext/";
-        
       } else {
-        console.error("Failed to submit data");
+        toast.error("No Plans Found");
       }
+
+      const { data: rolesList } = await axios.post(
+        "https://driptext-api.vercel.app/api/roles/list"
+      );
+
+      const clientRole = rolesList.data.find(item => item.title.toLowerCase() === "client")
+
+      const payload = {
+        firstName: values.fname,
+        lastName: values.lname,
+        email: values.email,
+        roleId: clientRole?._id || "",
+        projectName: values.domain,
+        companyName: values.company,
+        country: values.country,
+        vatId: values.vatId,
+        keywords: "",
+        planId: planId,
+        subPlanId: subPlanId,
+      };
+
+      console.log("order payload: ", payload)
+      localStorage.setItem("orderPayload", JSON.stringify(payload))
+
+
+      if (item_price_id) {
+        const body = {
+          chargebeeId: item_price_id,
+          firstName: user.user.data.user.firstName,
+          lastName: user.user.data.user.lastName,
+          email: user.user.data.user.email,
+        };
+        const { data } = await axios.post(
+          "https://driptext-api.vercel.app/api/chargebee/create_payment_intent",
+          body
+        );
+        window.location.href = data.url;
+        toast.success("request success: ", data);
+      }
+
     } catch (error) {
-      console.error("Error submitting data:", error);
+      const errorMessage = error.response?.data?.message || error.message || "Something went wrong";
+      toast.error(errorMessage);
     }
+
+    // try {
+    //   const response = await axios.post(
+    //     "https://driptext-api.vercel.app/api/users/create",
+    //     payload
+    //   );
+
+    //   if (response.status === 200) {
+    //     axios.post(
+    //       "https://driptext-api.vercel.app/api/auth/orderSuccessEamil",
+    //       {
+    //         email: values.email,
+    //       }
+    //     );
+    //     window.location.href = "https://driptext.de/danke-probetext/";
+    //   } else {
+    //     console.error("Failed to submit data");
+    //   }
+    // } catch (error) {
+    //   console.error("Error submitting data:", error);
+    // }
   };
 
   const countriesList = [
@@ -242,6 +383,10 @@ const OrderForm = () => {
       name: "Burundi",
     },
   ];
+
+  if (!initialValues) {
+    return <div>Loading...</div>; // Show loading or placeholder while initialValues are being set
+  }
   return (
     <>
       <Formik
@@ -256,19 +401,7 @@ const OrderForm = () => {
                 <h2 className="text-custom-black text-base font-semibold">
                   1. Choose your DripText package:
                 </h2>
-                <GroupDropdownField
-                  label={"Desired duration?"}
-                  type={"text"}
-                  id={"duration"}
-                  name={"duration"}
-                  placeholder={""}
-                  option1={"3 months - word price 0.07 EUR/net"}
-                  option2={"6 months - word price 0.06 EUR/net"}
-                  option3={"12 months - word price 0.05 EUR/net"}
-                  value={props.values.duration}
-                  errors={props.errors.duration}
-                  onChange={props.handleChange}
-                />
+                <ToastContainer/>
                 <GroupDropdownField
                   label={" Desired number of SEO-optimized texts per month? "}
                   placeholder={""}
@@ -278,16 +411,56 @@ const OrderForm = () => {
                   value={props.values.texts}
                   errors={props.errors.texts}
                   onChange={props.handleChange}
-                  option1={
-                    "4 texts per month with at least 1,500 words per text"
-                  }
-                  option2={
-                    "8 texts per month with at least 1,500 words per text"
-                  }
-                  option3={
-                    "12 texts per month with at least 1,500 words per text"
-                  }
+                  option1="4 texts per month with at least 1,500 words per text"
+                  option2="8 texts per month with at least 1,500 words per text"
+                  option3="12 texts per month with at least 1,500 words per text"
                 />
+                {props.values.texts.substring(0, 2) === "4 " && (
+                  <GroupDropdownField
+                    label={"Desired duration?"}
+                    type={"text"}
+                    id={"duration"}
+                    name={"duration"}
+                    placeholder={""}
+                    option1="3 months - word price 0.07 EUR/net"
+                    option2="6 months - word price 0.06 EUR/net"
+                    option3="12 months - word price 0.05 EUR/net"
+                    value={props.values.duration}
+                    errors={props.errors.duration}
+                    onChange={props.handleChange}
+                  />
+                )}
+                {props.values.texts.substring(0, 2) === "8 " && (
+                  <GroupDropdownField
+                    label={"Desired duration?"}
+                    type={"text"}
+                    id={"duration"}
+                    name={"duration"}
+                    placeholder={""}
+                    option1="3 months - word price 0.14 EUR/net"
+                    option2="6 months - word price 0.12 EUR/net"
+                    option3="12 months - word price 0.10 EUR/net"
+                    value={props.values.duration}
+                    errors={props.errors.duration}
+                    onChange={props.handleChange}
+                  />
+                )}
+                {props.values.texts.substring(0, 2) === "12" && (
+                  <GroupDropdownField
+                    label={"Desired duration?"}
+                    type={"text"}
+                    id={"duration"}
+                    name={"duration"}
+                    placeholder={""}
+                    option1="3 months - word price 0.20 EUR/net"
+                    option2="6 months - word price 0.18 EUR/net"
+                    option3="12 months - word price 0.15 EUR/net"
+                    value={props.values.duration}
+                    errors={props.errors.duration}
+                    onChange={props.handleChange}
+                  />
+                )}
+
                 <GroupField
                   label={"Domain"}
                   type={"text"}
