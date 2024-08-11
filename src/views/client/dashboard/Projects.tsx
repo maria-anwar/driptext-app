@@ -4,27 +4,28 @@ import CardDataStats from "../../../components/client/CardDataStats";
 import DarkBtn from "../../../components/client/buttons/DarkBtn";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { format } from 'date-fns';
-
+import { format } from "date-fns";
+import { useNavigate } from "react-router-dom";
 
 const Projects: React.FC = () => {
-  const user = useSelector<any>(state=>state.user)
+  const navigate = useNavigate();
+  const user = useSelector<any>((state) => state.user);
 
-    const formatDate =(dateString) => {
+  const formatDate = (dateString) => {
     const date = new Date(dateString);
 
-    return format(date, 'MMMM d, yyyy');
-    }
+    return format(date, "MMMM d, yyyy");
+  };
 
-  const [projectData, setProjectData] = useState([]);
+  const [projectData, setProjectData] = useState<any>([]);
   const [userId, setUserID] = useState(user.user.data.user._id);
   const [userToken, setUserToken] = useState(user.user.token);
 
   useEffect(() => {
     let token = userToken;
-    axios.defaults.headers.common['access-token'] = token;
+    axios.defaults.headers.common["access-token"] = token;
     let payload = {
-      userId: userId
+      userId: userId,
     };
     // "https://driptext-api.vercel.app/api/projects/detail";
 
@@ -46,10 +47,35 @@ const Projects: React.FC = () => {
   //   if (storedProjects) {
   //     setProjectData(JSON.parse(storedProjects));
   //   }
-    
+
   // }, []);
 
-  
+  const handleAddProjectClick = async () => {
+    if (user.user.data.user.role.title.toLowerCase() === "leads") {
+      try {
+        let token = userToken;
+        axios.defaults.headers.common["access-token"] = token;
+        let payload = {
+          userId: userId,
+        };
+        const { data } = await axios.post(
+          "https://driptext-api.malhoc.com/api/projects/detail",
+          payload
+        );
+        console.log("data: ", data)
+        if (data.data.length > 0 && data.data[0].texts === 1) {
+          navigate("/package-booking");
+        } else {
+          navigate("/onboarding-probetext");
+        }
+      } catch (error) {
+        console.log("get project detail error: ", error);
+      }
+    } else {
+      navigate("/onboarding-probetext");
+    }
+  };
+
   return (
     <>
       <div className="w-full flex flex-col gap-3 2xl:gap-0 2xl:flex-row 2xl:justify-between items-center 4xl:px-14 mb-3 4xl:mb-6 mt-2 lg:mt-1">
@@ -62,12 +88,13 @@ const Projects: React.FC = () => {
           </p>
         </div>
         <div className=" w-full 2xl:max-w-max flex justify-start 2xl:justify-end mt-2 gap-2 ">
-          <DarkBtn name={"Add Project"} url={"/onboarding-probetext"} />
+          <div onClick={handleAddProjectClick}>
+            <DarkBtn name={"Add Project"} url={""} />
+          </div>
           <Link
             to={"/package-booking"}
             className="inline-flex items-center justify-center gap-2.5 bg-black py-4 text-sm xl:text-base  text-center font-medium text-white hover:bg-opacity-90 px-5 lg:px-8 5xl:px-10"
           >
-            
             Buy Subscription
           </Link>
         </div>
