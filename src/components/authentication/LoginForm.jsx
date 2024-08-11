@@ -10,17 +10,19 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import axios from "axios";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { useDispatch } from 'react-redux';
-import { setUser } from '../../redux/userSlice.js';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../redux/userSlice.js";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
-  const [loading,setLoading] = useState(false)
- 
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMesssage] = useState("");
+
   const navigate = useNavigate();
- 
+
   const initialValues = {
     email: "",
     password: "",
@@ -31,29 +33,28 @@ const LoginForm = () => {
     password: Yup.string().min(8).required("password is required"),
   });
 
-  const onSubmit = async(values) => {
-    setLoading(true)
+  const onSubmit = async (values) => {
+    setLoading(true);
     let userData = {
       email: values.email,
       password: values.password,
     };
-    const apiUrl = 'https://driptext-api.malhoc.com/api/auth/login';
-    
+    const apiUrl = "https://driptext-api.malhoc.com/api/auth/login";
+
     try {
+      setError(false)
       const response = await axios.post(apiUrl, userData);
       dispatch(setUser(response?.data));
-      toast.success("Login successfully");
       localStorage.setItem("token", response.data.token);
-      console.log(response.data)
       navigate("/client-dashboard");
     } catch (error) {
-      const errorMessage = error.response?.data?.message || error.message || 'Error logging';
-      toast.error(`Error logging in: ${errorMessage}`);
+      const errorMessage =
+      error.response?.data?.message || error.message || "Error logging";
+      setError(true);
+      setErrorMesssage(errorMessage);
     }
-    
 
     // window.location.href = "https://driptext.de/danke-probetext/";
-    
   };
 
   return (
@@ -65,7 +66,7 @@ const LoginForm = () => {
       >
         {(props) => (
           <Form>
-          <ToastContainer/>
+            <ToastContainer />
             <div className="mb-1 flex flex-col gap-6">
               <Typography
                 variant="small"
@@ -81,7 +82,11 @@ const LoginForm = () => {
                 name="email"
                 type="email"
                 placeholder="jhon@gmail.com"
-                onChange={props.handleChange}
+                onChange={(e) => {
+                  props.handleChange(e);
+                  setError(false);
+                  setErrorMesssage("");
+                }}
                 className=" !border-t-blue-gray-200 focus:!border-t-gray-900 focus:ring:none"
                 labelProps={{
                   className: "before:content-none after:content-none",
@@ -104,7 +109,11 @@ const LoginForm = () => {
                 name="password"
                 type="password"
                 value={props.values.password}
-                onChange={props.handleChange}
+                onChange={(e) => {
+                  props.handleChange(e);
+                  setError(false);
+                  setErrorMesssage("");
+                }}
                 size="lg"
                 placeholder="********"
                 className=" !border-t-blue-gray-200 focus:!border-t-gray-900 focus:ring:none"
@@ -138,9 +147,20 @@ const LoginForm = () => {
                 <Link to="/auth/lost/request">Forgot Password</Link>
               </Typography>
             </div>
-            <Button className={`mt-6 bg-black text-white text-sm ${loading?'cursor-not-allowed':'cursor-pointer'}`} fullWidth type="submit">
+            <Button
+              className={`mt-6 bg-black text-white text-sm ${
+                loading ? "cursor-not-allowed" : "cursor-pointer"
+              }`}
+              fullWidth
+              type="submit"
+            >
               Sign In
             </Button>
+            {error && (
+              <div id="email" className="mt-4 text-sm text-red-500">
+                {errorMessage}
+              </div>
+            )}
           </Form>
         )}
       </Formik>
@@ -200,7 +220,6 @@ const LoginForm = () => {
           </Link>
         </Typography>
       </div> */}
-
 
       <div className="xl:hidden w-full flex justify-center gap-2.5 p-4 text-sm text-gray-700  border-gray-200">
         <Link to="/imprint" className="hover:underline">

@@ -1,4 +1,3 @@
-// src/features/user/userSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
@@ -27,8 +26,13 @@ const userSlice = createSlice({
         current[keys[keys.length - 1]] = value;
       }
     },
+    updateRoleTitle: (state, action) => {
+      if (state.user && state.user.role) {
+        state.user.data.user.role.title = action.payload;
+      }
+    },
   },
 });
 
-export const { setUser, clearUser ,updateUserFields} = userSlice.actions;
+export const { setUser, clearUser, updateUserFields, updateRoleTitle } = userSlice.actions;
 export default userSlice.reducer;
