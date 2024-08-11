@@ -83,10 +83,10 @@ const OrderForm = () => {
         texts: texts,
         domain: "",
         company: "",
-        fname: user.user.data.user.firstName,
-        lname: user.user.data.user.lastName,
+        fname: user?.user?.data?.user?.firstName || "",
+        lname: user?.user?.data?.user?.lastName || "",
         telNo: "",
-        email: user.user.data.user.email,
+        email: user?.user?.data?.user?.email || "",
         country: "DE",
         vatId: "",
       });
@@ -146,7 +146,7 @@ const OrderForm = () => {
       let subPlanId = ""
      
       const { data: planList } = await axios.post(
-        `https://driptext-api.vercel.app/api/plans/list`
+        `https://driptext-api.malhoc.com/api/plans/list`
       );
 
       if (planList.data.length > 0) {
@@ -166,7 +166,7 @@ const OrderForm = () => {
       }
 
       const { data: rolesList } = await axios.post(
-        "https://driptext-api.vercel.app/api/roles/list"
+        "https://driptext-api.malhoc.com/api/roles/list"
       );
 
       const clientRole = rolesList.data.find(item => item.title.toLowerCase() === "client")
@@ -197,7 +197,7 @@ const OrderForm = () => {
           email: user.user.data.user.email,
         };
         const { data } = await axios.post(
-          "https://driptext-api.vercel.app/api/chargebee/create_payment_intent",
+          "https://driptext-api.malhoc.com/api/chargebee/create_payment_intent",
           body
         );
         window.location.href = data.url;

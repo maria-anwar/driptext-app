@@ -4,11 +4,16 @@ import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { parseJSON } from "date-fns";
-import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch } from "react-redux";
+import {updateUserFields,user} from '../../redux/userSlice'
 
 const ThankYouPage = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const dispatch = useDispatch();
 
   // const [hostPageId, setHostPageId] = useState("")
 
@@ -19,11 +24,9 @@ const ThankYouPage = () => {
       };
 
       const { data } = await axios.post(
-        "https://driptext-api.vercel.app/api/chargebee/hostpage_response",
+        "https://driptext-api.malhoc.com/api/chargebee/hostpage_response",
         body
       );
-
-
 
       const payload = JSON.parse(localStorage.getItem("orderPayload"));
       const orderPayload = { ...payload, response: data.data.content };
@@ -31,9 +34,18 @@ const ThankYouPage = () => {
         console.log("initial payload: ", payload)
         console.log("final payload: ", orderPayload)
         const response = await axios.post(
-          "https://driptext-api.vercel.app/api/users/create",
+          "https://driptext-api.malhoc.com/api/users/create",
           orderPayload
         );
+        console.log(response.data)
+
+        localStorage.removeItem("orderPayload");
+
+        dispatch(
+          updateUserFields({ path: "data.user.role.title", value: 'Client' })
+        );
+
+        console.log(user)
 
         // if (response.status === 200) {
         //   console.log("user create request success");
@@ -62,10 +74,27 @@ const ThankYouPage = () => {
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     const hostId = queryParams.get("id");
-    if (hostId) {
+    if (hostId && localStorage.getItem("orderPayload")) {
       getHostPageResponse(hostId);
     }
   }, [location.search]);
+
+  const handleGotoClick = () => {
+    if (isAuthenticated) {
+      navigate("/client-dashboard")
+    } else {
+      navigate("/")
+    }
+  }
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setIsAuthenticated(true)
+    } else {
+      setIsAuthenticated(false)
+    }
+
+  },[])
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center pt-5 pb-12 px-4 sm:px-6 lg:px-6">
@@ -75,7 +104,7 @@ const ThankYouPage = () => {
       </Link>
 
       {/* Main text content */}
-      <ToastContainer/>
+      <ToastContainer />
 
       <div className="w-full max-w-4xl text-center 2xl:px-24 4xl:mt-14 mb-5">
         <h1 className="text-3xl font-bold text-gray-700">
@@ -85,10 +114,16 @@ const ThankYouPage = () => {
           You have successfully completed the form to order your sample text
           worth €105.00.
         </p>
-        <p className="mt-2 text-cyan-500 mb-8">
+        <p className="mt-2 text-cyan-500 mb-6">
           Because we know how good our texts are, you can get an overview of our
           packages today.
         </p>
+        <button
+          onClick={handleGotoClick}
+          className="w-full md:w-[50%] bg-[#07B6D4] rounded-full mx-auto text-center text-white py-2 mb-8"
+        >
+          Go to {isAuthenticated ? "Dashboard" : "Login"}
+        </button>
         <p className="text-xl font-bold text-gray-800 ">
           Heres what happens next:
         </p>

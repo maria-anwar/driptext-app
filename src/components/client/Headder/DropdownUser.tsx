@@ -7,6 +7,7 @@ import { setUser } from "../../../redux/userSlice";
 
 const DropdownUser = () => {
   const user = useSelector(state=>state.user)
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   // const [firstName,setFirstName]=useState(user.data.user.firstName);
@@ -19,6 +20,7 @@ const DropdownUser = () => {
 
   const handleLogout= ()=>{
     localStorage.removeItem('token')
+    dispatch(setUser(null))
     navigate('/')
   }
   return (

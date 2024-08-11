@@ -37,7 +37,7 @@ const LoginForm = () => {
       email: values.email,
       password: values.password,
     };
-    const apiUrl = 'https://driptext-api.vercel.app/api/auth/login';
+    const apiUrl = 'https://driptext-api.malhoc.com/api/auth/login';
     
     try {
       const response = await axios.post(apiUrl, userData);

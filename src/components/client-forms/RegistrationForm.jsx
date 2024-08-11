@@ -6,6 +6,8 @@ import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { setUser } from "../../redux/userSlice";
+import { useDispatch } from "react-redux";
 
 
 //https://driptext-api.vercel.app/api/users/create
@@ -14,11 +16,12 @@ const RegistrationForm = () => {
   const navigate = useNavigate();
   const[roleID,setRoleID]= useState(null);
   const [loading ,setLoading] = useState(false)
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.post('https://driptext-api.vercel.app/api/roles/list');
+        const response = await axios.post('https://driptext-api.malhoc.com/api/roles/list');
         const data = response.data.data; // Adjust this line based on the actual structure
         
         if (Array.isArray(data)) {
@@ -62,13 +65,14 @@ const RegistrationForm = () => {
       keywords: values.keyword,
     }
    
-    const apiUrl = 'https://driptext-api.vercel.app/api/users/create';
+    const apiUrl = 'https://driptext-api.malhoc.com/api/users/create';
 
    try {
     const response = await axios.post(apiUrl, registerData);
     console.log(response.data.data._id)
     toast.success('Data submitted successfully:', response.registerData);
     setLoading(false);
+    dispatch(setUser(response.data))
      navigate("/onboarding-probetext",{state:{projectName:values.project,userId:response.data.data._id}});
    } catch (error) {
     setLoading(false);

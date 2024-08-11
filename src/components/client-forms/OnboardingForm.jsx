@@ -9,16 +9,20 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector,useDispatch } from "react-redux";
+
 
 const OnboardingForm = ({projectName,userId}) => {
   const navigate = useNavigate();
-  const [loading,setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch()
   
 
   const initialValues = {
-    speech: "", 
+    speech: "She",
     project: projectName,
-    perspective: "",
+    perspective: "we/our shop/our company",
     companyInfo: "",
     companyAttributes: "",
     services: "",
@@ -49,7 +53,7 @@ const OnboardingForm = ({projectName,userId}) => {
       speech: values.speech,
       prespective: values.perspective,
       projectName: values.project,
-      userId: userId, // Assign appropriate value
+      userId: user.user.data.user._id, // Assign appropriate value
       companyBackgorund: values.companyInfo,
       companyAttributes: values.companyAttributes,
       comapnyServices: values.services,
@@ -59,7 +63,10 @@ const OnboardingForm = ({projectName,userId}) => {
       contentInfo: values.brand,
     };
   
-    const apiUrl = 'https://driptext-api.vercel.app/api/users/create/onboarding';
+    const apiUrl = 'https://driptext-api.malhoc.com/api/users/create/onboarding';
+    // const apiUrl =
+    //   "http://localhost:8000/api/users/create/onboarding";
+
     console.log(onBoardingData);
 
     try {
@@ -70,7 +77,8 @@ const OnboardingForm = ({projectName,userId}) => {
       // }
       setLoading(false)
       console.log('Data submitted successfully:', response.data);
-      navigate('/danke-probetext')
+      // navigate('/danke-probetext')
+      window.location.href = "https://driptext.de/danke-probetext/";
    
     } catch (error) {
       
