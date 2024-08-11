@@ -12,9 +12,12 @@ import {
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
+import { useState } from "react";
 
 const PassRequestForm = () => {
   const navigate = useNavigate();
+  const [error,setError] = useState(false);
+  const [errorMessage,setErrorMesssage] = useState('')
   const initialValues = {
     email: "",
   };
@@ -32,12 +35,14 @@ const PassRequestForm = () => {
     const apiUrl = 'https://driptext-api.malhoc.com/api/auth/forgot/password';
     console.log('API:' , apiUrl);
     try {
+      setError(false)
       const response = await axios.post(apiUrl, emailData);
       console.log('Data submitted successfully:', response.emailData);
       toast.success("Link sent successfully, click the link to reset password");
     } catch (error) {
       const errorMessage = error.response?.data?.message || "Error sending the link";
-      toast.error(errorMessage);
+      setError(true)
+      setErrorMesssage(errorMessage)
     }    
 
   };
@@ -67,7 +72,9 @@ const PassRequestForm = () => {
                 name="email"
                 type="email"
                 placeholder="jhon@gmail.com"
-                onChange={props.handleChange}
+                onChange={(e)=>{props.handleChange(e)
+                  setError(false);
+                  setErrorMesssage('');}}
                 className=" !border-t-blue-gray-200 focus:!border-t-gray-900 focus:ring:none"
                 labelProps={{
                   className: "before:content-none after:content-none",
@@ -75,9 +82,15 @@ const PassRequestForm = () => {
               />
               {props.errors.email && (
                 <div id="email" className="-mt-4 text-sm text-red-500">
-                  {props.errors.email}
+                  {props.errors.email }
                 </div>
               )}
+              { error && (
+                <div id="email" className="-mt-4 text-sm text-red-500">
+                  {errorMessage}
+                </div>
+              )}
+              
             </div>
 
             <Button

@@ -72,7 +72,7 @@ const RegistrationForm = () => {
     console.log(response.data.data._id)
     toast.success('Data submitted successfully:', response.registerData);
     setLoading(false);
-    dispatch(setUser(response.data))
+    // dispatch(setUser(response.data))
      navigate("/onboarding-probetext",{state:{projectName:values.project,userId:response.data.data._id}});
    } catch (error) {
     setLoading(false);

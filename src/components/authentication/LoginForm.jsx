@@ -44,6 +44,7 @@ const LoginForm = () => {
       dispatch(setUser(response?.data));
       toast.success("Login successfully");
       localStorage.setItem("token", response.data.token);
+      console.log(response.data)
       navigate("/client-dashboard");
     } catch (error) {
       const errorMessage = error.response?.data?.message || error.message || 'Error logging';
