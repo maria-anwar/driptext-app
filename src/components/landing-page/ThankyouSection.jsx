@@ -7,7 +7,7 @@ import { parseJSON } from "date-fns";
 import { useNavigate } from "react-router-dom";import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from "react-redux";
-import {updateUserFields,user} from '../../redux/userSlice'
+import {updateUserFields} from '../../redux/userSlice'
 
 const ThankYouPage = () => {
   const location = useLocation();
@@ -45,7 +45,7 @@ const ThankYouPage = () => {
           updateUserFields({ path: "data.user.role.title", value: 'Client' })
         );
 
-        console.log(user)
+        // console.log(user)
 
         // if (response.status === 200) {
         //   console.log("user create request success");
