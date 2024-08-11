@@ -7,7 +7,7 @@ import { parseJSON } from "date-fns";
 import { useNavigate } from "react-router-dom";import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from "react-redux";
-import {updateUserFields} from '../../redux/userSlice'
+import {updateRoleTitle} from '../../redux/userSlice'
 
 const ThankYouPage = () => {
   const location = useLocation();
@@ -41,9 +41,11 @@ const ThankYouPage = () => {
 
         localStorage.removeItem("orderPayload");
 
+
+        dispatch(updateRoleTitle('Client'));
+
         // dispatch(
         //   updateUserFields({ path: "data.user.role.title", value: 'Client' })
-        // );
 
         // console.log(user)
 
