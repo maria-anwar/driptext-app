@@ -6,6 +6,8 @@ import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { setUser } from "../../redux/userSlice";
+import { useDispatch } from "react-redux";
 
 
 //https://driptext-api.vercel.app/api/users/create
@@ -14,6 +16,7 @@ const RegistrationForm = () => {
   const navigate = useNavigate();
   const[roleID,setRoleID]= useState(null);
   const [loading ,setLoading] = useState(false)
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -69,6 +72,7 @@ const RegistrationForm = () => {
     console.log(response.data.data._id)
     toast.success('Data submitted successfully:', response.registerData);
     setLoading(false);
+    dispatch(setUser(response.data))
      navigate("/onboarding-probetext",{state:{projectName:values.project,userId:response.data.data._id}});
    } catch (error) {
     setLoading(false);

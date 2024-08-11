@@ -6,11 +6,14 @@ import axios from "axios";
 import { parseJSON } from "date-fns";
 import { useNavigate } from "react-router-dom";import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch } from "react-redux";
+import {updateUserFields,user} from '../../redux/userSlice'
 
 const ThankYouPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const dispatch = useDispatch();
 
   // const [hostPageId, setHostPageId] = useState("")
 
@@ -34,8 +37,15 @@ const ThankYouPage = () => {
           "https://driptext-api.malhoc.com/api/users/create",
           orderPayload
         );
+        console.log(response.data)
 
         localStorage.removeItem("orderPayload");
+
+        dispatch(
+          updateUserFields({ path: "data.user.role.title", value: 'Client' })
+        );
+
+        console.log(user)
 
         // if (response.status === 200) {
         //   console.log("user create request success");

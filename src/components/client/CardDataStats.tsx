@@ -120,7 +120,7 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
 
       {!hasAllProps && (
         <div className="absolute inset-0 top-30 flex flex-col items-center justify-center  p-4 rounded-sm">
-          <p className="text-center text-sm text-slate-100 mb-2">
+          <p className="text-center text-sm dark:text-slate-100 mb-2">
             Please fill out the onboarding for this project.
           </p>
           <button
