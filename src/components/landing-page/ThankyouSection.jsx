@@ -34,12 +34,12 @@ const ThankYouPage = () => {
         console.log("initial payload: ", payload)
         console.log("final payload: ", orderPayload)
         const response = await axios.post(
-          "https://driptext-api.malhoc.com/api/users/create",
+          "http://localhost:8000/api/users/create",
           orderPayload
         );
         console.log(response.data)
 
-        localStorage.removeItem("orderPayload");
+        // localStorage.removeItem("orderPayload");
 
         dispatch(
           updateUserFields({ path: "data.user.role.title", value: 'Client' })

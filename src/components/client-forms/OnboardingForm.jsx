@@ -52,7 +52,7 @@ const OnboardingForm = ({projectName,userId}) => {
       speech: values.speech,
       prespective: values.perspective,
       projectName: values.project,
-      userId: user.user.data.user._id, // Assign appropriate value
+      userId: userId || user.user.data.user._id, // Assign appropriate value
       companyBackgorund: values.companyInfo,
       companyAttributes: values.companyAttributes,
       comapnyServices: values.services,
