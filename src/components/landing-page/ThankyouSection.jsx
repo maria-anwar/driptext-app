@@ -34,16 +34,16 @@ const ThankYouPage = () => {
         console.log("initial payload: ", payload)
         console.log("final payload: ", orderPayload)
         const response = await axios.post(
-          "http://localhost:8000/api/users/create",
+          "https://driptext-api.malhoc.com/api/users/create",
           orderPayload
         );
         console.log(response.data)
 
-        // localStorage.removeItem("orderPayload");
+        localStorage.removeItem("orderPayload");
 
-        dispatch(
-          updateUserFields({ path: "data.user.role.title", value: 'Client' })
-        );
+        // dispatch(
+        //   updateUserFields({ path: "data.user.role.title", value: 'Client' })
+        // );
 
         // console.log(user)
 
@@ -119,10 +119,10 @@ const ThankYouPage = () => {
           packages today.
         </p>
         <button
-          onClick={handleGotoClick}
+          onClick={() => navigate("/")}
           className="w-full md:w-[50%] bg-[#07B6D4] rounded-full mx-auto text-center text-white py-2 mb-8"
         >
-          Go to {isAuthenticated ? "Dashboard" : "Login"}
+          Go to Login
         </button>
         <p className="text-xl font-bold text-gray-800 ">
           Heres what happens next:
