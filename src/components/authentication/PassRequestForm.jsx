@@ -29,7 +29,7 @@ const PassRequestForm = () => {
       email: values.email
     }
 
-    const apiUrl = 'https://driptext-api.vercel.app/api/auth/forgot/password';
+    const apiUrl = 'https://driptext-api.malhoc.com/api/auth/forgot/password';
     console.log('API:' , apiUrl);
     try {
       const response = await axios.post(apiUrl, emailData);

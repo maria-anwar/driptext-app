@@ -20,7 +20,7 @@ const ThankYouPage = () => {
       };
 
       const { data } = await axios.post(
-        "https://driptext-api.vercel.app/api/chargebee/hostpage_response",
+        "https://driptext-api.malhoc.com/api/chargebee/hostpage_response",
         body
       );
 
@@ -32,7 +32,7 @@ const ThankYouPage = () => {
         console.log("initial payload: ", payload)
         console.log("final payload: ", orderPayload)
         const response = await axios.post(
-          "https://driptext-api.vercel.app/api/users/create",
+          "https://driptext-api.malhoc.com/api/users/create",
           orderPayload
         );
 

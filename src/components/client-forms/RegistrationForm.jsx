@@ -18,7 +18,7 @@ const RegistrationForm = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.post('https://driptext-api.vercel.app/api/roles/list');
+        const response = await axios.post('https://driptext-api.malhoc.com/api/roles/list');
         const data = response.data.data; // Adjust this line based on the actual structure
         
         if (Array.isArray(data)) {
@@ -62,7 +62,7 @@ const RegistrationForm = () => {
       keywords: values.keyword,
     }
    
-    const apiUrl = 'https://driptext-api.vercel.app/api/users/create';
+    const apiUrl = 'https://driptext-api.malhoc.com/api/users/create';
 
    try {
     const response = await axios.post(apiUrl, registerData);

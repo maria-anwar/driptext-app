@@ -155,7 +155,7 @@ const TaskTable = () => {
     };
 
     axios
-    .post("https://driptext-api.vercel.app/api/project/tasks/detail", payload)
+    .post("https://driptext-api.malhoc.com/api/project/tasks/detail", payload)
     .then((response) => {
       const tasks = response.data.data;
       if (Array.isArray(tasks)) {
@@ -231,7 +231,7 @@ const TaskTable = () => {
 
       axios
       .post(
-        "https://driptext-api.vercel.app/api/project/tasks/projecttaskupdate",
+        "https://driptext-api.malhoc.com/api/project/tasks/projecttaskupdate",
         payload
       )
       .then((response) => {
@@ -254,7 +254,7 @@ const TaskTable = () => {
 
     axios
       .post(
-        "https://driptext-api.vercel.app/api/project/tasks/projecttaskupdate",
+        "https://driptext-api.malhoc.com/api/project/tasks/projecttaskupdate",
         payload
       )
       .then((response) => {

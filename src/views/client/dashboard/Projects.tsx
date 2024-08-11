@@ -26,16 +26,18 @@ const Projects: React.FC = () => {
     let payload = {
       userId: userId
     };
+    // "https://driptext-api.vercel.app/api/projects/detail";
 
-    axios.post('https://driptext-api.vercel.app/api/projects/detail', payload)
+    axios
+      .post("https://driptext-api.malhoc.com/api/projects/detail", payload)
       .then((response) => {
         const projects = response.data.data;
         // localStorage.setItem('projects', JSON.stringify(projects));
         setProjectData(projects); // Set project data to state
-        console.log(projects)
+        console.log(projects);
       })
       .catch((err) => {
-        console.error('Error fetching project details:', err);
+        console.error("Error fetching project details:", err);
       });
   }, [user]); // Add dependencies here
 
