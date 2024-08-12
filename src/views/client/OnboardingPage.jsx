@@ -2,6 +2,7 @@ import React from "react";
 import { Link,useLocation } from "react-router-dom";
 import Logo from "../../assets/homeimages/driptext.png";
 import OnboardingForm from "../../components/client-forms/OnboardingForm";
+import { useStore } from "react-redux";
 
 const OnboardingPage = () => {
   const location = useLocation();

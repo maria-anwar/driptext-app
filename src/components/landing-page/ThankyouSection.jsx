@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";import { ToastContainer, toast } 
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from "react-redux";
 import {updateRoleTitle} from '../../redux/userSlice'
+import localStorage from "redux-persist/es/storage";
 
 const ThankYouPage = () => {
   const location = useLocation();
