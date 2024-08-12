@@ -16,7 +16,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const OrderForm = () => {
   const location = useLocation();
   const navigate = useNavigate();
-
+  const [loading, setLoading] = useState(false);
   const user = useSelector((state) => state.user);
   const [isSuccess, setIsSuccess] = useState(false);
   const [countries, setCountries] = useState([]);
@@ -124,7 +124,7 @@ const OrderForm = () => {
   });
 
   const onSubmit = async (values) => {
-    
+    setLoading(true);
 
     console.log("duration: ", values.duration);
     console.log("texts: ", values.texts);
@@ -205,6 +205,7 @@ const OrderForm = () => {
       }
 
     } catch (error) {
+      setLoading(false);
       const errorMessage = error.response?.data?.message || error.message || "Something went wrong";
       toast.error(errorMessage);
     }
@@ -549,10 +550,11 @@ const OrderForm = () => {
                 />
                 <div className="w-full bg-custom-black flex justify-center py-2 xs:py-2.5 mt-1 rounded-xl">
                   <button
-                    className="border-none text-white font-medium text-base cursor-pointer "
+                    className={`${ loading ? "cursor-not-allowed" : "cursor-pointer"} border-none text-white font-medium text-base`}
                     type="submit"
+                    disabled={loading}
                   >
-                    Submit Order
+                  {loading? 'Submitting Order':'Submit Order'}
                   </button>
                 </div>
               </div>
