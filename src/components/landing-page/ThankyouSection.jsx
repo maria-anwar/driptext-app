@@ -4,16 +4,17 @@ import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { parseJSON } from "date-fns";
-import { useNavigate } from "react-router-dom";import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useDispatch } from "react-redux";
-import {updateRoleTitle} from '../../redux/userSlice'
+import { updateRoleTitle } from "../../redux/userSlice";
 import localStorage from "redux-persist/es/storage";
 
 const ThankYouPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const dispatch = useDispatch();
 
   // const [hostPageId, setHostPageId] = useState("")
@@ -29,22 +30,21 @@ const ThankYouPage = () => {
         body
       );
 
-      const tempPayload = localStorage.getItem("orderPayload")
-      console.log("temp payload: ", tempPayload)
+      const tempPayload = await localStorage.getItem("orderPayload");
+      console.log("temp payload: ", tempPayload);
       const payload = JSON.parse(tempPayload);
-      console.log("payload: ", payload)
+      console.log("payload: ", payload);
       const orderPayload = { ...payload, response: data.data.content };
       try {
-        console.log("initial payload: ", payload)
-        console.log("final payload: ", orderPayload)
+        console.log("initial payload: ", payload);
+        console.log("final payload: ", orderPayload);
         const response = await axios.post(
           "https://driptext-api.malhoc.com/api/users/create",
           orderPayload
         );
-        console.log(response.data)
+        console.log(response.data);
 
         localStorage.removeItem("orderPayload");
-
 
         // dispatch(updateRoleTitle('Client'));
 
@@ -68,32 +68,40 @@ const ThankYouPage = () => {
         //   }
         // }
       } catch (error) {
-        console.log("create api error: ", error)
-        const errorMessage = error.response?.data?.message || error.message || "create api error";
+        console.log("create api error: ", error);
+        const errorMessage =
+          error.response?.data?.message || error.message || "create api error";
         toast.error(errorMessage);
       }
     } catch (error) {
-      console.log("host page error: ", error)
-      const errorMessage = error.response?.data?.message || error.message || "hostpage response error";
+      console.log("host page error: ", error);
+      const errorMessage =
+        error.response?.data?.message ||
+        error.message ||
+        "hostpage response error";
       toast.error(errorMessage);
     }
   };
 
-  useEffect(() => {
+  const hostResponse = async () => {
     const queryParams = new URLSearchParams(location.search);
     const hostId = queryParams.get("id");
-    if (hostId && localStorage.getItem("orderPayload")) {
+    if (hostId && await localStorage.getItem("orderPayload")) {
       getHostPageResponse(hostId);
     }
+  };
+
+  useEffect(() => {
+    hostResponse();
   }, [location.search]);
 
   const handleGotoClick = () => {
     if (isAuthenticated) {
-      navigate("/client-dashboard")
+      navigate("/client-dashboard");
     } else {
-      navigate("/")
+      navigate("/");
     }
-  }
+  };
 
   // useEffect(() => {
   //   if (localStorage.getItem("token")) {
