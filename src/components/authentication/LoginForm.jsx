@@ -52,6 +52,7 @@ const LoginForm = () => {
       error.response?.data?.message || error.message || "Error logging";
       setError(true);
       setErrorMesssage(errorMessage);
+      setLoading(false);
     }
 
     // window.location.href = "https://driptext.de/danke-probetext/";
