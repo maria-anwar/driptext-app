@@ -91,7 +91,7 @@ const OrderForm = () => {
         vatId: "",
       });
     }
-  }, [texts, duration, user.user.data.user]);
+  }, [texts, duration, user?.user?.data?.user]);
 
   countries.map((c) => {
     console.log(c.name);
@@ -192,16 +192,16 @@ const OrderForm = () => {
       if (item_price_id) {
         const body = {
           chargebeeId: item_price_id,
-          firstName: user.user.data.user.firstName,
-          lastName: user.user.data.user.lastName,
-          email: user.user.data.user.email,
+          firstName: values.fname,
+          lastName: values.lname,
+          email: values.email,
         };
         const { data } = await axios.post(
           "https://driptext-api.malhoc.com/api/chargebee/create_payment_intent",
           body
         );
         window.location.href = data.url;
-        toast.success("request success: ", data);
+        toast.success("request success: ");
       }
 
     } catch (error) {

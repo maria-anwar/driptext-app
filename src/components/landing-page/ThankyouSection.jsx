@@ -42,7 +42,11 @@ const ThankYouPage = () => {
 
         localStorage.removeItem("orderPayload");
 
+
         dispatch(updateRoleTitle('Client'));
+
+        // dispatch(
+        //   updateUserFields({ path: "data.user.role.title", value: 'Client' })
 
         // console.log(user)
 
@@ -118,10 +122,10 @@ const ThankYouPage = () => {
           packages today.
         </p>
         <button
-          onClick={handleGotoClick}
+          onClick={() => navigate("/")}
           className="w-full md:w-[50%] bg-[#07B6D4] rounded-full mx-auto text-center text-white py-2 mb-8"
         >
-          Go to {isAuthenticated ? "Dashboard" : "Login"}
+          Go to Login
         </button>
         <p className="text-xl font-bold text-gray-800 ">
           Heres what happens next:

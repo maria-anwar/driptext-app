@@ -50,7 +50,7 @@ const OnboardingForm = ({ projectName, userId }) => {
       speech: values.speech,
       prespective: values.perspective,
       projectName: values.project,
-      userId: user.user.data.user._id, // Assign appropriate value
+      userId: userId || user.user.data.user._id, // Assign appropriate value
       companyBackgorund: values.companyInfo,
       companyAttributes: values.companyAttributes,
       comapnyServices: values.services,
@@ -72,7 +72,7 @@ const OnboardingForm = ({ projectName, userId }) => {
       const response = await axios.post(apiUrl, onBoardingData);
 
       // {role==='Client'? window.location.href = 'https://driptext.de/danke-onboarding/':
-      //         window.location.href = 'https://driptext.de/danke-probetext/'
+              window.location.href = 'https://driptext.de/danke-probetext/'
       // }
       setLoading(false);
       console.log("Data submitted successfully:", response.data);
