@@ -43,7 +43,7 @@ const ThankYouPage = () => {
         localStorage.removeItem("orderPayload");
 
 
-        dispatch(updateRoleTitle('Client'));
+        // dispatch(updateRoleTitle('Client'));
 
         // dispatch(
         //   updateUserFields({ path: "data.user.role.title", value: 'Client' })
