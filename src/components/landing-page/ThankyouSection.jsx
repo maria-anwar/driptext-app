@@ -46,7 +46,7 @@ const ThankYouPage = () => {
 
         localStorage.removeItem("orderPayload");
 
-        dispatch(updateRoleTitle('Client'));
+        dispatch(updateRoleTitle("Client"));
 
         // dispatch(
         //   updateUserFields({ path: "data.user.role.title", value: 'Client' })
@@ -86,7 +86,7 @@ const ThankYouPage = () => {
   const hostResponse = async () => {
     const queryParams = new URLSearchParams(location.search);
     const hostId = queryParams.get("id");
-    if (hostId && await localStorage.getItem("orderPayload")) {
+    if (hostId && (await localStorage.getItem("orderPayload"))) {
       getHostPageResponse(hostId);
     }
   };
