@@ -29,7 +29,8 @@ const ThankYouPage = () => {
         body
       );
 
-      const payload = JSON.parse(localStorage.getItem("orderPayload"));
+      const tempPayload = localStorage.getItem("orderPayload")
+      const payload = JSON.parse(tempPayload);
       const orderPayload = { ...payload, response: data.data.content };
       try {
         console.log("initial payload: ", payload)
