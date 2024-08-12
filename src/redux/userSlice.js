@@ -27,7 +27,10 @@ const userSlice = createSlice({
       }
     },
     updateRoleTitle: (state, action) => {
-      if (state.user && state.user.role) {
+      console.log("payload: ", action.payload)
+      console.log("inside update role", state.user)
+      if (state.user) {
+        console.log("insidde update role if")
         state.user.data.user.role.title = action.payload;
       }
     },
