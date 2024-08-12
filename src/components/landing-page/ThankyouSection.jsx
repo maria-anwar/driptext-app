@@ -66,10 +66,12 @@ const ThankYouPage = () => {
         //   }
         // }
       } catch (error) {
+        console.log("create api error: ", error)
         const errorMessage = error.response?.data?.message || error.message || "create api error";
         toast.error(errorMessage);
       }
     } catch (error) {
+      console.log("host page error: ", error)
       const errorMessage = error.response?.data?.message || error.message || "hostpage response error";
       toast.error(errorMessage);
     }
@@ -91,14 +93,14 @@ const ThankYouPage = () => {
     }
   }
 
-  useEffect(() => {
-    if (localStorage.getItem("token")) {
-      setIsAuthenticated(true)
-    } else {
-      setIsAuthenticated(false)
-    }
+  // useEffect(() => {
+  //   if (localStorage.getItem("token")) {
+  //     setIsAuthenticated(true)
+  //   } else {
+  //     setIsAuthenticated(false)
+  //   }
 
-  },[])
+  // },[])
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center pt-5 pb-12 px-4 sm:px-6 lg:px-6">
