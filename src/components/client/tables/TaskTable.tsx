@@ -178,7 +178,7 @@ const TaskTable = () => {
                       <div
                         onClick={() =>
                           task.status === "Ready to Start"
-                            ? ()=> handleCheckboxClick(index)
+                            ? handleCheckboxClick(index)
                             : null
                         }
                         className="cursor-pointer flex items-center"
