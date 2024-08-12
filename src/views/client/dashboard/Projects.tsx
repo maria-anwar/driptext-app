@@ -113,7 +113,7 @@ const Projects: React.FC = () => {
             totalTexts={project.totalTexts} // Assuming texts are available in project data
             servicePeriod={"project.servicePeriod" || ""}
             ordersPerMonth={5 || ""}
-            maximumOrders={54 || ""}
+            maximumOrders={project.totalTexts}
             projectDuration={project.duration}
             rate={"project.rate" || ""} // Assuming rate is available
             levelUp={true || true} // Assuming levelUp is available
