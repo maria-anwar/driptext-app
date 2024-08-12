@@ -5,6 +5,9 @@ import { useSelector } from "react-redux";
 import Breadcrumb from "../breeadcrumbs/Breadcrumb";
 import Checkbox1 from "../buttons/CheckboxThree";
 import Checkbox2 from "../buttons/CheckboxTwo";
+import DarkBtn from "../buttons/DarkBtn";
+
+
 
 const TaskTable = () => {
   const location = useLocation();
@@ -109,6 +112,12 @@ const TaskTable = () => {
     <>
       <div className="2xl:px-6 3xl:px-10">
         <Breadcrumb pageName="Project Tasks" />
+         {/* <div className="w-full flex justify-start 2xl:justify-end mb-5">
+          <DarkBtn
+            name={"Extend Monthly Package"}
+            url={"https://driptext.de/buchung/"}
+          />
+        </div> */}
         <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
           <div className="max-w-full overflow-x-auto">
             <table className="w-full table-auto mb-4">
@@ -169,7 +178,7 @@ const TaskTable = () => {
                       <div
                         onClick={() =>
                           task.status === "Ready to Start"
-                            ? handleCheckboxClick(index)
+                            ? ()=> handleCheckboxClick(index)
                             : null
                         }
                         className="cursor-pointer flex items-center"
