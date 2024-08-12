@@ -105,12 +105,12 @@ const Projects: React.FC = () => {
           <CardDataStats
             key={project._id}
             id={project._id}
-            title={project.texts}
+            texts={project.texts}
             domain={project.projectName}
             keywords={project.keywords}
             projectStatus={project.projectStatus}
             createdOn={formatDate(project.createdAt)}
-            texts={project.texts} // Assuming texts are available in project data
+            totalTexts={project.totalTexts} // Assuming texts are available in project data
             servicePeriod={"project.servicePeriod" || ""}
             ordersPerMonth={5 || ""}
             maximumOrders={54 || ""}

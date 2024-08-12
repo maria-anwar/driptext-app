@@ -11,76 +11,6 @@ import CheckboxTwo from "../buttons/CheckboxTwo";
 import axios from "axios";
 import { useSelector } from "react-redux";
 
-const productData: Product[] = [
-  {
-    id: 0,
-    // published: <CheckboxThree />,
-    select: false,
-    orderId: "96-DT-1",
-    title: "Apple Watch Series 7",
-    duration: "June 2024",
-    keyword: "Test task",
-    status: "In progress",
-  },
-  {
-    id: 1,
-    // published: <CheckboxThree />,
-    select: false,
-    orderId: "96-DT-2",
-    title: "Apple Watch Series 7",
-    duration: "June 2024",
-    keyword: "Test task",
-    status: "Uninitialized",
-  },
-  {
-    id: 2,
-    // published: <CheckboxThree />,
-    select: true,
-    orderId: "96-DT-3",
-    title: "Apple Watch Series 7",
-    duration: "June 2024",
-    keyword: "Test task",
-    status: "Ready to Start",
-  },
-  {
-    id: 3,
-    // published: <CheckboxThree />,
-    select: true,
-    orderId: "96-DT-4",
-    title: "Apple Watch Series 7",
-    duration: "June 2024",
-    keyword: "Test task",
-    status: "In progress",
-  },
-  {
-    id: 4,
-    // published: <CheckboxThree />,
-    select: true,
-    orderId: "96-DT-4",
-    title: "Apple Watch Series 7",
-    duration: "June 2024",
-    keyword: "Test task",
-    status: "Ready For Proofreading",
-  },
-  {
-    id: 5,
-    // published: <CheckboxThree />,
-    select: false,
-    orderId: "96-DT-4",
-    title: "Apple Watch Series 7",
-    duration: "June 2024",
-    keyword: "Test task",
-    status: "Final",
-  },
-];
-const data = [
-  { id: 1, title: "Article 1", published: true },
-  { id: 2, title: "Article 2", published: false },
-  { id: 3, title: "Article 3", published: true },
-  { id: 4, title: "Article 3", published: true },
-  { id: 5, title: "Article 3", published: true },
-  { id: 6, title: "Article 3", published: true },
-];
 
 const Checkbox1 = () => (
   <div className="relative">
@@ -236,7 +166,7 @@ const TaskTable = () => {
       )
       .then((response) => {
         setRefreshTrigger(prev => prev + 1);
-
+        console.log(payload)
       })
       .catch((err) => {
         console.error("Error fetching project details:", err);
@@ -272,12 +202,12 @@ const TaskTable = () => {
     <>
       <div className="2xl:px-6 3xl:px-10">
         <Breadcrumb pageName="Project Tasks" />
-        <div className="w-full flex justify-start 2xl:justify-end mb-5">
+        {/* <div className="w-full flex justify-start 2xl:justify-end mb-5">
           <DarkBtn
             name={"Extend Monthly Package"}
             url={"https://driptext.de/buchung/"}
           />
-        </div>
+        </div> */}
         <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
           <div className="max-w-full overflow-x-auto">
             <table className="w-full table-auto">
@@ -338,7 +268,7 @@ const TaskTable = () => {
                       <p className="text-black dark:text-white flex-inline justify-center pl-5">
                         <div
                           onClick={
-                            task.status === "ready to start"
+                            task.status === "Ready to Start"
                               ? handleCheckboxClick
                               : ""
                           }

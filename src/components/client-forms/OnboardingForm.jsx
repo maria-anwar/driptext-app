@@ -1,22 +1,21 @@
-
 import { GroupField } from "./GroupField";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { GroupTextArea } from "./GroupTextArea";
 import { GroupDropdownField } from "./GroupDropdownField";
 import axios from "axios";
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-
-const OnboardingForm = ({projectName,userId}) => {
+const OnboardingForm = ({ projectName, userId }) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const user = useSelector((state) => state.user);
-  
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMesssage] = useState("");
 
   const initialValues = {
     speech: "She",
@@ -45,9 +44,8 @@ const OnboardingForm = ({projectName,userId}) => {
     brand: Yup.string().required("above information is required"),
   });
 
-
   const onSubmit = async (values) => {
-    setLoading(true)
+    setLoading(true);
     const onBoardingData = {
       speech: values.speech,
       prespective: values.perspective,
@@ -61,7 +59,7 @@ const OnboardingForm = ({projectName,userId}) => {
       contentPurpose: values.contentPurpose,
       contentInfo: values.brand,
     };
-  
+
     const apiUrl =
       "https://driptext-api.malhoc.com/api/users/create/onboarding";
     // const apiUrl =
@@ -70,29 +68,33 @@ const OnboardingForm = ({projectName,userId}) => {
     console.log(onBoardingData);
 
     try {
+      setError(false);
       const response = await axios.post(apiUrl, onBoardingData);
-     
+
       // {role==='Client'? window.location.href = 'https://driptext.de/danke-onboarding/':
               window.location.href = 'https://driptext.de/danke-probetext/'
       // }
-      setLoading(false)
-      console.log('Data submitted successfully:', response.data);
+      setLoading(false);
+      console.log("Data submitted successfully:", response.data);
       // navigate('/danke-probetext')
       window.location.href = "https://driptext.de/danke-probetext/";
-   
     } catch (error) {
-      
       if (error.response) {
-        console.error('Server responded with an error:', error.response);
-        toast.error(`Error: ${error.response.data.message || 'Server error'}`);
+        const errorMessage =
+          error.response?.data?.message ||
+          error.message ||
+          "Server responded with an error";
+        setError(true);
+        setErrorMesssage(errorMessage);
       } else {
-        console.error('Error:', error.message);
-        toast.error(`Errorjghjg : ${error.message}`);
+        const errorMessage =
+          error.response?.data?.message || error.message || "Error";
+        setError(true);
+        setErrorMesssage(errorMessage);
       }
-      setLoading(false)
+      setLoading(false);
     }
   };
-  
 
   return (
     <>
@@ -108,38 +110,37 @@ const OnboardingForm = ({projectName,userId}) => {
                 <h2 className="text-custom-black text-base font-semibold">
                   1. General Information
                 </h2>
-                <ToastContainer/>
+                <ToastContainer />
                 <GroupDropdownField
                   label={"Speech"}
                   type={"text"}
                   id={"speech"}
                   name={"speech"}
                   placeholder={""}
-                  option1={'She'}
-                  option2={'You (capitalized)'}
-                  option3={'you (lowercase)'}
-                  option4={'you'}
-                  option5={'no direct address'}
+                  option1={"She"}
+                  option2={"You (capitalized)"}
+                  option3={"you (lowercase)"}
+                  option4={"you"}
+                  option5={"no direct address"}
                   value={props.values.speech}
                   errors={props.errors.speech}
                   onChange={props.handleChange}
                 />
                 <GroupDropdownField
-                 label={" Writing Perspective"}
-                 placeholder={"write here"}
-                 type={"text"}
-                 id={"perspective"}
-                 name={"perspective"}
-                 value={props.values.perspective}
-                 errors={props.errors.perspective}
-                 onChange={props.handleChange}
-                  option1={'we/our shop/our company'}
-                  option2={'the company/shop'}
-                  option3={'the editorial office'}
-                  option4={'I'}
-                  option5={'neutral'}
-                  option6={'uniform/but fundamentally irrelevant'}
-                  
+                  label={" Writing Perspective"}
+                  placeholder={"write here"}
+                  type={"text"}
+                  id={"perspective"}
+                  name={"perspective"}
+                  value={props.values.perspective}
+                  errors={props.errors.perspective}
+                  onChange={props.handleChange}
+                  option1={"we/our shop/our company"}
+                  option2={"the company/shop"}
+                  option3={"the editorial office"}
+                  option4={"I"}
+                  option5={"neutral"}
+                  option6={"uniform/but fundamentally irrelevant"}
                 />
                 <GroupField
                   label={"Project"}
@@ -167,7 +168,11 @@ const OnboardingForm = ({projectName,userId}) => {
                   name={"companyInfo"}
                   value={props.values.companyInfo}
                   errors={props.errors.companyInfo}
-                  onChange={props.handleChange}
+                  onChange={(e) => {
+                    props.handleChange(e);
+                    setError(false);
+                    setErrorMesssage("");
+                  }}
                 />
 
                 <GroupTextArea
@@ -182,7 +187,11 @@ const OnboardingForm = ({projectName,userId}) => {
                   name={"companyAttributes"}
                   value={props.values.companyAttributes}
                   errors={props.errors.companyAttributes}
-                  onChange={props.handleChange}
+                  onChange={(e) => {
+                    props.handleChange(e);
+                    setError(false);
+                    setErrorMesssage("");
+                  }}
                 />
                 <GroupTextArea
                   label={"What are your services?"}
@@ -192,7 +201,11 @@ const OnboardingForm = ({projectName,userId}) => {
                   name={"services"}
                   value={props.values.services}
                   errors={props.errors.services}
-                  onChange={props.handleChange}
+                  onChange={(e) => {
+                    props.handleChange(e);
+                    setError(false);
+                    setErrorMesssage("");
+                  }}
                 />
               </div>
 
@@ -210,7 +223,11 @@ const OnboardingForm = ({projectName,userId}) => {
                   name={"content"}
                   value={props.values.content}
                   errors={props.errors.content}
-                  onChange={props.handleChange}
+                  onChange={(e) => {
+                    props.handleChange(e);
+                    setError(false);
+                    setErrorMesssage("");
+                  }}
                 />
 
                 <GroupTextArea
@@ -223,7 +240,11 @@ const OnboardingForm = ({projectName,userId}) => {
                   name={"customers"}
                   value={props.values.customers}
                   errors={props.errors.customers}
-                  onChange={props.handleChange}
+                  onChange={(e) => {
+                    props.handleChange(e);
+                    setError(false);
+                    setErrorMesssage("");
+                  }}
                 />
               </div>
 
@@ -241,7 +262,11 @@ const OnboardingForm = ({projectName,userId}) => {
                   name={"contentPurpose"}
                   value={props.values.contentPurpose}
                   errors={props.errors.contentPurpose}
-                  onChange={props.handleChange}
+                  onChange={(e) => {
+                    props.handleChange(e);
+                    setError(false);
+                    setErrorMesssage("");
+                  }}
                 />
 
                 <GroupTextArea
@@ -254,17 +279,28 @@ const OnboardingForm = ({projectName,userId}) => {
                   name={"brand"}
                   value={props.values.brand}
                   errors={props.errors.brand}
-                  onChange={props.handleChange}
+                  onChange={(e) => {
+                    props.handleChange(e);
+                    setError(false);
+                    setErrorMesssage("");
+                  }}
                 />
                 <div className="w-full relative bg-custom-black flex justify-center py-2 xs:py-2.5 mt-1 rounded-xl">
                   <button
-                    className={`border-none w-full text-white font-medium text-base ${loading? 'cursor-not-allowed':'cursor-pointer'}`}
+                    className={`border-none w-full text-white font-medium text-base ${
+                      loading ? "cursor-not-allowed" : "cursor-pointer"
+                    }`}
                     type="submit"
                     disabled={loading}
                   >
-                  {loading ? 'submitting' : 'Submit Order'}
+                    {loading ? "submitting" : "Submit Order"}
                   </button>
                 </div>
+                {error && (
+                  <div id="email" className="mt-2 text-sm text-red-500">
+                    {errorMessage}
+                  </div>
+                )}
               </div>
               <p className="text-custom-black text-sm 3xl:text-base font-medium text-center">
                 Please check that your data is correct before submitting

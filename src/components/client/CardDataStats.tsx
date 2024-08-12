@@ -4,11 +4,11 @@ import { useNavigate } from "react-router-dom";
 
 interface CardDataStatsProps {
   id: Object;
-  title: string;
+  texts: number;
   domain: string;
   keywords: string;
   projectStatus: string;
-  texts: number;
+  totalTexts: number;
   createdOn: string;
   servicePeriod: string;
   ordersPerMonth: number;
@@ -22,11 +22,11 @@ interface CardDataStatsProps {
 
 const CardDataStats: React.FC<CardDataStatsProps> = ({
   id,
-  title,
+  texts,
   domain,
   keywords,
   projectStatus,
-  texts,
+  totalTexts,
   createdOn,
   servicePeriod,
   ordersPerMonth,
@@ -92,7 +92,7 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
         </div>
         <div className="mt-3 mb-3 flex items-end justify-between">
           <div className="text-sm font-medium text-dark-gray">
-            Text <div className="text-meta-5">{title}/1</div>
+            Text <div className="text-meta-5">{texts}/{totalTexts}</div>
           </div>
           <div className="text-sm font-medium text-dark-gray">
             Created on:{" "}
