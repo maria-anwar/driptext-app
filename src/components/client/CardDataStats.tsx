@@ -12,11 +12,7 @@ interface CardDataStatsProps {
   createdOn: string;
   servicePeriod: string;
   ordersPerMonth: number;
-  maximumOrders: number;
   projectDuration: number;
-  rate: string;
-  levelUp?: boolean;
-  levelDown?: boolean;
   children: ReactNode;
 }
 
@@ -30,11 +26,7 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
   createdOn,
   servicePeriod,
   ordersPerMonth,
-  maximumOrders,
   projectDuration,
-  rate,
-  levelUp,
-  levelDown,
   children,
 }) => {
   const navigate = useNavigate();
@@ -66,6 +58,7 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
   };
 
   const handleProjectTask = () => {
+    localStorage.setItem("projectName",domain)
     navigate("task-table", { state: { projectId: id } });
   };
 
@@ -92,22 +85,20 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
         </div>
         <div className="mt-3 mb-3 flex items-end justify-between">
           <div className="text-sm font-medium text-dark-gray">
-            Text <div className="text-meta-5">{texts}/{totalTexts}</div>
+            Text{" "}
+            <div className="text-meta-5">
+              {texts}/{totalTexts}
+            </div>
           </div>
           <div className="text-sm font-medium text-dark-gray">
             Created on:{" "}
             <div className="text-meta-3 flex justify-end">{createdOn}</div>
           </div>
         </div>
-        <div className="mt-3 mb-3 flex items-end justify-end">
+        <div className="mt-8 mb-3 flex items-end justify-between">
           <div className="text-sm font-medium text-dark-gray">
             Orders per month{" "}
             <div className="text-meta-5 flex justify-end">{ordersPerMonth}</div>
-          </div>
-        </div>
-        <div className="mt-3 mb-3 flex items-end justify-between">
-          <div className="text-sm font-medium text-dark-gray">
-            Maximum Orders: <div className="text-meta-5">{maximumOrders}</div>
           </div>
           <div className="text-sm font-medium text-dark-gray">
             Project Duration{" "}

@@ -62,7 +62,7 @@ const Projects: React.FC = () => {
           "https://driptext-api.malhoc.com/api/projects/detail",
           payload
         );
-        console.log("data: ", data)
+        console.log("data: ", data);
         if (data.data.length > 0 && data.data[0].texts === 1) {
           navigate("/package-booking");
         } else {
@@ -88,15 +88,9 @@ const Projects: React.FC = () => {
           </p>
         </div>
         <div className=" w-full 2xl:max-w-max flex justify-start 2xl:justify-end mt-2 gap-2 ">
-          <div onClick={handleAddProjectClick}>
-            <DarkBtn name={"Add Project"} url={""} />
+          <div>
+            <DarkBtn name={"Add Project"} url={"/package-booking"} /> 
           </div>
-          <Link
-            to={"/package-booking"}
-            className="inline-flex items-center justify-center gap-2.5 bg-black py-4 text-sm xl:text-base  text-center font-medium text-white hover:bg-opacity-90 px-5 lg:px-8 5xl:px-10"
-          >
-            Buy Subscription
-          </Link>
         </div>
       </div>
 
@@ -113,10 +107,7 @@ const Projects: React.FC = () => {
             totalTexts={project.totalTexts} // Assuming texts are available in project data
             servicePeriod={"project.servicePeriod" || ""}
             ordersPerMonth={5 || ""}
-            maximumOrders={project.texts}
             projectDuration={project.duration}
-            rate={"project.rate" || ""} // Assuming rate is available
-            levelUp={true || true} // Assuming levelUp is available
           >
             <svg
               className="fill-primary dark:fill-white"

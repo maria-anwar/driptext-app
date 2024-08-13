@@ -32,7 +32,7 @@ const OnboardingForm = ({ projectName, userId }) => {
   const validationSchema = Yup.object().shape({
     speech: Yup.string().required("please select speech"),
     perspective: Yup.string().required("please enter writing perspective"),
-    project: Yup.string().required("please enter project"),
+    // project: Yup.string().required("please enter project"),
     companyInfo: Yup.string().required("please enter company information"),
     companyAttributes: Yup.string().required(
       "Please enter company's attributes"
@@ -72,7 +72,7 @@ const OnboardingForm = ({ projectName, userId }) => {
       const response = await axios.post(apiUrl, onBoardingData);
 
       // {role==='Client'? window.location.href = 'https://driptext.de/danke-onboarding/':
-              window.location.href = 'https://driptext.de/danke-probetext/'
+      window.location.href = "https://driptext.de/danke-probetext/";
       // }
       setLoading(false);
       console.log("Data submitted successfully:", response.data);
@@ -142,16 +142,24 @@ const OnboardingForm = ({ projectName, userId }) => {
                   option5={"neutral"}
                   option6={"uniform/but fundamentally irrelevant"}
                 />
-                <GroupField
-                  label={"Project"}
-                  type={"text"}
-                  id={"project"}
-                  name={"project"}
-                  placeholder={"example.com"}
-                  value={projectName}
-                  errors={props.errors.project}
-                  onChange={props.handleChange}
-                />
+                <div className="w-full flex flex-col gap-1">
+                  <label className="text-custom-black text-sm lg:text-sm font-semibold  2xl:font-semibold">
+                    Project
+                    <span className="text-red-600 text:lg 2xl:text-[17px] mt-6 pl-1">
+                      *
+                    </span>
+                  </label>
+                  <input
+                    className="w-full bg-white text-custom-black text-xs xs:text-sm px-2 xs:px-3.5 font-normal py-3 focus:outline-none focus:ring-none  rounded-xl"
+                    type={"text"}
+                    id={"project"}
+                    name={"project"}
+                    placeholder={"example.com"}
+                    value={projectName}
+                    disabled={projectName ? true : false}
+                    
+                  />
+                </div>
               </div>
 
               <div className="flex flex-col gap-5">
