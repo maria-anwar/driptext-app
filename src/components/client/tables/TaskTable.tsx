@@ -6,21 +6,22 @@ import Breadcrumb from "../breeadcrumbs/Breadcrumb";
 import Checkbox1 from "../buttons/CheckboxThree";
 import Checkbox2 from "../buttons/CheckboxTwo";
 import DarkBtn from "../buttons/DarkBtn";
-
-
+import { useNavigate } from "react-router-dom";
 
 const TaskTable = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { projectId } = location.state || {};
-
   const user = useSelector((state) => state.user);
-
   const [taskData, setTaskData] = useState([]);
   const [userToken, setUserToken] = useState(user.user.token);
   const [openBarIndex, setOpenBarIndex] = useState(null); // Track the index of the currently open task
   const [refreshTrigger, setRefreshTrigger] = useState(0);
+  const [userId, setUserID] = useState(user.user.data.user._id);
+
 
   useEffect(() => {
+    
     let token = userToken;
     axios.defaults.headers.common["access-token"] = token;
     let payload = {
@@ -108,16 +109,48 @@ const TaskTable = () => {
       });
   };
 
+  const handleAddProjectClick = async () => {
+    const projectName = localStorage.getItem("projectName")
+    if (user.user.data.user.role.title.toLowerCase() === "leads") {
+      try {
+        let token = userToken;
+        axios.defaults.headers.common["access-token"] = token;
+        let payload = {
+          userId: userId,
+        };
+        const { data } = await axios.post(
+          "https://driptext-api.malhoc.com/api/projects/detail",
+          payload
+        );
+        console.log("data: ", data);
+        if (data.data.length > 0 && data.data[0].texts === 1) {
+          navigate("/package-booking");
+        } else {
+          navigate("/onboarding-probetext",{state:{projectName:projectName }});
+        }
+      } catch (error) {
+        console.log("get project detail error: ", error);
+      }
+    } else {
+      navigate("/onboarding-probetext",{state:{projectName: projectName}});
+    }
+  };
+
+
+
   return (
     <>
       <div className="2xl:px-6 3xl:px-10">
         <Breadcrumb pageName="Project Tasks" />
-         {/* <div className="w-full flex justify-start 2xl:justify-end mb-5">
-          <DarkBtn
+        <div className="w-full flex justify-start 2xl:justify-end mb-5">
+          {/* <DarkBtn
             name={"Extend Monthly Package"}
             url={"https://driptext.de/buchung/"}
-          />
-        </div> */}
+          /> */}
+          <div onClick={handleAddProjectClick}>
+            <DarkBtn name={"Add Texts"} url={""} />
+          </div>
+        </div>
         <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
           <div className="max-w-full overflow-x-auto">
             <table className="w-full table-auto mb-4">
