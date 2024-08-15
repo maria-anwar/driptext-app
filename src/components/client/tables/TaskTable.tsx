@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 const TaskTable = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { projectId } = location.state || {};
+  const projectId  = localStorage.getItem('projectId')
   const user = useSelector((state) => state.user);
   const [taskData, setTaskData] = useState([]);
   const [userToken, setUserToken] = useState(user.user.token);
@@ -132,7 +132,7 @@ const TaskTable = () => {
         console.log("get project detail error: ", error);
       }
     } else {
-      navigate("/onboarding-probetext",{state:{projectName: projectName}});
+      navigate("/onboarding-probetext",{state:{projectName: projectName,projectId:projectId}});
     }
   };
 

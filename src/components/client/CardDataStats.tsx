@@ -52,13 +52,15 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
     //     state: { projectName: domain, userId: user.user.data.user._id },
     //   });
     // }
+    localStorage.setItem("projectId", id.toString());
     navigate("/onboarding-probetext", {
-      state: { projectName: domain, userId: user.user.data.user._id },
+      state: { projectName: domain},
     });
   };
 
   const handleProjectTask = () => {
     localStorage.setItem("projectName",domain)
+    localStorage.setItem("projectId", id.toString());
     navigate("task-table", { state: { projectId: id } });
   };
 
