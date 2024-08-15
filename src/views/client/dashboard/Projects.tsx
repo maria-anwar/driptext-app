@@ -50,31 +50,6 @@ const Projects: React.FC = () => {
 
   // }, []);
 
-  const handleAddProjectClick = async () => {
-    if (user.user.data.user.role.title.toLowerCase() === "leads") {
-      try {
-        let token = userToken;
-        axios.defaults.headers.common["access-token"] = token;
-        let payload = {
-          userId: userId,
-        };
-        const { data } = await axios.post(
-          "https://driptext-api.malhoc.com/api/projects/detail",
-          payload
-        );
-        console.log("data: ", data);
-        if (data.data.length > 0 && data.data[0].texts === 1) {
-          navigate("/package-booking");
-        } else {
-          navigate("/onboarding-probetext");
-        }
-      } catch (error) {
-        console.log("get project detail error: ", error);
-      }
-    } else {
-      navigate("/onboarding-probetext");
-    }
-  };
 
   return (
     <>
@@ -95,16 +70,17 @@ const Projects: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 2xl:grid-cols-3 5xl:grid-cols-4 4xl:px-14">
-        {projectData.map((project) => (
+        {projectData.length===0 ? <p className="py-10">Sorry, You don't have any project</p>:
+        (projectData.map((project) => (
           <CardDataStats
             key={project._id}
             id={project._id}
-            texts={project.texts}
+            texts={project.tasks}
             domain={project.projectName}
             keywords={project.keywords}
             projectStatus={project.projectStatus}
             createdOn={formatDate(project.createdAt)}
-            totalTexts={project.totalTexts} // Assuming texts are available in project data
+            totalTexts={project.numberOfTasks} // Assuming texts are available in project data
             servicePeriod={"project.servicePeriod" || ""}
             ordersPerMonth={5 || ""}
             projectDuration={project.duration}
@@ -139,7 +115,8 @@ const Projects: React.FC = () => {
               />
             </svg>
           </CardDataStats>
-        ))}
+        )))
+      }
       </div>
     </>
   );

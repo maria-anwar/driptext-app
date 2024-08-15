@@ -11,12 +11,12 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const OnboardingForm = ({ projectName, userId }) => {
-  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const user = useSelector((state) => state.user);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMesssage] = useState("");
 
+  const projectId = localStorage.getItem('projectId');
   const initialValues = {
     speech: "She",
     project: projectName,
@@ -51,6 +51,7 @@ const OnboardingForm = ({ projectName, userId }) => {
       prespective: values.perspective,
       projectName: values.project,
       userId: userId || user.user.data.user._id, // Assign appropriate value
+      projectId:projectId,
       companyBackgorund: values.companyInfo,
       companyAttributes: values.companyAttributes,
       comapnyServices: values.services,
