@@ -20,6 +20,9 @@ const DropdownUser = () => {
 
   const handleLogout= ()=>{
     localStorage.removeItem('token')
+    localStorage.removeItem('projectId');
+    localStorage.removeItem('projectName');
+    localStorage.removeItem('tasks');
     dispatch(setUser(null))
     navigate('/')
   }

@@ -70,10 +70,11 @@ const RegistrationForm = () => {
    try {
     const response = await axios.post(apiUrl, registerData);
     console.log(response.data.data._id)
+    console.log(response.data.project)
     toast.success('Data submitted successfully:', response.registerData);
     setLoading(false);
     // dispatch(setUser(response.data))
-     navigate("/onboarding-probetext",{state:{projectName:values.project,userId:response.data.data._id}});
+     navigate("/onboarding-probetext",{state:{projectName:values.project,projectId:response.data.project._id,userId:response.data.data._id}});
    } catch (error) {
     setLoading(false);
     const errorMessage = error.response?.data?.message || error.message || 'Error submitting data';

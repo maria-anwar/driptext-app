@@ -64,7 +64,7 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
     navigate("task-table", { state: { projectId: id } });
   };
 
-  const hasAllProps = texts !== 0;
+  const hasAllProps = texts !== 0 || projectStatus !== "Not initalized";
 
   const handleNothing = () => {};
 
