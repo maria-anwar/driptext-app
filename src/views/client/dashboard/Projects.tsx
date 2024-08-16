@@ -70,8 +70,8 @@ const Projects: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 2xl:grid-cols-3 5xl:grid-cols-4 4xl:px-14">
-        {projectData.length===0 ? <p className="py-10">Sorry, You don't have any project</p>:
-        (projectData.map((project) => (
+        
+        {projectData.map((project) => (
           <CardDataStats
             key={project._id}
             id={project._id}
@@ -115,8 +115,7 @@ const Projects: React.FC = () => {
               />
             </svg>
           </CardDataStats>
-        )))
-      }
+        ))}
       </div>
     </>
   );

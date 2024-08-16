@@ -123,10 +123,10 @@ const TaskTable = () => {
           payload
         );
         console.log("data: ", data);
-        if (data.data.length > 0 && data.data[0].texts === 1) {
+        if (data.data.length > 0 && data.data[0].tasks === 1) {
           navigate("/package-booking");
         } else {
-          navigate("/onboarding-probetext",{state:{projectName:projectName }});
+          navigate("/onboarding-probetext",{state:{projectName:projectName,projectId:projectId }});
         }
       } catch (error) {
         console.log("get project detail error: ", error);
