@@ -6,6 +6,7 @@ interface CardDataStatsProps {
   id: Object;
   texts: number;
   domain: string;
+  productUniqueID:string,
   keywords: string;
   projectStatus: string;
   totalTexts: number;
@@ -22,6 +23,7 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
   domain,
   keywords,
   projectStatus,
+  productUniqueID,
   totalTexts,
   createdOn,
   servicePeriod,
@@ -79,7 +81,7 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
         {children}
       </div>
       <h4 className="text-title-md font-bold text-black dark:text-white my-3">
-        {domain} || DT-{id.slice(-4)}
+        {domain} || {productUniqueID}
       </h4>
       <div className={`relative ${!hasAllProps ? "blur-sm" : ""}`}>
         <div className="my-6">

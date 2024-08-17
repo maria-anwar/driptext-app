@@ -93,10 +93,6 @@ const OrderForm = () => {
     }
   }, [texts, duration, user?.user?.data?.user]);
 
-  countries.map((c) => {
-    console.log(c.name);
-  });
-
   // const initialValues = {
   //   duration: "",
   //   texts: texts,
@@ -117,17 +113,15 @@ const OrderForm = () => {
     company: Yup.string().required("please enter your company name"),
     fname: Yup.string().required("please enter first name"),
     lname: Yup.string().required("please enter last name"),
-    telNo: Yup.string().required("please enter telephone No"),
+    telNo: Yup.number().required("please enter telephone No"),
     email: Yup.string().email().required("please enter your email"),
     // country: Yup.string().required("please select your country"),
-    vatId: Yup.string().required("VAT ID is required"),
+    vatId: Yup.number().required("VAT ID is required"),
   });
 
   const onSubmit = async (values) => {
     setLoading(true);
 
-    console.log("duration: ", values.duration);
-    console.log("texts: ", values.texts);
 
     // const chargeBeePayload = {
     //   id: user.user.data.user.id,
@@ -185,7 +179,6 @@ const OrderForm = () => {
         subPlanId: subPlanId,
       };
 
-      console.log("order payload: ", payload)
       localStorage.setItem("orderPayload", JSON.stringify(payload))
 
 
@@ -480,7 +473,7 @@ const OrderForm = () => {
                 </h2>
                 <GroupField
                   label={"Company"}
-                  placeholder={"Your email address"}
+                  placeholder={"Your company name"}
                   type={"text"}
                   id={"company"}
                   name={"company"}
@@ -510,7 +503,8 @@ const OrderForm = () => {
                 </div>
                 <GroupField
                   label={"Telephone number"}
-                  placeholder={"Your email address"}
+                  placeholder={"Your phone number"}
+                  type={"number"}
                   id={"telNo"}
                   name={"telNo"}
                   value={props.values.telNo}
@@ -540,8 +534,8 @@ const OrderForm = () => {
                 />
                 <GroupField
                   label={"VAT ID No."}
-                  placeholder={"Your email address"}
-                  type={"id"}
+                  placeholder={"Your VAT Id"}
+                  type={"number"}
                   id={"vatId"}
                   name={"vatId"}
                   value={props.values.vatId}

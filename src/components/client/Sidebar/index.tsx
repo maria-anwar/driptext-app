@@ -59,7 +59,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   }, [sidebarExpanded]);
 
   const handleLogout = () => {
-    localStorage.removeItem('token')
+    localStorage.removeItem('key')
     localStorage.removeItem('projectId');
     localStorage.removeItem('projectName');
     localStorage.removeItem('tasks');

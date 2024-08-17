@@ -17,7 +17,7 @@ const Projects: React.FC = () => {
     return format(date, "MMMM d, yyyy");
   };
 
-  const [projectData, setProjectData] = useState<any>([]);
+  const [projectData, setProjectData] = useState([]);
   const [userId, setUserID] = useState(user.user.data.user._id);
   const [userToken, setUserToken] = useState(user.user.token);
 
@@ -32,10 +32,13 @@ const Projects: React.FC = () => {
     axios
       .post("https://driptext-api.malhoc.com/api/projects/detail", payload)
       .then((response) => {
-        const projects = response.data.data;
-        // localStorage.setItem('projects', JSON.stringify(projects));
-        setProjectData(projects); // Set project data to state
-        console.log(projects);
+        const projectDataArray = response.data.data;
+      console.log(projectDataArray)
+     const allProjects = projectDataArray.flatMap(item => item.projects);
+
+      if (allProjects.length > 0) {
+        setProjectData(allProjects);
+      } 
       })
       .catch((err) => {
         console.error("Error fetching project details:", err);
@@ -76,6 +79,7 @@ const Projects: React.FC = () => {
             key={project._id}
             id={project._id}
             texts={project.tasks}
+            productUniqueID={project.projectId}
             domain={project.projectName}
             keywords={project.keywords}
             projectStatus={project.projectStatus}
