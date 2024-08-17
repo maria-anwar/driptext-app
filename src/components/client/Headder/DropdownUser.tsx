@@ -19,7 +19,7 @@ const DropdownUser = () => {
   };
 
   const handleLogout= ()=>{
-    localStorage.removeItem('token')
+    localStorage.removeItem('key')
     localStorage.removeItem('projectId');
     localStorage.removeItem('projectName');
     localStorage.removeItem('tasks');

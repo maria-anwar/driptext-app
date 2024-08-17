@@ -33,6 +33,7 @@ const LoginForm = () => {
     password: Yup.string().min(8).required("password is required"),
   });
 
+
   const onSubmit = async (values) => {
     setLoading(true);
     let userData = {
@@ -45,7 +46,7 @@ const LoginForm = () => {
       setError(false)
       const response = await axios.post(apiUrl, userData);
       dispatch(setUser(response?.data));
-      localStorage.setItem("token", response.data.token);
+      localStorage.setItem('key', response.data.token);
       navigate("/client-dashboard");
     } catch (error) {
       const errorMessage =

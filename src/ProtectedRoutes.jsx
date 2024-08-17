@@ -1,12 +1,12 @@
-
 import { Navigate } from 'react-router-dom';
 
-const ProtectedRoute = ( {element}) => {
 
-  const  token  = localStorage.getItem("token")
+const ProtectedRoute = ({ element }) => {
+  const token = localStorage.getItem("key");
 
   if (!token) {
-    return <Navigate to="/" />;
+    // If the token is expired or missing, redirect to login and perform re-login
+    return <Navigate to="/login" replace />;
   }
 
   return element;

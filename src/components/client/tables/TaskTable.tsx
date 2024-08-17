@@ -118,12 +118,13 @@ const TaskTable = () => {
         let payload = {
           userId: userId,
         };
-        const { data } = await axios.post(
+        const response = await axios.post(
           "https://driptext-api.malhoc.com/api/projects/detail",
           payload
         );
-        console.log("data: ", data);
-        if (data.data.length > 0 && data.data[0].tasks === 1) {
+        const projectDataArray = response.data.data;
+        const allProjects = projectDataArray.flatMap(item => item.projects);
+        if (allProjects.length > 0 && allProjects[0].tasks === 1) {
           navigate("/package-booking");
         } else {
           navigate("/onboarding-probetext",{state:{projectName:projectName,projectId:projectId }});
@@ -178,8 +179,7 @@ const TaskTable = () => {
                   <tr key={task._id}>
                     <td className="border-b border-[#eee] py-5 px-4 pl-5 sm:pl-9 dark:border-strokedark xl:pl-11">
                       <Link to="#" className="text-blue-500 text-sm">
-                        {"DT-"}
-                        {task._id.slice(-4)}
+                       {task.taskName}
                       </Link>
                     </td>
                     <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
