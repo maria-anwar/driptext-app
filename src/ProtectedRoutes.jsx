@@ -6,7 +6,7 @@ const ProtectedRoute = ({ element }) => {
 
   if (!token) {
     // If the token is expired or missing, redirect to login and perform re-login
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/" replace />;
   }
 
   return element;
