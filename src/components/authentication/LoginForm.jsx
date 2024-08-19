@@ -14,12 +14,19 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../redux/userSlice.js";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMesssage] = useState("");
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
 
   const navigate = useNavigate();
 
@@ -33,7 +40,6 @@ const LoginForm = () => {
     password: Yup.string().min(8).required("password is required"),
   });
 
-
   const onSubmit = async (values) => {
     setLoading(true);
     let userData = {
@@ -43,14 +49,14 @@ const LoginForm = () => {
     const apiUrl = "https://driptext-api.malhoc.com/api/auth/login";
 
     try {
-      setError(false)
+      setError(false);
       const response = await axios.post(apiUrl, userData);
       dispatch(setUser(response?.data));
-      localStorage.setItem('key', response.data.token);
+      localStorage.setItem("key", response.data.token);
       navigate("/client-dashboard");
     } catch (error) {
       const errorMessage =
-      error.response?.data?.message || error.message || "Error logging";
+        error.response?.data?.message || error.message || "Error logging";
       setError(true);
       setErrorMesssage(errorMessage);
       setLoading(false);
@@ -99,6 +105,7 @@ const LoginForm = () => {
                   {props.errors.email}
                 </div>
               )}
+
               <Typography
                 variant="small"
                 color="blue-gray"
@@ -106,23 +113,30 @@ const LoginForm = () => {
               >
                 Password
               </Typography>
-              <Input
-                id="password"
-                name="password"
-                type="password"
-                value={props.values.password}
-                onChange={(e) => {
-                  props.handleChange(e);
-                  setError(false);
-                  setErrorMesssage("");
-                }}
-                size="lg"
-                placeholder="********"
-                className=" !border-t-blue-gray-200 focus:!border-t-gray-900 focus:ring:none"
-                labelProps={{
-                  className: "before:content-none after:content-none",
-                }}
-              />
+              <div className="relative ">
+                <Input
+                  id="password"
+                  name="password"
+                  type={passwordVisible ? "text" : "password"}
+                  value={props.values.password}
+                  onChange={(e) => {
+                    props.handleChange(e);
+                    setError(false);
+                    setErrorMesssage("");
+                  }}
+                  size="lg"
+                  placeholder="********"
+                  className=" !border-t-blue-gray-200 focus:!border-t-gray-900 focus:ring:none"
+                  labelProps={{
+                    className: "before:content-none after:content-none",
+                  }}
+                />
+                <FontAwesomeIcon
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
+                  onClick={togglePasswordVisibility}
+                  icon={passwordVisible ? faEyeSlash : faEye}
+                />{" "}
+              </div>
               {props.errors.password && (
                 <div id="password" className="-mt-4 text-red-500 text-sm">
                   {props.errors.password}
