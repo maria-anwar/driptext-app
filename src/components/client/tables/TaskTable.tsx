@@ -142,7 +142,7 @@ const TaskTable = () => {
   return (
     <>
       <div className="2xl:px-6 3xl:px-10">
-        <div className="w-full flex justify-between items-center mb-2">
+        <div className="w-full flex justify-between items-start mb-2">
           <ol className="flex items-center gap-2">
             <li>
               <Link className="font-medium" to="/client-dashboard">
