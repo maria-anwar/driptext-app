@@ -84,6 +84,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task }) => {
   const handleStart = () => {
     setShowDialog(true);
   };
+  
 
   const handleFinish = () => {
     setShowProjectInfo(false);
