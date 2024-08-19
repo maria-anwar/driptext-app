@@ -142,7 +142,7 @@ const TaskTable = () => {
   return (
     <>
       <div className="2xl:px-6 3xl:px-10">
-        <div className="w-full flex justify-between items-center mb-5">
+        <div className="w-full flex justify-between items-center mb-2">
           <ol className="flex items-center gap-2">
             <li>
               <Link className="font-medium" to="/client-dashboard">
@@ -151,10 +151,17 @@ const TaskTable = () => {
             </li>
             <li className="font-medium text-primary">Project Tasks</li>
           </ol>
+          {/* <DarkBtn
+            name={"Extend Monthly Package"}
+            url={"https://driptext.de/buchung/"}
+          /> */}
           <div onClick={handleAddProjectClick}>
             <DarkBtn name={"Add Text"} url={""} />
           </div>
         </div>
+        <h2 className="text-title-md2 font-semibold text-black dark:text-white py-5">
+          Project Tasks
+        </h2>
         <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
           <div className="max-w-full overflow-x-auto">
             <table className="w-full table-auto mb-4">
