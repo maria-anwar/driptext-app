@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 const TaskTable = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const projectId  = localStorage.getItem('projectId')
+  const projectId = localStorage.getItem("projectId");
   const user = useSelector((state) => state.user);
   const [taskData, setTaskData] = useState([]);
   const [userToken, setUserToken] = useState(user.user.token);
@@ -19,9 +19,7 @@ const TaskTable = () => {
   const [refreshTrigger, setRefreshTrigger] = useState(0);
   const [userId, setUserID] = useState(user.user.data.user._id);
 
-
   useEffect(() => {
-    
     let token = userToken;
     axios.defaults.headers.common["access-token"] = token;
     let payload = {
@@ -110,7 +108,7 @@ const TaskTable = () => {
   };
 
   const handleAddProjectClick = async () => {
-    const projectName = localStorage.getItem("projectName")
+    const projectName = localStorage.getItem("projectName");
     if (user.user.data.user.role.title.toLowerCase() === "leads") {
       try {
         let token = userToken;
@@ -123,31 +121,36 @@ const TaskTable = () => {
           payload
         );
         const projectDataArray = response.data.data;
-        const allProjects = projectDataArray.flatMap(item => item.projects);
+        const allProjects = projectDataArray.flatMap((item) => item.projects);
         if (allProjects.length > 0 && allProjects[0].tasks === 1) {
           navigate("/package-booking");
         } else {
-          navigate("/onboarding-probetext",{state:{projectName:projectName,projectId:projectId }});
+          navigate("/onboarding-probetext", {
+            state: { projectName: projectName, projectId: projectId },
+          });
         }
       } catch (error) {
         console.log("get project detail error: ", error);
       }
     } else {
-      navigate("/onboarding-probetext",{state:{projectName: projectName,projectId:projectId}});
+      navigate("/onboarding-probetext", {
+        state: { projectName: projectName, projectId: projectId },
+      });
     }
   };
-
-
 
   return (
     <>
       <div className="2xl:px-6 3xl:px-10">
-        <Breadcrumb pageName="Project Tasks" />
-        <div className="w-full flex justify-start 2xl:justify-end mb-5">
-          {/* <DarkBtn
-            name={"Extend Monthly Package"}
-            url={"https://driptext.de/buchung/"}
-          /> */}
+        <div className="w-full flex justify-between items-center mb-5">
+          <ol className="flex items-center gap-2">
+            <li>
+              <Link className="font-medium" to="/client-dashboard">
+                Dashboard /
+              </Link>
+            </li>
+            <li className="font-medium text-primary">Project Tasks</li>
+          </ol>
           <div onClick={handleAddProjectClick}>
             <DarkBtn name={"Add Text"} url={""} />
           </div>
@@ -179,7 +182,7 @@ const TaskTable = () => {
                   <tr key={task._id}>
                     <td className="border-b border-[#eee] py-5 px-4 pl-5 sm:pl-9 dark:border-strokedark xl:pl-11">
                       <Link to="#" className="text-blue-500 text-sm">
-                       {task.taskName}
+                        {task.taskName}
                       </Link>
                     </td>
                     <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
