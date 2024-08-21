@@ -9,9 +9,8 @@ import { CountryDropdownField } from "./CountryDropdownField";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const OrderForm = () => {
   const location = useLocation();
@@ -62,21 +61,19 @@ const OrderForm = () => {
         "6 months - word price 0.18 EUR/net",
         "12 months - word price 0.15 EUR/net",
       ];
-      let initialDurationValue = ""
+      let initialDurationValue = "";
       if (texts.substring(0, 2) === "4 ") {
-        const temp = fourTextDurations.find(item => item.includes(duration))
-        initialDurationValue = temp
+        const temp = fourTextDurations.find((item) => item.includes(duration));
+        initialDurationValue = temp;
       }
       if (texts.substring(0, 2) === "8 ") {
         const temp = EightTextDurations.find((item) => item.includes(duration));
         initialDurationValue = temp;
       }
-       if (texts.substring(0, 2) === "12") {
-         const temp = twelveTextDuration.find((item) =>
-           item.includes(duration)
-         );
-         initialDurationValue = temp;
-       }
+      if (texts.substring(0, 2) === "12") {
+        const temp = twelveTextDuration.find((item) => item.includes(duration));
+        initialDurationValue = temp;
+      }
       // Set initial values only when texts and duration have been fetched or computed
       setInitialValues({
         duration: initialDurationValue,
@@ -89,6 +86,7 @@ const OrderForm = () => {
         email: user?.user?.data?.user?.email || "",
         country: "DE",
         vatId: "",
+        vatType: "",
       });
     }
   }, [texts, duration, user?.user?.data?.user]);
@@ -122,7 +120,6 @@ const OrderForm = () => {
   const onSubmit = async (values) => {
     setLoading(true);
 
-
     // const chargeBeePayload = {
     //   id: user.user.data.user.id,
     //   firstName: user.user.data.user.firstName,
@@ -134,27 +131,28 @@ const OrderForm = () => {
 
     // console.log("cargebee payload: ", chargeBeePayload);
     try {
+      let item_price_id = "";
+      let planId = "";
+      let subPlanId = "";
 
-      let item_price_id = ""
-      let planId = ""
-      let subPlanId = ""
-     
       const { data: planList } = await axios.post(
         `https://driptext-api.malhoc.com/api/plans/list`
       );
 
       if (planList.data.length > 0) {
-        planList.data.forEach(item => {
+        planList.data.forEach((item) => {
           if (parseInt(values.texts.substring(0, 2)) === item.value) {
-            item.subplan.forEach(subPlan => {
-              if (subPlan.duration === parseInt(values.duration.substring(0, 2))) {
-                item_price_id = subPlan.chargebeeId
-                planId = item._id
-                subPlanId = subPlan._id
+            item.subplan.forEach((subPlan) => {
+              if (
+                subPlan.duration === parseInt(values.duration.substring(0, 2))
+              ) {
+                item_price_id = subPlan.chargebeeId;
+                planId = item._id;
+                subPlanId = subPlan._id;
               }
-            })
+            });
           }
-        })
+        });
       } else {
         toast.error("No Plans Found");
       }
@@ -163,7 +161,9 @@ const OrderForm = () => {
         "https://driptext-api.malhoc.com/api/roles/list"
       );
 
-      const clientRole = rolesList.data.find(item => item.title.toLowerCase() === "client")
+      const clientRole = rolesList.data.find(
+        (item) => item.title.toLowerCase() === "client"
+      );
 
       const payload = {
         firstName: values.fname,
@@ -174,13 +174,13 @@ const OrderForm = () => {
         companyName: values.company,
         country: values.country,
         vatId: values.vatId,
+        vatType: values.vatType,
         keywords: "",
         planId: planId,
         subPlanId: subPlanId,
       };
 
-      localStorage.setItem("orderPayload", JSON.stringify(payload))
-
+      localStorage.setItem("orderPayload", JSON.stringify(payload));
 
       if (item_price_id) {
         const body = {
@@ -196,10 +196,12 @@ const OrderForm = () => {
         window.location.href = data.url;
         toast.success("request success: ");
       }
-
     } catch (error) {
       setLoading(false);
-      const errorMessage = error.response?.data?.message || error.message || "Something went wrong";
+      const errorMessage =
+        error.response?.data?.message ||
+        error.message ||
+        "Something went wrong";
       toast.error(errorMessage);
     }
 
@@ -395,7 +397,7 @@ const OrderForm = () => {
                 <h2 className="text-custom-black text-base font-semibold">
                   1. Choose your DripText package:
                 </h2>
-                <ToastContainer/>
+                <ToastContainer />
                 <GroupDropdownField
                   label={" Desired number of SEO-optimized texts per month? "}
                   placeholder={""}
@@ -542,13 +544,28 @@ const OrderForm = () => {
                   errors={props.errors.vatId}
                   onChange={props.handleChange}
                 />
+                <GroupDropdownField
+                  label={"VAT type"}
+                  type={"text"}
+                  id={"vatRegulation"}
+                  name={"vatRegulation"}
+                  placeholder={""}
+                  option1={"CY Company (19%)"}
+                  option2={"EU Reverse-Charge (0%)"}
+                  option3={"Small business owner (0%)"}
+                  option4={"Non-EU Company (0%)"}
+                  value={props.values.vatType}
+                  onChange={props.handleChange}
+                />
                 <div className="w-full bg-custom-black flex justify-center py-2 xs:py-2.5 mt-1 rounded-xl">
                   <button
-                    className={`${ loading ? "cursor-not-allowed" : "cursor-pointer"} border-none text-white font-medium text-base`}
+                    className={`${
+                      loading ? "cursor-not-allowed" : "cursor-pointer"
+                    } border-none text-white font-medium text-base`}
                     type="submit"
                     disabled={loading}
                   >
-                  {loading? 'Submitting Order':'Submit Order'}
+                    {loading ? "Submitting Order" : "Submit Order"}
                   </button>
                 </div>
               </div>

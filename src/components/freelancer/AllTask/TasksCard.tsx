@@ -113,6 +113,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task }) => {
   const hanldeShowAllInfo = () => {
     setShowDetailsDialog(true);
   };
+  
   const hanldeCloseAllInfo = () => {
     setShowDetailsDialog(false);
   };
