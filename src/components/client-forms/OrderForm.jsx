@@ -136,8 +136,9 @@ const OrderForm = () => {
       let subPlanId = "";
 
       const { data: planList } = await axios.post(
-        `https://driptext-api.malhoc.com/api/plans/list`
+        `${import.meta.env.VITE_DB_URL}/plans/list`
       );
+      
 
       if (planList.data.length > 0) {
         planList.data.forEach((item) => {
@@ -158,8 +159,9 @@ const OrderForm = () => {
       }
 
       const { data: rolesList } = await axios.post(
-        "https://driptext-api.malhoc.com/api/roles/list"
+        `${import.meta.env.VITE_DB_URL}/roles/list`
       );
+      
 
       const clientRole = rolesList.data.find(
         (item) => item.title.toLowerCase() === "client"
@@ -189,8 +191,9 @@ const OrderForm = () => {
           lastName: values.lname,
           email: values.email,
         };
+
         const { data } = await axios.post(
-          "https://driptext-api.malhoc.com/api/chargebee/create_payment_intent",
+          `${import.meta.env.VITE_DB_URL}/chargebee/create_payment_intent`,
           body
         );
         window.location.href = data.url;

@@ -10,6 +10,7 @@ import { setUser } from "../../redux/userSlice";
 import { useDispatch } from "react-redux";
 
 
+
 //https://driptext-api.vercel.app/api/users/create
 
 const RegistrationForm = () => {
@@ -21,7 +22,7 @@ const RegistrationForm = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.post('https://driptext-api.malhoc.com/api/roles/list');
+        const response = await axios.post(`${import.meta.env.VITE_DB_URL}/roles/list`);
         const data = response.data.data; // Adjust this line based on the actual structure
         
         if (Array.isArray(data)) {
@@ -65,10 +66,9 @@ const RegistrationForm = () => {
       keywords: values.keyword,
     }
    
-    const apiUrl = 'https://driptext-api.malhoc.com/api/users/create';
 
    try {
-    const response = await axios.post(apiUrl, registerData);
+    const response = await axios.post(`${import.meta.env.VITE_DB_URL}/users/create`, registerData);
     console.log(response.data.data._id)
     console.log(response.data.project)
     toast.success('Data submitted successfully:', response.registerData);

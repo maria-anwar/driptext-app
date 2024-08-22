@@ -6,10 +6,18 @@ import { useNavigate, Link } from "react-router-dom";
 // import { GroupTextArea } from "./GroupTextArea";
 import { GroupDropdownField } from "../../client-forms/GroupDropdownField";
 import { CountryDropdownField } from "../../client-forms/CountryDropdownField";
+import { setUser } from '../../../redux/userSlice';
+import { useDispatch } from "react-redux";
+import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const RegisterForm = () => {
   const [isSuccess, setIsSuccess] = useState(false);
+  const [loading ,setLoading] = useState(false)
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const initialValues = {
     fname: "",
     lname: "",
@@ -20,7 +28,7 @@ const RegisterForm = () => {
     city: "",
     country: "",
     iban: "",
-    vatRegulation: "",
+    vatRegulation: 'Small business owner (0%)',
     company: "",
     vatId: "",
   };
@@ -39,12 +47,37 @@ const RegisterForm = () => {
     company: Yup.string().required("please enter your company name"),
     vatId: Yup.string().required("VAT ID is required"),
   });
-  const onSubmit = (values) => {
-    console.log("Im Clicked");
-    // setIsSuccess(true);
-    window.location.href = "https://driptext.de/danke-probetext/";
-    // navigate("https://driptext.de/danke-probetext/");
+  const onSubmit = async (values) => {
+    setLoading(true);
+    const registerData = {
+      firstName: values.fname,
+      lastName: values.lname,
+      email: values.email,
+      country: values.country,
+      companyName: values.company,
+      vatId: values.vatId,
+      iban: values.iban,
+      vatRegulation: values.vatRegulation,
+      street: values.street,
+      postCode: values.postcode,
+      city: values.city,
+    
+    }
+
+    try {
+      const response = await axios.post(`${import.meta.env.VITE_DB_URL}/freelancer/create`, registerData);
+      toast.success('Data submitted successfully:');
+      console.log(response)
+      setLoading(false);
+       navigate("/");
+     } catch (error) {
+      setLoading(false);
+      const errorMessage = error.response?.data?.message || error.message || 'Error submitting data';
+      toast.error(errorMessage);
+     }
+
   };
+
   const countriesList = [
     {
       id: "1",
@@ -212,6 +245,7 @@ const RegisterForm = () => {
                   1. Personal data:
                 </h2>
                 <div className="w-full flex flex-col lg:flex-row lg:justify-between lg:gap-3 gap-5">
+                  <ToastContainer/>
                   <GroupField
                     label={"First Name"}
                     placeholder={"Your first name"}
@@ -348,10 +382,11 @@ const RegisterForm = () => {
                 />
                 <div className="w-full bg-custom-black flex justify-center py-2 xs:py-2.5 mt-1 rounded-xl">
                   <button
-                    className="border-none text-white font-medium text-base cursor-pointer "
+                     className={`border-none text-white font-medium text-base  ${loading?'cursor-not-allowed':'cursor-pointer'}`}
                     type="submit"
+                    disabled={loading}
                   >
-                    Submit Now
+                      {loading? 'Submitting' :'Submit Now'}
                   </button>
                 </div>
               </div>

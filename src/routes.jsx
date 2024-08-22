@@ -51,7 +51,6 @@ import PackageBooking from "./views/subscription/PackageBooking";
 import NotFound from "./views/NotFound";
 
 const WebRoutes = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
     <>
       <BrowserRouter>
@@ -79,9 +78,15 @@ const WebRoutes = () => {
           <Route path="/package-booking" element={<PackageBooking />} />
           <Route path="/bestellformular" element={<OrderForm />} />
 
+          {/* Client and Lead Dashboard */}
           <Route
             path="/client-dashboard"
-            element={<ProtectedRoute element={<DefaultLayout />} />}
+            element={
+              <ProtectedRoute
+                element={<DefaultLayout />}
+                allowedRoles={["client", "leads"]}
+              />
+            }
           >
             <Route index element={<Projects />} />
             <Route path="task-table" element={<TaskTable />} />
@@ -93,7 +98,15 @@ const WebRoutes = () => {
           </Route>
 
           {/* Freelancer Dashboard */}
-          <Route path="/freelancer-dashboard" element={<FreelancerLayout />}>
+          <Route
+            path="/freelancer-dashboard"
+            element={
+              <ProtectedRoute
+                element={<FreelancerLayout />}
+                allowedRoles={["freelancer"]}
+              />
+            }
+          >
             <Route index element={<Tasks />} />
             <Route path="earning" element={<Earning />} />
             <Route path="driptext-academy" element={<DriptextAcademy />} />

@@ -25,8 +25,9 @@ const ThankYouPage = () => {
         host_id: hostId,
       };
 
+      
       const { data } = await axios.post(
-        "https://driptext-api.malhoc.com/api/chargebee/hostpage_response",
+        `${import.meta.env.VITE_DB_URL}/chargebee/hostpage_response`,
         body
       );
 
@@ -38,8 +39,9 @@ const ThankYouPage = () => {
       try {
         console.log("initial payload: ", payload);
         console.log("final payload: ", orderPayload);
+        `${import.meta.env.VITE_DB_URL}/users/create`
         const response = await axios.post(
-          "https://driptext-api.malhoc.com/api/users/create",
+         `${import.meta.env.VITE_DB_URL}/users/create`,
           orderPayload
         );
         console.log(response.data);
