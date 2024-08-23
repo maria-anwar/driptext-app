@@ -12,28 +12,171 @@ import { useLocation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+
+
+const countriesList = [
+  {
+    id: "1",
+    value: "DE",
+    name: "Germany",
+  },
+  {
+    id: "2",
+    value: "AF",
+    name: "Afghanistan",
+  },
+  {
+    id: "3",
+    value: "EG",
+    name: "Egypt",
+  },
+  {
+    id: "4",
+    value: "AL",
+    name: "Albania",
+  },
+  {
+    id: "5",
+    value: "DZ",
+    name: "Algeria",
+  },
+  {
+    id: "6",
+    value: "AD",
+    name: "Andorra",
+  },
+  {
+    id: "7",
+    value: "AO",
+    name: "Angola",
+  },
+  {
+    id: "8",
+    value: "AG",
+    name: "Antigua and Barbuda",
+  },
+  {
+    id: "9",
+    value: "GQ",
+    name: "Equatorial Guinea",
+  },
+  {
+    id: "10",
+    value: "AR",
+    name: "Argentina",
+  },
+  {
+    id: "11",
+    value: "AM",
+    name: "Armenia",
+  },
+  {
+    id: "12",
+    value: "AZ",
+    name: "Azerbaijan",
+  },
+  {
+    id: "13",
+    value: "ET",
+    name: "Ethiopia",
+  },
+  {
+    id: "14",
+    value: "AU",
+    name: "Australia",
+  },
+  {
+    id: "15",
+    value: "BS",
+    name: "Bahamas",
+  },
+  {
+    id: "16",
+    value: "BH",
+    name: "Bahrain",
+  },
+  {
+    id: "17",
+    value: "BD",
+    name: "Bangladesh",
+  },
+  {
+    id: "18",
+    value: "BB",
+    name: "Barbados",
+  },
+  {
+    id: "19",
+    value: "BE",
+    name: "Belgium",
+  },
+  {
+    id: "20",
+    value: "BZ",
+    name: "Belize",
+  },
+  {
+    id: "21",
+    value: "BJ",
+    name: "Benin",
+  },
+  {
+    id: "22",
+    value: "BT",
+    name: "Bhutan",
+  },
+  {
+    id: "23",
+    value: "BO",
+    name: "Bolivia",
+  },
+  {
+    id: "24",
+    value: "BA",
+    name: "Bosnia and Herzegovina",
+  },
+  {
+    id: "25",
+    value: "BW",
+    name: "Botswana",
+  },
+  {
+    id: "26",
+    value: "BR",
+    name: "Brazil",
+  },
+  {
+    id: "27",
+    value: "BN",
+    name: "Brunei",
+  },
+  {
+    id: "28",
+    value: "BG",
+    name: "Bulgaria",
+  },
+  {
+    id: "29",
+    value: "BF",
+    name: "Burkina-Faso",
+  },
+  {
+    id: "30",
+    value: "BI",
+    name: "Burundi",
+  },
+];
+
 const OrderForm = () => {
   const location = useLocation();
-  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const user = useSelector((state) => state.user);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [countries, setCountries] = useState([]);
   const [texts, setTexts] = useState("");
   const [duration, setDuration] = useState("");
   const [initialValues, setInitialValues] = useState(null);
   console.log("texts: ", texts);
   console.log("duration: ", duration);
-
-  useEffect(() => {
-    const fetchCoutries = async () => {
-      const response = await axios.get(
-        "https://restcountries.com/v3.1/independent?status=true"
-      );
-      setCountries(response.data);
-    };
-    fetchCoutries();
-  }, []);
 
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
@@ -87,22 +230,11 @@ const OrderForm = () => {
         country: "DE",
         vatId: "",
         vatType: "",
+        textPrice: '',
       });
     }
   }, [texts, duration, user?.user?.data?.user]);
 
-  // const initialValues = {
-  //   duration: "",
-  //   texts: texts,
-  //   domain: "",
-  //   company: "",
-  //   fname: user.user.data.user.firstName,
-  //   lname: user.user.data.user.lastName,
-  //   telNo: "",
-  //   email: user.user.data.user.email,
-  //   country: "",
-  //   vatId: "",
-  // };
   console.log("initital values: ", initialValues);
   const validationSchema = Yup.object().shape({
     // duration: Yup.string().required("please select duration"),
@@ -114,22 +246,13 @@ const OrderForm = () => {
     telNo: Yup.number().required("please enter telephone No"),
     email: Yup.string().email().required("please enter your email"),
     // country: Yup.string().required("please select your country"),
-    vatId: Yup.number().required("VAT ID is required"),
+    vatId: Yup.string().required("VAT ID is required"),
   });
 
   const onSubmit = async (values) => {
     setLoading(true);
 
-    // const chargeBeePayload = {
-    //   id: user.user.data.user.id,
-    //   firstName: user.user.data.user.firstName,
-    //   lastName: user.user.data.user.lastName,
-    //   email: user.user.data.user.email,
-    //   duration: values.duration,
-    //   texts: values.texts,
-    // };
-
-    // console.log("cargebee payload: ", chargeBeePayload);
+  
     try {
       let item_price_id = "";
       let planId = "";
@@ -180,6 +303,7 @@ const OrderForm = () => {
         keywords: "",
         planId: planId,
         subPlanId: subPlanId,
+        // textPrice: values.textPrice,
       };
 
       localStorage.setItem("orderPayload", JSON.stringify(payload));
@@ -230,158 +354,6 @@ const OrderForm = () => {
     // }
   };
 
-  const countriesList = [
-    {
-      id: "1",
-      value: "DE",
-      name: "Germany",
-    },
-    {
-      id: "2",
-      value: "AF",
-      name: "Afghanistan",
-    },
-    {
-      id: "3",
-      value: "EG",
-      name: "Egypt",
-    },
-    {
-      id: "4",
-      value: "AL",
-      name: "Albania",
-    },
-    {
-      id: "5",
-      value: "DZ",
-      name: "Algeria",
-    },
-    {
-      id: "6",
-      value: "AD",
-      name: "Andorra",
-    },
-    {
-      id: "7",
-      value: "AO",
-      name: "Angola",
-    },
-    {
-      id: "8",
-      value: "AG",
-      name: "Antigua and Barbuda",
-    },
-    {
-      id: "9",
-      value: "GQ",
-      name: "Equatorial Guinea",
-    },
-    {
-      id: "10",
-      value: "AR",
-      name: "Argentina",
-    },
-    {
-      id: "11",
-      value: "AM",
-      name: "Armenia",
-    },
-    {
-      id: "12",
-      value: "AZ",
-      name: "Azerbaijan",
-    },
-    {
-      id: "13",
-      value: "ET",
-      name: "Ethiopia",
-    },
-    {
-      id: "14",
-      value: "AU",
-      name: "Australia",
-    },
-    {
-      id: "15",
-      value: "BS",
-      name: "Bahamas",
-    },
-    {
-      id: "16",
-      value: "BH",
-      name: "Bahrain",
-    },
-    {
-      id: "17",
-      value: "BD",
-      name: "Bangladesh",
-    },
-    {
-      id: "18",
-      value: "BB",
-      name: "Barbados",
-    },
-    {
-      id: "19",
-      value: "BE",
-      name: "Belgium",
-    },
-    {
-      id: "20",
-      value: "BZ",
-      name: "Belize",
-    },
-    {
-      id: "21",
-      value: "BJ",
-      name: "Benin",
-    },
-    {
-      id: "22",
-      value: "BT",
-      name: "Bhutan",
-    },
-    {
-      id: "23",
-      value: "BO",
-      name: "Bolivia",
-    },
-    {
-      id: "24",
-      value: "BA",
-      name: "Bosnia and Herzegovina",
-    },
-    {
-      id: "25",
-      value: "BW",
-      name: "Botswana",
-    },
-    {
-      id: "26",
-      value: "BR",
-      name: "Brazil",
-    },
-    {
-      id: "27",
-      value: "BN",
-      name: "Brunei",
-    },
-    {
-      id: "28",
-      value: "BG",
-      name: "Bulgaria",
-    },
-    {
-      id: "29",
-      value: "BF",
-      name: "Burkina-Faso",
-    },
-    {
-      id: "30",
-      value: "BI",
-      name: "Burundi",
-    },
-  ];
 
   if (!initialValues) {
     return <div>Loading...</div>; // Show loading or placeholder while initialValues are being set
@@ -459,6 +431,18 @@ const OrderForm = () => {
                     onChange={props.handleChange}
                   />
                 )}
+
+                <GroupField
+                  label={"Text Price"}
+                  type={"number"}
+                  id={"textPrice"}
+                  name={"textPrice"}
+                  placeholder={"example.com"}
+                  value={0.764}
+                  errors={props.errors.textPrice}
+                  onChange={props.handleChange}
+                  disabled={true}
+                />
 
                 <GroupField
                   label={"Domain"}
@@ -540,7 +524,7 @@ const OrderForm = () => {
                 <GroupField
                   label={"VAT ID No."}
                   placeholder={"Your VAT Id"}
-                  type={"number"}
+                  type={"text"}
                   id={"vatId"}
                   name={"vatId"}
                   value={props.values.vatId}
@@ -557,8 +541,9 @@ const OrderForm = () => {
                   option2={"EU Reverse-Charge (0%)"}
                   option3={"Small business owner (0%)"}
                   option4={"Non-EU Company (0%)"}
-                  value={props.values.vatType}
+                  value={'Small business owner (0%)'}
                   onChange={props.handleChange}
+                  disabled={true}
                 />
                 <div className="w-full bg-custom-black flex justify-center py-2 xs:py-2.5 mt-1 rounded-xl">
                   <button
