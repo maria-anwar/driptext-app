@@ -80,16 +80,17 @@ const Projects: React.FC = () => {
           <CardDataStats
             key={project._id}
             id={project._id}
-            texts={project.tasks}
+            texts={project.plan.textsCount}
             productUniqueID={project.projectId}
             domain={project.projectName}
             keywords={project.keywords}
             projectStatus={project.projectStatus}
             createdOn={formatDate(project.createdAt)}
-            totalTexts={project.numberOfTasks} // Assuming texts are available in project data
+            totalTexts={project.plan.totalTexts} // Assuming texts are available in project data
             servicePeriod={"project.servicePeriod" || ""}
-            ordersPerMonth={5 || ""}
-            projectDuration={project.duration}
+            ordersPerMonth={project.plan.tasksPerMonth}
+            usedordersPerMonth={project.plan.tasksPerMonthCount}
+            projectDuration={project.plan.duration}
           >
             <svg
               className="fill-primary dark:fill-white"

@@ -12,8 +12,6 @@ import { useLocation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
-
 const countriesList = [
   {
     id: "1",
@@ -175,8 +173,8 @@ const OrderForm = () => {
   const [texts, setTexts] = useState("");
   const [duration, setDuration] = useState("");
   const [initialValues, setInitialValues] = useState(null);
-  console.log("texts: ", texts);
-  console.log("duration: ", duration);
+  const [userId, setUserID] = useState(user?.user?.data?.user?._id || '');
+  const [userToken, setUserToken] = useState(user?.user?.token || '');
 
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
@@ -230,7 +228,7 @@ const OrderForm = () => {
         country: "DE",
         vatId: "",
         vatType: "",
-        textPrice: '',
+        textPrice: "",
       });
     }
   }, [texts, duration, user?.user?.data?.user]);
@@ -252,7 +250,38 @@ const OrderForm = () => {
   const onSubmit = async (values) => {
     setLoading(true);
 
-  
+    try {
+      if (userToken) {
+        let token = userToken;
+        axios.defaults.headers.common["access-token"] = token;
+        let payload = {
+          userId: userId,
+          projectName: values.domain,
+        };
+        const response = await axios.post(
+          `${import.meta.env.VITE_DB_URL}/projects/checkInsert`,
+          payload
+        );
+
+        if (response.status === 200) {
+          await paymentMethods(values);
+          
+        } else {
+          toast.error("Project name already exists");
+          setLoading(false);
+          return;
+        }
+      } else {
+        await paymentMethods(values);
+      }
+    } catch (error) {
+      toast.error("Something went wrong");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const paymentMethods = async (values) => {
     try {
       let item_price_id = "";
       let planId = "";
@@ -261,7 +290,6 @@ const OrderForm = () => {
       const { data: planList } = await axios.post(
         `${import.meta.env.VITE_DB_URL}/plans/list`
       );
-      
 
       if (planList.data.length > 0) {
         planList.data.forEach((item) => {
@@ -284,7 +312,6 @@ const OrderForm = () => {
       const { data: rolesList } = await axios.post(
         `${import.meta.env.VITE_DB_URL}/roles/list`
       );
-      
 
       const clientRole = rolesList.data.find(
         (item) => item.title.toLowerCase() === "client"
@@ -303,8 +330,8 @@ const OrderForm = () => {
         keywords: "",
         planId: planId,
         subPlanId: subPlanId,
-        //telNo: values.telNo,
-        // textPrice: values.textPrice,
+        telNo: values.telNo.toString(),
+        textPrice: values.textPrice.toString(),
       };
 
       localStorage.setItem("orderPayload", JSON.stringify(payload));
@@ -332,29 +359,7 @@ const OrderForm = () => {
         "Something went wrong";
       toast.error(errorMessage);
     }
-
-    // try {
-    //   const response = await axios.post(
-    //     "https://driptext-api.vercel.app/api/users/create",
-    //     payload
-    //   );
-
-    //   if (response.status === 200) {
-    //     axios.post(
-    //       "https://driptext-api.vercel.app/api/auth/orderSuccessEamil",
-    //       {
-    //         email: values.email,
-    //       }
-    //     );
-    //     window.location.href = "https://driptext.de/danke-probetext/";
-    //   } else {
-    //     console.error("Failed to submit data");
-    //   }
-    // } catch (error) {
-    //   console.error("Error submitting data:", error);
-    // }
   };
-
 
   if (!initialValues) {
     return <div>Loading...</div>; // Show loading or placeholder while initialValues are being set
@@ -480,7 +485,7 @@ const OrderForm = () => {
                     value={props.values.fname}
                     errors={props.errors.fname}
                     onChange={props.handleChange}
-                    disabled={true}
+                    disabled={user?.user?.data?.user?.firstName ?true:false}
                   />
                   <GroupField
                     label={"Last Name"}
@@ -490,7 +495,7 @@ const OrderForm = () => {
                     value={props.values.lname}
                     errors={props.errors.lname}
                     onChange={props.handleChange}
-                    disabled={true}
+                    disabled={user?.user?.data?.user?.lastName ?true:false}
                   />
                 </div>
                 <GroupField
@@ -512,7 +517,7 @@ const OrderForm = () => {
                   value={props.values.email}
                   errors={props.errors.email}
                   onChange={props.handleChange}
-                  disabled={true}
+                  disabled={user?.user?.data?.user?.email ?true:false}
                 />
                 <CountryDropdownField
                   label={"Country"}
@@ -545,7 +550,7 @@ const OrderForm = () => {
                   option2={"EU Reverse-Charge (0%)"}
                   option3={"Small business owner (0%)"}
                   option4={"Non-EU Company (0%)"}
-                  value={'Small business owner (0%)'}
+                  value={"Small business owner (0%)"}
                   onChange={props.handleChange}
                   disabled={true}
                 />

@@ -13,6 +13,7 @@ interface CardDataStatsProps {
   createdOn: string;
   servicePeriod: string;
   ordersPerMonth: number;
+  usedordersPerMonth: number;
   projectDuration: number;
   children: ReactNode;
 }
@@ -28,6 +29,7 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
   createdOn,
   servicePeriod,
   ordersPerMonth,
+  usedordersPerMonth,
   projectDuration,
   children,
 }) => {
@@ -102,12 +104,12 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
         <div className="mt-8 mb-3 flex items-end justify-between">
           <div className="text-sm font-medium text-dark-gray">
             Orders per month{" "}
-            <div className="text-meta-5 flex justify-end">{ordersPerMonth}</div>
+            <div className="text-meta-5 flex justify-end">{usedordersPerMonth}/{ordersPerMonth}</div>
           </div>
           <div className="text-sm font-medium text-dark-gray">
             Project Duration{" "}
             <div className="text-meta-5 flex justify-end">
-              {projectDuration}
+              {projectDuration} Month
             </div>
           </div>
         </div>
