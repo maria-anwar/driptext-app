@@ -479,6 +479,7 @@ const OrderForm = () => {
                     value={props.values.fname}
                     errors={props.errors.fname}
                     onChange={props.handleChange}
+                    disabled={true}
                   />
                   <GroupField
                     label={"Last Name"}
@@ -488,6 +489,7 @@ const OrderForm = () => {
                     value={props.values.lname}
                     errors={props.errors.lname}
                     onChange={props.handleChange}
+                    disabled={true}
                   />
                 </div>
                 <GroupField
@@ -509,6 +511,7 @@ const OrderForm = () => {
                   value={props.values.email}
                   errors={props.errors.email}
                   onChange={props.handleChange}
+                  disabled={true}
                 />
                 <CountryDropdownField
                   label={"Country"}
