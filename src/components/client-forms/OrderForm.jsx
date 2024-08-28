@@ -173,8 +173,8 @@ const OrderForm = () => {
   const [texts, setTexts] = useState("");
   const [duration, setDuration] = useState("");
   const [initialValues, setInitialValues] = useState(null);
-  const [userId, setUserID] = useState(user?.user?.data?.user?._id || '');
-  const [userToken, setUserToken] = useState(user?.user?.token || '');
+  const [userId, setUserID] = useState(user?.user?.data?.user?._id || "");
+  const [userToken, setUserToken] = useState(user?.user?.token || "");
 
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
@@ -265,24 +265,32 @@ const OrderForm = () => {
 
         if (response.status === 200) {
           await paymentMethods(values);
-          
         } else {
           const errorMessage =
-          response?.data?.message  ||
-          "Something went wrong";
-        toast.error(errorMessage);
+            response?.data?.message || "Something went wrong";
+          toast.error(errorMessage);
           setLoading(false);
           return;
         }
       } else {
-        await paymentMethods(values);
+        const response = await axios.post(
+          `${import.meta.env.VITE_DB_URL}/freelancer/emailCheck`,
+          { email: values.email }
+        );
+        if (response.status === 200) {
+          await paymentMethods(values);
+        } else {
+          toast.error(response.data.message);
+          setLoading(false);
+          return;
+        }
       }
     } catch (error) {
       const errorMessage =
-      error.response?.data?.message ||
-      error.message ||
-      "Something went wrong";
-    toast.error(errorMessage);
+        error.response?.data?.message ||
+        error.message ||
+        "Something went wrong";
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -492,7 +500,7 @@ const OrderForm = () => {
                     value={props.values.fname}
                     errors={props.errors.fname}
                     onChange={props.handleChange}
-                    disabled={user?.user?.data?.user?.firstName ?true:false}
+                    disabled={user?.user?.data?.user?.firstName ? true : false}
                   />
                   <GroupField
                     label={"Last Name"}
@@ -502,7 +510,7 @@ const OrderForm = () => {
                     value={props.values.lname}
                     errors={props.errors.lname}
                     onChange={props.handleChange}
-                    disabled={user?.user?.data?.user?.lastName ?true:false}
+                    disabled={user?.user?.data?.user?.lastName ? true : false}
                   />
                 </div>
                 <GroupField
@@ -524,7 +532,7 @@ const OrderForm = () => {
                   value={props.values.email}
                   errors={props.errors.email}
                   onChange={props.handleChange}
-                  disabled={user?.user?.data?.user?.email ?true:false}
+                  disabled={user?.user?.data?.user?.email ? true : false}
                 />
                 <CountryDropdownField
                   label={"Country"}
