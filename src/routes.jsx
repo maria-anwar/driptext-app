@@ -40,6 +40,7 @@ import Table2 from "./components/client/tables/Table2";
 import Register from "./views/freelancer/auth/Register";
 import RedirectHandler from "./views/auth/RedirectHandler";
 import ProtectedRoute from "./ProtectedRoutes";
+import ProtectedRegsiter from "./ProtectRegister";
 
 // Freelancer import
 import FreelancerLayout from "./layouts/freelancer/FreelancerDashboardLayout";
@@ -57,13 +58,26 @@ const WebRoutes = () => {
         <Routes>
           <Route element={<HomeLayout />}>
             {/* <Route index element={<SignIn />} /> */}
-            <Route path="/probetext" element={<RegisterPage />} />
+            <Route
+              path="/probetext"
+              element={
+                <ProtectedRegsiter
+                  element={<RegisterPage />}
+                  route="/client-dashboard"
+                />
+              }
+            />
           </Route>
           <Route path="/onboarding-probetext" element={<OnboardingPage />} />
 
           <Route
             path="/onboarding-formular-freelancer"
-            element={<Register />}
+            element={
+              <ProtectedRegsiter
+                element={<Register />}
+                route="/freelancer-dashboard"
+              />
+            }
           />
           <Route path="/danke-probetext" element={<ThankYouPage />} />
 

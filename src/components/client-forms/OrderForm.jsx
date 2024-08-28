@@ -267,7 +267,10 @@ const OrderForm = () => {
           await paymentMethods(values);
           
         } else {
-          toast.error("Project name already exists");
+          const errorMessage =
+          response?.data?.message  ||
+          "Something went wrong";
+        toast.error(errorMessage);
           setLoading(false);
           return;
         }
@@ -275,7 +278,11 @@ const OrderForm = () => {
         await paymentMethods(values);
       }
     } catch (error) {
-      toast.error("Something went wrong");
+      const errorMessage =
+      error.response?.data?.message ||
+      error.message ||
+      "Something went wrong";
+    toast.error(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -325,7 +332,7 @@ const OrderForm = () => {
         projectName: values.domain,
         companyName: values.company,
         country: values.country,
-        vatId: values.vatId,
+        vatId: values.vatId.toString(),
         vatType: values.vatType,
         keywords: "",
         planId: planId,
