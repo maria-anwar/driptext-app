@@ -9,6 +9,7 @@ export const GroupField = ({
   value,
   onChange,
   errors,
+  disabled,
 }) => {
   return (
     <>
@@ -18,7 +19,7 @@ export const GroupField = ({
           <span className="text-red-600 text:lg 2xl:text-[17px] mt-6 pl-1">*</span>
         </label>
         <input
-          className="w-full text-custom-black text-xs xs:text-sm px-2 xs:px-3.5 font-normal py-3 focus:outline-none focus:ring-none  rounded-xl"
+          className={`${disabled ? 'bg-white text-black':''} w-full text-custom-black text-xs xs:text-sm px-2 xs:px-3.5 font-normal py-3 focus:outline-none focus:ring-none  rounded-xl`}
           type={type}
           placeholder={placeholder}
           name={name}
@@ -26,6 +27,7 @@ export const GroupField = ({
           value={value}
           onChange={onChange}
           errors={errors}
+          disabled={disabled}
         />
         {errors ? <div className="text-sm text-red-700">{errors}</div> : ""}
         {/* <div className="text-red-700">'Erroe here'</div> */}

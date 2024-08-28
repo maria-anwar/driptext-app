@@ -40,6 +40,7 @@ import Table2 from "./components/client/tables/Table2";
 import Register from "./views/freelancer/auth/Register";
 import RedirectHandler from "./views/auth/RedirectHandler";
 import ProtectedRoute from "./ProtectedRoutes";
+import ProtectedRegsiter from "./ProtectRegister";
 
 // Freelancer import
 import FreelancerLayout from "./layouts/freelancer/FreelancerDashboardLayout";
@@ -51,20 +52,32 @@ import PackageBooking from "./views/subscription/PackageBooking";
 import NotFound from "./views/NotFound";
 
 const WebRoutes = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
     <>
       <BrowserRouter>
         <Routes>
           <Route element={<HomeLayout />}>
             {/* <Route index element={<SignIn />} /> */}
-            <Route path="/probetext" element={<RegisterPage />} />
+            <Route
+              path="/probetext"
+              element={
+                <ProtectedRegsiter
+                  element={<RegisterPage />}
+                  route="/client-dashboard"
+                />
+              }
+            />
           </Route>
           <Route path="/onboarding-probetext" element={<OnboardingPage />} />
 
           <Route
             path="/onboarding-formular-freelancer"
-            element={<Register />}
+            element={
+              <ProtectedRegsiter
+                element={<Register />}
+                route="/freelancer-dashboard"
+              />
+            }
           />
           <Route path="/danke-probetext" element={<ThankYouPage />} />
 
@@ -79,9 +92,15 @@ const WebRoutes = () => {
           <Route path="/package-booking" element={<PackageBooking />} />
           <Route path="/bestellformular" element={<OrderForm />} />
 
+          {/* Client and Lead Dashboard */}
           <Route
             path="/client-dashboard"
-            element={<ProtectedRoute element={<DefaultLayout />} />}
+            element={
+              <ProtectedRoute
+                element={<DefaultLayout />}
+                allowedRoles={["client", "leads"]}
+              />
+            }
           >
             <Route index element={<Projects />} />
             <Route path="task-table" element={<TaskTable />} />
@@ -93,7 +112,15 @@ const WebRoutes = () => {
           </Route>
 
           {/* Freelancer Dashboard */}
-          <Route path="/freelancer-dashboard" element={<FreelancerLayout />}>
+          <Route
+            path="/freelancer-dashboard"
+            element={
+              <ProtectedRoute
+                element={<FreelancerLayout />}
+                allowedRoles={["freelancer"]}
+              />
+            }
+          >
             <Route index element={<Tasks />} />
             <Route path="earning" element={<Earning />} />
             <Route path="driptext-academy" element={<DriptextAcademy />} />

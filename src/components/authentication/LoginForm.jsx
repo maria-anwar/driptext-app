@@ -47,14 +47,30 @@ const LoginForm = () => {
       email: values.email,
       password: values.password,
     };
-    const apiUrl = "https://driptext-api.malhoc.com/api/auth/login";
 
     try {
       setError(false);
-      const response = await axios.post(apiUrl, userData);
+      const response = await axios.post(
+        `${import.meta.env.VITE_DB_URL}/auth/login`,
+        userData
+      );
+      console.log(response.data.data.user.role.title);
       dispatch(setUser(response?.data));
-      localStorage.setItem("key", response.data.token);
-      navigate("/client-dashboard");
+      const expirationTime = Date.now() + (10 * 60 * 1000);
+      localStorage.setItem(
+        "key",
+        JSON.stringify({
+          token: response.data.token,
+          role: response.data.data.user.role.title,
+          expiration: expirationTime,
+        })
+      );
+
+      {
+        response.data.data.user.role.title.toLowerCase() == "freelancer"
+          ? navigate("/freelancer-dashboard")
+          : navigate("/client-dashboard");
+      }
     } catch (error) {
       const errorMessage =
         error.response?.data?.message || error.message || "Error logging";

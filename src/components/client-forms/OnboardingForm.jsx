@@ -62,16 +62,9 @@ const OnboardingForm = () => {
       contentInfo: values.brand,
     };
 
-    const apiUrl =
-      "https://driptext-api.malhoc.com/api/users/create/onboarding";
-    // const apiUrl =
-    //   "http://localhost:8000/api/users/create/onboarding";
-
-    console.log(onBoardingData);
-
     try {
       setError(false);
-      const response = await axios.post(apiUrl, onBoardingData);
+      const response = await axios.post(`${import.meta.env.VITE_DB_URL}/users/create/onboarding`, onBoardingData);
 
       // {role==='Client'? window.location.href = 'https://driptext.de/danke-onboarding/':
       window.location.href = "https://driptext.de/danke-probetext/";

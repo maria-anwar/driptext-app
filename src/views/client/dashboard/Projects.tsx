@@ -7,6 +7,8 @@ import { useSelector } from "react-redux";
 import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
 
+const apiUrl = import.meta.env.VITE_DB_URL;
+
 const Projects: React.FC = () => {
   const navigate = useNavigate();
   const user = useSelector<any>((state) => state.user);
@@ -30,7 +32,7 @@ const Projects: React.FC = () => {
     // "https://driptext-api.vercel.app/api/projects/detail";
 
     axios
-      .post("https://driptext-api.malhoc.com/api/projects/detail", payload)
+      .post(`${import.meta.env.VITE_DB_URL}/projects/detail`, payload)
       .then((response) => {
         const projectDataArray = response.data.data;
       console.log(projectDataArray)
@@ -78,16 +80,17 @@ const Projects: React.FC = () => {
           <CardDataStats
             key={project._id}
             id={project._id}
-            texts={project.tasks}
+            texts={project.plan.textsCount}
             productUniqueID={project.projectId}
             domain={project.projectName}
             keywords={project.keywords}
             projectStatus={project.projectStatus}
             createdOn={formatDate(project.createdAt)}
-            totalTexts={project.numberOfTasks} // Assuming texts are available in project data
+            totalTexts={project.plan.totalTexts} // Assuming texts are available in project data
             servicePeriod={"project.servicePeriod" || ""}
-            ordersPerMonth={5 || ""}
-            projectDuration={project.duration}
+            ordersPerMonth={project.plan.tasksPerMonth}
+            usedordersPerMonth={project.plan.tasksPerMonthCount}
+            projectDuration={project.plan.duration}
           >
             <svg
               className="fill-primary dark:fill-white"

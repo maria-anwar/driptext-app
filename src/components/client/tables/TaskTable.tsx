@@ -27,7 +27,7 @@ const TaskTable = () => {
     };
 
     axios
-      .post("https://driptext-api.malhoc.com/api/project/tasks/detail", payload)
+      .post(`${import.meta.env.VITE_DB_URL}/project/tasks/detail`, payload)
       .then((response) => {
         const tasks = response.data.data;
         if (Array.isArray(tasks)) {
@@ -73,9 +73,11 @@ const TaskTable = () => {
       projectId: projectId,
       projectTaskId: projectTaskId,
     };
+    
+   
     axios
       .post(
-        "https://driptext-api.malhoc.com/api/project/tasks/projecttaskupdate",
+        `${import.meta.env.VITE_DB_URL}/project/tasks/projecttaskupdate`,
         payload
       )
       .then((response) => {
@@ -94,9 +96,10 @@ const TaskTable = () => {
       projectTaskId: projectTaskId,
     };
 
+   
     axios
       .post(
-        "https://driptext-api.malhoc.com/api/project/tasks/projecttaskupdate",
+        `${import.meta.env.VITE_DB_URL}/project/tasks/projecttaskupdate`,
         payload
       )
       .then((response) => {
@@ -116,8 +119,9 @@ const TaskTable = () => {
         let payload = {
           userId: userId,
         };
+        
         const response = await axios.post(
-          "https://driptext-api.malhoc.com/api/projects/detail",
+          `${import.meta.env.VITE_DB_URL}/projects/detail`,
           payload
         );
         const projectDataArray = response.data.data;

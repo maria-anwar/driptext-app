@@ -15,6 +15,7 @@ export const GroupDropdownField = ({
   option4,
   option5,
   option6,
+  disabled
 }) => {
   console.log("value select: ", value)
   return (
@@ -26,7 +27,7 @@ export const GroupDropdownField = ({
         </label>
         <div className="relative">
           <select
-            className=" w-full bg-white text-custom-black text-sm 2xl:text-base px-2 xs:px-3.5 py-3 rounded-xl focus:ring-none focus:outline-none appearance-none   dark:placeholder-gray-400"
+            className={`w-full bg-white text-custom-black text-sm 2xl:text-base px-2 xs:px-3.5 py-3 rounded-xl focus:ring-none focus:outline-none appearance-none   dark:placeholder-gray-400`}
             type={type}
             placeholder={placeholder}
             name={name}
@@ -34,6 +35,7 @@ export const GroupDropdownField = ({
             value={value}
             onChange={onChange}
             errors={errors}
+            disabled={disabled}
           >
             <option   value={option1}>{option1}</option>
             <option value={option2}>{option2}</option>

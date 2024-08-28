@@ -32,11 +32,9 @@ const PassRequestForm = () => {
       email: values.email
     }
 
-    const apiUrl = 'https://driptext-api.malhoc.com/api/auth/forgot/password';
-    console.log('API:' , apiUrl);
     try {
       setError(false)
-      const response = await axios.post(apiUrl, emailData);
+      const response = await axios.post(`${import.meta.env.VITE_DB_URL}/auth/forgot/password`, emailData);
       console.log('Data submitted successfully:', response.emailData);
       toast.success("Link sent successfully, click the link to reset password");
     } catch (error) {

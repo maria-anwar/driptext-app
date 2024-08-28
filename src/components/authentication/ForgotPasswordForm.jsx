@@ -57,10 +57,8 @@ const ForgotPasswordForm = () => {
       toast.error("Both password not matched");
       return;
     }
-    const apiUrl = `https://driptext-api.malhoc.com/api/auth/reset/password/${token}`;
-    console.log("API:", apiUrl);
     try {
-      const response = await axios.post(apiUrl, passwordValue);
+      const response = await axios.post(`${import.meta.env.VITE_DB_URL}/auth/reset/password/${token}`, passwordValue);
       toast.success("Password set successfully");
       navigate("/");
     } catch (error) {

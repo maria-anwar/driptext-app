@@ -3,7 +3,8 @@ import { NavLink, useLocation } from "react-router-dom";
 import SidebarLinkGroup from "./SidebarLinkGroup";
 import logo from "../../../assets/homeimages/driptext-logo.png";
 import SidebarIcons from "../icons/SidebarIcons";
-import { UserContext } from "../../../views/auth/AuthContext";
+import { useDispatch } from "react-redux";
+import { setUser } from '../../../redux/userSlice';
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -13,7 +14,7 @@ interface SidebarProps {
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   const location = useLocation();
   const { pathname } = location;
-  const { setUser } = useContext(UserContext);
+  const dispatch = useDispatch();
 
   const trigger = useRef<any>(null);
   const sidebar = useRef<any>(null);
@@ -59,7 +60,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   }, [sidebarExpanded]);
 
   const handleLogout = () => {
-    setUser(null);
+    localStorage.removeItem('key')
+    dispatch(setUser(null))
   };
 
   return (

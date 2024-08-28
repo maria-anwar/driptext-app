@@ -26,9 +26,10 @@ const Settings = () => {
       firstName: firstName,
       lastName: lastName,
     };
+     
 
     await axios
-      .post("https://driptext-api.malhoc.com/api/users/update", payload)
+      .post(`${import.meta.env.VITE_DB_URL}/users/update`, payload)
       .then((response) => {
         dispatch(
           updateUserFields({ path: "data.user.firstName", value: firstName })
