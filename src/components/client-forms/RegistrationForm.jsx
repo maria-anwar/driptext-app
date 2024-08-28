@@ -4,39 +4,39 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { setUser } from "../../redux/userSlice";
-import { useDispatch } from "react-redux";
-
-
 
 //https://driptext-api.vercel.app/api/users/create
 
 const RegistrationForm = () => {
   const navigate = useNavigate();
-  const[roleID,setRoleID]= useState(null);
-  const [loading ,setLoading] = useState(false)
-  const dispatch = useDispatch();
+  const [roleID, setRoleID] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMesssage] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.post(`${import.meta.env.VITE_DB_URL}/roles/list`);
+        const response = await axios.post(
+          `${import.meta.env.VITE_DB_URL}/roles/list`
+        );
         const data = response.data.data; // Adjust this line based on the actual structure
-        
+
         if (Array.isArray(data)) {
           data.forEach((value) => {
-            if (value.title === 'leads') {
-              setRoleID(value)
+            if (value.title === "leads") {
+              setRoleID(value);
             }
           });
-        } 
+        }
       } catch (error) {
-        console.log(error);
+        const errorMessage =
+          error.response?.data?.message || error.message || "Error";
+        setError(true);
+        setErrorMesssage(errorMessage);
       }
     };
-  
+
     fetchData();
   }, []);
 
@@ -54,33 +54,47 @@ const RegistrationForm = () => {
     fname: Yup.string().required("Please enter your first name"),
     lname: Yup.string().required("Please enter your last name"),
   });
-  
+
   const onSubmit = async (values) => {
     setLoading(true);
     const registerData = {
-      firstName:values.fname,
+      firstName: values.fname,
       lastName: values.lname,
       email: values.email,
       roleId: roleID._id,
-      projectName : values.project,
+      projectName: values.project,
       keywords: values.keyword,
-    }
-   
+    };
 
-   try {
-    const response = await axios.post(`${import.meta.env.VITE_DB_URL}/users/create`, registerData);
-    console.log(response.data.data._id)
-    console.log(response.data.project)
-    toast.success('Data submitted successfully:', response.registerData);
-    setLoading(false);
-    // dispatch(setUser(response.data))
-     navigate("/onboarding-probetext",{state:{projectName:values.project,projectId:response.data.project._id,userId:response.data.data._id}});
-   } catch (error) {
-    setLoading(false);
-    const errorMessage = error.response?.data?.message || error.message || 'Error submitting data';
-    toast.error(errorMessage);
-    console.log(error);
-   }
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_DB_URL}/users/emailCheck`,
+        { email: values.email }
+      );
+      if (response.status === 200) {
+        const response = await axios.post(
+          `${import.meta.env.VITE_DB_URL}/users/create`,
+          registerData
+        );
+        setLoading(false);
+        navigate("/onboarding-probetext", {
+          state: {
+            projectName: values.project,
+            projectId: response.data.project._id,
+            userId: response.data.data._id,
+          },
+        });
+      } else {
+        setErrorMesssage(response.data.message);
+        setLoading(false);
+      }
+    } catch (error) {
+      setLoading(false);
+      const errorMessage =
+        error.response?.data?.message || error.message || "Error";
+      setError(true);
+      setErrorMesssage(errorMessage);
+    }
   };
   return (
     <>
@@ -91,7 +105,6 @@ const RegistrationForm = () => {
       >
         {(props) => (
           <Form>
-          <ToastContainer/>
             <div className="w-full bg-gradient-to-r from-custom-gray to-[#F7F7F7] flex flex-col gap-6 px-3 xs:px-8 xs:py-10  md:px-9 md:py-14 lg:px-10 mt-6 mb-8 rounded-xl">
               <div className="flex flex-col gap-6">
                 <h2 className="text-custom-black text-base font-semibold">
@@ -104,7 +117,11 @@ const RegistrationForm = () => {
                   name={"project"}
                   value={props.values.project}
                   errors={props.errors.project}
-                  onChange={props.handleChange}
+                  onChange={(e) => {
+                    props.handleChange(e);
+                    setError(false);
+                    setErrorMesssage("");
+                  }}
                 />
                 <GroupField
                   label={"Desired Keyword"}
@@ -113,7 +130,11 @@ const RegistrationForm = () => {
                   name={"keyword"}
                   value={props.values.keyword}
                   errors={props.errors.keyword}
-                  onChange={props.handleChange}
+                  onChange={(e) => {
+                    props.handleChange(e);
+                    setError(false);
+                    setErrorMesssage("");
+                  }}
                 />
               </div>
               <div className="flex flex-col gap-5">
@@ -127,7 +148,11 @@ const RegistrationForm = () => {
                   name={"email"}
                   value={props.values.email}
                   errors={props.errors.email}
-                  onChange={props.handleChange}
+                  onChange={(e) => {
+                    props.handleChange(e);
+                    setError(false);
+                    setErrorMesssage("");
+                  }}
                 />
                 <div className="w-full flex flex-col lg:flex-row lg:justify-between lg:gap-3 gap-5">
                   <GroupField
@@ -137,7 +162,11 @@ const RegistrationForm = () => {
                     name={"fname"}
                     value={props.values.fname}
                     errors={props.errors.fname}
-                    onChange={props.handleChange}
+                    onChange={(e) => {
+                      props.handleChange(e);
+                      setError(false);
+                      setErrorMesssage("");
+                    }}
                   />
                   <GroupField
                     label={"Last Name"}
@@ -146,19 +175,30 @@ const RegistrationForm = () => {
                     name={"lname"}
                     value={props.values.lname}
                     errors={props.errors.lname}
-                    onChange={props.handleChange}
+                    onChange={(e) => {
+                      props.handleChange(e);
+                      setError(false);
+                      setErrorMesssage("");
+                    }}
                   />
                 </div>
 
                 <div className="w-full bg-custom-black flex justify-center py-2 xs:py-2.5 mt-1 rounded-xl">
                   <button
-                    className={`border-none text-white font-medium text-base  ${loading?'cursor-not-allowed':'cursor-pointer'}`}
+                    className={`border-none text-white font-medium text-base  ${
+                      loading ? "cursor-not-allowed" : "cursor-pointer"
+                    }`}
                     type="submit"
                     disabled={loading}
                   >
-                    {loading? 'Submitting' :'Submit Order'}
+                    {loading ? "Submitting" : "Submit Order"}
                   </button>
                 </div>
+                {error && (
+                  <div id="email" className="mt-2 text-sm text-red-500">
+                    {errorMessage}
+                  </div>
+                )}
               </div>
               <p className="text-custom-black text-sm font-medium">
                 By submitting the order, I agree to the{" "}

@@ -7,16 +7,14 @@ import { useNavigate, Link } from "react-router-dom";
 import { GroupDropdownField } from "../../client-forms/GroupDropdownField";
 import { CountryDropdownField } from "../../client-forms/CountryDropdownField";
 import { setUser } from '../../../redux/userSlice';
-import { useDispatch } from "react-redux";
 import axios from "axios";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
 
 const RegisterForm = () => {
-  const [isSuccess, setIsSuccess] = useState(false);
   const [loading ,setLoading] = useState(false)
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMesssage] = useState("");
 
   const initialValues = {
     fname: "",
@@ -65,15 +63,15 @@ const RegisterForm = () => {
     }
 
     try {
-      const response = await axios.post(`${import.meta.env.VITE_DB_URL}/freelancer/create`, registerData);
-      toast.success('Data submitted successfully:');
-      console.log(response)
+      await axios.post(`${import.meta.env.VITE_DB_URL}/freelancer/create`, registerData);
       setLoading(false);
        navigate("/");
      } catch (error) {
       setLoading(false);
-      const errorMessage = error.response?.data?.message || error.message || 'Error submitting data';
-      toast.error(errorMessage);
+      const errorMessage =
+      error.response?.data?.message || error.message || "Error";
+      setError(true);
+      setErrorMesssage(errorMessage);
      }
 
   };
@@ -245,7 +243,7 @@ const RegisterForm = () => {
                   1. Personal data:
                 </h2>
                 <div className="w-full flex flex-col lg:flex-row lg:justify-between lg:gap-3 gap-5">
-                  <ToastContainer/>
+            
                   <GroupField
                     label={"First Name"}
                     placeholder={"Your first name"}
@@ -253,7 +251,11 @@ const RegisterForm = () => {
                     name={"fname"}
                     value={props.values.fname}
                     errors={props.errors.fname}
-                    onChange={props.handleChange}
+                    onChange={(e) => {
+                    props.handleChange(e);
+                    setError(false);
+                    setErrorMesssage("");
+                  }}
                   />
                   <GroupField
                     label={"Last Name"}
@@ -262,7 +264,11 @@ const RegisterForm = () => {
                     name={"lname"}
                     value={props.values.lname}
                     errors={props.errors.lname}
-                    onChange={props.handleChange}
+                    onChange={(e) => {
+                    props.handleChange(e);
+                    setError(false);
+                    setErrorMesssage("");
+                  }}
                   />
                 </div>
                 <div className="w-full flex flex-col lg:flex-row lg:justify-between lg:gap-3 gap-5">
@@ -274,7 +280,11 @@ const RegisterForm = () => {
                     name={"email"}
                     value={props.values.email}
                     errors={props.errors.email}
-                    onChange={props.handleChange}
+                    onChange={(e) => {
+                    props.handleChange(e);
+                    setError(false);
+                    setErrorMesssage("");
+                  }}
                   />
                   <GroupField
                     label={"phone"}
@@ -283,7 +293,11 @@ const RegisterForm = () => {
                     name={"phone"}
                     value={props.values.phone}
                     errors={props.errors.phone}
-                    onChange={props.handleChange}
+                    onChange={(e) => {
+                    props.handleChange(e);
+                    setError(false);
+                    setErrorMesssage("");
+                  }}
                   />
                 </div>
                 <GroupField
@@ -294,7 +308,11 @@ const RegisterForm = () => {
                   name={"street"}
                   value={props.values.street}
                   errors={props.errors.street}
-                  onChange={props.handleChange}
+                  onChange={(e) => {
+                    props.handleChange(e);
+                    setError(false);
+                    setErrorMesssage("");
+                  }}
                 />
                 <div className="w-full flex flex-col lg:flex-row lg:justify-between lg:gap-3 gap-5">
                   <GroupField
@@ -304,7 +322,11 @@ const RegisterForm = () => {
                     name={"postcode"}
                     value={props.values.postcode}
                     errors={props.errors.postcode}
-                    onChange={props.handleChange}
+                    onChange={(e) => {
+                    props.handleChange(e);
+                    setError(false);
+                    setErrorMesssage("");
+                  }}
                   />
                   <GroupField
                     label={"City"}
@@ -313,7 +335,11 @@ const RegisterForm = () => {
                     name={"city"}
                     value={props.values.city}
                     errors={props.errors.city}
-                    onChange={props.handleChange}
+                    onChange={(e) => {
+                    props.handleChange(e);
+                    setError(false);
+                    setErrorMesssage("");
+                  }}
                   />
                 </div>
                 <GroupField
@@ -324,7 +350,11 @@ const RegisterForm = () => {
                   name={"country"}
                   value={props.values.country}
                   errors={props.errors.country}
-                  onChange={props.handleChange}
+                  onChange={(e) => {
+                    props.handleChange(e);
+                    setError(false);
+                    setErrorMesssage("");
+                  }}
                 />
               </div>
 
@@ -340,7 +370,11 @@ const RegisterForm = () => {
                   name={"iban"}
                   value={props.values.iban}
                   errors={props.errors.iban}
-                  onChange={props.handleChange}
+                  onChange={(e) => {
+                    props.handleChange(e);
+                    setError(false);
+                    setErrorMesssage("");
+                  }}
                 />
                 <GroupDropdownField
                   label={"VAT regulation"}
@@ -353,7 +387,11 @@ const RegisterForm = () => {
                   option3={"EU countries (0%)"}
                   option4={"Reverse charge (0%)"}
                   value={props.values.vatRegulation}
-                  onChange={props.handleChange}
+                  onChange={(e) => {
+                    props.handleChange(e);
+                    setError(false);
+                    setErrorMesssage("");
+                  }}
                 />
               </div>
 
@@ -369,7 +407,11 @@ const RegisterForm = () => {
                   name={"company"}
                   value={props.values.company}
                   errors={props.errors.company}
-                  onChange={props.handleChange}
+                  onChange={(e) => {
+                    props.handleChange(e);
+                    setError(false);
+                    setErrorMesssage("");
+                  }}
                 />
                 <GroupField
                   label={"VAT ID No."}
@@ -378,7 +420,11 @@ const RegisterForm = () => {
                   name={"vatId"}
                   value={props.values.vatId}
                   errors={props.errors.vatId}
-                  onChange={props.handleChange}
+                  onChange={(e) => {
+                    props.handleChange(e);
+                    setError(false);
+                    setErrorMesssage("");
+                  }}
                 />
                 <div className="w-full bg-custom-black flex justify-center py-2 xs:py-2.5 mt-1 rounded-xl">
                   <button
@@ -389,6 +435,11 @@ const RegisterForm = () => {
                       {loading? 'Submitting' :'Submit Now'}
                   </button>
                 </div>
+                {error && (
+                  <div id="email" className="mt-2 text-sm text-red-500">
+                    {errorMessage}
+                  </div>
+                )}
               </div>
               <p className="text-custom-black text-sm font-normal text-center">
                 Please check that your data is correct before submitting.
