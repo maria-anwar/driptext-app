@@ -56,7 +56,7 @@ const LoginForm = () => {
       );
       console.log(response.data.data.user.role.title);
       dispatch(setUser(response?.data));
-      const expirationTime = Date.now() + (10 * 60 * 1000);
+      const expirationTime = Date.now() + (12 * 60 * 60 * 1000);
       localStorage.setItem(
         "key",
         JSON.stringify({
