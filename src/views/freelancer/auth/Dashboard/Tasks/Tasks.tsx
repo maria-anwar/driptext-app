@@ -14,7 +14,8 @@ const Tasks: React.FC = () => {
       deadline: "2 months ago",
       taskStatus: "Ready to start",
       activeRole: "TEXTER",
-      googleLink: "https://docs.google.com/document/d/1lth731M_StJek0kU3dsV8bmilAqfEkq3KixXJTlbsNU/edit?addon_store",
+      googleLink:
+        "https://docs.google.com/document/d/1lth731M_StJek0kU3dsV8bmilAqfEkq3KixXJTlbsNU/edit?addon_store",
       wordCount: "0/1500",
       labels: {
         project: "PROJECTS",
@@ -33,7 +34,8 @@ const Tasks: React.FC = () => {
       deadline: "1 month ago",
       taskStatus: "In Progress",
       activeRole: "TEXTER",
-      googleLink: "https://docs.google.com/document/d/1lth731M_StJek0kU3dsV8bmilAqfEkq3KixXJTlbsNU/edit?addon_store",
+      googleLink:
+        "https://docs.google.com/document/d/1lth731M_StJek0kU3dsV8bmilAqfEkq3KixXJTlbsNU/edit?addon_store",
       wordCount: "500/2000",
       labels: {
         project: "PROJECTS",
@@ -52,7 +54,8 @@ const Tasks: React.FC = () => {
       deadline: "3 weeks ago",
       taskStatus: "Completed",
       activeRole: "LECTOR",
-      googleLink: "https://docs.google.com/document/d/1lth731M_StJek0kU3dsV8bmilAqfEkq3KixXJTlbsNU/edit?addon_store",
+      googleLink:
+        "https://docs.google.com/document/d/1lth731M_StJek0kU3dsV8bmilAqfEkq3KixXJTlbsNU/edit?addon_store",
       wordCount: "2000/2000",
       labels: {
         project: "PROJECTS",
@@ -295,8 +298,7 @@ const Tasks: React.FC = () => {
       isFinish: false,
     },
   ];
-  
-  
+
   const [activeButton, setActiveButton] = useState("All");
   const [component, setComponent] = useState(
     <AllTasks taskDataArray={taskDataArray} />
@@ -334,7 +336,12 @@ const Tasks: React.FC = () => {
   return (
     <>
       <div className="2xl:px-6 3xl:px-10">
-        <Breadcrumb pageName="Tasks" pageData="Here you can view your tasks." />
+        <div className="w-full 2xl:max-w- pb-2">
+          <h1 className="text-title-md font-bold text-black dark:text-white mb-1">
+            Tasks
+          </h1>
+          <p className="text-dark-gray">Here you can view your tasks.</p>
+        </div>
         <div className="w-full">
           {buttons.map((button) => (
             <button
