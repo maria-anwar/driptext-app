@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ClickOutside from "../tables/ClickOutside";
 import { useSelector,useDispatch } from "react-redux";
-import { setUser } from "../../../redux/userSlice";
+import {  clearPersistedState } from '../../../redux/store';
 
 
 const DropdownUser = () => {
@@ -23,8 +23,7 @@ const DropdownUser = () => {
     localStorage.removeItem('projectId');
     localStorage.removeItem('projectName');
     localStorage.removeItem('tasks');
-    dispatch(setUser(null))
-    navigate('/')
+    dispatch(clearPersistedState())
   }
   return (
     <ClickOutside onClick={() => setDropdownOpen(false)} className="relative">
@@ -139,7 +138,7 @@ const DropdownUser = () => {
               </Link>
             </li>
           </ul>
-          <div onClick={handleLogout}  className="cursor-pointer flex items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
+          <Link to={'/'} onClick={handleLogout}  className="cursor-pointer flex items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
             <svg
               className="fill-current"
               width="22"
@@ -158,7 +157,7 @@ const DropdownUser = () => {
               />
             </svg>
             Sign Out
-          </div>
+          </Link>
         </div>
       )}
       {/* <!-- Dropdown End --> */} 

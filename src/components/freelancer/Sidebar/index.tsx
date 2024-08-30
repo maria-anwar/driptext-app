@@ -4,7 +4,7 @@ import SidebarLinkGroup from "./SidebarLinkGroup";
 import logo from "../../../assets/homeimages/driptext-logo.png";
 import SidebarIcons from "../icons/SidebarIcons";
 import { useDispatch } from "react-redux";
-import { setUser } from '../../../redux/userSlice';
+import {  clearPersistedState } from '../../../redux/store';
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -61,7 +61,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
 
   const handleLogout = () => {
     localStorage.removeItem('key')
-    dispatch(setUser(null))
+    dispatch(clearPersistedState())
   };
 
   return (
