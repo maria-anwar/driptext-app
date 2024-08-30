@@ -3,7 +3,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import logo from "../../../assets/homeimages/driptext-logo.png";
 import SidebarIcons from "../icons/SidebarIcons";
 import { useDispatch } from "react-redux";
-import { setUser } from '../../../redux/userSlice';
+import {  clearPersistedState } from '../../../redux/store';
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -63,7 +63,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
     localStorage.removeItem('projectId');
     localStorage.removeItem('projectName');
     localStorage.removeItem('tasks');
-    dispatch(setUser(null))
+    dispatch(clearPersistedState())
   };
 
   return (

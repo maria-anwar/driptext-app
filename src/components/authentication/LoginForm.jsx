@@ -54,7 +54,6 @@ const LoginForm = () => {
         `${import.meta.env.VITE_DB_URL}/auth/login`,
         userData
       );
-      console.log(response.data.data.user.role.title);
       dispatch(setUser(response?.data));
       const expirationTime = Date.now() + (12 * 60 * 60 * 1000);
       localStorage.setItem(
@@ -166,8 +165,8 @@ const LoginForm = () => {
                   id="default-checkbox"
                   type="checkbox"
                   value=""
-                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-200 rounded focus:ring-blue-500 "
-                ></input>
+                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-200 rounded focus:ring-blue-500 "
+                />
                 <Typography
                   variant="small"
                   color="gray"

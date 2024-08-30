@@ -19,9 +19,9 @@ const OnboardingForm = () => {
   const [errorMessage, setErrorMesssage] = useState("");
 
   const initialValues = {
-    speech: "She",
+    speech: "",
     project: projectName,
-    perspective: "we/our shop/our company",
+    perspective: '',
     companyInfo: "",
     companyAttributes: "",
     services: "",
@@ -67,7 +67,7 @@ const OnboardingForm = () => {
       const response = await axios.post(`${import.meta.env.VITE_DB_URL}/users/create/onboarding`, onBoardingData);
 
       // {role==='Client'? window.location.href = 'https://driptext.de/danke-onboarding/':
-      window.location.href = "https://driptext.de/danke-probetext/";
+    
       // }
       setLoading(false);
       console.log("Data submitted successfully:", response.data);
