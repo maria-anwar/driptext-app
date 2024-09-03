@@ -5,14 +5,8 @@ interface BreadcrumbProps {
 }
 const Breadcrumb = ({ pageName,pageData }: BreadcrumbProps) => {
   return (
-    <div className="mb-2 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div className="w-full 2xl:max-w-max">
-          <h1 className="text-title-md font-bold text-black dark:text-white mb-2">
-            {pageName}
-          </h1>
-          <p className="text-dark-gray">{pageData}</p>
-        </div>
-
+    <div className="mb-2 flex flex-col gap-3 justify-start item-start">
+      
       <nav>
         <ol className="flex items-center gap-2">
           <li>
@@ -23,6 +17,12 @@ const Breadcrumb = ({ pageName,pageData }: BreadcrumbProps) => {
           <li className="font-medium text-primary">{pageName}</li>
         </ol>
       </nav>
+      <div className="w-full 2xl:max-w-max pb-2">
+          <h1 className="text-title-md font-bold text-black dark:text-white mb-2">
+            {pageName}
+          </h1>
+          <p className="text-dark-gray">{pageData}</p>
+        </div>
     </div>
   );
 };

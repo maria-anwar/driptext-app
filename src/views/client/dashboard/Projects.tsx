@@ -16,7 +16,7 @@ const Projects: React.FC = () => {
   const formatDate = (dateString) => {
     const date = new Date(dateString);
 
-    return format(date, "MMMM d, yyyy");
+    return format(date, "MMM dd, yyyy");
   };
 
   const [projectData, setProjectData] = useState([]);
