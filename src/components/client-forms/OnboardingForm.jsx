@@ -19,9 +19,9 @@ const OnboardingForm = () => {
   const [errorMessage, setErrorMesssage] = useState("");
 
   const initialValues = {
-    speech: "",
+    speech: "She",
     project: projectName,
-    perspective: '',
+    perspective: "we/our shop/our company",
     companyInfo: "",
     companyAttributes: "",
     services: "",
