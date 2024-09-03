@@ -6,12 +6,12 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
-
-const apiUrl = import.meta.env.VITE_DB_URL;
+import Loading from "../../../components/Loading";
 
 const Projects: React.FC = () => {
   const navigate = useNavigate();
   const user = useSelector<any>((state) => state.user);
+  const [loading, setLoading] = useState(true);
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -40,20 +40,16 @@ const Projects: React.FC = () => {
 
       if (allProjects.length > 0) {
         setProjectData(allProjects);
+        setLoading(false);
       } 
       })
       .catch((err) => {
         console.error("Error fetching project details:", err);
+        setLoading(false);
       });
-  }, [user]); // Add dependencies here
+  }, [user]); 
 
-  // useEffect(() => {
-  //   const storedProjects = localStorage.getItem('projects');
-  //   if (storedProjects) {
-  //     setProjectData(JSON.parse(storedProjects));
-  //   }
-
-  // }, []);
+  
 
 
   return (
@@ -73,7 +69,7 @@ const Projects: React.FC = () => {
           </div>
         </div>
       </div>
-
+      {loading ? (<Loading/>):(
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 2xl:grid-cols-3 5xl:grid-cols-4 4xl:px-14">
         
         {projectData.map((project) => (
@@ -124,6 +120,7 @@ const Projects: React.FC = () => {
           </CardDataStats>
         ))}
       </div>
+      )}
     </>
   );
 };
