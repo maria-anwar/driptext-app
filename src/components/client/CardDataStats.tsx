@@ -15,6 +15,7 @@ interface CardDataStatsProps {
   ordersPerMonth: number;
   usedordersPerMonth: number;
   projectDuration: number;
+  onBoarding: boolean;
   children: ReactNode;
 }
 
@@ -32,6 +33,7 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
   usedordersPerMonth,
   projectDuration,
   children,
+  onBoarding,
 }) => {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
@@ -68,15 +70,15 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
     navigate("task-table", { state: { projectId: id } });
   };
 
-  const hasAllProps = texts !== 0 || projectStatus !== "Not initalized";
+  const hasAllProps = texts !== 0  || projectStatus !== "Not initalized";
 
   const handleNothing = () => {};
 
   return (
     <div
-      onClick={hasAllProps ? handleProjectTask : handleNothing}
+      onClick={onBoarding ? handleProjectTask : handleNothing}
       className={`relative rounded-sm border border-stroke bg-white py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark ${
-        hasAllProps ? "cursor-pointer" : "cursor-default"
+        onBoarding ? "cursor-pointer" : "cursor-default"
       }`}
     >
       <div className="flex h-11.5 w-11.5 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4">
@@ -85,7 +87,7 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
       <h4 className="text-title-md font-bold text-black dark:text-white my-3">
         {domain} || {productUniqueID}
       </h4>
-      <div className={`relative ${!hasAllProps ? "blur-sm" : ""}`}>
+      <div className={`relative ${!onBoarding ? "blur-sm" : ""}`}>
         <div className="my-6">
           <hr className="text-custom-gray" />
         </div>
@@ -115,7 +117,7 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
         </div>
       </div>
 
-      {!hasAllProps && (
+      {!onBoarding && (
         <div className="absolute inset-0 top-30 flex flex-col items-center justify-center  p-4 rounded-sm">
           <p className="text-center text-sm dark:text-slate-100 mb-2">
             Please fill out the onboarding for this project.
