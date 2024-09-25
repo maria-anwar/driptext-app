@@ -35,6 +35,7 @@ const TaskTable = () => {
         if (Array.isArray(tasks)) {
           localStorage.setItem("tasks", JSON.stringify(tasks));
           setTaskData(tasks);
+          console.log(tasks)
           setLoading(false);
         } else {
           console.error("Received data is not an array");

@@ -15,7 +15,6 @@ const Projects: React.FC = () => {
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-
     return format(date, "MMMM yyyy");
   };
 
@@ -29,13 +28,11 @@ const Projects: React.FC = () => {
     let payload = {
       userId: userId,
     };
-    // "https://driptext-api.vercel.app/api/projects/detail";
 
     axios
       .post(`${import.meta.env.VITE_DB_URL}/projects/detail`, payload)
       .then((response) => {
         const projectDataArray = response.data.data;
-        console.log(projectDataArray);
         const allProjects = projectDataArray.flatMap((item) => item.projects);
 
         if (allProjects.length > 0) {
@@ -74,23 +71,25 @@ const Projects: React.FC = () => {
         </div>
       ) : (
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 2xl:grid-cols-3 5xl:grid-cols-4 4xl:px-14">
-          {projectData.map((project) => (
-            <CardDataStats
-              key={project._id}
-              id={project._id}
-              texts={project?.plan?.textsCount}
-              productUniqueID={project.projectId}
-              domain={project.projectName}
-              keywords={project.keywords}
-              projectStatus={project.projectStatus}
-              createdOn={formatDate(project.createdAt)}
-              totalTexts={project?.plan?.totalTexts} // Assuming texts are available in project data
-              servicePeriod={"project.servicePeriod" || ""}
-              ordersPerMonth={project?.plan?.tasksPerMonth}
-              usedordersPerMonth={project?.plan?.tasksPerMonthCount}
-              projectDuration={project?.plan?.duration}
-              onBoarding={project?.onBoarding}
-            >
+          {projectData
+            .filter((project) => project?.isActive === "Y") // Filter only active projects
+            .map((project) => (
+              <CardDataStats
+                key={project._id}
+                id={project._id}
+                texts={project?.plan?.textsCount}
+                productUniqueID={project.projectId}
+                domain={project.projectName}
+                keywords={project.keywords}
+                projectStatus={project.projectStatus}
+                createdOn={formatDate(project.createdAt)}
+                totalTexts={project?.plan?.totalTexts}
+                servicePeriod={project.servicePeriod || ""}
+                ordersPerMonth={project?.plan?.tasksPerMonth}
+                usedordersPerMonth={project?.plan?.tasksPerMonthCount}
+                projectDuration={project?.plan?.duration}
+                onBoarding={project?.onBoarding}
+              >
               <svg
                 className="fill-primary dark:fill-white"
                 width="18"
