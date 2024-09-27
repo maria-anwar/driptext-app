@@ -162,9 +162,9 @@ const TaskTable = () => {
             name={"Extend Monthly Package"}
             url={"https://driptext.de/buchung/"}
           /> */}
-          <div onClick={handleAddProjectClick}>
+          {/* <div onClick={handleAddProjectClick}>
             <DarkBtn name={"Add Text"} url={""} />
-          </div>
+          </div> */}
         </div>
         <h2 className="text-title-md2 font-semibold text-black dark:text-white py-5">
           Project Tasks
@@ -229,7 +229,7 @@ const TaskTable = () => {
                         </p>
                       </td>
                       <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark  ">
-                        <div
+                        {/* <div
                           onClick={() =>
                             task.status === "Ready to Start"
                               ? handleCheckboxClick(index)
@@ -272,7 +272,7 @@ const TaskTable = () => {
                               </div>
                             </div>
                           )}
-                        </div>
+                        </div> */}
                       </td>
                     </tr>
                   ))}
