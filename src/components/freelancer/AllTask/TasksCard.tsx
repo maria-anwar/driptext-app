@@ -4,37 +4,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import TaskInfoCard from "./TaskComponents/TaskInfoCard";
 import Card from "./TaskComponents/TaskMainCard";
 import CheckboxThree from "../../client/buttons/CheckboxThree";
+import { Task } from "../Type/types";
 
-// Define the type for the task prop
-interface Task {
-  projectName: string;
-  deadline: string;
-  taskStatus: string;
-  activeRole: string;
-  googleLink: string;
-  wordCount: string;
-  labels: {
-    project: string;
-    deadline: string;
-    taskStatus: string;
-    activeRole: string;
-    googleLink: string;
-    wordCount: string;
-  };
-  isStart: boolean;
-  isAccepted: boolean;
-  isFinish: boolean;
-}
-
-// Define the type for the props
 interface LectorCardProps {
   task: Task;
+  Upcomming?: boolean;
 }
 
-const LectorCard: React.FC<LectorCardProps> = ({ task }) => {
-  const [isStart, setIsStart] = useState(task.isStart);
-  const [isAccepted, setIsAccepted] = useState(task.isAccepted);
-  const [isFinish, setIsFinish] = useState(task.isFinish);
+const LectorCard: React.FC<LectorCardProps> = ({ task, Upcomming }) => {
+  const [isStart, setIsStart] = useState(false);
+  const [isAccepted, setIsAccepted] = useState(false);
+  const [isFinish, setIsFinish] = useState(false);
   const [showDialog, setShowDialog] = useState(false);
   const [showProjectInfo, setShowProjectInfo] = useState(false);
   const [showFinishDialog, setShowFinishDialog] = useState(false);
@@ -84,7 +64,6 @@ const LectorCard: React.FC<LectorCardProps> = ({ task }) => {
   const handleStart = () => {
     setShowDialog(true);
   };
-  
 
   const handleFinish = () => {
     setShowProjectInfo(false);
@@ -113,7 +92,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task }) => {
   const hanldeShowAllInfo = () => {
     setShowDetailsDialog(true);
   };
-  
+
   const hanldeCloseAllInfo = () => {
     setShowDetailsDialog(false);
   };
@@ -139,7 +118,13 @@ const LectorCard: React.FC<LectorCardProps> = ({ task }) => {
 
   const Checkbox1 = ({ isChecked }) => (
     <div className="relative">
-      <input type="checkbox" id="checkboxLabelThree" className="sr-only" checked={isChecked} readOnly />
+      <input
+        type="checkbox"
+        id="checkboxLabelThree"
+        className="sr-only"
+        checked={isChecked}
+        readOnly
+      />
       <div
         className={`box mr-4 flex h-4 w-4 items-center justify-center rounded border
         border-red-400 bg-gray-100 dark:bg-transparent`}
@@ -162,10 +147,16 @@ const LectorCard: React.FC<LectorCardProps> = ({ task }) => {
       </div>
     </div>
   );
-  
+
   const Checkbox2 = ({ isChecked }) => (
     <div className="relative">
-      <input type="checkbox" id="checkboxLabelTwo" className="sr-only" checked={isChecked} readOnly />
+      <input
+        type="checkbox"
+        id="checkboxLabelTwo"
+        className="sr-only"
+        checked={isChecked}
+        readOnly
+      />
       <div
         className={`mr-4 flex h-4 w-4 items-center justify-center rounded border border-green-600 bg-gray-100 dark:bg-transparent`}
       >
@@ -188,13 +179,14 @@ const LectorCard: React.FC<LectorCardProps> = ({ task }) => {
       </div>
     </div>
   );
-  
 
   const CustomCheckbox = ({ isChecked }) => {
-    return isChecked ? <Checkbox2 isChecked={isChecked} /> : <Checkbox1 isChecked={isChecked} />;
+    return isChecked ? (
+      <Checkbox2 isChecked={isChecked} />
+    ) : (
+      <Checkbox1 isChecked={isChecked} />
+    );
   };
-  
-
 
   const ProjectHeader = () => {
     return (
@@ -224,12 +216,12 @@ const LectorCard: React.FC<LectorCardProps> = ({ task }) => {
   };
 
   return (
-    <div className="w-full my-10 rounded-sm ring-1 ring-slate-200 dark:border-stroke  py-1 px-7.5 shadow-2 dark:border-strokedark  dark:bg-boxdark">
+    <div className="w-full mb-10 mt-3 rounded-sm ring-1 ring-slate-200 dark:border-stroke  py-1 px-7.5 shadow-2 dark:border-strokedark  dark:bg-boxdark">
       <div className="py-2 dark:text-white text-xl font-semibold">
-        <h4>{task.projectName}</h4>
+        <h4>{task?.taskName}</h4>
       </div>
       <div className="pb-4">
-        <Card task={task} />
+        <Card task={task} Upcomming={Upcomming} />
         <div className="mt-4 flex flex-row justify-end items-end">
           {!isStart && !isAccepted && (
             <>
@@ -339,19 +331,27 @@ const LectorCard: React.FC<LectorCardProps> = ({ task }) => {
               You're about to complete the order, are you sure?
             </p>
             {Object.entries(formatDetails).map(([key, { h, p }]) => (
-        <div key={key} className="mb-2 flex">
-          <div className="pt-1" onClick={() => handleCheckboxChange({ target: { name: key, checked: !checkboxes[key] } })}>
-            <CustomCheckbox isChecked={checkboxes[key as keyof typeof checkboxes]} />
-          </div>
-          <div className="flex flex-col">
-          <label htmlFor={key} className="ml-0 dark:text-white">
-            <strong>{h}</strong>
-          </label>
-          <p className="pl-2">{p}</p>
-          </div>
-          
-        </div>
-      ))}
+              <div key={key} className="mb-2 flex">
+                <div
+                  className="pt-1"
+                  onClick={() =>
+                    handleCheckboxChange({
+                      target: { name: key, checked: !checkboxes[key] },
+                    })
+                  }
+                >
+                  <CustomCheckbox
+                    isChecked={checkboxes[key as keyof typeof checkboxes]}
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label htmlFor={key} className="ml-0 dark:text-white">
+                    <strong>{h}</strong>
+                  </label>
+                  <p className="pl-2">{p}</p>
+                </div>
+              </div>
+            ))}
             <div className="py-4 px-4 bg-slate-200 dark:bg-slate-700">
               {/* <input
                 type="checkbox"
@@ -360,11 +360,10 @@ const LectorCard: React.FC<LectorCardProps> = ({ task }) => {
                 checked={false}
               /> */}
               <div className="flex items-center">
-
-              <CheckboxThree/>
-              <label className=" dark:text-white">
-                <strong>Minimum Word Count</strong>
-              </label>
+                <CheckboxThree />
+                <label className=" dark:text-white">
+                  <strong>Minimum Word Count</strong>
+                </label>
               </div>
               <p className="pl-8">
                 Ensure that the text meets or exceeds the required minimum word

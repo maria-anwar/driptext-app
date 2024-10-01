@@ -1,34 +1,17 @@
 import React from "react";
 import TasksCard from "../../../../../components/freelancer/AllTask/TasksCard";
+import { Task } from "../../../../../components/freelancer/Type/types";
 
-// Define the type for the task object
-interface Task {
-  projectName: string;
-  deadline: string;
-  taskStatus: string;
-  activeRole: string;
-  googleLink: string;
-  wordCount: string;
-  labels: {
-    project: string;
-    deadline: string;
-    taskStatus: string;
-    activeRole: string;
-    googleLink: string;
-    wordCount: string;
-  };
-  isStart: boolean;
-  isAccepted: boolean;
-  isFinish: boolean;
+interface ProofreaderProps {
+  activeTasks: Task[];
+  upcommingTasks: Task[];
 }
 
-// Define the type for the props
-interface SeoTasksProps {
-  taskDataArray: Task[];
-}
-
-const Proofreader: React.FC<SeoTasksProps> = ({ taskDataArray }) => {
-  const  filteredTasks = taskDataArray.filter(task => task.activeRole.toLowerCase() === 'seo');
+const Proofreader: React.FC<ProofreaderProps> = ({
+  activeTasks,
+  upcommingTasks,
+}) => {
+  // const  filteredTasks = taskDataArray.filter(task => task.activeRole.toLowerCase() === 'seo');
   return (
     <>
       {/* {filteredTasks.map((task, index) => (

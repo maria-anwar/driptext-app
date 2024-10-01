@@ -3,37 +3,17 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import TaskInfoCard from "./TaskComponents/TaskInfoCard";
 import Card from "./TaskComponents/TaskMainCard";
+import { Task } from '../Type/types'
 
-// Define the type for the task prop
-interface Task {
-  projectName: string;
-  deadline: string;
-  taskStatus: string;
-  activeRole: string;
-  googleLink: string;
-  wordCount: string;
-  labels: {
-    project: string;
-    deadline: string;
-    taskStatus: string;
-    activeRole: string;
-    googleLink: string;
-    wordCount: string;
-  };
-  isStart: boolean;
-  isAccepted: boolean;
-  isFinish: boolean;
-}
 
-// Define the type for the props
 interface LectorCardProps {
   task: Task;
 }
 
 const LectorCard: React.FC<LectorCardProps> = ({ task }) => {
-  const [isStart, setIsStart] = useState(task.isStart);
-  const [isAccepted, setIsAccepted] = useState(task.isAccepted);
-  const [isFinish, setIsFinish] = useState(task.isFinish);
+  const [isStart, setIsStart] = useState(false);
+  const [isAccepted, setIsAccepted] = useState(false);
+  const [isFinish, setIsFinish] = useState(false);
   const [showDialog, setShowDialog] = useState(false);
   const [showProjectInfo, setShowProjectInfo] = useState(false);
   const [showFinishDialog, setShowFinishDialog] = useState(false);
@@ -161,9 +141,9 @@ const LectorCard: React.FC<LectorCardProps> = ({ task }) => {
     );
   };
   return (
-    <div className="w-full my-10 rounded-sm ring-1 ring-slate-200 dark:border-stroke  py-1 px-7.5 shadow-2 dark:border-strokedark  dark:bg-boxdark">
+    <div className="w-full mb-10 mt-3 rounded-sm ring-1 ring-slate-200 dark:border-stroke  py-1 px-7.5 shadow-2 dark:border-strokedark  dark:bg-boxdark">
       <div className="py-2 dark:text-white text-xl font-semibold">
-        <h4>{task.projectName}</h4>
+        <h4>{task?.taskName}</h4>
       </div>
       <div className="pb-4">
         <Card task={task} />
