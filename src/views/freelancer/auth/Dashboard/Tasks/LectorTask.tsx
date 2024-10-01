@@ -1,43 +1,40 @@
 import React from "react";
 import TasksCard from "../../../../../components/freelancer/AllTask/TasksCard";
 import LectorCard from "../../../../../components/freelancer/AllTask/LectorCard";
+import UpcommingTasks from "../../../../../components/freelancer/AllTask/UpcommingCard";
+import { Task } from "../../../../../components/freelancer/Type/types";
 
-// Define the type for the task object
-interface Task {
-  projectName: string;
-  deadline: string;
-  taskStatus: string;
-  activeRole: string;
-  googleLink: string;
-  wordCount: string;
-  labels: {
-    project: string;
-    deadline: string;
-    taskStatus: string;
-    activeRole: string;
-    googleLink: string;
-    wordCount: string;
-  };
-  isStart: boolean;
-  isAccepted: boolean;
-  isFinish: boolean;
-}
 
-// Define the type for the props
+
+
 interface LectorTasksProps {
-  taskDataArray: Task[];
+  activeTasks: Task[];
+  upcommingTasks: Task[];
 }
 
-const LectorTasks: React.FC<LectorTasksProps> = ({ taskDataArray }) => {
+const LectorTasks: React.FC<LectorTasksProps> = ({ activeTasks, upcommingTasks }) => {
   // Example filtering based on taskStatus
-const  filteredTasks = taskDataArray.filter(task => task.activeRole.toLowerCase() === 'lector');
+// const  filteredTasks = taskDataArray.filter(task => task.activeRole.toLowerCase() === 'texter');
 
   return (
     <>
-      {filteredTasks.map((task, index) => (
+    <>
+      <h1 className="text-lg text-center text-black dark:text-white pt-10">
+        Active Tasks
+      </h1>
+      {activeTasks.map((task, index) => (
         <LectorCard key={index} task={task} />
       ))}
     </>
+    <>
+      <h1 className="text-lg text-center text-black dark:text-white pt-10 pb-3">
+        Upcomming tasks
+      </h1>
+      {upcommingTasks.map((task, index) => (
+        <UpcommingTasks key={index} task={task} Upcomming={true}  />
+      ))}
+    </>
+  </>
   );
 };
 
