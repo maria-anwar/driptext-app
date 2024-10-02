@@ -217,8 +217,8 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, Upcomming }) => {
 
   return (
     <div className="w-full mb-10 mt-3 rounded-sm ring-1 ring-slate-200 dark:border-stroke  py-1 px-7.5 shadow-2 dark:border-strokedark  dark:bg-boxdark">
-      <div className="py-2 dark:text-white text-xl font-semibold">
-        <h4>{task?.taskName}</h4>
+      <div className="py-2 dark:text-white text-xl font-semibold pt-6">
+        <h4>{task?.project?.projectName}</h4>
       </div>
       <div className="pb-4">
         <Card task={task} Upcomming={Upcomming} />

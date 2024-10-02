@@ -12,7 +12,7 @@ const Card: React.FC<TaskProps> = ({ task, Upcomming }) => {
     return moment(date).format(format);
   };
   return (
-    <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 md:grid-rows-2 lg:grid-cols-7 lg:grid-rows-1">
+    <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 md:grid-rows-2 lg:grid-cols-6 lg:grid-rows-1">
       <div className="flex flex-col pr-3">
         <span className="text-base font-semibold text-dark-gray dark:text-slate-200 py-4 uppercase">
           Projects
@@ -23,7 +23,7 @@ const Card: React.FC<TaskProps> = ({ task, Upcomming }) => {
         <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-4 uppercase">
           Deadline
         </span>
-        <span className="w-fit bg-red-600 text-white px-2 text-center rounded-full">
+        <span className="w-fit bg-red-600 text-white px-3 text-center rounded-full">
           {formatDate(task?.dueDate) ?? "no set"}
         </span>
       </div>
