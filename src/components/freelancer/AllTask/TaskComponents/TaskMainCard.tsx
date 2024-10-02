@@ -5,10 +5,9 @@ import { Task } from "../../Type/types";
 interface TaskProps {
   task: Task;
   Upcomming?: boolean;
-  role?: string;
 }
 
-const Card: React.FC<TaskProps> = ({ task, Upcomming,role }) => {
+const Card: React.FC<TaskProps> = ({ task, Upcomming }) => {
   const formatDate = (date: string, format: string = "MMM  YYYY") => {
     return moment(date).format(format);
   };
@@ -16,7 +15,7 @@ const Card: React.FC<TaskProps> = ({ task, Upcomming,role }) => {
     <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 md:grid-rows-2 lg:grid-cols-6 lg:grid-rows-1">
       <div className="flex flex-col pr-3">
         <span className="text-base font-semibold text-dark-gray dark:text-slate-200 py-4 uppercase">
-          Projects
+          Task
         </span>
         <span>{task?.taskName}</span>
       </div>
@@ -38,7 +37,7 @@ const Card: React.FC<TaskProps> = ({ task, Upcomming,role }) => {
         <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-4 uppercase">
           active role
         </span>
-        <span>{role}</span>
+        <span className="uppercase">{task?.activeRole}</span>
       </div>
       <div className="flex flex-col pr-3">
         <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-4 uppercase">

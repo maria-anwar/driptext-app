@@ -8,10 +8,9 @@ import { Task } from '../Type/types'
 
 interface LectorCardProps {
   task: Task;
-  role:string;
 }
 
-const LectorCard: React.FC<LectorCardProps> = ({ task,role }) => {
+const LectorCard: React.FC<LectorCardProps> = ({ task }) => {
   const [isStart, setIsStart] = useState(false);
   const [isAccepted, setIsAccepted] = useState(false);
   const [isFinish, setIsFinish] = useState(false);
@@ -147,7 +146,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task,role }) => {
         <h4>{task?.project?.projectName}</h4>
       </div>
       <div className="pb-4">
-        <Card task={task} role={role} />
+        <Card task={task} />
         <div className="mt-4 flex flex-row justify-end items-end">
           {!isStart && !isAccepted && (
             <>
@@ -235,7 +234,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task,role }) => {
                 Finish
               </button>
             </div>
-            {showInfo && <TaskInfoCard task={task} role={role} />}
+            {showInfo && <TaskInfoCard task={task}  />}
             {showFeedback && <div>Feedback</div>}
           </div>
         </div>
@@ -286,7 +285,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task,role }) => {
             </div>
             <ProjectHeader />
             <div className="space-y-4 mt-4">
-              {showInfo && <TaskInfoCard task={task} role={role} />}
+              {showInfo && <TaskInfoCard task={task}  />}
               {showFeedback && <div>Feedback</div>}
             </div>
           </div>
