@@ -19,7 +19,7 @@ const TexterTasks: React.FC<TexterTasksProps> = ({ activeTasks, upcommingTasks,u
       </h1>
       {filterActiveTask.length > 0 ? (
         filterActiveTask.map((task, index) => (
-          <TasksCard key={index} task={task} role={'TEXTER'} />
+          <TasksCard key={index} task={task}  />
         ))
       ) : (
         <p className="text-center text-gray-500 pt-10 pb-3">No active texter tasks</p>
@@ -30,7 +30,7 @@ const TexterTasks: React.FC<TexterTasksProps> = ({ activeTasks, upcommingTasks,u
       </h1>
       {filterUpcommingTask.length > 0 ? (
         filterUpcommingTask.map((task, index) => (
-          <UpcommingTasks key={index} task={task} Upcomming={true} role={'TEXTER'}  />
+          <UpcommingTasks key={index} task={task} Upcomming={true}  />
         ))
       ) : (
         <p className="text-center text-gray-500 pt-10 pb-3">No upcoming texter tasks</p>

@@ -6,6 +6,7 @@ export interface Task {
     dueDate: string;
     fileId: string;
     fileLink: string;
+    activeRole:string;
     googleLink: string | null;
     isActive: string;
     keywords: string;

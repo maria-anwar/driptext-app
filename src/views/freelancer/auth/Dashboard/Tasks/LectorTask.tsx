@@ -21,7 +21,7 @@ const LectorTasks: React.FC<LectorTasksProps> = ({ activeTasks, upcommingTasks,u
       </h1>
       {filterActiveTask.length > 0 ? (
         filterActiveTask.map((task, index) => (
-          <LectorCard key={index} task={task} role={"LECTOR"} />
+          <LectorCard key={index} task={task}  />
         ))
       ) : (
         <p className="text-center text-gray-500 pt-10 pb-3">No active lector tasks</p>
@@ -33,7 +33,7 @@ const LectorTasks: React.FC<LectorTasksProps> = ({ activeTasks, upcommingTasks,u
       </h1>
       {filterUpcommingTask.length > 0 ? (
         filterUpcommingTask.map((task, index) => (
-          <UpcommingTasks key={index} task={task} Upcomming={true} role={"LECTOR"} />
+          <UpcommingTasks key={index} task={task} Upcomming={true}  />
         ))
       ) : (
         <p className="text-center text-gray-500 pt-10 pb-3">No upcoming lector tasks</p>

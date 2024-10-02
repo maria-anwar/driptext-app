@@ -9,10 +9,9 @@ import { Task } from "../Type/types";
 interface LectorCardProps {
   task: Task;
   Upcomming?: boolean;
-  role?: string;
 }
 
-const LectorCard: React.FC<LectorCardProps> = ({ task, Upcomming,role }) => {
+const LectorCard: React.FC<LectorCardProps> = ({ task, Upcomming }) => {
   const [isStart, setIsStart] = useState(false);
   const [isAccepted, setIsAccepted] = useState(false);
   const [isFinish, setIsFinish] = useState(false);
@@ -222,9 +221,9 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, Upcomming,role }) => {
         <h4>{task?.project?.projectName}</h4>
       </div>
       <div className="pb-4">
-        <Card task={task} Upcomming={Upcomming} role={role} />
+        <Card task={task} Upcomming={Upcomming}  />
         <div className="mt-4 flex flex-row justify-end items-end">
-          {!isStart && !isAccepted && (
+          {task?.status ==='Ready To Work' && !isAccepted &&(
             <>
               <button
                 className="mr-3 bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
@@ -237,7 +236,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, Upcomming,role }) => {
               </button>
             </>
           )}
-          {isAccepted && !isStart && (
+          {task?.status ==='Ready To Work' && isAccepted &&(
             <button
               className="mx-2.5 bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
               onClick={handleStart}
@@ -245,7 +244,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, Upcomming,role }) => {
               Start
             </button>
           )}
-          {isStart && !isFinish && (
+          {task?.status ==='in progress'  && (
             <button
               className="mx-2.5 bg-purple-500 text-white font-bold py-2 px-4 rounded hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
               onClick={handleFinish}
@@ -310,7 +309,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, Upcomming,role }) => {
                 Finish
               </button>
             </div>
-            {showInfo && <TaskInfoCard task={task} role={role} />}
+            {showInfo && <TaskInfoCard task={task} />}
             {showFeedback && <div>Feedback</div>}
           </div>
         </div>
@@ -403,7 +402,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, Upcomming,role }) => {
             </div>
             <ProjectHeader />
             <div className="space-y-4 mt-4">
-              {showInfo && <TaskInfoCard task={task} role={role} />}
+              {showInfo && <TaskInfoCard task={task}  />}
               {showFeedback && <div>Feedback</div>}
             </div>
           </div>

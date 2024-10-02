@@ -92,6 +92,7 @@ const Tasks: React.FC = () => {
           <AllTasks
             activeTasks={tasks.currentTasks}
             upcommingTasks={tasks.upcomingTasks}
+            userId={userId}
           />
         );
     }

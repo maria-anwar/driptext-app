@@ -8,10 +8,9 @@ import AccordionData from "./AccordionData";
 interface TaskProps {
   task: Task;
   Upcomming?: boolean;
-  role?: string;
 }
 
-const TaskInfoCard: React.FC<TaskProps> = ({ task, Upcomming ,role }) => {
+const TaskInfoCard: React.FC<TaskProps> = ({ task, Upcomming  }) => {
   const project = task?.project;
   return (
     <>
@@ -24,8 +23,8 @@ const TaskInfoCard: React.FC<TaskProps> = ({ task, Upcomming ,role }) => {
             {formatDate(task?.dueDate)}
           </span>
         </p>
-        <p className="dark:text-white">Task Status: {task.status}</p>
-        <p className="dark:text-white">Active Role: {role}</p>
+        <p className="dark:text-white">Task Status: {task?.status}</p>
+        <p className="dark:text-white">Active Role: {task?.activeRole}</p>
         <p className="dark:text-white">
           Google Link:{" "}
           <a
