@@ -7,18 +7,21 @@ import { Task } from "../../../../../components/freelancer/Type/types";
 interface LectorTasksProps {
   activeTasks: Task[];
   upcommingTasks: Task[];
+  userId: string;
 }
 
-const LectorTasks: React.FC<LectorTasksProps> = ({ activeTasks, upcommingTasks }) => {
+const LectorTasks: React.FC<LectorTasksProps> = ({ activeTasks, upcommingTasks,userId }) => {
+  const filterActiveTask = activeTasks.filter((task) => task.lector === userId);
+  const filterUpcommingTask = upcommingTasks.filter((task) => task.lector === userId);
   return (
     <>
       {/* Active Tasks Section */}
       <h1 className="text-lg text-center text-black dark:text-white pt-10">
         Active Tasks
       </h1>
-      {activeTasks.length > 0 ? (
-        activeTasks.map((task, index) => (
-          <LectorCard key={index} task={task} />
+      {filterActiveTask.length > 0 ? (
+        filterActiveTask.map((task, index) => (
+          <LectorCard key={index} task={task} role={"LECTOR"} />
         ))
       ) : (
         <p className="text-center text-gray-500 pt-10 pb-3">No active lector tasks</p>
@@ -28,9 +31,9 @@ const LectorTasks: React.FC<LectorTasksProps> = ({ activeTasks, upcommingTasks }
       <h1 className="text-lg text-center text-black dark:text-white pt-10 pb-3">
         Upcoming Tasks
       </h1>
-      {upcommingTasks.length > 0 ? (
-        upcommingTasks.map((task, index) => (
-          <UpcommingTasks key={index} task={task} Upcomming={true} />
+      {filterUpcommingTask.length > 0 ? (
+        filterUpcommingTask.map((task, index) => (
+          <UpcommingTasks key={index} task={task} Upcomming={true} role={"LECTOR"} />
         ))
       ) : (
         <p className="text-center text-gray-500 pt-10 pb-3">No upcoming lector tasks</p>

@@ -5,9 +5,10 @@ import { Task } from "../../Type/types";
 interface TaskProps {
   task: Task;
   Upcomming?: boolean;
+  role?: string;
 }
 
-const Card: React.FC<TaskProps> = ({ task, Upcomming }) => {
+const Card: React.FC<TaskProps> = ({ task, Upcomming,role }) => {
   const formatDate = (date: string, format: string = "MMM  YYYY") => {
     return moment(date).format(format);
   };
@@ -37,7 +38,7 @@ const Card: React.FC<TaskProps> = ({ task, Upcomming }) => {
         <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-4 uppercase">
           active role
         </span>
-        <span>{"task.activeRole"}</span>
+        <span>{role}</span>
       </div>
       <div className="flex flex-col pr-3">
         <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-4 uppercase">
@@ -62,7 +63,7 @@ const Card: React.FC<TaskProps> = ({ task, Upcomming }) => {
         <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-4 uppercase">
           wordcount
         </span>
-        <span className="font-medium">{task?.desiredNumberOfWords}</span>
+        <span className="font-medium">{task?.actualNumberOfWords}/{task?.desiredNumberOfWords}</span>
       </div>
     </div>
   );

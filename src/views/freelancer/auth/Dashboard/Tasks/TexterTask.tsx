@@ -6,17 +6,20 @@ import UpcommingTasks from "../../../../../components/freelancer/AllTask/Upcommi
 interface TexterTasksProps {
   activeTasks: Task[];
   upcommingTasks: Task[];
+  userId: string;
 }
 
-const TexterTasks: React.FC<TexterTasksProps> = ({ activeTasks, upcommingTasks }) => {
+const TexterTasks: React.FC<TexterTasksProps> = ({ activeTasks, upcommingTasks,userId }) => {
+  const filterActiveTask = activeTasks.filter((task) => task.texter === userId);
+  const filterUpcommingTask = upcommingTasks.filter((task) => task.texter === userId);
   return (
     <>
       <h1 className="text-lg text-center text-black dark:text-white pt-10">
         Active Tasks
       </h1>
-      {activeTasks.length > 0 ? (
-        activeTasks.map((task, index) => (
-          <TasksCard key={index} task={task} />
+      {filterActiveTask.length > 0 ? (
+        filterActiveTask.map((task, index) => (
+          <TasksCard key={index} task={task} role={'TEXTER'} />
         ))
       ) : (
         <p className="text-center text-gray-500 pt-10 pb-3">No active texter tasks</p>
@@ -25,9 +28,9 @@ const TexterTasks: React.FC<TexterTasksProps> = ({ activeTasks, upcommingTasks }
       <h1 className="text-lg text-center text-black dark:text-white">
         Upcoming Tasks
       </h1>
-      {upcommingTasks.length > 0 ? (
-        upcommingTasks.map((task, index) => (
-          <UpcommingTasks key={index} task={task} Upcomming={true} />
+      {filterUpcommingTask.length > 0 ? (
+        filterUpcommingTask.map((task, index) => (
+          <UpcommingTasks key={index} task={task} Upcomming={true} role={'TEXTER'}  />
         ))
       ) : (
         <p className="text-center text-gray-500 pt-10 pb-3">No upcoming texter tasks</p>
