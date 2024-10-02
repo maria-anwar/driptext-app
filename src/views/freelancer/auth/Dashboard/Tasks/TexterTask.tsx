@@ -11,7 +11,6 @@ interface TexterTasksProps {
 const TexterTasks: React.FC<TexterTasksProps> = ({ activeTasks, upcommingTasks }) => {
   return (
     <>
-      {/* Active Tasks Section */}
       <h1 className="text-lg text-center text-black dark:text-white pt-10">
         Active Tasks
       </h1>
@@ -23,7 +22,6 @@ const TexterTasks: React.FC<TexterTasksProps> = ({ activeTasks, upcommingTasks }
         <p className="text-center text-gray-500 pt-10 pb-3">No active texter tasks</p>
       )}
 
-      {/* Upcoming Tasks Section */}
       <h1 className="text-lg text-center text-black dark:text-white">
         Upcoming Tasks
       </h1>

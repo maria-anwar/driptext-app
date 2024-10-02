@@ -6,13 +6,15 @@ import SeoTasks from "./SeoTask";
 import Proofreader from "./Proofreader";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import SkeletonLoader from "./SkeletonLoader"; // Adjust the path as needed
 
 const Tasks: React.FC = () => {
   const user = useSelector((state) => state.user);
   const userId = user?.user?.data?.user?._id;
   const userToken = user?.user?.token;
-  const [tasks,setTask]=useState({currentTasks:[],upcomingTasks:[]})
+  const [tasks, setTask] = useState({ currentTasks: [], upcomingTasks: [] });
   const [activeButton, setActiveButton] = useState("All");
+  const [loading, setLoading] = useState(true); // Loading state
 
   useEffect(() => {
     if (userId && userToken) {
@@ -21,6 +23,7 @@ const Tasks: React.FC = () => {
   }, [userId, userToken]);
 
   const getProjects = () => {
+    setLoading(true); // Set loading to true when fetching starts
     axios.defaults.headers.common["access-token"] = userToken;
     const payload = { freelancerId: userId };
     axios
@@ -32,14 +35,15 @@ const Tasks: React.FC = () => {
       })
       .catch((err) => {
         console.error("Error fetching project details:", err);
+      })
+      .finally(() => {
+        setLoading(false); // Set loading to false when fetching ends
       });
   };
-
 
   const handleTasks = (name: string) => {
     setActiveButton(name);
   };
-
 
   const buttons = [
     { name: "All", label: "All" },
@@ -52,19 +56,42 @@ const Tasks: React.FC = () => {
   const renderTasks = () => {
     switch (activeButton) {
       case "Texter":
-        return <TexterTasks activeTasks={tasks.currentTasks} upcommingTasks={tasks.upcomingTasks} />;
+        return (
+          <TexterTasks
+            activeTasks={tasks.currentTasks}
+            upcommingTasks={tasks.upcomingTasks}
+          />
+        );
       case "Lector":
-        return <LectorTasks activeTasks={tasks.currentTasks} upcommingTasks={tasks.upcomingTasks} />;
+        return (
+          <LectorTasks
+            activeTasks={tasks.currentTasks}
+            upcommingTasks={tasks.upcomingTasks}
+          />
+        );
       case "Seo Optimizer":
-        return <SeoTasks activeTasks={tasks.currentTasks} upcommingTasks={tasks.upcomingTasks} />;
+        return (
+          <SeoTasks
+            activeTasks={tasks.currentTasks}
+            upcommingTasks={tasks.upcomingTasks}
+          />
+        );
       case "Meta lector":
-        return <Proofreader activeTasks={tasks.currentTasks} upcommingTasks={tasks.upcomingTasks} />;
+        return (
+          <Proofreader
+            activeTasks={tasks.currentTasks}
+            upcommingTasks={tasks.upcomingTasks}
+          />
+        );
       default:
-        return <AllTasks activeTasks={tasks.currentTasks} upcommingTasks={tasks.upcomingTasks} />;
+        return (
+          <AllTasks
+            activeTasks={tasks.currentTasks}
+            upcommingTasks={tasks.upcomingTasks}
+          />
+        );
     }
   };
-
-  console.log("tasks", tasks.currentTasks);
 
   return (
     <div className="2xl:px-6 3xl:px-10">
@@ -83,14 +110,21 @@ const Tasks: React.FC = () => {
               ${
                 activeButton === button.name
                   ? "bg-cardHeading text-white font-semibold "
-                  : "bg-white ring-1 ring-cardHeading dark:hover:ring-0 dark:ring-white  dark:text-white dark:bg-transparent hover:bg-cardHeading hover:text-white"
+                  : "bg-white ring-1 ring-cardHeading dark:hover:ring-0 dark:ring-white dark:text-white dark:bg-transparent hover:bg-cardHeading hover:text-white"
               }`}
           >
             {button.label}
           </button>
         ))}
       </div>
-      {renderTasks()}
+      {loading
+        ? [1, 2, 3, 4].map((value, index) => (
+            <div
+              key={index}
+              className="rounded-sm border border-stroke pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1 mt-10 w-full bg-slate-200 h-[460px] md:h-[300px] animate-pulse"
+            ></div>
+          ))
+        : renderTasks()}
     </div>
   );
 };
