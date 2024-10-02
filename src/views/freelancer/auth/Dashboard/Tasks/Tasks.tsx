@@ -7,54 +7,12 @@ import Proofreader from "./Proofreader";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
-const taskDataArray = [
-  {
-    projectName: "MA-AB010 || Marketing Campaign",
-    deadline: "2 months ago",
-    taskStatus: "Ready to start",
-    activeRole: "TEXTER",
-    googleLink:
-      "https://docs.google.com/document/d/1lth731M_StJek0kU3dsV8bmilAqfEkq3KixXJTlbsNU/edit?addon_store",
-    wordCount: "0/1500",
-    labels: {
-      project: "PROJECTS",
-      deadline: "DEADLINE",
-      taskStatus: "TASK STATUS",
-      activeRole: "ACTIVE ROLE",
-      googleLink: "GOOGLE-LINK",
-      wordCount: "WORDCOUNT",
-    },
-    isStart: false,
-    isAccepted: false,
-    isFinish: false,
-  },
-  {
-    projectName: "WE-CD011 || Website Redesign",
-    deadline: "1 month ago",
-    taskStatus: "In Progress",
-    activeRole: "TEXTER",
-    googleLink:
-      "https://docs.google.com/document/d/1lth731M_StJek0kU3dsV8bmilAqfEkq3KixXJTlbsNU/edit?addon_store",
-    wordCount: "500/2000",
-    labels: {
-      project: "PROJECTS",
-      deadline: "DEADLINE",
-      taskStatus: "TASK STATUS",
-      activeRole: "ACTIVE ROLE",
-      googleLink: "GOOGLE-LINK",
-      wordCount: "WORDCOUNT",
-    },
-    isStart: false,
-    isAccepted: false,
-    isFinish: false,
-  },
-];
-
 const Tasks: React.FC = () => {
   const user = useSelector((state) => state.user);
   const userId = user?.user?.data?.user?._id;
   const userToken = user?.user?.token;
   const [tasks,setTask]=useState({currentTasks:[],upcomingTasks:[]})
+  const [activeButton, setActiveButton] = useState("All");
 
   useEffect(() => {
     if (userId && userToken) {
@@ -77,7 +35,6 @@ const Tasks: React.FC = () => {
       });
   };
 
-  const [activeButton, setActiveButton] = useState("All");
 
   const handleTasks = (name: string) => {
     setActiveButton(name);

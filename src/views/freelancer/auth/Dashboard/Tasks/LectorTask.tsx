@@ -1,40 +1,41 @@
 import React from "react";
-import TasksCard from "../../../../../components/freelancer/AllTask/TasksCard";
 import LectorCard from "../../../../../components/freelancer/AllTask/LectorCard";
 import UpcommingTasks from "../../../../../components/freelancer/AllTask/UpcommingCard";
 import { Task } from "../../../../../components/freelancer/Type/types";
 
-
-
-
+// Define the type for the props
 interface LectorTasksProps {
   activeTasks: Task[];
   upcommingTasks: Task[];
 }
 
 const LectorTasks: React.FC<LectorTasksProps> = ({ activeTasks, upcommingTasks }) => {
-  // Example filtering based on taskStatus
-// const  filteredTasks = taskDataArray.filter(task => task.activeRole.toLowerCase() === 'texter');
-
   return (
     <>
-    <>
+      {/* Active Tasks Section */}
       <h1 className="text-lg text-center text-black dark:text-white pt-10">
         Active Tasks
       </h1>
-      {activeTasks.map((task, index) => (
-        <LectorCard key={index} task={task} />
-      ))}
-    </>
-    <>
+      {activeTasks.length > 0 ? (
+        activeTasks.map((task, index) => (
+          <LectorCard key={index} task={task} />
+        ))
+      ) : (
+        <p className="text-center text-gray-500 pt-10 pb-3">No active lector tasks</p>
+      )}
+
+      {/* Upcoming Tasks Section */}
       <h1 className="text-lg text-center text-black dark:text-white pt-10 pb-3">
-        Upcomming tasks
+        Upcoming Tasks
       </h1>
-      {upcommingTasks.map((task, index) => (
-        <UpcommingTasks key={index} task={task} Upcomming={true}  />
-      ))}
+      {upcommingTasks.length > 0 ? (
+        upcommingTasks.map((task, index) => (
+          <UpcommingTasks key={index} task={task} Upcomming={true} />
+        ))
+      ) : (
+        <p className="text-center text-gray-500 pt-10 pb-3">No upcoming lector tasks</p>
+      )}
     </>
-  </>
   );
 };
 
