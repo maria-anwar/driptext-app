@@ -8,8 +8,9 @@ import { Task } from "../Type/types";
 interface LectorCardProps {
   task: Task;
   Upcomming?: boolean;
+  role?: string;
 }
-const UpcommingTasks: React.FC<LectorCardProps> = ({ task, Upcomming }) => {
+const UpcommingTasks: React.FC<LectorCardProps> = ({ task, Upcomming,role }) => {
   const [showDetailsDialog, setShowDetailsDialog] = useState(false);
   const [showInfo, setShowInfo] = useState(true);
   const [showFeedback, setShowFeedback] = useState(false);
@@ -49,7 +50,7 @@ const UpcommingTasks: React.FC<LectorCardProps> = ({ task, Upcomming }) => {
         <h4>{task?.project?.projectName}</h4>
       </div>
       <div className="pb-4">
-        <Card task={task} Upcomming={Upcomming} />
+        <Card task={task} Upcomming={Upcomming} role={role} />
       </div>
       <div
         onClick={hanldeShowAllInfo}
@@ -74,7 +75,7 @@ const UpcommingTasks: React.FC<LectorCardProps> = ({ task, Upcomming }) => {
             </div>
             <ProjectHeader />
             <div className="space-y-4 mt-4">
-              {showInfo && <TaskInfoCard task={task} Upcomming={Upcomming} />}
+              {showInfo && <TaskInfoCard task={task} Upcomming={Upcomming} role={role} />}
             </div>
           </div>
         </div>

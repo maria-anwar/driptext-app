@@ -7,18 +7,21 @@ import UpcommingTasks from "../../../../../components/freelancer/AllTask/Upcommi
 interface SeoTasksProps {
   activeTasks: Task[];
   upcommingTasks: Task[];
+  userId: string;
 }
 
-const SeoTasks: React.FC<SeoTasksProps> = ({ activeTasks, upcommingTasks }) => {
+const SeoTasks: React.FC<SeoTasksProps> = ({ activeTasks, upcommingTasks,userId }) => {
+  const filterActiveTask = activeTasks.filter((task) => task.seo === userId);
+  const filterUpcommingTask = upcommingTasks.filter((task) => task.seo === userId);
   return (
     <>
       {/* Active Tasks Section */}
       <h1 className="text-lg text-center text-black dark:text-white pt-10">
         Active Tasks
       </h1>
-      {activeTasks.length > 0 ? (
-        activeTasks.map((task, index) => (
-          <SEOCard key={index} task={task} />
+      {filterActiveTask.length > 0 ? (
+        filterActiveTask.map((task, index) => (
+          <SEOCard key={index} task={task} role={'SEO'} />
         ))
       ) : (
         <p className="text-center text-gray-500 pt-10 pb-3">No active seo tasks</p>
@@ -28,9 +31,9 @@ const SeoTasks: React.FC<SeoTasksProps> = ({ activeTasks, upcommingTasks }) => {
       <h1 className="text-lg text-center text-black dark:text-white pt-10">
         Upcoming Tasks
       </h1>
-      {upcommingTasks.length > 0 ? (
-        upcommingTasks.map((task, index) => (
-          <UpcommingTasks key={index} task={task} Upcomming={true} />
+      {filterUpcommingTask.length > 0 ? (
+        filterUpcommingTask.map((task, index) => (
+          <UpcommingTasks key={index} task={task} Upcomming={true} role={'SEO'} />
         ))
       ) : (
         <p className="text-center text-gray-500 pt-10 pb-3">No upcoming seo tasks</p>

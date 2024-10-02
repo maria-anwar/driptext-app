@@ -8,9 +8,10 @@ import AccordionData from "./AccordionData";
 interface TaskProps {
   task: Task;
   Upcomming?: boolean;
+  role?: string;
 }
 
-const TaskInfoCard: React.FC<TaskProps> = ({ task, Upcomming }) => {
+const TaskInfoCard: React.FC<TaskProps> = ({ task, Upcomming ,role }) => {
   const project = task?.project;
   return (
     <>
@@ -24,7 +25,7 @@ const TaskInfoCard: React.FC<TaskProps> = ({ task, Upcomming }) => {
           </span>
         </p>
         <p className="dark:text-white">Task Status: {task.status}</p>
-        <p className="dark:text-white">Active Role: {"task.activeRole"}</p>
+        <p className="dark:text-white">Active Role: {role}</p>
         <p className="dark:text-white">
           Google Link:{" "}
           <a
@@ -41,7 +42,7 @@ const TaskInfoCard: React.FC<TaskProps> = ({ task, Upcomming }) => {
           </a>
         </p>
         <p className="dark:text-white">
-          Word Count: {task?.desiredNumberOfWords}
+          Word Count: {task?.actualNumberOfWords}/{task?.desiredNumberOfWords}
         </p>
       </div>
 

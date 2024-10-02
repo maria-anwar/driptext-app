@@ -9,9 +9,10 @@ import { Task } from "../Type/types";
 interface LectorCardProps {
   task: Task;
   Upcomming?: boolean;
+  role?: string;
 }
 
-const LectorCard: React.FC<LectorCardProps> = ({ task, Upcomming }) => {
+const LectorCard: React.FC<LectorCardProps> = ({ task, Upcomming,role }) => {
   const [isStart, setIsStart] = useState(false);
   const [isAccepted, setIsAccepted] = useState(false);
   const [isFinish, setIsFinish] = useState(false);
@@ -221,7 +222,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, Upcomming }) => {
         <h4>{task?.project?.projectName}</h4>
       </div>
       <div className="pb-4">
-        <Card task={task} Upcomming={Upcomming} />
+        <Card task={task} Upcomming={Upcomming} role={role} />
         <div className="mt-4 flex flex-row justify-end items-end">
           {!isStart && !isAccepted && (
             <>
@@ -309,7 +310,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, Upcomming }) => {
                 Finish
               </button>
             </div>
-            {showInfo && <TaskInfoCard task={task} />}
+            {showInfo && <TaskInfoCard task={task} role={role} />}
             {showFeedback && <div>Feedback</div>}
           </div>
         </div>
@@ -402,7 +403,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, Upcomming }) => {
             </div>
             <ProjectHeader />
             <div className="space-y-4 mt-4">
-              {showInfo && <TaskInfoCard task={task} />}
+              {showInfo && <TaskInfoCard task={task} role={role} />}
               {showFeedback && <div>Feedback</div>}
             </div>
           </div>

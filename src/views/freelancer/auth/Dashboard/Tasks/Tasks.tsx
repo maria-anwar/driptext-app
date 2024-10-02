@@ -6,7 +6,6 @@ import SeoTasks from "./SeoTask";
 import Proofreader from "./Proofreader";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import SkeletonLoader from "./SkeletonLoader"; // Adjust the path as needed
 
 const Tasks: React.FC = () => {
   const user = useSelector((state) => state.user);
@@ -21,6 +20,7 @@ const Tasks: React.FC = () => {
       getProjects();
     }
   }, [userId, userToken]);
+  console.log(userId)
 
   const getProjects = () => {
     setLoading(true); // Set loading to true when fetching starts
@@ -60,6 +60,7 @@ const Tasks: React.FC = () => {
           <TexterTasks
             activeTasks={tasks.currentTasks}
             upcommingTasks={tasks.upcomingTasks}
+            userId={userId}
           />
         );
       case "Lector":
@@ -67,6 +68,7 @@ const Tasks: React.FC = () => {
           <LectorTasks
             activeTasks={tasks.currentTasks}
             upcommingTasks={tasks.upcomingTasks}
+            userId={userId}
           />
         );
       case "Seo Optimizer":
@@ -74,6 +76,7 @@ const Tasks: React.FC = () => {
           <SeoTasks
             activeTasks={tasks.currentTasks}
             upcommingTasks={tasks.upcomingTasks}
+            userId={userId}
           />
         );
       case "Meta lector":
@@ -81,6 +84,7 @@ const Tasks: React.FC = () => {
           <Proofreader
             activeTasks={tasks.currentTasks}
             upcommingTasks={tasks.upcomingTasks}
+            userId={userId}
           />
         );
       default:
