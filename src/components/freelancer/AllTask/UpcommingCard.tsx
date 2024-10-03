@@ -1,18 +1,41 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import TaskInfoCard from "./TaskComponents/TaskInfoCard";
 import Card from "./TaskComponents/TaskMainCard";
 import { Task } from "../Type/types";
+import { useSelector } from "react-redux";
+import axios from "axios";
 
 interface LectorCardProps {
   task: Task;
   Upcomming?: boolean;
 }
 const UpcommingTasks: React.FC<LectorCardProps> = ({ task, Upcomming }) => {
+  const user = useSelector<any>((state) => state.user);
+  const userToken = user?.user?.token;
   const [showDetailsDialog, setShowDetailsDialog] = useState(false);
   const [showInfo, setShowInfo] = useState(true);
   const [showFeedback, setShowFeedback] = useState(false);
+
+  useEffect(()=>{
+    getWordCount();
+  },[task])
+
+  const getWordCount = () => {
+    let token = userToken;
+    axios.defaults.headers.common["access-token"] = token;
+    let payload = {
+      taskId: task._id
+    };
+    axios
+      .post(`${import.meta.env.VITE_DB_URL}/freelancer/updateWordCount`, payload)
+      .then((response) => {})
+      .catch((err) => {
+        console.error("Error updating word count of project:", err);
+      });
+  };
+  
   const hanldeShowAllInfo = () => {
     setShowDetailsDialog(true);
   };
