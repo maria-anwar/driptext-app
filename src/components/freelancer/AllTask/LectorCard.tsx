@@ -336,7 +336,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task }) => {
                 Finish
               </button>
             </div>
-            {showInfo && <TaskInfoCard task={task} />}
+            {showInfo && <TaskInfoCard task={task} getWordCount={getWordCount} />}
             {showFeedback && <div>Feedback</div>}
           </div>
         </div>
@@ -430,7 +430,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task }) => {
             </div>
             <ProjectHeader />
             <div className="space-y-4 mt-4">
-              {showInfo && <TaskInfoCard task={task} />}
+              {showInfo && <TaskInfoCard task={task} getWordCount={getWordCount} />}
               {showFeedback && <div>Feedback</div>}
             </div>
           </div>

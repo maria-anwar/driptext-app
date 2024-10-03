@@ -8,10 +8,12 @@ import AccordionData from "./AccordionData";
 interface TaskProps {
   task: Task;
   Upcomming?: boolean;
+  getWordCount: () => void;
 }
 
-const TaskInfoCard: React.FC<TaskProps> = ({ task, Upcomming  }) => {
+const TaskInfoCard: React.FC<TaskProps> = ({ task, Upcomming ,getWordCount }) => {
   const project = task?.project;
+  getWordCount();
   return (
     <>
       <div className="bg-slate-200 dark:bg-boxdark rounded py-4 px-4">
