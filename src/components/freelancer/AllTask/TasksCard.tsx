@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import TaskInfoCard from "./TaskComponents/TaskInfoCard";
 import Card from "./TaskComponents/TaskMainCard";
 import CheckboxThree from "../../client/buttons/CheckboxThree";
 import { Task } from "../Type/types";
+import { useSelector } from "react-redux";
+import axios from "axios";
 
 interface LectorCardProps {
   task: Task;
@@ -12,6 +14,8 @@ interface LectorCardProps {
 }
 
 const LectorCard: React.FC<LectorCardProps> = ({ task, Upcomming }) => {
+  const user = useSelector<any>((state) => state.user);
+  const userToken = user?.user?.token;
   const [isStart, setIsStart] = useState(false);
   const [isAccepted, setIsAccepted] = useState(false);
   const [isFinish, setIsFinish] = useState(false);
@@ -29,6 +33,24 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, Upcomming }) => {
     format5: false,
     format6: false,
   });
+
+  useEffect(()=>{
+    getWordCount();
+  },[task])
+
+  const getWordCount = () => {
+    let token = userToken;
+    axios.defaults.headers.common["access-token"] = token;
+    let payload = {
+      taskId: task._id
+    };
+    axios
+      .post(`${import.meta.env.VITE_DB_URL}/freelancer/updateWordCount`, payload)
+      .then((response) => {})
+      .catch((err) => {
+        console.error("Error updating word count of project:", err);
+      });
+  };
 
   const formatDetails = {
     format1: {
