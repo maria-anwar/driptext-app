@@ -3,16 +3,16 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import TaskInfoCard from "./TaskComponents/TaskInfoCard";
 import Card from "./TaskComponents/TaskMainCard";
-import { Task } from '../Type/types'
+import { Task } from "../Type/types";
 import axios from "axios";
 import { useSelector } from "react-redux";
 
-
 interface LectorCardProps {
   task: Task;
+  getRefreshTask: () => void;
 }
 
-const LectorCard: React.FC<LectorCardProps> = ({ task }) => {
+const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
   const user = useSelector<any>((state) => state.user);
   const userToken = user?.user?.token;
   const [isStart, setIsStart] = useState(false);
@@ -33,53 +33,65 @@ const LectorCard: React.FC<LectorCardProps> = ({ task }) => {
     format6: false,
   });
 
-  useEffect(()=>{
+  useEffect(() => {
     getWordCount();
-  },[task])
+  }, [task]);
 
   const getWordCount = () => {
     let token = userToken;
     axios.defaults.headers.common["access-token"] = token;
     let payload = {
-      taskId: task._id
+      taskId: task._id,
     };
     axios
-      .post(`${import.meta.env.VITE_DB_URL}/freelancer/updateWordCount`, payload)
+      .post(
+        `${import.meta.env.VITE_DB_URL}/freelancer/updateWordCount`,
+        payload
+      )
       .then((response) => {})
       .catch((err) => {
         console.error("Error updating word count of project:", err);
       });
   };
 
-  const formatDetails = {
-    format1: {
-      h: "Care and accuracy",
-      p: "(consistency of words, figures/facts are correct)",
-    },
-    format2: {
-      h: "Content specification",
-      p: "(text fits the customer/context, special requests adhered to)",
-    },
-    format3: {
-      h: "Formal requirements",
-      p: "(saturations, writing perspective, tone of voice))",
-    },
-    format4: {
-      h: "Structural guidelinesCare and accuracy",
-      p: "(structure, paragraph, common thread, palagiarism)",
-    },
-    format5: {
-      h: "Text bloat and duplication",
-      p: "(conciseness, added value, no duplication)",
-    },
-    format6: {
-      h: "Text is error-free",
-      p: "(spelling, punctuation, grammer)",
-    },
-  };
-
   const handleAccept = () => {
     setIsAccepted(true);
+  };
+
+  const handleDecline = (taskId: string) => {
+    let token = userToken;
+    axios.defaults.headers.common["access-token"] = token;
+    let payload = {
+      taskId: taskId,
+    };
+    axios
+      .post(`${import.meta.env.VITE_DB_URL}/freelancer/taskDecline`, payload)
+      .then((response) => {
+        console.log("Task Declined", response);
+        getRefreshTask();
+      })
+      .catch((err) => {
+        console.error("Error task decline", err);
+      });
+  };
+
+  const handleStartTask = (taskId: string) => {
+    let token = userToken;
+    axios.defaults.headers.common["access-token"] = token;
+    let payload = {
+      taskId: taskId,
+    };
+    axios
+      .post(`${import.meta.env.VITE_DB_URL}/freelancer/taskStart`, payload)
+      .then((response) => {
+        console.log("Task accepted", response);
+        getRefreshTask();
+      })
+      .catch((err) => {
+        console.error("Error task decline", err);
+      });
+    setIsStart(true);
+    setShowDialog(false);
   };
 
   const handleStart = () => {
@@ -127,15 +139,6 @@ const LectorCard: React.FC<LectorCardProps> = ({ task }) => {
     setShowInfo(false);
   };
 
-  const allChecked = Object.values(checkboxes).every(Boolean);
-
-  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCheckboxes({
-      ...checkboxes,
-      [e.target.name]: e.target.checked,
-    });
-  };
-
   const ProjectHeader = () => {
     return (
       <div>
@@ -164,13 +167,13 @@ const LectorCard: React.FC<LectorCardProps> = ({ task }) => {
   };
   return (
     <div className="w-full mb-10 mt-3 rounded-sm ring-1 ring-slate-200 dark:border-stroke  py-1 px-7.5 shadow-2 dark:border-strokedark  dark:bg-boxdark">
-       <div className="py-2 dark:text-white text-xl font-semibold pt-6">
+      <div className="py-2 dark:text-white text-xl font-semibold pt-6">
         <h4>{task?.project?.projectName}</h4>
       </div>
       <div className="pb-4">
         <Card task={task} />
         <div className="mt-4 flex flex-row justify-end items-end">
-          {!isStart && !isAccepted && (
+          {task?.status === "Ready for seo optimization" && !isAccepted && (
             <>
               <button
                 className="mr-3 bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
@@ -178,12 +181,15 @@ const LectorCard: React.FC<LectorCardProps> = ({ task }) => {
               >
                 Accept
               </button>
-              <button className="mr-3 bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">
+              <button
+                onClick={() => handleDecline(task?._id)}
+                className="mr-3 bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
+              >
                 Decline
               </button>
             </>
           )}
-          {isAccepted && !isStart && (
+          {task?.status === "Ready for seo optimization" && isAccepted && (
             <button
               className="mx-2.5 bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
               onClick={handleStart}
@@ -191,7 +197,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task }) => {
               Start
             </button>
           )}
-          {isStart && !isFinish && (
+          {task?.status === "SEO Optimization In Progress" && (
             <button
               className="mx-2.5 bg-purple-500 text-white font-bold py-2 px-4 rounded hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
               onClick={handleFinish}
@@ -221,13 +227,13 @@ const LectorCard: React.FC<LectorCardProps> = ({ task }) => {
             </p>
             <button
               className=" mr-4 mt-4 bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
-              onClick={closeDialog}
+              onClick={() => handleStartTask(task._id)}
             >
               Confirm
             </button>
             <button
               className="mt-4 bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
-              onClick={() => setShowDialog(false)}
+              onClick={closeDialog}
             >
               Close
             </button>
@@ -256,13 +262,14 @@ const LectorCard: React.FC<LectorCardProps> = ({ task }) => {
                 Finish
               </button>
             </div>
-            {showInfo && <TaskInfoCard task={task} getWordCount={getWordCount}   />}
+            {showInfo && (
+              <TaskInfoCard task={task} getWordCount={getWordCount} />
+            )}
             {showFeedback && <div>Feedback</div>}
           </div>
         </div>
       )}
       {showFinishDialog && (
-
         <div className="fixed inset-0 flex items-center justify-center z-9999 bg-neutral-200 dark:bg-slate dark:bg-opacity-15 bg-opacity-60 px-4">
           <div className="bg-white dark:bg-black p-6 rounded shadow-lg">
             <div className="flex justify-between items-center mb-2">
@@ -278,7 +285,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task }) => {
             <p className="dark:text-white pb-2">
               You're about to complete the order, are you sure?
             </p>
-            
+
             <div className="flex justify-center items-center">
               <button
                 className={`mt-4 mr-4 font-bold py-2 px-8 rounded focus:outline-none focus:ring-2 focus:ring-opacity-50 bg-green-500 text-white hover:bg-green-600 focus:ring-green-500"
@@ -293,10 +300,10 @@ const LectorCard: React.FC<LectorCardProps> = ({ task }) => {
       )}
 
       {showDetailsDialog && (
-       <div className="w-auto fixed inset-0 flex items-center justify-center z-[9999] bg-neutral-200 dark:bg-slate dark:bg-opacity-15 bg-opacity-60 px-4">
-       <div className="bg-white dark:bg-black p-6 rounded shadow-lg lg:w-5/12 xl:w-5/12 2xl:w-5/12 3xl:w-5/12 max-h-[90vh] overflow-y-auto scrollbar-hide">
-         <div className="flex justify-between items-center mb-2">
-           <h2 className="text-xl font-bold dark:text-white">
+        <div className="w-auto fixed inset-0 flex items-center justify-center z-[9999] bg-neutral-200 dark:bg-slate dark:bg-opacity-15 bg-opacity-60 px-4">
+          <div className="bg-white dark:bg-black p-6 rounded shadow-lg lg:w-5/12 xl:w-5/12 2xl:w-5/12 3xl:w-5/12 max-h-[90vh] overflow-y-auto scrollbar-hide">
+            <div className="flex justify-between items-center mb-2">
+              <h2 className="text-xl font-bold dark:text-white">
                 Task Details
               </h2>
               <FontAwesomeIcon
@@ -307,7 +314,9 @@ const LectorCard: React.FC<LectorCardProps> = ({ task }) => {
             </div>
             <ProjectHeader />
             <div className="space-y-4 mt-4">
-              {showInfo && <TaskInfoCard task={task}  getWordCount={getWordCount} />}
+              {showInfo && (
+                <TaskInfoCard task={task} getWordCount={getWordCount} />
+              )}
               {showFeedback && <div>Feedback</div>}
             </div>
           </div>

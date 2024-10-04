@@ -11,12 +11,14 @@ interface AllTasksProps {
   activeTasks: Task[];
   upcommingTasks: Task[];
   userId: string;
+  getRefreshTask: () => void;
 }
 
 const AllTasks: React.FC<AllTasksProps> = ({
   activeTasks,
   upcommingTasks,
   userId,
+  getRefreshTask,
 }) => {
   return (
     <>
@@ -29,11 +31,11 @@ const AllTasks: React.FC<AllTasksProps> = ({
           let TaskCard;
 
         if (task.texter === userId) {
-          TaskCard = <TasksCard key={index} task={task} />;
+          TaskCard = <TasksCard key={index} task={task} getRefreshTask={getRefreshTask} />;
         } else if (task.lector === userId) {
-          TaskCard = <LectorCard key={index} task={task} />;
+          TaskCard = <LectorCard key={index} task={task} getRefreshTask={getRefreshTask}/>;
         } else if (task.seo === userId) {
-          TaskCard = <SEOCard key={index} task={task} />;
+          TaskCard = <SEOCard key={index} task={task} getRefreshTask={getRefreshTask}/>;
         }
 
         return TaskCard || null; // Return the card or null if no match

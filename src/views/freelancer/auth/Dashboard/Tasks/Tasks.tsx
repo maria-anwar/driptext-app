@@ -37,7 +37,7 @@ const Tasks: React.FC = () => {
         console.error("Error fetching project details:", err);
       })
       .finally(() => {
-        setLoading(false); // Set loading to false when fetching ends
+        setLoading(false);
       });
   };
 
@@ -80,6 +80,7 @@ const Tasks: React.FC = () => {
             activeTasks={tasks.currentTasks}
             upcommingTasks={tasks.upcomingTasks}
             userId={userId}
+            getRefreshTask={getProjects}
           />
         );
       case "Lector":
@@ -88,6 +89,7 @@ const Tasks: React.FC = () => {
             activeTasks={tasks.currentTasks}
             upcommingTasks={tasks.upcomingTasks}
             userId={userId}
+            getRefreshTask={getProjects}
           />
         );
       case "Seo Optimizer":
@@ -96,14 +98,16 @@ const Tasks: React.FC = () => {
             activeTasks={tasks.currentTasks}
             upcommingTasks={tasks.upcomingTasks}
             userId={userId}
+            getRefreshTask={getProjects}
           />
         );
       case "Meta lector":
         return (
           <Proofreader
-            activeTasks={tasks.currentTasks}
-            upcommingTasks={tasks.upcomingTasks}
-            userId={userId}
+          activeTasks={tasks.currentTasks}
+          upcommingTasks={tasks.upcomingTasks}
+          userId={userId}
+          getRefreshTask={getProjects}
           />
         );
       default:
@@ -112,6 +116,7 @@ const Tasks: React.FC = () => {
             activeTasks={tasks.currentTasks}
             upcommingTasks={tasks.upcomingTasks}
             userId={userId}
+            getRefreshTask={getProjects}
           />
         );
     }

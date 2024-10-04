@@ -8,9 +8,10 @@ interface LectorTasksProps {
   activeTasks: Task[];
   upcommingTasks: Task[];
   userId: string;
+  getRefreshTask: () => void;
 }
 
-const LectorTasks: React.FC<LectorTasksProps> = ({ activeTasks, upcommingTasks,userId }) => {
+const LectorTasks: React.FC<LectorTasksProps> = ({ activeTasks, upcommingTasks,userId,getRefreshTask }) => {
   const filterActiveTask = activeTasks.filter((task) => task.lector === userId);
   const filterUpcommingTask = upcommingTasks.filter((task) => task.lector === userId);
   return (
@@ -21,7 +22,7 @@ const LectorTasks: React.FC<LectorTasksProps> = ({ activeTasks, upcommingTasks,u
       </h1>
       {filterActiveTask.length > 0 ? (
         filterActiveTask.map((task, index) => (
-          <LectorCard key={index} task={task}  />
+          <LectorCard key={index} task={task} getRefreshTask={getRefreshTask} />
         ))
       ) : (
         <p className="text-center text-gray-500 pt-10 pb-3">No active lector tasks</p>
