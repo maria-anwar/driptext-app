@@ -5,9 +5,10 @@ import { Task } from "../../Type/types";
 interface TaskProps {
   task: Task;
   Upcomming?: boolean;
+  clickableLink: boolean;
 }
 
-const Card: React.FC<TaskProps> = ({ task, Upcomming }) => {
+const Card: React.FC<TaskProps> = ({ task, Upcomming, clickableLink }) => {
   const formatDate = (date: string, format: string = "MMM  YYYY") => {
     return moment(date).format(format);
   };
@@ -45,14 +46,20 @@ const Card: React.FC<TaskProps> = ({ task, Upcomming }) => {
         </span>
         <span className="text-sky-500">
           <a
-            href={!Upcomming ? task?.fileLink : "#"} 
-            target={!Upcomming ? "_blank" : undefined} 
+            href={!Upcomming && clickableLink ? task?.fileLink : "#"}
+            target={!Upcomming && clickableLink ? "_blank" : undefined}
             rel="noopener noreferrer"
-            aria-disabled={Upcomming} 
+            aria-disabled={Upcomming || !clickableLink}
             className={`${
-              Upcomming ? "cursor-not-allowed text-gray-500" : "text-blue-500"
-            }`} 
-            onClick={(e) => Upcomming && e.preventDefault()} 
+              !Upcomming && clickableLink
+                ? "text-blue-500"
+                : "cursor-not-allowed text-gray-500"
+            }`}
+            onClick={(e) => {
+              if (Upcomming || !clickableLink) {
+                e.preventDefault();
+              }
+            }}
           >
             doc-link
           </a>
@@ -62,7 +69,9 @@ const Card: React.FC<TaskProps> = ({ task, Upcomming }) => {
         <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-4 uppercase">
           wordcount
         </span>
-        <span className="font-medium">{task?.actualNumberOfWords}/{task?.desiredNumberOfWords}</span>
+        <span className="font-medium">
+          {task?.actualNumberOfWords}/{task?.desiredNumberOfWords}
+        </span>
       </div>
     </div>
   );

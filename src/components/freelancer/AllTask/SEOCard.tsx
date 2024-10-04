@@ -15,6 +15,7 @@ interface LectorCardProps {
 const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
   const user = useSelector<any>((state) => state.user);
   const userToken = user?.user?.token;
+  const [clickableLink, setClickableLink] = useState<boolean>(false);
   const [isStart, setIsStart] = useState(false);
   const [isAccepted, setIsAccepted] = useState(false);
   const [isFinish, setIsFinish] = useState(false);
@@ -35,6 +36,12 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
 
   useEffect(() => {
     getWordCount();
+    if (
+      task?.status.toLowerCase() === "ready for seo optimization" ||
+      task?.status.toLowerCase() === "seo optimization in progress"
+    ) {
+      setClickableLink(true);
+    }
   }, [task]);
 
   const getWordCount = () => {
@@ -171,7 +178,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
         <h4>{task?.project?.projectName}</h4>
       </div>
       <div className="pb-4">
-        <Card task={task} />
+        <Card task={task} clickableLink={clickableLink} />
         <div className="mt-4 flex flex-row justify-end items-end">
           {task?.status === "Ready for seo optimization" && !isAccepted && (
             <>
@@ -263,7 +270,11 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
               </button>
             </div>
             {showInfo && (
-              <TaskInfoCard task={task} getWordCount={getWordCount} />
+              <TaskInfoCard
+                task={task}
+                getWordCount={getWordCount}
+                clickableLink={clickableLink}
+              />
             )}
             {showFeedback && <div>Feedback</div>}
           </div>
@@ -315,7 +326,11 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
             <ProjectHeader />
             <div className="space-y-4 mt-4">
               {showInfo && (
-                <TaskInfoCard task={task} getWordCount={getWordCount} />
+                <TaskInfoCard
+                  task={task}
+                  getWordCount={getWordCount}
+                  clickableLink={clickableLink}
+                />
               )}
               {showFeedback && <div>Feedback</div>}
             </div>

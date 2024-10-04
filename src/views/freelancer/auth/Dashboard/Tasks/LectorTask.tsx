@@ -16,7 +16,6 @@ const LectorTasks: React.FC<LectorTasksProps> = ({ activeTasks, upcommingTasks,u
   const filterUpcommingTask = upcommingTasks.filter((task) => task.lector === userId);
   return (
     <>
-      {/* Active Tasks Section */}
       <h1 className="text-lg text-center text-black dark:text-white pt-10">
         Active Tasks
       </h1>
@@ -27,8 +26,6 @@ const LectorTasks: React.FC<LectorTasksProps> = ({ activeTasks, upcommingTasks,u
       ) : (
         <p className="text-center text-gray-500 pt-10 pb-3">No active lector tasks</p>
       )}
-
-      {/* Upcoming Tasks Section */}
       <h1 className="text-lg text-center text-black dark:text-white pt-10 pb-3">
         Upcoming Tasks
       </h1>

@@ -24,16 +24,17 @@ const TaskCard: React.FC<TaskCardProps> = ({
 }) => {
   const user = useSelector<any>((state) => state.user);
   const userToken = user?.user?.token;
-  const [isStart, setIsStart] = useState(false);
-  const [isAccepted, setIsAccepted] = useState(false);
-  const [isFinish, setIsFinish] = useState(false);
-  const [showDialog, setShowDialog] = useState(false);
-  const [showProjectInfo, setShowProjectInfo] = useState(false);
-  const [showFinishDialog, setShowFinishDialog] = useState(false);
-  const [showDetailsDialog, setShowDetailsDialog] = useState(false);
-  const [showInfo, setShowInfo] = useState(true);
-  const [showFeedback, setShowFeedback] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
+  const [clickableLink,setClickableLink] = useState<boolean>(false);
+  const [isStart, setIsStart] = useState<boolean>(false);
+  const [isAccepted, setIsAccepted] = useState<boolean>(false);
+  const [isFinish, setIsFinish] = useState<boolean>(false);
+  const [showDialog, setShowDialog] = useState<boolean>(false);
+  const [showProjectInfo, setShowProjectInfo] = useState<boolean>(false);
+  const [showFinishDialog, setShowFinishDialog] = useState<boolean>(false);
+  const [showDetailsDialog, setShowDetailsDialog] = useState<boolean>(false);
+  const [showInfo, setShowInfo] = useState<boolean>(true);
+  const [showFeedback, setShowFeedback] = useState<boolean>(false);
+  const [isChecked, setIsChecked] = useState<boolean>(false);
   const [checkboxes, setCheckboxes] = useState({
     format1: false,
     format2: false,
@@ -46,6 +47,9 @@ const TaskCard: React.FC<TaskCardProps> = ({
   useEffect(() => {
     getWordCount();
     checkWordCount();
+    if(task?.status.toLowerCase() === "ready to work" || task?.status.toLowerCase() === "in progress"){
+        setClickableLink(true);
+    }
   }, [task, task.actualNumberOfWords, task.desiredNumberOfWords]);
 
   const getWordCount = () => {
@@ -226,7 +230,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
         <h4>{task?.project?.projectName}</h4>
       </div>
       <div className="pb-4">
-        <Card task={task} />
+        <Card task={task} clickableLink={clickableLink}/>
         <div className="mt-4 flex flex-row justify-end items-end">
           {task?.status === "Ready To Work" && !isAccepted && (
             <>
@@ -318,7 +322,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
               </button>
             </div>
             {showInfo && (
-              <TaskInfoCard task={task} getWordCount={getWordCount} />
+              <TaskInfoCard task={task} getWordCount={getWordCount} clickableLink={clickableLink}/>
             )}
             {showFeedback && <div>Feedback</div>}
           </div>
@@ -414,7 +418,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
             <ProjectHeader />
             <div className="space-y-4 mt-4">
               {showInfo && (
-                <TaskInfoCard task={task} getWordCount={getWordCount} />
+                <TaskInfoCard task={task} getWordCount={getWordCount} clickableLink={clickableLink}/>
               )}
               {showFeedback && <div>Feedback</div>}
             </div>
