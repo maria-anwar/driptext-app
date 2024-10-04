@@ -9,9 +9,10 @@ interface TaskProps {
   task: Task;
   Upcomming?: boolean;
   getWordCount: () => void;
+  clickableLink:boolean;
 }
 
-const TaskInfoCard: React.FC<TaskProps> = ({ task, Upcomming ,getWordCount }) => {
+const TaskInfoCard: React.FC<TaskProps> = ({ task, Upcomming ,getWordCount ,clickableLink }) => {
   const project = task?.project;
   getWordCount();
   return (
@@ -30,14 +31,20 @@ const TaskInfoCard: React.FC<TaskProps> = ({ task, Upcomming ,getWordCount }) =>
         <p className="dark:text-white">
           Google Link:{" "}
           <a
-            href={!Upcomming ? task?.fileLink : "#"}
-            target={!Upcomming ? "_blank" : undefined}
+            href={!Upcomming && clickableLink ? task?.fileLink : "#"}
+            target={!Upcomming && clickableLink ? "_blank" : undefined}
             rel="noopener noreferrer"
-            aria-disabled={Upcomming}
+            aria-disabled={Upcomming || !clickableLink}
             className={`${
-              Upcomming ? "cursor-not-allowed text-gray-500" : "text-blue-500"
+              !Upcomming && clickableLink
+                ? "text-blue-500"
+                : "cursor-not-allowed text-gray-500"
             }`}
-            onClick={(e) => Upcomming && e.preventDefault()}
+            onClick={(e) => {
+              if (Upcomming || !clickableLink) {
+                e.preventDefault(); // Prevent click if Upcomming is true or clickableLink is false
+              }
+            }}
           >
             doc-link
           </a>

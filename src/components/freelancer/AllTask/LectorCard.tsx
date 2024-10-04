@@ -18,9 +18,10 @@ interface LectorCardProps {
   getRefreshTask: () => void;
 }
 
-const LectorCard: React.FC<LectorCardProps> = ({ task ,getRefreshTask}) => {
+const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
   const user = useSelector<any>((state) => state.user);
   const userToken = user?.user?.token;
+  const [clickableLink, setClickableLink] = useState<boolean>(false);
   const [isStart, setIsStart] = useState(false);
   const [isAccepted, setIsAccepted] = useState(false);
   const [isFinish, setIsFinish] = useState(true);
@@ -41,18 +42,27 @@ const LectorCard: React.FC<LectorCardProps> = ({ task ,getRefreshTask}) => {
     format6: false,
   });
 
-  useEffect(()=>{
+  useEffect(() => {
     getWordCount();
-  },[task])
+    if (
+      task?.status.toLowerCase() === "ready for proofreading" ||
+      task?.status.toLowerCase() === "proofreading in progress"
+    ) {
+      setClickableLink(true);
+    }
+  }, [task]);
 
   const getWordCount = () => {
     let token = userToken;
     axios.defaults.headers.common["access-token"] = token;
     let payload = {
-      taskId: task._id
+      taskId: task._id,
     };
     axios
-      .post(`${import.meta.env.VITE_DB_URL}/freelancer/updateWordCount`, payload)
+      .post(
+        `${import.meta.env.VITE_DB_URL}/freelancer/updateWordCount`,
+        payload
+      )
       .then((response) => {})
       .catch((err) => {
         console.error("Error updating word count of project:", err);
@@ -89,7 +99,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task ,getRefreshTask}) => {
   const handleAccept = () => {
     setIsAccepted(true);
   };
-  
+
   const handleDecline = (taskId: string) => {
     let token = userToken;
     axios.defaults.headers.common["access-token"] = token;
@@ -150,15 +160,14 @@ const LectorCard: React.FC<LectorCardProps> = ({ task ,getRefreshTask}) => {
   };
 
   const confirmFinish = () => {
-    if(!allChecked && commentCheck){
+    if (!allChecked && commentCheck) {
       setIsFinish(true);
       setShowFinishDialog(false);
-        alert("feedback")
-        
-    }else if (allChecked){
+      alert("feedback");
+    } else if (allChecked) {
       setIsFinish(true);
       setShowFinishDialog(false);
-      alert("comment")
+      alert("comment");
     }
   };
 
@@ -189,11 +198,11 @@ const LectorCard: React.FC<LectorCardProps> = ({ task ,getRefreshTask}) => {
   };
 
   const handleComment = (e) => {
-    setComment(e.target.value)
-    if(comment.length>0){
-      setCommentCheck(true)
+    setComment(e.target.value);
+    if (comment.length > 0) {
+      setCommentCheck(true);
     }
-  }
+  };
 
   const ProjectHeader = () => {
     return (
@@ -224,13 +233,13 @@ const LectorCard: React.FC<LectorCardProps> = ({ task ,getRefreshTask}) => {
 
   return (
     <div className="w-full mt-3 mb-10 rounded-sm ring-1 ring-slate-200 dark:border-stroke  py-1 px-7.5 shadow-2 dark:border-strokedark  dark:bg-boxdark">
-       <div className="py-2 dark:text-white text-xl font-semibold pt-6">
+      <div className="py-2 dark:text-white text-xl font-semibold pt-6">
         <h4>{task?.project?.projectName}</h4>
       </div>
       <div className="pb-4">
-        <Card task={task} />
+        <Card task={task} clickableLink={clickableLink} />
         <div className="mt-4 flex flex-row justify-end items-end">
-          {task?.status ==='Ready for ProoFreading' && !isAccepted  && (
+          {task?.status === "Ready for ProoFreading" && !isAccepted && (
             <>
               <button
                 className="mr-3 bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
@@ -238,14 +247,15 @@ const LectorCard: React.FC<LectorCardProps> = ({ task ,getRefreshTask}) => {
               >
                 Accept
               </button>
-              <button 
-              onClick={() => handleDecline(task?._id)}
-              className="mr-3 bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">
+              <button
+                onClick={() => handleDecline(task?._id)}
+                className="mr-3 bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
+              >
                 Decline
               </button>
             </>
           )}
-          {task?.status ==='Ready for ProoFreading'  && isAccepted && (
+          {task?.status === "Ready for ProoFreading" && isAccepted && (
             <button
               className="mx-2.5 bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
               onClick={handleStart}
@@ -253,7 +263,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task ,getRefreshTask}) => {
               Start
             </button>
           )}
-          {task?.status ==='Proofreading In Progress'  &&(
+          {task?.status === "Proofreading In Progress" && (
             <button
               className="mx-2.5 bg-purple-500 text-white font-bold py-2 px-4 rounded hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
               onClick={handleFinish}
@@ -318,7 +328,13 @@ const LectorCard: React.FC<LectorCardProps> = ({ task ,getRefreshTask}) => {
                 Finish
               </button>
             </div>
-            {showInfo && <TaskInfoCard task={task} getWordCount={getWordCount} />}
+            {showInfo && (
+              <TaskInfoCard
+                task={task}
+                getWordCount={getWordCount}
+                clickableLink={clickableLink}
+              />
+            )}
             {showFeedback && <div>Feedback</div>}
           </div>
         </div>
@@ -340,19 +356,27 @@ const LectorCard: React.FC<LectorCardProps> = ({ task ,getRefreshTask}) => {
               You're about to complete the order, are you sure?
             </p>
             {Object.entries(formatDetails).map(([key, { h, p }]) => (
-        <div key={key} className="mb-2 flex">
-          <div className="pt-1" onClick={() => handleCheckboxChange({ target: { name: key, checked: !checkboxes[key] } })}>
-            <CheckBox isChecked={checkboxes[key as keyof typeof checkboxes]} />
-          </div>
-          <div className="flex flex-col">
-          <label htmlFor={key} className="ml-0 dark:text-white">
-            <strong>{h}</strong>
-          </label>
-          <p className="pl-2">{p}</p>
-          </div>
-          
-        </div>
-      ))}
+              <div key={key} className="mb-2 flex">
+                <div
+                  className="pt-1"
+                  onClick={() =>
+                    handleCheckboxChange({
+                      target: { name: key, checked: !checkboxes[key] },
+                    })
+                  }
+                >
+                  <CheckBox
+                    isChecked={checkboxes[key as keyof typeof checkboxes]}
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label htmlFor={key} className="ml-0 dark:text-white">
+                    <strong>{h}</strong>
+                  </label>
+                  <p className="pl-2">{p}</p>
+                </div>
+              </div>
+            ))}
             {!allChecked && (
               <div className="py-4 px-4 bg-slate-200 dark:bg-slate-700">
                 <label className="ml-2 dark:text-white">
@@ -399,9 +423,9 @@ const LectorCard: React.FC<LectorCardProps> = ({ task ,getRefreshTask}) => {
 
       {showDetailsDialog && (
         <div className="w-auto fixed inset-0 flex items-center justify-center z-[9999] bg-neutral-200 dark:bg-slate dark:bg-opacity-15 bg-opacity-60 px-4">
-        <div className="bg-white dark:bg-black p-6 rounded shadow-lg lg:w-5/12 xl:w-5/12 2xl:w-5/12 3xl:w-5/12 max-h-[90vh] overflow-y-auto scrollbar-hide">
-          <div className="flex justify-between items-center mb-2">
-            <h2 className="text-xl font-bold dark:text-white">
+          <div className="bg-white dark:bg-black p-6 rounded shadow-lg lg:w-5/12 xl:w-5/12 2xl:w-5/12 3xl:w-5/12 max-h-[90vh] overflow-y-auto scrollbar-hide">
+            <div className="flex justify-between items-center mb-2">
+              <h2 className="text-xl font-bold dark:text-white">
                 Task Details
               </h2>
               <FontAwesomeIcon
@@ -412,7 +436,13 @@ const LectorCard: React.FC<LectorCardProps> = ({ task ,getRefreshTask}) => {
             </div>
             <ProjectHeader />
             <div className="space-y-4 mt-4">
-              {showInfo && <TaskInfoCard task={task} getWordCount={getWordCount} />}
+              {showInfo && (
+                <TaskInfoCard
+                  task={task}
+                  getWordCount={getWordCount}
+                  clickableLink={clickableLink}
+                />
+              )}
               {showFeedback && <div>Feedback</div>}
             </div>
           </div>
