@@ -69,11 +69,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
       });
   };
   const checkWordCount = () => {
-    if (task.actualNumberOfWords >= task.desiredNumberOfWords) {
-      setIsChecked(true);
-    } else {
-      setIsChecked(false);
-    }
+    setIsChecked(task.actualNumberOfWords >= task.desiredNumberOfWords) 
   };
 
   const formatDetails = {
