@@ -12,7 +12,7 @@ export interface Task {
     keywords: string;
     lector: string;
     metaLector: string | null;
-    project: string;
+    project: Project;
     published: boolean;
     readyToWork: boolean;
     seo: string;
