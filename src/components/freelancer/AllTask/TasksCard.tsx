@@ -47,7 +47,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
   useEffect(() => {
     getWordCount();
     checkWordCount();
-    if(task?.status.toLowerCase() === "ready to work" || task?.status.toLowerCase() === "in progress"){
+    if(task?.status.toLowerCase() === "ready to work" || task?.status.toLowerCase() === "in progress" || task?.status.toLowerCase() === "in rivision"){
         setClickableLink(true);
     }
   }, [task, task.actualNumberOfWords, task.desiredNumberOfWords]);
@@ -130,12 +130,13 @@ const TaskCard: React.FC<TaskCardProps> = ({
       .then((response) => {
         console.log("Task accepted", response);
         getRefreshTask();
+        setIsStart(true);
+        setShowDialog(false);
       })
       .catch((err) => {
         console.error("Error task decline", err);
       });
-    setIsStart(true);
-    setShowDialog(false);
+   
   };
 
   const handleStart = () => {
@@ -143,8 +144,8 @@ const TaskCard: React.FC<TaskCardProps> = ({
   };
 
   const handleFinish = () => {
-    setShowProjectInfo(false);
-    setShowFinishDialog(true);
+      setShowProjectInfo(false);
+      setShowFinishDialog(true);
   };
 
   const closeDialog = () => {
@@ -161,9 +162,22 @@ const TaskCard: React.FC<TaskCardProps> = ({
     setShowFinishDialog(false);
   };
 
-  const confirmFinish = () => {
-    setIsFinish(true);
-    setShowFinishDialog(false);
+  const confirmFinish = (taskId: string) => {
+    let token = userToken;
+    axios.defaults.headers.common["access-token"] = token;
+    let payload = {
+      taskId: taskId, 
+  
+    };
+    axios
+      .post(`${import.meta.env.VITE_DB_URL}/freelancer/taskFinish`, payload)
+      .then((response) => {
+        getRefreshTask();
+        setShowFinishDialog(false);
+      })
+      .catch((err) => {
+        console.error("Error task finish", err);
+      });
   };
 
   const hanldeShowAllInfo = () => {
@@ -228,7 +242,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
       <div className="pb-4">
         <Card task={task} clickableLink={clickableLink}/>
         <div className="mt-4 flex flex-row justify-end items-end">
-          {task?.status === "Ready To Work" && !isAccepted && (
+          {task?.status === "ready to work" && !isAccepted && (
             <>
               <button
                 className="mr-3 bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
@@ -244,7 +258,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
               </button>
             </>
           )}
-          {task?.status === "Ready To Work" && isAccepted && (
+          {task?.status.toLowerCase() === "ready to work" && isAccepted && (
             <button
               className="mx-2.5 bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
               onClick={handleStart}
@@ -252,10 +266,10 @@ const TaskCard: React.FC<TaskCardProps> = ({
               Start
             </button>
           )}
-          {task?.status === "In Progress" && (
+          {(task?.status.toLowerCase()  === "in progress" || task?.status.toLowerCase() === "in rivision") && (
             <button
               className="mx-2.5 bg-purple-500 text-white font-bold py-2 px-4 rounded hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
-              onClick={handleFinish}
+              onClick={()=>handleFinish(task?._id)}
             >
               Finish
             </button>
@@ -388,7 +402,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
                     ? "bg-green-500 text-white hover:bg-green-600 focus:ring-green-500"
                     : "bg-bodydark dark:bg-slate-500 text-white cursor-not-allowed"
                 }`}
-                onClick={confirmFinish}
+                onClick={()=>confirmFinish(task?._id)}
                 disabled={!allChecked || !isChecked}
               >
                 Confirm Finish

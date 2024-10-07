@@ -4,9 +4,9 @@ import TickCheck from "./TickCheck";
 
 const CheckBox: React.FC<{ isChecked: boolean }> = ({ isChecked }) => {
   return isChecked ? (
-    <CrossCheck isChecked={isChecked} />
-  ) : (
     <TickCheck isChecked={isChecked} />
+  ) : (
+    <CrossCheck isChecked={isChecked} />
   );
 };
 

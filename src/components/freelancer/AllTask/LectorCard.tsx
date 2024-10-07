@@ -159,16 +159,29 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
     setShowFinishDialog(false);
   };
 
-  const confirmFinish = () => {
-    if (!allChecked && commentCheck) {
-      setIsFinish(true);
-      setShowFinishDialog(false);
-      alert("feedback");
+  const confirmFinish = (taskId: string) => {
+    let payload;
+    if (!allChecked && comment) {
+      payload = {
+        taskId: taskId,
+        feedback: comment,
+      };
     } else if (allChecked) {
-      setIsFinish(true);
-      setShowFinishDialog(false);
-      alert("comment");
+      payload = {
+        taskId: taskId,
+      };
     }
+    let token = userToken;
+    axios.defaults.headers.common["access-token"] = token;
+    axios
+      .post(`${import.meta.env.VITE_DB_URL}/freelancer/taskFinish`, payload)
+      .then((response) => {
+        getRefreshTask();
+        setShowFinishDialog(false);
+      })
+      .catch((err) => {
+        console.error("Error task finish", err);
+      });
   };
 
   const hanldeShowAllInfo = () => {
@@ -239,31 +252,33 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
       <div className="pb-4">
         <Card task={task} clickableLink={clickableLink} />
         <div className="mt-4 flex flex-row justify-end items-end">
-          {task?.status === "Ready for ProoFreading" && !isAccepted && (
-            <>
+          {task?.status.toLowerCase() === "ready for proofreading" &&
+            !isAccepted && (
+              <>
+                <button
+                  className="mr-3 bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                  onClick={handleAccept}
+                >
+                  Accept
+                </button>
+                <button
+                  onClick={() => handleDecline(task?._id)}
+                  className="mr-3 bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
+                >
+                  Decline
+                </button>
+              </>
+            )}
+          {task?.status.toLowerCase() === "ready for proofreading" &&
+            isAccepted && (
               <button
-                className="mr-3 bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
-                onClick={handleAccept}
+                className="mx-2.5 bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                onClick={handleStart}
               >
-                Accept
+                Start
               </button>
-              <button
-                onClick={() => handleDecline(task?._id)}
-                className="mr-3 bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
-              >
-                Decline
-              </button>
-            </>
-          )}
-          {task?.status === "Ready for ProoFreading" && isAccepted && (
-            <button
-              className="mx-2.5 bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-              onClick={handleStart}
-            >
-              Start
-            </button>
-          )}
-          {task?.status === "Proofreading In Progress" && (
+            )}
+          {task?.status.toLowerCase() === "proofreading in progress" && (
             <button
               className="mx-2.5 bg-purple-500 text-white font-bold py-2 px-4 rounded hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
               onClick={handleFinish}
@@ -343,7 +358,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
         <div className="w-auto fixed inset-0 flex items-center justify-center z-[9999] bg-neutral-200 dark:bg-slate dark:bg-opacity-15 bg-opacity-60 px-4 pt-6">
           <div className="bg-white dark:bg-black p-6 rounded shadow-lg lg:w-5/12 xl:w-5/12 2xl:w-5/12 3xl:w-5/12 max-h-[90vh] overflow-y-auto scrollbar-hide">
             <div className="flex justify-between items-center mb-2">
-              <h2 className="text-xl font-bold  dark:text-white">
+              <h2 className="text-xl font-bold dark:text-white">
                 Finish order
               </h2>
               <FontAwesomeIcon
@@ -355,6 +370,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
             <p className="dark:text-white pb-2">
               You're about to complete the order, are you sure?
             </p>
+
             {Object.entries(formatDetails).map(([key, { h, p }]) => (
               <div key={key} className="mb-2 flex">
                 <div
@@ -377,6 +393,8 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
                 </div>
               </div>
             ))}
+
+            {/* Show the Renew Required section only when not all checkboxes are checked */}
             {!allChecked && (
               <div className="py-4 px-4 bg-slate-200 dark:bg-slate-700">
                 <label className="ml-2 dark:text-white">
@@ -389,8 +407,8 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
                   />
                   <p className="pl-3 font-base dark:text-white">
                     With this input, the text does not meet our quality criteria
-                    and will be sent back to the copywriter for revision.Please
-                    describe briefly in a comment what shoudl be improved:
+                    and will be sent back to the copywriter for revision. Please
+                    describe briefly in a comment what should be improved:
                   </p>
                 </div>
 
@@ -404,15 +422,17 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
                 ></textarea>
               </div>
             )}
+
+            {/* Confirm Button */}
             <div className="flex justify-center items-center">
               <button
-                className={`mt-4 mr-4 font-bold py-2 px-8 rounded focus:outline-none focus:ring-2 focus:ring-opacity-50  ${
-                  allChecked || comment
+                className={`mt-4 mr-4 font-bold py-2 px-8 rounded focus:outline-none focus:ring-2 focus:ring-opacity-50 ${
+                  allChecked || comment // Make button clickable if allChecked is true or comment is not empty
                     ? "bg-green-500 text-white hover:bg-green-600 focus:ring-green-500"
                     : "bg-bodydark dark:bg-slate-500 text-white cursor-not-allowed"
                 }`}
-                onClick={confirmFinish}
-                // disabled={allChecked || commentCheck}
+                onClick={() => confirmFinish(task?._id)}
+                disabled={!allChecked && !comment} // Disable the button if not all checked and no comment is written
               >
                 Confirm Finish
               </button>

@@ -124,9 +124,23 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
     setShowFinishDialog(false);
   };
 
-  const confirmFinish = () => {
-    setIsFinish(true);
-    setShowFinishDialog(false);
+  const confirmFinish = (taskId:string) => {
+    let  payload = {
+        taskId: taskId,
+      };
+    
+    let token = userToken;
+    axios.defaults.headers.common["access-token"] = token;
+    axios
+      .post(`${import.meta.env.VITE_DB_URL}/freelancer/taskFinish`, payload)
+      .then((response) => {
+        getRefreshTask();
+        setIsFinish(true);
+        setShowFinishDialog(false);
+      })
+      .catch((err) => {
+        console.error("Error task finish", err);
+      });
   };
 
   const hanldeShowAllInfo = () => {
@@ -180,7 +194,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
       <div className="pb-4">
         <Card task={task} clickableLink={clickableLink} />
         <div className="mt-4 flex flex-row justify-end items-end">
-          {task?.status === "Ready for seo optimization" && !isAccepted && (
+          {task?.status.toLowerCase() === "ready for seo optimization" && !isAccepted && (
             <>
               <button
                 className="mr-3 bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
@@ -196,7 +210,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
               </button>
             </>
           )}
-          {task?.status === "Ready for seo optimization" && isAccepted && (
+          {task?.status.toLowerCase()  === "ready for seo optimization" && isAccepted && (
             <button
               className="mx-2.5 bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
               onClick={handleStart}
@@ -204,7 +218,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
               Start
             </button>
           )}
-          {task?.status === "SEO Optimization In Progress" && (
+          {task?.status.toLowerCase() === "seo optimization in progress" && (
             <button
               className="mx-2.5 bg-purple-500 text-white font-bold py-2 px-4 rounded hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
               onClick={handleFinish}
@@ -301,7 +315,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
               <button
                 className={`mt-4 mr-4 font-bold py-2 px-8 rounded focus:outline-none focus:ring-2 focus:ring-opacity-50 bg-green-500 text-white hover:bg-green-600 focus:ring-green-500"
                    `}
-                onClick={confirmFinish}
+                onClick={()=>confirmFinish(task?._id)}
               >
                 Confirm Finish
               </button>
