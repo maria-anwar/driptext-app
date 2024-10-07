@@ -32,28 +32,29 @@ const Card: React.FC<TaskProps> = ({ task, Upcomming, clickableLink }) => {
         <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-4 uppercase">
           status
         </span>
-        <span className={` text-center ${task.status.toUpperCase() === "FINAL"
-                          ? "bg-green-500/20 text-green-500"
-                          : task.status.toUpperCase() === "FREE TRIAL"
-                          ? "bg-yellow-500/20 text-yellow-500"
-                          : task.status.toUpperCase() === "READY TO WORK"
-                          ? "bg-yellow-500/20 text-yellow-500"
-                          : task.status.toUpperCase() ===
-                            "IN PROGRESS"
-                          ? "bg-blue-500/20 text-blue-500"
-                          : task.status.toUpperCase() ===
-                            "READY FOR PROOFREADING"
-                          ? "bg-orange-500/20 text-orange-500"
-                          : task.status.toUpperCase() ===
-                            "PROOFREADING IN PROGRESS"
-                          ? "bg-purple-500/20 text-purple-500"
-                          : task.status.toUpperCase() ===
-                            "READY FOR SEO OPTIMIZATION"
-                          ? "bg-indigo-500/20 text-indigo-500"
-                          : task.status.toUpperCase() ===
-                            "SEO OPTIMIZATION IN PROGRESS"
-                          ? "bg-pink-500/20 text-pink-500"
-                           : "bg-violet-500/20 text-violet-500"}`}>{task?.status}</span>
+        <span
+          className={` text-left  rounded-full  ${
+            task.status.toUpperCase() === "FINAL"
+              ? " text-green-500"
+              : task.status.toUpperCase() === "FREE TRIAL"
+              ? " text-yellow-500"
+              : task.status.toUpperCase() === "READY TO WORK"
+              ? " text-yellow-500"
+              : task.status.toUpperCase() === "IN PROGRESS"
+              ? " text-blue-500"
+              : task.status.toUpperCase() === "READY FOR PROOFREADING"
+              ? " text-orange-500"
+              : task.status.toUpperCase() === "PROOFREADING IN PROGRESS"
+              ? " text-purple-500"
+              : task.status.toUpperCase() === "READY FOR SEO OPTIMIZATION"
+              ? " text-indigo-500"
+              : task.status.toUpperCase() === "SEO OPTIMIZATION IN PROGRESS"
+              ? " text-pink-500"
+              : " text-red-500"
+          }`}
+        >
+          {task?.status}
+        </span>
       </div>
       <div className="flex flex-col pr-3">
         <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-4 uppercase">

@@ -111,7 +111,7 @@ const LoginForm = () => {
                   setError(false);
                   setErrorMesssage("");
                 }}
-                className=" !border-t-blue-gray-200 focus:!border-t-gray-900 focus:ring:none"
+                className=" !border-t-blue-gray-200 focus:!border-t-gray-900 focus:ring:none border-1 border-black"
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
@@ -142,7 +142,7 @@ const LoginForm = () => {
                   }}
                   size="lg"
                   placeholder="********"
-                  className=" !border-t-blue-gray-200 focus:!border-t-gray-900 focus:ring:none"
+                  className=" !border-t-blue-gray-200 focus:!border-t-gray-900 focus:ring:none border-1 border-black"
                   labelProps={{
                     className: "before:content-none after:content-none",
                   }}

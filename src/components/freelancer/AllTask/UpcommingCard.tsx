@@ -18,24 +18,27 @@ const UpcommingTasks: React.FC<LectorCardProps> = ({ task, Upcomming }) => {
   const [showInfo, setShowInfo] = useState(true);
   const [showFeedback, setShowFeedback] = useState(false);
 
-  useEffect(()=>{
+  useEffect(() => {
     getWordCount();
-  },[task])
+  }, [task]);
 
   const getWordCount = () => {
     let token = userToken;
     axios.defaults.headers.common["access-token"] = token;
     let payload = {
-      taskId: task._id
+      taskId: task._id,
     };
     axios
-      .post(`${import.meta.env.VITE_DB_URL}/freelancer/updateWordCount`, payload)
+      .post(
+        `${import.meta.env.VITE_DB_URL}/freelancer/updateWordCount`,
+        payload
+      )
       .then((response) => {})
       .catch((err) => {
         console.error("Error updating word count of project:", err);
       });
   };
-  
+
   const hanldeShowAllInfo = () => {
     setShowDetailsDialog(true);
   };
@@ -68,11 +71,11 @@ const UpcommingTasks: React.FC<LectorCardProps> = ({ task, Upcomming }) => {
 
   return (
     <div className="w-full mb-10 mt-3 rounded-sm ring-1 ring-slate-200 dark:border-stroke  py-1 px-7.5 shadow-2 dark:border-strokedark  dark:bg-boxdark">
-       <div className="py-2 dark:text-white text-xl font-semibold pt-6">
+      <div className="py-2 dark:text-white text-xl font-semibold pt-6">
         <h4>{task?.project?.projectName}</h4>
       </div>
       <div className="pb-4">
-        <Card task={task} Upcomming={Upcomming} />
+        <Card task={task} Upcomming={Upcomming} clickableLink={false} />
       </div>
       <div
         onClick={hanldeShowAllInfo}
@@ -97,7 +100,14 @@ const UpcommingTasks: React.FC<LectorCardProps> = ({ task, Upcomming }) => {
             </div>
             <ProjectHeader />
             <div className="space-y-4 mt-4">
-              {showInfo && <TaskInfoCard task={task} Upcomming={Upcomming}  />}
+              {showInfo && (
+                <TaskInfoCard
+                  getWordCount={getWordCount}
+                  task={task}
+                  Upcomming={Upcomming}
+                  clickableLink={false}
+                />
+              )}
             </div>
           </div>
         </div>
