@@ -290,7 +290,19 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
                 clickableLink={clickableLink}
               />
             )}
-            {showFeedback && <div>Feedback</div>}
+            {showFeedback && (
+                <div>
+                  {task?.feedback ? (
+                    <p className="text-green-600 font-semibold">
+                      {task.feedback}
+                    </p>
+                  ) : (
+                    <p className="text-gray-500 italic">
+                      No feedback available
+                    </p>
+                  )}
+                </div>
+              )}
           </div>
         </div>
       )}
@@ -346,7 +358,19 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
                   clickableLink={clickableLink}
                 />
               )}
-              {showFeedback && <div>Feedback</div>}
+              {showFeedback && (
+                <div>
+                  {task?.feedback ? (
+                    <p className="text-green-600 font-semibold">
+                      {task.feedback}
+                    </p>
+                  ) : (
+                    <p className="text-gray-500 italic">
+                      No feedback available
+                    </p>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </div>
