@@ -1,5 +1,6 @@
 export interface Task {
     actualNumberOfWords: string;
+    feedback: string | null;
     comments: string;
     createdAt: string;
     desiredNumberOfWords: string;

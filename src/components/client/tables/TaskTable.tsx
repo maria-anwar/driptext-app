@@ -211,18 +211,14 @@ const TaskTable = () => {
                               : undefined
                           }
                           rel="noopener noreferrer"
-                          aria-disabled={
-                            task?.status.toLowerCase() === "final"
-                              ? false
-                              : true
-                          }
+                          aria-disabled={task?.status.toLowerCase() !== "final"}
                           className={`${
                             task?.status.toLowerCase() === "final"
                               ? "text-blue-500"
                               : "cursor-not-allowed text-gray-500"
                           }`}
                           onClick={(e) => {
-                            if (task?.status.toLowerCase() === "final") {
+                            if (task?.status.toLowerCase() !== "final") {
                               e.preventDefault();
                             }
                           }}

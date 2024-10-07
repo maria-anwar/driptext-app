@@ -24,7 +24,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
 }) => {
   const user = useSelector<any>((state) => state.user);
   const userToken = user?.user?.token;
-  const [clickableLink,setClickableLink] = useState<boolean>(false);
+  const [clickableLink, setClickableLink] = useState<boolean>(false);
   const [isStart, setIsStart] = useState<boolean>(false);
   const [isAccepted, setIsAccepted] = useState<boolean>(false);
   const [isFinish, setIsFinish] = useState<boolean>(false);
@@ -47,8 +47,12 @@ const TaskCard: React.FC<TaskCardProps> = ({
   useEffect(() => {
     getWordCount();
     checkWordCount();
-    if(task?.status.toLowerCase() === "ready to work" || task?.status.toLowerCase() === "in progress" || task?.status.toLowerCase() === "in rivision"){
-        setClickableLink(true);
+    if (
+      task?.status.toLowerCase() === "ready to work" ||
+      task?.status.toLowerCase() === "in progress" ||
+      task?.status.toLowerCase() === "in rivision"
+    ) {
+      setClickableLink(true);
     }
   }, [task, task.actualNumberOfWords, task.desiredNumberOfWords]);
 
@@ -63,13 +67,15 @@ const TaskCard: React.FC<TaskCardProps> = ({
         `${import.meta.env.VITE_DB_URL}/freelancer/updateWordCount`,
         payload
       )
-      .then((response) => {})
+      .then((response) => {
+        console.log("word count");
+      })
       .catch((err) => {
         console.error("Error updating word count of project:", err);
       });
   };
   const checkWordCount = () => {
-    setIsChecked(task.actualNumberOfWords >= task.desiredNumberOfWords) 
+    setIsChecked(task.actualNumberOfWords >= task.desiredNumberOfWords);
   };
 
   const formatDetails = {
@@ -136,7 +142,6 @@ const TaskCard: React.FC<TaskCardProps> = ({
       .catch((err) => {
         console.error("Error task decline", err);
       });
-   
   };
 
   const handleStart = () => {
@@ -144,8 +149,9 @@ const TaskCard: React.FC<TaskCardProps> = ({
   };
 
   const handleFinish = () => {
-      setShowProjectInfo(false);
-      setShowFinishDialog(true);
+    getWordCount();
+    setShowProjectInfo(false);
+    setShowFinishDialog(true);
   };
 
   const closeDialog = () => {
@@ -166,8 +172,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
     let token = userToken;
     axios.defaults.headers.common["access-token"] = token;
     let payload = {
-      taskId: taskId, 
-  
+      taskId: taskId,
     };
     axios
       .post(`${import.meta.env.VITE_DB_URL}/freelancer/taskFinish`, payload)
@@ -206,7 +211,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
       [e.target.name]: e.target.checked,
     });
   };
-  
+
   const ProjectHeader = () => {
     return (
       <div>
@@ -240,9 +245,9 @@ const TaskCard: React.FC<TaskCardProps> = ({
         <h4>{task?.project?.projectName}</h4>
       </div>
       <div className="pb-4">
-        <Card task={task} clickableLink={clickableLink}/>
+        <Card task={task} clickableLink={clickableLink} />
         <div className="mt-4 flex flex-row justify-end items-end">
-          {task?.status === "ready to work" && !isAccepted && (
+          {task?.status.toLowerCase() === "ready to work" && !isAccepted && (
             <>
               <button
                 className="mr-3 bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
@@ -266,10 +271,11 @@ const TaskCard: React.FC<TaskCardProps> = ({
               Start
             </button>
           )}
-          {(task?.status.toLowerCase()  === "in progress" || task?.status.toLowerCase() === "in rivision") && (
+          {(task?.status.toLowerCase() === "in progress" ||
+            task?.status.toLowerCase() === "in rivision") && (
             <button
               className="mx-2.5 bg-purple-500 text-white font-bold py-2 px-4 rounded hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
-              onClick={()=>handleFinish(task?._id)}
+              onClick={handleFinish}
             >
               Finish
             </button>
@@ -332,9 +338,25 @@ const TaskCard: React.FC<TaskCardProps> = ({
               </button>
             </div>
             {showInfo && (
-              <TaskInfoCard task={task} getWordCount={getWordCount} clickableLink={clickableLink}/>
+              <TaskInfoCard
+                task={task}
+                getWordCount={getWordCount}
+                clickableLink={clickableLink}
+              />
             )}
-            {showFeedback && <div>Feedback</div>}
+           {showFeedback && (
+                <div>
+                  {task?.feedback ? (
+                    <p className="text-green-600 font-semibold">
+                      {task.feedback}
+                    </p>
+                  ) : (
+                    <p className="text-gray-500 italic">
+                      No feedback available
+                    </p>
+                  )}
+                </div>
+              )}
           </div>
         </div>
       )}
@@ -402,7 +424,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
                     ? "bg-green-500 text-white hover:bg-green-600 focus:ring-green-500"
                     : "bg-bodydark dark:bg-slate-500 text-white cursor-not-allowed"
                 }`}
-                onClick={()=>confirmFinish(task?._id)}
+                onClick={() => confirmFinish(task?._id)}
                 disabled={!allChecked || !isChecked}
               >
                 Confirm Finish
@@ -428,9 +450,25 @@ const TaskCard: React.FC<TaskCardProps> = ({
             <ProjectHeader />
             <div className="space-y-4 mt-4">
               {showInfo && (
-                <TaskInfoCard task={task} getWordCount={getWordCount} clickableLink={clickableLink}/>
+                <TaskInfoCard
+                  task={task}
+                  getWordCount={getWordCount}
+                  clickableLink={clickableLink}
+                />
               )}
-              {showFeedback && <div>Feedback</div>}
+              {showFeedback && (
+                <div>
+                  {task?.feedback ? (
+                    <p className="text-green-600 font-semibold">
+                      {task.feedback}
+                    </p>
+                  ) : (
+                    <p className="text-gray-500 italic">
+                      No feedback available
+                    </p>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </div>
