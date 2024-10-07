@@ -35,7 +35,8 @@ const TaskTable = () => {
         if (Array.isArray(tasks)) {
           localStorage.setItem("tasks", JSON.stringify(tasks));
           setTaskData(tasks);
-          console.log(tasks)
+
+          console.log(tasks);
           setLoading(false);
         } else {
           console.error("Received data is not an array");
@@ -170,8 +171,7 @@ const TaskTable = () => {
           Project Tasks
         </h2>
         {loading ? (
-           <div className="rounded-sm border border-stroke shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1  w-full bg-slate-200 h-[300px] animate-pulse"></div>
-          
+          <div className="rounded-sm border border-stroke shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1  w-full bg-slate-200 h-[300px] animate-pulse"></div>
         ) : (
           <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
             <div className="max-w-full overflow-x-auto">
@@ -199,9 +199,36 @@ const TaskTable = () => {
                   {taskData.map((task, index) => (
                     <tr key={task._id}>
                       <td className="border-b border-[#eee] py-5 px-4 pl-5 sm:pl-9 dark:border-strokedark xl:pl-11">
-                        <Link to="#" className="text-blue-500 text-sm">
+                        <a
+                          href={
+                            task?.status.toLowerCase() === "final"
+                              ? task?.fileLink
+                              : "#"
+                          }
+                          target={
+                            task?.status.toLowerCase() === "final"
+                              ? "_blank"
+                              : undefined
+                          }
+                          rel="noopener noreferrer"
+                          aria-disabled={
+                            task?.status.toLowerCase() === "final"
+                              ? false
+                              : true
+                          }
+                          className={`${
+                            task?.status.toLowerCase() === "final"
+                              ? "text-blue-500"
+                              : "cursor-not-allowed text-gray-500"
+                          }`}
+                          onClick={(e) => {
+                            if (task?.status.toLowerCase() === "final") {
+                              e.preventDefault();
+                            }
+                          }}
+                        >
                           {task.taskName}
-                        </Link>
+                        </a>
                       </td>
                       <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                         <p
