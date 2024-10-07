@@ -242,7 +242,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
       <div className="pb-4">
         <Card task={task} clickableLink={clickableLink}/>
         <div className="mt-4 flex flex-row justify-end items-end">
-          {task?.status === "ready to work" && !isAccepted && (
+          {task?.status.toLowerCase() === "ready to work" && !isAccepted && (
             <>
               <button
                 className="mr-3 bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
@@ -258,7 +258,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
               </button>
             </>
           )}
-          {task?.status.toLowerCase() === "ready to work" && isAccepted && (
+          {task?.status.toLowerCase()  === "ready to work" && isAccepted && (
             <button
               className="mx-2.5 bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
               onClick={handleStart}
