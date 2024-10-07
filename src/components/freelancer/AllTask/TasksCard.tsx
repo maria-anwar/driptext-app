@@ -63,7 +63,9 @@ const TaskCard: React.FC<TaskCardProps> = ({
         `${import.meta.env.VITE_DB_URL}/freelancer/updateWordCount`,
         payload
       )
-      .then((response) => {})
+      .then((response) => {
+        console.log("word count");
+      })
       .catch((err) => {
         console.error("Error updating word count of project:", err);
       });
@@ -144,6 +146,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
   };
 
   const handleFinish = () => {
+      getWordCount()
       setShowProjectInfo(false);
       setShowFinishDialog(true);
   };
@@ -269,7 +272,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
           {(task?.status.toLowerCase()  === "in progress" || task?.status.toLowerCase() === "in rivision") && (
             <button
               className="mx-2.5 bg-purple-500 text-white font-bold py-2 px-4 rounded hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
-              onClick={()=>handleFinish(task?._id)}
+              onClick={handleFinish}
             >
               Finish
             </button>
