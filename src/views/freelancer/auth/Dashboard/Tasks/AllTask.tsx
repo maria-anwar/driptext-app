@@ -22,20 +22,19 @@ const AllTasks: React.FC<AllTasksProps> = ({
 }) => {
   return (
     <>
-      {/* Active Tasks Section */}
       <h1 className="text-lg text-center text-black dark:text-white pt-10">
         Active Tasks
       </h1>
       {activeTasks.length > 0 ? (
-        activeTasks.map((task, index) => {
+        activeTasks.map((task) => {
           let TaskCard;
 
         if (task.texter === userId) {
-          TaskCard = <TasksCard key={index} task={task} getRefreshTask={getRefreshTask} />;
+          TaskCard = <TasksCard key={task._id} task={task} getRefreshTask={getRefreshTask} />;
         } else if (task.lector === userId) {
-          TaskCard = <LectorCard key={index} task={task} getRefreshTask={getRefreshTask}/>;
+          TaskCard = <LectorCard key={task._id} task={task} getRefreshTask={getRefreshTask}/>;
         } else if (task.seo === userId) {
-          TaskCard = <SEOCard key={index} task={task} getRefreshTask={getRefreshTask}/>;
+          TaskCard = <SEOCard key={task._id} task={task} getRefreshTask={getRefreshTask}/>;
         }
 
         return TaskCard || null; // Return the card or null if no match
@@ -49,8 +48,8 @@ const AllTasks: React.FC<AllTasksProps> = ({
         Upcoming Tasks
       </h1>
       {upcommingTasks.length > 0 ? (
-        upcommingTasks.map((task, index) => (
-          <UpcommingTasks key={index} task={task} Upcomming={true} />
+        upcommingTasks.map((task) => (
+          <UpcommingTasks key={task._id} task={task} Upcomming={true} />
         ))
       ) : (
         <p className="text-center text-gray-500 pt-10 pb-3">

@@ -28,9 +28,9 @@ const TexterTasks: React.FC<TexterTasksProps> = ({
           Active Tasks
         </h1>
         {filterActiveTask.length > 0 ? (
-          filterActiveTask.map((task, index) => (
+          filterActiveTask.map((task) => (
             <TasksCard
-              key={index}
+            key={task._id}
               task={task}
               getRefreshTask={getRefreshTask}
             />
@@ -46,8 +46,8 @@ const TexterTasks: React.FC<TexterTasksProps> = ({
           Upcoming Tasks
         </h1>
         {filterUpcommingTask.length > 0 ? (
-          filterUpcommingTask.map((task, index) => (
-            <UpcommingTasks key={index} task={task} Upcomming={true} />
+          filterUpcommingTask.map((task) => (
+            <UpcommingTasks key={task._id} task={task} Upcomming={true} />
           ))
         ) : (
           <p className="text-center text-gray-500 pt-10 pb-3">
