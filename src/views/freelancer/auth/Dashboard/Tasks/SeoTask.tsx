@@ -20,8 +20,8 @@ const SeoTasks: React.FC<SeoTasksProps> = ({ activeTasks, upcommingTasks,userId 
         Active Tasks
       </h1>
       {filterActiveTask.length > 0 ? (
-        filterActiveTask.map((task, index) => (
-          <SEOCard key={index} task={task} getRefreshTask={getRefreshTask} />
+        filterActiveTask.map((task) => (
+          <SEOCard key={task._id} task={task} getRefreshTask={getRefreshTask} />
         ))
       ) : (
         <p className="text-center text-gray-500 pt-10 pb-3">No active seo tasks</p>
@@ -31,8 +31,8 @@ const SeoTasks: React.FC<SeoTasksProps> = ({ activeTasks, upcommingTasks,userId 
         Upcoming Tasks
       </h1>
       {filterUpcommingTask.length > 0 ? (
-        filterUpcommingTask.map((task, index) => (
-          <UpcommingTasks key={index} task={task} Upcomming={true}/>
+        filterUpcommingTask.map((task) => (
+          <UpcommingTasks key={task._id} task={task} Upcomming={true}/>
         ))
       ) : (
         <p className="text-center text-gray-500 pt-10 pb-3">No upcoming seo tasks</p>

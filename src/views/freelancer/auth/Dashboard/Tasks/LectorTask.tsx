@@ -20,8 +20,8 @@ const LectorTasks: React.FC<LectorTasksProps> = ({ activeTasks, upcommingTasks,u
         Active Tasks
       </h1>
       {filterActiveTask.length > 0 ? (
-        filterActiveTask.map((task, index) => (
-          <LectorCard key={index} task={task} getRefreshTask={getRefreshTask} />
+        filterActiveTask.map((task) => (
+          <LectorCard key={task._id} task={task} getRefreshTask={getRefreshTask} />
         ))
       ) : (
         <p className="text-center text-gray-500 pt-10 pb-3">No active lector tasks</p>
@@ -30,8 +30,8 @@ const LectorTasks: React.FC<LectorTasksProps> = ({ activeTasks, upcommingTasks,u
         Upcoming Tasks
       </h1>
       {filterUpcommingTask.length > 0 ? (
-        filterUpcommingTask.map((task, index) => (
-          <UpcommingTasks key={index} task={task} Upcomming={true}  />
+        filterUpcommingTask.map((task) => (
+          <UpcommingTasks key={task._id}  task={task} Upcomming={true}  />
         ))
       ) : (
         <p className="text-center text-gray-500 pt-10 pb-3">No upcoming lector tasks</p>
