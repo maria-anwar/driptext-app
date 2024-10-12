@@ -13,17 +13,15 @@ const Tasks: React.FC = () => {
   const userToken = user?.user?.token;
   const [tasks, setTask] = useState({ currentTasks: [], upcomingTasks: [] });
   const [activeButton, setActiveButton] = useState("All");
-  const [loading, setLoading] = useState(true); // Loading state
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
-    if (userId && userToken) {
       getProjects();
       getWordCount();
-    }
-  }, [userId, userToken]);
+  }, []);
 
   const getProjects = () => {
-    setLoading(true); // Set loading to true when fetching starts
+    setLoading(true); 
     axios.defaults.headers.common["access-token"] = userToken;
     const payload = { freelancerId: userId };
     axios

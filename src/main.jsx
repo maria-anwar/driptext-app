@@ -5,9 +5,9 @@ import App from './App';
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  // <React.StrictMode>
+  <React.StrictMode>
     <div className="font-roboto">
       <App />
     </div>
-  // {/* </React.StrictMode> */}
+  </React.StrictMode>
 );

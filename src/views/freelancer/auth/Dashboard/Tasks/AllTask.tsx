@@ -27,23 +27,21 @@ const AllTasks: React.FC<AllTasksProps> = ({
       </h1>
       {activeTasks.length > 0 ? (
         activeTasks.map((task) => {
-          let TaskCard;
+          let TaskCard = null;
 
-        if (task.texter === userId) {
-          TaskCard = <TasksCard key={task._id} task={task} getRefreshTask={getRefreshTask} />;
-        } else if (task.lector === userId) {
-          TaskCard = <LectorCard key={task._id} task={task} getRefreshTask={getRefreshTask}/>;
-        } else if (task.seo === userId) {
-          TaskCard = <SEOCard key={task._id} task={task} getRefreshTask={getRefreshTask}/>;
-        }
-
-        return TaskCard || null; // Return the card or null if no match
+          if (task.texter === userId && ["ready for work", "in progress", "in rivision"].includes(task.status.toLowerCase())) {
+              TaskCard = <TasksCard key={task._id} task={task} getRefreshTask={getRefreshTask} />;
+          } else if (task.lector === userId  && ["ready for proofreading", "proofreading in progress"].includes(task.status.toLowerCase())) {
+              TaskCard = <LectorCard key={task._id} task={task} getRefreshTask={getRefreshTask} />;
+          } else if (task.seo === userId &&["ready for seo optimization", "seo optimization in progress",'final'].includes(task.status.toLowerCase())) {
+              TaskCard = <SEOCard key={task._id} task={task} getRefreshTask={getRefreshTask} />;
+          }
+          
+          return TaskCard;
 })
       ) : (
         <p className="text-center text-gray-500 pt-10 pb-3">No active tasks</p>
       )}
-
-      {/* Upcoming Tasks Section */}
       <h1 className="text-lg text-center text-black dark:text-white pt-10">
         Upcoming Tasks
       </h1>
