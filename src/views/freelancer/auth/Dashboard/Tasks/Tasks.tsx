@@ -18,7 +18,7 @@ const Tasks: React.FC = () => {
   useEffect(() => {
       getProjects();
       getWordCount();
-  }, []);
+  }, [user]);
 
   const getProjects = () => {
     setLoading(true); 
@@ -29,7 +29,7 @@ const Tasks: React.FC = () => {
       .then((response) => {
         const projectDataArray = response.data.tasks;
         setTask(projectDataArray);
-        console.log("projectDataArray", projectDataArray);
+        console.log("projectDataArray");
       })
       .catch((err) => {
         console.error("Error fetching project details:", err);
@@ -45,6 +45,8 @@ const Tasks: React.FC = () => {
     let payload = {
       freelancerId: userId,
     };
+    console.log("payload", payload);
+    console.log("token", token);
     axios
       .post(
         `${import.meta.env.VITE_DB_URL}/freelancer/updateWordCountAllTasks`,

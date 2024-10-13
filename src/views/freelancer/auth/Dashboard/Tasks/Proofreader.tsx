@@ -14,8 +14,8 @@ interface ProofreaderProps {
 const Proofreader: React.FC<ProofreaderProps> = ({
   activeTasks, upcommingTasks,userId,getRefreshTask
 }) => {
-  const filterActiveTask = activeTasks.filter((task) => task.lector === userId);
-  const filterUpcommingTask = upcommingTasks.filter((task) => task.lector === userId);
+  const filterActiveTask = activeTasks.filter((task) => task.metaLector === userId);
+  const filterUpcommingTask = upcommingTasks.filter((task) => task.metaLector === userId);
   return (
     <>
       {/* Active Tasks Section */}
@@ -27,7 +27,7 @@ const Proofreader: React.FC<ProofreaderProps> = ({
           <LectorCard key={task._id} task={task} getRefreshTask={getRefreshTask} />
         ))
       ) : (
-        <p className="text-center text-gray-500 pt-10 pb-3">No active lector tasks</p>
+        <p className="text-center text-gray-500 pt-10 pb-3">No active meta-lector tasks</p>
       )}
 
       {/* Upcoming Tasks Section */}
@@ -39,7 +39,7 @@ const Proofreader: React.FC<ProofreaderProps> = ({
           <UpcommingTasks key={task._id} task={task} Upcomming={true}  />
         ))
       ) : (
-        <p className="text-center text-gray-500 pt-10 pb-3">No upcoming lector tasks</p>
+        <p className="text-center text-gray-500 pt-10 pb-3">No upcoming meta-lector tasks</p>
       )}
     </>
   );
