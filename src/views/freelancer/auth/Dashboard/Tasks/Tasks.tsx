@@ -16,52 +16,58 @@ const Tasks: React.FC = () => {
   const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
-    getWordCount();
-    getProjects();
-      
-  }, [user]);
-
-  const getProjects = async () => {
-    setLoading(true); 
-    axios.defaults.headers.common["access-token"] = userToken;
-    const payload = { freelancerId: userId };
-    await axios
-      .post(`${import.meta.env.VITE_DB_URL}/freelancer/getTasks`, payload)
-      .then((response) => {
-        const projectDataArray = response.data.tasks;
-        setTask(projectDataArray);
-        console.log("projectDataArray");
-      })
-      .catch((err) => {
-        console.error("Error fetching project details:", err);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  };
-
-  const getWordCount = async () => {
-    let token = userToken;
-    axios.defaults.headers.common["access-token"] = token;
-    let payload = {
-      freelancerId: userId,
+    const fetchData = async () => {
+      try {
+        // Call both async functions in parallel
+        await Promise.all([getWordCount(), getProjects()]);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
     };
-    console.log("payload", payload);
-    console.log("token", token);
-    await axios
-      .post(
+  
+    if (user) {
+      fetchData();
+    }
+  }, [user]);
+  
+  const getProjects = async () => {
+    setLoading(true);
+    try {
+      axios.defaults.headers.common["access-token"] = userToken;
+      const payload = { freelancerId: userId };
+      const response = await axios.post(
+        `${import.meta.env.VITE_DB_URL}/freelancer/getTasks`,
+        payload
+      );
+      
+      const projectDataArray = response.data.tasks;
+      setTask(projectDataArray);
+      console.log("projectDataArray", projectDataArray);
+    } catch (err) {
+      console.error("Error fetching project details:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+  
+  const getWordCount = async () => {
+    try {
+      axios.defaults.headers.common["access-token"] = userToken;
+      const payload = { freelancerId: userId };
+  
+      const response = await axios.post(
         `${import.meta.env.VITE_DB_URL}/freelancer/updateWordCountAllTasks`,
         payload
-      )
-      .then((response) => {
-        if(response.status === 200){
-        console.log("word count",response);
-        }
-      })
-      .catch((err) => {
-        console.error("Error updating word count of project:", err);
-      });
+      );
+      
+      if (response.status === 200) {
+        console.log("Word count", response);
+      }
+    } catch (err) {
+      console.error("Error updating word count of project:", err);
+    }
   };
+  
 
   const handleTasks = (name: string) => {
     setActiveButton(name);
