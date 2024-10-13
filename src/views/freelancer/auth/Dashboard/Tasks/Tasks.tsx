@@ -54,7 +54,9 @@ const Tasks: React.FC = () => {
         payload
       )
       .then((response) => {
+        if(response.status === 200){
         console.log("word count",response);
+        }
       })
       .catch((err) => {
         console.error("Error updating word count of project:", err);
