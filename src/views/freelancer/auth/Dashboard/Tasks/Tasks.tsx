@@ -16,8 +16,9 @@ const Tasks: React.FC = () => {
   const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
-      getProjects();
-      getWordCount();
+    getWordCount();
+    getProjects();
+      
   }, [user]);
 
   const getProjects = async () => {
