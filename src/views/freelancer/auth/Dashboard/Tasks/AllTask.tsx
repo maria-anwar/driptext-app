@@ -29,7 +29,7 @@ const AllTasks: React.FC<AllTasksProps> = ({
         activeTasks.map((task) => {
           let TaskCard = null;
 
-          if (task.texter === userId && ["ready for work", "in progress", "in rivision"].includes(task.status.toLowerCase())) {
+          if (task.texter === userId && ["ready to work", "in progress", "in rivision"].includes(task.status.toLowerCase())) {
               TaskCard = <TasksCard key={task._id} task={task} getRefreshTask={getRefreshTask} />;
           } else if (task.lector === userId  && ["ready for proofreading", "proofreading in progress"].includes(task.status.toLowerCase())) {
               TaskCard = <LectorCard key={task._id} task={task} getRefreshTask={getRefreshTask} />;
