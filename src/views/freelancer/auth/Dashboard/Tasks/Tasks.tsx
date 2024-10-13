@@ -20,11 +20,11 @@ const Tasks: React.FC = () => {
       getWordCount();
   }, [user]);
 
-  const getProjects = () => {
+  const getProjects = async () => {
     setLoading(true); 
     axios.defaults.headers.common["access-token"] = userToken;
     const payload = { freelancerId: userId };
-    axios
+    await axios
       .post(`${import.meta.env.VITE_DB_URL}/freelancer/getTasks`, payload)
       .then((response) => {
         const projectDataArray = response.data.tasks;
@@ -39,7 +39,7 @@ const Tasks: React.FC = () => {
       });
   };
 
-  const getWordCount = () => {
+  const getWordCount = async () => {
     let token = userToken;
     axios.defaults.headers.common["access-token"] = token;
     let payload = {
@@ -47,13 +47,13 @@ const Tasks: React.FC = () => {
     };
     console.log("payload", payload);
     console.log("token", token);
-    axios
+    await axios
       .post(
         `${import.meta.env.VITE_DB_URL}/freelancer/updateWordCountAllTasks`,
         payload
       )
       .then((response) => {
-        console.log("word count");
+        console.log("word count",response);
       })
       .catch((err) => {
         console.error("Error updating word count of project:", err);
