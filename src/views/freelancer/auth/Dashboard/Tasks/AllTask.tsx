@@ -4,7 +4,7 @@ import { Task } from "../../../../../components/freelancer/Type/types";
 import UpcommingTasks from "../../../../../components/freelancer/AllTask/UpcommingCard";
 import LectorCard from "../../../../../components/freelancer/AllTask/LectorCard";
 import SEOCard from "../../../../../components/freelancer/AllTask/SEOCard";
-import Proofreader from "../../../../../components/freelancer/AllTask/Proofreader";
+import MetaLectorCard from "../../../../../components/freelancer/AllTask/MetaLectorCard";
 
 // Define the type for the props
 interface AllTasksProps {
@@ -33,9 +33,11 @@ const AllTasks: React.FC<AllTasksProps> = ({
               TaskCard = <TasksCard key={task._id} task={task} getRefreshTask={getRefreshTask} />;
           } else if (task.lector === userId  && ["ready for proofreading", "proofreading in progress"].includes(task.status.toLowerCase())) {
               TaskCard = <LectorCard key={task._id} task={task} getRefreshTask={getRefreshTask} />;
-          } else if (task.seo === userId &&["ready for seo optimization", "seo optimization in progress",'final'].includes(task.status.toLowerCase())) {
+          } else if (task.seo === userId &&["ready for seo optimization", "seo optimization in progress"].includes(task.status.toLowerCase())) {
               TaskCard = <SEOCard key={task._id} task={task} getRefreshTask={getRefreshTask} />;
-          }
+          } else if (task.metaLector === userId  && ["ready for 2nd proofreading", "2nd proofreading in progress",'final'].includes(task.status.toLowerCase())) {
+            TaskCard = <MetaLectorCard key={task._id} task={task} getRefreshTask={getRefreshTask} />;
+        }
           
           return TaskCard;
 })

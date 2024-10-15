@@ -2,7 +2,7 @@ import React from "react";
 import TasksCard from "../../../../../components/freelancer/AllTask/TasksCard";
 import { Task } from "../../../../../components/freelancer/Type/types";
 import UpcommingTasks from "../../../../../components/freelancer/AllTask/UpcommingCard";
-import LectorCard from "../../../../../components/freelancer/AllTask/LectorCard";
+import MetaLectorCard from "../../../../../components/freelancer/AllTask/MetaLectorCard";
 
 interface ProofreaderProps {
   activeTasks: Task[];
@@ -11,7 +11,7 @@ interface ProofreaderProps {
   getRefreshTask: () => void
 }
 
-const Proofreader: React.FC<ProofreaderProps> = ({
+const MetaLector: React.FC<ProofreaderProps> = ({
   activeTasks, upcommingTasks,userId,getRefreshTask
 }) => {
   const filterActiveTask = activeTasks.filter((task) => task.metaLector === userId);
@@ -23,7 +23,7 @@ const Proofreader: React.FC<ProofreaderProps> = ({
       </h1>
       {filterActiveTask.length > 0 ? (
         filterActiveTask.map((task) => (
-          <LectorCard key={task._id} task={task} getRefreshTask={getRefreshTask} />
+          <MetaLectorCard key={task._id} task={task} getRefreshTask={getRefreshTask} />
         ))
       ) : (
         <p className="text-center text-gray-500 pt-10 pb-3">No active meta-lector tasks</p>
@@ -43,4 +43,4 @@ const Proofreader: React.FC<ProofreaderProps> = ({
   );
 };
 
-export default Proofreader;
+export default MetaLector;
