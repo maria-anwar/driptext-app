@@ -27,15 +27,19 @@ const TaskInfoCard: React.FC<TaskProps> = ({
         <p className="dark:text-white">Project Name: {task?.taskName}</p>
         <p className="dark:text-white">
           Deadline:{" "}
-          <span className="w-fit bg-red-600 text-white rounded-full px-3">
-            {formatDate(task?.dueDate)}
+          <span
+            className={`w-fit 
+      ${new Date(task?.dueDate) < new Date() ? "bg-red-600" : "bg-green-600"} 
+      text-white px-3 text-center rounded-full`}
+          >
+            {formatDate(task?.dueDate) ?? "no set"}
           </span>
         </p>
         <p className="dark:text-white">
           Task Status:{" "}
           <span
-            className={` text-left  rounded-full  ${
-              task.status.toUpperCase() === "FINAL"
+            className={` rounded-full text-left   ${
+              task?.status.toUpperCase() === "FINAL"
                 ? " text-green-500"
                 : task.status.toUpperCase() === "FREE TRIAL"
                 ? " text-yellow-500"
@@ -51,7 +55,11 @@ const TaskInfoCard: React.FC<TaskProps> = ({
                 ? " text-indigo-500"
                 : task.status.toUpperCase() === "SEO OPTIMIZATION IN PROGRESS"
                 ? " text-pink-500"
-                : " text-violet-500"
+                : task.status.toUpperCase() === "READY FOR 2ND PROOFREADING"
+                ? " text-violet-500" // New color for "READY FOR 2ND PROOFREADING"
+                : task.status.toUpperCase() === "2ND PROOFREADING IN PROGRESS"
+                ? " text-lime-700" // Different color for "2ND PROOFREADING IN PROGRESS"
+                : " text-red-500"
             }`}
           >
             {task?.status}

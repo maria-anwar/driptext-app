@@ -3,7 +3,7 @@ import AllTasks from "./AllTask";
 import TexterTasks from "./TexterTask";
 import LectorTasks from "./LectorTask";
 import SeoTasks from "./SeoTask";
-import Proofreader from "./Proofreader";
+import MetaLector from "./MetaLector";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
@@ -112,7 +112,7 @@ const Tasks: React.FC = () => {
         );
       case "Meta lector":
         return (
-          <Proofreader
+          <MetaLector
           activeTasks={tasks.currentTasks}
           upcommingTasks={tasks.upcomingTasks}
           userId={userId}

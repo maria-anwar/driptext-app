@@ -24,17 +24,21 @@ const Card: React.FC<TaskProps> = ({ task, Upcomming, clickableLink }) => {
         <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-4 uppercase">
           Deadline
         </span>
-        <span className="w-fit bg-red-600 text-white px-3 text-center rounded-full">
-          {formatDate(task?.dueDate) ?? "no set"}
-        </span>
+        <span
+    className={`w-fit 
+      ${new Date(task?.dueDate) < new Date() ? 'bg-red-600' : 'bg-green-600'} 
+      text-white px-3 text-center rounded-full`}
+  >
+    {formatDate(task?.dueDate) ?? "no set"}
+  </span>
       </div>
       <div className="flex flex-col pr-3">
         <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-4 uppercase">
           status
         </span>
         <span
-          className={` text-left  rounded-full  ${
-            task.status.toUpperCase() === "FINAL"
+          className={` rounded-full text-left   ${
+            task?.status.toUpperCase() === "FINAL"
               ? " text-green-500"
               : task.status.toUpperCase() === "FREE TRIAL"
               ? " text-yellow-500"
@@ -50,6 +54,10 @@ const Card: React.FC<TaskProps> = ({ task, Upcomming, clickableLink }) => {
               ? " text-indigo-500"
               : task.status.toUpperCase() === "SEO OPTIMIZATION IN PROGRESS"
               ? " text-pink-500"
+              : task.status.toUpperCase() === "READY FOR 2ND PROOFREADING"
+              ? " text-violet-500" // New color for "READY FOR 2ND PROOFREADING"
+              : task.status.toUpperCase() === "2ND PROOFREADING IN PROGRESS"
+              ? " text-lime-700" // Different color for "2ND PROOFREADING IN PROGRESS"
               : " text-red-500"
           }`}
         >

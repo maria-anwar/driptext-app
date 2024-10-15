@@ -228,16 +228,28 @@ const TaskTable = () => {
                       </td>
                       <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                         <p
-                          className={`inline-flex rounded-full bg-opacity-10 py-1 px-3 text-sm font-medium ${
-                            task.status === "Final"
-                              ? "bg-success text-success"
-                              : task.status === "Not initalized"
-                              ? "bg-danger text-danger"
-                              : task.status === "Ready to Start"
-                              ? "bg-warning text-warning"
-                              : task.status === "Ready For Proofreading"
-                              ? "bg-warning text-warning"
-                              : "bg-blue-400 text-blue-400"
+                          className={`inline-flex rounded-full bg-opacity-10 py-1 px-3 text-sm font-medium   ${
+                            task?.status.toUpperCase() === "FINAL"
+                              ? "bg-green-500/20 text-green-500"
+                              : task.status.toUpperCase() === "FREE TRIAL"
+                              ? "bg-yellow-500/20 text-yellow-500"
+                              : task.status.toUpperCase() === "READY TO WORK"
+                              ? "bg-yellow-500/20 text-yellow-500"
+                              : task.status.toUpperCase() === "IN PROGRESS"
+                              ? "bg-blue-500/20 text-blue-500"
+                              : task.status.toUpperCase() === "READY FOR PROOFREADING"
+                              ? "bg-orange-500/20 text-orange-500"
+                              : task.status.toUpperCase() === "PROOFREADING IN PROGRESS"
+                              ? "bg-purple-500/20 text-purple-500"
+                              : task.status.toUpperCase() === "READY FOR SEO OPTIMIZATION"
+                              ? "bg-indigo-500/20 text-indigo-500"
+                              : task.status.toUpperCase() === "SEO OPTIMIZATION IN PROGRESS"
+                              ? "bg-pink-500/20 text-pink-500"
+                              : task.status.toUpperCase() === "READY FOR 2ND PROOFREADING"
+                              ? "bg-violet-500/20 text-violet-500" // New color for "READY FOR 2ND PROOFREADING"
+                              : task.status.toUpperCase() === "2ND PROOFREADING IN PROGRESS"
+                              ? "bg-lime-300/20 text-lime-700" // Different color for "2ND PROOFREADING IN PROGRESS"
+                              : "bg-red-500/20 text-red-500"
                           }`}
                         >
                           {task.status}
