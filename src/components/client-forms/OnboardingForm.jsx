@@ -52,7 +52,7 @@ const OnboardingForm = () => {
       prespective: values.perspective,
       projectName: values.project,
       userId: userId || user.user.data.user._id, // Assign appropriate value
-      projectId:projectId || localStorage.getItem('projectId'),
+      projectId: projectId || localStorage.getItem("projectId"),
       companyBackgorund: values.companyInfo,
       companyAttributes: values.companyAttributes,
       comapnyServices: values.services,
@@ -64,10 +64,13 @@ const OnboardingForm = () => {
 
     try {
       setError(false);
-      const response = await axios.post(`${import.meta.env.VITE_DB_URL}/users/create/onboarding`, onBoardingData);
+      const response = await axios.post(
+        `${import.meta.env.VITE_DB_URL}/users/create/onboarding`,
+        onBoardingData
+      );
 
       // {role==='Client'? window.location.href = 'https://driptext.de/danke-onboarding/':
-    
+
       // }
       setLoading(false);
       console.log("Data submitted successfully:", response.data);
@@ -152,7 +155,6 @@ const OnboardingForm = () => {
                     placeholder={"example.com"}
                     value={projectName}
                     disabled={projectName ? true : false}
-                    
                   />
                 </div>
               </div>
@@ -296,7 +298,13 @@ const OnboardingForm = () => {
                     type="submit"
                     disabled={loading}
                   >
-                    {loading ? "submitting" : "Submit Order"}
+                    {loading ? (
+                      <div className="flex items-center justify-center">
+                        <div className="w-6 h-6 border-2 border-white border-solid rounded-full border-t-transparent animate-spin" />
+                      </div>
+                    ) : (
+                      "Submit Order"
+                    )}
                   </button>
                 </div>
                 {error && (

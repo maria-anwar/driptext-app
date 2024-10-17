@@ -111,7 +111,7 @@ const LoginForm = () => {
                   setError(false);
                   setErrorMesssage("");
                 }}
-                className=" !border-t-blue-gray-200 focus:!border-t-gray-900 focus:ring:none border-1 border-black"
+                className=" !border-t-blue-gray-200 focus:!border-t-gray-900 focus:ring:none border-1 border-black border-t-1 border-t-black"
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
@@ -142,7 +142,7 @@ const LoginForm = () => {
                   }}
                   size="lg"
                   placeholder="********"
-                  className=" !border-t-blue-gray-200 focus:!border-t-gray-900 focus:ring:none border-1 border-black"
+                  className=" !border-t-blue-gray-200 focus:!border-t-gray-900 focus:ring:none border-1 border-black border-t-1 border-t-black"
                   labelProps={{
                     className: "before:content-none after:content-none",
                   }}
@@ -186,7 +186,13 @@ const LoginForm = () => {
               fullWidth
               type="submit"
             >
-              Sign In
+            {loading ? (
+                <div className="flex items-center justify-center">
+                  <div className="w-5 h-5 border-2 border-white border-solid rounded-full border-t-transparent animate-spin" />
+                </div>
+              ) : (
+                "Sign In"
+              )}
             </Button>
             {error && (
               <div id="email" className="mt-4 text-sm text-red-500">

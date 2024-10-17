@@ -191,7 +191,13 @@ const RegistrationForm = () => {
                     type="submit"
                     disabled={loading}
                   >
-                    {loading ? "Submitting" : "Submit Order"}
+                    {loading ? (
+                      <div className="flex items-center justify-center">
+                        <div className="w-6 h-6 border-2 border-white border-solid rounded-full border-t-transparent animate-spin" />
+                      </div>
+                    ) : (
+                      "Submit Order"
+                    )}
                   </button>
                 </div>
                 {error && (
