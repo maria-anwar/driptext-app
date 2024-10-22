@@ -19,7 +19,7 @@ const Tasks: React.FC = () => {
     const fetchData = async () => {
       try {
         // Call both async functions in parallel
-        await Promise.all([getWordCount(), getProjects()]);
+        await Promise.all([getProjects(),getWordCount()]);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
