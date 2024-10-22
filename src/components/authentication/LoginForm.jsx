@@ -76,9 +76,10 @@ const LoginForm = () => {
       setError(true);
       setErrorMesssage(errorMessage);
       setLoading(false);
+      console.log(error);
     }
 
-    // window.location.href = "https://driptext.de/danke-probetext/";
+   
   };
 
   return (
