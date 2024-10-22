@@ -20,7 +20,6 @@ const TexterTasks: React.FC<TexterTasksProps> = ({
   const filterUpcommingTask = upcommingTasks.filter(
     (task) => task.texter === userId
   );
-  console.log("filterActiveTask", activeTasks);
   return (
     <>
       <div>
