@@ -18,7 +18,10 @@ interface MetaLectorCardProps {
   getRefreshTask: () => void;
 }
 
-const MetaLectorCard: React.FC<MetaLectorCardProps> = ({ task, getRefreshTask }) => {
+const MetaLectorCard: React.FC<MetaLectorCardProps> = ({
+  task,
+  getRefreshTask,
+}) => {
   const user = useSelector<any>((state) => state.user);
   const userToken = user?.user?.token;
   const [clickableLink, setClickableLink] = useState<boolean>(false);
@@ -329,19 +332,13 @@ const MetaLectorCard: React.FC<MetaLectorCardProps> = ({ task, getRefreshTask })
                 Task Details
               </h2>
               <FontAwesomeIcon
-                className="cursor-pointer text-lg dark:text-white text-black"
+                className="cursor-pointer text-lg text-red-500"
                 onClick={closeProjectInfoDialog}
                 icon={faTimes}
               />
             </div>
             <div className="flex justify-between items-center space-x-2 my-4">
               <ProjectHeader />
-              <button
-                className=" bg-green-500 text-white font-bold py-2 px-4  rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
-                onClick={handleFinish}
-              >
-                Finish
-              </button>
             </div>
             {showInfo && (
               <TaskInfoCard
@@ -350,19 +347,17 @@ const MetaLectorCard: React.FC<MetaLectorCardProps> = ({ task, getRefreshTask })
                 clickableLink={clickableLink}
               />
             )}
-           {showFeedback && (
-                <div>
-                  {task?.feedback ? (
-                    <p className="text-green-600 font-semibold">
-                      {task.feedback}
-                    </p>
-                  ) : (
-                    <p className="text-gray-500 italic">
-                      No feedback available
-                    </p>
-                  )}
-                </div>
-              )}
+            {showFeedback && (
+              <div>
+                {task?.feedback ? (
+                  <p className="text-green-600 font-semibold">
+                    {task.feedback}
+                  </p>
+                ) : (
+                  <p className="text-gray-500 italic">No feedback available</p>
+                )}
+              </div>
+            )}
           </div>
         </div>
       )}
@@ -408,13 +403,13 @@ const MetaLectorCard: React.FC<MetaLectorCardProps> = ({ task, getRefreshTask })
 
             {/* Show the Renew Required section only when not all checkboxes are checked */}
             {!allChecked && (
-              <div className="py-4 px-4 bg-slate-200 dark:bg-slate-700">
+              <div className="py-4 px-4 bg-red-600/30 dark:bg-red-500/20">
                 <label className="ml-2 dark:text-white">
                   <strong>Renew Required</strong>
                 </label>
                 <div className="flex justify-center items-start py-2">
                   <FontAwesomeIcon
-                    className="pl-2 pt-1"
+                    className="pl-2 pt-1 text-red-500"
                     icon={faExclamationCircle}
                   />
                   <p className="pl-3 font-base dark:text-white">
@@ -475,7 +470,7 @@ const MetaLectorCard: React.FC<MetaLectorCardProps> = ({ task, getRefreshTask })
                   clickableLink={clickableLink}
                 />
               )}
-            {showFeedback && (
+              {showFeedback && (
                 <div>
                   {task?.feedback ? (
                     <p className="text-green-600 font-semibold">
