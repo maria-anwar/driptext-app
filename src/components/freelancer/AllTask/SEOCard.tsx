@@ -276,12 +276,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
             </div>
             <div className="flex justify-between items-center space-x-2 my-4">
               <ProjectHeader />
-              <button
-                className=" bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
-                onClick={handleFinish}
-              >
-                Finish
-              </button>
+             
             </div>
             {showInfo && (
               <TaskInfoCard
@@ -314,7 +309,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
                 Finish order
               </h2>
               <FontAwesomeIcon
-                className="cursor-pointer text-lg dark:text-white text-black"
+                className="cursor-pointer text-lg text-red-500"
                 onClick={closeFinishDialog}
                 icon={faTimes}
               />

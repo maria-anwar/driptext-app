@@ -330,12 +330,6 @@ const TaskCard: React.FC<TaskCardProps> = ({
             </div>
             <div className="flex justify-between items-center space-x-2 my-4">
               <ProjectHeader />
-              <button
-                className=" bg-green-500 text-white font-bold py-2 px-4 -mt-3 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
-                onClick={handleFinish}
-              >
-                Finish
-              </button>
             </div>
             {showInfo && (
               <TaskInfoCard
