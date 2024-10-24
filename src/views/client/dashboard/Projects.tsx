@@ -48,18 +48,20 @@ const Projects: React.FC = () => {
 
   return (
     <>
-      <div className="flex items-center justify-between space-x-4 mb-6 mt-2">
-        <ol className="flex items-center gap-2 text-left">
-          <li>
-            <Link
-              className="font-medium text-black hover:text-black dark:text-bodydark dark:hover:text-bodydark"
-              to="/client-dashboard"
-            >
-              Dashboard /
-            </Link>
-          </li>
-          <li className="font-medium text-primary">Projects</li>
-        </ol>
+      <div className="w-full flex flex-row justify-start items-center   4xl:px-14">
+        <div className="flex items-center justify-between space-x-4 mb-4 mt-2">
+          <ol className="flex items-center gap-2 text-left">
+            <li>
+              <Link
+                className="font-medium text-black hover:text-black dark:text-bodydark dark:hover:text-bodydark"
+                to="/client-dashboard"
+              >
+                Dashboard /
+              </Link>
+            </li>
+            <li className="font-medium text-primary">Projects</li>
+          </ol>
+        </div>
       </div>
       <div className="w-full flex flex-col gap-3 2xl:gap-0 2xl:flex-row 2xl:justify-between items-center 4xl:px-14 mb-3 4xl:mb-6 mt-2 lg:mt-1">
         <div className="w-full 2xl:max-w-max">
