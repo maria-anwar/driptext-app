@@ -36,7 +36,6 @@ const Tasks: React.FC = () => {
       
       const projectDataArray = response.data.tasks;
       setTask(projectDataArray);
-      console.log("projectDataArray", projectDataArray);
     } catch (err) {
       console.error("Error fetching project details:", err);
     } finally {

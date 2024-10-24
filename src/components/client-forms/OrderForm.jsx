@@ -215,7 +215,7 @@ const OrderForm = () => {
         const temp = twelveTextDuration.find((item) => item.includes(duration));
         initialDurationValue = temp;
       }
-      // Set initial values only when texts and duration have been fetched or computed
+     
       setInitialValues({
         duration: initialDurationValue,
         texts: texts,
@@ -233,7 +233,6 @@ const OrderForm = () => {
     }
   }, [texts, duration, user?.user?.data?.user]);
 
-  console.log("initital values: ", initialValues);
   const validationSchema = Yup.object().shape({
     // duration: Yup.string().required("please select duration"),
     // texts: Yup.string().required("select no of seo texts"),
@@ -244,7 +243,6 @@ const OrderForm = () => {
     telNo: Yup.number().required("please enter telephone No"),
     email: Yup.string().email().required("please enter your email"),
     // country: Yup.string().required("please select your country"),
-    vatId: Yup.string().required("VAT ID is required"),
   });
 
   const onSubmit = async (values) => {
@@ -340,8 +338,8 @@ const OrderForm = () => {
         projectName: values.domain,
         companyName: values.company,
         country: values.country,
-        vatId: values.vatId.toString(),
-        vatType: values.vatType,
+        vatId: '',
+        vatType: '',
         keywords: "",
         planId: planId,
         subPlanId: subPlanId,
@@ -545,30 +543,7 @@ const OrderForm = () => {
                   onChange={props.handleChange}
                   countriesList={countriesList}
                 />
-                <GroupField
-                  label={"VAT ID No."}
-                  placeholder={"Your VAT Id"}
-                  type={"text"}
-                  id={"vatId"}
-                  name={"vatId"}
-                  value={props.values.vatId}
-                  errors={props.errors.vatId}
-                  onChange={props.handleChange}
-                />
-                <GroupDropdownField
-                  label={"VAT type"}
-                  type={"text"}
-                  id={"vatRegulation"}
-                  name={"vatRegulation"}
-                  placeholder={""}
-                  option1={"CY Company (19%)"}
-                  option2={"EU Reverse-Charge (0%)"}
-                  option3={"Small business owner (0%)"}
-                  option4={"Non-EU Company (0%)"}
-                  value={"Small business owner (0%)"}
-                  onChange={props.handleChange}
-                  disabled={true}
-                />
+
                 <div className="w-full bg-custom-black flex justify-center py-2 xs:py-2.5 mt-1 rounded-xl">
                   <button
                     className={`${
