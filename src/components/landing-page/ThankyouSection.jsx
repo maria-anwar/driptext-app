@@ -30,6 +30,7 @@ const ThankYouPage = () => {
         `${import.meta.env.VITE_DB_URL}/chargebee/hostpage_response`,
         body
       );
+      console.log("host page response: ", data);
 
       const tempPayload = await localStorage.getItem("orderPayload");
       console.log("temp payload: ", tempPayload);

@@ -16,17 +16,11 @@ const Tasks: React.FC = () => {
   const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // Call both async functions in parallel
-        await Promise.all([getProjects(),getWordCount()]);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+
   
     if (user) {
-      fetchData();
+      getWordCount();
+      getProjects();
     }
   }, [user]);
   
