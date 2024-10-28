@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
 import { Task } from "../../Type/types";
 import { formatDate } from "../../Helper/formatDate";
 import AccordionData from "./AccordionData";

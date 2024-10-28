@@ -3,7 +3,6 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import TaskInfoCard from "./TaskComponents/TaskInfoCard";
 import Card from "./TaskComponents/TaskMainCard";
-import CheckboxThree from "../../client/buttons/CheckboxThree";
 import { Task } from "../Type/types";
 import { useSelector } from "react-redux";
 import axios from "axios";
