@@ -1,6 +1,7 @@
 import React from "react";
 import moment from "moment";
 import { Task } from "../../Type/types";
+import { formatDate } from "../../Helper/formatDate";
 
 interface TaskProps {
   task: Task;
@@ -9,9 +10,7 @@ interface TaskProps {
 }
 
 const Card: React.FC<TaskProps> = ({ task, Upcomming, clickableLink }) => {
-  const formatDate = (date: string, format: string = "MMM  YYYY") => {
-    return moment(date).format(format);
-  };
+
   return (
     <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 md:grid-rows-2 lg:grid-cols-6 lg:grid-rows-1">
       <div className="flex flex-col pr-3">
