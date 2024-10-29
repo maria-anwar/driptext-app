@@ -9,7 +9,7 @@
   </head>
   <body>
 
-    <div id="google_translate_element"></div>
+    <p id="google_translate_element"></p>
 
     <script type="text/javascript">
       function googleTranslateElementInit() {
@@ -47,10 +47,11 @@
         if (translateElement) {
           const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
           translateElement.style.backgroundColor = isDarkMode ? '#24303F' : 'white';
+          translateElement.style.backgroundColor = isDarkMode ? '#24303F' : '#1C2434';
           translateElement.style.color = isDarkMode ? 'white' : 'black';
           translateElement.style.border = isDarkMode ? '0px solid #24303F' : '0px solid black';
           translateElement.style.display = "flex";
-          
+          translateElement.style.width =isDarkMode? "100%" : "290px" ;
         }
       }
 
