@@ -38,8 +38,8 @@ const MetaLector: React.FC<ProofreaderProps> = ({
         ))
       ) : (
         <>
-          <p className="text-center text-white dark:text-white  font-semibold text-lg pt-3 pb-6">
-            There is no any Active Meta-Lector task
+        <p className="text-center text-black dark:text-white  font-semibold text-lg pt-3 pb-3">
+        There is no any Active Meta-Lector task
           </p>
           <span className="block border-t-2 border-cardHeading mx-auto w-1/2 my-4"></span>
         </>
@@ -53,7 +53,7 @@ const MetaLector: React.FC<ProofreaderProps> = ({
           <UpcommingTasks key={task._id} task={task} Upcomming={true} />
         ))
       ) : (
-        <p className="text-center text-white dark:text-white  font-semibold text-lg pt-3 pb-3">
+        <p className="text-center text-black dark:text-white  font-semibold text-lg pt-3 pb-3">
           There is no any Upcoming Meta-Lector task
         </p>
       )}
