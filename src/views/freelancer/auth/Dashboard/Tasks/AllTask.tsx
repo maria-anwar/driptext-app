@@ -29,20 +29,72 @@ const AllTasks: React.FC<AllTasksProps> = ({
         activeTasks.map((task) => {
           let TaskCard = null;
 
-          if (task.texter === userId && ["ready to work", "in progress", "in rivision"].includes(task.status.toLowerCase())) {
-              TaskCard = <TasksCard key={task._id} task={task} getRefreshTask={getRefreshTask} />;
-          } else if (task.lector === userId  && ["ready for proofreading", "proofreading in progress"].includes(task.status.toLowerCase())) {
-              TaskCard = <LectorCard key={task._id} task={task} getRefreshTask={getRefreshTask} />;
-          } else if (task.seo === userId &&["ready for seo optimization", "seo optimization in progress"].includes(task.status.toLowerCase())) {
-              TaskCard = <SEOCard key={task._id} task={task} getRefreshTask={getRefreshTask} />;
-          } else if (task.metaLector === userId  && ["ready for 2nd proofreading", "2nd proofreading in progress",'final'].includes(task.status.toLowerCase())) {
-            TaskCard = <MetaLectorCard key={task._id} task={task} getRefreshTask={getRefreshTask} />;
-        }
-          
+          if (
+            task.texter === userId &&
+            ["ready to work", "in progress", "in rivision"].includes(
+              task.status.toLowerCase()
+            )
+          ) {
+            TaskCard = (
+              <TasksCard
+                key={task._id}
+                task={task}
+                getRefreshTask={getRefreshTask}
+              />
+            );
+          } else if (
+            task.lector === userId &&
+            ["ready for proofreading", "proofreading in progress"].includes(
+              task.status.toLowerCase()
+            )
+          ) {
+            TaskCard = (
+              <LectorCard
+                key={task._id}
+                task={task}
+                getRefreshTask={getRefreshTask}
+              />
+            );
+          } else if (
+            task.seo === userId &&
+            [
+              "ready for seo optimization",
+              "seo optimization in progress",
+            ].includes(task.status.toLowerCase())
+          ) {
+            TaskCard = (
+              <SEOCard
+                key={task._id}
+                task={task}
+                getRefreshTask={getRefreshTask}
+              />
+            );
+          } else if (
+            task.metaLector === userId &&
+            [
+              "ready for 2nd proofreading",
+              "2nd proofreading in progress",
+              "final",
+            ].includes(task.status.toLowerCase())
+          ) {
+            TaskCard = (
+              <MetaLectorCard
+                key={task._id}
+                task={task}
+                getRefreshTask={getRefreshTask}
+              />
+            );
+          }
+
           return TaskCard;
-})
+        })
       ) : (
-        <p className="text-center text-gray-500 pt-10 pb-3">No active tasks</p>
+        <>
+          <p className="text-center text-white dark:text-white  font-semibold text-lg pt-3 pb-6">
+          There is no any Active task 
+          </p>
+          <span className="block border-t-2 border-cardHeading mx-auto w-1/2 my-4"></span>
+        </>
       )}
       <h1 className="text-lg text-center text-black dark:text-white pt-10">
         Upcoming Tasks
@@ -52,8 +104,8 @@ const AllTasks: React.FC<AllTasksProps> = ({
           <UpcommingTasks key={task._id} task={task} Upcomming={true} />
         ))
       ) : (
-        <p className="text-center text-gray-500 pt-10 pb-3">
-          No upcoming tasks
+        <p className="text-center text-white dark:text-white  font-semibold text-lg pt-3 pb-3">
+         There is no any Upcoming task
         </p>
       )}
     </>
