@@ -29,19 +29,22 @@ const TexterTasks: React.FC<TexterTasksProps> = ({
         {filterActiveTask.length > 0 ? (
           filterActiveTask.map((task) => (
             <TasksCard
-            key={task._id}
+              key={task._id}
               task={task}
               getRefreshTask={getRefreshTask}
             />
           ))
         ) : (
-          <p className="text-center text-gray-500 pt-10 pb-3">
-            No active texter tasks
-          </p>
+          <>
+            <p className="text-center text-white dark:text-white  font-semibold text-lg pt-3 pb-6">
+              There is no any Active Texter task
+            </p>
+            <span className="block border-t-2 border-cardHeading mx-auto w-1/2 my-4"></span>
+          </>
         )}
       </div>
       <div>
-        <h1 className="text-lg text-center text-black dark:text-white">
+        <h1 className="text-lg text-center text-black dark:text-white mt-10">
           Upcoming Tasks
         </h1>
         {filterUpcommingTask.length > 0 ? (
@@ -49,8 +52,8 @@ const TexterTasks: React.FC<TexterTasksProps> = ({
             <UpcommingTasks key={task._id} task={task} Upcomming={true} />
           ))
         ) : (
-          <p className="text-center text-gray-500 pt-10 pb-3">
-            No upcoming texter tasks
+          <p className="text-center text-white dark:text-white  font-semibold text-lg pt-3 pb-3">
+            There is no any Upcoming Texter task
           </p>
         )}
       </div>

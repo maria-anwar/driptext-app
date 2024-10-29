@@ -11,9 +11,16 @@ interface SeoTasksProps {
   getRefreshTask: () => void;
 }
 
-const SeoTasks: React.FC<SeoTasksProps> = ({ activeTasks, upcommingTasks,userId ,getRefreshTask}) => {
+const SeoTasks: React.FC<SeoTasksProps> = ({
+  activeTasks,
+  upcommingTasks,
+  userId,
+  getRefreshTask,
+}) => {
   const filterActiveTask = activeTasks.filter((task) => task.seo === userId);
-  const filterUpcommingTask = upcommingTasks.filter((task) => task.seo === userId);
+  const filterUpcommingTask = upcommingTasks.filter(
+    (task) => task.seo === userId
+  );
   return (
     <>
       <h1 className="text-lg text-center text-black dark:text-white pt-10">
@@ -24,7 +31,12 @@ const SeoTasks: React.FC<SeoTasksProps> = ({ activeTasks, upcommingTasks,userId 
           <SEOCard key={task._id} task={task} getRefreshTask={getRefreshTask} />
         ))
       ) : (
-        <p className="text-center text-gray-500 pt-10 pb-3">No active seo tasks</p>
+        <>
+          <p className="text-center text-white dark:text-white  font-semibold text-lg pt-3 pb-6">
+            There is no any Active SEO task
+          </p>
+          <span className="block border-t-2 border-cardHeading mx-auto w-1/2 my-4"></span>
+        </>
       )}
 
       <h1 className="text-lg text-center text-black dark:text-white pt-10">
@@ -32,10 +44,12 @@ const SeoTasks: React.FC<SeoTasksProps> = ({ activeTasks, upcommingTasks,userId 
       </h1>
       {filterUpcommingTask.length > 0 ? (
         filterUpcommingTask.map((task) => (
-          <UpcommingTasks key={task._id} task={task} Upcomming={true}/>
+          <UpcommingTasks key={task._id} task={task} Upcomming={true} />
         ))
       ) : (
-        <p className="text-center text-gray-500 pt-10 pb-3">No upcoming seo tasks</p>
+        <p className="text-center text-white dark:text-white  font-semibold text-lg pt-3 pb-3">
+          There is no any Upcoming SEO task
+        </p>
       )}
     </>
   );
