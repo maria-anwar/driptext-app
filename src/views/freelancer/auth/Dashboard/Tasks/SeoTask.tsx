@@ -32,8 +32,8 @@ const SeoTasks: React.FC<SeoTasksProps> = ({
         ))
       ) : (
         <>
-          <p className="text-center text-white dark:text-white  font-semibold text-lg pt-3 pb-6">
-            There is no any Active SEO task
+        <p className="text-center text-black dark:text-white  font-semibold text-lg pt-3 pb-3">
+        There is no any Active SEO task
           </p>
           <span className="block border-t-2 border-cardHeading mx-auto w-1/2 my-4"></span>
         </>
@@ -47,7 +47,7 @@ const SeoTasks: React.FC<SeoTasksProps> = ({
           <UpcommingTasks key={task._id} task={task} Upcomming={true} />
         ))
       ) : (
-        <p className="text-center text-white dark:text-white  font-semibold text-lg pt-3 pb-3">
+        <p className="text-center text-black dark:text-white  font-semibold text-lg pt-3 pb-3">
           There is no any Upcoming SEO task
         </p>
       )}
