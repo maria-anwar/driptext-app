@@ -8,8 +8,8 @@
     <title>driptext app</title>
   </head>
   <body>
+    <div id="google_translate_element"></div>
 
-    <p id="google_translate_element"></p>
 
     <script type="text/javascript">
       function googleTranslateElementInit() {
@@ -19,46 +19,28 @@
           layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
         }, 'google_translate_element');
       }
-
+  
       // Apply custom styling after a short delay to ensure the widget has loaded
       function applyCustomTranslateStyles() {
         const translateElement = document.querySelector("#google_translate_element .goog-te-gadget-simple");
         if (translateElement) {
-          
+          translateElement.style.display = "flex";
           // translateElement.style.alignItems = "center";
           // translateElement.style.gap = "5px";
-
+  
           // Optional: Hide "Powered by Google" text
           const poweredBy = document.querySelector("#google_translate_element .goog-te-gadget span a");
           if (poweredBy) poweredBy.style.display = "flex";
         }
       }
-
+  
       // Wait for the widget to load, then apply custom styles
       setTimeout(applyCustomTranslateStyles, 1000);
-    </script>
+    </script> 
+    
+    <script type="text/javascript"
+      src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
   
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-    <!-- Dark/Light mode toggle for google_translate_element -->
-    <script type="text/javascript">
-      function updateTranslateElementColor() {
-        const translateElement = document.querySelector("#google_translate_element .goog-te-gadget-simple");
-        if (translateElement) {
-          const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-          translateElement.style.backgroundColor = isDarkMode ? '#24303F' : 'white';
-          translateElement.style.backgroundColor = isDarkMode ? '#24303F' : '#1C2434';
-          translateElement.style.color = isDarkMode ? 'white' : 'black';
-          translateElement.style.border = isDarkMode ? '0px solid #24303F' : '0px solid black';
-          translateElement.style.display = "flex";
-          translateElement.style.width =isDarkMode? "100%" : "290px" ;
-        }
-      }
-
-      // Initial color update and listener for system color scheme changes
-      setTimeout(updateTranslateElementColor, 1500);
-      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateTranslateElementColor);
-    </script>
 
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
