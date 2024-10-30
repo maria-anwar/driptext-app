@@ -24,7 +24,7 @@ const Card: React.FC<TaskProps> = ({ task, Upcomming, clickableLink }) => {
         </span>
         <span
     className={`w-fit 
-      ${new Date(task?.dueDate) < new Date() ? 'bg-red-600' : 'bg-green-600'} 
+      ${new Date(task?.dueDate).setHours(0, 0, 0, 0) >= new Date().setHours(0, 0, 0, 0) ? 'bg-green-600' : 'bg-red-600'}
       text-white px-3 text-center rounded-full`}
   >
     {formatDate(task?.dueDate) ?? "no set"}
