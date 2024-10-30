@@ -107,7 +107,7 @@ const AllTasks: React.FC<AllTasksProps> = ({
       <div>
         {upcommingTasks.length > 0 ? (
           <>
-            <h1 className="text-lg text-center text-black dark:text-white mt-10">
+            <h1 className="text-lg text-center text-black dark:text-white pt-8">
               Upcoming Tasks
             </h1>
             {upcommingTasks.map((task) => (
