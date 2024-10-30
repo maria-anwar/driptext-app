@@ -2,6 +2,7 @@ import React from "react";
 import TasksCard from "../../../../../components/freelancer/AllTask/TasksCard";
 import { Task } from "../../../../../components/freelancer/Type/types";
 import UpcommingTasks from "../../../../../components/freelancer/AllTask/UpcommingCard";
+import NoTask from "../../../../../components/freelancer/Helper/NoTask";
 
 interface TexterTasksProps {
   activeTasks: Task[];
@@ -20,41 +21,45 @@ const TexterTasks: React.FC<TexterTasksProps> = ({
   const filterUpcommingTask = upcommingTasks.filter(
     (task) => task.texter === userId
   );
+  
+  if (filterActiveTask.length === 0 && filterUpcommingTask.length === 0) {
+    return (
+      <NoTask label="There is no any Active and Upcoming tasks to show" />
+    );
+  }
   return (
     <>
       <div>
-        <h1 className="text-lg text-center text-black dark:text-white pt-10">
-          Active Tasks
-        </h1>
         {filterActiveTask.length > 0 ? (
-          filterActiveTask.map((task) => (
-            <TasksCard
-              key={task._id}
-              task={task}
-              getRefreshTask={getRefreshTask}
-            />
-          ))
-        ) : (
           <>
-        <p className="text-center text-black dark:text-white  font-semibold text-lg pt-3 pb-3">
-        There is no any Active Texter task
-            </p>
-            <span className="block border-t-2 border-cardHeading mx-auto w-1/2 my-4"></span>
+            <h1 className="text-lg text-center text-black dark:text-white pt-10">
+              Active Tasks
+            </h1>
+            {filterActiveTask.map((task) => (
+              <TasksCard
+                key={task._id}
+                task={task}
+                getRefreshTask={getRefreshTask}
+              />
+            ))}
           </>
+        ) : (
+          <NoTask label="There is no any Active Task to show" />
         )}
       </div>
+      <span className="block ring-1 ring-zinc-300 dark:ring-zinc-500 mx-auto w-full my-4"></span>
       <div>
-        <h1 className="text-lg text-center text-black dark:text-white mt-10">
-          Upcoming Tasks
-        </h1>
         {filterUpcommingTask.length > 0 ? (
-          filterUpcommingTask.map((task) => (
-            <UpcommingTasks key={task._id} task={task} Upcomming={true} />
-          ))
+          <>
+            <h1 className="text-lg text-center text-black dark:text-white pt-8">
+              Upcoming Tasks
+            </h1>
+            {filterUpcommingTask.map((task) => (
+              <UpcommingTasks key={task._id} task={task} Upcomming={true} />
+            ))}
+          </>
         ) : (
-          <p className="text-center text-black dark:text-white  font-semibold text-lg pt-3 pb-3">
-            There is no any Upcoming Texter task
-          </p>
+          <NoTask label="There is no any Upcoming Task to show" />
         )}
       </div>
     </>
