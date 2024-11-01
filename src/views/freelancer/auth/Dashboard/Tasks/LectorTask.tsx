@@ -30,7 +30,7 @@ const LectorTasks: React.FC<LectorTasksProps> = ({
       <div>
         {filterActiveTask.length > 0 ? (
           <>
-            <h1 className="text-lg text-center text-black dark:text-white pt-10">
+            <h1 className="text-lg font-bold text-center text-black dark:text-white pt-10">
               Active Tasks
             </h1>
             {filterActiveTask.map((task) => (
@@ -49,7 +49,7 @@ const LectorTasks: React.FC<LectorTasksProps> = ({
       <div>
         {filterUpcommingTask.length > 0 ? (
           <>
-            <h1 className="text-lg text-center text-black dark:text-white pt-8">
+            <h1 className="text-lg font-bold text-center text-black dark:text-white pt-10">
               Upcoming Tasks
             </h1>
             {filterUpcommingTask.map((task) => (

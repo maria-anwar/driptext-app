@@ -41,6 +41,7 @@ import Register from "./views/freelancer/auth/Register";
 import RedirectHandler from "./views/auth/RedirectHandler";
 import ProtectedRoute from "./ProtectedRoutes";
 import ProtectedRegsiter from "./ProtectRegister";
+import DripTextComponent from "./views/client/dashboard/DriptextAcademy";
 
 // Freelancer import
 import FreelancerLayout from "./layouts/freelancer/FreelancerDashboardLayout";
@@ -69,7 +70,6 @@ const WebRoutes = () => {
             />
           </Route>
           <Route path="/onboarding-probetext" element={<OnboardingPage />} />
-
           <Route
             path="/onboarding-formular-freelancer"
             element={
@@ -80,7 +80,6 @@ const WebRoutes = () => {
             }
           />
           <Route path="/danke-probetext" element={<ThankYouPage />} />
-
           <Route path="/" element={<SignIn />} />
           <Route path="/auth/forgetkey/:token" element={<RedirectHandler />} />
           <Route path="/auth/forgetkey" element={<ForgotPassword />} />
@@ -88,7 +87,6 @@ const WebRoutes = () => {
           <Route path="/auth3" element={<Auth3 />} />
           <Route path="/auth2" element={<Auth2 />} />
           <Route path="/client-header" element={<Header />} />
-
           <Route path="/package-booking" element={<PackageBooking />} />
           <Route path="/bestellformular" element={<OrderForm />} />
 
@@ -109,6 +107,7 @@ const WebRoutes = () => {
             <Route path="settings" element={<Settings />} />
             <Route path="check" element={<TableWithCheckbox />} />
             <Route path="table2" element={<Table2 />} />
+            <Route path="driptextacademy" element={<DripTextComponent />} />
           </Route>
 
           {/* Freelancer Dashboard */}

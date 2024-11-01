@@ -153,7 +153,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                       }`
                     }
                   >
-                    {SidebarIcons[4].contact}
+                    {SidebarIcons[6].eduction}
                     Driptext Academy
                   </NavLink>
                 </li>
