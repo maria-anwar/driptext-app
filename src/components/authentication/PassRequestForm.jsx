@@ -73,7 +73,7 @@ const PassRequestForm = () => {
                 onChange={(e)=>{props.handleChange(e)
                   setError(false);
                   setErrorMesssage('');}}
-                className=" !border-t-blue-gray-200 focus:!border-t-gray-900 focus:ring:none"
+                  className="outline-none ring-1 ring-black border-none focus:ring-2 focus:ring-black"
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}

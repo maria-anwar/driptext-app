@@ -94,10 +94,10 @@ const ForgotPasswordForm = () => {
                   onChange={props.handleChange}
                   size="lg"
                   placeholder="********"
-                  className=" !border-t-blue-gray-200 focus:!border-t-gray-900 focus:ring:none"
-                  labelProps={{
-                    className: "before:content-none after:content-none",
-                  }}
+                  className="outline-none ring-1 ring-black border-none focus:ring-2 focus:ring-black"
+                labelProps={{
+                  className: "before:content-none after:content-none",
+                }}
                 />
                 <FontAwesomeIcon
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
@@ -126,10 +126,10 @@ const ForgotPasswordForm = () => {
                   onChange={props.handleChange}
                   size="lg"
                   placeholder="********"
-                  className=" !border-t-blue-gray-200 focus:!border-t-gray-900 focus:ring:none"
-                  labelProps={{
-                    className: "before:content-none after:content-none",
-                  }}
+                  className="outline-none ring-1 ring-black border-none focus:ring-2 focus:ring-black"
+                labelProps={{
+                  className: "before:content-none after:content-none",
+                }}
                 />
                 <FontAwesomeIcon
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
