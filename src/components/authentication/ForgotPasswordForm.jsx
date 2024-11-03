@@ -20,6 +20,8 @@ const ForgotPasswordForm = () => {
   const navigate = useNavigate();
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfrimPasswordVisible] = useState(false);
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMesssage] = useState("");
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -48,6 +50,7 @@ const ForgotPasswordForm = () => {
   });
 
   const onSubmit = async (values) => {
+    setError(false);
     let passwordValue = {
       password: values.password,
       confirmPassword: values.reEnterPass,
@@ -59,10 +62,12 @@ const ForgotPasswordForm = () => {
     }
     try {
       const response = await axios.post(`${import.meta.env.VITE_DB_URL}/auth/reset/password/${token}`, passwordValue);
-      toast.success("Password set successfully");
       navigate("/");
     } catch (error) {
-      toast.error("Error logging");
+      const errorMessage =
+        error.response?.data?.message || error.message || "Error logging";
+      setError(true);
+      setErrorMesssage(errorMessage);
     }
   };
 
@@ -91,7 +96,11 @@ const ForgotPasswordForm = () => {
                   name="password"
                   type={passwordVisible ? "text" : "password"}
                   value={props.values.password}
-                  onChange={props.handleChange}
+                  onChange={(e) => {
+                    props.handleChange(e);
+                    setError(false);
+                    setErrorMesssage("");
+                  }}
                   size="lg"
                   placeholder="********"
                   className="outline-none ring-1 ring-black border-none focus:ring-2 focus:ring-black"
@@ -123,7 +132,11 @@ const ForgotPasswordForm = () => {
                   name="reEnterPass"
                   type={confirmPasswordVisible ? "text" : "password"}
                   value={props.values.reEnterPass}
-                  onChange={props.handleChange}
+                  onChange={(e) => {
+                    props.handleChange(e);
+                    setError(false);
+                    setErrorMesssage("");
+                  }}
                   size="lg"
                   placeholder="********"
                   className="outline-none ring-1 ring-black border-none focus:ring-2 focus:ring-black"
@@ -150,6 +163,11 @@ const ForgotPasswordForm = () => {
             >
               Submit
             </Button>
+            {error && (
+              <div id="email" className="mt-4 text-sm text-red-500">
+                {errorMessage}
+              </div>
+            )}
           </Form>
         )}
       </Formik>

@@ -38,7 +38,7 @@ const PassRequestForm = () => {
       console.log('Data submitted successfully:', response.emailData);
       toast.success("Link sent successfully, click the link to reset password");
     } catch (error) {
-      const errorMessage = error.response?.data?.message || "Error sending the link";
+      const errorMessage = error.response?.data?.message || error.message  || "Error sending the link";
       setError(true)
       setErrorMesssage(errorMessage)
     }    
