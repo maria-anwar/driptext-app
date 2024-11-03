@@ -348,7 +348,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
            {showFeedback && (
                 <div>
                   {task?.feedback ? (
-                    <p className="text-green-600 font-semibold">
+                    <p className="text-red-600 font-semibold">
                       {task.feedback}
                     </p>
                   ) : (
@@ -473,7 +473,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
             {showFeedback && (
                 <div>
                   {task?.feedback ? (
-                    <p className="text-green-600 font-semibold">
+                    <p className="text-red-600 font-semibold">
                       {task.feedback}
                     </p>
                   ) : (

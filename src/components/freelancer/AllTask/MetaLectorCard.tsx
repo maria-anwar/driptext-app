@@ -350,7 +350,7 @@ const MetaLectorCard: React.FC<MetaLectorCardProps> = ({
             {showFeedback && (
               <div>
                 {task?.feedback ? (
-                  <p className="text-green-600 font-semibold">
+                  <p className="text-red-600 font-semibold">
                     {task.feedback}
                   </p>
                 ) : (
@@ -473,7 +473,7 @@ const MetaLectorCard: React.FC<MetaLectorCardProps> = ({
               {showFeedback && (
                 <div>
                   {task?.feedback ? (
-                    <p className="text-green-600 font-semibold">
+                    <p className="text-red-600 font-semibold">
                       {task.feedback}
                     </p>
                   ) : (

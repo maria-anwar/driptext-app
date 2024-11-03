@@ -340,7 +340,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
            {showFeedback && (
                 <div>
                   {task?.feedback ? (
-                    <p className="text-green-600 font-semibold">
+                    <p className="text-red-600 font-semibold">
                       {task.feedback}
                     </p>
                   ) : (
@@ -452,7 +452,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
               {showFeedback && (
                 <div>
                   {task?.feedback ? (
-                    <p className="text-green-600 font-semibold">
+                    <p className="text-red-600 font-semibold">
                       {task.feedback}
                     </p>
                   ) : (
