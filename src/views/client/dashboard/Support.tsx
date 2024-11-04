@@ -8,6 +8,7 @@ import { EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_USER_ID } from './emai
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useForm, ValidationError } from "@formspree/react";
+import axios from "axios";
 
 
 
@@ -23,40 +24,32 @@ const Support = () => {
 
 
  
-  const handleEmailSubmit = (e) => {
+  const handleEmailSubmit = async (e) => {
     e.preventDefault();
-    
     if (!email || !firstName || !lastName || !message) {
       toast.error('Please fill in all fields.');
       return;
     }
     setLoading(true);
-    emailjs.send(
-      EMAILJS_SERVICE_ID,
-      EMAILJS_TEMPLATE_ID,
-      {
-        to_email: email,
-        to_name: `${firstName} ${lastName}`,
-        from_name: `${firstName} ${lastName}`,
-        from_email: email,
-        message: message,
-      },
-      EMAILJS_USER_ID
-    )
-    .then((response) => {
-      console.log('Email sent successfully:', response);
+    const payload = {
+      email,
+      firstName,
+      lastName,
+      message,
+    };
+  
+    try {
+      const response = await axios.post(`${import.meta.env.VITE_DB_URL}/users/contactSupport`, payload);
       toast.success('Email sent successfully!');
-      setMessage('')
-    })
-    .catch((error) => {
+      setMessage('');
+    } catch (error) {
       console.error('Error sending email:', error);
       toast.error('Failed to send email.');
-    })
-    .finally(() => {
+    } finally {
       setLoading(false);
-
-    });
+    }
   };
+
   return (
     <>
       <div className="mx-auto max-w-270 3xl:px-6">
