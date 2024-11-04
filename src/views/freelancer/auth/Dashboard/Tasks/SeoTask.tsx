@@ -23,7 +23,7 @@ const SeoTasks: React.FC<SeoTasksProps> = ({
     (task) => task.seo === userId
   );
   if (filterActiveTask.length === 0 && filterUpcommingTask.length === 0) {
-    return <NoTask label="There is no any Active and Upcoming tasks to show" />;
+    return <NoTask label="There are no any Active and Upcoming tasks to show" />;
   }
   return (
     <>

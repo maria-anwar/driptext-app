@@ -59,6 +59,7 @@ const RegisterForm = () => {
       street: values.street,
       postCode: values.postcode,
       city: values.city,
+      phone:values.phone,
     
     }
 
@@ -426,15 +427,15 @@ const RegisterForm = () => {
                     setErrorMesssage("");
                   }}
                 />
-                <div className="w-full bg-custom-black flex justify-center py-2 xs:py-2.5 mt-1 rounded-xl">
-                  <button
-                     className={`border-none text-white font-medium text-base  ${loading?'cursor-not-allowed':'cursor-pointer'}`}
-                    type="submit"
+               <button
+                    className={`${
+                      loading ? "cursor-not-allowed" : "cursor-pointer"
+                    } border-none text-white font-medium text-base w-full bg-custom-black flex justify-center py-2 xs:py-2.5 mt-1 rounded-xl`}
                     disabled={loading}
                   >
                       {loading? 'Submitting' :'Submit Now'}
                   </button>
-                </div>
+              
                 {error && (
                   <div id="email" className="mt-2 text-sm text-red-500">
                     {errorMessage}

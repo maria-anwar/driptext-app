@@ -183,11 +183,11 @@ const RegistrationForm = () => {
                   />
                 </div>
 
-                <div className="w-full bg-custom-black flex justify-center py-2 xs:py-2.5 mt-1 rounded-xl">
-                  <button
-                    className={`border-none text-white font-medium text-base  ${
+            
+                <button
+                    className={`${
                       loading ? "cursor-not-allowed" : "cursor-pointer"
-                    }`}
+                    } border-none text-white font-medium text-base w-full bg-custom-black flex justify-center py-2 xs:py-2.5 mt-1 rounded-xl`}
                     type="submit"
                     disabled={loading}
                   >
@@ -199,7 +199,7 @@ const RegistrationForm = () => {
                       "Submit Order"
                     )}
                   </button>
-                </div>
+               
                 {error && (
                   <div id="email" className="mt-2 text-sm text-red-500">
                     {errorMessage}
