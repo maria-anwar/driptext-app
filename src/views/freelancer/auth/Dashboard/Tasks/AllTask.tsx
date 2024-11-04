@@ -21,6 +21,7 @@ const AllTasks: React.FC<AllTasksProps> = ({
   userId,
   getRefreshTask,
 }) => {
+  console.log(activeTasks);
   if (activeTasks.length === 0 && upcommingTasks.length === 0) {
     return <NoTask label="There is no any Active and Upcoming tasks to show" />;
   }
@@ -37,7 +38,7 @@ const AllTasks: React.FC<AllTasksProps> = ({
 
               if (
                 task.texter === userId &&
-                ["ready to work", "in progress", "in rivision"].includes(
+                ["ready to work", "in progress", "in rivision", "final"].includes(
                   task.status.toLowerCase()
                 )
               ) {
@@ -54,6 +55,7 @@ const AllTasks: React.FC<AllTasksProps> = ({
                   "ready to work",
                   "in progress",
                   "in rivision",
+                  "final",
                   "ready for proofreading",
                   "proofreading in progress",
                 ].includes(task.status.toLowerCase())
@@ -71,6 +73,7 @@ const AllTasks: React.FC<AllTasksProps> = ({
                   "ready to work",
                   "in progress",
                   "in rivision",
+                  "final",
                   "ready for proofreading",
                   "proofreading in progress",
                   "ready for seo optimization",
@@ -90,13 +93,14 @@ const AllTasks: React.FC<AllTasksProps> = ({
                   "ready to work",
                   "in progress",
                   "in rivision",
+                  "final",
                   "ready for proofreading",
                   "proofreading in progress",
                   "ready for seo optimization",
                   "seo optimization in progress",
                   "ready for 2nd proofreading",
                   "2nd proofreading in progress",
-                  "final",
+                 ,
                 ].includes(task.status.toLowerCase())
               ) {
                 TaskCard = (
@@ -108,7 +112,7 @@ const AllTasks: React.FC<AllTasksProps> = ({
                 );
               }
 
-              return TaskCard;
+              return TaskCard ? TaskCard : null;  
             })}
           </>
         ) : (
