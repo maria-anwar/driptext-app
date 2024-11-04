@@ -127,7 +127,7 @@ const Header = (props: {
          
           
           <DropdownUser />
-          <GoogleTranslation/>
+          {/* <GoogleTranslation/> */}
           {/* <!-- User Area --> */}
         </div>
       </div>
