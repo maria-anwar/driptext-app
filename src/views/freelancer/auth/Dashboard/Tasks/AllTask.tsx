@@ -23,7 +23,7 @@ const AllTasks: React.FC<AllTasksProps> = ({
 }) => {
   console.log(activeTasks);
   if (activeTasks.length === 0 && upcommingTasks.length === 0) {
-    return <NoTask label="There is no any Active and Upcoming tasks to show" />;
+    return <NoTask label="There are no any Active and Upcoming tasks to show" />;
   }
   return (
     <>

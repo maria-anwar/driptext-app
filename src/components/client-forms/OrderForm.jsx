@@ -587,17 +587,17 @@ const OrderForm = () => {
                   countriesList={countriesList}
                 />
 
-                <div className="w-full bg-custom-black flex justify-center py-2 xs:py-2.5 mt-1 rounded-xl">
+             
                   <button
                     className={`${
                       loading ? "cursor-not-allowed" : "cursor-pointer"
-                    } border-none text-white font-medium text-base`}
+                    } border-none text-white font-medium text-base w-full bg-custom-black flex justify-center py-2 xs:py-2.5 mt-1 rounded-xl`}
                     type="submit"
                     disabled={loading}
                   >
                     {loading ? "Submitting Order" : "Submit Order"}
                   </button>
-                </div>
+              
               </div>
               {isSuccess && (
                 <p className="text-green-600 3xl:text-lg">

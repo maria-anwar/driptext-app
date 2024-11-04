@@ -6,6 +6,7 @@ import SeoTasks from "./SeoTask";
 import MetaLector from "./MetaLector";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import Breadcrumb from "../../../../../components/freelancer/breeadcrumbs/Breadcrumb";
 
 const Tasks: React.FC = () => {
   const user = useSelector((state) => state.user);
@@ -127,10 +128,10 @@ const Tasks: React.FC = () => {
   return (
     <div className="2xl:px-6 3xl:px-10">
       <div className="w-full 2xl:max-w- pb-2">
-        <h1 className="text-title-md font-bold text-black dark:text-white mb-1">
-          Tasks
-        </h1>
-        <p className="text-dark-gray">Here you can view your tasks.</p>
+      <Breadcrumb
+          pageName="Tasks"
+          pageData="Here you can view your tasks"
+        />
       </div>
       <div className="w-full">
         {buttons.map((button) => (
