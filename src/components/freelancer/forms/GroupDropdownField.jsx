@@ -21,14 +21,14 @@ import React from "react";
   return (
     <>
       <div className="w-full flex flex-col gap-1">
-        <label                         className="pb-3 block text-sm font-medium text-black dark:text-white pt-6"
+        <label className="pb-3 block text-sm font-medium text-black dark:text-white pt-6"
 >
           {label}
           <span className="text-red-600 text:lg 2xl:text-[17px] -mb-10 pl-1">*</span>
         </label>
         <div className="relative">
           <select
-                          className="w-full rounded border border-stroke bg-gray py-3 pl-6 pr-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+          className="w-full rounded border outline-none border-stroke bg-gray py-3 pl-6 pr-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary  focus:outline-none appearance-none   dark:placeholder-gray-400"
             type={type}
             placeholder={placeholder}
             name={name}
