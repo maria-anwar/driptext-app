@@ -39,6 +39,7 @@ const Earning: React.FC = () => {
       setLoading(false);
     }
   };
+  
   const formatDate = (date: string, format: string = "MMM  YYYY") => {
     return moment(date).format(format);
   };
