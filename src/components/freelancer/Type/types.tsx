@@ -87,3 +87,42 @@ export interface Task {
     contentPurpose: string | null;
     contentInfo: string | null;
   }
+
+  
+  
+ export interface Earn {
+    _id: string;
+    createdAt: string;  
+    date: string;  
+    difference:  null |number;
+    finalize: boolean;
+    freelancer: string;  
+    isActive: string;  
+    price: number ; 
+    project: Project;  
+    role: string;  
+    task: Task;  
+    updatedAt: string;  
+    billedWords:  null |number; 
+  }
+
+  
+  
+  interface BillingInfo {
+    iban?: string;
+    vatRegulation?: string;
+  }
+  
+  export interface UserData {
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+    phone?: string;
+    street?: string;
+    postCode?: string;
+    city?: string;
+    country?: string;
+    billingInfo?: BillingInfo;
+    companyName?: string;
+    vatIdNo?: string;
+  }

@@ -1,22 +1,24 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import GroupField from "../../../../components/freelancer/forms/GroupField";
 import GroupDropdownField from "../../../../components/freelancer/forms/GroupDropdownField";
-import { useSelector } from "react-redux";
 import Breadcrumb from "../../../../components/freelancer/breeadcrumbs/Breadcrumb";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { UserData } from "../../../../components/freelancer/Type/types";
+import { useDispatch, useSelector } from "react-redux";
+import { updateUserFields } from "../../../../redux/userSlice";
+
 
 const ProfilePage = () => {
   const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
-  const [updateLoading,setUpdateLoading]= useState(false)
-  const [userData, setUserData] = useState(null);
-  const [error, setError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [updateLoading, setUpdateLoading] = useState(false);
+  const [userData, setUserData] = useState<UserData>({});
 
   useEffect(() => {
     if (user) {
@@ -75,7 +77,7 @@ const ProfilePage = () => {
     vatIdNo: Yup.string().required("VAT ID is required"),
   });
 
-  const onSubmit = async (values) => {
+  const onSubmit = async (values: any) => {
     setUpdateLoading(true);
     try {
       const userToken = user?.user?.token;
@@ -95,9 +97,15 @@ const ProfilePage = () => {
         companyName: values.companyName,
         vatId: values.vatIdNo,
       };
-      const response = await axios.post(
+      await axios.post(
         `${import.meta.env.VITE_DB_URL}/freelancer/updateFreelancer`,
         payload
+      );
+      dispatch(
+        updateUserFields({ path: "data.user.firstName", value: values.firstName })
+      );
+      dispatch(
+        updateUserFields({ path: "data.user.lastName", value: values.lastName })
       );
       toast.success("Profile updated successfully!");
       setUpdateLoading(false);
@@ -110,7 +118,7 @@ const ProfilePage = () => {
 
   return (
     <div className="mx-auto max-w-270 3xl:px-6">
-      <Breadcrumb pageName="Profile Setting" />
+      <Breadcrumb pageName="Profile Setting" pageData="" />
       {loading ? (
         <div className="rounded-sm border border-stroke pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1  w-full bg-slate-200 h-[460px] md:h-[600px] animate-pulse"></div>
       ) : (
@@ -276,11 +284,6 @@ const ProfilePage = () => {
                           {updateLoading ? "Submitting..." : "Update Profile"}
                         </button>
                       </div>
-                      {error && (
-                        <div className="mt-2 text-sm text-red-500">
-                          {errorMessage}
-                        </div>
-                      )}
                     </Form>
                   )}
                 </Formik>
@@ -297,7 +300,6 @@ const ProfilePage = () => {
           to="/auth/lost/request"
           className="inline-flex items-center justify-center gap-2.5 bg-black py-4 px-10 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
         >
-          {/* <span>{SidebarIcons[3].auth}</span> */}
           Reset Password
         </Link>
       </div>
@@ -306,3 +308,4 @@ const ProfilePage = () => {
 };
 
 export default ProfilePage;
+
