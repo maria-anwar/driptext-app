@@ -1,15 +1,14 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import Breadcrumb from "../../../../components/freelancer/breeadcrumbs/Breadcrumb";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { set } from "date-fns";
 import moment from "moment";
+import { Earn } from "../../../../components/freelancer/Type/types";
 
 const Earning: React.FC = () => {
   const user = useSelector((state) => state.user);
- 
-  const [earningData, setEarning] = useState([]);
+ console.log("user", user);
+  const [earningData, setEarning] = useState<Earn[]>([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -31,7 +30,6 @@ const Earning: React.FC = () => {
       );
 
       const projectDataArray = response.data.data;
-      console.log("projectDataArray", projectDataArray);
       setEarning(projectDataArray);
       setLoading(false);
     } catch (err) {
@@ -125,17 +123,17 @@ const Earning: React.FC = () => {
                           </p>
                         </td>
                         <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                          <p className="text-black dark:text-white">
+                        <p className={`${earn?.finalize? "text-yellow-500":"text-black dark:text-white"}`}>
                             {earn?.finalize ? Number(earn?.billedWords)?.toFixed(0) : earn?.task?.status}
                           </p>
                         </td>
                         <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                          <p className="text-black dark:text-white">
+                        <p className={`${earn?.finalize? "text-red-500":"text-black dark:text-white"}`}>
                           {earn?.finalize ?  Number(earn?.difference)?.toFixed(0) : earn?.task?.status}
                           </p>
                         </td>
                         <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                          <p className="text-black dark:text-white">
+                          <p className={`${earn?.finalize? "text-green-500":"text-black dark:text-white"}`}>
                           {earn?.finalize ? '€ ' +earn?.price.toFixed(4) : earn?.task?.status}
                           </p>
                         </td>
