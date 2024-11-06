@@ -3,6 +3,7 @@ import logo from "../../assets/homeimages/driptext.png";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import { parseJSON } from "date-fns";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -16,34 +17,67 @@ const ThankYouPage = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const dispatch = useDispatch();
 
+  // const [hostPageId, setHostPageId] = useState("")
+
   const getHostPageResponse = async (hostId) => {
     try {
       const body = {
         host_id: hostId,
       };
 
+      
       const { data } = await axios.post(
         `${import.meta.env.VITE_DB_URL}/chargebee/hostpage_response`,
         body
       );
+      console.log("host page response: ", data);
 
       const tempPayload = await localStorage.getItem("orderPayload");
+      console.log("temp payload: ", tempPayload);
       const payload = JSON.parse(tempPayload);
+      console.log("payload: ", payload);
       const orderPayload = { ...payload, response: data.data.content };
       try {
+        console.log("initial payload: ", payload);
+        console.log("final payload: ", orderPayload);
         `${import.meta.env.VITE_DB_URL}/users/create`
         const response = await axios.post(
          `${import.meta.env.VITE_DB_URL}/users/create`,
           orderPayload
         );
+        console.log(response.data);
+
         localStorage.removeItem("orderPayload");
+
         dispatch(updateRoleTitle("Client"));
+
+        // dispatch(
+        //   updateUserFields({ path: "data.user.role.title", value: 'Client' })
+
+        // console.log(user)
+
+        // if (response.status === 200) {
+        //   console.log("user create request success");
+        //   try {
+        //     const { data: emailResponse } = await axios.post(
+        //       "http://localhost:8000/api/auth/orderSuccessEamil",
+        //       {
+        //         email: orderPayload.email,
+        //       }
+        //     );
+        //     console.log("email sent");
+        //   } catch (error) {
+        //     console.log("email api error: ", error);
+        //   }
+        // }
       } catch (error) {
+        console.log("create api error: ", error);
         const errorMessage =
           error.response?.data?.message || error.message || "create api error";
         toast.error(errorMessage);
       }
     } catch (error) {
+      console.log("host page error: ", error);
       const errorMessage =
         error.response?.data?.message ||
         error.message ||
@@ -72,12 +106,25 @@ const ThankYouPage = () => {
     }
   };
 
+  // useEffect(() => {
+  //   if (localStorage.getItem("token")) {
+  //     setIsAuthenticated(true)
+  //   } else {
+  //     setIsAuthenticated(false)
+  //   }
+
+  // },[])
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center pt-5 pb-12 px-4 sm:px-6 lg:px-6">
+      {/* Top section with logo */}
       <Link to="/" className="w-full max-w-xl text-center mb-8">
         <img src={logo} alt="Logo" className="mx-auto h-8 4xl:h-10 w-44 " />
       </Link>
+
+      {/* Main text content */}
       <ToastContainer />
+
       <div className="w-full max-w-4xl text-center 2xl:px-24 4xl:mt-14 mb-5">
         <h1 className="text-3xl font-bold text-gray-700">
           Thank you so much for your information
