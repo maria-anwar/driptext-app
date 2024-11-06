@@ -1,18 +1,14 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { useNavigate, Link } from "react-router-dom";
 import {
-  Card,
   Input,
-  Checkbox,
   Button,
   Typography,
 } from "@material-tailwind/react";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setUser } from "../../redux/userSlice.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
@@ -76,7 +72,6 @@ const LoginForm = () => {
       setError(true);
       setErrorMesssage(errorMessage);
       setLoading(false);
-      console.log(error);
     }
 
    
@@ -91,7 +86,6 @@ const LoginForm = () => {
       >
         {(props) => (
           <Form>
-            <ToastContainer />
             <div className="mb-1 flex flex-col gap-6">
               <Typography
                 variant="small"
