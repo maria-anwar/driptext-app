@@ -62,6 +62,7 @@ const ForgotPasswordForm = () => {
     }
     try {
       const response = await axios.post(`${import.meta.env.VITE_DB_URL}/auth/reset/password/${token}`, passwordValue);
+      localStorage.removeItem('key')
       navigate("/");
     } catch (error) {
       const errorMessage =
