@@ -1,13 +1,10 @@
-import { GroupField } from "./GroupField";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { GroupTextArea } from "./GroupTextArea";
 import { GroupDropdownField } from "./GroupDropdownField";
 import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const OnboardingForm = () => {
@@ -108,7 +105,6 @@ const OnboardingForm = () => {
                 <h2 className="text-custom-black text-base font-semibold">
                   1. General Information
                 </h2>
-                <ToastContainer />
                 <GroupDropdownField
                   label={"Speech"}
                   type={"text"}
