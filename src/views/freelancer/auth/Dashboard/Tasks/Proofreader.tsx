@@ -18,7 +18,7 @@ const Proofreader: React.FC<ProofreaderProps> = ({
   const filterUpcommingTask = upcommingTasks.filter((task) => task.metaLector === userId);
   return (
     <>
-      <h1 className="text-lg text-center text-black dark:text-white pt-10">
+      <h1 className="text-xl text-center text-black dark:text-white pt-10">
         Active Tasks
       </h1>
       {filterActiveTask.length > 0 ? (
@@ -28,8 +28,9 @@ const Proofreader: React.FC<ProofreaderProps> = ({
       ) : (
         <p className="text-center text-gray-500 pt-10 pb-3">No active meta-lector tasks</p>
       )}
+      <span className="block border-t  border-zinc-200 dark:border-zinc-500 mx-auto w-full mt-4 font-thin"></span>
 
-      <h1 className="text-lg text-center text-black dark:text-white pt-10 pb-3">
+      <h1 className="text-xl text-center text-black dark:text-white pt-10 pb-3">
         Upcoming Tasks
       </h1>
       {filterUpcommingTask.length > 0 ? (
