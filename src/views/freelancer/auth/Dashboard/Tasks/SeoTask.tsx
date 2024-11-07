@@ -30,7 +30,7 @@ const SeoTasks: React.FC<SeoTasksProps> = ({
       <div>
         {filterActiveTask.length > 0 ? (
           <>
-            <h1 className="text-lg font-bold text-center text-black dark:text-white pt-10">
+            <h1 className="text-xl font-bold text-center text-black dark:text-white pt-10">
               Active Tasks
             </h1>
             {filterActiveTask.map((task) => (
@@ -45,11 +45,11 @@ const SeoTasks: React.FC<SeoTasksProps> = ({
           <NoTask label="There is no any Active task to show" />
         )}
       </div>
-      <span className="block ring-1 ring-zinc-300 dark:ring-zinc-500 mx-auto w-full my-4"></span>
+      <span className="block border-t  border-zinc-200 dark:border-zinc-500 mx-auto w-full mt-4 font-thin"></span>
       <div>
         {filterUpcommingTask.length > 0 ? (
           <>
-            <h1 className="text-lg font-bold text-center text-black dark:text-white pt-10">
+            <h1 className="text-xl font-bold text-center text-black dark:text-white pt-10">
               Upcoming Tasks
             </h1>
             {filterUpcommingTask.map((task) => (
