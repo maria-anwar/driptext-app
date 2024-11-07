@@ -30,7 +30,7 @@ const SeoTasks: React.FC<SeoTasksProps> = ({
       <div>
         {filterActiveTask.length > 0 ? (
           <>
-            <h1 className="text-[20px] 4xl:text-[22px] 5xl:text-[24px] font-semibold text-center text-black dark:text-white pt-10">
+            <h1 className="text-[20px] 4xl:text-[22px] 5xl:text-[24px] font-medium text-center text-black dark:text-white pt-10">
               Active Tasks
             </h1>
             {filterActiveTask.map((task) => (
@@ -49,7 +49,7 @@ const SeoTasks: React.FC<SeoTasksProps> = ({
       <div>
         {filterUpcommingTask.length > 0 ? (
           <>
-            <h1 className="text-[20px] 4xl:text-[22px] 5xl:text-[24px] font-semibold text-center text-black dark:text-white pt-10">
+            <h1 className="text-[20px] 4xl:text-[22px] 5xl:text-[24px] font-medium text-center text-black dark:text-white pt-10">
               Upcoming Tasks
             </h1>
             {filterUpcommingTask.map((task) => (
