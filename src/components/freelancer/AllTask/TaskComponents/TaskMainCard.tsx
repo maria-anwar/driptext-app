@@ -11,7 +11,7 @@ interface TaskProps {
 const Card: React.FC<TaskProps> = ({ task, Upcomming, clickableLink }) => {
 
   return (
-    <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 md:grid-rows-2 lg:grid-cols-6 lg:grid-rows-1">
+    <div className="grid grid-cols-2 gap-x-4  gap-y-0 sm:grid-cols-2 md:grid-cols-3 md:grid-rows-2 2xl:grid-cols-3 3xl:grid-cols-6 3xl:grid-rows-1">
       <div className="flex flex-col pr-3">
         <span className="text-base font-semibold text-dark-gray dark:text-slate-200 py-4 uppercase">
           Task

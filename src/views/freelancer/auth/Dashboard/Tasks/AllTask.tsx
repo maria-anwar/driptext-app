@@ -30,7 +30,7 @@ const AllTasks: React.FC<AllTasksProps> = ({
       <div>
         {activeTasks.length > 0 ? (
           <>
-            <h1 className="text-xl font-bold text-center text-black dark:text-white pt-10">
+            <h1 className="text-[20px] 4xl:text-[22px] 5xl:text-[24px] font-semibold text-center text-black dark:text-white pt-10">
               Active Tasks
             </h1>
             {activeTasks.map((task) => {
@@ -123,7 +123,7 @@ const AllTasks: React.FC<AllTasksProps> = ({
       <div>
         {upcommingTasks.length > 0 ? (
           <>
-            <h1 className="text-xl font-bold text-center text-black dark:text-white pt-10">
+            <h1 className="text-[20px] 4xl:text-[22px] 5xl:text-[24px] font-semibold text-center text-black dark:text-white pt-10">
               Upcoming Tasks
             </h1>
             {upcommingTasks.map((task) => (

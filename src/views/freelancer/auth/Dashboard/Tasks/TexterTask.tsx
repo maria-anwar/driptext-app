@@ -23,15 +23,17 @@ const TexterTasks: React.FC<TexterTasksProps> = ({
   );
 
   if (filterActiveTask.length === 0 && filterUpcommingTask.length === 0) {
-    return <NoTask label="There are no any Active and Upcoming tasks to show" />;
+    return (
+      <NoTask label="There are no any Active and Upcoming tasks to show" />
+    );
   }
-  console.log(filterActiveTask)
+  console.log(filterActiveTask);
   return (
     <>
       <div>
         {filterActiveTask.length > 0 ? (
           <>
-            <h1 className="text-xl font-bold text-center text-black dark:text-white pt-10">
+            <h1 className="text-[20px] 4xl:text-[22px] 5xl:text-[24px] font-semibold text-center text-black dark:text-white pt-10">
               Active Tasks
             </h1>
             {filterActiveTask.map((task) => (
@@ -50,7 +52,7 @@ const TexterTasks: React.FC<TexterTasksProps> = ({
       <div>
         {filterUpcommingTask.length > 0 ? (
           <>
-            <h1 className="text-lg font-bold text-center text-black dark:text-white pt-10">
+            <h1 className="text-[20px] 4xl:text-[22px] 5xl:text-[24px] font-semibold text-center text-black dark:text-white pt-10">
               Upcoming Tasks
             </h1>
             {filterUpcommingTask.map((task) => (
