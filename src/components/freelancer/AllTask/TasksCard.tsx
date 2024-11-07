@@ -316,7 +316,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
       )}
       {showProjectInfo && (
         <div className="w-auto fixed inset-0 flex items-center justify-center z-[9999] bg-neutral-200 dark:bg-slate dark:bg-opacity-15 bg-opacity-60 px-4 pt-8">
-          <div className="bg-white dark:bg-black p-6 rounded shadow-lg lg:w-5/12 xl:w-5/12 2xl:w-5/12 3xl:w-5/12 max-h-[90vh] overflow-y-auto scrollbar-hide">
+          <div className="bg-white dark:bg-black p-6 rounded shadow-lg  lg:w-8/12 xl:w-8/12 2xl:w-8/12 3xl:w-6/12 max-h-[90vh] overflow-y-auto scrollbar-hide">
             <div className="flex justify-between items-center mb-2">
               <h2 className="text-xl font-bold  dark:text-white">
                 Task Details
@@ -355,7 +355,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
       )}
       {showFinishDialog && (
         <div className="w-auto fixed inset-0 flex items-center justify-center z-[9999] bg-neutral-200 dark:bg-slate dark:bg-opacity-15 bg-opacity-60 px-4 pt-6">
-          <div className="bg-white dark:bg-black p-6 rounded shadow-lg lg:w-5/12 xl:w-5/12 2xl:w-5/12 3xl:w-5/12 max-h-[90vh] overflow-y-auto scrollbar-hide">
+          <div className="bg-white dark:bg-black p-6 rounded shadow-lg  lg:w-8/12 xl:w-8/12 2xl:w-8/12 3xl:w-6/12 max-h-[90vh] overflow-y-auto scrollbar-hide">
             <div className="flex justify-between items-center mb-2">
               <h2 className="text-xl font-bold dark:text-white">
                 Finish order
@@ -429,7 +429,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
 
       {showDetailsDialog && (
         <div className="w-auto fixed inset-0 flex items-center justify-center z-[9999] bg-neutral-200 dark:bg-slate dark:bg-opacity-15 bg-opacity-60 px-4">
-          <div className="bg-white dark:bg-black p-6 rounded shadow-lg lg:w-5/12 xl:w-5/12 2xl:w-5/12 3xl:w-5/12 max-h-[90vh] overflow-y-auto scrollbar-hide">
+          <div className="bg-white dark:bg-black p-6 rounded shadow-lg  lg:w-8/12 xl:w-8/12 2xl:w-8/12 3xl:w-6/12 max-h-[90vh] overflow-y-auto scrollbar-hide">
             <div className="flex justify-between items-center mb-2">
               <h2 className="text-xl font-bold dark:text-white">
                 Task Details
