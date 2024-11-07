@@ -27,7 +27,12 @@ const TaskInfoCard: React.FC<TaskProps> = ({
           Deadline:{" "}
           <span
             className={`w-fit 
-      ${new Date(task?.dueDate).setHours(0, 0, 0, 0) >= new Date().setHours(0, 0, 0, 0) ? 'bg-green-600' : 'bg-red-600'}
+      ${
+        new Date(task?.dueDate).setHours(0, 0, 0, 0) >=
+        new Date().setHours(0, 0, 0, 0)
+          ? "bg-green-600"
+          : "bg-red-600"
+      }
       text-white px-3 text-center rounded-full`}
           >
             {formatDate(task?.dueDate) ?? "no set"}
@@ -88,6 +93,9 @@ const TaskInfoCard: React.FC<TaskProps> = ({
         <p className="dark:text-white">
           Word Count: {task?.actualNumberOfWords}/{task?.desiredNumberOfWords}
         </p>
+        {task?.comments?.trim() ? (
+          <p className="dark:text-white">Comment: {task?.comments}</p>
+        ) : null}
       </div>
 
       <AccordionData
