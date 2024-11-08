@@ -20,7 +20,6 @@ import Register from "./views/freelancer/auth/Register";
 import RedirectHandler from "./views/auth/RedirectHandler";
 import ProtectedRoute from "./ProtectedRoutes";
 import ProtectedRegsiter from "./ProtectRegister";
-import DripTextComponent from "./views/client/dashboard/DriptextAcademy";
 
 // Freelancer import
 import FreelancerLayout from "./layouts/freelancer/FreelancerDashboardLayout";
@@ -82,7 +81,6 @@ const WebRoutes = () => {
             <Route path="task-table" element={<TaskTable />} />
             <Route path="contact" element={<Support />} />
             <Route path="settings" element={<Settings />} />
-            <Route path="driptextacademy" element={<DripTextComponent />} />
           </Route>
 
           {/* Freelancer Dashboard */}
