@@ -5,6 +5,8 @@ import SidebarIcons from "../../../components/client/icons/SidebarIcons";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUserFields, updateRoleTitle } from "../../../redux/userSlice";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 const Settings = () => {
   const user = useSelector((state) => state.user);
@@ -14,6 +16,7 @@ const Settings = () => {
   );
   const [lastName, setLastName] = useState(user.user.data.user.lastName || "");
   const [loading, setLoading] = useState(false);
+  const [toggle, setToggle] = useState(false);
 
   const handleUpdate = async (e) => {
     setLoading(true);
@@ -224,17 +227,33 @@ const Settings = () => {
             </div>
           </div>
         </div>
-        {/* <div className="mb-5.5 flex items-center justify-between gap-4 mt-6.5">
-                  <h2 className="text-title-md2 font-semibold text-black dark:text-white ">
+        <div className="mb-5.5 flex items-center justify-between gap-4 mt-6.5">
+          <h2 className="text-title-md2 font-semibold text-black dark:text-white ">
             Enable Email
           </h2>
-          <input
-            type="checkbox"
-            id="notifEmail"
-            className="rounded-full"
-            defaultChecked
-          />
-        </div> */}
+          <label className="relative inline-flex items-center cursor-pointer">
+            <input
+              type="checkbox"
+              className="sr-only peer"
+              checked={toggle}
+              onChange={() => setToggle(!toggle)}
+            />
+            <div
+              className={`flex ${
+                toggle
+                  ? "justify-start pl-1.5 peer-checked:bg-blue-600"
+                  : "justify-end pr-1.5 dark:bg-graydark bg-slate-200"
+              } items-center w-11 h-6 bg-gray-200 rounded-full peer peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all`}
+            >
+              <FontAwesomeIcon
+                icon={faCheck}
+                className="text-current"
+                width="12"
+                height="12"
+              />
+            </div>
+          </label>
+        </div>
 
         <div className="flex flex-col gap-4 mt-6.5">
           <h2 className="text-title-md2 font-semibold text-black dark:text-white ">
@@ -244,7 +263,7 @@ const Settings = () => {
             to="/auth/lost/request"
             className="inline-flex items-center justify-center gap-2.5 bg-black py-4 px-10 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
           >
-            <span>{SidebarIcons[3].auth}</span>
+            {/* <span>{SidebarIcons[3].auth}</span> */}
             Reset Password
           </Link>
         </div>
