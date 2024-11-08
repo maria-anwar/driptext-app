@@ -1,6 +1,6 @@
 import React from "react";
 import { Task } from "../../Type/types";
-import { formatDate } from "../../Helper/formatDate";
+import moment from "moment";
 
 interface TaskProps {
   task: Task;
@@ -9,26 +9,53 @@ interface TaskProps {
 }
 
 const Card: React.FC<TaskProps> = ({ task, Upcomming, clickableLink }) => {
-
+  const formatDate = (date: string, format: string = "DD.MM.YYYY") => {
+    if (!date) return "";
+    return moment(date).format(format);
+  };
   return (
     <div className="grid grid-cols-2 gap-x-4  gap-y-0 sm:grid-cols-2 md:grid-cols-3 md:grid-rows-2 2xl:grid-cols-3 3xl:grid-cols-6 3xl:grid-rows-1">
       <div className="flex flex-col pr-3">
         <span className="text-base font-semibold text-dark-gray dark:text-slate-200 py-4 uppercase">
           Task
         </span>
-        <span>{task?.taskName}</span>
+        <span className="text-sky-500">
+          <a
+            href={!Upcomming && clickableLink ? task?.fileLink : "#"}
+            target={!Upcomming && clickableLink ? "_blank" : undefined}
+            rel="noopener noreferrer"
+            aria-disabled={Upcomming || !clickableLink}
+            className={`${
+              !Upcomming && clickableLink
+                ? "text-blue-500"
+                : "cursor-not-allowed text-gray-500"
+            }`}
+            onClick={(e) => {
+              if (Upcomming || !clickableLink) {
+                e.preventDefault();
+              }
+            }}
+          >
+            {task?.taskName}
+          </a>
+        </span>
       </div>
       <div className="flex flex-col pr-3">
         <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-4 uppercase">
           Deadline
         </span>
         <span
-    className={`w-fit 
-      ${new Date(task?.dueDate).setHours(0, 0, 0, 0) >= new Date().setHours(0, 0, 0, 0) ? 'bg-green-600' : 'bg-red-600'}
+          className={`w-fit 
+      ${
+        new Date(task?.dueDate).setHours(0, 0, 0, 0) >=
+        new Date().setHours(0, 0, 0, 0)
+          ? "bg-green-600"
+          : "bg-red-600"
+      }
       text-white px-3 text-center rounded-full`}
-  >
-    {formatDate(task?.dueDate) ?? "no set"}
-  </span>
+        >
+          {formatDate(task?.dueDate) ?? "no set"}
+        </span>
       </div>
       <div className="flex flex-col pr-3">
         <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-4 uppercase">
@@ -66,33 +93,33 @@ const Card: React.FC<TaskProps> = ({ task, Upcomming, clickableLink }) => {
         <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-4 uppercase">
           active role
         </span>
-        <span className="uppercase">{task?.activeRole}</span>
+        <span className="uppercase">
+          {task?.status.toUpperCase() === "FINAL"
+            ? "none"
+            : task.status.toUpperCase() === "FREE TRIAL" ||
+              task.status.toUpperCase() === "READY TO WORK" ||
+              task.status.toUpperCase() === "IN PROGRESS" ||
+              task.status.toUpperCase() === "IN RIVISION"
+            ? "Texter"
+            : task.status.toUpperCase() === "READY FOR PROOFREADING" ||
+              task.status.toUpperCase() === "PROOFREADING IN PROGRESS"
+            ? "Lector"
+            : task.status.toUpperCase() === "READY FOR SEO OPTIMIZATION" ||
+              task.status.toUpperCase() === "SEO OPTIMIZATION IN PROGRESS"
+            ? "SEO Optimizer"
+            : task.status.toUpperCase() === "READY FOR 2ND PROOFREADING" ||
+              task.status.toUpperCase() === "2ND PROOFREADING IN PROGRESS"
+            ? "Meta-Lector"
+            : "none"}
+        </span>
       </div>
       <div className="flex flex-col pr-3">
         <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-4 uppercase">
-          google-link
+          your role
         </span>
-        <span className="text-sky-500">
-          <a
-            href={!Upcomming && clickableLink ? task?.fileLink : "#"}
-            target={!Upcomming && clickableLink ? "_blank" : undefined}
-            rel="noopener noreferrer"
-            aria-disabled={Upcomming || !clickableLink}
-            className={`${
-              !Upcomming && clickableLink
-                ? "text-blue-500"
-                : "cursor-not-allowed text-gray-500"
-            }`}
-            onClick={(e) => {
-              if (Upcomming || !clickableLink) {
-                e.preventDefault();
-              }
-            }}
-          >
-            doc-link
-          </a>
-        </span>
+        <span className="uppercase">{task?.activeRole}</span>
       </div>
+
       <div className="flex flex-col pr-3">
         <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-4 uppercase">
           wordcount

@@ -494,7 +494,7 @@ const OrderForm = () => {
                   />
                 )}
 
-                <GroupField
+                {/* <GroupField
                   label={"Text Price"}
                   type={"number"}
                   id={"textPrice"}
@@ -504,7 +504,7 @@ const OrderForm = () => {
                   errors={props.errors.textPrice}
                   onChange={props.handleChange}
                   disabled={true}
-                />
+                /> */}
 
                 <GroupField
                   label={"Domain"}

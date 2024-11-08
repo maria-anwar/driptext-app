@@ -7,7 +7,6 @@ import { Earn } from "../../../../components/freelancer/Type/types";
 
 const Earning: React.FC = () => {
   const user = useSelector((state) => state.user);
- console.log("user", user);
   const [earningData, setEarning] = useState<Earn[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -31,6 +30,7 @@ const Earning: React.FC = () => {
 
       const projectDataArray = response.data.data;
       setEarning(projectDataArray);
+      console.log("projectDataArray", projectDataArray);
       setLoading(false);
     } catch (err) {
       console.error("Error fetching project details:", err);
@@ -76,11 +76,12 @@ const Earning: React.FC = () => {
                       Actual Number of Words
                     </th>
                     <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
-                      Billed Words
-                    </th>
-                    <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
                       Difference
                     </th>
+                    <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
+                      Billed Words
+                    </th>
+                   
                     <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
                       Price
                     </th>
@@ -91,11 +92,13 @@ const Earning: React.FC = () => {
                     earningData.map((earn, index) => (
                       <tr className="text-left" key={earn?._id}>
                         <td className="border-b border-[#eee]  py-5 px-4 dark:border-strokedark">
-                          <p
+                          <a
+                          href={earn?.task?.fileLink}
+                          target="_blank"
                             className="text-blue-500  text-sm"
                           >
                             {earn?.task?.taskName}
-                          </p>
+                          </a>
                         </td>
                         <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                           <p className="text-black dark:text-white">
@@ -122,19 +125,20 @@ const Earning: React.FC = () => {
                           {earn?.task?.actualNumberOfWords}
                           </p>
                         </td>
+                       
                         <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                        <p className={`${earn?.finalize? "text-yellow-500":"text-black dark:text-white"}`}>
-                            {earn?.finalize ? Number(earn?.billedWords)?.toFixed(0) : earn?.task?.status}
+                        <p className={`${earn?.finalize? "text-red-500":"text-black dark:text-white"}`}>
+                          {earn?.finalize ?  Number(earn?.difference)?.toFixed(0) : 'Available after completion'}
                           </p>
                         </td>
                         <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                        <p className={`${earn?.finalize? "text-red-500":"text-black dark:text-white"}`}>
-                          {earn?.finalize ?  Number(earn?.difference)?.toFixed(0) : earn?.task?.status}
+                        <p className={`${earn?.finalize? "text-yellow-500":"text-black dark:text-white"}`}>
+                            {earn?.finalize ? Number(earn?.billedWords)?.toFixed(0) : 'Available after completion'}
                           </p>
                         </td>
                         <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                           <p className={`${earn?.finalize? "text-green-500":"text-black dark:text-white"}`}>
-                          {earn?.finalize ? '€ ' +earn?.price.toFixed(4) : earn?.task?.status}
+                          {earn?.finalize ? '€ ' +earn?.price.toFixed(4) : 'Available after completion'}
                           </p>
                         </td>
                       </tr>
