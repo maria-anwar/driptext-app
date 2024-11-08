@@ -246,8 +246,9 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
 
   return (
     <div className="w-full mt-3 mb-10 rounded-sm ring-1 ring-slate-200 dark:border-stroke  py-1 px-7.5 shadow-2 dark:border-strokedark  dark:bg-boxdark">
-      <div className="py-2 dark:text-white text-xl font-semibold pt-6">
-        <h4>{task?.project?.projectName}</h4>
+     <div className="py-2 dark:text-white text-xl font-semibold pt-6 flex flex-row">
+        <h4>{task?.project?.projectId}:</h4>
+        <h4 className="pl-1">{task?.project?.projectName}</h4>
       </div>
       <div className="pb-4">
         <Card task={task} clickableLink={clickableLink} />

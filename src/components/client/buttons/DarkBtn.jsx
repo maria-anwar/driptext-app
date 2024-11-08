@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 
 const DarkBtn = ({name,url}) => {
   return (
-    <Link
-      to={url}
+    <a
+      href={url}
+      target="_blank"
       className="inline-flex items-center justify-center gap-2.5 bg-black py-4 text-sm xl:text-base  text-center font-medium text-white hover:bg-opacity-90 px-5 lg:px-8 5xl:px-10"
     >
       <span>
@@ -24,7 +25,7 @@ const DarkBtn = ({name,url}) => {
         </svg>
       </span>
       {name}
-    </Link>
+    </a>
   );
 };
 

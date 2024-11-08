@@ -143,17 +143,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     Contact Support
                   </NavLink>
                 </li>
-                <li>
-                  <NavLink
-                    to="#"
-                    className={`group text-zinc-500 cursor-not-allowed relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium duration-300 ease-in-out 
-                         "bg-graydark dark:bg-meta-4" : ""
-                      }`}
-                  >
-                    {SidebarIcons[5].eduction}
-                    Driptext Academy
-                  </NavLink>
-                </li>
               </ul>
               <ul className="flex flex-col gap-1.5">
                 <li>

@@ -39,11 +39,14 @@ const RegisterForm = () => {
     postcode: Yup.string().required("please enter your postal code"),
     city: Yup.string().required("please enter your city"),
     country: Yup.string().required("please enter your country"),
-
     iban: Yup.string().required("please entert your IBAN"),
-
     company: Yup.string().required("please enter your company name"),
-    vatId: Yup.string().required("VAT ID is required"),
+    vatId: Yup.string().when(["vatRegulation"], ([vatRegulation], schema) => {
+      if (vatRegulation === "CY Ltd (19%)" || vatRegulation === "Reverse charge (0%)") {
+        return schema.required("VAT ID is required");
+      }
+      return schema.notRequired();
+    }),    
   });
   const onSubmit = async (values) => {
     setLoading(true);
@@ -66,7 +69,7 @@ const RegisterForm = () => {
     try {
       await axios.post(`${import.meta.env.VITE_DB_URL}/freelancer/create`, registerData);
       setLoading(false);
-       navigate("/");
+       window.location.href = "https://driptext.de/danke-freelancer/";
      } catch (error) {
       setLoading(false);
       const errorMessage =
@@ -77,158 +80,6 @@ const RegisterForm = () => {
 
   };
 
-  const countriesList = [
-    {
-      id: "1",
-      value: "DE",
-      name: "Germany",
-    },
-    {
-      id: "2",
-      value: "AF",
-      name: "Afghanistan",
-    },
-    {
-      id: "3",
-      value: "EG",
-      name: "Egypt",
-    },
-    {
-      id: "4",
-      value: "AL",
-      name: "Albania",
-    },
-    {
-      id: "5",
-      value: "DZ",
-      name: "Algeria",
-    },
-    {
-      id: "6",
-      value: "AD",
-      name: "Andorra",
-    },
-    {
-      id: "7",
-      value: "AO",
-      name: "Angola",
-    },
-    {
-      id: "8",
-      value: "AG",
-      name: "Antigua and Barbuda",
-    },
-    {
-      id: "9",
-      value: "GQ",
-      name: "Equatorial Guinea",
-    },
-    {
-      id: "10",
-      value: "AR",
-      name: "Argentina",
-    },
-    {
-      id: "11",
-      value: "AM",
-      name: "Armenia",
-    },
-    {
-      id: "12",
-      value: "AZ",
-      name: "Azerbaijan",
-    },
-    {
-      id: "13",
-      value: "ET",
-      name: "Ethiopia",
-    },
-    {
-      id: "14",
-      value: "AU",
-      name: "Australia",
-    },
-    {
-      id: "15",
-      value: "BS",
-      name: "Bahamas",
-    },
-    {
-      id: "16",
-      value: "BH",
-      name: "Bahrain",
-    },
-    {
-      id: "17",
-      value: "BD",
-      name: "Bangladesh",
-    },
-    {
-      id: "18",
-      value: "BB",
-      name: "Barbados",
-    },
-    {
-      id: "19",
-      value: "BE",
-      name: "Belgium",
-    },
-    {
-      id: "20",
-      value: "BZ",
-      name: "Belize",
-    },
-    {
-      id: "21",
-      value: "BJ",
-      name: "Benin",
-    },
-    {
-      id: "22",
-      value: "BT",
-      name: "Bhutan",
-    },
-    {
-      id: "23",
-      value: "BO",
-      name: "Bolivia",
-    },
-    {
-      id: "24",
-      value: "BA",
-      name: "Bosnia and Herzegovina",
-    },
-    {
-      id: "25",
-      value: "BW",
-      name: "Botswana",
-    },
-    {
-      id: "26",
-      value: "BR",
-      name: "Brazil",
-    },
-    {
-      id: "27",
-      value: "BN",
-      name: "Brunei",
-    },
-    {
-      id: "28",
-      value: "BG",
-      name: "Bulgaria",
-    },
-    {
-      id: "29",
-      value: "BF",
-      name: "Burkina-Faso",
-    },
-    {
-      id: "30",
-      value: "BI",
-      name: "Burundi",
-    },
-  ];
   return (
     <>
       <Formik
@@ -385,7 +236,7 @@ const RegisterForm = () => {
                   placeholder={""}
                   option1={"Small business owner (0%)"}
                   option2={"CY Ltd (19%)"}
-                  option3={"EU countries (0%)"}
+                  option3={"Non-EU country (0%)"}
                   option4={"Reverse charge (0%)"}
                   value={props.values.vatRegulation}
                   onChange={(e) => {
@@ -414,7 +265,8 @@ const RegisterForm = () => {
                     setErrorMesssage("");
                   }}
                 />
-                <GroupField
+                {props.values.vatRegulation === "CY Ltd (19%)" || props.values.vatRegulation === "Reverse charge (0%)" ? (
+                  <GroupField
                   label={"VAT ID No."}
                   placeholder={"Example: DE238443776"}
                   id={"vatId"}
@@ -427,6 +279,8 @@ const RegisterForm = () => {
                     setErrorMesssage("");
                   }}
                 />
+                ): null}
+               
                <button
                     className={`${
                       loading ? "cursor-not-allowed" : "cursor-pointer"
