@@ -59,7 +59,7 @@ const Settings = () => {
       <div className="mx-auto max-w-270 3xl:px-6">
         <Breadcrumb pageName="Settings" />
         <div className="grid grid-cols-5  gap-8">
-          <div className="col-span-5 3xl:col-span-8  xl:col-span-3">
+          <div className="col-span-5 3xl:col-span-8  xl:col-span-8">
             <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
               <div className="border-b border-stroke py-4 px-7 dark:border-strokedark">
                 <h3 className="font-medium text-black dark:text-white">
