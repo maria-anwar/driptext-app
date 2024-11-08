@@ -45,9 +45,15 @@ const ForgotPasswordForm = () => {
   };
 
   const validationSchema = Yup.object().shape({
-    password: Yup.string().min(8).required("password is required"),
-    reEnterPass: Yup.string().min(8).required("please re-enter your password"),
+    password: Yup.string()
+      .min(8, "Password must be at least 8 characters long")
+      .required("Password is required"),
+      
+    reEnterPass: Yup.string()
+      .min(8, "Password must be at least 8 characters long")
+      .required("Please re-enter your password"),
   });
+  
 
   const onSubmit = async (values) => {
     setError(false);
