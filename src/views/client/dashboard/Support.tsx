@@ -9,11 +9,13 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useForm, ValidationError } from "@formspree/react";
 import axios from "axios";
+import useTitle from "../../../hooks/useTitle";
 
 
 
 
 const Support = () => {
+  useTitle("Client (Support)");
   const user = useSelector((state)=> state.user)
   const [email,setEmail]= useState(user.user.data.user.email||'')
   const [firstName,setFirstName]= useState(user.user.data.user.firstName||'')

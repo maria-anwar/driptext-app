@@ -7,8 +7,10 @@ import MetaLector from "./MetaLector";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import Breadcrumb from "../../../../../components/freelancer/breeadcrumbs/Breadcrumb";
+import useTitle from "../../../../../hooks/useTitle";
 
 const Tasks: React.FC = () => {
+  useTitle("Freelancer (Tasks)");
   const user = useSelector((state) => state.user);
   const userId = user?.user?.data?.user?._id;
   const userToken = user?.user?.token;

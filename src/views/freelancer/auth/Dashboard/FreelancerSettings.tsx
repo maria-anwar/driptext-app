@@ -11,9 +11,11 @@ import "react-toastify/dist/ReactToastify.css";
 import { UserData } from "../../../../components/freelancer/Type/types";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUserFields } from "../../../../redux/userSlice";
+import useTitle from "../../../../hooks/useTitle";
 
 
 const ProfilePage = () => {
+  useTitle("Freelancer (Setting)");
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);

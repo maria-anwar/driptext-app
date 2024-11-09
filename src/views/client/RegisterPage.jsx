@@ -1,7 +1,9 @@
 import React from "react";
 import RegistrationForm from "../../components/client-forms/RegistrationForm";
+import useTitle from "../../hooks/useTitle";
 
 const RegisterPage = () => {
+  useTitle("Probetext bestellen");
   return (
     <div className="px-4 xs:px-5 sm:px-7 md:px-12 lg:px-9 xl:px-40 2xl:px-44 3xl:px-56 4xl:px-96 py-10 3xl:py-20">
       <div className="w-full flex d-flex flex-col gap-10">

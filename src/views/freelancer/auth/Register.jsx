@@ -4,9 +4,11 @@ import Logo from "../../../assets/homeimages/driptext.png";
 // import OnboardingForm from "../../../components/client-forms/OnboardingForm";
 import OrderForm from "../../../components/client-forms/OrderForm";
 import RegisterForm from "../../../components/freelancer/forms/RegisterForm";
+import useTitle from "../../../hooks/useTitle";
 
 
 const Register = () => {
+  useTitle("Onboarding für Freelancer");
   return (
     <div className="px-4 sm:px-6 md-px-10 lg:px-14 xl:px-20 2xl:px-56 3xl:px-80 4xl:px-96 py-10">
       <Link

@@ -2,8 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/homeimages/driptext.png";
 import OrderForm from "../../components/client-forms/OrderForm";
+import useTitle from "../../hooks/useTitle";
 
 const OrderBooking = () => {
+  useTitle("Bestellformular");
   return (
     <div className="px-4 sm:px-6 md-px-10 lg:px-14 xl:px-20 2xl:px-56 3xl:px-80 4xl:px-96 py-10">
       <Link

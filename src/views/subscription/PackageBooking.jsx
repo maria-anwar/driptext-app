@@ -2,6 +2,7 @@ import logo from "../../assets/homeimages/driptext.png";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import PricingCard from "../../components/cards/PricingCard";
+import useTitle from "../../hooks/useTitle";
 
 const plansForTexts = {
   4: [
@@ -79,6 +80,7 @@ const plansForTexts = {
 };
 
 const PackageBooking = () => {
+  useTitle("Package Booking");
   const [selectedTexts, setSelectedTexts] = useState(8);
 
   return (

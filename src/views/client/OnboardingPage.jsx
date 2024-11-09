@@ -2,8 +2,10 @@ import { React, useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Logo from "../../assets/homeimages/driptext.png";
 import OnboardingForm from "../../components/client-forms/OnboardingForm";
+import useTitle from "../../hooks/useTitle";
 
 const OnboardingPage = () => {
+  useTitle("Onboarding für Kunden");
   const location = useLocation();
   const { projectName, userId } = location.state || {};
   const navigate = useNavigate();

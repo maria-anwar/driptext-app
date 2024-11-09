@@ -2,9 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Breadcrumb from "../../../../components/freelancer/breeadcrumbs/Breadcrumb";
 import axios from "axios";
+import useTitle from "../../../../hooks/useTitle";
 
 
 const DriptextAcademy: React.FC = () => {
+  useTitle("Freelancer (DripText Academy)");
 
   
   return (

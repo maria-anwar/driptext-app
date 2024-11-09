@@ -10,8 +10,10 @@ import "react-toastify/dist/ReactToastify.css";
 import { useDispatch } from "react-redux";
 import { updateRoleTitle } from "../../redux/userSlice";
 import localStorage from "redux-persist/es/storage";
+import useTitle from "../../hooks/useTitle";
 
 const ThankYouPage = () => {
+  useTitle("Thank You");
   const location = useLocation();
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
