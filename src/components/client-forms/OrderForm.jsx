@@ -275,6 +275,7 @@ const OrderForm = () => {
       });
     }
   }, [texts, duration, user?.user?.data?.user]);
+  
 
   const validationSchema = Yup.object().shape({
     // duration: Yup.string().required("Bitte wählen Sie die Dauer"),
@@ -430,7 +431,7 @@ const OrderForm = () => {
 >
   {(props) => (
     <Form>
-      <div className="w-full bg-gradient-to-r from-custom-gray to-[#F7F7F7] flex flex-col gap-6 px-3 xs:px-8 xs:py-10  md:px-9 md:py-14 lg:px-10  mb-8 rounded-xl">
+      <div className="w-full bg-gradient-to-r from-custom-gray to-[#F7F7F7] py-4 flex flex-col gap-6 px-4 xs:px-8 xs:py-10  md:px-9 md:py-14 lg:px-10  mb-8 rounded-xl">
         <div className="flex flex-col gap-6">
           <h2 className="text-custom-black text-base font-semibold">
             1. Wählen Sie Ihr DripText-Paket:
