@@ -17,17 +17,16 @@ import { useState } from "react";
 const PassRequestForm = () => {
   const navigate = useNavigate();
   const [error,setError] = useState(false);
-  const [errorMessage,setErrorMesssage] = useState('')
+  const [errorMessage,setErrorMesssage] = useState('');
   const initialValues = {
     email: "",
   };
 
   const validationSchema = Yup.object().shape({
-    email: Yup.string().email().required("email is required"),
+    email: Yup.string().email().required("E-Mail wird benötigt"),
   });
 
   const onSubmit = async (values) => {
-
     const emailData = {
       email: values.email
     }
@@ -35,10 +34,10 @@ const PassRequestForm = () => {
     try {
       setError(false)
       const response = await axios.post(`${import.meta.env.VITE_DB_URL}/auth/forgot/password`, emailData);
-      console.log('Data submitted successfully:', response.emailData);
-      toast.success("Link sent successfully, click the link to reset password");
+      console.log('Daten erfolgreich gesendet:', response.emailData);
+      toast.success("Link wurde erfolgreich gesendet. Klicken Sie auf den Link, um Ihr Passwort zurückzusetzen.");
     } catch (error) {
-      const errorMessage = error.response?.data?.message || error.message  || "Error sending the link";
+      const errorMessage = error.response?.data?.message || error.message  || "Fehler beim Senden des Links";
       setError(true)
       setErrorMesssage(errorMessage)
     }    
@@ -55,13 +54,13 @@ const PassRequestForm = () => {
         {(props) => (
           <Form>
             <div className="mb-1 flex flex-col gap-6">
-            <ToastContainer/>
+              <ToastContainer/>
               <Typography
                 variant="small"
                 color="blue-gray"
                 className="-mb-3 font-medium"
               >
-                Your email
+                Ihre E-Mail
               </Typography>
               <Input
                 size="lg"
@@ -96,7 +95,7 @@ const PassRequestForm = () => {
               fullWidth
               type="submit"
             >
-              Request Link
+              Link anfordern
             </Button>
           </Form>
         )}
@@ -124,17 +123,8 @@ const PassRequestForm = () => {
             <line x1="19" y1="12" x2="5" y2="12"></line>
             <polyline points="12 19 5 12 12 5"></polyline>
           </svg>
-          <span>Back to Sign in</span>
+          <span>Zurück zum Anmelden</span>
         </Link>
-        {/* <Typography
-          variant="paragraph"
-          className="text-center text-blue-gray-500 font-medium mt-4"
-        >
-          Not registered?
-          <Link to="/probetext" className="text-gray-900 ml-1">
-            Create account
-          </Link>
-        </Typography> */}
       </div>
     </div>
   );

@@ -31,7 +31,7 @@ const RegistrationForm = () => {
         }
       } catch (error) {
         const errorMessage =
-          error.response?.data?.message || error.message || "Error";
+          error.response?.data?.message || error.message || "Fehler";
         setError(true);
         setErrorMesssage(errorMessage);
       }
@@ -48,11 +48,11 @@ const RegistrationForm = () => {
     lname: "",
   };
   const validationSchema = Yup.object().shape({
-    project: Yup.string().required("Please enter your project"),
-    keyword: Yup.string().required("Please enter keyword"),
-    email: Yup.string().email().required("Please enter your email"),
-    fname: Yup.string().required("Please enter your first name"),
-    lname: Yup.string().required("Please enter your last name"),
+    project: Yup.string().required("Bitte geben Sie Ihr Projekt ein"),
+    keyword: Yup.string().required("Bitte geben Sie ein Stichwort ein"),
+    email: Yup.string().email().required("Bitte geben Sie Ihre E-Mail-Adresse ein"),
+    fname: Yup.string().required("Bitte geben Sie Ihren Vornamen ein"),
+    lname: Yup.string().required("Bitte geben Sie Ihren Nachnamen ein"),
   });
 
   const onSubmit = async (values) => {
@@ -91,7 +91,7 @@ const RegistrationForm = () => {
     } catch (error) {
       setLoading(false);
       const errorMessage =
-        error.response?.data?.message || error.message || "Error";
+        error.response?.data?.message || error.message || "Fehler";
       setError(true);
       setErrorMesssage(errorMessage);
     }
@@ -108,11 +108,11 @@ const RegistrationForm = () => {
             <div className="w-full bg-gradient-to-r from-custom-gray to-[#F7F7F7] flex flex-col gap-6 px-3 xs:px-8 xs:py-10  md:px-9 md:py-14 lg:px-10 mt-6 mb-8 rounded-xl">
               <div className="flex flex-col gap-6">
                 <h2 className="text-custom-black text-base font-semibold">
-                  1. Information About the Text
+                  1. Informationen zum Text
                 </h2>
                 <GroupField
-                  label={"Your Project"}
-                  placeholder={"example.com"}
+                  label={"Dein Projekt"}
+                  placeholder={"beispiel.com"}
                   id={"project"}
                   name={"project"}
                   value={props.values.project}
@@ -124,8 +124,8 @@ const RegistrationForm = () => {
                   }}
                 />
                 <GroupField
-                  label={"Desired Keyword"}
-                  placeholder={"example keyword"}
+                  label={"Gewünschtes Stichwort"}
+                  placeholder={"Beispiel-Stichwort"}
                   id={"keyword"}
                   name={"keyword"}
                   value={props.values.keyword}
@@ -139,11 +139,11 @@ const RegistrationForm = () => {
               </div>
               <div className="flex flex-col gap-5">
                 <h2 className="text-custom-black text-base font-semibold lg:mt-3.5">
-                  2. Contact details of the invoice receipient
+                  2. Kontaktdaten des Rechnungsempfängers
                 </h2>
                 <GroupField
-                  label={"Email"}
-                  placeholder={"Your email address"}
+                  label={"E-Mail"}
+                  placeholder={"Ihre E-Mail-Adresse"}
                   id={"email"}
                   name={"email"}
                   value={props.values.email}
@@ -156,8 +156,8 @@ const RegistrationForm = () => {
                 />
                 <div className="w-full flex flex-col lg:flex-row lg:justify-between lg:gap-3 gap-5">
                   <GroupField
-                    label={"First Name"}
-                    placeholder={"Your first name"}
+                    label={"Vorname"}
+                    placeholder={"Ihr Vorname"}
                     id={"fname"}
                     name={"fname"}
                     value={props.values.fname}
@@ -169,8 +169,8 @@ const RegistrationForm = () => {
                     }}
                   />
                   <GroupField
-                    label={"Last Name"}
-                    placeholder={"Your last name"}
+                    label={"Nachname"}
+                    placeholder={"Ihr Nachname"}
                     id={"lname"}
                     name={"lname"}
                     value={props.values.lname}
@@ -183,7 +183,6 @@ const RegistrationForm = () => {
                   />
                 </div>
 
-            
                 <button
                     className={`${
                       loading ? "cursor-not-allowed" : "cursor-pointer"
@@ -196,7 +195,7 @@ const RegistrationForm = () => {
                         <div className="w-6 h-6 border-2 border-white border-solid rounded-full border-t-transparent animate-spin" />
                       </div>
                     ) : (
-                      "Submit Order"
+                      "Bestellung Absenden"
                     )}
                   </button>
                
@@ -207,15 +206,15 @@ const RegistrationForm = () => {
                 )}
               </div>
               <p className="text-custom-black text-sm font-medium">
-                By submitting the order, I agree to the{" "}
+                Durch die Bestellung erkläre ich mich mit den{" "}
                 <Link className="text-[#63B4D0]">
-                  general terms and conditions
+                  Allgemeinen Geschäftsbedingungen
                 </Link>{" "}
-                terms and conditions of DripText Ltd. and understand that our
-                offers are aimed exclusively at commercial customers. All prices
-                are exclusive of VAT. Sales only to entrepreneurs, tradespeople,
-                associations, authorities or self-employed persons (§ 14 BGB).
-                No sales to consumers within the meaning of § 13 BGB.
+                von DripText Ltd. einverstanden und verstehe, dass unsere
+                Angebote ausschließlich an gewerbliche Kunden gerichtet sind. Alle
+                Preise verstehen sich zuzüglich MwSt. Verkauf nur an Unternehmer,
+                Gewerbetreibende, Verbände, Behörden oder Selbständige (§ 14 BGB).
+                Kein Verkauf an Verbraucher im Sinne von § 13 BGB.
               </p>
             </div>
           </Form>

@@ -5,7 +5,7 @@ import PassRequestForm from '../../components/authentication/PassRequestForm'
 
 const PassRequest = () => {
   return (
-    <Auth2 authline={'Please enter your email address so we can send you a link to reset your password.'}>
+    <Auth2 authline={'Bitte geben Sie Ihre E-Mail-Adresse ein, damit wir Ihnen einen Link zum Zurücksetzen Ihres Passworts senden können.'}>
        <PassRequestForm/>
     </Auth2>
   )

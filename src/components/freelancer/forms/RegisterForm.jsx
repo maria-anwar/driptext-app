@@ -31,23 +31,24 @@ const RegisterForm = () => {
     vatId: "",
   };
   const validationSchema = Yup.object().shape({
-    fname: Yup.string().required("please enter first name"),
-    lname: Yup.string().required("please enter last name"),
-    email: Yup.string().email().required("please enter your email"),
-    phone: Yup.string().required("please enter phone number"),
-    street: Yup.string().required("please enter your street"),
-    postcode: Yup.string().required("please enter your postal code"),
-    city: Yup.string().required("please enter your city"),
-    country: Yup.string().required("please enter your country"),
-    iban: Yup.string().required("please entert your IBAN"),
-    company: Yup.string().required("please enter your company name"),
+    fname: Yup.string().required("Bitte geben Sie den Vornamen ein"),
+    lname: Yup.string().required("Bitte geben Sie den Nachnamen ein"),
+    email: Yup.string().email().required("Bitte geben Sie Ihre E-Mail-Adresse ein"),
+    phone: Yup.string().required("Bitte geben Sie Ihre Telefonnummer ein"),
+    street: Yup.string().required("Bitte geben Sie Ihre Straße ein"),
+    postcode: Yup.string().required("Bitte geben Sie Ihre Postleitzahl ein"),
+    city: Yup.string().required("Bitte geben Sie Ihre Stadt ein"),
+    country: Yup.string().required("Bitte geben Sie Ihr Land ein"),
+    iban: Yup.string().required("Bitte geben Sie Ihre IBAN ein"),
+    company: Yup.string().required("Bitte geben Sie den Namen Ihres Unternehmens ein"),
     vatId: Yup.string().when(["vatRegulation"], ([vatRegulation], schema) => {
       if (vatRegulation === "CY Ltd (19%)" || vatRegulation === "Reverse charge (0%)") {
-        return schema.required("VAT ID is required");
+        return schema.required("USt-IdNr. ist erforderlich");
       }
       return schema.notRequired();
-    }),    
+    }),
   });
+  
   const onSubmit = async (values) => {
     setLoading(true);
     const registerData = {
@@ -92,13 +93,13 @@ const RegisterForm = () => {
             <div className="w-full bg-gradient-to-r from-custom-gray to-[#F7F7F7] flex flex-col gap-6 px-3 xs:px-8 xs:py-10  md:px-9 md:py-14 lg:px-10  mb-8 rounded-xl">
               <div className="flex flex-col gap-6">
                 <h2 className="text-custom-black text-base font-semibold">
-                  1. Personal data:
+                  1. Persönliche Daten:
                 </h2>
                 <div className="w-full flex flex-col lg:flex-row lg:justify-between lg:gap-3 gap-5">
             
                   <GroupField
-                    label={"First Name"}
-                    placeholder={"Your first name"}
+                    label={"Vorname"}
+                    placeholder={"Dein Vorname"}
                     id={"fname"}
                     name={"fname"}
                     value={props.values.fname}
@@ -110,8 +111,8 @@ const RegisterForm = () => {
                   }}
                   />
                   <GroupField
-                    label={"Last Name"}
-                    placeholder={"Your last name"}
+                    label={"Nachname"}
+                    placeholder={"Dein Nachname"}
                     id={"lname"}
                     name={"lname"}
                     value={props.values.lname}
@@ -125,8 +126,8 @@ const RegisterForm = () => {
                 </div>
                 <div className="w-full flex flex-col lg:flex-row lg:justify-between lg:gap-3 gap-5">
                   <GroupField
-                    label={"e-mail"}
-                    placeholder={"Your email address"}
+                    label={"E-Mail"}
+                    placeholder={"Deine E-Mail-Adresse"}
                     type={"email"}
                     id={"email"}
                     name={"email"}
@@ -139,8 +140,8 @@ const RegisterForm = () => {
                   }}
                   />
                   <GroupField
-                    label={"phone"}
-                    placeholder={"Your phone number"}
+                    label={"Telefon"}
+                    placeholder={"Deine Telefonnummer"}
                     id={"phone"}
                     name={"phone"}
                     value={props.values.phone}
@@ -153,8 +154,8 @@ const RegisterForm = () => {
                   />
                 </div>
                 <GroupField
-                  label={"Street"}
-                  placeholder={"Your street"}
+                  label={"Straße"}
+                  placeholder={"Deine Straße"}
                   type={"text"}
                   id={"street"}
                   name={"street"}
@@ -168,8 +169,8 @@ const RegisterForm = () => {
                 />
                 <div className="w-full flex flex-col lg:flex-row lg:justify-between lg:gap-3 gap-5">
                   <GroupField
-                    label={"Postcode"}
-                    placeholder={"Your postal code"}
+                    label={"PLZ"}
+                    placeholder={"Deine PLZ"}
                     id={"postcode"}
                     name={"postcode"}
                     value={props.values.postcode}
@@ -181,8 +182,8 @@ const RegisterForm = () => {
                   }}
                   />
                   <GroupField
-                    label={"City"}
-                    placeholder={"Your city"}
+                    label={"Stadt"}
+                    placeholder={"Deine Stadt"}
                     id={"city"}
                     name={"city"}
                     value={props.values.city}
@@ -195,8 +196,8 @@ const RegisterForm = () => {
                   />
                 </div>
                 <GroupField
-                  label={"Country"}
-                  placeholder={"Your country"}
+                  label={"Land"}
+                  placeholder={"Dein Land"}
                   type={"text"}
                   id={"country"}
                   name={"country"}
@@ -212,11 +213,11 @@ const RegisterForm = () => {
 
               <div className="flex flex-col gap-5">
                 <h2 className="text-custom-black text-base font-semibold lg:mt-3.5">
-                  2. Billing information:
+                  2. Informationen zur Abrechnung:
                 </h2>
                 <GroupField
                   label={"IBAN"}
-                  placeholder={"Example: DE68500105178297336485"}
+                  placeholder={"Esp. DE68500105178297336485"}
                   type={"text"}
                   id={"iban"}
                   name={"iban"}
@@ -229,14 +230,14 @@ const RegisterForm = () => {
                   }}
                 />
                 <GroupDropdownField
-                  label={"VAT regulation"}
+                  label={"USt.-Regelung"}
                   type={"text"}
                   id={"vatRegulation"}
                   name={"vatRegulation"}
                   placeholder={""}
-                  option1={"Small business owner (0%)"}
+                  option1={"Kleinunternehmer (0%)"}
                   option2={"CY Ltd (19%)"}
-                  option3={"Non-EU country (0%)"}
+                  option3={"Non-EU Ausland (0%)"}
                   option4={"Reverse charge (0%)"}
                   value={props.values.vatRegulation}
                   onChange={(e) => {
@@ -249,11 +250,11 @@ const RegisterForm = () => {
 
               <div className="flex flex-col gap-5">
                 <h2 className="text-custom-black text-base font-semibold lg:mt-3.5">
-                  3. Company details (if necessary):
+                  3.  Firmendaten (falls notwendig):
                 </h2>
                 <GroupField
-                  label={"Company name"}
-                  placeholder={"Name of your company"}
+                  label={"Firmenname"}
+                  placeholder={"Name deiner Firma"}
                   type={"text"}
                   id={"company"}
                   name={"company"}
@@ -267,8 +268,8 @@ const RegisterForm = () => {
                 />
                 {props.values.vatRegulation === "CY Ltd (19%)" || props.values.vatRegulation === "Reverse charge (0%)" ? (
                   <GroupField
-                  label={"VAT ID No."}
-                  placeholder={"Example: DE238443776"}
+                  label={"USt-IdNr"}
+                  placeholder={"Esp. DE238443776"}
                   id={"vatId"}
                   name={"vatId"}
                   value={props.values.vatId}
@@ -287,7 +288,7 @@ const RegisterForm = () => {
                     } border-none text-white font-medium text-base w-full bg-custom-black flex justify-center py-2 xs:py-2.5 mt-1 rounded-xl`}
                     disabled={loading}
                   >
-                      {loading? 'Submitting' :'Submit Now'}
+                    {loading ? 'Wird gesendet' : 'Jetzt absenden'}
                   </button>
               
                 {error && (
@@ -297,7 +298,7 @@ const RegisterForm = () => {
                 )}
               </div>
               <p className="text-custom-black text-sm font-normal text-center">
-                Please check that your data is correct before submitting.
+              Bitte überprüfe deine Daten vor dem Absenden auf Richtigkeit.
               </p>
             </div>
           </Form>

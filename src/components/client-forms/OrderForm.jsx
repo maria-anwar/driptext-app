@@ -277,16 +277,17 @@ const OrderForm = () => {
   }, [texts, duration, user?.user?.data?.user]);
 
   const validationSchema = Yup.object().shape({
-    // duration: Yup.string().required("please select duration"),
-    // texts: Yup.string().required("select no of seo texts"),
-    domain: Yup.string().required("please enter your domain"),
-    company: Yup.string().required("please enter your company name"),
-    fname: Yup.string().required("please enter first name"),
-    lname: Yup.string().required("please enter last name"),
-    telNo: Yup.number().required("please enter telephone No"),
-    email: Yup.string().email().required("please enter your email"),
-    // country: Yup.string().required("please select your country"),
+    // duration: Yup.string().required("Bitte wählen Sie die Dauer"),
+    // texts: Yup.string().required("Bitte wählen Sie die Anzahl der SEO-Texte"),
+    domain: Yup.string().required("Bitte geben Sie Ihre Domain ein"),
+    company: Yup.string().required("Bitte geben Sie den Firmennamen ein"),
+    fname: Yup.string().required("Bitte geben Sie Ihren Vornamen ein"),
+    lname: Yup.string().required("Bitte geben Sie Ihren Nachnamen ein"),
+    telNo: Yup.number().required("Bitte geben Sie Ihre Telefonnummer ein"),
+    email: Yup.string().email().required("Bitte geben Sie Ihre E-Mail-Adresse ein"),
+    // country: Yup.string().required("Bitte wählen Sie Ihr Land"),
   });
+  
 
   const onSubmit = async (values) => {
     setLoading(true);
@@ -423,202 +424,189 @@ const OrderForm = () => {
   return (
     <>
       <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={onSubmit}
-      >
-        {(props) => (
-          <Form>
-            <div className="w-full bg-gradient-to-r from-custom-gray to-[#F7F7F7] flex flex-col gap-6 px-3 xs:px-8 xs:py-10  md:px-9 md:py-14 lg:px-10  mb-8 rounded-xl">
-              <div className="flex flex-col gap-6">
-                <h2 className="text-custom-black text-base font-semibold">
-                  1. Choose your DripText package:
-                </h2>
-                <ToastContainer />
-                <GroupDropdownField
-                  label={" Desired number of SEO-optimized texts per month? "}
-                  placeholder={""}
-                  type={"text"}
-                  id={"texts"}
-                  name={"texts"}
-                  value={props.values.texts}
-                  errors={props.errors.texts}
-                  onChange={props.handleChange}
-                  option1="4 texts per month with at least 1,500 words per text"
-                  option2="8 texts per month with at least 1,500 words per text"
-                  option3="12 texts per month with at least 1,500 words per text"
-                />
-                {props.values.texts.substring(0, 2) === "4 " && (
-                  <GroupDropdownField
-                    label={"Desired duration?"}
-                    type={"text"}
-                    id={"duration"}
-                    name={"duration"}
-                    placeholder={""}
-                    option1="3 months - word price 0.07 EUR/net"
-                    option2="6 months - word price 0.06 EUR/net"
-                    option3="12 months - word price 0.05 EUR/net"
-                    value={props.values.duration}
-                    errors={props.errors.duration}
-                    onChange={props.handleChange}
-                  />
-                )}
-                {props.values.texts.substring(0, 2) === "8 " && (
-                  <GroupDropdownField
-                    label={"Desired duration?"}
-                    type={"text"}
-                    id={"duration"}
-                    name={"duration"}
-                    placeholder={""}
-                    option1="3 months - word price 0.14 EUR/net"
-                    option2="6 months - word price 0.12 EUR/net"
-                    option3="12 months - word price 0.10 EUR/net"
-                    value={props.values.duration}
-                    errors={props.errors.duration}
-                    onChange={props.handleChange}
-                  />
-                )}
-                {props.values.texts.substring(0, 2) === "12" && (
-                  <GroupDropdownField
-                    label={"Desired duration?"}
-                    type={"text"}
-                    id={"duration"}
-                    name={"duration"}
-                    placeholder={""}
-                    option1="3 months - word price 0.20 EUR/net"
-                    option2="6 months - word price 0.18 EUR/net"
-                    option3="12 months - word price 0.15 EUR/net"
-                    value={props.values.duration}
-                    errors={props.errors.duration}
-                    onChange={props.handleChange}
-                  />
-                )}
+  initialValues={initialValues}
+  validationSchema={validationSchema}
+  onSubmit={onSubmit}
+>
+  {(props) => (
+    <Form>
+      <div className="w-full bg-gradient-to-r from-custom-gray to-[#F7F7F7] flex flex-col gap-6 px-3 xs:px-8 xs:py-10  md:px-9 md:py-14 lg:px-10  mb-8 rounded-xl">
+        <div className="flex flex-col gap-6">
+          <h2 className="text-custom-black text-base font-semibold">
+            1. Wählen Sie Ihr DripText-Paket:
+          </h2>
+          <ToastContainer />
+          <GroupDropdownField
+            label={"Gewünschte Anzahl an SEO-optimierten Texten pro Monat?"}
+            placeholder={""}
+            type={"text"}
+            id={"texts"}
+            name={"texts"}
+            value={props.values.texts}
+            errors={props.errors.texts}
+            onChange={props.handleChange}
+            option1="4 Texte pro Monat mit mindestens 1.500 Wörtern pro Text"
+            option2="8 Texte pro Monat mit mindestens 1.500 Wörtern pro Text"
+            option3="12 Texte pro Monat mit mindestens 1.500 Wörtern pro Text"
+          />
+          {props.values.texts.substring(0, 2) === "4 " && (
+            <GroupDropdownField
+              label={"Gewünschte Dauer?"}
+              type={"text"}
+              id={"duration"}
+              name={"duration"}
+              placeholder={""}
+              option1="3 Monate - Wortpreis 0,07 EUR/netto"
+              option2="6 Monate - Wortpreis 0,06 EUR/netto"
+              option3="12 Monate - Wortpreis 0,05 EUR/netto"
+              value={props.values.duration}
+              errors={props.errors.duration}
+              onChange={props.handleChange}
+            />
+          )}
+          {props.values.texts.substring(0, 2) === "8 " && (
+            <GroupDropdownField
+              label={"Gewünschte Dauer?"}
+              type={"text"}
+              id={"duration"}
+              name={"duration"}
+              placeholder={""}
+              option1="3 Monate - Wortpreis 0,14 EUR/netto"
+              option2="6 Monate - Wortpreis 0,12 EUR/netto"
+              option3="12 Monate - Wortpreis 0,10 EUR/netto"
+              value={props.values.duration}
+              errors={props.errors.duration}
+              onChange={props.handleChange}
+            />
+          )}
+          {props.values.texts.substring(0, 2) === "12" && (
+            <GroupDropdownField
+              label={"Gewünschte Dauer?"}
+              type={"text"}
+              id={"duration"}
+              name={"duration"}
+              placeholder={""}
+              option1="3 Monate - Wortpreis 0,20 EUR/netto"
+              option2="6 Monate - Wortpreis 0,18 EUR/netto"
+              option3="12 Monate - Wortpreis 0,15 EUR/netto"
+              value={props.values.duration}
+              errors={props.errors.duration}
+              onChange={props.handleChange}
+            />
+          )}
 
-                {/* <GroupField
-                  label={"Text Price"}
-                  type={"number"}
-                  id={"textPrice"}
-                  name={"textPrice"}
-                  placeholder={"example.com"}
-                  value={0.764}
-                  errors={props.errors.textPrice}
-                  onChange={props.handleChange}
-                  disabled={true}
-                /> */}
+          <GroupField
+            label={"Domain"}
+            type={"text"}
+            id={"domain"}
+            name={"domain"}
+            placeholder={"beispiel.com"}
+            value={props.values.domain}
+            errors={props.errors.domain}
+            onChange={props.handleChange}
+          />
+        </div>
 
-                <GroupField
-                  label={"Domain"}
-                  type={"text"}
-                  id={"domain"}
-                  name={"domain"}
-                  placeholder={"example.com"}
-                  value={props.values.domain}
-                  errors={props.errors.domain}
-                  onChange={props.handleChange}
-                />
-              </div>
+        <div className="flex flex-col gap-5">
+          <h2 className="text-custom-black text-base font-semibold lg:mt-3.5">
+            2. Kontaktdaten des Rechnungsempfängers (m/w/d):
+          </h2>
+          <GroupField
+            label={"Firma"}
+            placeholder={"Ihr Firmenname"}
+            type={"text"}
+            id={"company"}
+            name={"company"}
+            value={props.values.company}
+            errors={props.errors.company}
+            onChange={props.handleChange}
+          />
+          <div className="w-full flex flex-col lg:flex-row lg:justify-between lg:gap-3 gap-5">
+            <GroupField
+              label={"Vorname"}
+              placeholder={"Ihr Vorname"}
+              id={"fname"}
+              name={"fname"}
+              value={props.values.fname}
+              errors={props.errors.fname}
+              onChange={props.handleChange}
+              disabled={user?.user?.data?.user?.firstName ? true : false}
+            />
+            <GroupField
+              label={"Nachname"}
+              placeholder={"Ihr Nachname"}
+              id={"lname"}
+              name={"lname"}
+              value={props.values.lname}
+              errors={props.errors.lname}
+              onChange={props.handleChange}
+              disabled={user?.user?.data?.user?.lastName ? true : false}
+            />
+          </div>
+          <GroupField
+            label={"Telefonnummer"}
+            placeholder={"Ihre Telefonnummer"}
+            type={"number"}
+            id={"telNo"}
+            name={"telNo"}
+            value={props.values.telNo}
+            errors={props.errors.telNo}
+            onChange={props.handleChange}
+          />
+          <GroupField
+            label={"E-Mail"}
+            placeholder={"Ihre E-Mail-Adresse"}
+            type={"email"}
+            id={"email"}
+            name={"email"}
+            value={props.values.email}
+            errors={props.errors.email}
+            onChange={props.handleChange}
+            disabled={user?.user?.data?.user?.email ? true : false}
+          />
+          <CountryDropdownField
+            label={"Land"}
+            type={"text"}
+            id={"country"}
+            name={"country"}
+            placeholder={"Beispiel.de"}
+            value={props.values.country}
+            errors={props.errors.country}
+            onChange={props.handleChange}
+            countriesList={countriesList}
+          />
 
-              <div className="flex flex-col gap-5">
-                <h2 className="text-custom-black text-base font-semibold lg:mt-3.5">
-                  2. Contact details of the invoice recipient (m/f/d):
-                </h2>
-                <GroupField
-                  label={"Company"}
-                  placeholder={"Your company name"}
-                  type={"text"}
-                  id={"company"}
-                  name={"company"}
-                  value={props.values.company}
-                  errors={props.errors.company}
-                  onChange={props.handleChange}
-                />
-                <div className="w-full flex flex-col lg:flex-row lg:justify-between lg:gap-3 gap-5">
-                  <GroupField
-                    label={"First Name"}
-                    placeholder={"Your first name"}
-                    id={"fname"}
-                    name={"fname"}
-                    value={props.values.fname}
-                    errors={props.errors.fname}
-                    onChange={props.handleChange}
-                    disabled={user?.user?.data?.user?.firstName ? true : false}
-                  />
-                  <GroupField
-                    label={"Last Name"}
-                    placeholder={"Your last name"}
-                    id={"lname"}
-                    name={"lname"}
-                    value={props.values.lname}
-                    errors={props.errors.lname}
-                    onChange={props.handleChange}
-                    disabled={user?.user?.data?.user?.lastName ? true : false}
-                  />
-                </div>
-                <GroupField
-                  label={"Telephone number"}
-                  placeholder={"Your phone number"}
-                  type={"number"}
-                  id={"telNo"}
-                  name={"telNo"}
-                  value={props.values.telNo}
-                  errors={props.errors.telNo}
-                  onChange={props.handleChange}
-                />
-                <GroupField
-                  label={"e-mail"}
-                  placeholder={"Your email address"}
-                  type={"email"}
-                  id={"email"}
-                  name={"email"}
-                  value={props.values.email}
-                  errors={props.errors.email}
-                  onChange={props.handleChange}
-                  disabled={user?.user?.data?.user?.email ? true : false}
-                />
-                <CountryDropdownField
-                  label={"Country"}
-                  type={"text"}
-                  id={"country"}
-                  name={"country"}
-                  placeholder={"example.com"}
-                  value={props.values.country}
-                  errors={props.errors.country}
-                  onChange={props.handleChange}
-                  countriesList={countriesList}
-                />
-
-             
-                  <button
-                    className={`${
-                      loading ? "cursor-not-allowed" : "cursor-pointer"
-                    } border-none text-white font-medium text-base w-full bg-custom-black flex justify-center py-2 xs:py-2.5 mt-1 rounded-xl`}
-                    type="submit"
-                    disabled={loading}
-                  >
-                    {loading ? "Submitting Order" : "Submit Order"}
-                  </button>
-              
-              </div>
-              {isSuccess && (
-                <p className="text-green-600 3xl:text-lg">
-                  Order booking information is successfully saved
-                </p>
-              )}
-              <p className="text-custom-black text-sm font-normal">
-                By submitting the order, I agree to the{" "}
-                <Link className="text-[#63B4D0]">
-                  general terms and conditions
-                </Link>{" "}
-                terms and conditions of DripText Ltd. and understand that our
-                offers are aimed exclusively at commercial customers. All prices
-                are exclusive of VAT. Sales only to entrepreneurs, tradespeople,
-                associations, authorities or self-employed persons (§ 14 BGB).
-                No sales to consumers within the meaning of § 13 BGB.
-              </p>
-            </div>
-          </Form>
+          <button
+            className={`${
+              loading ? "cursor-not-allowed" : "cursor-pointer"
+            } border-none text-white font-medium text-base w-full bg-custom-black flex justify-center py-2 xs:py-2.5 mt-1 rounded-xl`}
+            type="submit"
+            disabled={loading}
+          >
+            {loading ? "Bestellung wird gesendet" : "Bestellung absenden"}
+          </button>
+        </div>
+        {isSuccess && (
+          <p className="text-green-600 3xl:text-lg">
+            Bestellinformationen wurden erfolgreich gespeichert
+          </p>
         )}
-      </Formik>
+        <p className="text-custom-black text-sm font-normal">
+          Mit der Abgabe der Bestellung stimme ich den{" "}
+          <Link className="text-[#63B4D0]">
+            allgemeinen Geschäftsbedingungen
+          </Link>{" "}
+          von DripText Ltd. zu und verstehe, dass unsere Angebote ausschließlich
+          an gewerbliche Kunden gerichtet sind. Alle Preise verstehen sich
+          zuzüglich Mehrwertsteuer. Verkauf nur an Unternehmer, Gewerbetreibende,
+          Verbände, Behörden oder Selbstständige (§ 14 BGB). Kein Verkauf an
+          Verbraucher im Sinne des § 13 BGB.
+        </p>
+      </div>
+    </Form>
+  )}
+</Formik>
+
     </>
   );
 };

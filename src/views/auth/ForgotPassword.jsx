@@ -6,11 +6,11 @@ import ForgotPasswordForm from '../../components/authentication/ForgotPasswordFo
 const ForgotPassword = () => {
   return (
     <>
-    <Auth2 authline={'Enter your password to Sign In.'}>
+    <Auth2 authline={'Geben Sie Ihr Passwort ein, um sich anzumelden.'}>
        <ForgotPasswordForm/>
     </Auth2>
     </>
   )
 }
 
-export default ForgotPassword
+export default ForgotPassword;

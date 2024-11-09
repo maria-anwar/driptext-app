@@ -46,12 +46,12 @@ const ForgotPasswordForm = () => {
 
   const validationSchema = Yup.object().shape({
     password: Yup.string()
-      .min(8, "Password must be at least 8 characters long")
-      .required("Password is required"),
+      .min(8, "Das Passwort muss mindestens 8 Zeichen lang sein")
+      .required("Passwort ist erforderlich"),
       
     reEnterPass: Yup.string()
-      .min(8, "Password must be at least 8 characters long")
-      .required("Please re-enter your password"),
+      .min(8, "Das Passwort muss mindestens 8 Zeichen lang sein")
+      .required("Bitte Passwort erneut eingeben"),
   });
   
 
@@ -63,7 +63,7 @@ const ForgotPasswordForm = () => {
     };
 
     if (values.password !== values.reEnterPass) {
-      toast.error("Both password not matched");
+      toast.error("Beide Passwörter stimmen nicht überein");
       return;
     }
     try {
@@ -73,7 +73,7 @@ const ForgotPasswordForm = () => {
       navigate("/");
     } catch (error) {
       const errorMessage =
-        error.response?.data?.message || error.message || "Error logging";
+        error.response?.data?.message || error.message || "Fehler beim Einloggen";
       setError(true);
       setErrorMesssage(errorMessage);
     }
@@ -96,7 +96,7 @@ const ForgotPasswordForm = () => {
                 color="blue-gray"
                 className="-mb-3 font-medium"
               >
-                Password
+                Passwort
               </Typography>
               <div className="relative">
                 <Input
@@ -132,7 +132,7 @@ const ForgotPasswordForm = () => {
                 color="blue-gray"
                 className="-mb-3 font-medium"
               >
-                Re-Enter Password
+                Passwort erneut eingeben
               </Typography>
               <div className="relative">
                 <Input
@@ -169,7 +169,7 @@ const ForgotPasswordForm = () => {
               fullWidth
               type="submit"
             >
-              Submit
+              Absenden
             </Button>
             {error && (
               <div id="email" className="mt-4 text-sm text-red-500">

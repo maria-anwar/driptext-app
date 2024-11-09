@@ -7,14 +7,13 @@ const RegisterPage = () => {
       <div className="w-full flex d-flex flex-col gap-10">
         <div className="flex flex-col gap-4 px-4 xs:px-6 md:px-9">
           <h1 className="text-custom-black text-2xl md:text-3xl font-bold text-center md:px-8">
-            Order your free sample text worth 105,00 € now
+          Bestelle jetzt deinen kostenlosen Probetext im Wert von 105,00 €
           </h1>
           <p className="text-center text-custom-black text-lg px-2">
-            Please send us all the information about your sample text. We will
-            get to work right away to create an excellent sample text for you!
+          Bitte schicke uns alle Informationen zu deinem Probetext. Wir werden uns gleich an die Arbeit machen einen hervorragenden Probetext für dich zu erstellen!
           </p>
           <h3 className="text-custom-black text-lg md:text-xl font-bold text-center md:px-8">
-            Please answer the following questions for the briefing:
+          Bitte beantworte uns folgende Fragen für das Briefing:
           </h3>
         </div>
       </div>
