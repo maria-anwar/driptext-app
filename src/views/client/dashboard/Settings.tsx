@@ -7,8 +7,10 @@ import { updateUserFields, updateRoleTitle } from "../../../redux/userSlice";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import useTitle from "../../../hooks/useTitle";
 
 const Settings = () => {
+  useTitle("Client (Settings)");
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [firstName, setFirstName] = useState(

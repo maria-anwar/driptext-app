@@ -4,8 +4,10 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import moment from "moment";
 import { Earn } from "../../../../components/freelancer/Type/types";
+import useTitle from "../../../../hooks/useTitle";
 
 const Earning: React.FC = () => {
+  useTitle("Freelancer (Earnings)");
   const user = useSelector((state) => state.user);
   const [earningData, setEarning] = useState<Earn[]>([]);
   const [loading, setLoading] = useState(false);

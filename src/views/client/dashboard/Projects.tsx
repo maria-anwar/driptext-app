@@ -7,8 +7,10 @@ import { useSelector } from "react-redux";
 import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../../components/Loading";
+import useTitle from "../../../hooks/useTitle";
 
 const Projects: React.FC = () => {
+  useTitle("Client (Projects)");
   const navigate = useNavigate();
   const user = useSelector<any>((state) => state.user);
   const [loading, setLoading] = useState(true);

@@ -6,7 +6,7 @@ interface CardDataStatsProps {
   id: Object;
   texts: number;
   domain: string;
-  productUniqueID:string,
+  productUniqueID: string;
   keywords: string;
   projectStatus: string;
   totalTexts: number;
@@ -60,17 +60,17 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
     // }
     localStorage.setItem("projectId", id.toString());
     navigate("/onboarding-probetext", {
-      state: { projectName: domain},
+      state: { projectName: domain },
     });
   };
 
   const handleProjectTask = () => {
-    localStorage.setItem("projectName",domain)
+    localStorage.setItem("projectName", domain);
     localStorage.setItem("projectId", id.toString());
     navigate("task-table", { state: { projectId: id } });
   };
 
-  const hasAllProps = texts !== 0  || projectStatus !== "Not initalized";
+  const hasAllProps = texts !== 0 || projectStatus !== "Not initalized";
 
   const handleNothing = () => {};
 
@@ -106,12 +106,18 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
         <div className="mt-8 mb-3 flex items-end justify-between">
           <div className="text-sm font-medium text-dark-gray">
             Orders per month{" "}
-            <div className="text-meta-5 flex justify-end">{usedordersPerMonth}/{ordersPerMonth}</div>
+            <div className="text-meta-5 flex justify-end">
+              {usedordersPerMonth}/{ordersPerMonth}
+            </div>
           </div>
           <div className="text-sm font-medium text-dark-gray">
             Project Duration{" "}
             <div className="text-meta-5 flex justify-end">
-              {projectDuration} Month
+              {projectDuration === null
+                ? `${new Date().toLocaleString("default", {
+                    month: "long",
+                  })}(no subscription)`
+                : projectDuration + " Month"}
             </div>
           </div>
         </div>

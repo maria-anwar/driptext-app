@@ -16,9 +16,9 @@ const OnboardingForm = () => {
   const [errorMessage, setErrorMesssage] = useState("");
 
   const initialValues = {
-    speech: "She",
+    speech: "Sie",
     project: projectName,
-    perspective: "we/our shop/our company",
+    perspective: "wir/unser Shop/unser Unternehmen",
     companyInfo: "",
     companyAttributes: "",
     services: "",
@@ -27,19 +27,17 @@ const OnboardingForm = () => {
     contentPurpose: "",
     brand: "",
   };
+
   const validationSchema = Yup.object().shape({
-    speech: Yup.string().required("please select speech"),
-    perspective: Yup.string().required("please enter writing perspective"),
-    // project: Yup.string().required("please enter project"),
-    companyInfo: Yup.string().required("please enter company information"),
-    companyAttributes: Yup.string().required(
-      "Please enter company's attributes"
-    ),
-    services: Yup.string().required("please enter company's services"),
-    content: Yup.string().required("above information is required"),
-    customers: Yup.string().required("above information is required"),
-    contentPurpose: Yup.string().required("above information is required"),
-    brand: Yup.string().required("above information is required"),
+    speech: Yup.string().required("Bitte wählen Sie die Ansprache"),
+    perspective: Yup.string().required("Bitte geben Sie die Perspektive an"),
+    companyInfo: Yup.string().required("Bitte geben Sie Informationen zum Unternehmen ein"),
+    companyAttributes: Yup.string().required("Bitte geben Sie die Merkmale des Unternehmens an"),
+    services: Yup.string().required("Bitte geben Sie die Dienstleistungen des Unternehmens an"),
+    content: Yup.string().required("Die oben genannten Informationen sind erforderlich"),
+    customers: Yup.string().required("Die oben genannten Informationen sind erforderlich"),
+    contentPurpose: Yup.string().required("Die oben genannten Informationen sind erforderlich"),
+    brand: Yup.string().required("Die oben genannten Informationen sind erforderlich"),
   });
 
   const onSubmit = async (values) => {
@@ -66,24 +64,20 @@ const OnboardingForm = () => {
         onBoardingData
       );
 
-      // {role==='Client'? window.location.href = 'https://driptext.de/danke-onboarding/':
-
-      // }
       setLoading(false);
-      console.log("Data submitted successfully:", response.data);
-      // navigate('/danke-probetext')
+      console.log("Daten erfolgreich übermittelt:", response.data);
       window.location.href = "https://driptext.de/danke-probetext/";
     } catch (error) {
       if (error.response) {
         const errorMessage =
           error.response?.data?.message ||
           error.message ||
-          "Server responded with an error";
+          "Der Server hat mit einem Fehler geantwortet";
         setError(true);
         setErrorMesssage(errorMessage);
       } else {
         const errorMessage =
-          error.response?.data?.message || error.message || "Error";
+          error.response?.data?.message || error.message || "Fehler";
         setError(true);
         setErrorMesssage(errorMessage);
       }
@@ -100,55 +94,55 @@ const OnboardingForm = () => {
       >
         {(props) => (
           <Form>
-            <div className="w-full bg-gradient-to-r from-custom-gray to-[#F7F7F7] flex flex-col gap-6 px-3 xs:px-8 xs:py-10  md:px-9 md:py-14 lg:px-10 mt-6 mb-8 rounded-xl">
+            <div className="w-full bg-gradient-to-r from-custom-gray to-[#F7F7F7] flex flex-col gap-6 px-3 xs:px-8 xs:py-10 md:px-9 md:py-14 lg:px-10 mt-6 mb-8 rounded-xl">
               <div className="flex flex-col gap-6">
                 <h2 className="text-custom-black text-base font-semibold">
-                  1. General Information
+                  1. Allgemeine Informationen
                 </h2>
                 <GroupDropdownField
-                  label={"Speech"}
+                  label={"Ansprache"}
                   type={"text"}
                   id={"speech"}
                   name={"speech"}
                   placeholder={""}
-                  option1={"She"}
-                  option2={"You (capitalized)"}
-                  option3={"you (lowercase)"}
-                  option4={"you"}
-                  option5={"no direct address"}
+                  option1={"Sie"}
+                  option2={"Du (mit großem D)"}
+                  option3={"du (mit kleinem d)"}
+                  option4={"du"}
+                  option5={"keine direkte Ansprache"}
                   value={props.values.speech}
                   errors={props.errors.speech}
                   onChange={props.handleChange}
                 />
                 <GroupDropdownField
-                  label={" Writing Perspective"}
-                  placeholder={"write here"}
+                  label={"Schreibperspektive"}
+                  placeholder={"Hier schreiben"}
                   type={"text"}
                   id={"perspective"}
                   name={"perspective"}
                   value={props.values.perspective}
                   errors={props.errors.perspective}
                   onChange={props.handleChange}
-                  option1={"we/our shop/our company"}
-                  option2={"the company/shop"}
-                  option3={"the editorial office"}
-                  option4={"I"}
+                  option1={"wir/unser Shop/unser Unternehmen"}
+                  option2={"das Unternehmen/der Shop"}
+                  option3={"die Redaktion"}
+                  option4={"Ich"}
                   option5={"neutral"}
-                  option6={"uniform/but fundamentally irrelevant"}
+                  option6={"einheitlich/aber grundsätzlich irrelevant"}
                 />
                 <div className="w-full flex flex-col gap-1">
-                  <label className="text-custom-black text-sm lg:text-sm font-semibold  2xl:font-semibold">
-                    Project
+                  <label className="text-custom-black text-sm lg:text-sm font-semibold 2xl:font-semibold">
+                    Projekt
                     <span className="text-red-600 text:lg 2xl:text-[17px] mt-6 pl-1">
                       *
                     </span>
                   </label>
                   <input
-                    className="w-full bg-white text-custom-black text-xs xs:text-sm px-2 xs:px-3.5 font-normal py-3 focus:outline-none focus:ring-none  rounded-xl"
+                    className="w-full bg-white text-custom-black text-xs xs:text-sm px-2 xs:px-3.5 font-normal py-3 focus:outline-none focus:ring-none rounded-xl"
                     type={"text"}
                     id={"project"}
                     name={"project"}
-                    placeholder={"example.com"}
+                    placeholder={"Beispiel.com"}
                     value={projectName}
                     disabled={projectName ? true : false}
                   />
@@ -157,13 +151,13 @@ const OnboardingForm = () => {
 
               <div className="flex flex-col gap-5">
                 <h2 className="text-custom-black text-base font-semibold lg:mt-3.5">
-                  2. Company Information
+                  2. Informationen zum Unternehmen:
                 </h2>
                 <GroupTextArea
-                  label={"Background information about the company"}
+                  label={"Hintergrundinformationen zum Unternehmen"}
                   type={"text"}
                   placeholder={
-                    "Please describe here, ideally in just one sentence, what you do as a company, what you offer and how it helps the customer."
+                    "Bitte beschreiben Sie hier, idealerweise in nur einem Satz, was Ihr Unternehmen tut, was es anbietet und wie es dem Kunden hilft."
                   }
                   id={"companyInfo"}
                   name={"companyInfo"}
@@ -178,11 +172,11 @@ const OnboardingForm = () => {
 
                 <GroupTextArea
                   label={
-                    "Which attributes best describe you as a company/your products/your services?"
+                    "Welche Attribute beschreiben euch als Unternehmen/eure Produkte/eure Leistung am besten?"
                   }
                   type={"text"}
                   placeholder={
-                    "Please give us as many attributes as you woulld like readers to perceive about you and your company in bullet points."
+                    "Bitte nennen Sie so viele Merkmale, wie Sie möchten, die Leser über Ihr Unternehmen und Ihre Produkte wahrnehmen sollen."
                   }
                   id={"companyAttributes"}
                   name={"companyAttributes"}
@@ -195,9 +189,9 @@ const OnboardingForm = () => {
                   }}
                 />
                 <GroupTextArea
-                  label={"What are your services?"}
+                  label={"Was sind eure Leistungen?"}
                   type={"text"}
-                  placeholder={"Please list all servicesoffered online here."}
+                  placeholder={"Bitte listen Sie alle online angebotenen Dienstleistungen auf."}
                   id={"services"}
                   name={"services"}
                   value={props.values.services}
@@ -212,13 +206,13 @@ const OnboardingForm = () => {
 
               <div className="flex flex-col gap-5">
                 <h2 className="text-custom-black text-base font-semibold lg:mt-3.5">
-                  3. Information About the Target Customers
+                  3. Informationen zu den Zielkunden:
                 </h2>
                 <GroupTextArea
-                  label={"Who is the content written for? "}
+                  label={"Für wen sind die Inhalte geschrieben?"}
                   type={"text"}
                   placeholder={
-                    "Please describe the target group as precisely as possible"
+                    "Bitte beschreiben Sie die Zielgruppe so genau wie möglich."
                   }
                   id={"content"}
                   name={"content"}
@@ -232,10 +226,10 @@ const OnboardingForm = () => {
                 />
 
                 <GroupTextArea
-                  label={"Customers we want to address have an interest in..."}
+                  label={"Kunden, die wir ansprechen möchten, haben ein Interesse daran..."}
                   type={"text"}
                   placeholder={
-                    "Please list here in bullet points which problems you solve for customers."
+                    "Bitte listen Sie hier in Bullet-Points auf, welche Probleme Sie für die Kunden lösen."
                   }
                   id={"customers"}
                   name={"customers"}
@@ -251,13 +245,13 @@ const OnboardingForm = () => {
 
               <div className="flex flex-col gap-5">
                 <h2 className="text-custom-black text-base font-semibold lg:mt-3.5">
-                  4. Aim of the Content
+                  4. Ziel des Inhalts
                 </h2>
                 <GroupTextArea
-                  label={"What is the purpose of the content?"}
+                  label={"Was ist das Ziel der Inhalte?"}
                   type={"text"}
                   placeholder={
-                    "Please briefly describe here how organic customers/readers should ideally react when thye land on your site."
+                    "Bitte beschreiben Sie hier kurz, wie die organischen Kunden/Leser idealerweise reagieren sollten, wenn sie auf Ihrer Seite landen."
                   }
                   id={"contentPurpose"}
                   name={"contentPurpose"}
@@ -271,10 +265,10 @@ const OnboardingForm = () => {
                 />
 
                 <GroupTextArea
-                  label={"Information about your brand and your content"}
+                  label={"Informationen über deine Marke und deine Inhaltet"}
                   type={"text"}
                   placeholder={
-                    "Please give us bullet points on how potential readers should describe the content they consume"
+                    "Bitte geben Sie uns Bullet-Points, wie potenzielle Leser den Inhalt beschreiben sollten, den sie konsumieren."
                   }
                   id={"brand"}
                   name={"brand"}
@@ -286,23 +280,23 @@ const OnboardingForm = () => {
                     setErrorMesssage("");
                   }}
                 />
-                   <button
-                    className={`${
-                      loading ? "cursor-not-allowed" : "cursor-pointer"
-                    } border-none text-white font-medium text-base w-full bg-custom-black flex justify-center py-2 xs:py-2.5 mt-1 rounded-xl`}
-                    
-                    type="submit"
-                    disabled={loading}
-                  >
-                    {loading ? (
-                      <div className="flex items-center justify-center">
-                        <div className="w-6 h-6 border-2 border-white border-solid rounded-full border-t-transparent animate-spin" />
-                      </div>
-                    ) : (
-                      "Submit Order"
-                    )}
-                  </button>
-                
+
+                <button
+                  className={`${
+                    loading ? "cursor-not-allowed" : "cursor-pointer"
+                  } border-none text-white font-medium text-base w-full bg-custom-black flex justify-center py-2 xs:py-2.5 mt-1 rounded-xl`}
+                  type="submit"
+                  disabled={loading}
+                >
+                  {loading ? (
+                    <div className="flex items-center justify-center">
+                      <div className="w-6 h-6 border-2 border-white border-solid rounded-full border-t-transparent animate-spin" />
+                    </div>
+                  ) : (
+                    "Jetzt absenden"
+                  )}
+                </button>
+
                 {error && (
                   <div id="email" className="mt-2 text-sm text-red-500">
                     {errorMessage}
@@ -310,7 +304,7 @@ const OnboardingForm = () => {
                 )}
               </div>
               <p className="text-custom-black text-sm 3xl:text-base font-medium text-center">
-                Please check that your data is correct before submitting
+              Bitte überprüfe deine Daten vor dem Absenden auf Richtigkeit.
               </p>
             </div>
           </Form>

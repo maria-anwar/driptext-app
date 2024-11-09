@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { useNavigate, Link } from "react-router-dom";
@@ -33,8 +33,8 @@ const LoginForm = () => {
   };
 
   const validationSchema = Yup.object().shape({
-    email: Yup.string().email().required("email is required"),
-    password: Yup.string().min(8).required("password is required"),
+    email: Yup.string().email().required("E-Mail ist erforderlich"),
+    password: Yup.string().min(8).required("Passwort ist erforderlich"),
   });
 
   const onSubmit = async (values) => {
@@ -68,7 +68,7 @@ const LoginForm = () => {
       }
     } catch (error) {
       const errorMessage =
-        error.response?.data?.message || error.message || "Error logging";
+        error.response?.data?.message || error.message || "Fehler beim Einloggen";
       setError(true);
       setErrorMesssage(errorMessage);
       setLoading(false);
@@ -92,7 +92,7 @@ const LoginForm = () => {
                 color="blue-gray"
                 className="-mb-3 font-medium"
               >
-                Your email
+                Ihre E-Mail-Adresse
               </Typography>
               <Input
                 size="lg"
@@ -122,7 +122,7 @@ const LoginForm = () => {
                 color="blue-gray"
                 className="-mb-3 font-medium"
               >
-                Password
+                Passwort
               </Typography>
               <div className="relative ">
                 <Input
@@ -155,23 +155,8 @@ const LoginForm = () => {
               )}
             </div>
             <div className="flex items-center justify-end mt-6">
-              {/* <div className="flex gap-2 items-center">
-                <input
-                  id="default-checkbox"
-                  type="checkbox"
-                  value=""
-                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-200 rounded focus:ring-blue-500 "
-                />
-                <Typography
-                  variant="small"
-                  color="gray"
-                  className="flex items-center justify-start font-medium"
-                >
-                  Save password
-                </Typography>
-              </div> */}
               <Typography variant="small" className="font-medium text-gray-900">
-                <Link to="/auth/lost/request">Forgot Password</Link>
+                <Link to="/auth/lost/request">Passwort vergessen</Link>
               </Typography>
             </div>
             <Button
@@ -186,7 +171,7 @@ const LoginForm = () => {
                   <div className="w-5 h-5 border-2 border-white border-solid rounded-full border-t-transparent animate-spin" />
                 </div>
               ) : (
-                "Sign In"
+                "Anmelden"
               )}
             </Button>
             {error && (
@@ -201,10 +186,10 @@ const LoginForm = () => {
 
       <div className="xl:hidden w-full flex justify-center gap-2.5 p-4 text-sm text-gray-700  border-gray-200">
         <Link to="/imprint" className="hover:underline">
-          Imprint
+          Impressum
         </Link>
         <Link to="/privacy-policy" className=" hover:underline">
-          Privacy Policy
+          Datenschutzerklärung
         </Link>
       </div>
       

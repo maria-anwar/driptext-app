@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
+import useTitle from '../hooks/useTitle';
 
 const NotFound = () => {
+ document.title = "404 | Driptext";
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen bg-white text-black dark:bg-black dark:text-white">

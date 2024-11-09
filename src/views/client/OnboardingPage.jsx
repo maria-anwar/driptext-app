@@ -2,8 +2,10 @@ import { React, useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Logo from "../../assets/homeimages/driptext.png";
 import OnboardingForm from "../../components/client-forms/OnboardingForm";
+import useTitle from "../../hooks/useTitle";
 
 const OnboardingPage = () => {
+  useTitle("Onboarding für Kunden");
   const location = useLocation();
   const { projectName, userId } = location.state || {};
   const navigate = useNavigate();
@@ -32,14 +34,14 @@ const OnboardingPage = () => {
           <div className="w-full flex d-flex flex-col gap-10">
             <div className="flex flex-col gap-4 px-4 xs:px-6 md:px-9">
               <h1 className="text-dark-blue text-2xl md:text-3xl font-bold text-center md:px-8">
-                Thank you for your booking !
+                Vielen Dank für deine Buchung!
               </h1>
               <h3 className="text-center text-dark-blue text-xl font-bold">
-                Here's what happens next:
+                So geht’s jetzt weiter:
               </h3>
               <p className="text-center text-dark-blue text-lg px-2">
-                Fill out the onboarding form below so we can get to know your
-                company and your content goals better.
+                Fülle das folgende Onboarding Formular aus, damit wir dein
+                Unternehmen und deine Content-Ziele besser kennenlernen.
               </p>
             </div>
             <OnboardingForm projectName={projectName} userId={userId} />
@@ -60,30 +62,32 @@ const OnboardingPage = () => {
           <div className="w-full flex flex-col gap-10">
             <div className="flex flex-col gap-4 px-4 xs:px-6 md:px-9">
               <h1 className="text-dark-blue text-2xl md:text-3xl font-bold text-center md:px-8">
-                Welcome to Our Platform!
+                Willkommen auf unserer Plattform!
               </h1>
               <h3 className="text-center text-dark-blue text-xl font-bold">
-                To access your account and explore further:
+                Um auf Ihr Konto zuzugreifen und mehr zu entdecken:
               </h3>
               <p className="text-center text-dark-blue text-lg px-2">
-                Please log in to your account or register if you don't have one.
-                This will allow you to access your personal dashboard and manage
-                your bookings.
+                Bitte melden Sie sich in Ihrem Konto an oder registrieren Sie
+                sich, wenn Sie noch keines haben. Dadurch erhalten Sie Zugriff
+                auf Ihr persönliches Dashboard und können Ihre Buchungen
+                verwalten.
               </p>
             </div>
           </div>
+
           <div className="flex justify-center items-center flex-col my-8">
             <button
               onClick={() => navigate("/probetext")}
               className="w-full md:w-[50%] bg-[#07B6D4] rounded-full mx-auto text-center text-white py-2 mb-3"
             >
-              Register
+              Registrieren
             </button>
             <button
               onClick={() => navigate("/")}
               className="w-full md:w-[50%] bg-[#07B6D4] rounded-full mx-auto text-center text-white py-2 mb-2"
             >
-              Login
+              Anmelden
             </button>
           </div>
         </div>

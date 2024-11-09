@@ -8,8 +8,10 @@ import Checkbox2 from "../buttons/CheckboxTwo";
 import DarkBtn from "../buttons/DarkBtn";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../Loading";
+import useTitle from "../../../hooks/useTitle";
 
 const TaskTable = () => {
+  useTitle("Client (Tasks)");
   const location = useLocation();
   const navigate = useNavigate();
   const projectId = localStorage.getItem("projectId");
