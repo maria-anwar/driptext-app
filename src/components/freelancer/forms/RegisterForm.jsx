@@ -57,7 +57,7 @@ const RegisterForm = () => {
       email: values.email,
       country: values.country,
       companyName: values.company,
-      vatId: values.vatId,
+      vatId: values.vatId || "null",
       iban: values.iban,
       vatRegulation: values.vatRegulation,
       street: values.street,

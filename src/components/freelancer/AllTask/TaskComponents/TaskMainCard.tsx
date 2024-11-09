@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Task } from "../../Type/types";
 import moment from "moment";
 
@@ -13,6 +13,7 @@ const Card: React.FC<TaskProps> = ({ task, Upcomming, clickableLink }) => {
     if (!date) return "";
     return moment(date).format(format);
   };
+  const [actualNumber, setActualNumber] = useState<string>(task?.actualNumberOfWords)
   return (
     <div className="grid grid-cols-2 gap-x-4  gap-y-0 sm:grid-cols-2 md:grid-cols-3 md:grid-rows-2 2xl:grid-cols-3 3xl:grid-cols-6 3xl:grid-rows-1">
       <div className="flex flex-col pr-3">
@@ -125,7 +126,7 @@ const Card: React.FC<TaskProps> = ({ task, Upcomming, clickableLink }) => {
           wordcount
         </span>
         <span className="font-medium">
-          {task?.actualNumberOfWords}/{task?.desiredNumberOfWords}
+          {Number(actualNumber) ===1? 0 :task?.actualNumberOfWords}/{task?.desiredNumberOfWords}
         </span>
       </div>
     </div>

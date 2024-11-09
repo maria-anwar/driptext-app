@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Task } from "../../Type/types";
 import { formatDate } from "../../Helper/formatDate";
 import AccordionData from "./AccordionData";
@@ -18,6 +18,8 @@ const TaskInfoCard: React.FC<TaskProps> = ({
 }) => {
   const project = task?.project;
   getWordCount();
+  const [actualNumber, setActualNumber] = useState<string>(task?.actualNumberOfWords)
+
   return (
     <>
       <div className="bg-slate-200 dark:bg-boxdark rounded py-4 px-4">
@@ -110,7 +112,8 @@ const TaskInfoCard: React.FC<TaskProps> = ({
         </p>
         <p className="dark:text-white">Your Role: {task?.activeRole}</p>
         <p className="dark:text-white">
-          Word Count: {task?.actualNumberOfWords}/{task?.desiredNumberOfWords}
+          Word Count: {Number(actualNumber) ===1? 0 :task?.actualNumberOfWords}/{task?.desiredNumberOfWords}
+
         </p>
         {task?.comments?.trim() ? (
           <p className="dark:text-white">Comment: {task?.comments}</p>
