@@ -265,7 +265,7 @@ const Settings = () => {
         <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark mt-8">
               <div className="border-b border-stroke py-4 px-7 dark:border-strokedark">
         <div className=" my-2 flex items-center justify-between gap-4">
-          <h2 className="text-2xl font-medium text-black dark:text-white ">
+          <h2 className="sm:text-[16px] lg:text-[18px] 4xl:text-[20px] 5xl:text-[22px] font-medium text-black dark:text-white ">
             Enable Email
           </h2>
           <label className="relative inline-flex items-center cursor-pointer">
