@@ -263,7 +263,7 @@ const Settings = () => {
           </div>
         </div>
         <div className="mb-5.5 flex items-center justify-between gap-4 mt-6.5">
-          <h2 className="text-title-md2 font-semibold text-black dark:text-white ">
+          <h2 className="text-2xl font-medium text-black dark:text-white ">
             Enable Email
           </h2>
           <label className="relative inline-flex items-center cursor-pointer">
@@ -282,7 +282,7 @@ const Settings = () => {
             >
               <FontAwesomeIcon
                 icon={faCheck}
-                className="text-current text-white "
+                className={`text-current ${toggle ? 'text-white':'dark:text-white text-black'}` }
                 width="12"
                 height="12"
               />
