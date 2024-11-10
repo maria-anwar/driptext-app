@@ -18,7 +18,7 @@ const Settings = () => {
   );
   const [lastName, setLastName] = useState(user.user.data.user.lastName || "");
   const [loading, setLoading] = useState(false);
-  const [toggle, setToggle] = useState(false);
+  const [toggle, setToggle] = useState(user.user.data.user.emailSubscription);
 
   const handleUpdate = async (e) => {
     setLoading(true);
@@ -55,6 +55,31 @@ const Settings = () => {
     setFirstName(user.user.data.user.firstName);
     setLastName(user.user.data.user.lastName);
   };
+
+  const handleEmailSubscription = async () => {
+    const newToggle = !toggle;
+    setToggle(newToggle);
+  
+    let token = user.user.token;
+    axios.defaults.headers.common["access-token"] = token;
+    let payload = {
+      userId: user?.user?.data?.user?._id,
+      emailSubscription: newToggle,
+    };
+  
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_DB_URL}/users/emailSubscription`,
+        payload
+      );
+      dispatch(
+        updateUserFields({ path: "data.user.emailSubscription", value: newToggle })
+      );
+    } catch (err) {
+      console.error("Error in email subscription:", err);
+    }
+  };
+  
 
   return (
     <>
@@ -238,7 +263,7 @@ const Settings = () => {
               type="checkbox"
               className="sr-only peer"
               checked={toggle}
-              onChange={() => setToggle(!toggle)}
+              onChange={handleEmailSubscription}
             />
             <div
               className={`flex ${
