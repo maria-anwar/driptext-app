@@ -262,7 +262,9 @@ const Settings = () => {
             </div>
           </div>
         </div>
-        <div className="mb-5.5 flex items-center justify-between gap-4 mt-6.5">
+        <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark mt-8">
+              <div className="border-b border-stroke py-4 px-7 dark:border-strokedark">
+        <div className=" my-2 flex items-center justify-between gap-4">
           <h2 className="text-2xl font-medium text-black dark:text-white ">
             Enable Email
           </h2>
@@ -288,6 +290,9 @@ const Settings = () => {
               />
             </div>
           </label>
+        </div>
+        {!toggle ? <p className="text-red-500">You won't receive any notification from Driptext via email</p>:null}
+        </div>
         </div>
 
         <div className="flex flex-col gap-4 mt-6.5">
