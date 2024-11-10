@@ -291,7 +291,7 @@ const Settings = () => {
             </div>
           </label>
         </div>
-        {!toggle ? <p className="text-red-500">You won't receive any notification from Driptext via email</p>:null}
+        {!toggle ? <p className="text-dark-gray dark:text-slate-400">You won't receive any notification from Driptext via email</p>:null}
         </div>
         </div>
 
