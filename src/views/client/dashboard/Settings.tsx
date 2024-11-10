@@ -274,7 +274,7 @@ const Settings = () => {
             >
               <FontAwesomeIcon
                 icon={faCheck}
-                className="text-current"
+                className="text-current text-white "
                 width="12"
                 height="12"
               />
