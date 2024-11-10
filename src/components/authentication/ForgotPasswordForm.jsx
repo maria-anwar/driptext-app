@@ -63,7 +63,9 @@ const ForgotPasswordForm = () => {
     };
 
     if (values.password !== values.reEnterPass) {
-      toast.error("Beide Passwörter stimmen nicht überein");
+      const errorMessage = 'Beide Passwörter stimmen nicht überein';
+      setError(true);
+      setErrorMesssage(errorMessage);
       return;
     }
     try {
@@ -119,7 +121,7 @@ const ForgotPasswordForm = () => {
                 <FontAwesomeIcon
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
                   onClick={togglePasswordVisibility}
-                  icon={passwordVisible ? faEyeSlash : faEye}
+                  icon={passwordVisible ? faEye : faEyeSlash}
                 />
               </div>
               {props.errors.password && (
@@ -155,7 +157,7 @@ const ForgotPasswordForm = () => {
                 <FontAwesomeIcon
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
                   onClick={toggleConfrimPasswordVisibility}
-                  icon={confirmPasswordVisible ? faEyeSlash : faEye}
+                  icon={confirmPasswordVisible ? faEye : faEyeSlash}
                 />
               </div>
               {props.errors.reEnterPass && (
