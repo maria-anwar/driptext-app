@@ -8,6 +8,8 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import useTitle from "../../../hooks/useTitle";
+import { toast ,ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Settings = () => {
   useTitle("Client (Settings)");
@@ -75,6 +77,11 @@ const Settings = () => {
       dispatch(
         updateUserFields({ path: "data.user.emailSubscription", value: newToggle })
       );
+       if (newToggle) {
+        toast.success("Email subscription enabled");
+       } else {
+        toast.success("Email subscription disabled");
+       }
     } catch (err) {
       console.error("Error in email subscription:", err);
     }
@@ -85,6 +92,7 @@ const Settings = () => {
     <>
       <div className="mx-auto max-w-270 3xl:px-6">
         <Breadcrumb pageName="Settings" />
+        <ToastContainer/>
         <div className="grid grid-cols-5  gap-8">
           <div className="col-span-5 3xl:col-span-8  xl:col-span-8">
             <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
