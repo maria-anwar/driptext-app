@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch } from "react-redux";
-import { updateRoleTitle } from "../../redux/userSlice";
+import { updateRoleTitle, updateUserFields } from "../../redux/userSlice";
 import localStorage from "redux-persist/es/storage";
 import useTitle from "../../hooks/useTitle";
 
@@ -27,7 +27,6 @@ const ThankYouPage = () => {
         host_id: hostId,
       };
 
-      
       const { data } = await axios.post(
         `${import.meta.env.VITE_DB_URL}/chargebee/hostpage_response`,
         body
@@ -42,17 +41,19 @@ const ThankYouPage = () => {
       try {
         console.log("initial payload: ", payload);
         console.log("final payload: ", orderPayload);
-        `${import.meta.env.VITE_DB_URL}/users/create`
+        `${import.meta.env.VITE_DB_URL}/users/create`;
         const response = await axios.post(
-         `${import.meta.env.VITE_DB_URL}/users/create`,
+          `${import.meta.env.VITE_DB_URL}/users/create`,
           orderPayload
         );
         console.log(response.data);
 
         localStorage.removeItem("orderPayload");
 
-        dispatch(updateRoleTitle("Client"));
-
+        // dispatch(updateRoleTitle("Client"));
+        dispatch(
+          updateUserFields({ path: "data.user.role.title", value: "Client" })
+        );
         // dispatch(
         //   updateUserFields({ path: "data.user.role.title", value: 'Client' })
 
