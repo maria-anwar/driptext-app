@@ -14,6 +14,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const Settings = () => {
   useTitle("Client (Settings)");
   const user = useSelector((state) => state.user);
+  console.log(user);
   const dispatch = useDispatch();
   const [firstName, setFirstName] = useState(
     user.user.data.user.firstName || ""

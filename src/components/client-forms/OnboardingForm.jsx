@@ -11,9 +11,12 @@ const OnboardingForm = () => {
   const [loading, setLoading] = useState(false);
   const user = useSelector((state) => state.user);
   const location = useLocation();
-  const { projectName, projectId, userId } = location.state || {};
+  const { projectName, projectId, userId,role } = location.state || {};
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMesssage] = useState("");
+  console.log("User:",  user?.user?.data?.user?.role?.title.toLowerCase() );
+  console.log("Role:", role);
+  const userRole = user?.user?.data?.user?.role?.title.toLowerCase() || role ;
 
   const initialValues = {
     speech: "Sie",
@@ -66,7 +69,13 @@ const OnboardingForm = () => {
 
       setLoading(false);
       console.log("Daten erfolgreich übermittelt:", response.data);
-      window.location.href = "https://driptext.de/danke-probetext/";
+
+      if( userRole == "leads" ) {
+        window.location.href = "https://driptext.de/danke-probetext/";
+      }
+      else{
+        window.location.href = "https://driptext.de/danke-onboarding/";
+      }
     } catch (error) {
       if (error.response) {
         const errorMessage =
