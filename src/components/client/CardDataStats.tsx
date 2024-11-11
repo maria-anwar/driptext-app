@@ -17,6 +17,7 @@ interface CardDataStatsProps {
   projectDuration: number;
   onBoarding: boolean;
   children: ReactNode;
+  plan : any;
 }
 
 const CardDataStats: React.FC<CardDataStatsProps> = ({
@@ -34,6 +35,8 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
   projectDuration,
   children,
   onBoarding,
+  plan
+
 }) => {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
@@ -60,7 +63,7 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
     // }
     localStorage.setItem("projectId", id.toString());
     navigate("/onboarding-probetext", {
-      state: { projectName: domain },
+      state: { projectName: domain,plan:plan },
     });
   };
 

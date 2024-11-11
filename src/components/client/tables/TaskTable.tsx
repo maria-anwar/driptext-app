@@ -9,6 +9,8 @@ import DarkBtn from "../buttons/DarkBtn";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../Loading";
 import useTitle from "../../../hooks/useTitle";
+import OnBoardingInfo from "./OnBoardingInfo";
+import { set } from "date-fns";
 
 const TaskTable = () => {
   useTitle("Client (Tasks)");
@@ -22,34 +24,12 @@ const TaskTable = () => {
   const [openBarIndex, setOpenBarIndex] = useState(null); // Track the index of the currently open task
   const [refreshTrigger, setRefreshTrigger] = useState(0);
   const [userId, setUserID] = useState(user.user.data.user._id);
+  const [OnBoardingModel, setOnBoardingModel] = useState(false);
+  const [project, setProject] = useState({});
 
   useEffect(() => {
-    let token = userToken;
-    axios.defaults.headers.common["access-token"] = token;
-    let payload = {
-      projectId: projectId,
-    };
-
-    axios
-      .post(`${import.meta.env.VITE_DB_URL}/project/tasks/detail`, payload)
-      .then((response) => {
-        const tasks = response.data.data;
-        if (Array.isArray(tasks)) {
-          localStorage.setItem("tasks", JSON.stringify(tasks));
-          setTaskData(tasks);
-
-          console.log(tasks);
-          setLoading(false);
-        } else {
-          console.error("Received data is not an array");
-        }
-        setRefreshTrigger(0);
-      })
-      .catch((err) => {
-        console.error("Error fetching project details:", err);
-        setRefreshTrigger(0);
-        setLoading(false);
-      });
+    TaskDetails();
+    ProjectDetails();
   }, [projectId, refreshTrigger]);
 
   useEffect(() => {
@@ -69,6 +49,55 @@ const TaskTable = () => {
       }
     }
   }, [projectId, refreshTrigger]);
+  const TaskDetails = () => {
+    let token = userToken;
+    axios.defaults.headers.common["access-token"] = token;
+    let payload = {
+      projectId: projectId,
+    };
+
+    axios
+      .post(`${import.meta.env.VITE_DB_URL}/project/tasks/detail`, payload)
+      .then((response) => {
+        const tasks = response.data.data;
+        if (Array.isArray(tasks)) {
+          localStorage.setItem("tasks", JSON.stringify(tasks));
+          setTaskData(tasks);
+          setLoading(false);
+        } else {
+          console.error("Received data is not an array");
+        }
+        setRefreshTrigger(0);
+      })
+      .catch((err) => {
+        console.error("Error fetching project details:", err);
+        setRefreshTrigger(0);
+        setLoading(false);
+      });
+  };
+
+  const ProjectDetails = () => {
+    let token = userToken;
+    axios.defaults.headers.common["access-token"] = token;
+    let payload = {
+      projectId: projectId,
+    };
+
+    axios
+      .post(
+        `${import.meta.env.VITE_DB_URL}/projects/getOnBoardingDetail`,
+        payload
+      )
+      .then((response) => {
+        console.log(response.data.data);
+        setProject(response.data.data);
+      })
+      .catch((err) => {
+        console.error("Error fetching project details:", err);
+        setRefreshTrigger(0);
+        setLoading(false);
+      });
+  };
 
   const handleCheckboxClick = (index) => {
     setOpenBarIndex(openBarIndex === index ? null : index); // Toggle the clicked task's index
@@ -168,7 +197,24 @@ const TaskTable = () => {
           {/* <div onClick={handleAddProjectClick}>
             <DarkBtn name={"Add Text"} url={""} />
           </div> */}
+          <button
+            onClick={() => setOnBoardingModel(true)}
+            className="inline-flex items-center justify-center gap-2.5 bg-black py-4 text-sm xl:text-base  text-center font-medium text-white hover:bg-opacity-90 px-5 lg:px-8 5xl:px-10"
+            >
+            Edit Onboarding
+          </button>
         </div>
+        {OnBoardingModel ? (
+          <OnBoardingInfo
+            onBoarding={project.onBoardingInfo}
+            projectId={project._id}
+            domain={project.projectName}
+            speech={project.speech}
+            perspective={project.prespective}
+            closeModel={() => setOnBoardingModel(false)}
+            handleRefresh={ProjectDetails}
+          />
+        ) : null}
         <h2 className="text-title-md2 font-semibold text-black dark:text-white py-5">
           Project Tasks
         </h2>
@@ -239,17 +285,23 @@ const TaskTable = () => {
                               ? "bg-yellow-500/20 text-yellow-500"
                               : task.status.toUpperCase() === "IN PROGRESS"
                               ? "bg-blue-500/20 text-blue-500"
-                              : task.status.toUpperCase() === "READY FOR PROOFREADING"
+                              : task.status.toUpperCase() ===
+                                "READY FOR PROOFREADING"
                               ? "bg-orange-500/20 text-orange-500"
-                              : task.status.toUpperCase() === "PROOFREADING IN PROGRESS"
+                              : task.status.toUpperCase() ===
+                                "PROOFREADING IN PROGRESS"
                               ? "bg-purple-500/20 text-purple-500"
-                              : task.status.toUpperCase() === "READY FOR SEO OPTIMIZATION"
+                              : task.status.toUpperCase() ===
+                                "READY FOR SEO OPTIMIZATION"
                               ? "bg-indigo-500/20 text-indigo-500"
-                              : task.status.toUpperCase() === "SEO OPTIMIZATION IN PROGRESS"
+                              : task.status.toUpperCase() ===
+                                "SEO OPTIMIZATION IN PROGRESS"
                               ? "bg-pink-500/20 text-pink-500"
-                              : task.status.toUpperCase() === "READY FOR 2ND PROOFREADING"
+                              : task.status.toUpperCase() ===
+                                "READY FOR 2ND PROOFREADING"
                               ? "bg-violet-500/20 text-violet-500" // New color for "READY FOR 2ND PROOFREADING"
-                              : task.status.toUpperCase() === "2ND PROOFREADING IN PROGRESS"
+                              : task.status.toUpperCase() ===
+                                "2ND PROOFREADING IN PROGRESS"
                               ? "bg-lime-300/20 text-lime-700" // Different color for "2ND PROOFREADING IN PROGRESS"
                               : "bg-red-500/20 text-red-500"
                           }`}

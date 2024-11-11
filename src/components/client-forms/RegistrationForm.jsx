@@ -76,14 +76,15 @@ const RegistrationForm = () => {
           `${import.meta.env.VITE_DB_URL}/users/create`,
           registerData
         );
-        console.log(response);
+
         setLoading(false);
         navigate("/onboarding-probetext", {
           state: {
             projectName: values.project,
             projectId: response.data.project._id,
             userId: response.data.data._id,
-            role:'leads'
+            role:'leads',
+            plan:response.data.project.plan,
           },
         });
       } else {

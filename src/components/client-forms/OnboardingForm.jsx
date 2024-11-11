@@ -6,17 +6,16 @@ import axios from "axios";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { GroupField } from "./GroupField";
 
 const OnboardingForm = () => {
   const [loading, setLoading] = useState(false);
   const user = useSelector((state) => state.user);
   const location = useLocation();
-  const { projectName, projectId, userId,role } = location.state || {};
+  const { projectName, projectId, userId, role, plan } = location.state || {};
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMesssage] = useState("");
-  console.log("User:",  user?.user?.data?.user?.role?.title.toLowerCase() );
-  console.log("Role:", role);
-  const userRole = user?.user?.data?.user?.role?.title.toLowerCase() || role ;
+  const userRole = user?.user?.data?.user?.role?.title.toLowerCase() || role;
 
   const initialValues = {
     speech: "Sie",
@@ -29,18 +28,34 @@ const OnboardingForm = () => {
     customers: "",
     contentPurpose: "",
     brand: "",
+    keywordType: "Schlüsselworttyp",
+    keyword: null,
   };
 
   const validationSchema = Yup.object().shape({
     speech: Yup.string().required("Bitte wählen Sie die Ansprache"),
     perspective: Yup.string().required("Bitte geben Sie die Perspektive an"),
-    companyInfo: Yup.string().required("Bitte geben Sie Informationen zum Unternehmen ein"),
-    companyAttributes: Yup.string().required("Bitte geben Sie die Merkmale des Unternehmens an"),
-    services: Yup.string().required("Bitte geben Sie die Dienstleistungen des Unternehmens an"),
-    content: Yup.string().required("Die oben genannten Informationen sind erforderlich"),
-    customers: Yup.string().required("Die oben genannten Informationen sind erforderlich"),
-    contentPurpose: Yup.string().required("Die oben genannten Informationen sind erforderlich"),
-    brand: Yup.string().required("Die oben genannten Informationen sind erforderlich"),
+    companyInfo: Yup.string().required(
+      "Bitte geben Sie Informationen zum Unternehmen ein"
+    ),
+    companyAttributes: Yup.string().required(
+      "Bitte geben Sie die Merkmale des Unternehmens an"
+    ),
+    services: Yup.string().required(
+      "Bitte geben Sie die Dienstleistungen des Unternehmens an"
+    ),
+    content: Yup.string().required(
+      "Die oben genannten Informationen sind erforderlich"
+    ),
+    customers: Yup.string().required(
+      "Die oben genannten Informationen sind erforderlich"
+    ),
+    contentPurpose: Yup.string().required(
+      "Die oben genannten Informationen sind erforderlich"
+    ),
+    brand: Yup.string().required(
+      "Die oben genannten Informationen sind erforderlich"
+    ),
   });
 
   const onSubmit = async (values) => {
@@ -49,6 +64,8 @@ const OnboardingForm = () => {
       speech: values.speech,
       prespective: values.perspective,
       projectName: values.project,
+      keyword: values.keyword,
+      keywordType: values.textType,
       userId: userId || user.user.data.user._id, // Assign appropriate value
       projectId: projectId || localStorage.getItem("projectId"),
       companyBackgorund: values.companyInfo,
@@ -69,11 +86,11 @@ const OnboardingForm = () => {
 
       setLoading(false);
       console.log("Daten erfolgreich übermittelt:", response.data);
+      // window.location.href = "https://driptext.de/danke-probetext/";
 
-      if( userRole == "leads" ) {
+      if (userRole == "leads") {
         window.location.href = "https://driptext.de/danke-probetext/";
-      }
-      else{
+      } else {
         window.location.href = "https://driptext.de/danke-onboarding/";
       }
     } catch (error) {
@@ -156,6 +173,40 @@ const OnboardingForm = () => {
                     disabled={projectName ? true : false}
                   />
                 </div>
+                {plan === null ? (
+                  <>
+                    <GroupField
+                      label={"Gewünschtes Stichwort"}
+                      placeholder={"Beispiel-Stichwort"}
+                      id={"keyword"}
+                      name={"keyword"}
+                      value={props.values.keyword}
+                      errors={props.errors.keyword}
+                      onChange={(e) => {
+                        props.handleChange(e);
+                        setError(false);
+                        setErrorMesssage("");
+                      }}
+                    />
+
+                    <GroupDropdownField
+                      label={"Schlüsselworttyp"}
+                      type={"text"}
+                      id={"keywordType"}
+                      name={"keywordType"}
+                      placeholder={""}
+                      option1="Leitfaden"
+                      option2="Shop (Kategorie)"
+                      option3="Shop (Produkt)"
+                      option4="Definition/Wiki"
+                      option5="Shop (Startseite)"
+                      option6="CMS-Seite"
+                      value={props.values.keywordType}
+                      errors={props.errors.keywordType}
+                      onChange={props.handleChange}
+                    />
+                  </>
+                ) : null}
               </div>
 
               <div className="flex flex-col gap-5">
@@ -200,7 +251,9 @@ const OnboardingForm = () => {
                 <GroupTextArea
                   label={"Was sind eure Leistungen?"}
                   type={"text"}
-                  placeholder={"Bitte listen Sie alle online angebotenen Dienstleistungen auf."}
+                  placeholder={
+                    "Bitte listen Sie alle online angebotenen Dienstleistungen auf."
+                  }
                   id={"services"}
                   name={"services"}
                   value={props.values.services}
@@ -235,7 +288,9 @@ const OnboardingForm = () => {
                 />
 
                 <GroupTextArea
-                  label={"Kunden, die wir ansprechen möchten, haben ein Interesse daran..."}
+                  label={
+                    "Kunden, die wir ansprechen möchten, haben ein Interesse daran..."
+                  }
                   type={"text"}
                   placeholder={
                     "Bitte listen Sie hier in Bullet-Points auf, welche Probleme Sie für die Kunden lösen."
@@ -313,7 +368,7 @@ const OnboardingForm = () => {
                 )}
               </div>
               <p className="text-custom-black text-sm 3xl:text-base font-medium text-center">
-              Bitte überprüfe deine Daten vor dem Absenden auf Richtigkeit.
+                Bitte überprüfe deine Daten vor dem Absenden auf Richtigkeit.
               </p>
             </div>
           </Form>
