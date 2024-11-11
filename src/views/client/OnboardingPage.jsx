@@ -44,7 +44,7 @@ const OnboardingPage = () => {
                 Unternehmen und deine Content-Ziele besser kennenlernen.
               </p>
             </div>
-            <OnboardingForm projectName={projectName} userId={userId} role={role} />
+            <OnboardingForm projectName={projectName} userId={userId}  />
           </div>
         </div>
       ) : (
