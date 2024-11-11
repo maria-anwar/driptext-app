@@ -88,7 +88,7 @@ const OnboardingForm = () => {
       console.log("Daten erfolgreich übermittelt:", response.data);
       // window.location.href = "https://driptext.de/danke-probetext/";
 
-      if (userRole == "leads") {
+      if (plan === null) {
         window.location.href = "https://driptext.de/danke-probetext/";
       } else {
         window.location.href = "https://driptext.de/danke-onboarding/";
