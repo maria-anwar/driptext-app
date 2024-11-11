@@ -7,7 +7,7 @@ import useTitle from "../../hooks/useTitle";
 const OnboardingPage = () => {
   useTitle("Onboarding für Kunden");
   const location = useLocation();
-  const { projectName, userId } = location.state || {};
+  const { projectName, userId,role } = location.state || {};
   const navigate = useNavigate();
 
   const [show, setShow] = useState(true);
@@ -44,7 +44,7 @@ const OnboardingPage = () => {
                 Unternehmen und deine Content-Ziele besser kennenlernen.
               </p>
             </div>
-            <OnboardingForm projectName={projectName} userId={userId} />
+            <OnboardingForm projectName={projectName} userId={userId} role={role} />
           </div>
         </div>
       ) : (
