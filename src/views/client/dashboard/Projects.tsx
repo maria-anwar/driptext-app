@@ -106,7 +106,7 @@ const Projects: React.FC = () => {
                 usedordersPerMonth={project?.plan?.tasksPerMonthCount}
                 projectDuration={project?.plan?.duration}
                 onBoarding={project?.onBoarding}
-                plan={project?.plan?.plan}
+                plan={project?.plan?.subscription}
               >
                 <svg
                   className="fill-primary dark:fill-white"
