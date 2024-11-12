@@ -236,14 +236,14 @@ const OrderForm = () => {
         "12 months - word price 0.05 EUR/net",
       ];
       const EightTextDurations = [
-        "3 months - word price 0.14 EUR/net",
-        "6 months - word price 0.12 EUR/net",
-        "12 months - word price 0.10 EUR/net",
+        "3 months - word price 0.07 EUR/net",
+        "6 months - word price 0.06 EUR/net",
+        "12 months - word price 0.05 EUR/net",
       ];
       const twelveTextDuration = [
-        "3 months - word price 0.20 EUR/net",
-        "6 months - word price 0.18 EUR/net",
-        "12 months - word price 0.15 EUR/net",
+        "3 months - word price 0.07 EUR/net",
+        "6 months - word price 0.06 EUR/net",
+        "12 months - word price 0.05 EUR/net",
       ];
       let initialDurationValue = "";
       if (texts.substring(0, 2) === "4 ") {
@@ -457,9 +457,9 @@ const OrderForm = () => {
               id={"duration"}
               name={"duration"}
               placeholder={""}
-              option1="3 Monate - Wortpreis 0,07 EUR/netto"
-              option2="6 Monate - Wortpreis 0,06 EUR/netto"
-              option3="12 Monate - Wortpreis 0,05 EUR/netto"
+              option1="3 Monate - Wortpreis 0.07 EUR/netto"
+              option2="6 Monate - Wortpreis 0.06 EUR/netto"
+              option3="12 Monate - Wortpreis 0.05 EUR/netto"
               value={props.values.duration}
               errors={props.errors.duration}
               onChange={props.handleChange}
@@ -472,9 +472,9 @@ const OrderForm = () => {
               id={"duration"}
               name={"duration"}
               placeholder={""}
-              option1="3 Monate - Wortpreis 0,14 EUR/netto"
-              option2="6 Monate - Wortpreis 0,12 EUR/netto"
-              option3="12 Monate - Wortpreis 0,10 EUR/netto"
+              option1="3 Monate - Wortpreis 0.07 EUR/netto"
+              option2="6 Monate - Wortpreis 0.06 EUR/netto"
+              option3="12 Monate - Wortpreis 0.05 EUR/netto"
               value={props.values.duration}
               errors={props.errors.duration}
               onChange={props.handleChange}
@@ -487,9 +487,9 @@ const OrderForm = () => {
               id={"duration"}
               name={"duration"}
               placeholder={""}
-              option1="3 Monate - Wortpreis 0,20 EUR/netto"
-              option2="6 Monate - Wortpreis 0,18 EUR/netto"
-              option3="12 Monate - Wortpreis 0,15 EUR/netto"
+              option1="3 Monate - Wortpreis 0.07 EUR/netto"
+              option2="6 Monate - Wortpreis 0.06 EUR/netto"
+              option3="12 Monate - Wortpreis 0.05 EUR/netto"
               value={props.values.duration}
               errors={props.errors.duration}
               onChange={props.handleChange}
