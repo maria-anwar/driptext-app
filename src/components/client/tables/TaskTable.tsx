@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import Loading from "../../Loading";
 import useTitle from "../../../hooks/useTitle";
 import OnBoardingInfo from "./OnBoardingInfo";
-import { set } from "date-fns";
+import { format, set } from "date-fns";
 
 const TaskTable = () => {
   useTitle("Client (Tasks)");
@@ -49,6 +49,7 @@ const TaskTable = () => {
       }
     }
   }, [projectId, refreshTrigger]);
+
   const TaskDetails = () => {
     let token = userToken;
     axios.defaults.headers.common["access-token"] = token;
@@ -63,6 +64,7 @@ const TaskTable = () => {
         if (Array.isArray(tasks)) {
           localStorage.setItem("tasks", JSON.stringify(tasks));
           setTaskData(tasks);
+          console.log("Stored tasks loaded", tasks);
           setLoading(false);
         } else {
           console.error("Received data is not an array");
@@ -89,7 +91,6 @@ const TaskTable = () => {
         payload
       )
       .then((response) => {
-        console.log(response.data.data);
         setProject(response.data.data);
       })
       .catch((err) => {
@@ -178,6 +179,14 @@ const TaskTable = () => {
     }
   };
 
+  const formatDate = (dateString) => {
+    if (!dateString) {
+      return "";
+    }
+    const date = new Date(dateString);
+    return format(date, "MMMM yyyy");
+  };
+
   return (
     <>
       <div className="2xl:px-6 3xl:px-10">
@@ -197,10 +206,15 @@ const TaskTable = () => {
           {/* <div onClick={handleAddProjectClick}>
             <DarkBtn name={"Add Text"} url={""} />
           </div> */}
+        </div>
+        <div className="flex justify-between items-center flex-row mb-6">
+          <h2 className="text-title-md2 font-semibold text-black dark:text-white py-5">
+            Project Texts
+          </h2>
           <button
             onClick={() => setOnBoardingModel(true)}
             className="inline-flex items-center justify-center gap-2.5 bg-black py-4 text-sm xl:text-base  text-center font-medium text-white hover:bg-opacity-90 px-5 lg:px-8 5xl:px-10"
-            >
+          >
             Edit Onboarding
           </button>
         </div>
@@ -215,9 +229,6 @@ const TaskTable = () => {
             handleRefresh={ProjectDetails}
           />
         ) : null}
-        <h2 className="text-title-md2 font-semibold text-black dark:text-white py-5">
-          Project Tasks
-        </h2>
         {loading ? (
           <div className="rounded-sm border border-stroke shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1  w-full bg-slate-200 h-[300px] animate-pulse"></div>
         ) : (
@@ -227,7 +238,7 @@ const TaskTable = () => {
                 <thead>
                   <tr className="bg-gray-2 text-left dark:bg-meta-4">
                     <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
-                      Order Id
+                      Text #
                     </th>
                     <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
                       Status
@@ -264,7 +275,7 @@ const TaskTable = () => {
                             task?.status.toLowerCase() === "final"
                               ? "text-blue-500"
                               : "cursor-not-allowed text-gray-500"
-                          }`}
+                          } text-left`}
                           onClick={(e) => {
                             if (task?.status.toLowerCase() !== "final") {
                               e.preventDefault();
@@ -276,7 +287,7 @@ const TaskTable = () => {
                       </td>
                       <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                         <p
-                          className={`inline-flex rounded-full bg-opacity-10 py-1 px-3 text-sm font-medium   ${
+                          className={`inline-flex rounded-full bg-opacity-10 py-1 px-3 text-sm font-medium text-center  ${
                             task?.status.toUpperCase() === "FINAL"
                               ? "bg-green-500/20 text-green-500"
                               : task.status.toUpperCase() === "FREE TRIAL"
@@ -310,17 +321,19 @@ const TaskTable = () => {
                         </p>
                       </td>
                       <td className="border-b border-[#eee] py-5 px-4 pl-5  dark:border-strokedark ">
-                        <p className="text-sm">{task.serviceDuration}</p>
+                        <p className="text-sm text-black dark:text-white">
+                          {formatDate(task?.dueDate)}
+                        </p>
                       </td>
                       <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                         <p className="text-black dark:text-white">
-                          {task.keywords}
+                          {task?.keywords}
                         </p>
                       </td>
                       <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark  ">
-                        {/* <div
+                        <div
                           onClick={() =>
-                            task.status === "Ready to Start"
+                            task?.status.toLowerCase() === "ready to work"
                               ? handleCheckboxClick(index)
                               : null
                           }
@@ -361,7 +374,7 @@ const TaskTable = () => {
                               </div>
                             </div>
                           )}
-                        </div> */}
+                        </div>
                       </td>
                     </tr>
                   ))}
