@@ -142,10 +142,10 @@ const ThankYouPage = () => {
         </p>
         <button
           onClick={() => navigate("/client-dashboard")}
-          className="w-full md:w-[50%] bg-[#07B6D4] rounded-full mx-auto text-center text-white py-2 mb-8"
+          className="w-full md:w-[50%] bg-gradient-to-r from-buttonStart to-buttonEnd  rounded-lg font-medium mx-auto text-center text-white py-2 mb-8"
         >
           Go to Dashboard
-        </button>
+        </button>  
         <p className="text-xl font-bold text-gray-800 ">
           Heres what happens next:
         </p>

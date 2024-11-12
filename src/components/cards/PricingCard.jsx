@@ -24,7 +24,7 @@ const PricingCard = ({ plan }) => {
         <h2 className="font-bold text-2xl">{plan.name}</h2>
         {plan.wordPrice && <p className="text-sm">{plan.wordPrice}</p>}
       </div>
-      <div className="p-6">
+      <div className="p-6 flex justify-center items-center flex-col">
         <div className="text-center py-4">
           <p className="font-extrabold text-5xl text-cardHeading">
             {plan.price}
@@ -75,9 +75,9 @@ const PricingCard = ({ plan }) => {
         </ul>
         <button
           onClick={handleSelectPlan}
-          className="w-full mt-4 bg-gradient-to-r from-buttonStart to-buttonEnd text-white py-4 px-4 rounded-lg font-medium "
+          className="w-2/3 mt-4 bg-gradient-to-r from-buttonStart to-buttonEnd text-white py-4 px-4 rounded-lg font-medium "
         >
-          Order free sample text
+          Order now
         </button>
       </div>
     </div>
