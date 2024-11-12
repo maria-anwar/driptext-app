@@ -335,8 +335,6 @@ const TaskTable = () => {
                           onClick={() =>
                             task?.status.toLowerCase() === "ready to work"
                               ? handleCheckboxClick(index)
-                              : task?.status.toLowerCase() === "uninitialized"
-                              ? handleCheckboxClick(index)
                               : null
                           }
                           className="cursor-pointer flex items-center"
