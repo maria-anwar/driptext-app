@@ -1,20 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import Breadcrumb from "../breeadcrumbs/Breadcrumb";
 import Checkbox1 from "../buttons/CheckboxThree";
 import Checkbox2 from "../buttons/CheckboxTwo";
 import DarkBtn from "../buttons/DarkBtn";
 import { useNavigate } from "react-router-dom";
-import Loading from "../../Loading";
 import useTitle from "../../../hooks/useTitle";
-import OnBoardingInfo from "./OnBoardingInfo";
-import { format, set } from "date-fns";
+import { format } from "date-fns";
 
 const TaskTable = () => {
   useTitle("Client (Tasks)");
-  const location = useLocation();
   const navigate = useNavigate();
   const projectId = localStorage.getItem("projectId");
   const user = useSelector((state) => state.user);
@@ -24,12 +20,9 @@ const TaskTable = () => {
   const [openBarIndex, setOpenBarIndex] = useState(null); // Track the index of the currently open task
   const [refreshTrigger, setRefreshTrigger] = useState(0);
   const [userId, setUserID] = useState(user.user.data.user._id);
-  const [OnBoardingModel, setOnBoardingModel] = useState(false);
-  const [project, setProject] = useState({});
 
   useEffect(() => {
     TaskDetails();
-    ProjectDetails();
   }, [projectId, refreshTrigger]);
 
   useEffect(() => {
@@ -64,34 +57,11 @@ const TaskTable = () => {
         if (Array.isArray(tasks)) {
           localStorage.setItem("tasks", JSON.stringify(tasks));
           setTaskData(tasks);
-          console.log("Stored tasks loaded", tasks);
           setLoading(false);
         } else {
           console.error("Received data is not an array");
         }
         setRefreshTrigger(0);
-      })
-      .catch((err) => {
-        console.error("Error fetching project details:", err);
-        setRefreshTrigger(0);
-        setLoading(false);
-      });
-  };
-
-  const ProjectDetails = () => {
-    let token = userToken;
-    axios.defaults.headers.common["access-token"] = token;
-    let payload = {
-      projectId: projectId,
-    };
-
-    axios
-      .post(
-        `${import.meta.env.VITE_DB_URL}/projects/getOnBoardingDetail`,
-        payload
-      )
-      .then((response) => {
-        setProject(response.data.data);
       })
       .catch((err) => {
         console.error("Error fetching project details:", err);
@@ -197,7 +167,7 @@ const TaskTable = () => {
                 Dashboard /
               </Link>
             </li>
-            <li className="font-medium text-primary">Project Tasks</li>
+            <li className="font-medium text-primary">Project Texts</li>
           </ol>
           {/* <DarkBtn
             name={"Extend Monthly Package"}
@@ -207,28 +177,16 @@ const TaskTable = () => {
             <DarkBtn name={"Add Text"} url={""} />
           </div> */}
         </div>
-        <div className="flex justify-between items-center flex-row mb-6">
-          <h2 className="text-title-md2 font-semibold text-black dark:text-white py-5">
+        <div className="flex justify-between items-center flex-row mb-6 mt-4 ">
+          <h2 className="text-title-md2 font-semibold text-black dark:text-white ">
             Project Texts
           </h2>
-          <button
-            onClick={() => setOnBoardingModel(true)}
-            className="inline-flex items-center justify-center gap-2.5 bg-black py-4 text-sm xl:text-base  text-center font-medium text-white hover:bg-opacity-90 px-5 lg:px-8 5xl:px-10"
-          >
-            Edit Onboarding
-          </button>
+          <div className=" w-full 2xl:max-w-max flex justify-start 2xl:justify-end gap-2 ">
+            <div>
+              <DarkBtn name={"Add Subscription"} url={"/package-booking"} />
+            </div>
+          </div>
         </div>
-        {OnBoardingModel ? (
-          <OnBoardingInfo
-            onBoarding={project.onBoardingInfo}
-            projectId={project._id}
-            domain={project.projectName}
-            speech={project.speech}
-            perspective={project.prespective}
-            closeModel={() => setOnBoardingModel(false)}
-            handleRefresh={ProjectDetails}
-          />
-        ) : null}
         {loading ? (
           <div className="rounded-sm border border-stroke shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1  w-full bg-slate-200 h-[300px] animate-pulse"></div>
         ) : (
@@ -249,7 +207,7 @@ const TaskTable = () => {
                     <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
                       Keyword
                     </th>
-                    <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
+                    <th className="min-w-[100px] py-4 px-4 font-medium text-black dark:text-white">
                       Published
                     </th>
                   </tr>
@@ -337,7 +295,7 @@ const TaskTable = () => {
                               ? handleCheckboxClick(index)
                               : null
                           }
-                          className="cursor-pointer flex items-center"
+                          className="cursor-pointer flex items-center ml-7"
                         >
                           {task.published === false ? (
                             <Checkbox1 />
