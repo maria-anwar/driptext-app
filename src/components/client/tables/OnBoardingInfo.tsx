@@ -11,7 +11,7 @@ import GroupDropdownField from "../../client/Forms/GroupDropdownField";
 
 interface EditProjectProps {
   closeModel: () => void;
-  handleRefresh: () => void;
+  handleRefresh?: () => void;
   projectId: string;
   domain: string;
   speech: string;
@@ -112,7 +112,7 @@ const OnBoardingInfo: React.FC<EditProjectProps> = ({
     >
       {({ values, errors, touched, handleChange }) => (
         <Form>
-          <div className="fixed inset-0 flex items-center justify-center z-[9999] bg-neutral-200 dark:bg-slate dark:bg-opacity-15 bg-opacity-60 px-4">
+          <div className="fixed inset-0 flex items-center justify-center z-999999 bg-neutral-200 dark:bg-slate dark:bg-opacity-15 bg-opacity-60 px-4">
             <div className="bg-white dark:bg-black p-6 rounded shadow-lg lg:w-10/12 xl:w-10/12 2xl:w-6/12 max-h-[90vh] overflow-y-auto scrollbar-hide">
               <div className="flex justify-between items-center mb-5">
                 <h2 className="text-xl font-bold dark:text-white">
@@ -159,7 +159,6 @@ const OnBoardingInfo: React.FC<EditProjectProps> = ({
                   type={""}
                   placeholder={""}
                 />
-               
 
                 {/* Company Information Section */}
                 <h2 className="text-black dark:text-white text-base font-semibold lg:mt-3">
