@@ -65,7 +65,7 @@ const OnboardingForm = () => {
       prespective: values.perspective,
       projectName: values.project,
       keyword: values.keyword,
-      keywordType: values.textType,
+      keywordType: values.keywordType,
       userId: userId || user.user.data.user._id, // Assign appropriate value
       projectId: projectId || localStorage.getItem("projectId"),
       companyBackgorund: values.companyInfo,
@@ -76,6 +76,7 @@ const OnboardingForm = () => {
       contentPurpose: values.contentPurpose,
       contentInfo: values.brand,
     };
+
 
     try {
       setError(false);
