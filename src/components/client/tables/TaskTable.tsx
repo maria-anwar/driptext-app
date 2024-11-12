@@ -181,10 +181,8 @@ const TaskTable = () => {
           <h2 className="text-title-md2 font-semibold text-black dark:text-white ">
             Project Texts
           </h2>
-          <div className=" w-full 2xl:max-w-max flex justify-start 2xl:justify-end gap-2 ">
-            <div>
-              <DarkBtn name={"Add Subscription"} url={"/package-booking"} />
-            </div>
+          <div>
+            <DarkBtn name={"Add Subscription"} url={"/package-booking"} />
           </div>
         </div>
         {loading ? (
