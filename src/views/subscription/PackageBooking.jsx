@@ -34,21 +34,21 @@ const plansForTexts = {
       name: "3 months duration",
       price: "840€ ",
       month: "per month",
-      wordPrice: "Word price: 0.14 EUR/net",
+      wordPrice: "Word price: 0.07 EUR/net",
       features: 8
     },
     {
       name: "6 months term",
       price: "720€ ",
       month: "per month",
-      wordPrice: "Word price: 0.12 EUR/net",
+      wordPrice: "Word price: 0.06 EUR/net",
       features: 8
     },
     {
       name: "12 months term",
       price: "600€ ",
       month: "per month",
-      wordPrice: "Word price: 0.10 EUR/net",
+      wordPrice: "Word price: 0.05 EUR/net",
       features: 8,
       bestValue: true,
     },
@@ -58,21 +58,21 @@ const plansForTexts = {
       name: "3 months duration",
       price: "1260€ ",
       month: "per month",
-      wordPrice: "Word price: 0.20 EUR/net",
+      wordPrice: "Word price: 0.07 EUR/net",
       features: 12
     },
     {
       name: "6 months term",
       price: "1080€ ",
       month: "per month",
-      wordPrice: "Word price: 0.18 EUR/net",
+      wordPrice: "Word price: 0.06 EUR/net",
       features:12
     },
     {
       name: "12 months term",
       price: "900€ ",
       month: "per month",
-      wordPrice: "Word price: 0.15 EUR/net",
+      wordPrice: "Word price: 0.05 EUR/net",
       features: 12,
       bestValue: true,
     },
@@ -137,7 +137,6 @@ const PackageBooking = () => {
         <div className="w-full mt-24 flex flex-col md:flex-row justify-between items-center py-8  border-gray-300 ">
           <div className="flex items-center mb-4 md:mb-0">
             <img src={logo} alt="Footer Logo" className="h-6 w-auto mr-2" />
-            <span className="text-gray-700 font-semibold">DRIPTEXT</span>
           </div>
 
           <div className="flex flex-col md:flex-row gap-2 md:gap-6 text-center md:text-left">

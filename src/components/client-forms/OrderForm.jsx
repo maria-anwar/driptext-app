@@ -432,7 +432,7 @@ const OrderForm = () => {
   {(props) => (
     <Form>
       <div className="w-full bg-gradient-to-r from-custom-gray to-[#F7F7F7] py-4 flex flex-col gap-6 px-4 xs:px-8 xs:py-10  md:px-9 md:py-14 lg:px-10  mb-8 rounded-xl">
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-y-2">
           <h2 className="text-custom-black text-base font-semibold">
             1. Wählen Sie Ihr DripText-Paket:
           </h2>
@@ -508,8 +508,8 @@ const OrderForm = () => {
           />
         </div>
 
-        <div className="flex flex-col gap-5">
-          <h2 className="text-custom-black text-base font-semibold lg:mt-3.5">
+        <div className="flex flex-col gap-y-3">
+          <h2 className="text-custom-black text-base font-semibold">
             2. Kontaktdaten des Rechnungsempfängers (m/w/d):
           </h2>
           <GroupField
