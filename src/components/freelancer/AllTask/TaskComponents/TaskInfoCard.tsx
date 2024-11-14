@@ -94,10 +94,13 @@ const TaskInfoCard: React.FC<TaskProps> = ({
           Active Role:{" "}
           {task?.status.toUpperCase() === "FINAL"
             ? "none"
-            : task.status.toUpperCase() === "FREE TRIAL" ||
-              task.status.toUpperCase() === "READY TO WORK" ||
-              task.status.toUpperCase() === "IN PROGRESS" ||
-              task.status.toUpperCase() === "IN RIVISION"
+            :task.status.toUpperCase() === "FREE TRIAL" ||
+            task.status.toUpperCase() === "READY TO WORK" ||
+            task.status.toUpperCase() === "IN PROGRESS" ||
+            task.status.toUpperCase() === "READY FOR RIVISION (LECTOR)" ||
+            task.status.toUpperCase() === "READY FOR RIVISION (META LECTOR)" ||
+            task.status.toUpperCase() === "IN RIVISION (LECTOR)" ||
+            task.status.toUpperCase() === "IN RIVISION (META LECTOR)"
             ? "Texter"
             : task.status.toUpperCase() === "READY FOR PROOFREADING" ||
               task.status.toUpperCase() === "PROOFREADING IN PROGRESS"

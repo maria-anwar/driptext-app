@@ -10,7 +10,7 @@ import NoTask from "../../../../../components/freelancer/Helper/NoTask";
 // Define the type for the props
 interface AllTasksProps {
   activeTasks: Task[];
- // upcommingTasks: Task[];
+  // upcommingTasks: Task[];
   userId: string;
   getRefreshTask: () => void;
 }
@@ -21,7 +21,7 @@ const AllTasks: React.FC<AllTasksProps> = ({
   userId,
   getRefreshTask,
 }) => {
-//console.log(activeTasks);
+  //console.log(activeTasks);
   // if (activeTasks.length === 0 && upcommingTasks.length === 0) {
   //   return <NoTask label="There are no any Active and Upcoming tasks to show" />;
   // }
@@ -38,9 +38,15 @@ const AllTasks: React.FC<AllTasksProps> = ({
 
               if (
                 task.texter === userId &&
-                ["ready to work", "in progress", "in rivision", "final"].includes(
-                  task.status.toLowerCase()
-                )
+                [
+                  "ready to work",
+                  "in progress",
+                  "final",
+                  "ready for rivision (lector)",
+                  "ready for rivision (meta lector)",
+                  "in rivision (lector)",
+                  "in rivision (meta lector)",
+                ].includes(task.status.toLowerCase())
               ) {
                 TaskCard = (
                   <TasksCard
@@ -52,10 +58,13 @@ const AllTasks: React.FC<AllTasksProps> = ({
               } else if (
                 task.lector === userId &&
                 [
-                  "ready to work",
+                 "ready to work",
                   "in progress",
-                  "in rivision",
                   "final",
+                  "ready for rivision (lector)",
+                  "ready for rivision (meta lector)",
+                  "in rivision (lector)",
+                  "in rivision (meta lector)",
                   "ready for proofreading",
                   "proofreading in progress",
                 ].includes(task.status.toLowerCase())
@@ -70,10 +79,13 @@ const AllTasks: React.FC<AllTasksProps> = ({
               } else if (
                 task.seo === userId &&
                 [
-                  "ready to work",
+                 "ready to work",
                   "in progress",
-                  "in rivision",
                   "final",
+                  "ready for rivision (lector)",
+                  "ready for rivision (meta lector)",
+                  "in rivision (lector)",
+                  "in rivision (meta lector)",
                   "ready for proofreading",
                   "proofreading in progress",
                   "ready for seo optimization",
@@ -92,15 +104,18 @@ const AllTasks: React.FC<AllTasksProps> = ({
                 [
                   "ready to work",
                   "in progress",
-                  "in rivision",
                   "final",
+                  "ready for rivision (lector)",
+                  "ready for rivision (meta lector)",
+                  "in rivision (lector)",
+                  "in rivision (meta lector)",
                   "ready for proofreading",
                   "proofreading in progress",
                   "ready for seo optimization",
                   "seo optimization in progress",
                   "ready for 2nd proofreading",
                   "2nd proofreading in progress",
-                 ,
+                  ,
                 ].includes(task.status.toLowerCase())
               ) {
                 TaskCard = (
@@ -112,7 +127,7 @@ const AllTasks: React.FC<AllTasksProps> = ({
                 );
               }
 
-              return TaskCard ? TaskCard : null;  
+              return TaskCard ? TaskCard : null;
             })}
           </>
         ) : (
