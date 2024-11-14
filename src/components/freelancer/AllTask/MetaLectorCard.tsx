@@ -121,6 +121,7 @@ const MetaLectorCard: React.FC<MetaLectorCardProps> = ({
   };
 
   const handleStartTask = (taskId: string) => {
+
     let token = userToken;
     axios.defaults.headers.common["access-token"] = token;
     let payload = {
@@ -129,8 +130,8 @@ const MetaLectorCard: React.FC<MetaLectorCardProps> = ({
     axios
       .post(`${import.meta.env.VITE_DB_URL}/freelancer/taskStart`, payload)
       .then((response) => {
-        console.log("Task accepted", response);
         getRefreshTask();
+        localStorage.setItem("startTaskMetaId", taskId);
       })
       .catch((err) => {
         console.error("Error task decline", err);
@@ -138,6 +139,14 @@ const MetaLectorCard: React.FC<MetaLectorCardProps> = ({
     setIsStart(true);
     setShowDialog(false);
   };
+
+  const startTaskId = localStorage.getItem("startTaskMetaId");
+  useEffect(() => {
+
+    if (startTaskId === task._id) {
+      setShowProjectInfo(true);
+    }
+  }, [startTaskId]);
 
   const handleStart = () => {
     setShowDialog(true);
@@ -151,11 +160,11 @@ const MetaLectorCard: React.FC<MetaLectorCardProps> = ({
   const closeDialog = () => {
     setShowDialog(false);
     setIsStart(true);
-    setShowProjectInfo(true);
   };
 
   const closeProjectInfoDialog = () => {
     setShowProjectInfo(false);
+    localStorage.removeItem("startTaskMetaId");
   };
 
   const closeFinishDialog = () => {

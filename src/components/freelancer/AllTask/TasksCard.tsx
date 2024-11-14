@@ -133,15 +133,23 @@ const TaskCard: React.FC<TaskCardProps> = ({
     axios
       .post(`${import.meta.env.VITE_DB_URL}/freelancer/taskStart`, payload)
       .then((response) => {
-        console.log("Task accepted", response);
         getRefreshTask();
         setIsStart(true);
         setShowDialog(false);
+        localStorage.setItem("startTaskId", taskId);
       })
       .catch((err) => {
         console.error("Error task decline", err);
       });
   };
+
+  const startTaskId = localStorage.getItem("startTaskId");
+  useEffect(() => {
+
+    if (startTaskId === task._id) {
+      setShowProjectInfo(true);
+    }
+  }, [startTaskId]);
 
   const handleStart = () => {
     setShowDialog(true);
@@ -156,11 +164,11 @@ const TaskCard: React.FC<TaskCardProps> = ({
   const closeDialog = () => {
     setShowDialog(false);
     setIsStart(true);
-    setShowProjectInfo(true);
   };
 
   const closeProjectInfoDialog = () => {
     setShowProjectInfo(false);
+    localStorage.removeItem("startTaskId");
   };
 
   const closeFinishDialog = () => {
@@ -237,6 +245,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
       </div>
     );
   };
+
 
   return (
     <div className="w-full mb-10 mt-3 rounded-sm ring-1 ring-slate-200 dark:border-stroke  py-1 px-7.5 shadow-2 dark:border-strokedark  dark:bg-boxdark">
