@@ -7,24 +7,24 @@ import NoTask from "../../../../../components/freelancer/Helper/NoTask";
 // Define the type for the props
 interface SeoTasksProps {
   activeTasks: Task[];
-  upcommingTasks: Task[];
+  //upcommingTasks: Task[];
   userId: string;
   getRefreshTask: () => void;
 }
 
 const SeoTasks: React.FC<SeoTasksProps> = ({
   activeTasks,
-  upcommingTasks,
+  //upcommingTasks,
   userId,
   getRefreshTask,
 }) => {
   const filterActiveTask = activeTasks.filter((task) => task.seo === userId);
-  const filterUpcommingTask = upcommingTasks.filter(
-    (task) => task.seo === userId
-  );
-  if (filterActiveTask.length === 0 && filterUpcommingTask.length === 0) {
-    return <NoTask label="There are no any Active and Upcoming tasks to show" />;
-  }
+  // const filterUpcommingTask = upcommingTasks.filter(
+  //   (task) => task.seo === userId
+  // );
+  // if (filterActiveTask.length === 0 && filterUpcommingTask.length === 0) {
+  //   return <NoTask label="There are no any Active and Upcoming tasks to show" />;
+  // }
   return (
     <>
       <div>
@@ -45,7 +45,7 @@ const SeoTasks: React.FC<SeoTasksProps> = ({
           <NoTask label="There is no any Active task to show" />
         )}
       </div>
-      <span className="block border-t  border-zinc-200 dark:border-zinc-500 mx-auto w-full mt-4 font-thin"></span>
+      {/* <span className="block border-t  border-zinc-200 dark:border-zinc-500 mx-auto w-full mt-4 font-thin"></span>
       <div>
         {filterUpcommingTask.length > 0 ? (
           <>
@@ -59,7 +59,7 @@ const SeoTasks: React.FC<SeoTasksProps> = ({
         ) : (
           <NoTask label="There is no any Upcoming Task to show" />
         )}
-      </div>
+      </div> */}
     </>
   );
 };

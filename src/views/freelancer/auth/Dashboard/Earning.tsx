@@ -130,8 +130,8 @@ const Earning: React.FC = () => {
                        
                         <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                         <p className={`${earn?.finalize? "text-red-500":"text-black dark:text-white"}`}>
-                          {earn?.finalize ?  Number(earn?.difference)?.toFixed(0) : 'Available after completion'}
-                          </p>
+                        {earn?.finalize ? `${Number(earn?.difference).toFixed(2)}%` : 'Available after completion'}
+                        </p>
                         </td>
                         <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                         <p className={`${earn?.finalize? "text-yellow-500":"text-black dark:text-white"}`}>
