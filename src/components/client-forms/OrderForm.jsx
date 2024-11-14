@@ -207,61 +207,37 @@ const countriesList = [
   { id: "192", value: "ZW", name: "Zimbabwe" },
 ];
 
-
 const OrderForm = () => {
   const location = useLocation();
   const [loading, setLoading] = useState(false);
   const user = useSelector((state) => state.user);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [texts, setTexts] = useState("");
-  const [duration, setDuration] = useState("");
   const [initialValues, setInitialValues] = useState(null);
   const [userId, setUserID] = useState(user?.user?.data?.user?._id || "");
   const [userToken, setUserToken] = useState(user?.user?.token || "");
+  const [monthlyPrice, setMonthlyPrice] = useState(0);
 
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     const textsParam = queryParams.get("texts");
     const durationParam = queryParams.get("duration");
 
-    setTexts(textsParam || ""); // Set default value if param is missing
-    setDuration(durationParam || ""); // Set default value if param is missing
-  }, [location.search]);
+    if (textsParam && durationParam) {
+      const durations = [
+        "3 months - word price 0.07 EUR/net",
+        "6 months - word price 0.06 EUR/net",
+        "12 months - word price 0.05 EUR/net",
+      ];
 
-  useEffect(() => {
-    if (texts !== "" && duration !== "") {
-      const fourTextDurations = [
-        "3 months - word price 0.07 EUR/net",
-        "6 months - word price 0.06 EUR/net",
-        "12 months - word price 0.05 EUR/net",
-      ];
-      const EightTextDurations = [
-        "3 months - word price 0.07 EUR/net",
-        "6 months - word price 0.06 EUR/net",
-        "12 months - word price 0.05 EUR/net",
-      ];
-      const twelveTextDuration = [
-        "3 months - word price 0.07 EUR/net",
-        "6 months - word price 0.06 EUR/net",
-        "12 months - word price 0.05 EUR/net",
-      ];
       let initialDurationValue = "";
-      if (texts.substring(0, 2) === "4 ") {
-        const temp = fourTextDurations.find((item) => item.includes(duration));
-        initialDurationValue = temp;
-      }
-      if (texts.substring(0, 2) === "8 ") {
-        const temp = EightTextDurations.find((item) => item.includes(duration));
-        initialDurationValue = temp;
-      }
-      if (texts.substring(0, 2) === "12") {
-        const temp = twelveTextDuration.find((item) => item.includes(duration));
-        initialDurationValue = temp;
-      }
-     
+      initialDurationValue = durations.find((item) =>
+        item.includes(durationParam)
+      );
+      consolidateValues(textsParam, initialDurationValue);
+
       setInitialValues({
-        duration: initialDurationValue,
-        texts: texts,
+        duration: initialDurationValue || "",
+        texts: textsParam || "",
         domain: "",
         company: "",
         fname: user?.user?.data?.user?.firstName || "",
@@ -274,8 +250,20 @@ const OrderForm = () => {
         textPrice: "",
       });
     }
-  }, [texts, duration, user?.user?.data?.user]);
-  
+  }, [location.search, user]);
+
+  const consolidateValues = (texts, duration) => {
+    const durationPrices = {
+      "3 months - word price 0.07 EUR/net": 0.07,
+      "6 months - word price 0.06 EUR/net": 0.06,
+      "12 months - word price 0.05 EUR/net": 0.05,
+    };
+    const numberOfTexts = parseInt(texts.split(" ")[0]); 
+    const months = parseInt(duration.split(" ")[0]); 
+    const textPrice = durationPrices[duration] || 0;
+    const value = (numberOfTexts * textPrice * 1500) / months;
+    setMonthlyPrice(value);
+  };
 
   const validationSchema = Yup.object().shape({
     // duration: Yup.string().required("Bitte wählen Sie die Dauer"),
@@ -285,10 +273,11 @@ const OrderForm = () => {
     fname: Yup.string().required("Bitte geben Sie Ihren Vornamen ein"),
     lname: Yup.string().required("Bitte geben Sie Ihren Nachnamen ein"),
     telNo: Yup.number().required("Bitte geben Sie Ihre Telefonnummer ein"),
-    email: Yup.string().email().required("Bitte geben Sie Ihre E-Mail-Adresse ein"),
+    email: Yup.string()
+      .email()
+      .required("Bitte geben Sie Ihre E-Mail-Adresse ein"),
     // country: Yup.string().required("Bitte wählen Sie Ihr Land"),
   });
-  
 
   const onSubmit = async (values) => {
     setLoading(true);
@@ -383,8 +372,8 @@ const OrderForm = () => {
         projectName: values.domain,
         companyName: values.company,
         country: values.country,
-        vatId: '',
-        vatType: '',
+        vatId: "",
+        vatType: "",
         keywords: "",
         planId: planId,
         subPlanId: subPlanId,
@@ -420,194 +409,182 @@ const OrderForm = () => {
   };
 
   if (!initialValues) {
-    return <div>Loading...</div>; // Show loading or placeholder while initialValues are being set
+    return <div>Loading...</div>; 
   }
   return (
     <>
       <Formik
-  initialValues={initialValues}
-  validationSchema={validationSchema}
-  onSubmit={onSubmit}
->
-  {(props) => (
-    <Form>
-      <div className="w-full bg-gradient-to-r from-custom-gray to-[#F7F7F7] py-4 flex flex-col gap-6 px-4 xs:px-8 xs:py-10  md:px-9 md:py-14 lg:px-10  mb-8 rounded-xl">
-        <div className="flex flex-col gap-y-2">
-          <h2 className="text-custom-black text-base font-semibold">
-            1. Wählen Sie Ihr DripText-Paket:
-          </h2>
-          <ToastContainer />
-          <GroupDropdownField
-            label={"Gewünschte Anzahl an SEO-optimierten Texten pro Monat?"}
-            placeholder={""}
-            type={"text"}
-            id={"texts"}
-            name={"texts"}
-            value={props.values.texts}
-            errors={props.errors.texts}
-            onChange={props.handleChange}
-            option1="4 Texte pro Monat mit mindestens 1.500 Wörtern pro Text"
-            option2="8 Texte pro Monat mit mindestens 1.500 Wörtern pro Text"
-            option3="12 Texte pro Monat mit mindestens 1.500 Wörtern pro Text"
-          />
-          {props.values.texts.substring(0, 2) === "4 " && (
-            <GroupDropdownField
-              label={"Gewünschte Dauer?"}
-              type={"text"}
-              id={"duration"}
-              name={"duration"}
-              placeholder={""}
-              option1="3 Monate - Wortpreis 0.07 EUR/netto"
-              option2="6 Monate - Wortpreis 0.06 EUR/netto"
-              option3="12 Monate - Wortpreis 0.05 EUR/netto"
-              value={props.values.duration}
-              errors={props.errors.duration}
-              onChange={props.handleChange}
-            />
-          )}
-          {props.values.texts.substring(0, 2) === "8 " && (
-            <GroupDropdownField
-              label={"Gewünschte Dauer?"}
-              type={"text"}
-              id={"duration"}
-              name={"duration"}
-              placeholder={""}
-              option1="3 Monate - Wortpreis 0.07 EUR/netto"
-              option2="6 Monate - Wortpreis 0.06 EUR/netto"
-              option3="12 Monate - Wortpreis 0.05 EUR/netto"
-              value={props.values.duration}
-              errors={props.errors.duration}
-              onChange={props.handleChange}
-            />
-          )}
-          {props.values.texts.substring(0, 2) === "12" && (
-            <GroupDropdownField
-              label={"Gewünschte Dauer?"}
-              type={"text"}
-              id={"duration"}
-              name={"duration"}
-              placeholder={""}
-              option1="3 Monate - Wortpreis 0.07 EUR/netto"
-              option2="6 Monate - Wortpreis 0.06 EUR/netto"
-              option3="12 Monate - Wortpreis 0.05 EUR/netto"
-              value={props.values.duration}
-              errors={props.errors.duration}
-              onChange={props.handleChange}
-            />
-          )}
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={onSubmit}
+      >
+        {(props) => (
+          <Form>
+            <div className="w-full bg-gradient-to-r from-custom-gray to-[#F7F7F7] py-4 flex flex-col gap-6 px-4 xs:px-8 xs:py-10  md:px-9 md:py-14 lg:px-10  mb-8 rounded-xl">
+              <div className="flex flex-col gap-y-2">
+                <h2 className="text-custom-black text-base font-semibold">
+                  1. Wählen Sie Ihr DripText-Paket:
+                </h2>
+                <ToastContainer />
+                <GroupDropdownField
+                  label={"Desired number of SEO-optimized texts per month?"}
+                  placeholder={""}
+                  type={"text"}
+                  id={"texts"}
+                  name={"texts"}
+                  value={props.values.texts}
+                  errors={props.errors.texts}
+                  onChange={(event) => {
+                    props.handleChange(event); 
+                    const updatedTexts = event.target.value; 
+                    const currentDuration = props.values.duration;
+                    consolidateValues(updatedTexts, currentDuration);
+                  }}
+                  option1="4 texts per month with at least 1,500 words per text"
+                  option2="8 texts per month with at least 1,500 words per text"
+                  option3="12 texts per month with at least 1,500 words per text"
+                />
+                <GroupDropdownField
+                  label={"Desired duration?"}
+                  type={"text"}
+                  id={"duration"}
+                  name={"duration"}
+                  placeholder={""}
+                  value={props.values.duration} 
+                  errors={props.errors.duration} 
+                  onChange={(event) => {
+                    props.handleChange(event);
+                    const updatedDuration = event.target.value; 
+                    const currentTexts = props.values.texts;
+                    consolidateValues(currentTexts, updatedDuration);
+                  }}
+                  option1="3 months - word price 0.07 EUR/net"
+                  option2="6 months - word price 0.06 EUR/net"
+                  option3="12 months - word price 0.05 EUR/net"
+                />
 
-          <GroupField
-            label={"Domain"}
-            type={"text"}
-            id={"domain"}
-            name={"domain"}
-            placeholder={"beispiel.com"}
-            value={props.values.domain}
-            errors={props.errors.domain}
-            onChange={props.handleChange}
-          />
-        </div>
+                <GroupField
+                  label={"Monthly Price"}
+                  type={"text"}
+                  id={"monthlyPrice"}
+                  name={"monthlyPrice"}
+                  placeholder={"0"}
+                  value={`€ ${monthlyPrice.toFixed(1)}`}
+                  disabled={true}
+                />
 
-        <div className="flex flex-col gap-y-3">
-          <h2 className="text-custom-black text-base font-semibold">
-            2. Kontaktdaten des Rechnungsempfängers (m/w/d):
-          </h2>
-          <GroupField
-            label={"Firma"}
-            placeholder={"Ihr Firmenname"}
-            type={"text"}
-            id={"company"}
-            name={"company"}
-            value={props.values.company}
-            errors={props.errors.company}
-            onChange={props.handleChange}
-          />
-          <div className="w-full flex flex-col lg:flex-row lg:justify-between lg:gap-3 gap-5">
-            <GroupField
-              label={"Vorname"}
-              placeholder={"Ihr Vorname"}
-              id={"fname"}
-              name={"fname"}
-              value={props.values.fname}
-              errors={props.errors.fname}
-              onChange={props.handleChange}
-              disabled={user?.user?.data?.user?.firstName ? true : false}
-            />
-            <GroupField
-              label={"Nachname"}
-              placeholder={"Ihr Nachname"}
-              id={"lname"}
-              name={"lname"}
-              value={props.values.lname}
-              errors={props.errors.lname}
-              onChange={props.handleChange}
-              disabled={user?.user?.data?.user?.lastName ? true : false}
-            />
-          </div>
-          <GroupField
-            label={"Telefonnummer"}
-            placeholder={"Ihre Telefonnummer"}
-            type={"number"}
-            id={"telNo"}
-            name={"telNo"}
-            value={props.values.telNo}
-            errors={props.errors.telNo}
-            onChange={props.handleChange}
-          />
-          <GroupField
-            label={"E-Mail"}
-            placeholder={"Ihre E-Mail-Adresse"}
-            type={"email"}
-            id={"email"}
-            name={"email"}
-            value={props.values.email}
-            errors={props.errors.email}
-            onChange={props.handleChange}
-            disabled={user?.user?.data?.user?.email ? true : false}
-          />
-          <CountryDropdownField
-            label={"Land"}
-            type={"text"}
-            id={"country"}
-            name={"country"}
-            placeholder={"Beispiel.de"}
-            value={props.values.country}
-            errors={props.errors.country}
-            onChange={props.handleChange}
-            countriesList={countriesList}
-          />
+                <GroupField
+                  label={"Domain"}
+                  type={"text"}
+                  id={"domain"}
+                  name={"domain"}
+                  placeholder={"beispiel.com"}
+                  value={props.values.domain}
+                  errors={props.errors.domain}
+                  onChange={props.handleChange}
+                />
+              </div>
 
-          <button
-            className={`${
-              loading ? "cursor-not-allowed" : "cursor-pointer"
-            } border-none text-white font-medium text-base w-full bg-custom-black flex justify-center py-2 xs:py-2.5 mt-1 rounded-xl`}
-            type="submit"
-            disabled={loading}
-          >
-            {loading ? "Bestellung wird gesendet" : "Bestellung absenden"}
-          </button>
-        </div>
-        {isSuccess && (
-          <p className="text-green-600 3xl:text-lg">
-            Bestellinformationen wurden erfolgreich gespeichert
-          </p>
+              <div className="flex flex-col gap-y-3">
+                <h2 className="text-custom-black text-base font-semibold">
+                  2. Kontaktdaten des Rechnungsempfängers (m/w/d):
+                </h2>
+                <GroupField
+                  label={"Firma"}
+                  placeholder={"Ihr Firmenname"}
+                  type={"text"}
+                  id={"company"}
+                  name={"company"}
+                  value={props.values.company}
+                  errors={props.errors.company}
+                  onChange={props.handleChange}
+                />
+                <div className="w-full flex flex-col lg:flex-row lg:justify-between lg:gap-3 gap-5">
+                  <GroupField
+                    label={"Vorname"}
+                    placeholder={"Ihr Vorname"}
+                    id={"fname"}
+                    name={"fname"}
+                    value={props.values.fname}
+                    errors={props.errors.fname}
+                    onChange={props.handleChange}
+                    disabled={user?.user?.data?.user?.firstName ? true : false}
+                  />
+                  <GroupField
+                    label={"Nachname"}
+                    placeholder={"Ihr Nachname"}
+                    id={"lname"}
+                    name={"lname"}
+                    value={props.values.lname}
+                    errors={props.errors.lname}
+                    onChange={props.handleChange}
+                    disabled={user?.user?.data?.user?.lastName ? true : false}
+                  />
+                </div>
+                <GroupField
+                  label={"Telefonnummer"}
+                  placeholder={"Ihre Telefonnummer"}
+                  type={"number"}
+                  id={"telNo"}
+                  name={"telNo"}
+                  value={props.values.telNo}
+                  errors={props.errors.telNo}
+                  onChange={props.handleChange}
+                />
+                <GroupField
+                  label={"E-Mail"}
+                  placeholder={"Ihre E-Mail-Adresse"}
+                  type={"email"}
+                  id={"email"}
+                  name={"email"}
+                  value={props.values.email}
+                  errors={props.errors.email}
+                  onChange={props.handleChange}
+                  disabled={user?.user?.data?.user?.email ? true : false}
+                />
+                <CountryDropdownField
+                  label={"Land"}
+                  type={"text"}
+                  id={"country"}
+                  name={"country"}
+                  placeholder={"Beispiel.de"}
+                  value={props.values.country}
+                  errors={props.errors.country}
+                  onChange={props.handleChange}
+                  countriesList={countriesList}
+                />
+
+                <button
+                  className={`${
+                    loading ? "cursor-not-allowed" : "cursor-pointer"
+                  } border-none text-white font-medium text-base w-full bg-custom-black flex justify-center py-2 xs:py-2.5 mt-1 rounded-xl`}
+                  type="submit"
+                  disabled={loading}
+                >
+                  {loading ? "Bestellung wird gesendet" : "Bestellung absenden"}
+                </button>
+              </div>
+              {isSuccess && (
+                <p className="text-green-600 3xl:text-lg">
+                  Bestellinformationen wurden erfolgreich gespeichert
+                </p>
+              )}
+              <p className="text-custom-black text-sm font-normal">
+                Mit der Abgabe der Bestellung stimme ich den{" "}
+                <Link className="text-[#63B4D0]">
+                  allgemeinen Geschäftsbedingungen
+                </Link>{" "}
+                von DripText Ltd. zu und verstehe, dass unsere Angebote
+                ausschließlich an gewerbliche Kunden gerichtet sind. Alle Preise
+                verstehen sich zuzüglich Mehrwertsteuer. Verkauf nur an
+                Unternehmer, Gewerbetreibende, Verbände, Behörden oder
+                Selbstständige (§ 14 BGB). Kein Verkauf an Verbraucher im Sinne
+                des § 13 BGB.
+              </p>
+            </div>
+          </Form>
         )}
-        <p className="text-custom-black text-sm font-normal">
-          Mit der Abgabe der Bestellung stimme ich den{" "}
-          <Link className="text-[#63B4D0]">
-            allgemeinen Geschäftsbedingungen
-          </Link>{" "}
-          von DripText Ltd. zu und verstehe, dass unsere Angebote ausschließlich
-          an gewerbliche Kunden gerichtet sind. Alle Preise verstehen sich
-          zuzüglich Mehrwertsteuer. Verkauf nur an Unternehmer, Gewerbetreibende,
-          Verbände, Behörden oder Selbstständige (§ 14 BGB). Kein Verkauf an
-          Verbraucher im Sinne des § 13 BGB.
-        </p>
-      </div>
-    </Form>
-  )}
-</Formik>
-
+      </Formik>
     </>
   );
 };
