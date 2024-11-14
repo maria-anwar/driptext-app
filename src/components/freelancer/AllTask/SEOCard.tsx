@@ -91,8 +91,8 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
     axios
       .post(`${import.meta.env.VITE_DB_URL}/freelancer/taskStart`, payload)
       .then((response) => {
-        console.log("Task accepted", response);
         getRefreshTask();
+        localStorage.setItem("startTaskSEOId", taskId);
       })
       .catch((err) => {
         console.error("Error task decline", err);
@@ -100,6 +100,15 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
     setIsStart(true);
     setShowDialog(false);
   };
+
+  const startTaskId = localStorage.getItem("startTaskSEOId");
+  useEffect(() => {
+
+    if (startTaskId === task._id) {
+      setShowProjectInfo(true);
+    }
+  }, [startTaskId]);
+
 
   const handleStart = () => {
     setShowDialog(true);
@@ -113,11 +122,11 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
   const closeDialog = () => {
     setShowDialog(false);
     setIsStart(true);
-    setShowProjectInfo(true);
   };
 
   const closeProjectInfoDialog = () => {
     setShowProjectInfo(false);
+    localStorage.removeItem("startTaskSEOId");
   };
 
   const closeFinishDialog = () => {
