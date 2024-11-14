@@ -258,8 +258,8 @@ const OrderForm = () => {
       "6 months - word price 0.06 EUR/net": 0.06,
       "12 months - word price 0.05 EUR/net": 0.05,
     };
-    const numberOfTexts = parseInt(texts.split(" ")[0]); 
-    const months = parseInt(duration.split(" ")[0]); 
+    const numberOfTexts = parseInt(texts.split(" ")[0]);
+    const months = parseInt(duration.split(" ")[0]);
     const textPrice = durationPrices[duration] || 0;
     const value = (numberOfTexts * textPrice * 1500) / months;
     setMonthlyPrice(value);
@@ -409,7 +409,7 @@ const OrderForm = () => {
   };
 
   if (!initialValues) {
-    return <div>Loading...</div>; 
+    return <div>Loading...</div>;
   }
   return (
     <>
@@ -421,10 +421,10 @@ const OrderForm = () => {
         {(props) => (
           <Form>
             <div className="w-full bg-gradient-to-r from-custom-gray to-[#F7F7F7] py-4 flex flex-col gap-6 px-4 xs:px-8 xs:py-10  md:px-9 md:py-14 lg:px-10  mb-8 rounded-xl">
-              <div className="flex flex-col gap-y-2">
-                <h2 className="text-custom-black text-base font-semibold">
-                  1. Wählen Sie Ihr DripText-Paket:
-                </h2>
+              <h2 className="text-custom-black text-base font-semibold -mb-5">
+                1. Wählen Sie Ihr DripText-Paket:
+              </h2>
+              <div className="flex flex-col gap-y-2 -mb-2">
                 <ToastContainer />
                 <GroupDropdownField
                   label={"Desired number of SEO-optimized texts per month?"}
@@ -435,8 +435,8 @@ const OrderForm = () => {
                   value={props.values.texts}
                   errors={props.errors.texts}
                   onChange={(event) => {
-                    props.handleChange(event); 
-                    const updatedTexts = event.target.value; 
+                    props.handleChange(event);
+                    const updatedTexts = event.target.value;
                     const currentDuration = props.values.duration;
                     consolidateValues(updatedTexts, currentDuration);
                   }}
@@ -450,11 +450,11 @@ const OrderForm = () => {
                   id={"duration"}
                   name={"duration"}
                   placeholder={""}
-                  value={props.values.duration} 
-                  errors={props.errors.duration} 
+                  value={props.values.duration}
+                  errors={props.errors.duration}
                   onChange={(event) => {
                     props.handleChange(event);
-                    const updatedDuration = event.target.value; 
+                    const updatedDuration = event.target.value;
                     const currentTexts = props.values.texts;
                     consolidateValues(currentTexts, updatedDuration);
                   }}
@@ -484,11 +484,10 @@ const OrderForm = () => {
                   onChange={props.handleChange}
                 />
               </div>
-
+              <h2 className="text-custom-black text-base font-semibold -mb-3">
+                2. Kontaktdaten des Rechnungsempfängers (m/w/d):
+              </h2>
               <div className="flex flex-col gap-y-3">
-                <h2 className="text-custom-black text-base font-semibold">
-                  2. Kontaktdaten des Rechnungsempfängers (m/w/d):
-                </h2>
                 <GroupField
                   label={"Firma"}
                   placeholder={"Ihr Firmenname"}

@@ -142,7 +142,7 @@ const ThankYouPage = () => {
         </p>
         <button
           onClick={() => navigate("/client-dashboard")}
-          className="w-full md:w-[50%] bg-[#07B6D4] rounded font-medium mx-auto text-center text-white py-2 mb-8"
+          className="w-1/2 md:w-[30%] bg-gradient-to-r from-buttonStart to-buttonEnd  rounded font-medium mx-auto text-center text-white py-2 mb-8"
         >
           Go to Dashboard
         </button>
