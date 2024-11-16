@@ -8,6 +8,7 @@ import { Formik, Form } from "formik";
 import GroupTextArea from "../../client/Forms/GroupTextArea";
 import { GroupField } from "../../client/Forms/GroupField";
 import GroupDropdownField from "../../client/Forms/GroupDropdownField";
+import { useTranslation } from "react-i18next";
 
 interface EditProjectProps {
   closeModel: () => void;
@@ -36,6 +37,7 @@ const OnBoardingInfo: React.FC<EditProjectProps> = ({
   closeModel,
   handleRefresh,
 }) => {
+  const { t } = useTranslation();
   const user = useSelector<any>((state) => state.user);
   const [userToken, setUserToken] = useState(user?.user?.token);
   const [loading, setLoading] = useState(false);
@@ -55,20 +57,39 @@ const OnBoardingInfo: React.FC<EditProjectProps> = ({
     contentPurpose: onBoarding?.contentPurpose || "",
     brand: onBoarding?.contentInfo || "",
   };
-  console.log(initialFormData);
 
   // Validation schema for form fields
   const validationSchema = Yup.object().shape({
-    speech: Yup.string().required("Please select a speech"),
-    perspective: Yup.string().required("Please select perspective"),
-    projectName: Yup.string().required("Please enter project name"),
-    companyInfo: Yup.string().required("Please enter company information"),
-    companyAttributes: Yup.string().required("Please enter company attributes"),
-    services: Yup.string().required("Please enter company services"),
-    content: Yup.string().required("Above information is required"),
-    customers: Yup.string().required("Above information is required"),
-    contentPurpose: Yup.string().required("Above information is required"),
-    brand: Yup.string().required("Above information is required"),
+    speech: Yup.string().required(
+      t("project.onboarding.formErrors.speechRequired")
+    ),
+    perspective: Yup.string().required(
+      t("project.onboarding.formErrors.perspectiveRequired")
+    ),
+    projectName: Yup.string().required(
+      t("project.onboarding.formErrors.projectNameRequired")
+    ),
+    companyInfo: Yup.string().required(
+      t("project.onboarding.formErrors.companyInfoRequired")
+    ),
+    companyAttributes: Yup.string().required(
+      t("project.onboarding.formErrors.companyAttributesRequired")
+    ),
+    services: Yup.string().required(
+      t("project.onboarding.formErrors.servicesRequired")
+    ),
+    content: Yup.string().required(
+      t("project.onboarding.formErrors.contentRequired")
+    ),
+    customers: Yup.string().required(
+      t("project.onboarding.formErrors.customersRequired")
+    ),
+    contentPurpose: Yup.string().required(
+      t("project.onboarding.formErrors.contentPurposeRequired")
+    ),
+    brand: Yup.string().required(
+      t("project.onboarding.formErrors.brandRequired")
+    ),
   });
 
   const onSubmit = (values: typeof initialFormData) => {
@@ -98,7 +119,7 @@ const OnBoardingInfo: React.FC<EditProjectProps> = ({
       })
       .catch((err) => {
         const error =
-          err?.response?.data?.message || "Error editing project details";
+          err?.response?.data?.message || t("project.onboarding.errorMessage");
         setErrorMessage(error);
         setLoading(false);
       });
@@ -116,7 +137,7 @@ const OnBoardingInfo: React.FC<EditProjectProps> = ({
             <div className="bg-white dark:bg-black p-6 rounded shadow-lg lg:w-10/12 xl:w-10/12 2xl:w-6/12 max-h-[90vh] overflow-y-auto scrollbar-hide">
               <div className="flex justify-between items-center mb-5">
                 <h2 className="text-xl font-bold dark:text-white">
-                  Edit Project
+                  {t("project.onboarding.editProject")}
                 </h2>
                 <FontAwesomeIcon
                   className="cursor-pointer text-lg text-red-500"
@@ -126,10 +147,10 @@ const OnBoardingInfo: React.FC<EditProjectProps> = ({
               </div>
               <div>
                 <h2 className="text-black dark:text-white text-base font-semibold">
-                  1. General information:
+                  {t("project.onboarding.generalInformation")}
                 </h2>
                 <GroupDropdownField
-                  label="Speech"
+                  label={t("project.onboarding.speech")}
                   id="speech"
                   name="speech"
                   option1="She"
@@ -144,7 +165,7 @@ const OnBoardingInfo: React.FC<EditProjectProps> = ({
                   placeholder={""}
                 />
                 <GroupDropdownField
-                  label="Writing Perspective"
+                  label={t("project.onboarding.writingPerspective")}
                   id="perspective"
                   name="perspective"
                   option1="we/our shop/our company"
@@ -162,15 +183,15 @@ const OnBoardingInfo: React.FC<EditProjectProps> = ({
 
                 {/* Company Information Section */}
                 <h2 className="text-black dark:text-white text-base font-semibold lg:mt-3">
-                  OnBoarding
+                  {t("project.onboarding.onBoarding")}
                 </h2>
                 <div className="bg-slate-300/90 dark:bg-boxdark rounded py-2 px-4 mt-3">
                   <h2 className="text-black dark:text-white text-base font-semibold lg:mt-3">
-                    2. Company Information
+                    {t("project.onboarding.companyInformation")}
                   </h2>
                   <div className="flex flex-col gap-3 py-3">
                     <GroupTextArea
-                      label="Background information about the company"
+                      label={t("project.onboarding.companyInfoLabel")}
                       id="companyInfo"
                       name="companyInfo"
                       value={values.companyInfo}
@@ -178,7 +199,7 @@ const OnBoardingInfo: React.FC<EditProjectProps> = ({
                       onChange={handleChange}
                     />
                     <GroupTextArea
-                      label="Attributes best describing company/products/services"
+                      label={t("project.onboarding.companyAttributesLabel")}
                       id="companyAttributes"
                       name="companyAttributes"
                       value={values.companyAttributes}
@@ -190,7 +211,7 @@ const OnBoardingInfo: React.FC<EditProjectProps> = ({
                       onChange={handleChange}
                     />
                     <GroupTextArea
-                      label="Company Services"
+                      label={t("project.onboarding.servicesLabel")}
                       id="services"
                       name="services"
                       value={values.services}
@@ -200,10 +221,10 @@ const OnBoardingInfo: React.FC<EditProjectProps> = ({
                   </div>
                   <div className="flex flex-col gap-3 py-3">
                     <h2 className="text-black dark:text-white text-base font-semibold lg:mt-3.5">
-                      3. Information About the Target Customers
+                      {t("project.onboarding.targetCustomerInformation")}
                     </h2>
                     <GroupTextArea
-                      label="Who is the content written for?"
+                      label={t("project.onboarding.contentWrittenForLabel")}
                       id="content"
                       name="content"
                       value={values.content}
@@ -211,7 +232,7 @@ const OnBoardingInfo: React.FC<EditProjectProps> = ({
                       onChange={handleChange}
                     />
                     <GroupTextArea
-                      label="Customer Interests"
+                      label={t("project.onboarding.customerInterestsLabel")}
                       id="customers"
                       name="customers"
                       value={values.customers}
@@ -223,10 +244,10 @@ const OnBoardingInfo: React.FC<EditProjectProps> = ({
                   {/* Content Purpose Section */}
                   <div className="flex flex-col gap-3 py-3">
                     <h2 className="text-black dark:text-white text-base font-semibold lg:mt-3.5">
-                      4. Aim of the Content
+                      {t("project.onboarding.aimOfContent")}
                     </h2>
                     <GroupTextArea
-                      label="Purpose of the content"
+                      label={t("project.onboarding.contentPurposeLabel")}
                       id="contentPurpose"
                       name="contentPurpose"
                       value={values.contentPurpose}
@@ -236,7 +257,7 @@ const OnBoardingInfo: React.FC<EditProjectProps> = ({
                       onChange={handleChange}
                     />
                     <GroupTextArea
-                      label="Brand and Content Information"
+                      label={t("project.onboarding.brandAndContentInfoLabel")}
                       id="brand"
                       name="brand"
                       value={values.brand}
@@ -253,7 +274,7 @@ const OnBoardingInfo: React.FC<EditProjectProps> = ({
                   type="button"
                   onClick={closeModel}
                 >
-                  Cancel
+                  {t("project.onboarding.cancelButton")}
                 </button>
                 <button
                   className={` my-3 flex justify-center rounded bg-primary py-1.5 px-6 font-medium text-gray ${
@@ -262,7 +283,9 @@ const OnBoardingInfo: React.FC<EditProjectProps> = ({
                   type="submit"
                   disabled={loading}
                 >
-                  {loading ? "Saving..." : "Save"}
+                  {loading
+                    ? t("project.onboarding.savingButton")
+                    : t("project.onboarding.saveButton")}
                 </button>
               </div>
 

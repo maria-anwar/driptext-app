@@ -3,33 +3,36 @@ import { Link } from "react-router-dom";
 import Breadcrumb from "../../../components/client/breeadcrumbs/Breadcrumb";
 import SidebarIcons from "../../../components/client/icons/SidebarIcons";
 import { useSelector } from "react-redux";
-import emailjs from 'emailjs-com';
-import { EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_USER_ID } from './emailjs-config';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import emailjs from "emailjs-com";
+import {
+  EMAILJS_SERVICE_ID,
+  EMAILJS_TEMPLATE_ID,
+  EMAILJS_USER_ID,
+} from "./emailjs-config";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useForm, ValidationError } from "@formspree/react";
 import axios from "axios";
 import useTitle from "../../../hooks/useTitle";
-
-
-
+import { useTranslation } from "react-i18next";
 
 const Support = () => {
-  useTitle("Client (Support)");
-  const user = useSelector((state)=> state.user)
-  const [email,setEmail]= useState(user.user.data.user.email||'')
-  const [firstName,setFirstName]= useState(user.user.data.user.firstName||'')
-  const [lastName,setLastName]= useState(user.user.data.user.lastName||'')
-  const [message,setMessage]= useState('')
-  const [loading,setLoading]=useState(false)
-  const [status, setStatus] = useState('');
+  const { t } = useTranslation();
+  useTitle(t("support.pagetitle"));
+  const user = useSelector((state) => state.user);
+  const [email, setEmail] = useState(user.user.data.user.email || "");
+  const [firstName, setFirstName] = useState(
+    user.user.data.user.firstName || ""
+  );
+  const [lastName, setLastName] = useState(user.user.data.user.lastName || "");
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState("");
 
-
- 
   const handleEmailSubmit = async (e) => {
     e.preventDefault();
     if (!email || !firstName || !lastName || !message) {
-      toast.error('Please fill in all fields.');
+      toast.error(t("support.erroremptyfields"));
       return;
     }
     setLoading(true);
@@ -39,14 +42,17 @@ const Support = () => {
       lastName,
       message,
     };
-  
+
     try {
-      const response = await axios.post(`${import.meta.env.VITE_DB_URL}/users/contactSupport`, payload);
-      toast.success('Email sent successfully!');
-      setMessage('');
+      const response = await axios.post(
+        `${import.meta.env.VITE_DB_URL}/users/contactSupport`,
+        payload
+      );
+      toast.success(t("support.successemailsent"));
+      setMessage("");
     } catch (error) {
-      console.error('Error sending email:', error);
-      toast.error('Failed to send email.');
+      console.error("Error sending email:", error);
+      toast.error(t("support.erroremailfailed"));
     } finally {
       setLoading(false);
     }
@@ -55,14 +61,14 @@ const Support = () => {
   return (
     <>
       <div className="mx-auto max-w-270 3xl:px-6">
-        <Breadcrumb pageName="Our Support" />
-        <ToastContainer/>
+        <Breadcrumb pageName={t("support.breadcrumb")} />
+        <ToastContainer />
         <div className="grid grid-cols-5  gap-8">
           <div className="col-span-5 3xl:col-span-8  xl:col-span-3">
             <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
               <div className="border-b border-stroke py-4 px-7 dark:border-strokedark">
                 <h3 className="font-medium text-black dark:text-white">
-                  Contact Our Team
+                  {t("support.contacttitle")}
                 </h3>
               </div>
               <div className="p-7">
@@ -71,9 +77,9 @@ const Support = () => {
                     <div className="w-full sm:w-1/2">
                       <label
                         className="mb-3 block text-sm font-medium text-black dark:text-white"
-                        htmlFor="fullName"
+                        htmlFor="firstName"
                       >
-                        First Name
+                        {t("support.firstnamelabel")}
                       </label>
                       <div className="relative">
                         <span className="absolute left-4.5 top-4">
@@ -104,12 +110,11 @@ const Support = () => {
                         <input
                           className="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
                           type="text"
-                          name="fullName"
-                          id="fullName"
-                          placeholder="firstname"
+                          name="firstName"
+                          id="firstName"
+                          placeholder={t("support.firstnameplaceholder")}
                           value={firstName}
-                          onChange={(e)=>setFirstName(e.target.value)}
-                          
+                          onChange={(e) => setFirstName(e.target.value)}
                         />
                       </div>
                     </div>
@@ -117,9 +122,9 @@ const Support = () => {
                     <div className="w-full sm:w-1/2">
                       <label
                         className="mb-3 block text-sm font-medium text-black dark:text-white"
-                        htmlFor="fullName"
+                        htmlFor="lastName"
                       >
-                        Last Name
+                        {t("support.lastnamelabel")}
                       </label>
                       <div className="relative">
                         <span className="absolute left-4.5 top-4">
@@ -150,11 +155,11 @@ const Support = () => {
                         <input
                           className="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
                           type="text"
-                          name="fullName"
-                          id="fullName"
-                          placeholder="lastname"
+                          name="lastName"
+                          id="lastName"
+                          placeholder={t("support.lastnamelabel")}
                           value={lastName}
-                          onChange={(e)=>setLastName(e.target.value)}
+                          onChange={(e) => setLastName(e.target.value)}
                         />
                       </div>
                     </div>
@@ -165,7 +170,7 @@ const Support = () => {
                       className="mb-3 block text-sm font-medium text-black dark:text-white"
                       htmlFor="emailAddress"
                     >
-                      Email Address
+                      {t("support.emaillabel")}
                     </label>
                     <div className="relative">
                       <span className="absolute left-4.5 top-4">
@@ -198,9 +203,9 @@ const Support = () => {
                         type="email"
                         name="emailAddress"
                         id="emailAddress"
-                        placeholder="example@gmail.com"
+                        placeholder={t("support.emailplaceholder")}
                         value={email}
-                        onChange={(e)=>setEmail(e.target.value)}
+                        onChange={(e) => setEmail(e.target.value)}
                       />
                     </div>
                   </div>
@@ -210,7 +215,7 @@ const Support = () => {
                       className="mb-3 block text-sm font-medium text-black dark:text-white"
                       htmlFor="Username"
                     >
-                      Your Message
+                      {t("support.messagelabel")}
                     </label>
                     <div className="relative">
                       <span className="absolute left-4.5 top-4">
@@ -249,28 +254,27 @@ const Support = () => {
                         name="bio"
                         id="bio"
                         rows={6}
-                        placeholder="Write your message here..."
+                        placeholder={t("support.messageplaceholder")}
                         value={message}
-                        onChange={(e)=>setMessage(e.target.value)}
+                        onChange={(e) => setMessage(e.target.value)}
                       ></textarea>
                     </div>
                   </div>
 
                   <div className="flex justify-end gap-4.5">
-                   
                     <button
-                      className={`flex justify-center rounded bg-primary py-2 px-6 font-medium text-gray hover:bg-opacity-90 ${loading ? "cursor-not-allowed":"cursor-pointer"}`}
+                      className={`flex justify-center rounded bg-primary py-2 px-6 font-medium text-gray hover:bg-opacity-90 ${
+                        loading ? "cursor-not-allowed" : "cursor-pointer"
+                      }`}
                       type="submit"
                       onClick={handleEmailSubmit}
                       disabled={loading}
                     >
-                      {loading ? "Submitting..." : "Submit"}
+                      {loading ? t("support.loadingbuttontext") : t("support.submitbuttontext")}
                     </button>
                   </div>
                 </form>
-                
               </div>
-    
             </div>
           </div>
         </div>

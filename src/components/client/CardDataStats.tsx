@@ -2,6 +2,7 @@ import React, { ReactNode, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import OnBoardingInfo from "./tables/OnBoardingInfo";
+import { useTranslation } from "react-i18next";
 
 interface CardDataStatsProps {
   id: Object;
@@ -44,6 +45,7 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
   speech,
   projectRefresh,
 }) => {
+  const {t} = useTranslation();
   const navigate = useNavigate();
   const [onBoardingClick, setonBoardingClick] = useState(false);
   const [onBoardingModel, setonBoardingModel] = useState(false);
@@ -166,8 +168,8 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
               </div>  
 
               {/* Tooltip Text */}
-              <div className="shadow-md  w-28 text-center absolute hidden group-hover:block top-0 -mt-7 left-1/2 transform -translate-x-1/2 bg-slate-100 ring-1 ring-slate-200v dark:ring-0 text-black dark:bg-black dark:text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                Edit OnBoarding
+              <div className="shadow-md  w-max text-center absolute hidden group-hover:block top-0 -mt-7 left-1/2 transform -translate-x-1/2 bg-slate-100 ring-1 ring-slate-200v dark:ring-0 text-black dark:bg-black dark:text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+               {t("project.editOnboardingTooltip")}
               </div>
             </div>
           ) : null}
@@ -206,25 +208,25 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
         </div>
         <div className="mt-3 mb-3 flex items-end justify-between">
           <div className="text-sm font-medium text-dark-gray ">
-            Text{" "}
+            {t('project.projectDetails.text')}{" "}
             <div className="text-meta-5">
               {texts}/{totalTexts}
             </div>
           </div>
           <div className="text-sm font-medium text-dark-gray ">
-            Created on:{" "}
+          {t('project.projectDetails.createdOn')}{" "}
             <div className="text-meta-3 flex justify-end">{createdOn}</div>
           </div>
         </div>
         <div className="mt-8 mb-3 flex items-end justify-between w-full">
           <div className="text-sm font-medium text-dark-gray ">
-            Orders per month{" "}
+          {t('project.projectDetails.ordersPerMonth')}{" "}
             <p className="text-meta-5  ">
               {usedordersPerMonth}/{ordersPerMonth}
             </p>
           </div>
           <div className="text-sm font-medium text-dark-gray flex items-end justify-end flex-col ">
-            Project Duration{" "}
+          {t('project.projectDetails.projectDuration')}{" "}
             <div className="text-meta-5 text-right">
               {projectDuration === null
                 ? `${new Date().toLocaleString("default", {
@@ -239,13 +241,13 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
       {!onBoarding && (
         <div className="absolute inset-0 top-30 flex flex-col items-center justify-center  p-4 rounded-sm">
           <p className="text-center text-sm dark:text-slate-100 mb-2">
-            Please fill out the onboarding for this project.
+           {t('project.pleaseFillOutOnboarding')}
           </p>
           <button
             onClick={handleBoarding}
             className="w-2/3 mt-3 py-3 px-4 bg-blue-500 text-white rounded hover:bg-blue-500/85"
           >
-            Go to onboarding
+              {t('project.goToOnboardingButton')}
           </button>
         </div>
       )}

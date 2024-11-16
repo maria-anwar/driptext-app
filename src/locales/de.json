@@ -1,0 +1,137 @@
+{
+  "clientsidebar": {
+    "slogan": "Wir lieben SEO & Content",
+    "menu": {
+      "myProjects": "Meine Projekte",
+      "contactSupport": "Support kontaktieren",
+      "settings": "Einstellungen",
+      "accountSetting": "Kontoeinstellungen",
+      "signOut": "Abmelden"
+    }
+  },
+  "project": {
+    "title": "Kunde (Projekte)",
+    "breadcrumb": {
+      "dashboard": "Dashboard /",
+      "currentPage": "Projekte"
+    },
+    "header": {
+      "mainTitle": "Projekte",
+      "subTitle": "Hier können Sie alle Projekte sehen, für die DripTexts erstellt wurden."
+    },
+    "buttons": {
+      "addProject": "Projekt hinzufügen"
+    },
+    "editOnboardingTooltip": "Onboarding bearbeiten",
+    "pleaseFillOutOnboarding": "Bitte füllen Sie das Onboarding für dieses Projekt aus.",
+    "goToOnboardingButton": "Zum Onboarding",
+    "projectDetails": {
+      "text": "Text",
+      "createdOn": "Erstellt am:",
+      "ordersPerMonth": "Bestellungen pro Monat",
+      "projectDuration": "Projektdauer"
+    },
+    "onboarding": {
+      "editProject": "Projekt bearbeiten",
+      "generalInformation": "1. Allgemeine Informationen:",
+      "speech": "Sprache",
+      "writingPerspective": "Schreibperspektive",
+      "companyInformation": "2. Unternehmensinformationen",
+      "onBoarding": "OnBoarding",
+      "companyInfoLabel": "Hintergrundinformationen zum Unternehmen",
+      "companyAttributesLabel": "Eigenschaften, die das Unternehmen/Produkte/Dienstleistungen am besten beschreiben",
+      "servicesLabel": "Unternehmensdienstleistungen",
+      "targetCustomerInformation": "3. Informationen über die Zielkunden",
+      "contentWrittenForLabel": "Für wen wird der Inhalt geschrieben?",
+      "customerInterestsLabel": "Kundeninteressen",
+      "aimOfContent": "4. Ziel des Inhalts",
+      "contentPurposeLabel": "Zweck des Inhalts",
+      "brandAndContentInfoLabel": "Marken- und Inhaltsinformationen",
+      "cancelButton": "Abbrechen",
+      "saveButton": "Speichern",
+      "savingButton": "Speichern...",
+      "errorMessage": "Fehler beim Bearbeiten der Projektdetails",
+      "formErrors": {
+        "speechRequired": "Bitte wählen Sie eine Sprache",
+        "perspectiveRequired": "Bitte wählen Sie eine Perspektive",
+        "projectNameRequired": "Bitte geben Sie einen Projektnamen ein",
+        "companyInfoRequired": "Bitte geben Sie Unternehmensinformationen ein",
+        "companyAttributesRequired": "Bitte geben Sie Unternehmensattribute ein",
+        "servicesRequired": "Bitte geben Sie Unternehmensdienstleistungen ein",
+        "contentRequired": "Bitte geben Sie den Inhalt ein",
+        "customersRequired": "Bitte geben Sie Kundeninteressen ein",
+        "contentPurposeRequired": "Bitte geben Sie den Zweck des Inhalts ein",
+        "brandRequired": "Bitte geben Sie die Inhaltsinformationen ein"
+      }
+    }
+  },
+  "taskTable": {
+    "title": "Kunde (Aufgaben)",
+    "breadcrumb": {
+      "dashboard": "Dashboard /",
+      "currentPage": "Projekttexte"
+    },
+    "addSubscriptionButton": "Abonnement hinzufügen",
+    "projectTexts": "Projekt texte",
+    "columns": {
+      "textNumber": "Text #",
+      "status": "Status",
+      "serviceDuration": "Service-Dauer",
+      "keyword": "Schlüsselwort",
+      "published": "Veröffentlicht"
+    }
+  },
+  "support": {
+    "pagetitle": "Kunde (Support)",
+    "breadcrumb": "Unser Support",
+    "contacttitle": "Kontaktieren Sie unser Team",
+    "firstnamelabel": "Vorname",
+    "firstnameplaceholder": "Vorname",
+    "lastnamelabel": "Nachname",
+    "lastnameplaceholder": "Nachname",
+    "emaillabel": "E-Mail-Adresse",
+    "emailplaceholder": "beispiel@gmail.com",
+    "messagelabel": "Ihre Nachricht",
+    "messageplaceholder": "Schreiben Sie hier Ihre Nachricht...",
+    "submitbuttontext": "Absenden",
+    "loadingbuttontext": "Wird gesendet...",
+    "erroremptyfields": "Bitte füllen Sie alle Felder aus.",
+    "successemailsent": "E-Mail erfolgreich gesendet!",
+    "erroremailfailed": "E-Mail konnte nicht gesendet werden."
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "pagetitle": "Kunde (Einstellungen)",
+    "personalInformation": {
+      "title": "Persönliche Informationen",
+      "firstName": {
+        "label": "Vorname",
+        "placeholder": "vorname"
+      },
+      "lastName": {
+        "label": "Nachname",
+        "placeholder": "nachname"
+      },
+      "email": {
+        "label": "E-Mail-Adresse",
+        "placeholder": "xyz@gmail.com"
+      },
+      "cancelButton": "Abbrechen",
+      "saveButton": {
+        "text": "Speichern",
+        "loadingText": "Wird gespeichert..."
+      }
+    },
+    "allFieldsRequired": "Bitte geben Sie Daten in allen Feldern ein",
+    "emailSubscription": {
+      "title": "E-Mail aktivieren",
+      "enabled": "E-Mail-Subscription aktiviert",
+      "disabled": "E-Mail-Subscription deaktiviert",
+      "description": "Sie erhalten keine Benachrichtigungen von Driptext per E-Mail"
+    },
+    "security": {
+      "title": "Sicherheit",
+      "resetPassword": "Passwort zurücksetzen"
+    }
+  }
+}

@@ -7,9 +7,11 @@ import { useSelector } from "react-redux";
 import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
 import useTitle from "../../../hooks/useTitle";
+import { useTranslation } from "react-i18next";
 
 const Projects: React.FC = () => {
-  useTitle("Client (Projects)");
+  const { t } = useTranslation();
+  useTitle(t("project.title"));
   const navigate = useNavigate();
   const user = useSelector<any>((state) => state.user);
   const [loading, setLoading] = useState(true);
@@ -61,25 +63,28 @@ const Projects: React.FC = () => {
                 className="font-medium text-black hover:text-black dark:text-bodydark dark:hover:text-bodydark"
                 to="/client-dashboard"
               >
-                Dashboard /
+                {t("project.breadcrumb.dashboard")}
               </Link>
             </li>
-            <li className="font-medium text-primary">Projects</li>
+            <li className="font-medium text-primary">
+              {t("project.breadcrumb.currentPage")}
+            </li>
           </ol>
         </div>
       </div>
       <div className="w-full flex flex-col gap-3 2xl:gap-0 2xl:flex-row 2xl:justify-between items-center 4xl:px-14 mb-3 4xl:mb-6 mt-2 lg:mt-1">
         <div className="w-full 2xl:max-w-max">
           <h1 className="text-title-md font-bold text-black dark:text-white mb-2">
-            Projects
+            {t("project.header.mainTitle")}
           </h1>
-          <p className="text-dark-gray">
-            Here you can see all the projects for which DripTexts are created.
-          </p>
+          <p className="text-dark-gray">{t("project.header.subTitle")}</p>
         </div>
         <div className=" w-full 2xl:max-w-max flex justify-start 2xl:justify-end mt-2 gap-2 ">
           <div>
-            <DarkBtn name={"Add Project"} url={"/package-booking"} />
+            <DarkBtn
+              name={t("project.buttons.addProject")}
+              url={"/package-booking"}
+            />
           </div>
         </div>
       </div>
