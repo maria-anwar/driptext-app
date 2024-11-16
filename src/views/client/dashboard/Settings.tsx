@@ -10,9 +10,11 @@ import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import useTitle from "../../../hooks/useTitle";
 import { toast ,ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { useTranslation } from "react-i18next";
 
 const Settings = () => {
-  useTitle("Client (Settings)");
+  const { t } = useTranslation();
+  useTitle(t("settings.pagetitle"));
   const user = useSelector((state) => state.user);
   console.log(user);
   const dispatch = useDispatch();
@@ -27,6 +29,11 @@ const Settings = () => {
     setLoading(true);
     e.preventDefault();
 
+    if(firstName === "" || lastName === "") {
+      toast.error(t("settings.allFieldsRequired"));
+      setLoading(false);
+      return;
+    }
     let token = user.user.token;
     axios.defaults.headers.common["access-token"] = token;
 
@@ -79,9 +86,9 @@ const Settings = () => {
         updateUserFields({ path: "data.user.emailSubscription", value: newToggle })
       );
        if (newToggle) {
-        toast.success("Email subscription enabled");
+        toast.success(t("settings.emailSubscription.enabled"));
        } else {
-        toast.success("Email subscription disabled");
+        toast.success(t("settings.emailSubscription.disabled"));
        }
     } catch (err) {
       console.error("Error in email subscription:", err);
@@ -92,14 +99,14 @@ const Settings = () => {
   return (
     <>
       <div className="mx-auto max-w-270 3xl:px-6">
-        <Breadcrumb pageName="Settings" />
+        <Breadcrumb pageName={t('settings.title')} />
         <ToastContainer/>
         <div className="grid grid-cols-5  gap-8">
           <div className="col-span-5 3xl:col-span-8  xl:col-span-8">
             <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
               <div className="border-b border-stroke py-4 px-7 dark:border-strokedark">
                 <h3 className="font-medium text-black dark:text-white">
-                  Personal Information
+                {t('settings.personalInformation.title')} 
                 </h3>
               </div>
               <div className="p-7">
@@ -108,9 +115,9 @@ const Settings = () => {
                     <div className="w-full sm:w-1/2">
                       <label
                         className="mb-3 block text-sm font-medium text-black dark:text-white"
-                        htmlFor="fullName"
+                        htmlFor="firstName"
                       >
-                        First Name
+                        {t('settings.personalInformation.firstName.label')} 
                       </label>
                       <div className="relative">
                         <span className="absolute left-4.5 top-4">
@@ -141,9 +148,9 @@ const Settings = () => {
                         <input
                           className="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
                           type="text"
-                          name="fullName"
-                          id="fullName"
-                          placeholder="firstname"
+                          name="firstName"
+                          id="firstName"
+                          placeholder={t('settings.personalInformation.firstName.placeholder')} 
                           onChange={(e) => setFirstName(e.target.value)}
                           value={firstName}
                         />
@@ -153,9 +160,10 @@ const Settings = () => {
                     <div className="w-full sm:w-1/2">
                       <label
                         className="mb-3 block text-sm font-medium text-black dark:text-white"
-                        htmlFor="fullName"
+                        htmlFor="lastName"
                       >
-                        Last Name
+                                               {t('settings.personalInformation.lastName.label')} 
+
                       </label>
                       <div className="relative">
                         <span className="absolute left-4.5 top-4">
@@ -186,9 +194,9 @@ const Settings = () => {
                         <input
                           className="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
                           type="text"
-                          name="fullName"
-                          id="fullName"
-                          placeholder="lastname"
+                          name="lastName"
+                          id="lastName"
+                          placeholder={t('settings.personalInformation.lastName.placeholder')} 
                           onChange={(e) => setLastName(e.target.value)}
                           value={lastName}
                         />
@@ -201,7 +209,8 @@ const Settings = () => {
                       className="mb-3 block text-sm font-medium text-black dark:text-white"
                       htmlFor="emailAddress"
                     >
-                      Email Address
+                                             {t('settings.personalInformation.email.label')} 
+
                     </label>
                     <div className="relative">
                       <span className="absolute left-4.5 top-4">
@@ -234,7 +243,7 @@ const Settings = () => {
                         type="email"
                         name="emailAddress"
                         id="emailAddress"
-                        placeholder="xyz@gmail.com"
+                        placeholder={t('settings.personalInformation.email.placeholder')} 
                         defaultValue={user.user.data.user.email || ""}
                         disabled={true}
                       />
@@ -247,7 +256,7 @@ const Settings = () => {
                       type="submit"
                       onClick={handleCancel}
                     >
-                      Cancel
+                      {t('settings.personalInformation.cancelButton')}
                     </button>
                     <button
                       onClick={handleUpdate}
@@ -255,7 +264,7 @@ const Settings = () => {
                       type="submit"
                       disabled={loading}
                     >
-                      {loading ? "Saving..." : "Save"}
+                      {loading ? t('settings.personalInformation.saveButton.loadingText'): t('settings.personalInformation.saveButton.text')}
                     </button>
                   </div>
                 </form>
@@ -267,7 +276,7 @@ const Settings = () => {
               <div className="border-b border-stroke py-4 px-7 dark:border-strokedark">
         <div className=" my-2 flex items-center justify-between gap-4">
           <h2 className="sm:text-[16px] lg:text-[18px] 4xl:text-[20px] 5xl:text-[22px] font-medium text-black dark:text-white ">
-            Enable Email
+            {t('settings.emailSubscription.title')}
           </h2>
           <label className="relative inline-flex items-center cursor-pointer">
             <input
@@ -292,20 +301,21 @@ const Settings = () => {
             </div>
           </label>
         </div>
-        {!toggle ? <p className="text-dark-gray dark:text-slate-400">You won't receive any notification from Driptext via email</p>:null}
+        {!toggle ? <p className="text-dark-gray dark:text-slate-400">    {t('settings.emailSubscription.description')}
+        </p>:null}
         </div>
         </div>
 
         <div className="flex flex-col gap-4 mt-6.5">
           <h2 className="text-title-md2 font-semibold text-black dark:text-white ">
-            Security
+            {t('settings.security.title')}
           </h2>
           <Link
             to="/auth/lost/request"
             className="inline-flex items-center justify-center gap-2.5 bg-black py-4 px-10 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
           >
             {/* <span>{SidebarIcons[3].auth}</span> */}
-            Reset Password
+            {t('settings.security.resetPassword')}
           </Link>
         </div>
       </div>

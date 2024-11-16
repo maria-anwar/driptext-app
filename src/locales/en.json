@@ -1,0 +1,137 @@
+{
+  "clientsidebar": {
+    "slogan": "We love SEO & Content",
+    "menu": {
+      "myProjects": "My Projects",
+      "contactSupport": "Contact Support",
+      "settings": "Settings",
+      "accountSetting": "Account Settings",
+      "signOut": "Sign out"
+    }
+  },
+  "project": {
+    "title": "Client (Projects)",
+    "breadcrumb": {
+      "dashboard": "Dashboard /",
+      "currentPage": "Projects"
+    },
+    "header": {
+      "mainTitle": "Projects",
+      "subTitle": "Here you can see all the projects for which DripTexts are created."
+    },
+    "buttons": {
+      "addProject": "Add Project"
+    },
+    "editOnboardingTooltip": "Edit OnBoarding",
+    "pleaseFillOutOnboarding": "Please fill out the onboarding for this project.",
+    "goToOnboardingButton": "Go to onboarding",
+    "projectDetails": {
+      "text": "Text",
+      "createdOn": "Created on:",
+      "ordersPerMonth": "Orders per month",
+      "projectDuration": "Project Duration"
+    },
+    "onboarding": {
+      "editProject": "Edit Project",
+      "generalInformation": "1. General information:",
+      "speech": "Speech",
+      "writingPerspective": "Writing Perspective",
+      "companyInformation": "2. Company Information",
+      "onBoarding": "OnBoarding",
+      "companyInfoLabel": "Background information about the company",
+      "companyAttributesLabel": "Attributes best describing company/products/services",
+      "servicesLabel": "Company Services",
+      "targetCustomerInformation": "3. Information About the Target Customers",
+      "contentWrittenForLabel": "Who is the content written for?",
+      "customerInterestsLabel": "Customer Interests",
+      "aimOfContent": "4. Aim of the Content",
+      "contentPurposeLabel": "Purpose of the content",
+      "brandAndContentInfoLabel": "Brand and Content Information",
+      "cancelButton": "Cancel",
+      "saveButton": "Save",
+      "savingButton": "Saving...",
+      "errorMessage": "Error editing project details",
+      "formErrors": {
+        "speechRequired": "Please select a speech",
+        "perspectiveRequired": "Please select perspective",
+        "projectNameRequired": "Please enter project name",
+        "companyInfoRequired": "Please enter company information",
+        "companyAttributesRequired": "Please enter company attributes",
+        "servicesRequired": "Please enter company services",
+        "contentRequired": "Please enter content",
+        "customersRequired": "Please enter customer interests",
+        "contentPurposeRequired": "Please enter content purpose",
+        "brandRequired": "Please enter content info"
+      }
+    }
+  },
+  "taskTable": {
+    "title": "Client (Tasks)",
+    "breadcrumb": {
+      "dashboard": "Dashboard /",
+      "currentPage": "Project Texts"
+    },
+    "addSubscriptionButton": "Add Subscription",
+    "projectTexts": "Project Texts",
+    "columns": {
+      "textNumber": "Text #",
+      "status": "Status",
+      "serviceDuration": "Service Duration",
+      "keyword": "Keyword",
+      "published": "Published"
+    }
+  },
+  "support": {
+    "pagetitle": "Client (Support)",
+    "breadcrumb": "Our Support",
+    "contacttitle": "Contact Our Team",
+    "firstnamelabel": "First Name",
+    "firstnameplaceholder": "firstname",
+    "lastnamelabel": "Last Name",
+    "lastnameplaceholder": "lastname",
+    "emaillabel": "Email Address",
+    "emailplaceholder": "example@gmail.com",
+    "messagelabel": "Your Message",
+    "messageplaceholder": "Write your message here...",
+    "submitbuttontext": "Submit",
+    "loadingbuttontext": "Submitting...",
+    "erroremptyfields": "Please fill in all fields.",
+    "successemailsent": "Email sent successfully!",
+    "erroremailfailed": "Failed to send email."
+  },
+  "settings": {
+    "title": "Settings",
+    "pagetitle": "Client (Settings)",
+    "personalInformation": {
+      "title": "Personal Information",
+      "firstName": {
+        "label": "First Name",
+        "placeholder": "firstname"
+      },
+      "lastName": {
+        "label": "Last Name",
+        "placeholder": "lastname"
+      },
+      "email": {
+        "label": "Email Address",
+        "placeholder": "xyz@gmail.com"
+      },
+      "cancelButton": "Cancel",
+      "saveButton": {
+        "text": "Save",
+        "loadingText": "Saving..."
+      }
+    },
+    "allFieldsRequired": "Please enter data in all fields",
+    "emailSubscription": {
+      "title": "Enable Email",
+      "enabled": "Email subscription enabled",
+      "disabled": "Email subscription disabled",
+      "description": "You won't receive any notification from Driptext via email"
+    },
+    "security": {
+      "title": "Security",
+      "resetPassword": "Reset Password"
+    }
+  }
+}
