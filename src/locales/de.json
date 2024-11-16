@@ -485,5 +485,94 @@
       "accountSetting": "Kontoeinstellungen",
       "signOut": "Abmelden"
     }
+  },
+  "signIn": {
+    "slogan": "Wir lieben SEO & Content",
+    "authLine": "Geben Sie Ihre E-Mail-Adresse und Ihr Passwort ein, um sich anzumelden.",
+    "title": "Anmelden",
+    "emailLabel": "Ihre E-Mail-Adresse",
+    "emailPlaceholder": "jhon@gmail.com",
+    "passwordLabel": "Passwort",
+    "passwordPlaceholder": "********",
+    "forgotPassword": "Passwort vergessen",
+    "signInButton": "Anmelden",
+    "errors": {
+      "emailRequired": "E-Mail ist erforderlich",
+      "passwordRequired": "Passwort ist erforderlich",
+      "passwordMinLength": "Passwort muss mindestens 8 Zeichen lang sein"
+    },
+    "links": {
+      "imprint": "Impressum",
+      "privacyPolicy": "Datenschutzerklärung"
+    }
+  },
+  "clientRegister": {
+    "pageTitle": "Probetext bestellen",
+    "title": "Bestelle Deinen kostenlosen Probetext im Wert von 105,00 €",
+    "description": "Bitte sende uns alle Informationen zu deinem Probetext. Wir werden sofort mit der Arbeit beginnen, um einen hervorragenden Probetext für dich zu erstellen!",
+    "subheading": "Bitte beantworte die folgenden Fragen für das Briefing:",
+    "registrationForm": {
+      "step1": {
+        "title": "1. Informationen zum Text",
+        "projectLabel": "Dein Projekt",
+        "projectPlaceholder": "beispiel.com",
+        "keywordLabel": "Gewünschtes Stichwort",
+        "keywordPlaceholder": "Beispiel-Stichwort"
+      },
+      "step2": {
+        "title": "2. Kontaktdaten des Rechnungsempfängers",
+        "emailLabel": "E-Mail",
+        "emailPlaceholder": "Ihre E-Mail-Adresse",
+        "fnameLabel": "Vorname",
+        "fnamePlaceholder": "Ihr Vorname",
+        "lnameLabel": "Nachname",
+        "lnamePlaceholder": "Ihr Nachname"
+      },
+      "validationSchema": {
+    "project": "Bitte geben Sie Ihr Projekt ein",
+    "keyword": "Bitte geben Sie ein Stichwort ein",
+    "email": "Bitte geben Sie eine E-Mail-Adresse ein",
+    "emailValid": "Geben Sie eine gültige E-Mail-Adresse ein",
+    "fname": "Bitte geben Sie Ihren Vornamen ein",
+    "lname": "Bitte geben Sie Ihren Nachnamen ein"
+  },
+      "submitButton":  "Bestellung Absenden",
+      "terms": {
+        "text": "Durch die Bestellung erkläre ich mich mit den ",
+        "linkText": "Allgemeinen Geschäftsbedingungen",
+        "linkUrl": "https://example.com/terms",
+        "disclaimer": "von DripText Ltd. einverstanden und verstehe, dass unsere Angebote ausschließlich an gewerbliche Kunden gerichtet sind. Alle Preise verstehen sich zuzüglich MwSt. Verkauf nur an Unternehmer, Gewerbetreibende, Verbände, Behörden oder Selbständige (§ 14 BGB). Kein Verkauf an Verbraucher im Sinne von § 13 BGB."
+      }
+    }
+  }, "header": "Bestellen Sie kostenlosen Probetext",
+  "footer": {
+    "companyDescription": "DripText ist Ihr zuverlässiger Partner für qualitativ hochwertigen, SEO-optimierten Inhalt, den sowohl Ihre Nutzer als auch die Suchmaschinen lieben – garantiert!",
+    "navigation": {
+      "title": "Navigation",
+      "links": [
+        "Startseite",
+        "Magazin",
+        "Dienstleistungen",
+        "Das Team",
+        "Autoren"
+      ]
+    },
+    "address": {
+      "title": "Adresse",
+      "line1": "DripText Ltd.",
+      "line2": "Makariou Avenue 59,",
+      "line3": "Mouyias Tower, 3. Stock,",
+      "line4": "Büro 301",
+      "line5": "6017 Larnaca, Zypern"
+    },
+    "legal": {
+      "title": "Rechtliches",
+      "links": [
+        "Bedingungen",
+        "Impressum",
+        "Datenschutz",
+        "Cookie-Einstellungen"
+      ]
+    }
   }
 }

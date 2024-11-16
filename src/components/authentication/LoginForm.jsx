@@ -2,19 +2,17 @@ import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { useNavigate, Link } from "react-router-dom";
-import {
-  Input,
-  Button,
-  Typography,
-} from "@material-tailwind/react";
+import { Input, Button, Typography } from "@material-tailwind/react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../redux/userSlice.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import useAuth from "../../views/auth/useAuth.jsx";
+import { useTranslation } from "react-i18next";
 
 const LoginForm = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -33,8 +31,10 @@ const LoginForm = () => {
   };
 
   const validationSchema = Yup.object().shape({
-    email: Yup.string().email().required("E-Mail ist erforderlich"),
-    password: Yup.string().min(8).required("Passwort ist erforderlich"),
+    email: Yup.string().email().required(t("signIn.errors.emailRequired")),
+    password: Yup.string()
+      .min(8, t("signIn.errors.passwordMinLength"))
+      .required(t("signIn.errors.passwordRequired")),
   });
 
   const onSubmit = async (values) => {
@@ -51,7 +51,7 @@ const LoginForm = () => {
         userData
       );
       dispatch(setUser(response?.data));
-      const expirationTime = Date.now() + (12 * 60 * 60 * 1000);
+      const expirationTime = Date.now() + 12 * 60 * 60 * 1000;
       localStorage.setItem(
         "key",
         JSON.stringify({
@@ -68,13 +68,13 @@ const LoginForm = () => {
       }
     } catch (error) {
       const errorMessage =
-        error.response?.data?.message || error.message || "Fehler beim Einloggen";
+        error.response?.data?.message ||
+        error.message ||
+        "Fehler beim Einloggen";
       setError(true);
       setErrorMesssage(errorMessage);
       setLoading(false);
     }
-
-   
   };
 
   return (
@@ -92,7 +92,7 @@ const LoginForm = () => {
                 color="blue-gray"
                 className="-mb-3 font-medium"
               >
-                Ihre E-Mail-Adresse
+                {t("signIn.emailLabel")}
               </Typography>
               <Input
                 size="lg"
@@ -100,7 +100,7 @@ const LoginForm = () => {
                 value={props.values.email}
                 name="email"
                 type="email"
-                placeholder="jhon@gmail.com"
+                placeholder={t("signIn.emailPlaceholder")}
                 onChange={(e) => {
                   props.handleChange(e);
                   setError(false);
@@ -122,7 +122,7 @@ const LoginForm = () => {
                 color="blue-gray"
                 className="-mb-3 font-medium"
               >
-                Passwort
+                {t("signIn.passwordLabel")}
               </Typography>
               <div className="relative ">
                 <Input
@@ -136,7 +136,7 @@ const LoginForm = () => {
                     setErrorMesssage("");
                   }}
                   size="lg"
-                  placeholder="********"
+                  placeholder={t("signIn.passwordPlaceholder")}
                   className="outline-none ring-1 ring-black border-none focus:ring-2 focus:ring-black"
                   labelProps={{
                     className: "before:content-none after:content-none",
@@ -145,7 +145,7 @@ const LoginForm = () => {
                 <FontAwesomeIcon
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
                   onClick={togglePasswordVisibility}
-                  icon={passwordVisible ?  faEye:faEyeSlash }
+                  icon={passwordVisible ? faEye : faEyeSlash}
                 />{" "}
               </div>
               {props.errors.password && (
@@ -155,7 +155,7 @@ const LoginForm = () => {
               )}
             </div>
             <div className="flex items-center justify-end mt-6">
-            {/* <div className="flex gap-2 items-center">
+              {/* <div className="flex gap-2 items-center">
                 <input
                   type="checkbox"
                   className="h-4 w-4"
@@ -168,7 +168,9 @@ const LoginForm = () => {
                 </Typography>
               </div> */}
               <Typography variant="small" className="font-medium text-gray-900">
-                <Link to="/auth/lost/request">Passwort vergessen</Link>
+                <Link to="/auth/lost/request">
+                  {t("signIn.forgotPassword")}
+                </Link>
               </Typography>
             </div>
             <Button
@@ -178,12 +180,12 @@ const LoginForm = () => {
               fullWidth
               type="submit"
             >
-            {loading ? (
+              {loading ? (
                 <div className="flex items-center justify-center">
                   <div className="w-5 h-5 border-2 border-white border-solid rounded-full border-t-transparent animate-spin" />
                 </div>
               ) : (
-                "Anmelden"
+                t("signIn.signInButton")
               )}
             </Button>
             {error && (
@@ -195,16 +197,14 @@ const LoginForm = () => {
         )}
       </Formik>
 
-
       <div className="xl:hidden w-full flex justify-center gap-2.5 p-4 text-sm text-gray-700  border-gray-200">
         <Link to="/imprint" className="hover:underline">
-          Impressum
+          {t("signIn.links.imprint")}
         </Link>
         <Link to="/privacy-policy" className=" hover:underline">
-          Datenschutzerklärung
+          {t("signIn.links.privacyPolicy")}
         </Link>
       </div>
-      
     </div>
   );
 };
