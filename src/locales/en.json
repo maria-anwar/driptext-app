@@ -478,5 +478,96 @@
       "accountSetting": "Account Settings",
       "signOut": "Sign out"
     }
-  }
+  },
+  "signIn": {
+    "slogan": "We love SEO & Content",
+    "authLine": "Enter your email address and password to sign in.",
+    "title": "Sign In",
+    "emailLabel": "Your Email Address",
+    "emailPlaceholder": "jhon@gmail.com",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "********",
+    "forgotPassword": "Forgot Password",
+    "signInButton": "Sign In",
+    "errors": {
+      "emailRequired": "Email is required",
+      "passwordRequired": "Password is required",
+      "passwordMinLength": "Password must be at least 8 characters long"
+    },
+    "links": {
+      "imprint": "Imprint",
+      "privacyPolicy": "Privacy Policy"
+    }
+  },
+  "clientRegister": {
+    "pageTitle": "Order Sample Text",    
+    "title": "Order Your Free Sample Text Worth €105.00",
+    "description": "Please send us all the information about your sample text. We will get to work right away to create an excellent sample text for you!",
+    "subheading": "Please answer the following questions for the briefing:",
+    "registrationForm": {
+      "step1": {
+        "title": "1. Information About the Text",
+        "projectLabel": "Your Project",
+        "projectPlaceholder": "example.com",
+        "keywordLabel": "Desired Keyword",
+        "keywordPlaceholder": "Example-Keyword"
+      },
+      "step2": {
+        "title": "2. Contact Details of the Invoice Recipient",
+        "emailLabel": "Email",
+        "emailPlaceholder": "Your Email Address",
+        "fnameLabel": "First Name",
+        "fnamePlaceholder": "Your First Name",
+        "lnameLabel": "Last Name",
+        "lnamePlaceholder": "Your Last Name"
+      },
+      "validationSchema": {
+        "project": "Please enter your project",
+        "keyword": "Please enter a keyword",
+        "email": "Please enter a email address",
+        "emailValid":"Enter a valid email",
+        "fname": "Please enter your first name",
+        "lname": "Please enter your last name"
+      },
+      "submitButton": "Submit Order",
+      "terms": {
+        "text": "By placing the order, I agree to the ",
+        "linkText": "Terms and Conditions",
+        "linkUrl": "https://example.com/terms",
+        "disclaimer": "of DripText Ltd. and understand that our offers are exclusively aimed at business customers. All prices are subject to VAT. Sales are only for entrepreneurs, traders, associations, authorities, or self-employed persons (§ 14 BGB). No sales to consumers within the meaning of § 13 BGB."
+      }
+    }
+  },
+  "header": "Order Free Sample Text"
+  ,
+    "footer": {
+      "companyDescription": "DripText is your reliable partner for high-quality, SEO-optimized content that your users and the search engine like – guaranteed!",
+      "navigation": {
+        "title": "Navigation",
+        "links": [
+          "Home",
+          "Magazine",
+          "Services",
+          "The Team",
+          "Authors"
+        ]
+      },
+      "address": {
+        "title": "Address",
+        "line1": "DripText Ltd.",
+        "line2": "Makariou Avenue 59,",
+        "line3": "Mouyias Tower, 3rd Floor,",
+        "line4": "Office 301",
+        "line5": "6017 Larnaca, Cyprus"
+      },
+      "legal": {
+        "title": "Legal",
+        "links": [
+          "Conditions",
+          "Imprint",
+          "Data Protection",
+          "Cookie Settings"
+        ]
+      }
+    }  
 }

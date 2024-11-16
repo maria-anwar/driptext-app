@@ -1,17 +1,19 @@
-import React from 'react'
-import Auth2 from '../../components/authentication/Auth2'
-import LoginForm from '../../components/authentication/LoginForm'
-import useTitle from '../../hooks/useTitle'
+import React from "react";
+import Auth2 from "../../components/authentication/Auth2";
+import LoginForm from "../../components/authentication/LoginForm";
+import useTitle from "../../hooks/useTitle";
+import { useTranslation } from "react-i18next";
 
 const SignIn = () => {
-  useTitle('Anmelden')
+  const { t } = useTranslation();
+  useTitle(t("signIn.title"));
   return (
     <>
-    <Auth2 authline={'Geben Sie Ihre E-Mail-Adresse und Ihr Passwort ein, um sich anzumelden.'}>
-       <LoginForm/>
-    </Auth2>
+      <Auth2 authline={t("signIn.authLine")}>
+        <LoginForm />
+      </Auth2>
     </>
-  )
-}
+  );
+};
 
-export default SignIn
+export default SignIn;
