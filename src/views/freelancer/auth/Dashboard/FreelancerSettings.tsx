@@ -12,10 +12,12 @@ import { UserData } from "../../../../components/freelancer/Type/types";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUserFields } from "../../../../redux/userSlice";
 import useTitle from "../../../../hooks/useTitle";
+import { useTranslation } from "react-i18next";
 
 
 const ProfilePage = () => {
-  useTitle("Freelancer (Setting)");
+  const { t } = useTranslation();
+  useTitle(t('profilePage.pageTitle'));
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
@@ -40,7 +42,6 @@ const ProfilePage = () => {
       );
 
       const projectDataArray = response.data.freelancer;
-      console.log(projectDataArray);
       setUserData(projectDataArray);
       setLoading(false);
     } catch (err) {
@@ -66,17 +67,17 @@ const ProfilePage = () => {
   };
 
   const validationSchema = Yup.object().shape({
-    firstName: Yup.string().required("Please enter first name"),
-    lastName: Yup.string().required("Please enter last name"),
-    email: Yup.string().email().required("Please enter your email"),
-    phone: Yup.string().required("Please enter phone number"),
-    street: Yup.string().required("Please enter your street"),
-    postcode: Yup.string().required("Please enter your postal code"),
-    city: Yup.string().required("Please enter your city"),
-    country: Yup.string().required("Please enter your country"),
-    iban: Yup.string().required("Please enter your IBAN"),
-    companyName: Yup.string().required("Please enter your company name"),
-    vatIdNo: Yup.string().required("VAT ID is required"),
+    firstName: Yup.string().required(t("profilePage.validationErrors.firstName")),
+    lastName: Yup.string().required(t("profilePage.validationErrors.lastName")),
+    email: Yup.string().email().required(t("profilePage.validationErrors.email")),
+    phone: Yup.string().required(t("profilePage.validationErrors.phone")),
+    street: Yup.string().required(t("profilePage.validationErrors.street")),
+    postcode: Yup.string().required(t("profilePage.validationErrors.postcode")),
+    city: Yup.string().required(t("profilePage.validationErrors.city")),
+    country: Yup.string().required(t("profilePage.validationErrors.country")),
+    iban: Yup.string().required(t("profilePage.validationErrors.iban")),
+    companyName: Yup.string().required(t("profilePage.validationErrors.companyName")),
+    vatIdNo: Yup.string().required(t("profilePage.validationErrors.vatIdNo")),
   });
 
   const onSubmit = async (values: any) => {
@@ -109,18 +110,18 @@ const ProfilePage = () => {
       dispatch(
         updateUserFields({ path: "data.user.lastName", value: values.lastName })
       );
-      toast.success("Profile updated successfully!");
+      toast.success(t("profilePage.updateProfileSuccess"));
       setUpdateLoading(false);
     } catch (err) {
       console.error("Error updating profile:", err);
-      toast.error("Failed to update profile. Please try again.");
+      toast.error(t("profilePage.updateProfileError"));
       setUpdateLoading(false);
     }
   };
 
   return (
     <div className="mx-auto max-w-270 3xl:px-6">
-      <Breadcrumb pageName="Profile Setting" pageData="" />
+      <Breadcrumb pageName={t('profilePage.breadcrumb.pageName')} pageData="" />
       {loading ? (
         <div className="rounded-sm border border-stroke pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1  w-full bg-slate-200 h-[460px] md:h-[600px] animate-pulse"></div>
       ) : (
@@ -137,12 +138,12 @@ const ProfilePage = () => {
                   {(props) => (
                     <Form>
                       <h2 className="text-lg font-semibold text-gray-800 pt-6 text-black dark:text-white">
-                        Personal Data
+                      {t('profilePage.form.personalData.title')} 
                       </h2>
                       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                         <GroupField
-                          label={"First Name"}
-                          placeholder={"Your first name"}
+                          label={t('profilePage.form.personalData.fields.firstName')} 
+                          placeholder={t('profilePage.placeholders.firstName')}
                           id={"firstName"}
                           name={"firstName"}
                           value={props.values.firstName}
@@ -150,8 +151,8 @@ const ProfilePage = () => {
                           onChange={props.handleChange}
                         />
                         <GroupField
-                          label={"Last Name"}
-                          placeholder={"Your last name"}
+                          label={t('profilePage.form.personalData.fields.lastName')} 
+                          placeholder={t('profilePage.placeholders.lastName')}
                           id={"lastName"}
                           name={"lastName"}
                           value={props.values.lastName}
@@ -161,8 +162,8 @@ const ProfilePage = () => {
                       </div>
                       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-2">
                         <GroupField
-                          label={"E-mail"}
-                          placeholder={"Your email address"}
+                          label={t('profilePage.form.personalData.fields.email')} 
+                          placeholder={t('profilePage.placeholders.email')}
                           type={"email"}
                           id={"email"}
                           name={"email"}
@@ -171,8 +172,8 @@ const ProfilePage = () => {
                           onChange={props.handleChange}
                         />
                         <GroupField
-                          label={"Phone"}
-                          placeholder={"Your phone number"}
+                          label={t('profilePage.form.personalData.fields.phone')} 
+                          placeholder={t('profilePage.placeholders.phone')}
                           id={"phone"}
                           name={"phone"}
                           value={props.values.phone}
@@ -181,8 +182,8 @@ const ProfilePage = () => {
                         />
                       </div>
                       <GroupField
-                        label={"Street"}
-                        placeholder={"Your street"}
+                        label={t('profilePage.form.personalData.fields.street')} 
+                        placeholder={t('profilePage.placeholders.street')}
                         type={"text"}
                         id={"street"}
                         name={"street"}
@@ -193,8 +194,8 @@ const ProfilePage = () => {
                       />
                       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-2">
                         <GroupField
-                          label={"Postcode"}
-                          placeholder={"Your postal code"}
+                          label={t('profilePage.form.personalData.fields.postcode')} 
+                          placeholder={t('profilePage.placeholders.postcode')}
                           id={"postcode"}
                           name={"postcode"}
                           value={props.values.postcode}
@@ -202,8 +203,8 @@ const ProfilePage = () => {
                           onChange={props.handleChange}
                         />
                         <GroupField
-                          label={"City"}
-                          placeholder={"Your city"}
+                          label={t('profilePage.form.personalData.fields.city')} 
+                          placeholder={t('profilePage.placeholders.city')}
                           id={"city"}
                           name={"city"}
                           value={props.values.city}
@@ -212,8 +213,8 @@ const ProfilePage = () => {
                         />
                       </div>
                       <GroupField
-                        label={"Country"}
-                        placeholder={"Your country"}
+                        label={t('profilePage.form.personalData.fields.country')} 
+                        placeholder={t('profilePage.placeholders.country')}
                         type={"text"}
                         id={"country"}
                         name={"country"}
@@ -224,11 +225,11 @@ const ProfilePage = () => {
                       />
 
                       <h2 className="text-lg font-semibold text-gray-800 pt-8 text-black dark:text-white">
-                        Billing Information
+                      {t('profilePage.form.billingInformation.title')}
                       </h2>
                       <GroupField
-                        label={"IBAN"}
-                        placeholder={"Example: DE68500105178297336485"}
+                        label={t('profilePage.form.billingInformation.fields.iban')}
+                        placeholder={t('profilePage.placeholders.iban')}
                         type={"text"}
                         id={"iban"}
                         name={"iban"}
@@ -237,7 +238,7 @@ const ProfilePage = () => {
                         onChange={props.handleChange}
                       />
                       <GroupDropdownField
-                        label={"VAT Regulation"}
+                        label={t('profilePage.form.billingInformation.fields.vatRegulation')}
                         id={"vatRegulation"}
                         name={"vatRegulation"}
                         option1={"Small business owner (0%)"}
@@ -250,11 +251,11 @@ const ProfilePage = () => {
                       />
 
                       <h2 className="text-lg font-semibold text-gray-800 pt-8 text-black dark:text-white">
-                        Company Details
+                      {t('profilePage.form.companyDetails.title')}
                       </h2>
                       <GroupField
-                        label={"Company Name"}
-                        placeholder={"Name of your company"}
+                        label={t('profilePage.form.companyDetails.fields.companyName')}
+                        placeholder={t('profilePage.placeholders.companyName')}
                         type={"text"}
                         id={"companyName"}
                         name={"companyName"}
@@ -263,8 +264,8 @@ const ProfilePage = () => {
                         onChange={props.handleChange}
                       />
                       <GroupField
-                        label={"VAT ID No."}
-                        placeholder={"Example: DE238443776"}
+                        label={t('profilePage.form.companyDetails.fields.vatIdNo')}
+                        placeholder={t('profilePage.placeholders.vatIdNo')}
                         id={"vatIdNo"}
                         name={"vatIdNo"}
                         value={props.values.vatIdNo}
@@ -283,7 +284,7 @@ const ProfilePage = () => {
                           type="submit"
                           disabled={updateLoading}
                         >
-                          {updateLoading ? "Submitting..." : "Update Profile"}
+                          {updateLoading ? t('profilePage.form.buttons.submit.submitting') : t('profilePage.form.buttons.submit.default')}
                         </button>
                       </div>
                     </Form>
@@ -296,13 +297,13 @@ const ProfilePage = () => {
       )}
       <div className="flex flex-col gap-4 mt-6.5">
         <h2 className="text-title-md2 font-semibold text-black dark:text-white ">
-          Security
+        {t('profilePage.securitySection.title')}
         </h2>
         <Link
           to="/auth/lost/request"
           className="inline-flex items-center justify-center gap-2.5 bg-black py-4 px-10 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
         >
-          Reset Password
+          {t('profilePage.securitySection.resetPasswordLink.text')}
         </Link>
       </div>
     </div>

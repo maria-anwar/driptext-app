@@ -8,9 +8,11 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import Breadcrumb from "../../../../../components/freelancer/breeadcrumbs/Breadcrumb";
 import useTitle from "../../../../../hooks/useTitle";
+import { useTranslation } from "react-i18next";
 
 const Tasks: React.FC = () => {
-  useTitle("Freelancer (Tasks)");
+  const { t } = useTranslation();
+  useTitle(t("task.pageTitle"));
   const user = useSelector((state) => state.user);
   const userId = user?.user?.data?.user?._id;
   const userToken = user?.user?.token;
@@ -70,11 +72,11 @@ const Tasks: React.FC = () => {
   };
 
   const buttons = [
-    { name: "All", label: "All" },
-    { name: "Texter", label: "Texter" },
-    { name: "Lector", label: "Lector" },
-    { name: "Seo Optimizer", label: "Seo Optimizer" },
-    { name: "Meta lector", label: "Meta lector" },
+    { name: "All", label: t('task.buttons.all') },
+    { name: "Texter", label:  t('task.buttons.texter') },
+    { name: "Lector", label:  t('task.buttons.lector') },
+    { name: "Seo Optimizer", label:  t('task.buttons.seo') },
+    { name: "Meta lector", label:  t('task.buttons.metaLector') },
   ];
 
   const renderTasks = () => {
@@ -131,8 +133,8 @@ const Tasks: React.FC = () => {
     <div className="2xl:px-6 3xl:px-10">
       <div className="w-full 2xl:max-w- pb-2">
       <Breadcrumb
-          pageName="Tasks"
-          pageData="Here you can view your tasks"
+          pageName={t("task.breadcrumb.pageName")}
+          pageData={t("task.breadcrumb.pageData")}
         />
       </div>
       <div className="w-full">

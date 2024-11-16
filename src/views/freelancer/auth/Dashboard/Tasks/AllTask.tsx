@@ -6,6 +6,7 @@ import LectorCard from "../../../../../components/freelancer/AllTask/LectorCard"
 import SEOCard from "../../../../../components/freelancer/AllTask/SEOCard";
 import MetaLectorCard from "../../../../../components/freelancer/AllTask/MetaLectorCard";
 import NoTask from "../../../../../components/freelancer/Helper/NoTask";
+import { useTranslation } from "react-i18next";
 
 // Define the type for the props
 interface AllTasksProps {
@@ -21,6 +22,7 @@ const AllTasks: React.FC<AllTasksProps> = ({
   userId,
   getRefreshTask,
 }) => {
+  const { t } = useTranslation();
   //console.log(activeTasks);
   // if (activeTasks.length === 0 && upcommingTasks.length === 0) {
   //   return <NoTask label="There are no any Active and Upcoming tasks to show" />;
@@ -31,7 +33,7 @@ const AllTasks: React.FC<AllTasksProps> = ({
         {activeTasks.length > 0 ? (
           <>
             <h1 className="text-[20px] 4xl:text-[22px] 5xl:text-[24px] font-medium text-center text-black dark:text-white pt-10">
-              Active Tasks
+              {t("task.activeTasks.heading")}
             </h1>
             {activeTasks.map((task) => {
               let TaskCard = null;
@@ -58,7 +60,7 @@ const AllTasks: React.FC<AllTasksProps> = ({
               } else if (
                 task.lector === userId &&
                 [
-                 "ready to work",
+                  "ready to work",
                   "in progress",
                   "final",
                   "ready for rivision (lector)",
@@ -79,7 +81,7 @@ const AllTasks: React.FC<AllTasksProps> = ({
               } else if (
                 task.seo === userId &&
                 [
-                 "ready to work",
+                  "ready to work",
                   "in progress",
                   "final",
                   "ready for rivision (lector)",
@@ -131,7 +133,7 @@ const AllTasks: React.FC<AllTasksProps> = ({
             })}
           </>
         ) : (
-          <NoTask label="There is no any Active Task to show" />
+          <NoTask label={t("task.activeTasks.noTasksLabel")} />
         )}
       </div>
       {/* <span className="block border-t  border-zinc-200 dark:border-zinc-500 mx-auto w-full mt-4 font-thin"></span>

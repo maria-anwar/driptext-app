@@ -133,5 +133,357 @@
       "title": "Sicherheit",
       "resetPassword": "Passwort zurücksetzen"
     }
+  },
+  "task": {
+    "pageTitle": "Freelancer (Aufgaben)",
+    "breadcrumb": {
+      "dashboard": "Dashboard /",
+      "pageName": "Aufgaben",
+      "pageData": "Hier kannst du deine Aufgaben einsehen"
+    },
+    "buttons": {
+      "all": "Alle",
+      "texter": "Texter",
+      "lector": "Lektor",
+      "seo": "SEO-Optimierer",
+      "metaLector": "Meta-Lektor",
+      "none": "keine"
+    },
+    "activeTasks": {
+      "heading": "Aktive Aufgaben",
+      "noTasksLabel": "Es gibt keine aktiven Aufgaben anzuzeigen"
+    },
+    "cardLabels": {
+      "task": "Aufgabe",
+      "deadline": "Frist",
+      "status": "Status",
+      "activeRole": "Aktive Rolle",
+      "yourRole": "Deine Rolle",
+      "wordCount": "Wortzahl"
+    },
+    "taskbuttons": {
+      "acceptButton": "Akzeptieren",
+      "declineButton": "Ablehnen",
+      "startButton": "Starten",
+      "finishButton": "Abschließen",
+      "showMoreDetailsButton": "Weitere Details anzeigen",
+      "acceptOrderDialog": {
+        "title": "Bestellung annehmen",
+        "message": "Du bist dabei, die Bestellung anzunehmen. Danach hast du 24 Stunden Zeit, um sie abzuschließen. Bist du sicher?",
+        "confirmButton": "Bestätigen",
+        "closeButton": "Schließen"
+      }
+    },
+    "texterCard": {
+      "dialog": {
+        "taskDetailsDialog": {
+          "title": "Aufgabendetails",
+          "closeButton": "Schließen"
+        },
+        "finishOrderDialog": {
+          "title": "Bestellung abschließen",
+          "message": "Du bist dabei, die Bestellung abzuschließen. Bist du sicher?",
+          "checkboxes": {
+            "careAccuracy": {
+              "header": "Sorgfalt und Genauigkeit",
+              "description": "(Konsistenz der Wörter, Zahlen/Fakten sind korrekt)"
+            },
+            "contentSpecification": {
+              "header": "Inhaltsvorgaben",
+              "description": "(Der Text passt zum Kunden/Kontext, besondere Anforderungen wurden beachtet)"
+            },
+            "formalRequirements": {
+              "header": "Formale Anforderungen",
+              "description": "(Sättigungen, Schreibperspektive, Tonalität)"
+            },
+            "structuralGuidelines": {
+              "header": "Strukturelle Vorgaben",
+              "description": "(Struktur, Absätze, roter Faden, Plagiat)"
+            },
+            "textBloatDuplication": {
+              "header": "Textaufblähung und Duplikation",
+              "description": "(Kürze, Mehrwert, keine Duplikation)"
+            },
+            "errorFreeText": {
+              "header": "Fehlerfreier Text",
+              "description": "(Rechtschreibung, Zeichensetzung, Grammatik)"
+            }
+          },
+          "minWordCount": {
+            "header": "Minimale Wortzahl",
+            "description": "Stelle sicher, dass der Text die erforderliche minimale Wortzahl erreicht oder überschreitet."
+          },
+          "confirmFinishButton": "Abschließen bestätigen"
+        }
+      },
+      "projectHeader": {
+        "title": "Aufgabendetails",
+        "infoTab": "Info",
+        "feedbackTab": "Feedback",
+        "feedbackNoFeedback": "Kein Feedback verfügbar"
+      },
+      "completionLabels": {
+        "completionMessage": "Du bist dabei, die Bestellung abzuschließen. Bist du sicher?",
+        "minimumWordCountMessage": "Stelle sicher, dass der Text die erforderliche minimale Wortzahl erreicht oder überschreitet."
+      }
+    },
+    "taskModel": {
+      "taskModellabels": {
+        "task": "Aufgabe",
+        "taskId": "Aufgaben-ID",
+        "deadline": "Frist",
+        "taskStatus": "Aufgabenstatus",
+        "activeRole": "Aktive Rolle",
+        "yourRole": "Deine Rolle",
+        "wordCount": "Wortzahl",
+        "comment": "Kommentar"
+      },
+      "onBoardingInfo": {
+        "onBoarding": "Onboarding",
+        "generalInformation": "1. Allgemeine Informationen",
+        "speech": "Rede",
+        "perspective": "Perspektive",
+        "website": "Webseite",
+        "companyInformation": "2. Unternehmensinformationen",
+        "companyBackground": "Hintergrundinformationen über das Unternehmen",
+        "companyAttributes": "Welche Attribute beschreiben dein Unternehmen/deine Produkte/deine Dienstleistungen?",
+        "companyServices": "Was sind deine Dienstleistungen?",
+        "targetCustomerInformation": "3. Informationen über Zielkunden",
+        "contentTargetAudience": "Für wen wird der Inhalt erstellt?",
+        "customerInterest": "Kunden, die wir ansprechen möchten, interessieren sich für...",
+        "contentAim": "4. Ziel des Inhalts",
+        "contentPurpose": "Was ist das Ziel des Inhalts?",
+        "brandAndContentInfo": "Informationen über deine Marke und den Inhalt"
+      }
+    },
+    "lectorCard": {
+      "taskInfo": {
+        "projectId": "Projekt-ID der Aufgabe",
+        "projectName": "Projektname der Aufgabe",
+        "projectDetails": "Aufgabendetails"
+      },
+      "actions": {
+        "accept": "Akzeptieren",
+        "decline": "Ablehnen",
+        "start": "Starten",
+        "finish": "Abschließen",
+        "showDetails": "Weitere Details anzeigen",
+        "acceptConfirmation": {
+          "title": "Bestellung annehmen",
+          "message": "Du bist dabei, die Bestellung anzunehmen. Danach hast du 24 Stunden Zeit, um sie abzuschließen. Bist du sicher?",
+          "confirm": "Bestätigen",
+          "close": "Schließen"
+        },
+        "finishConfirmation": {
+          "title": "Bestellung abschließen",
+          "message": "Du bist dabei, die Bestellung abzuschließen. Bist du sicher?",
+          "details": {
+            "format1": {
+              "heading": "Sorgfalt und Genauigkeit",
+              "description": "(Konsistenz der Wörter, Zahlen/Fakten sind korrekt)"
+            },
+            "format2": {
+              "heading": "Inhaltsvorgaben",
+              "description": "(Der Text passt zum Kunden/Kontext, besondere Anforderungen wurden beachtet)"
+            },
+            "format3": {
+              "heading": "Formale Anforderungen",
+              "description": "(Sättigungen, Schreibperspektive, Tonalität)"
+            },
+            "format4": {
+              "heading": "Strukturelle Vorgaben",
+              "description": "(Struktur, Absätze, roter Faden, Plagiat)"
+            },
+            "format5": {
+              "heading": "Textaufblähung und Duplikation",
+              "description": "(Kürze, Mehrwert, keine Duplikation)"
+            },
+            "format6": {
+              "heading": "Fehlerfreier Text",
+              "description": "(Rechtschreibung, Zeichensetzung, Grammatik)"
+            }
+          },
+          "renewRequired": {
+            "heading": "Erneuerung erforderlich",
+            "message": "Mit diesem Input erfüllt der Text nicht unsere Qualitätskriterien und wird zur Überarbeitung an den Texter zurückgesendet. Bitte beschreibe kurz, was verbessert werden soll."
+          },
+          "commentPrompt": {
+            "label": "Kommentar *",
+            "textareaPlaceholder": "Schreibe hier deinen Kommentar"
+          },
+          "confirmFinish": {
+            "buttonText": "Abschließen bestätigen",
+            "disabledMessage": "Du musst alle Kästchen ankreuzen oder einen Kommentar schreiben, um abzuschließen."
+          }
+        },
+        "projectHeader": {
+          "title": "Aufgabendetails",
+          "infoTab": "Info",
+          "feedbackTab": "Feedback",
+          "feedbackNoFeedback": "Kein Feedback verfügbar"
+        }
+      },
+      "dialogs": {
+        "acceptDialog": {
+          "title": "Bestellung annehmen",
+          "message": "Du bist dabei, die Bestellung anzunehmen. Danach hast du 24 Stunden Zeit, um sie abzuschließen. Bist du sicher?",
+          "confirmButton": "Bestätigen",
+          "closeButton": "Schließen"
+        },
+        "finishDialog": {
+          "title": "Bestellung abschließen",
+          "message": "Du bist dabei, die Bestellung abzuschließen. Bist du sicher?"
+        },
+        "projectInfoDialog": {
+          "title": "Aufgabendetails",
+          "closeButton": "Schließen"
+        }
+      }
+    },
+    "seoCard": {
+      "projectHeader": {
+        "title": "Aufgabendetails",
+        "infoButton": "Info",
+        "feedbackButton": "Feedback",
+        "noFeedback": "Kein Feedback verfügbar"
+      },
+      "acceptDialog": {
+        "title": "Bestellung annehmen",
+        "message": "Du bist dabei, die Bestellung anzunehmen. Danach hast du 24 Stunden Zeit, um sie abzuschließen. Bist du sicher?",
+        "confirmButton": "Bestätigen",
+        "closeButton": "Schließen"
+      },
+      "finishDialog": {
+        "title": "Bestellung abschließen",
+        "message": "Du bist dabei, die Bestellung abzuschließen. Bist du sicher?",
+        "confirmButton": "Abschließen bestätigen"
+      },
+      "taskInfo": {
+        "showMoreDetails": "Weitere Details anzeigen"
+      },
+      "taskActions": {
+        "acceptButton": "Akzeptieren",
+        "declineButton": "Ablehnen",
+        "startButton": "Starten",
+        "finishButton": "Abschließen"
+      }
+    }
+  },
+  "earning": {
+    "pageTitle": "Freelancer (Einnahmen)",
+    "breadcrumb": {
+      "pageName": "Einnahmen",
+      "pageData": "Hier können Sie alle Einnahmen aus Ihren DripTexts-Projekten sehen."
+    },
+    "tableHeaders": {
+      "taskId": "Aufgaben-ID",
+      "date": "Datum",
+      "role": "Rolle",
+      "articleKeyword": "Artikel/Keyword",
+      "targetWords": "Ziel-Wortanzahl",
+      "actualWords": "Tatsächliche Wortanzahl",
+      "difference": "Differenz",
+      "billedWords": "Abgerechnete Wörter",
+      "price": "Preis"
+    },
+    "noEarnings": "Keine Einnahmendaten verfügbar",
+    "finalizeText": {
+      "difference": "Verfügbar nach Abschluss",
+      "billedWords": "Verfügbar nach Abschluss",
+      "price": "Verfügbar nach Abschluss"
+    }
+  },
+  "profilePage": {
+    "pageTitle": "Freelancer (Einstellungen)",
+    "breadcrumb": {
+      "pageName": "Profileinstellungen",
+      "pageData": ""
+    },
+    "form": {
+      "personalData": {
+        "title": "Persönliche Daten",
+        "fields": {
+          "firstName": "Vorname",
+          "lastName": "Nachname",
+          "email": "E-Mail",
+          "phone": "Telefon",
+          "street": "Straße",
+          "postcode": "Postleitzahl",
+          "city": "Stadt",
+          "country": "Land"
+        }
+      },
+      "billingInformation": {
+        "title": "Rechnungsinformationen",
+        "fields": {
+          "iban": "IBAN",
+          "vatRegulation": "Mehrwertsteuer-Regelung"
+        }
+      },
+      "companyDetails": {
+        "title": "Firmendaten",
+        "fields": {
+          "companyName": "Firmenname",
+          "vatIdNo": "USt-IdNr."
+        }
+      },
+      "buttons": {
+        "submit": {
+          "default": "Profil aktualisieren",
+          "submitting": "Wird gesendet..."
+        }
+      }
+    },
+    "validationErrors": {
+      "firstName": "Bitte geben Sie einen Vornamen ein",
+      "lastName": "Bitte geben Sie einen Nachnamen ein",
+      "email": "Bitte geben Sie Ihre E-Mail-Adresse ein",
+      "phone": "Bitte geben Sie Ihre Telefonnummer ein",
+      "street": "Bitte geben Sie Ihre Straße ein",
+      "postcode": "Bitte geben Sie Ihre Postleitzahl ein",
+      "city": "Bitte geben Sie Ihre Stadt ein",
+      "country": "Bitte geben Sie Ihr Land ein",
+      "iban": "Bitte geben Sie Ihre IBAN ein",
+      "companyName": "Bitte geben Sie Ihren Firmennamen ein",
+      "vatIdNo": "USt-IdNr. ist erforderlich"
+    },
+    "placeholders": {
+      "firstName": "Ihr Vorname",
+      "lastName": "Ihr Nachname",
+      "email": "Ihre E-Mail-Adresse",
+      "phone": "Ihre Telefonnummer",
+      "street": "Ihre Straße",
+      "postcode": "Ihre Postleitzahl",
+      "city": "Ihre Stadt",
+      "country": "Ihr Land",
+      "iban": "Beispiel: DE68500105178297336485",
+      "companyName": "Name Ihres Unternehmens",
+      "vatIdNo": "Beispiel: DE238443776"
+    },
+    "loading": {
+      "loadingPlaceholder": "Lädt...",
+      "error": "Fehler beim Abrufen der Projektdaten"
+    },
+    "updateProfileSuccess": "Profil erfolgreich aktualisiert!",
+    "updateProfileError": "Fehler bei der Aktualisierung des Profils. Bitte versuchen Sie es erneut.",
+    "securitySection": {
+      "title": "Sicherheit",
+      "resetPasswordLink": {
+        "text": "Passwort zurücksetzen",
+        "url": "/auth/lost/request"
+      }
+    }
+  },
+  "freelancersidebar": {
+    "dripText": "DRIPTEXT",
+    "slogan": "Wir lieben SEO & Content",
+    "menu": {
+      "dashboard": "Aufgaben",
+      "earnings": "Verdienste",
+      "academy": "Driptext Academy",
+      "settings": "Einstellungen",
+      "accountSetting": "Kontoeinstellungen",
+      "signOut": "Abmelden"
+    }
   }
 }

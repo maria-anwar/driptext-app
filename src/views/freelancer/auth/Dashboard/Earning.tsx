@@ -5,9 +5,11 @@ import { useSelector } from "react-redux";
 import moment from "moment";
 import { Earn } from "../../../../components/freelancer/Type/types";
 import useTitle from "../../../../hooks/useTitle";
+import { useTranslation } from "react-i18next";
 
 const Earning: React.FC = () => {
-  useTitle("Freelancer (Earnings)");
+  const { t } = useTranslation();
+  useTitle(t("earning.pageTitle"));
   const user = useSelector((state) => state.user);
   const [earningData, setEarning] = useState<Earn[]>([]);
   const [loading, setLoading] = useState(false);
@@ -29,10 +31,8 @@ const Earning: React.FC = () => {
         `${import.meta.env.VITE_DB_URL}/freelancer/getEarnings`,
         payload
       );
-
       const projectDataArray = response.data.data;
       setEarning(projectDataArray);
-      console.log("projectDataArray", projectDataArray);
       setLoading(false);
     } catch (err) {
       console.error("Error fetching project details:", err);
@@ -48,8 +48,8 @@ const Earning: React.FC = () => {
     <>
       <div className="2xl:px-6 3xl:px-10">
         <Breadcrumb
-          pageName="Earnings"
-          pageData="Here you can see all the earning from all your DripTexts projects."
+          pageName={t("earning.breadcrumb.pageName")}
+          pageData={t("earning.breadcrumb.pageData")}
         />
         {loading ? (
           <div className="rounded-sm border border-stroke pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1 mt-10 w-full bg-slate-200 h-[460px] md:h-[600px] animate-pulse"></div>
@@ -60,32 +60,32 @@ const Earning: React.FC = () => {
                 <thead>
                   <tr className="bg-gray-2 text-left dark:bg-meta-4 ">
                     <th className="min-w-[120px] py-4 px-4 font-medium  text-black dark:text-white">
-                      Task Id
+                    {t("earning.tableHeaders.taskId")}
                     </th>
                     <th className="min-w-[130px] py-4 px-4 font-medium text-black dark:text-white">
-                      Date
+                    {t("earning.tableHeaders.date")}
                     </th>
                     <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
-                      Role
+                    {t("earning.tableHeaders.role")}
                     </th>
                     <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
-                      Article/Keyword
+                    {t("earning.tableHeaders.articleKeyword")}
                     </th>
                     <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
-                      Target Number of Words
+                    {t("earning.tableHeaders.targetWords")}
                     </th>
                     <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
-                      Actual Number of Words
+                    {t("earning.tableHeaders.actualWords")}
                     </th>
                     <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
-                      Difference
+                    {t("earning.tableHeaders.difference")}
                     </th>
                     <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
-                      Billed Words
+                    {t("earning.tableHeaders.billedWords")}
                     </th>
                    
                     <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
-                      Price
+                    {t("earning.tableHeaders.price")}
                     </th>
                   </tr>
                 </thead>
@@ -130,17 +130,17 @@ const Earning: React.FC = () => {
                        
                         <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                         <p className={`${earn?.finalize? "text-red-500":"text-black dark:text-white"}`}>
-                        {earn?.finalize ? `${Number(earn?.difference).toFixed(2)}%` : 'Available after completion'}
+                        {earn?.finalize ? `${Number(earn?.difference).toFixed(2)}%` : t("earning.finalizeText.price")}
                         </p>
                         </td>
                         <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                         <p className={`${earn?.finalize? "text-yellow-500":"text-black dark:text-white"}`}>
-                            {earn?.finalize ? Number(earn?.billedWords)?.toFixed(0) : 'Available after completion'}
+                            {earn?.finalize ? Number(earn?.billedWords)?.toFixed(0) : t("earning.finalizeText.price")}
                           </p>
                         </td>
                         <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                           <p className={`${earn?.finalize? "text-green-500":"text-black dark:text-white"}`}>
-                          {earn?.finalize ? '€ ' +earn?.price.toFixed(4) : 'Available after completion'}
+                          {earn?.finalize ? '€ ' +earn?.price.toFixed(4) : t("earning.finalizeText.price")}
                           </p>
                         </td>
                       </tr>
@@ -152,7 +152,7 @@ const Earning: React.FC = () => {
                         className="border-b border-[#eee] py-5 px-4 dark:border-strokedark"
                       >
                         <p className="text-black dark:text-white text-left">
-                          No earning data available
+                         {t("earning.noEarnings")}
                         </p>
                       </td>
                     </tr>

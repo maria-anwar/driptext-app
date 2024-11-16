@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Task } from "../../Type/types";
 import { formatDate } from "../../Helper/formatDate";
 import AccordionData from "./AccordionData";
+import { useTranslation } from "react-i18next";
 
 interface TaskProps {
   task: Task;
@@ -16,6 +17,7 @@ const TaskInfoCard: React.FC<TaskProps> = ({
   getWordCount,
   clickableLink,
 }) => {
+  const {t} = useTranslation();
   const project = task?.project;
   getWordCount();
   const [actualNumber, setActualNumber] = useState<string>(task?.actualNumberOfWords)
@@ -23,9 +25,9 @@ const TaskInfoCard: React.FC<TaskProps> = ({
   return (
     <>
       <div className="bg-slate-200 dark:bg-boxdark rounded py-4 px-4">
-        <p className="dark:text-white font-semibold text-lg">Task</p>
+        <p className="dark:text-white font-semibold text-lg">{t('task.taskModel.taskModellabels.task')}</p>
         <p className="dark:text-white">
-          Task Id:{" "}
+        {t('task.taskModel.taskModellabels.taskId')}:{" "}
           <a
             href={!Upcomming && clickableLink ? task?.fileLink : "#"}
             target={!Upcomming && clickableLink ? "_blank" : undefined}
@@ -46,7 +48,7 @@ const TaskInfoCard: React.FC<TaskProps> = ({
           </a>
         </p>
         <p className="dark:text-white">
-          Deadline:{" "}
+        {t('task.taskModel.taskModellabels.deadline')}:{" "}
           <span
             className={`w-fit 
       ${
@@ -61,7 +63,7 @@ const TaskInfoCard: React.FC<TaskProps> = ({
           </span>
         </p>
         <p className="dark:text-white">
-          Task Status:{" "}
+        {t('task.taskModel.taskModellabels.taskStatus')}:{" "}
           <span
             className={` rounded-full text-left   ${
               task?.status.toUpperCase() === "FINAL"
@@ -91,9 +93,9 @@ const TaskInfoCard: React.FC<TaskProps> = ({
           </span>
         </p>
         <p className="dark:text-white">
-          Active Role:{" "}
+        {t('task.taskModel.taskModellabels.activeRole')}:{" "}
           {task?.status.toUpperCase() === "FINAL"
-            ? "none"
+            ? t('task.buttons.none')
             :task.status.toUpperCase() === "FREE TRIAL" ||
             task.status.toUpperCase() === "READY TO WORK" ||
             task.status.toUpperCase() === "IN PROGRESS" ||
@@ -101,25 +103,25 @@ const TaskInfoCard: React.FC<TaskProps> = ({
             task.status.toUpperCase() === "READY FOR RIVISION (META LECTOR)" ||
             task.status.toUpperCase() === "IN RIVISION (LECTOR)" ||
             task.status.toUpperCase() === "IN RIVISION (META LECTOR)"
-            ? "Texter"
+            ? t('task.buttons.texter')
             : task.status.toUpperCase() === "READY FOR PROOFREADING" ||
               task.status.toUpperCase() === "PROOFREADING IN PROGRESS"
-            ? "Lector"
+            ? t('task.buttons.lector')
             : task.status.toUpperCase() === "READY FOR SEO OPTIMIZATION" ||
               task.status.toUpperCase() === "SEO OPTIMIZATION IN PROGRESS"
-            ? "SEO Optimizer"
+            ? t('task.buttons.seo')
             : task.status.toUpperCase() === "READY FOR 2ND PROOFREADING" ||
               task.status.toUpperCase() === "2ND PROOFREADING IN PROGRESS"
-            ? "Meta-Lector"
-            : "none"}
+            ? t('task.buttons.metaLector')
+            : t('task.buttons.none')}
         </p>
-        <p className="dark:text-white">Your Role: {task?.activeRole}</p>
+        <p className="dark:text-white">{t('task.taskModel.taskModellabels.yourRole')}: {task?.activeRole}</p>
         <p className="dark:text-white">
-          Word Count: {Number(actualNumber) ===1? 0 :task?.actualNumberOfWords}/{task?.desiredNumberOfWords}
+        {t('task.taskModel.taskModellabels.wordCount')}: {Number(actualNumber) ===1? 0 :task?.actualNumberOfWords}/{task?.desiredNumberOfWords}
 
         </p>
         {task?.comments?.trim() ? (
-          <p className="dark:text-white">Comment: {task?.comments}</p>
+          <p className="dark:text-white">{t('task.taskModel.taskModellabels.comment')}: {task?.comments}</p>
         ) : null}
       </div>
 

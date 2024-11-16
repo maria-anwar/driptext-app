@@ -4,6 +4,7 @@ import { Task } from "../../../../../components/freelancer/Type/types";
 import UpcommingTasks from "../../../../../components/freelancer/AllTask/UpcommingCard";
 import MetaLectorCard from "../../../../../components/freelancer/AllTask/MetaLectorCard";
 import NoTask from "../../../../../components/freelancer/Helper/NoTask";
+import { useTranslation } from "react-i18next";
 
 interface ProofreaderProps {
   activeTasks: Task[];
@@ -18,6 +19,8 @@ const MetaLector: React.FC<ProofreaderProps> = ({
   userId,
   getRefreshTask,
 }) => {
+  const { t } = useTranslation();
+
   const filterActiveTask = activeTasks.filter(
     (task) => task.metaLector === userId
   );
@@ -33,7 +36,7 @@ const MetaLector: React.FC<ProofreaderProps> = ({
         {filterActiveTask.length > 0 ? (
           <>
             <h1 className="text-[20px] 4xl:text-[22px] 5xl:text-[24px] font-medium text-center text-black dark:text-white pt-10">
-              Active Tasks
+              {t("task.activeTasks.heading")}
             </h1>
             {filterActiveTask.map((task) => (
               <MetaLectorCard
@@ -44,7 +47,7 @@ const MetaLector: React.FC<ProofreaderProps> = ({
             ))}
           </>
         ) : (
-          <NoTask label="There is no any Active task to show" />
+          <NoTask label={t("task.activeTasks.noTasksLabel")} />
         )}
       </div>
       {/* <span className="block border-t  border-zinc-200 dark:border-zinc-500 mx-auto w-full mt-4 font-thin"></span>

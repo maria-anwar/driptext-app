@@ -5,6 +5,7 @@ import logo from "../../../assets/homeimages/driptext-logo.png";
 import SidebarIcons from "../icons/SidebarIcons";
 import { useDispatch } from "react-redux";
 import {  clearPersistedState } from '../../../redux/store';
+import { useTranslation } from "react-i18next";
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -12,6 +13,7 @@ interface SidebarProps {
 }
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
+  const {t} = useTranslation();
   const location = useLocation();
   const { pathname } = location;
   const dispatch = useDispatch();
@@ -81,7 +83,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 DRIPTEXT
               </h1>
               <p className="text-gray-900 text-bodydark2 text-[13px] 4xl:text-sm">
-                We love SEO & Content
+                {t("freelancersidebar.slogan")}
               </p>
             </div>
           </div>
@@ -128,7 +130,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     end
                   >
                     {SidebarIcons[0].dashboard}
-                    Tasks
+                    {t("freelancersidebar.menu.dashboard")}
                   </NavLink>
                 </li>
                 <li>
@@ -141,7 +143,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     }
                   >
                     {SidebarIcons[5].earning}
-                    Earnings
+                    {t("freelancersidebar.menu.earnings")}
                   </NavLink>
                 </li>
                 <li>
@@ -154,7 +156,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     }
                   >
                     {SidebarIcons[6].eduction}
-                    Driptext Academy
+                    {t("freelancersidebar.menu.academy")}
                   </NavLink>
                 </li>
               </ul>
@@ -169,7 +171,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     }
                   >
                     {SidebarIcons[1].settings}
-                    Settings
+                    {t("freelancersidebar.menu.settings")}
                   </NavLink>
                 </li>
               </ul>
@@ -185,7 +187,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               className={`group relative flex items-center gap-2.5 rounded-sm py-4 px-4  lg:px-8 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4`}
             >
               {SidebarIcons[3].auth}
-              Sign out
+              {t("freelancersidebar.menu.signOut")}
             </NavLink>
           </li>
         </ul>

@@ -12,6 +12,7 @@ import axios from "axios";
 import CheckBox from "./TaskComponents/CheckBox";
 import CrossCheck from "./TaskComponents/CrossCheck";
 import TickCheck from "./TaskComponents/TickCheck";
+import { useTranslation } from "react-i18next";
 
 interface LectorCardProps {
   task: Task;
@@ -19,6 +20,7 @@ interface LectorCardProps {
 }
 
 const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
+  const { t } = useTranslation();
   const user = useSelector<any>((state) => state.user);
   const userToken = user?.user?.token;
   const [clickableLink, setClickableLink] = useState<boolean>(false);
@@ -71,28 +73,52 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
 
   const formatDetails = {
     format1: {
-      h: "Care and accuracy",
-      p: "(consistency of words, figures/facts are correct)",
+      h: t(
+        "task.lectorCard.actions.finishConfirmation.details.format1.heading"
+      ),
+      p: t(
+        "task.lectorCard.actions.finishConfirmation.details.format1.description"
+      ),
     },
     format2: {
-      h: "Content specification",
-      p: "(text fits the customer/context, special requests adhered to)",
+      h: t(
+        "task.lectorCard.actions.finishConfirmation.details.format2.heading"
+      ),
+      p: t(
+        "task.lectorCard.actions.finishConfirmation.details.format2.description"
+      ),
     },
     format3: {
-      h: "Formal requirements",
-      p: "(saturations, writing perspective, tone of voice))",
+      h: t(
+        "task.lectorCard.actions.finishConfirmation.details.format3.heading"
+      ),
+      p: t(
+        "task.lectorCard.actions.finishConfirmation.details.format3.description"
+      ),
     },
     format4: {
-      h: "Structural guidelinesCare and accuracy",
-      p: "(structure, paragraph, common thread, palagiarism)",
+      h: t(
+        "task.lectorCard.actions.finishConfirmation.details.format4.heading"
+      ),
+      p: t(
+        "task.lectorCard.actions.finishConfirmation.details.format4.description"
+      ),
     },
     format5: {
-      h: "Text bloat and duplication",
-      p: "(conciseness, added value, no duplication)",
+      h: t(
+        "task.lectorCard.actions.finishConfirmation.details.format5.heading"
+      ),
+      p: t(
+        "task.lectorCard.actions.finishConfirmation.details.format5.description"
+      ),
     },
     format6: {
-      h: "Text is error-free",
-      p: "(spelling, punctuation, grammer)",
+      h: t(
+        "task.lectorCard.actions.finishConfirmation.details.format6.heading"
+      ),
+      p: t(
+        "task.lectorCard.actions.finishConfirmation.details.format6.description"
+      ),
     },
   };
 
@@ -128,7 +154,6 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
       .then((response) => {
         getRefreshTask();
         localStorage.setItem("startTaskLectorId", taskId);
-
       })
       .catch((err) => {
         console.error("Error task decline", err);
@@ -139,7 +164,6 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
 
   const startTaskId = localStorage.getItem("startTaskLectorId");
   useEffect(() => {
-
     if (startTaskId === task._id) {
       setShowProjectInfo(true);
     }
@@ -237,7 +261,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
           }`}
           onClick={handleShowInfo}
         >
-          Info
+          {t("task.lectorCard.actions.projectHeader.infoTab")}
         </button>
         <button
           className={`cursor-pointer px-4 py-2 rounded ${
@@ -247,7 +271,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
           }`}
           onClick={handleShowFeedback}
         >
-          Feedback
+          {t("task.lectorCard.actions.projectHeader.feedbackTab")}
         </button>
       </div>
     );
@@ -255,7 +279,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
 
   return (
     <div className="w-full mt-3 mb-10 rounded-sm ring-1 ring-slate-200 dark:border-stroke  py-1 px-7.5 shadow-2 dark:border-strokedark  dark:bg-boxdark">
-     <div className="py-2 dark:text-white text-xl font-semibold pt-6 flex flex-row">
+      <div className="py-2 dark:text-white text-xl font-semibold pt-6 flex flex-row">
         <h4>{task?.project?.projectId}:</h4>
         <h4 className="pl-1">{task?.project?.projectName}</h4>
       </div>
@@ -269,13 +293,13 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
                   className="mr-3 bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
                   onClick={handleAccept}
                 >
-                  Accept
+                  {t("task.lectorCard.actions.accept")}
                 </button>
                 <button
                   onClick={() => handleDecline(task?._id)}
                   className="mr-3 bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
                 >
-                  Decline
+                  {t("task.lectorCard.actions.decline")}
                 </button>
               </>
             )}
@@ -285,7 +309,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
                 className="mx-2.5 bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
                 onClick={handleStart}
               >
-                Start
+                {t("task.lectorCard.actions.start")}
               </button>
             )}
           {task?.status.toLowerCase() === "proofreading in progress" && (
@@ -293,7 +317,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
               className="mx-2.5 bg-purple-500 text-white font-bold py-2 px-4 rounded hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
               onClick={handleFinish}
             >
-              Finish
+              {t("task.lectorCard.actions.finish")}
             </button>
           )}
         </div>
@@ -303,30 +327,27 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
         className="flex justify-center items-center border-t mt-1 py-2 lg:py-4 border-slate-300 dark:border-slate-200 cursor-pointer font-medium"
       >
         <span className="text-slate-600 hover:text-slate-800 dark:text-slate-200 dark:hover:text-slate-300">
-          Show more details
+          {t("task.lectorCard.actions.showDetails")}
         </span>
       </div>
       {showDialog && (
         <div className="fixed inset-0 flex items-center justify-center z-9999 bg-neutral-200 dark:bg-slate dark:bg-opacity-15 bg-opacity-60 px-4">
           <div className="bg-white dark:bg-black p-6 rounded shadow-lg">
             <h2 className="text-xl font-bold mb-4 dark:text-white">
-              Accept order
+              {t("task.lectorCard.actions.acceptConfirmation.title")}
             </h2>
-            <p>
-              You are about to accept the order after which you have 24 hours to
-              complete it, are you sure?
-            </p>
+            <p>{t("task.lectorCard.actions.acceptConfirmation.message")}</p>
             <button
               className=" mr-4 mt-4 bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
               onClick={() => handleStartTask(task._id)}
             >
-              Confirm
+              {t("task.lectorCard.actions.acceptConfirmation.confirm")}
             </button>
             <button
               className="mt-4 bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
               onClick={closeDialog}
             >
-              Close
+              {t("task.lectorCard.actions.acceptConfirmation.close")}
             </button>
           </div>
         </div>
@@ -336,7 +357,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
           <div className="bg-white dark:bg-black p-6 rounded shadow-lg  lg:w-8/12 xl:w-8/12 2xl:w-8/12 3xl:w-6/12 max-h-[90vh] overflow-y-auto scrollbar-hide">
             <div className="flex justify-between items-center mb-2">
               <h2 className="text-xl font-bold  dark:text-white">
-                Task Details
+                {t("task.lectorCard.actions.projectHeader.title")}
               </h2>
               <FontAwesomeIcon
                 className="cursor-pointer text-lg dark:text-white text-black"
@@ -346,7 +367,6 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
             </div>
             <div className="flex justify-between items-center space-x-2 my-4">
               <ProjectHeader />
-              
             </div>
             {showInfo && (
               <TaskInfoCard
@@ -355,19 +375,19 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
                 clickableLink={clickableLink}
               />
             )}
-           {showFeedback && (
-                <div>
-                  {task?.feedback ? (
-                    <p className="text-red-600 font-semibold">
-                      {task.feedback}
-                    </p>
-                  ) : (
-                    <p className="text-gray-500 italic">
-                      No feedback available
-                    </p>
-                  )}
-                </div>
-              )}
+            {showFeedback && (
+              <div>
+                {task?.feedback ? (
+                  <p className="text-red-600 font-semibold">{task.feedback}</p>
+                ) : (
+                  <p className="text-gray-500 italic">
+                    {t(
+                      "task.lectorCard.actions.projectHeader.feedbackNoFeedback"
+                    )}
+                  </p>
+                )}
+              </div>
+            )}
           </div>
         </div>
       )}
@@ -376,7 +396,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
           <div className="bg-white dark:bg-black p-6 rounded shadow-lg  lg:w-8/12 xl:w-8/12 2xl:w-8/12 3xl:w-6/12 max-h-[90vh] overflow-y-auto scrollbar-hide">
             <div className="flex justify-between items-center mb-2">
               <h2 className="text-xl font-bold dark:text-white">
-                Finish order
+                {t("task.lectorCard.actions.finishConfirmation.title")}
               </h2>
               <FontAwesomeIcon
                 className="cursor-pointer text-lg text-red-500"
@@ -385,7 +405,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
               />
             </div>
             <p className="dark:text-white pb-2">
-              You're about to complete the order, are you sure?
+              {t("task.lectorCard.actions.finishConfirmation.message")}
             </p>
 
             {Object.entries(formatDetails).map(([key, { h, p }]) => (
@@ -415,7 +435,11 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
             {!allChecked && (
               <div className="py-4 px-4 bg-red-600/30 dark:bg-red-500/20">
                 <label className="ml-2 dark:text-white">
-                  <strong>Renew Required</strong>
+                  <strong>
+                    {t(
+                      "task.lectorCard.actions.finishConfirmation.renewRequired.heading"
+                    )}
+                  </strong>
                 </label>
                 <div className="flex justify-center items-start py-2">
                   <FontAwesomeIcon
@@ -423,19 +447,25 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
                     icon={faExclamationCircle}
                   />
                   <p className="pl-3 font-base dark:text-white">
-                    With this input, the text does not meet our quality criteria
-                    and will be sent back to the copywriter for revision. Please
-                    describe briefly in a comment what should be improved:
+                    {t(
+                      "task.lectorCard.actions.finishConfirmation.renewRequired.message"
+                    )}
                   </p>
                 </div>
 
                 <p className="font-semibold pt-2 pb-2">
-                  Comment <span className="text-red-600">*</span>
+                  {t(
+                    "task.lectorCard.actions.finishConfirmation.commentPrompt.label"
+                  )}{" "}
+                  <span className="text-red-600">*</span>
                 </p>
                 <textarea
                   value={comment}
                   onChange={handleComment}
-                  className="w-full h-30 py-3 px-4 outline-none focus:ring-2 text-black"
+                  placeholder={t(
+                    "task.lectorCard.actions.finishConfirmation.commentPrompt.textareaPlaceholder"
+                  )}
+                  className="w-full h-30 py-3 px-4 outline-none focus:ring-2 text-black placeholder:text-slate-500"
                 ></textarea>
               </div>
             )}
@@ -451,7 +481,9 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
                 onClick={() => confirmFinish(task?._id)}
                 disabled={!allChecked && !comment} // Disable the button if not all checked and no comment is written
               >
-                Confirm Finish
+                {t(
+                  "task.lectorCard.actions.finishConfirmation.confirmFinish.buttonText"
+                )}
               </button>
             </div>
           </div>
@@ -463,7 +495,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
           <div className="bg-white dark:bg-black p-6 rounded shadow-lg  lg:w-8/12 xl:w-8/12 2xl:w-8/12 3xl:w-6/12 max-h-[90vh] overflow-y-auto scrollbar-hide">
             <div className="flex justify-between items-center mb-2">
               <h2 className="text-xl font-bold dark:text-white">
-                Task Details
+                {t("task.lectorCard.actions.projectHeader.title")}
               </h2>
               <FontAwesomeIcon
                 className="cursor-pointer text-lg dark:text-white text-black"
@@ -480,7 +512,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
                   clickableLink={clickableLink}
                 />
               )}
-            {showFeedback && (
+              {showFeedback && (
                 <div>
                   {task?.feedback ? (
                     <p className="text-red-600 font-semibold">
@@ -488,7 +520,9 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
                     </p>
                   ) : (
                     <p className="text-gray-500 italic">
-                      No feedback available
+                      {t(
+                        "task.lectorCard.actions.projectHeader.feedbackNoFeedback"
+                      )}
                     </p>
                   )}
                 </div>
