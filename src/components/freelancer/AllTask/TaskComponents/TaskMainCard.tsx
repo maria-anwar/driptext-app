@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Task } from "../../Type/types";
 import moment from "moment";
+import { useTranslation } from "react-i18next";
 
 interface TaskProps {
   task: Task;
@@ -9,16 +10,19 @@ interface TaskProps {
 }
 
 const Card: React.FC<TaskProps> = ({ task, Upcomming, clickableLink }) => {
+  const { t } = useTranslation();
   const formatDate = (date: string, format: string = "DD.MM.YYYY") => {
     if (!date) return "";
     return moment(date).format(format);
   };
-  const [actualNumber, setActualNumber] = useState<string>(task?.actualNumberOfWords)
+  const [actualNumber, setActualNumber] = useState<string>(
+    task?.actualNumberOfWords
+  );
   return (
     <div className="grid grid-cols-2 gap-x-4  gap-y-0 sm:grid-cols-2 md:grid-cols-3 md:grid-rows-2 2xl:grid-cols-3 3xl:grid-cols-6 3xl:grid-rows-1">
       <div className="flex flex-col pr-3">
         <span className="text-base font-semibold text-dark-gray dark:text-slate-200 py-4 uppercase">
-          Task
+          {t("task.cardLabels.task")}
         </span>
         <span className="text-sky-500">
           <a
@@ -43,7 +47,7 @@ const Card: React.FC<TaskProps> = ({ task, Upcomming, clickableLink }) => {
       </div>
       <div className="flex flex-col pr-3">
         <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-4 uppercase">
-          Deadline
+          {t("task.cardLabels.deadline")}
         </span>
         <span
           className={`w-fit 
@@ -60,7 +64,7 @@ const Card: React.FC<TaskProps> = ({ task, Upcomming, clickableLink }) => {
       </div>
       <div className="flex flex-col pr-3">
         <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-4 uppercase">
-          status
+          {t("task.cardLabels.status")}
         </span>
         <span
           className={` rounded-full text-left   ${
@@ -92,44 +96,46 @@ const Card: React.FC<TaskProps> = ({ task, Upcomming, clickableLink }) => {
       </div>
       <div className="flex flex-col pr-3">
         <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-4 uppercase">
-          active role
+          {t("task.cardLabels.activeRole")}
         </span>
         <span className="uppercase">
           {task?.status.toUpperCase() === "FINAL"
-            ? "none"
-            :task.status.toUpperCase() === "FREE TRIAL" ||
-            task.status.toUpperCase() === "READY TO WORK" ||
-            task.status.toUpperCase() === "IN PROGRESS" ||
-            task.status.toUpperCase() === "READY FOR RIVISION (LECTOR)" ||
-            task.status.toUpperCase() === "READY FOR RIVISION (META LECTOR)" ||
-            task.status.toUpperCase() === "IN RIVISION (LECTOR)" ||
-            task.status.toUpperCase() === "IN RIVISION (META LECTOR)"
-            ? "Texter"
+            ? t("task.buttons.none")
+            : task.status.toUpperCase() === "FREE TRIAL" ||
+              task.status.toUpperCase() === "READY TO WORK" ||
+              task.status.toUpperCase() === "IN PROGRESS" ||
+              task.status.toUpperCase() === "READY FOR RIVISION (LECTOR)" ||
+              task.status.toUpperCase() ===
+                "READY FOR RIVISION (META LECTOR)" ||
+              task.status.toUpperCase() === "IN RIVISION (LECTOR)" ||
+              task.status.toUpperCase() === "IN RIVISION (META LECTOR)"
+            ? t("task.buttons.texter")
             : task.status.toUpperCase() === "READY FOR PROOFREADING" ||
               task.status.toUpperCase() === "PROOFREADING IN PROGRESS"
-            ? "Lector"
+            ? t("task.buttons.lector")
             : task.status.toUpperCase() === "READY FOR SEO OPTIMIZATION" ||
               task.status.toUpperCase() === "SEO OPTIMIZATION IN PROGRESS"
-            ? "SEO Optimizer"
+            ? t("task.buttons.seo")
             : task.status.toUpperCase() === "READY FOR 2ND PROOFREADING" ||
               task.status.toUpperCase() === "2ND PROOFREADING IN PROGRESS"
-            ? "Meta-Lector"
-            : "none"}
+            ? t("task.buttons.metaLector")
+            : t("task.buttons.none")}
         </span>
       </div>
       <div className="flex flex-col pr-3">
         <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-4 uppercase">
-          your role
+          {t("task.cardLabels.yourRole")}
         </span>
         <span className="uppercase">{task?.activeRole}</span>
       </div>
 
       <div className="flex flex-col pr-3">
         <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-4 uppercase">
-          wordcount
+          {t("task.cardLabels.wordCount")}
         </span>
         <span className="font-medium">
-          {Number(actualNumber) ===1? 0 :task?.actualNumberOfWords}/{task?.desiredNumberOfWords}
+          {Number(actualNumber) === 1 ? 0 : task?.actualNumberOfWords}/
+          {task?.desiredNumberOfWords}
         </span>
       </div>
     </div>

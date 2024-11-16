@@ -7,6 +7,7 @@ import {
 } from "@chakra-ui/react";
 import { AddIcon, MinusIcon } from "@chakra-ui/icons";
 import { OnBoarding } from "../../Type/types";
+import { useTranslation } from "react-i18next";
 
 interface AccordionDataProps {
   speech: string;
@@ -20,8 +21,12 @@ const AccordionData: React.FC<AccordionDataProps> = ({
   projectName,
   onBoarding,
 }) => {
+  const { t } = useTranslation();
   return (
-    <Accordion allowToggle className={`appearance-none border-none py-4 rounded `}>
+    <Accordion
+      allowToggle
+      className={`appearance-none border-none py-4 rounded `}
+    >
       <AccordionItem
         className={`border-none bg-slate-100 dark:bg-meta-4 rounded`}
       >
@@ -30,7 +35,7 @@ const AccordionData: React.FC<AccordionDataProps> = ({
             <h2>
               <AccordionButton className="flex justify-between items-center bg-slate-200 dark:bg-meta-4 rounded ">
                 <p className="font-semibold text-black dark:text-white ">
-                  OnBoarding
+                  {t("task.taskModel.onBoardingInfo.onBoarding")}
                 </p>
                 {isExpanded ? (
                   <MinusIcon fontSize="12px" />
@@ -42,35 +47,38 @@ const AccordionData: React.FC<AccordionDataProps> = ({
             <AccordionPanel className="" pb={4}>
               <div className="bg-white dark:bg-boxdark rounded py-2 px-4">
                 <h2 className="text-black dark:text-white text-base font-semibold lg:mt-3 pb-3">
-                  1. General information:
+                  {t("task.taskModel.onBoardingInfo.generalInformation")}
                 </h2>
                 <div className="px-2">
                   <p className="dark:text-white font-medium pb-2">Speech</p>
                   <p className="dark:text-white bg-slate-200 dark:bg-meta-4 py-2 px-4 mb-2 rounded">
-                    {speech}
+                    {t("task.taskModel.onBoardingInfo.speech")}
                   </p>
                 </div>
                 <div className="px-2">
                   <p className="dark:text-white font-medium pb-2">
-                    Perspective
+                    {t("task.taskModel.onBoardingInfo.perspective")}
                   </p>
                   <p className="dark:text-white bg-slate-200 dark:bg-meta-4 py-2 px-4 mb-2 rounded">
                     {perspective}
                   </p>
                 </div>
                 <div className="px-2">
-                  <p className="dark:text-white font-medium pb-2">Website</p>
+                  <p className="dark:text-white font-medium pb-2">
+                    {" "}
+                    {t("task.taskModel.onBoardingInfo.website")}
+                  </p>
                   <p className="dark:text-white bg-slate-200 dark:bg-meta-4 py-2 px-4 mb-2 rounded">
                     {projectName}
                   </p>
                 </div>
                 <div className="w-full flex flex-col gap-2.5">
                   <h2 className="text-black dark:text-white text-base font-semibold lg:mt-3">
-                    2. Company Information
+                    {t("task.taskModel.onBoardingInfo.companyInformation")}
                   </h2>
                   <div className="px-3">
                     <label className="text-black dark:text-white text-sm 3xl:text-[15px] font-medium pt-0">
-                      Background information about the company
+                      {t("task.taskModel.onBoardingInfo.companyBackground")}
                     </label>
                     <p className="w-full bg-slate-200 placeholder:text-black/60 dark:placeholder:text-white/50 text-black dark:text-white border border-transparent text-sm px-3 xs:px-3 py-2 font-normal rounded focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:focus:border-primary">
                       {onBoarding?.companyBackgorund}
@@ -78,8 +86,7 @@ const AccordionData: React.FC<AccordionDataProps> = ({
                   </div>
                   <div className="px-3">
                     <label className="text-black dark:text-white text-sm 3xl:text-[15px] font-medium pt-0">
-                      Which attributes best describe you as a company/your
-                      products/your services?
+                      {t("task.taskModel.onBoardingInfo.companyAttributes")}
                     </label>
                     <p className="w-full bg-slate-200 placeholder:text-black/60 dark:placeholder:text-white/50 text-black dark:text-white border border-transparent text-sm px-3 xs:px-3 py-2 font-normal rounded focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:focus:border-primary">
                       {onBoarding?.companyAttributes}
@@ -87,7 +94,7 @@ const AccordionData: React.FC<AccordionDataProps> = ({
                   </div>
                   <div className="px-3">
                     <label className="text-black dark:text-white text-sm 3xl:text-[15px] font-medium pt-0">
-                      What are your services?
+                      {t("task.taskModel.onBoardingInfo.companyServices")}
                     </label>
                     <p className="w-full bg-slate-200 placeholder:text-black/60 dark:placeholder:text-white/50 text-black dark:text-white border border-transparent text-sm px-3 xs:px-3 py-2 font-normal rounded focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:focus:border-primary">
                       {onBoarding?.comapnyServices}
@@ -96,11 +103,13 @@ const AccordionData: React.FC<AccordionDataProps> = ({
                 </div>
                 <div className="w-full flex flex-col gap-2.5">
                   <h2 className="text-black dark:text-white text-base font-semibold lg:mt-3">
-                    3. Information About the Target Customers
+                    {t(
+                      "task.taskModel.onBoardingInfo.targetCustomerInformation"
+                    )}
                   </h2>
                   <div className="px-3">
                     <label className="text-black dark:text-white text-sm 3xl:text-[15px] font-medium pt-0">
-                      Who is the content written for?
+                      {t("task.taskModel.onBoardingInfo.contentTargetAudience")}
                     </label>
                     <p className="w-full bg-slate-200 placeholder:text-black/60 dark:placeholder:text-white/50 text-black dark:text-white border border-transparent text-sm px-3 xs:px-3 py-2 font-normal rounded focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:focus:border-primary">
                       {onBoarding?.customerContent}
@@ -108,7 +117,7 @@ const AccordionData: React.FC<AccordionDataProps> = ({
                   </div>
                   <div className="px-3">
                     <label className="text-black dark:text-white text-sm 3xl:text-[15px] font-medium pt-0">
-                      Customers we want to address have an interest in...
+                      {t("task.taskModel.onBoardingInfo.customerInterest")}
                     </label>
                     <p className="w-full bg-slate-200 placeholder:text-black/60 dark:placeholder:text-white/50 text-black dark:text-white border border-transparent text-sm px-3 xs:px-3 py-2 font-normal rounded focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:focus:border-primary">
                       {onBoarding?.customerIntrest}
@@ -117,11 +126,11 @@ const AccordionData: React.FC<AccordionDataProps> = ({
                 </div>
                 <div className="w-full flex flex-col gap-2.5">
                   <h2 className="text-black dark:text-white text-base font-semibold lg:mt-3">
-                    4. Aim of the Content
+                    {t("task.taskModel.onBoardingInfo.contentAim")}
                   </h2>
                   <div className="px-3">
                     <label className="text-black dark:text-white text-sm 3xl:text-[15px] font-medium pt-0">
-                      What is the purpose of the content?
+                      {t("task.taskModel.onBoardingInfo.contentPurpose")}
                     </label>
                     <p className="w-full bg-slate-200 placeholder:text-black/60 dark:placeholder:text-white/50 text-black dark:text-white border border-transparent text-sm px-3 xs:px-3 py-2 font-normal rounded focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:focus:border-primary">
                       {onBoarding?.contentPurpose}
@@ -129,7 +138,7 @@ const AccordionData: React.FC<AccordionDataProps> = ({
                   </div>
                   <div className="px-3 pb-6">
                     <label className="text-black dark:text-white text-sm 3xl:text-[15px] font-medium pt-0">
-                      Information about your brand and your content
+                      {t("task.taskModel.onBoardingInfo.brandAndContentInfo")}
                     </label>
                     <p className="w-full bg-slate-200 placeholder:text-black/60 dark:placeholder:text-white/50 text-black dark:text-white border border-transparent text-sm px-3 xs:px-3 py-2 font-normal rounded focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:focus:border-primary">
                       {onBoarding?.contentInfo}
