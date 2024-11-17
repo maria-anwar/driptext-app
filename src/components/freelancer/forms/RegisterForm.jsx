@@ -142,7 +142,7 @@ const RegisterForm = () => {
         {(props) => (
           <Form>
             <div className="w-full bg-gradient-to-r from-custom-gray to-[#F7F7F7] flex flex-col gap-6 px-3 xs:px-8 xs:py-10  md:px-9 md:py-14 lg:px-10  mb-8 rounded-xl">
-              <div className="flex flex-col gap-6">
+              <div className="flex flex-col gap-3">
                 <h2 className="text-custom-black text-base font-semibold">
                   {t("registerFreelancerPage.registerFormPage.section1.title")}
                 </h2>
@@ -293,7 +293,7 @@ const RegisterForm = () => {
                 />
               </div>
 
-              <div className="flex flex-col gap-5">
+              <div className="flex flex-col gap-3 -mt-2">
                 <h2 className="text-custom-black text-base font-semibold lg:mt-3.5">
                   {t("registerFreelancerPage.registerFormPage.section2.title")}
                 </h2>
@@ -336,7 +336,7 @@ const RegisterForm = () => {
                 />
               </div>
 
-              <div className="flex flex-col gap-5">
+              <div className="flex flex-col gap-3 -mt-2">
                 <h2 className="text-custom-black text-base font-semibold lg:mt-3.5">
                   {t("registerFreelancerPage.registerFormPage.section3.title")}
                 </h2>

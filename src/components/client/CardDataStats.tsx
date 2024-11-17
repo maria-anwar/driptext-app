@@ -95,7 +95,7 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
       `}
     >
       <div className="flex justify-between items-center flex-row">
-        <div className="flex h-11.5 w-11.5 items-center justify-center rounded-full bg-slate-200/80 dark:bg-meta-4">
+        <div className={`flex h-11.5 w-11.5 items-center justify-center rounded-full bg-slate-200/80 dark:bg-meta-4 ${!onBoarding ? 'mt-4':''}`}>
           <svg
             className="fill-primary dark:fill-white"
             width="18"
@@ -192,7 +192,7 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
       <h4
         onClick={onBoarding ? handleProjectTask : handleNothing}
         className={`text-title-md font-bold text-black dark:text-white my-3   ${
-          !onBoarding ? "cursor-default" : " cursor-pointer"
+          !onBoarding ? "cursor-default mt-7" : " cursor-pointer"
         }`}
       >
         {domain} || {productUniqueID}
@@ -239,7 +239,7 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
       </div>
 
       {!onBoarding && (
-        <div className="absolute inset-0 top-30 flex flex-col items-center justify-center  p-4 rounded-sm">
+        <div className="absolute inset-0 top-30 flex flex-col items-center justify-center  p-4  rounded-sm">
           <p className="text-center text-sm dark:text-slate-100 mb-2">
            {t('project.pleaseFillOutOnboarding')}
           </p>

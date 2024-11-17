@@ -486,7 +486,7 @@ const OrderForm = () => {
                   onChange={props.handleChange}
                 />
               </div>
-              <h2 className="text-custom-black text-base font-semibold -mb-3">
+              <h2 className="text-custom-black text-base font-semibold -mb-3 ">
                 {t("orderPage.orderForm.formTitle1")}
               </h2>
               <div className="flex flex-col gap-y-3">
