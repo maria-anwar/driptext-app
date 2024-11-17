@@ -1,9 +1,9 @@
-import React,{useState} from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
-import DropdownUser from './DropdownUser';
+import DropdownUser from "./DropdownUser";
 import DropdownNotification from "./DropdownNotification";
 import DarkModeSwitcher from "./DarkModeSwitcher";
-import GoogleTranslation from '../../../GoogleTransalation'
+import GoogleTranslation from "../../../GoogleTransalation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 import { changeLanguage } from "../../../i18n";
@@ -15,16 +15,39 @@ const Header = (props: {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState("English");
 
+  // Create a ref for the dropdown
+  const dropdownRef = useRef(null);
+
+  // Toggle the dropdown visibility
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
+  // Change the language and close the dropdown
   const changeYourLanguage = (language) => {
     setSelectedLanguage(language);
     changeLanguage(language);
     localStorage.setItem("language", language);
-    setIsOpen(false);
+    setIsOpen(false); // Close dropdown after language selection
   };
+
+  // Close dropdown if clicked outside of the dropdown
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false); // Close dropdown if clicked outside
+      }
+    };
+
+    // Add event listener for clicks
+    document.addEventListener("mousedown", handleClickOutside);
+
+    // Cleanup event listener on component unmount
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   const tasks = [
     {
       id: "1",
@@ -39,13 +62,16 @@ const Header = (props: {
       domain: "Driptext.com | 62 - DT",
     },
   ];
-  const [searchTerm, setSearchTerm] = useState('');
+
+  const [searchTerm, setSearchTerm] = useState("");
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
   };
-  const filteredTasks = tasks.filter(task =>
+
+  const filteredTasks = tasks.filter((task) =>
     task.domain.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
   return (
     <header className="sticky top-0 z-999 flex w-full bg-white drop-shadow-1 dark:bg-boxdark dark:drop-shadow-none">
       <div className="flex flex-grow items-center justify-between px-4 py-4 shadow-2 md:px-6 2xl:px-11">
@@ -95,13 +121,15 @@ const Header = (props: {
           </Link>
         </div>
 
-        <div className="hidden sm:block">
-         
-        </div>
+        <div className="hidden sm:block">{/* Add any content here */}</div>
+
         <div className="flex items-center gap-5 2xsm:gap-2">
           <ul className="flex items-center gap-5 gap-x-3 2xsm:gap-4">
+            {/* Add other header items here */}
           </ul>
-          <div className="relative">
+
+          {/* Language Dropdown */}
+          <div className="relative" ref={dropdownRef}>
             <button
               onClick={toggleDropdown}
               className="text-2xl bg-boxdark dark:bg-white  border-2 border-boxdark dark:border-white flex justify-center items-center  rounded-full"
@@ -110,8 +138,7 @@ const Header = (props: {
               <FontAwesomeIcon
                 icon={faGlobe}
                 className="dark:text-black text-white"
-              />{" "}
-              {/* Font Awesome globe icon */}
+              />
             </button>
             {isOpen && (
               <div className="absolute right-0 mt-2 bg-white dark:bg-boxdark ring-1 p-4 shadow-md rounded py-2">
@@ -133,9 +160,10 @@ const Header = (props: {
               </div>
             )}
           </div>
+
+          {/* Other Header Components */}
           <DropdownUser />
           {/* <GoogleTranslation/> */}
-
         </div>
       </div>
     </header>
