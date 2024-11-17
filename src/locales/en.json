@@ -703,7 +703,7 @@
   },
   "packageBooking": {
     "logoAltText": "Logo",
-    "pageTitle":"Package Booking",
+    "pageTitle": "Package Booking",
     "header": {
       "title": "Book the DripText package of your choice now",
       "description": "If you have any questions or problems when booking, please contact us by email."
@@ -821,28 +821,295 @@
         "month": "per month"
       },
       "features": {
-        "seoText": ["SEO-optimized texts","per month with at least 1,500 words per text"],
-        "proofreading": ["Proofreading","using the 6-eyes principle"],
-        "keywordAnalysis": ["Detailed","keyword analysis"],
-        "editorialPlan": ["Creation of an","editorial plan"],
-        "customerBackend": ["Own", "customer backend"],
-        "reliability": ["100%","reliability"],
-        "satisfactionGuarantee": ["Incl.","satisfaction guarantee"]
+        "seoText": [
+          "SEO-optimized texts",
+          "per month with at least 1,500 words per text"
+        ],
+        "proofreading": [
+          "Proofreading",
+          "using the 6-eyes principle"
+        ],
+        "keywordAnalysis": [
+          "Detailed",
+          "keyword analysis"
+        ],
+        "editorialPlan": [
+          "Creation of an",
+          "editorial plan"
+        ],
+        "customerBackend": [
+          "Own",
+          "customer backend"
+        ],
+        "reliability": [
+          "100%",
+          "reliability"
+        ],
+        "satisfactionGuarantee": [
+          "Incl.",
+          "satisfaction guarantee"
+        ]
       },
       "buttons": {
         "orderNow": "Order now"
-      },
-      "propTypes": {
-        "plan": {
-          "name": "string",
-          "month": "string",
-          "price": "string",
-          "wordPrice": "string",
-          "description": "string",
-          "features": "number",
-          "bestValue": "boolean"
-        }
       }
+    }
+  },
+  "orderPage": {
+    "pageTitle": "Order Form",
+    "logoAltText": "driptext",
+    "header": "Order Form for Your DripText",
+    "introText": "Fill out the form below to receive the desired number of DripText texts each month.",
+    "disclaimerText": "Our service is exclusively for businesses. We do not sell to private individuals.",
+    "disclaimerHighlightText": "Note: ",
+    "orderForm": {
+      "formTitle": "1. Choose Your DripText Package:",
+      "textsDropdownLabel": "Desired number of SEO-optimized texts per month?",
+      "textsOption1": "4 texts per month with at least 1,500 words per text",
+      "textsOption2": "8 texts per month with at least 1,500 words per text",
+      "textsOption3": "12 texts per month with at least 1,500 words per text",
+      "durationDropdownLabel": "Desired duration?",
+      "durationOption1": "3 months - word price 0.07 EUR/net",
+      "durationOption2": "6 months - word price 0.06 EUR/net",
+      "durationOption3": "12 months - word price 0.05 EUR/net",
+      "monthlyPriceLabel": "Monthly Price",
+      "domainLabel": "Domain",
+      "domainPlaceholder": "example.com",
+      "formTitle1": "2. Contact Details of the Invoice Recipient (m/f/d):",
+      "companyLabel": "Company",
+      "companyPlaceholder": "Your Company Name",
+      "fnameLabel": "First Name",
+      "fnamePlaceholder": "Your First Name",
+      "lnameLabel": "Last Name",
+      "lnamePlaceholder": "Your Last Name",
+      "telNoLabel": "Phone Number",
+      "telNoPlaceholder": "Your Phone Number",
+      "emailLabel": "Email",
+      "emailPlaceholder": "Your Email Address",
+      "countryLabel": "Country",
+      "countryPlaceholder": "example.de",
+      "submitButtonText": {
+        "default": "Submit Order",
+        "loading": "Order is being submitted"
+      },
+      "successMessage": "Order information has been successfully saved",
+      "termsText": [
+        "By submitting the order, I agree to the",
+        "general terms and conditions",
+        "of DripText Ltd. and understand that our offers are exclusively for business customers. All prices are excluding VAT. Sale only to entrepreneurs, business owners, associations, authorities, or self-employed persons (§ 14 BGB). No sale to consumers according to § 13 BGB."
+      ],
+      "termsLinkText": "general terms and conditions",
+      "validationErrors": {
+        "domain": "Please enter your domain",
+        "company": "Please enter your company name",
+        "fname": "Please enter your first name",
+        "lname": "Please enter your last name",
+        "telNo": "Please enter your phone number",
+        "email": "Please enter your email address"
+      }
+    }
+  },
+  "thankYouPage": {
+    "pageTitle": "Thank you",
+    "logoAltText": "DripText Logo",
+    "mainText": {
+      "thankYouTitle": "Thank you so much for your information",
+      "thankYouDescription": "You have successfully completed the form to order your sample text worth €105.00.",
+      "overviewText": "Because we know how good our texts are, you can get an overview of our packages today.",
+      "buttonText": "Go to Dashboard",
+      "nextStepsTitle": "Heres what happens next:"
+    },
+    "steps": [
+      {
+        "stepNumber": 1,
+        "stepTitle": "Data verification & access to the DripText WebApp",
+        "stepDescription": "Thank you for sending us your data. Our in-house quality assurance team will now check your details for feasibility and completeness within 12 hours.",
+        "additionalDescription": [
+          "If relevant information is missing, we will contact you.",
+          "Otherwise, your order will be implemented immediately.",
+          "You have also just received an email from our system (check your spam folder if necessary) with the link for your customer dashboard in the DripText WebApp. Click on the link and set a password for your personal access. You will later find your text(s) including status information in the WebApp."
+        ]
+      },
+      {
+        "stepNumber": 2,
+        "stepTitle": "Implementation",
+        "stepDescription": "Our quality assurance has successfully checked your information. Now your order is being implemented. To do this, our project managers connect the various departments involved in content production: SEO managers, content creators and editors.",
+        "additionalDescription": [
+          "We create a briefing based on your requirements, research the most relevant (semantic) keywords, the target structure and the optimal length of the content and start with the implementation.",
+          "This is followed by editing and proofreading as well as the approval of our meta-editing.",
+          "The creation of your content usually takes no longer than 2 to 3 days."
+        ]
+      },
+      {
+        "stepNumber": 3,
+        "stepTitle": "Handover & Collaboration",
+        "stepDescription": "After the meta-editing is complete, you will automatically receive a notification from our system that your content is complete and ready for you to review in the DripText WebApp.",
+        "additionalDescription": [
+          "If there are any individual requests for improvement, we will take these into account promptly.",
+          "We should then discuss whether and, if so, how often we can work for you in the future."
+        ]
+      }
+    ],
+    "footer": {
+      "companyName": "DRIPTEXT",
+      "footerLinks": [
+        {
+          "text": "Conditions",
+          "href": "/conditions"
+        },
+        {
+          "text": "Imprint",
+          "href": "/imprint"
+        },
+        {
+          "text": "Data protection",
+          "href": "/data-protection"
+        },
+        {
+          "text": "Cookie settings",
+          "href": "/cookie-settings"
+        }
+      ]
+    }
+  },
+  "forgotPasswordPage": {
+    "pageTitle": "Forgot Password",
+    "authline": "Enter your password to log in.",
+    "forgotPasswordForm": {
+      "password": {
+        "label": "Password",
+        "placeholder": "********",
+        "error": "Password must be at least 8 characters long",
+        "required": "Password is required"
+      },
+      "reEnterPassword": {
+        "label": "Re-enter Password",
+        "placeholder": "********",
+        "error": "Password must be at least 8 characters long",
+        "required": "Please re-enter your password",
+        "mismatchError": "Passwords do not match"
+      },
+      "submitButton": "Submit",
+      "errorMessages": {
+        "passwordMismatch": "Passwords do not match",
+        "generalError": "Error resetting the password"
+      }
+    }
+  },
+  "passRequestPage": {
+    "pageTitle": "Reset Password",
+    "authline": "Please enter your email address so we can send you a link to reset your password.",
+    "passRequestForm": {
+      "form": {
+        "emailLabel": "Your Email",
+        "emailPlaceholder": "jhon@gmail.com",
+        "emailRequiredError": "Email is required",
+        "submitButtonText": "Request Link",
+        "successMessage": "The link has been successfully sent. Click the link to reset your password.",
+        "errorMessage": "Error sending the link"
+      },
+      "backToLoginLink": {
+        "text": "Back to Login",
+        "icon": "arrow-left"
+      }
+    }
+  },
+  "notFoundPage": {
+    "mainTitle": "Looks like you're lost",
+    "errorMessage": "404 error",
+    "backToHomeButton": {
+      "text": "Back to Home"
+    }
+  },
+  "registerFreelancerPage": {
+    "pageTitle": "Onboarding for Freelancers",
+    "logoAltText": "driptext",
+    "heading": "Onboarding Form for Freelance Writers and Editors",
+    "description": "Fill out the following form so we can register you as a writer or editor with DripText.",
+    "registerFormPage": {
+      "section1": {
+        "title": "1. Personal Information:",
+        "fields": {
+          "fname": {
+            "label": "First Name",
+            "placeholder": "Your first name",
+            "errorMessage": "Please enter your first name"
+          },
+          "lname": {
+            "label": "Last Name",
+            "placeholder": "Your last name",
+            "errorMessage": "Please enter your last name"
+          },
+          "email": {
+            "label": "Email",
+            "placeholder": "Your email address",
+            "errorMessage": "Please enter your email address"
+          },
+          "phone": {
+            "label": "Phone",
+            "placeholder": "Your phone number",
+            "errorMessage": "Please enter your phone number"
+          },
+          "street": {
+            "label": "Street",
+            "placeholder": "Your street",
+            "errorMessage": "Please enter your street"
+          },
+          "postcode": {
+            "label": "Postal Code",
+            "placeholder": "Your postal code",
+            "errorMessage": "Please enter your postal code"
+          },
+          "city": {
+            "label": "City",
+            "placeholder": "Your city",
+            "errorMessage": "Please enter your city"
+          },
+          "country": {
+            "label": "Country",
+            "placeholder": "Your country",
+            "errorMessage": "Please enter your country"
+          }
+        }
+      },
+      "section2": {
+        "title": "2. Billing Information:",
+        "fields": {
+          "iban": {
+            "label": "IBAN",
+            "placeholder": "e.g. DE68500105178297336485",
+            "errorMessage": "Please enter your IBAN"
+          },
+          "vatRegulation": {
+            "label": "VAT Regulation",
+            "option1": "Small business owner (0%)",
+            "option2": "CY Ltd (19%)",
+            "option3": "Non-EU Abroad (0%)",
+            "option4": "Reverse charge (0%)"
+          }
+        }
+      },
+      "section3": {
+        "title": "3. Company Information (if applicable):",
+        "fields": {
+          "company": {
+            "label": "Company Name",
+            "placeholder": "Your company's name",
+            "errorMessage": "Please enter your company name"
+          },
+          "vatId": {
+            "label": "VAT ID",
+            "placeholder": "e.g. DE238443776",
+            "errorMessage": "VAT ID is required"
+          }
+        }
+      },
+      "submitButton": {
+        "sending": "Sending",
+        "submit": "Submit Now"
+      },
+      "errorMessage": "Error",
+      "dataCheckMessage": "Please double-check your data for accuracy before submitting."
     }
   }
 }

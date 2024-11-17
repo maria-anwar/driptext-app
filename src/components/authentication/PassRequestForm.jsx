@@ -9,39 +9,48 @@ import {
   Button,
   Typography,
 } from "@material-tailwind/react";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const PassRequestForm = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
-  const [error,setError] = useState(false);
-  const [errorMessage,setErrorMesssage] = useState('');
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMesssage] = useState("");
   const initialValues = {
     email: "",
   };
 
   const validationSchema = Yup.object().shape({
-    email: Yup.string().email().required("E-Mail wird benötigt"),
+    email: Yup.string()
+      .email()
+      .required(t("passRequestPage.passRequestForm.form.emailRequiredError")),
   });
 
   const onSubmit = async (values) => {
     const emailData = {
-      email: values.email
-    }
+      email: values.email,
+    };
 
     try {
-      setError(false)
-      const response = await axios.post(`${import.meta.env.VITE_DB_URL}/auth/forgot/password`, emailData);
-      console.log('Daten erfolgreich gesendet:', response.emailData);
-      toast.success("Link wurde erfolgreich gesendet. Klicken Sie auf den Link, um Ihr Passwort zurückzusetzen.");
+      setError(false);
+      const response = await axios.post(
+        `${import.meta.env.VITE_DB_URL}/auth/forgot/password`,
+        emailData
+      );
+      console.log("Daten erfolgreich gesendet:", response.emailData);
+      toast.success(t("passRequestPage.passRequestForm.form.successMessage"));
     } catch (error) {
-      const errorMessage = error.response?.data?.message || error.message  || "Fehler beim Senden des Links";
-      setError(true)
-      setErrorMesssage(errorMessage)
-    }    
-
+      const errorMessage =
+        error.response?.data?.message ||
+        error.message ||
+        "Fehler beim Senden des Links";
+      setError(true);
+      setErrorMesssage(errorMessage);
+    }
   };
 
   return (
@@ -54,13 +63,13 @@ const PassRequestForm = () => {
         {(props) => (
           <Form>
             <div className="mb-1 flex flex-col gap-6">
-              <ToastContainer/>
+              <ToastContainer />
               <Typography
                 variant="small"
                 color="blue-gray"
                 className="-mb-3 font-medium"
               >
-                Ihre E-Mail
+                {t("passRequestPage.passRequestForm.form.emailLabel")}
               </Typography>
               <Input
                 size="lg"
@@ -68,26 +77,29 @@ const PassRequestForm = () => {
                 value={props.values.email}
                 name="email"
                 type="email"
-                placeholder="jhon@gmail.com"
-                onChange={(e)=>{props.handleChange(e)
+                placeholder={t(
+                  "passRequestPage.passRequestForm.form.emailPlaceholder"
+                )}
+                onChange={(e) => {
+                  props.handleChange(e);
                   setError(false);
-                  setErrorMesssage('');}}
-                  className="outline-none ring-1 ring-black border-none focus:ring-2 focus:ring-black"
+                  setErrorMesssage("");
+                }}
+                className="outline-none ring-1 ring-black border-none focus:ring-2 focus:ring-black"
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
               />
               {props.errors.email && (
                 <div id="email" className="-mt-4 text-sm text-red-500">
-                  {props.errors.email }
+                  {props.errors.email}
                 </div>
               )}
-              { error && (
+              {error && (
                 <div id="email" className="-mt-4 text-sm text-red-500">
                   {errorMessage}
                 </div>
               )}
-              
             </div>
 
             <Button
@@ -95,7 +107,7 @@ const PassRequestForm = () => {
               fullWidth
               type="submit"
             >
-              Link anfordern
+              {t("passRequestPage.passRequestForm.form.submitButtonText")}
             </Button>
           </Form>
         )}
@@ -123,7 +135,10 @@ const PassRequestForm = () => {
             <line x1="19" y1="12" x2="5" y2="12"></line>
             <polyline points="12 19 5 12 12 5"></polyline>
           </svg>
-          <span>Zurück zum Anmelden</span>
+          <span>
+            {" "}
+            {t("passRequestPage.passRequestForm.backToLoginLink.text")}
+          </span>
         </Link>
       </div>
     </div>

@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import useTitle from '../hooks/useTitle';
+import { useTranslation } from 'react-i18next';
 
 const NotFound = () => {
+  const { t } = useTranslation();
  document.title = "404 | Driptext";
 
   return (
@@ -16,14 +18,14 @@ const NotFound = () => {
           </div>
         </div>
         <div>
-          <h1 className="capitalize text-yellow-400 text-4xl md:text-5xl font-medium">Looks like you're lost</h1>
-          <p className="mt-2 text-lg md:text-xl font-light">404 error</p>
+          <h1 className="capitalize text-yellow-400 text-4xl md:text-5xl font-medium">{t('notFoundPage.mainTitle')}</h1>
+          <p className="mt-2 text-lg md:text-xl font-light">{t('notFoundPage.errorMessage')}</p>
         </div>
         <Link 
           to="/" 
           className="capitalize text-lg md:text-xl font-light px-6 py-3 border border-yellow-400 rounded-lg shadow-md transition ease-in-out duration-300 hover:bg-yellow-400 hover:text-white"
         >
-          back to home
+          {t('notFoundPage.backToHomeButton.text')}
         </Link>
       </div>
     </main>

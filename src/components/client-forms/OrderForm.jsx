@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useTranslation } from "react-i18next";
 
 const countriesList = [
   { id: "1", value: "AF", name: "Afghanistan" },
@@ -208,6 +209,7 @@ const countriesList = [
 ];
 
 const OrderForm = () => {
+  const {t} = useTranslation();
   const location = useLocation();
   const [loading, setLoading] = useState(false);
   const user = useSelector((state) => state.user);
@@ -268,14 +270,14 @@ const OrderForm = () => {
   const validationSchema = Yup.object().shape({
     // duration: Yup.string().required("Bitte wählen Sie die Dauer"),
     // texts: Yup.string().required("Bitte wählen Sie die Anzahl der SEO-Texte"),
-    domain: Yup.string().required("Bitte geben Sie Ihre Domain ein"),
-    company: Yup.string().required("Bitte geben Sie den Firmennamen ein"),
-    fname: Yup.string().required("Bitte geben Sie Ihren Vornamen ein"),
-    lname: Yup.string().required("Bitte geben Sie Ihren Nachnamen ein"),
-    telNo: Yup.number().required("Bitte geben Sie Ihre Telefonnummer ein"),
+    domain: Yup.string().required(t('orderPage.orderForm.validationErrors.domain')),
+    company: Yup.string().required(t('orderPage.orderForm.validationErrors.company')),
+    fname: Yup.string().required(t('orderPage.orderForm.validationErrors.fname')),
+    lname: Yup.string().required(t('orderPage.orderForm.validationErrors.lname')),
+    telNo: Yup.number().required(t('orderPage.orderForm.validationErrors.telNo')),
     email: Yup.string()
       .email()
-      .required("Bitte geben Sie Ihre E-Mail-Adresse ein"),
+      .required(t('orderPage.orderForm.validationErrors.email')),
     // country: Yup.string().required("Bitte wählen Sie Ihr Land"),
   });
 
@@ -422,12 +424,12 @@ const OrderForm = () => {
           <Form>
             <div className="w-full bg-gradient-to-r from-custom-gray to-[#F7F7F7] py-4 flex flex-col gap-6 px-4 xs:px-8 xs:py-10  md:px-9 md:py-14 lg:px-10  mb-8 rounded-xl">
               <h2 className="text-custom-black text-base font-semibold -mb-5">
-                1. Wählen Sie Ihr DripText-Paket:
+                {t("orderPage.orderForm.formTitle")}
               </h2>
               <div className="flex flex-col gap-y-2 -mb-2">
                 <ToastContainer />
                 <GroupDropdownField
-                  label={"Desired number of SEO-optimized texts per month?"}
+                  label= {t("orderPage.orderForm.textsDropdownLabel")}
                   placeholder={""}
                   type={"text"}
                   id={"texts"}
@@ -445,7 +447,7 @@ const OrderForm = () => {
                   option3="12 texts per month with at least 1,500 words per text"
                 />
                 <GroupDropdownField
-                  label={"Desired duration?"}
+                  label={t("orderPage.orderForm.durationDropdownLabel")}
                   type={"text"}
                   id={"duration"}
                   name={"duration"}
@@ -464,7 +466,7 @@ const OrderForm = () => {
                 />
 
                 <GroupField
-                  label={"Monthly Price"}
+                  label={t("orderPage.orderForm.monthlyPriceLabel")}
                   type={"text"}
                   id={"monthlyPrice"}
                   name={"monthlyPrice"}
@@ -474,23 +476,23 @@ const OrderForm = () => {
                 />
 
                 <GroupField
-                  label={"Domain"}
+                  label={t("orderPage.orderForm.domainLabel")}
                   type={"text"}
                   id={"domain"}
                   name={"domain"}
-                  placeholder={"beispiel.com"}
+                  placeholder={t("orderPage.orderForm.domainPlaceholder")}
                   value={props.values.domain}
                   errors={props.errors.domain}
                   onChange={props.handleChange}
                 />
               </div>
               <h2 className="text-custom-black text-base font-semibold -mb-3">
-                2. Kontaktdaten des Rechnungsempfängers (m/w/d):
+                {t("orderPage.orderForm.formTitle1")}
               </h2>
               <div className="flex flex-col gap-y-3">
                 <GroupField
-                  label={"Firma"}
-                  placeholder={"Ihr Firmenname"}
+                  label={t("orderPage.orderForm.companyLabel")}
+                  placeholder={t("orderPage.orderForm.companyPlaceholder")}
                   type={"text"}
                   id={"company"}
                   name={"company"}
@@ -500,8 +502,8 @@ const OrderForm = () => {
                 />
                 <div className="w-full flex flex-col lg:flex-row lg:justify-between lg:gap-3 gap-5">
                   <GroupField
-                    label={"Vorname"}
-                    placeholder={"Ihr Vorname"}
+                    label={t("orderPage.orderForm.fnameLabel")}
+                    placeholder={t("orderPage.orderForm.fnamePlaceholder")}
                     id={"fname"}
                     name={"fname"}
                     value={props.values.fname}
@@ -510,8 +512,8 @@ const OrderForm = () => {
                     disabled={user?.user?.data?.user?.firstName ? true : false}
                   />
                   <GroupField
-                    label={"Nachname"}
-                    placeholder={"Ihr Nachname"}
+                    label={t("orderPage.orderForm.lnameLabel")}
+                    placeholder={t("orderPage.orderForm.lnamePlaceholder")}
                     id={"lname"}
                     name={"lname"}
                     value={props.values.lname}
@@ -521,8 +523,8 @@ const OrderForm = () => {
                   />
                 </div>
                 <GroupField
-                  label={"Telefonnummer"}
-                  placeholder={"Ihre Telefonnummer"}
+                  label={t("orderPage.orderForm.telNoLabel")}
+                  placeholder={t("orderPage.orderForm.telNoPlaceholder")}
                   type={"number"}
                   id={"telNo"}
                   name={"telNo"}
@@ -531,8 +533,8 @@ const OrderForm = () => {
                   onChange={props.handleChange}
                 />
                 <GroupField
-                  label={"E-Mail"}
-                  placeholder={"Ihre E-Mail-Adresse"}
+                  label={t("orderPage.orderForm.emailLabel")}
+                  placeholder={t("orderPage.orderForm.emailPlaceholder")}
                   type={"email"}
                   id={"email"}
                   name={"email"}
@@ -542,11 +544,11 @@ const OrderForm = () => {
                   disabled={user?.user?.data?.user?.email ? true : false}
                 />
                 <CountryDropdownField
-                  label={"Land"}
+                  label={t("orderPage.orderForm.countryLabel")}
                   type={"text"}
                   id={"country"}
                   name={"country"}
-                  placeholder={"Beispiel.de"}
+                  placeholder={t("orderPage.orderForm.countryPlaceholder")}
                   value={props.values.country}
                   errors={props.errors.country}
                   onChange={props.handleChange}
@@ -560,25 +562,20 @@ const OrderForm = () => {
                   type="submit"
                   disabled={loading}
                 >
-                  {loading ? "Bestellung wird gesendet" : "Bestellung absenden"}
+                  {loading ? t("orderPage.orderForm.submitButtonText.loading") : t("orderPage.orderForm.submitButtonText.default")}
                 </button>
               </div>
               {isSuccess && (
                 <p className="text-green-600 3xl:text-lg">
-                  Bestellinformationen wurden erfolgreich gespeichert
+                  {t("orderPage.orderForm.successMessage")}
                 </p>
               )}
               <p className="text-custom-black text-sm font-normal">
-                Mit der Abgabe der Bestellung stimme ich den{" "}
+              {t("orderPage.orderForm.termsText.0")}{" "}
                 <Link className="text-[#63B4D0]">
-                  allgemeinen Geschäftsbedingungen
+                {t("orderPage.orderForm.termsText.1")}
                 </Link>{" "}
-                von DripText Ltd. zu und verstehe, dass unsere Angebote
-                ausschließlich an gewerbliche Kunden gerichtet sind. Alle Preise
-                verstehen sich zuzüglich Mehrwertsteuer. Verkauf nur an
-                Unternehmer, Gewerbetreibende, Verbände, Behörden oder
-                Selbstständige (§ 14 BGB). Kein Verkauf an Verbraucher im Sinne
-                des § 13 BGB.
+                {t("orderPage.orderForm.termsText.2")}
               </p>
             </div>
           </Form>

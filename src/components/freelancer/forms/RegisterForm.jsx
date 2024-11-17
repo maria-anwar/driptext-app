@@ -6,12 +6,13 @@ import { useNavigate, Link } from "react-router-dom";
 // import { GroupTextArea } from "./GroupTextArea";
 import { GroupDropdownField } from "../../client-forms/GroupDropdownField";
 import { CountryDropdownField } from "../../client-forms/CountryDropdownField";
-import { setUser } from '../../../redux/userSlice';
+import { setUser } from "../../../redux/userSlice";
 import axios from "axios";
-
+import { useTranslation } from "react-i18next";
 
 const RegisterForm = () => {
-  const [loading ,setLoading] = useState(false)
+  const { t } = useTranslation();
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMesssage] = useState("");
@@ -26,29 +27,78 @@ const RegisterForm = () => {
     city: "",
     country: "",
     iban: "",
-    vatRegulation: 'Small business owner (0%)',
+    vatRegulation: "Small business owner (0%)",
     company: "",
     vatId: "",
   };
   const validationSchema = Yup.object().shape({
-    fname: Yup.string().required("Bitte geben Sie den Vornamen ein"),
-    lname: Yup.string().required("Bitte geben Sie den Nachnamen ein"),
-    email: Yup.string().email().required("Bitte geben Sie Ihre E-Mail-Adresse ein"),
-    phone: Yup.string().required("Bitte geben Sie Ihre Telefonnummer ein"),
-    street: Yup.string().required("Bitte geben Sie Ihre Straße ein"),
-    postcode: Yup.string().required("Bitte geben Sie Ihre Postleitzahl ein"),
-    city: Yup.string().required("Bitte geben Sie Ihre Stadt ein"),
-    country: Yup.string().required("Bitte geben Sie Ihr Land ein"),
-    iban: Yup.string().required("Bitte geben Sie Ihre IBAN ein"),
-    company: Yup.string().required("Bitte geben Sie den Namen Ihres Unternehmens ein"),
+    fname: Yup.string().required(
+      t(
+        "registerFreelancerPage.registerFormPage.section1.fields.fname.errorMessage"
+      )
+    ),
+    lname: Yup.string().required(
+      t(
+        "registerFreelancerPage.registerFormPage.section1.fields.lname.errorMessage"
+      )
+    ),
+    email: Yup.string()
+      .email()
+      .required(
+        t(
+          "registerFreelancerPage.registerFormPage.section1.fields.email.errorMessage"
+        )
+      ),
+    phone: Yup.string().required(
+      t(
+        "registerFreelancerPage.registerFormPage.section1.fields.phone.errorMessage"
+      )
+    ),
+    street: Yup.string().required(
+      t(
+        "registerFreelancerPage.registerFormPage.section1.fields.street.errorMessage"
+      )
+    ),
+    postcode: Yup.string().required(
+      t(
+        "registerFreelancerPage.registerFormPage.section1.fields.postcode.errorMessage"
+      )
+    ),
+    city: Yup.string().required(
+      t(
+        "registerFreelancerPage.registerFormPage.section1.fields.city.errorMessage"
+      )
+    ),
+    country: Yup.string().required(
+      t(
+        "registerFreelancerPage.registerFormPage.section1.fields.country.errorMessage"
+      )
+    ),
+    iban: Yup.string().required(
+      t(
+        "registerFreelancerPage.registerFormPage.section2.fields.iban.errorMessage"
+      )
+    ),
+    company: Yup.string().required(
+      t(
+        "registerFreelancerPage.registerFormPage.section3.fields.company.errorMessage"
+      )
+    ),
     vatId: Yup.string().when(["vatRegulation"], ([vatRegulation], schema) => {
-      if (vatRegulation === "CY Ltd (19%)" || vatRegulation === "Reverse charge (0%)") {
-        return schema.required("USt-IdNr. ist erforderlich");
+      if (
+        vatRegulation === "CY Ltd (19%)" ||
+        vatRegulation === "Reverse charge (0%)"
+      ) {
+        return schema.required(
+          t(
+            "registerFreelancerPage.registerFormPage.section3.fields.vatId.errorMessage"
+          )
+        );
       }
       return schema.notRequired();
     }),
   });
-  
+
   const onSubmit = async (values) => {
     setLoading(true);
     const registerData = {
@@ -63,22 +113,23 @@ const RegisterForm = () => {
       street: values.street,
       postCode: values.postcode,
       city: values.city,
-      phone:values.phone,
-    
-    }
+      phone: values.phone,
+    };
 
     try {
-      await axios.post(`${import.meta.env.VITE_DB_URL}/freelancer/create`, registerData);
+      await axios.post(
+        `${import.meta.env.VITE_DB_URL}/freelancer/create`,
+        registerData
+      );
       setLoading(false);
-       window.location.href = "https://driptext.de/danke-freelancer/";
-     } catch (error) {
+      window.location.href = "https://driptext.de/danke-freelancer/";
+    } catch (error) {
       setLoading(false);
       const errorMessage =
-      error.response?.data?.message || error.message || "Error";
+        error.response?.data?.message || error.message || "Error";
       setError(true);
       setErrorMesssage(errorMessage);
-     }
-
+    }
   };
 
   return (
@@ -93,69 +144,88 @@ const RegisterForm = () => {
             <div className="w-full bg-gradient-to-r from-custom-gray to-[#F7F7F7] flex flex-col gap-6 px-3 xs:px-8 xs:py-10  md:px-9 md:py-14 lg:px-10  mb-8 rounded-xl">
               <div className="flex flex-col gap-6">
                 <h2 className="text-custom-black text-base font-semibold">
-                  1. Persönliche Daten:
+                  {t("registerFreelancerPage.registerFormPage.section1.title")}
                 </h2>
                 <div className="w-full flex flex-col lg:flex-row lg:justify-between lg:gap-3 gap-5">
-            
                   <GroupField
-                    label={"Vorname"}
-                    placeholder={"Dein Vorname"}
+                    label={t(
+                      "registerFreelancerPage.registerFormPage.section1.fields.fname.label"
+                    )}
+                    placeholder={t(
+                      "registerFreelancerPage.registerFormPage.section1.fields.fname.errorMessage"
+                    )}
                     id={"fname"}
                     name={"fname"}
                     value={props.values.fname}
                     errors={props.errors.fname}
                     onChange={(e) => {
-                    props.handleChange(e);
-                    setError(false);
-                    setErrorMesssage("");
-                  }}
+                      props.handleChange(e);
+                      setError(false);
+                      setErrorMesssage("");
+                    }}
                   />
                   <GroupField
-                    label={"Nachname"}
-                    placeholder={"Dein Nachname"}
+                    label={t(
+                      "registerFreelancerPage.registerFormPage.section1.fields.lname.label"
+                    )}
+                    placeholder={t(
+                      "registerFreelancerPage.registerFormPage.section1.fields.lname.placeholder"
+                    )}
                     id={"lname"}
                     name={"lname"}
                     value={props.values.lname}
                     errors={props.errors.lname}
                     onChange={(e) => {
-                    props.handleChange(e);
-                    setError(false);
-                    setErrorMesssage("");
-                  }}
+                      props.handleChange(e);
+                      setError(false);
+                      setErrorMesssage("");
+                    }}
                   />
                 </div>
                 <div className="w-full flex flex-col lg:flex-row lg:justify-between lg:gap-3 gap-5">
                   <GroupField
-                    label={"E-Mail"}
-                    placeholder={"Deine E-Mail-Adresse"}
+                    label={t(
+                      "registerFreelancerPage.registerFormPage.section1.fields.email.label"
+                    )}
+                    placeholder={t(
+                      "registerFreelancerPage.registerFormPage.section1.fields.email.placeholder"
+                    )}
                     type={"email"}
                     id={"email"}
                     name={"email"}
                     value={props.values.email}
                     errors={props.errors.email}
                     onChange={(e) => {
-                    props.handleChange(e);
-                    setError(false);
-                    setErrorMesssage("");
-                  }}
+                      props.handleChange(e);
+                      setError(false);
+                      setErrorMesssage("");
+                    }}
                   />
                   <GroupField
-                    label={"Telefon"}
-                    placeholder={"Deine Telefonnummer"}
+                    label={t(
+                      "registerFreelancerPage.registerFormPage.section1.fields.phone.label"
+                    )}
+                    placeholder={t(
+                      "registerFreelancerPage.registerFormPage.section1.fields.phone.placeholder"
+                    )}
                     id={"phone"}
                     name={"phone"}
                     value={props.values.phone}
                     errors={props.errors.phone}
                     onChange={(e) => {
-                    props.handleChange(e);
-                    setError(false);
-                    setErrorMesssage("");
-                  }}
+                      props.handleChange(e);
+                      setError(false);
+                      setErrorMesssage("");
+                    }}
                   />
                 </div>
                 <GroupField
-                  label={"Straße"}
-                  placeholder={"Deine Straße"}
+                  label={t(
+                    "registerFreelancerPage.registerFormPage.section1.fields.street.label"
+                  )}
+                  placeholder={t(
+                    "registerFreelancerPage.registerFormPage.section1.fields.street.placeholder"
+                  )}
                   type={"text"}
                   id={"street"}
                   name={"street"}
@@ -169,35 +239,47 @@ const RegisterForm = () => {
                 />
                 <div className="w-full flex flex-col lg:flex-row lg:justify-between lg:gap-3 gap-5">
                   <GroupField
-                    label={"PLZ"}
-                    placeholder={"Deine PLZ"}
+                    label={t(
+                      "registerFreelancerPage.registerFormPage.section1.fields.postcode.label"
+                    )}
+                    placeholder={t(
+                      "registerFreelancerPage.registerFormPage.section1.fields.postcode.placeholder"
+                    )}
                     id={"postcode"}
                     name={"postcode"}
                     value={props.values.postcode}
                     errors={props.errors.postcode}
                     onChange={(e) => {
-                    props.handleChange(e);
-                    setError(false);
-                    setErrorMesssage("");
-                  }}
+                      props.handleChange(e);
+                      setError(false);
+                      setErrorMesssage("");
+                    }}
                   />
                   <GroupField
-                    label={"Stadt"}
-                    placeholder={"Deine Stadt"}
+                    label={t(
+                      "registerFreelancerPage.registerFormPage.section1.fields.city.label"
+                    )}
+                    placeholder={t(
+                      "registerFreelancerPage.registerFormPage.section1.fields.city.placeholder"
+                    )}
                     id={"city"}
                     name={"city"}
                     value={props.values.city}
                     errors={props.errors.city}
                     onChange={(e) => {
-                    props.handleChange(e);
-                    setError(false);
-                    setErrorMesssage("");
-                  }}
+                      props.handleChange(e);
+                      setError(false);
+                      setErrorMesssage("");
+                    }}
                   />
                 </div>
                 <GroupField
-                  label={"Land"}
-                  placeholder={"Dein Land"}
+                  label={t(
+                    "registerFreelancerPage.registerFormPage.section1.fields.country.label"
+                  )}
+                  placeholder={t(
+                    "registerFreelancerPage.registerFormPage.section1.fields.country.placeholder"
+                  )}
                   type={"text"}
                   id={"country"}
                   name={"country"}
@@ -213,11 +295,15 @@ const RegisterForm = () => {
 
               <div className="flex flex-col gap-5">
                 <h2 className="text-custom-black text-base font-semibold lg:mt-3.5">
-                  2. Informationen zur Abrechnung:
+                  {t("registerFreelancerPage.registerFormPage.section2.title")}
                 </h2>
                 <GroupField
-                  label={"IBAN"}
-                  placeholder={"Esp. DE68500105178297336485"}
+                  label={t(
+                    "registerFreelancerPage.registerFormPage.section2.fields.iban.label"
+                  )}
+                  placeholder={t(
+                    "registerFreelancerPage.registerFormPage.section2.fields.iban.placeholder"
+                  )}
                   type={"text"}
                   id={"iban"}
                   name={"iban"}
@@ -230,15 +316,17 @@ const RegisterForm = () => {
                   }}
                 />
                 <GroupDropdownField
-                  label={"USt.-Regelung"}
+                  label={t(
+                    "registerFreelancerPage.registerFormPage.section2.fields.vatRegulation.label"
+                  )}
                   type={"text"}
                   id={"vatRegulation"}
                   name={"vatRegulation"}
                   placeholder={""}
-                  option1={"Kleinunternehmer (0%)"}
+                  option1={"Small Business (0%)"}
                   option2={"CY Ltd (19%)"}
-                  option3={"Non-EU Ausland (0%)"}
-                  option4={"Reverse charge (0%)"}
+                  option3={"Non-EU Foreign (0%)"}
+                  option4={"Reverse Charge (0%)"}
                   value={props.values.vatRegulation}
                   onChange={(e) => {
                     props.handleChange(e);
@@ -250,11 +338,15 @@ const RegisterForm = () => {
 
               <div className="flex flex-col gap-5">
                 <h2 className="text-custom-black text-base font-semibold lg:mt-3.5">
-                  3.  Firmendaten (falls notwendig):
+                  {t("registerFreelancerPage.registerFormPage.section3.title")}
                 </h2>
                 <GroupField
-                  label={"Firmenname"}
-                  placeholder={"Name deiner Firma"}
+                  label={t(
+                    "registerFreelancerPage.registerFormPage.section3.fields.company.label"
+                  )}
+                  placeholder={t(
+                    "registerFreelancerPage.registerFormPage.section3.fields.company.placeholder"
+                  )}
                   type={"text"}
                   id={"company"}
                   name={"company"}
@@ -266,31 +358,42 @@ const RegisterForm = () => {
                     setErrorMesssage("");
                   }}
                 />
-                {props.values.vatRegulation === "CY Ltd (19%)" || props.values.vatRegulation === "Reverse charge (0%)" ? (
+                {props.values.vatRegulation === "CY Ltd (19%)" ||
+                props.values.vatRegulation === "Reverse charge (0%)" ? (
                   <GroupField
-                  label={"USt-IdNr"}
-                  placeholder={"Esp. DE238443776"}
-                  id={"vatId"}
-                  name={"vatId"}
-                  value={props.values.vatId}
-                  errors={props.errors.vatId}
-                  onChange={(e) => {
-                    props.handleChange(e);
-                    setError(false);
-                    setErrorMesssage("");
-                  }}
-                />
-                ): null}
-               
-               <button
-                    className={`${
-                      loading ? "cursor-not-allowed" : "cursor-pointer"
-                    } border-none text-white font-medium text-base w-full bg-custom-black flex justify-center py-2 xs:py-2.5 mt-1 rounded-xl`}
-                    disabled={loading}
-                  >
-                    {loading ? 'Wird gesendet' : 'Jetzt absenden'}
-                  </button>
-              
+                    label={t(
+                      "registerFreelancerPage.registerFormPage.section3.fields.vatId.label"
+                    )}
+                    placeholder={t(
+                      "registerFreelancerPage.registerFormPage.section3.fields.vatId.placeholder"
+                    )}
+                    id={"vatId"}
+                    name={"vatId"}
+                    value={props.values.vatId}
+                    errors={props.errors.vatId}
+                    onChange={(e) => {
+                      props.handleChange(e);
+                      setError(false);
+                      setErrorMesssage("");
+                    }}
+                  />
+                ) : null}
+
+                <button
+                  className={`${
+                    loading ? "cursor-not-allowed" : "cursor-pointer"
+                  } border-none text-white font-medium text-base w-full bg-custom-black flex justify-center py-2 xs:py-2.5 mt-1 rounded-xl`}
+                  disabled={loading}
+                >
+                  {loading
+                    ? t(
+                        "registerFreelancerPage.registerFormPage.submitButton.sending"
+                      )
+                    : t(
+                        "registerFreelancerPage.registerFormPage.submitButton.submit"
+                      )}
+                </button>
+
                 {error && (
                   <div id="email" className="mt-2 text-sm text-red-500">
                     {errorMessage}
@@ -298,7 +401,7 @@ const RegisterForm = () => {
                 )}
               </div>
               <p className="text-custom-black text-sm font-normal text-center">
-              Bitte überprüfe deine Daten vor dem Absenden auf Richtigkeit.
+                {t("registerFreelancerPage.registerFormPage.dataCheckMessage")}
               </p>
             </div>
           </Form>
