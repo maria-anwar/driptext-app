@@ -119,8 +119,8 @@ const OnboardingForm = () => {
         {(props) => (
           <Form>
             <div className="w-full bg-gradient-to-r from-custom-gray to-[#F7F7F7] flex flex-col gap-6 px-3 xs:px-8 xs:py-10 md:px-9 md:py-14 lg:px-10 mt-6 mb-8 rounded-xl">
-              <div className="flex flex-col gap-6">
-                <h2 className="text-custom-black text-base font-semibold">
+              <div className="flex flex-col gap-y-4">
+                <h2 className="text-custom-black text-base font-semibold -mb-2">
                  {t("onboardingPage.onboardingForm.sections.0.title")}
                 </h2>
                 <GroupDropdownField
@@ -154,7 +154,7 @@ const OnboardingForm = () => {
                   option5={"neutral"}
                   option6={"uniform/but generally irrelevant"}
                 />
-                <div className="w-full flex flex-col gap-1">
+                <div className="w-full flex flex-col gap-y-1">
                   <label className="text-custom-black text-sm lg:text-sm font-semibold 2xl:font-semibold">
                   {t("onboardingPage.onboardingForm.sections.0.fields.2.label")}
                     <span className="text-red-600 text:lg 2xl:text-[17px] mt-6 pl-1">
@@ -207,8 +207,8 @@ const OnboardingForm = () => {
                 ) : null}
               </div>
 
-              <div className="flex flex-col gap-5">
-                <h2 className="text-custom-black text-base font-semibold lg:mt-3.5">
+              <div className="flex flex-col gap-y-4 -mt-3">
+                <h2 className="text-custom-black text-base font-semibold lg:mt-3.5 -mb-2">
                 {t("onboardingPage.onboardingForm.sections.1.title")}
                 </h2>
                 <GroupTextArea
@@ -256,8 +256,8 @@ const OnboardingForm = () => {
                 />
               </div>
 
-              <div className="flex flex-col gap-5">
-                <h2 className="text-custom-black text-base font-semibold lg:mt-3.5">
+              <div className="flex flex-col gap-y-4  -mt-3">
+                <h2 className="text-custom-black text-base font-semibold lg:mt-3.5 -mb-2">
                 {t("onboardingPage.onboardingForm.sections.2.title")}
                 </h2>
                 <GroupTextArea
@@ -291,8 +291,8 @@ const OnboardingForm = () => {
                 />
               </div>
 
-              <div className="flex flex-col gap-5">
-                <h2 className="text-custom-black text-base font-semibold lg:mt-3.5">
+              <div className="flex flex-col gap-y-4  -mt-3">
+                <h2 className="text-custom-black text-base font-semibold lg:mt-3.5 -mb-2">
                 {t("onboardingPage.onboardingForm.sections.3.title")}
                 </h2>
                 <GroupTextArea
