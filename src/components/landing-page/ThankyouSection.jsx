@@ -236,16 +236,16 @@ const ThankYouPage = () => {
         </div>
 
         <div className="flex space-x-4">
-          <a href="/conditions" className="text-gray-600 ">
+          <a target="_blank" href="https://driptext.de/agb/" className="text-gray-600 ">
             {t("thankYouPage.footer.footerLinks.0.text")}
           </a>
-          <a href="/imprint" className="text-gray-600 ">
+          <a target="_blank" href="https://driptext.de/impressum/"  className="text-gray-600 ">
             {t("thankYouPage.footer.footerLinks.1.text")}
           </a>
-          <a href="/data-protection" className="text-gray-600 ">
+          <a target="_blank" href="https://driptext.de/datenschutz/"  className="text-gray-600 ">
             {t("thankYouPage.footer.footerLinks.2.text")}
           </a>
-          <a href="/cookie-settings" className="text-gray-600 ">
+          <a target="_blank" href="https://driptext.de/datenschutz/" className="text-gray-600 ">
             {t("thankYouPage.footer.footerLinks.3.text")}
           </a>
         </div>

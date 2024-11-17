@@ -54,15 +54,15 @@ const handleLogoClick = () =>{
           />
         </div>
         <div className="text-sm text-gray-700 flex justify-end border-gray-200">
-          <Link to="/imprint" className="mr-2 4xl:mr-3.5 hover:underline">
+          <a href="https://driptext.de/impressum/" target="_blank" className="mr-2 4xl:mr-3.5 hover:underline">
             {t('signIn.links.imprint')}
-          </Link>
-          <Link
-            to="/privacy-policy"
+          </a>
+          <a
+            href="https://driptext.de/datenschutz/"  target="_blank"
             className="mr-2 4xl:mr-3.5 hover:underline"
           >
            {t('signIn.links.privacyPolicy')}
-          </Link>
+          </a>
          
         </div>
       </div>

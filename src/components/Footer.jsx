@@ -17,11 +17,11 @@ const Footer = () => {
                     <div className="md:w-1/4">
                         <h3 className="text-gray-600 font-bold mb-2">{t('footer.navigation.title')}</h3>
                         <ul className="text-gray-600">
-                            <li><a href="#" className="hover:underline">{t('footer.navigation.links.0')}</a></li>
-                            <li><a href="#" className="hover:underline">{t('footer.navigation.links.1')}</a></li>
-                            <li><a href="#" className="hover:underline">{t('footer.navigation.links.2')}</a></li>
-                            <li><a href="#" className="hover:underline">{t('footer.navigation.links.3')}</a></li>
-                            <li><a href="#" className="hover:underline">{t('footer.navigation.links.4')}</a></li>
+                            <li><a target="_blank" href="https://driptext.de/" className="hover:underline">{t('footer.navigation.links.0')}</a></li>
+                            <li><a target="_blank" href="https://driptext.de/magazin/" className="hover:underline">{t('footer.navigation.links.1')}</a></li>
+                            <li><a target="_blank" href="https://driptext.de/#leistungen" className="hover:underline">{t('footer.navigation.links.2')}</a></li>
+                            <li><a target="_blank" href="https://driptext.de/#team" className="hover:underline">{t('footer.navigation.links.3')}</a></li>
+                            <li><a target="_blank" href="https://driptext.de/autor-markus-laue/" className="hover:underline">{t('footer.navigation.links.4')}</a></li>
                         </ul>
                     </div>
                     <div className="md:w-1/4">
@@ -37,10 +37,10 @@ const Footer = () => {
                     <div className="md:w-1/4">
                         <h3 className="text-gray-600 font-bold mb-2">{t('footer.legal.title')}</h3>
                         <ul className="text-gray-600">
-                            <li><a href="#" className="hover:underline">{t('footer.legal.links.0')}</a></li>
-                            <li><a href="#" className="hover:underline">{t('footer.legal.links.1')}</a></li>
-                            <li><a href="#" className="hover:underline">{t('footer.legal.links.2')}</a></li>
-                            <li><a href="#" className="hover:underline">{t('footer.legal.links.3')}</a></li>
+                            <li><a target="_blank" href="https://driptext.de/agb/" className="hover:underline">{t('footer.legal.links.0')}</a></li>
+                            <li><a target="_blank" href="https://driptext.de/impressum/" className="hover:underline">{t('footer.legal.links.1')}</a></li>
+                            <li><a target="_blank" href="https://driptext.de/datenschutz/" className="hover:underline">{t('footer.legal.links.2')}</a></li>
+                            <li><a target="_blank" href="https://driptext.de/datenschutz/" className="hover:underline">{t('footer.legal.links.3')}</a></li>
                         </ul>
                     </div>
                 </div>

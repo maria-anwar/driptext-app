@@ -101,11 +101,10 @@ const Header = (props: {
         <div className="flex items-center gap-5 2xsm:gap-2">
           <ul className="flex items-center gap-5 gap-x-3 2xsm:gap-4">
           </ul>
-         
           <div className="relative">
             <button
               onClick={toggleDropdown}
-              className="text-2xl bg-boxdark dark:bg-white px-1 flex justify-center items-center py-1 rounded-full"
+              className="text-2xl bg-boxdark dark:bg-white  border-2 border-boxdark dark:border-white flex justify-center items-center  rounded-full"
               title="Select Language"
             >
               <FontAwesomeIcon
@@ -123,6 +122,7 @@ const Header = (props: {
                 >
                   English
                 </button>
+                <span className="block border-t border-gray-200 my-2"></span>
                 <button
                   onClick={() => changeYourLanguage("de")}
                   className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left hover:text-primary"
