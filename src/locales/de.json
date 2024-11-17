@@ -529,14 +529,14 @@
         "lnamePlaceholder": "Ihr Nachname"
       },
       "validationSchema": {
-    "project": "Bitte geben Sie Ihr Projekt ein",
-    "keyword": "Bitte geben Sie ein Stichwort ein",
-    "email": "Bitte geben Sie eine E-Mail-Adresse ein",
-    "emailValid": "Geben Sie eine gültige E-Mail-Adresse ein",
-    "fname": "Bitte geben Sie Ihren Vornamen ein",
-    "lname": "Bitte geben Sie Ihren Nachnamen ein"
-  },
-      "submitButton":  "Bestellung Absenden",
+        "project": "Bitte geben Sie Ihr Projekt ein",
+        "keyword": "Bitte geben Sie ein Stichwort ein",
+        "email": "Bitte geben Sie eine E-Mail-Adresse ein",
+        "emailValid": "Geben Sie eine gültige E-Mail-Adresse ein",
+        "fname": "Bitte geben Sie Ihren Vornamen ein",
+        "lname": "Bitte geben Sie Ihren Nachnamen ein"
+      },
+      "submitButton": "Bestellung Absenden",
       "terms": {
         "text": "Durch die Bestellung erkläre ich mich mit den ",
         "linkText": "Allgemeinen Geschäftsbedingungen",
@@ -544,7 +544,8 @@
         "disclaimer": "von DripText Ltd. einverstanden und verstehe, dass unsere Angebote ausschließlich an gewerbliche Kunden gerichtet sind. Alle Preise verstehen sich zuzüglich MwSt. Verkauf nur an Unternehmer, Gewerbetreibende, Verbände, Behörden oder Selbständige (§ 14 BGB). Kein Verkauf an Verbraucher im Sinne von § 13 BGB."
       }
     }
-  }, "header": "Bestellen Sie kostenlosen Probetext",
+  },
+  "header": "Bestellen Sie kostenlosen Probetext",
   "footer": {
     "companyDescription": "DripText ist Ihr zuverlässiger Partner für qualitativ hochwertigen, SEO-optimierten Inhalt, den sowohl Ihre Nutzer als auch die Suchmaschinen lieben – garantiert!",
     "navigation": {
@@ -573,6 +574,283 @@
         "Datenschutz",
         "Cookie-Einstellungen"
       ]
+    }
+  },
+  "onboardingPage": {
+    "title": "Onboarding für Kunden",
+    "thankYouMessage": {
+      "heading": "Vielen Dank für deine Buchung!",
+      "subheading": "So geht’s jetzt weiter:",
+      "description": "Fülle das folgende Onboarding Formular aus, damit wir dein Unternehmen und deine Content-Ziele besser kennenlernen."
+    },
+    "welcomeMessage": {
+      "heading": "Willkommen auf unserer Plattform!",
+      "subheading": "Um auf Ihr Konto zuzugreifen und mehr zu entdecken:",
+      "description": "Bitte melden Sie sich in Ihrem Konto an oder registrieren Sie sich, wenn Sie noch keines haben. Dadurch erhalten Sie Zugriff auf Ihr persönliches Dashboard und können Ihre Buchungen verwalten."
+    },
+    "buttons": {
+      "register": "Registrieren",
+      "login": "Anmelden"
+    },
+    "onboardingForm": {
+      "sections": [
+        {
+          "title": "1. Allgemeine Informationen",
+          "fields": [
+            {
+              "label": "Ansprache",
+              "options": [
+                "Sie",
+                "Du (mit großem D)",
+                "du (mit kleinem d)",
+                "du",
+                "keine direkte Ansprache"
+              ]
+            },
+            {
+              "label": "Schreibperspektive",
+              "options": [
+                "wir/unser Shop/unser Unternehmen",
+                "das Unternehmen/der Shop",
+                "die Redaktion",
+                "Ich",
+                "neutral",
+                "einheitlich/aber grundsätzlich irrelevant"
+              ]
+            },
+            {
+              "label": "Projekt",
+              "required": true,
+              "placeholder": "Beispiel.com"
+            },
+            {
+              "label": "Gewünschtes Stichwort",
+              "required": false,
+              "placeholder": "Beispiel-Stichwort"
+            },
+            {
+              "label": "Schlüsselworttyp",
+              "options": [
+                "Leitfaden",
+                "Shop (Kategorie)",
+                "Shop (Produkt)",
+                "Definition/Wiki",
+                "Shop (Startseite)",
+                "CMS-Seite"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "2. Informationen zum Unternehmen",
+          "fields": [
+            {
+              "label": "Hintergrundinformationen zum Unternehmen",
+              "placeholder": "Bitte beschreiben Sie hier, idealerweise in nur einem Satz, was Ihr Unternehmen tut, was es anbietet und wie es dem Kunden hilft."
+            },
+            {
+              "label": "Welche Attribute beschreiben euch als Unternehmen/eure Produkte/eure Leistung am besten?",
+              "placeholder": "Bitte nennen Sie so viele Merkmale, wie Sie möchten, die Leser über Ihr Unternehmen und Ihre Produkte wahrnehmen sollen."
+            },
+            {
+              "label": "Was sind eure Leistungen?",
+              "placeholder": "Bitte listen Sie alle online angebotenen Dienstleistungen auf."
+            }
+          ]
+        },
+        {
+          "title": "3. Informationen zu den Zielkunden",
+          "fields": [
+            {
+              "label": "Für wen sind die Inhalte geschrieben?",
+              "placeholder": "Bitte beschreiben Sie die Zielgruppe so genau wie möglich."
+            },
+            {
+              "label": "Kunden, die wir ansprechen möchten, haben ein Interesse daran...",
+              "placeholder": "Bitte listen Sie hier in Bullet-Points auf, welche Probleme Sie für die Kunden lösen."
+            }
+          ]
+        },
+        {
+          "title": "4. Ziel des Inhalts",
+          "fields": [
+            {
+              "label": "Was ist das Ziel der Inhalte?",
+              "placeholder": "Bitte beschreiben Sie hier kurz, wie die organischen Kunden/Leser idealerweise reagieren sollten, wenn sie auf Ihrer Seite landen."
+            },
+            {
+              "label": "Informationen über deine Marke und deine Inhalte",
+              "placeholder": "Bitte geben Sie uns Bullet-Points, wie potenzielle Leser den Inhalt beschreiben sollten, den sie konsumieren."
+            }
+          ]
+        }
+      ],
+      "buttons": {
+        "submit": "Jetzt absenden",
+        "loading": "Lädt...",
+        "error": "Der Server hat mit einem Fehler geantwortet"
+      },
+      "validationMessages": {
+        "speech": "Bitte wählen Sie die Ansprache",
+        "perspective": "Bitte geben Sie die Perspektive an",
+        "companyInfo": "Bitte geben Sie Informationen zum Unternehmen ein",
+        "companyAttributes": "Bitte geben Sie die Merkmale des Unternehmens an",
+        "services": "Bitte geben Sie die Dienstleistungen des Unternehmens an",
+        "content": "Die oben genannten Informationen sind erforderlich",
+        "customers": "Die oben genannten Informationen sind erforderlich",
+        "contentPurpose": "Die oben genannten Informationen sind erforderlich",
+        "brand": "Die oben genannten Informationen sind erforderlich"
+      },
+      "errorMessages": {
+        "generalError": "Der Server hat mit einem Fehler geantwortet",
+        "validationError": "Fehler bei der Validierung der Daten"
+      },
+      "formReminder": "Bitte überprüfe deine Daten vor dem Absenden auf Richtigkeit."
+    }
+  },
+  "packageBooking": {
+    "logoAltText": "Logo",
+    "pageTitle":"Paketbuchung",
+    "header": {
+      "title": "Buchen Sie jetzt das DripText Paket Ihrer Wahl",
+      "description": "Wenn Sie Fragen oder Probleme bei der Buchung haben, kontaktieren Sie uns bitte per E-Mail."
+    },
+    "buttonLabels": [
+      "Texte pro Monat"
+    ],
+    "plansForTexts": {
+      "4": [
+        {
+          "name": "3 months Laufzeit",
+          "price": "420€",
+          "month": "pro Monat",
+          "wordPrice": "Wortpreis: 0,07 EUR/netto",
+          "features": 4
+        },
+        {
+          "name": "6 months Laufzeit",
+          "price": "360€",
+          "month": "pro Monat",
+          "wordPrice": "Wortpreis: 0,06 EUR/netto",
+          "features": 4
+        },
+        {
+          "name": "12 months Laufzeit",
+          "price": "300€",
+          "month": "pro Monat",
+          "wordPrice": "Wortpreis: 0,05 EUR/netto",
+          "features": 4,
+          "bestValue": true
+        }
+      ],
+      "8": [
+        {
+          "name": "3 months Laufzeit",
+          "price": "840€",
+          "month": "pro Monat",
+          "wordPrice": "Wortpreis: 0,07 EUR/netto",
+          "features": 8
+        },
+        {
+          "name": "6 months Laufzeit",
+          "price": "720€",
+          "month": "pro Monat",
+          "wordPrice": "Wortpreis: 0,06 EUR/netto",
+          "features": 8
+        },
+        {
+          "name": "12 months Laufzeit",
+          "price": "600€",
+          "month": "pro Monat",
+          "wordPrice": "Wortpreis: 0,05 EUR/netto",
+          "features": 8,
+          "bestValue": true
+        }
+      ],
+      "12": [
+        {
+          "name": "3 months Laufzeit",
+          "price": "1260€",
+          "month": "pro Monat",
+          "wordPrice": "Wortpreis: 0,07 EUR/netto",
+          "features": 12
+        },
+        {
+          "name": "6 months Laufzeit",
+          "price": "1080€",
+          "month": "pro Monat",
+          "wordPrice": "Wortpreis: 0,06 EUR/netto",
+          "features": 12
+        },
+        {
+          "name": "12 months Laufzeit",
+          "price": "900€",
+          "month": "pro Monat",
+          "wordPrice": "Wortpreis: 0,05 EUR/netto",
+          "features": 12,
+          "bestValue": true
+        }
+      ]
+    },
+    "footer": {
+      "disclaimer": {
+        "text": "Mit der Abgabe der Bestellung stimme ich den",
+        "termsLinkText": "Allgemeinen Geschäftsbedingungen",
+        "additionalText": "der DripText GmbH zu und verstehe, dass sich unsere Angebote ausschließlich an gewerbliche Kunden richten. Alle Preise verstehen sich zzgl. MwSt. Verkäufe nur an Unternehmer, Gewerbetreibende, Verbände, Behörden oder Selbständige (§ 14 BGB). Kein Verkauf an Verbraucher im Sinne des § 13 BGB."
+      },
+      "footerLinks": [
+        {
+          "label": "Bedingungen",
+          "href": "/conditions"
+        },
+        {
+          "label": "Impressum",
+          "href": "/imprint"
+        },
+        {
+          "label": "Datenschutz",
+          "href": "/data-protection"
+        },
+        {
+          "label": "Cookie-Einstellungen",
+          "href": "/cookie-settings"
+        }
+      ]
+    },
+    "pricingCard": {
+      "popularLabel": "BELIEBT",
+      "cardHeading": {
+        "title": "Paketname",
+        "wordPrice": "Wortpreis: 0,07 EUR/netto"
+      },
+      "priceDetails": {
+        "price": "420€",
+        "month": "pro Monat"
+      },
+      "features": {
+  "seoText": ["SEO-optimierte Texte", "pro Monat mit mindestens 1.500 Wörtern pro Text"],
+  "proofreading": ["Korrekturlesen", "mit dem 6-Augen-Prinzip"],
+  "keywordAnalysis": ["Detaillierte", "Schlüsselwortanalyse"],
+  "editorialPlan": ["Erstellung eines", "Redaktionsplans"],
+  "customerBackend": ["Eigener", "Kunden-Backend"],
+  "reliability": ["100%", "Zuverlässigkeit"],
+  "satisfactionGuarantee": ["Inkl.", "Zufriedenheitsgarantie"]
+}
+,
+      "buttons": {
+        "orderNow": "Jetzt bestellen"
+      },
+      "propTypes": {
+        "plan": {
+          "name": "string",
+          "month": "string",
+          "price": "string",
+          "wordPrice": "string",
+          "description": "string",
+          "features": "number",
+          "bestValue": "boolean"
+        }
+      }
     }
   }
 }

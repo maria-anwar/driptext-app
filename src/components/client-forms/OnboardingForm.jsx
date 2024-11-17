@@ -7,8 +7,10 @@ import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { GroupField } from "./GroupField";
+import { useTranslation } from "react-i18next";
 
 const OnboardingForm = () => {
+  const {t} = useTranslation();
   const [loading, setLoading] = useState(false);
   const user = useSelector((state) => state.user);
   const location = useLocation();
@@ -18,9 +20,9 @@ const OnboardingForm = () => {
   const userRole = user?.user?.data?.user?.role?.title.toLowerCase() || role;
 
   const initialValues = {
-    speech: "Sie",
+    speech: "You (formal)",
     project: projectName,
-    perspective: "wir/unser Shop/unser Unternehmen",
+    perspective: "we/our shop/our company",
     companyInfo: "",
     companyAttributes: "",
     services: "",
@@ -28,33 +30,33 @@ const OnboardingForm = () => {
     customers: "",
     contentPurpose: "",
     brand: "",
-    keywordType: "Schlüsselworttyp",
+    keywordType: "Guide",
     keyword: null,
   };
 
   const validationSchema = Yup.object().shape({
-    speech: Yup.string().required("Bitte wählen Sie die Ansprache"),
-    perspective: Yup.string().required("Bitte geben Sie die Perspektive an"),
+    speech: Yup.string().required(t("onboardingPage.onboardingForm.validationMessages.speech")),
+    perspective: Yup.string().required(t("onboardingPage.onboardingForm.validationMessages.perspective")),
     companyInfo: Yup.string().required(
-      "Bitte geben Sie Informationen zum Unternehmen ein"
+      t("onboardingPage.onboardingForm.validationMessages.companyInfo")
     ),
     companyAttributes: Yup.string().required(
-      "Bitte geben Sie die Merkmale des Unternehmens an"
+      t("onboardingPage.onboardingForm.validationMessages.companyAttributes")
     ),
     services: Yup.string().required(
-      "Bitte geben Sie die Dienstleistungen des Unternehmens an"
+      t("onboardingPage.onboardingForm.validationMessages.services")
     ),
     content: Yup.string().required(
-      "Die oben genannten Informationen sind erforderlich"
+      t("onboardingPage.onboardingForm.validationMessages.content")
     ),
     customers: Yup.string().required(
-      "Die oben genannten Informationen sind erforderlich"
+      t("onboardingPage.onboardingForm.validationMessages.customers")
     ),
     contentPurpose: Yup.string().required(
-      "Die oben genannten Informationen sind erforderlich"
+      t("onboardingPage.onboardingForm.validationMessages.contentPurpose")
     ),
     brand: Yup.string().required(
-      "Die oben genannten Informationen sind erforderlich"
+      t("onboardingPage.onboardingForm.validationMessages.brand")
     ),
   });
 
@@ -77,18 +79,13 @@ const OnboardingForm = () => {
       contentInfo: values.brand,
     };
 
-
     try {
       setError(false);
       const response = await axios.post(
         `${import.meta.env.VITE_DB_URL}/users/create/onboarding`,
         onBoardingData
       );
-
       setLoading(false);
-      console.log("Daten erfolgreich übermittelt:", response.data);
-      // window.location.href = "https://driptext.de/danke-probetext/";
-
       if (plan === null) {
         window.location.href = "https://driptext.de/danke-probetext/";
       } else {
@@ -99,7 +96,7 @@ const OnboardingForm = () => {
         const errorMessage =
           error.response?.data?.message ||
           error.message ||
-          "Der Server hat mit einem Fehler geantwortet";
+          t("onboardingPage.onboardingForm.errorMessages.generalError");
         setError(true);
         setErrorMesssage(errorMessage);
       } else {
@@ -124,25 +121,25 @@ const OnboardingForm = () => {
             <div className="w-full bg-gradient-to-r from-custom-gray to-[#F7F7F7] flex flex-col gap-6 px-3 xs:px-8 xs:py-10 md:px-9 md:py-14 lg:px-10 mt-6 mb-8 rounded-xl">
               <div className="flex flex-col gap-6">
                 <h2 className="text-custom-black text-base font-semibold">
-                  1. Allgemeine Informationen
+                 {t("onboardingPage.onboardingForm.sections.0.title")}
                 </h2>
                 <GroupDropdownField
-                  label={"Ansprache"}
+                  label={t("onboardingPage.onboardingForm.sections.0.fields.0.label")}
                   type={"text"}
                   id={"speech"}
                   name={"speech"}
                   placeholder={""}
-                  option1={"Sie"}
-                  option2={"Du (mit großem D)"}
-                  option3={"du (mit kleinem d)"}
-                  option4={"du"}
-                  option5={"keine direkte Ansprache"}
+                  option1={"You (formal)"}
+                  option2={"You (with a capital Y)"}
+                  option3={"you (with a lowercase y)"}
+                  option4={"you"}
+                  option5={"no direct address"}
                   value={props.values.speech}
                   errors={props.errors.speech}
                   onChange={props.handleChange}
                 />
                 <GroupDropdownField
-                  label={"Schreibperspektive"}
+                  label={t("onboardingPage.onboardingForm.sections.0.fields.1.label")}
                   placeholder={"Hier schreiben"}
                   type={"text"}
                   id={"perspective"}
@@ -150,16 +147,16 @@ const OnboardingForm = () => {
                   value={props.values.perspective}
                   errors={props.errors.perspective}
                   onChange={props.handleChange}
-                  option1={"wir/unser Shop/unser Unternehmen"}
-                  option2={"das Unternehmen/der Shop"}
-                  option3={"die Redaktion"}
-                  option4={"Ich"}
+                  option1={"we/our shop/our company"}
+                  option2={"the company/the shop"}
+                  option3={"the editorial team"}
+                  option4={"I"}
                   option5={"neutral"}
-                  option6={"einheitlich/aber grundsätzlich irrelevant"}
+                  option6={"uniform/but generally irrelevant"}
                 />
                 <div className="w-full flex flex-col gap-1">
                   <label className="text-custom-black text-sm lg:text-sm font-semibold 2xl:font-semibold">
-                    Projekt
+                  {t("onboardingPage.onboardingForm.sections.0.fields.2.label")}
                     <span className="text-red-600 text:lg 2xl:text-[17px] mt-6 pl-1">
                       *
                     </span>
@@ -169,7 +166,7 @@ const OnboardingForm = () => {
                     type={"text"}
                     id={"project"}
                     name={"project"}
-                    placeholder={"Beispiel.com"}
+                    placeholder= {t("onboardingPage.onboardingForm.sections.0.fields.2.placeholder")}
                     value={projectName}
                     disabled={projectName ? true : false}
                   />
@@ -177,8 +174,8 @@ const OnboardingForm = () => {
                 {plan === null ? (
                   <>
                     <GroupField
-                      label={"Gewünschtes Stichwort"}
-                      placeholder={"Beispiel-Stichwort"}
+                      label={t("onboardingPage.onboardingForm.sections.0.fields.3.label")}
+                      placeholder={t("onboardingPage.onboardingForm.sections.0.fields.3.placeholder")}
                       id={"keyword"}
                       name={"keyword"}
                       value={props.values.keyword}
@@ -191,17 +188,17 @@ const OnboardingForm = () => {
                     />
 
                     <GroupDropdownField
-                      label={"Schlüsselworttyp"}
+                      label={t("onboardingPage.onboardingForm.sections.0.fields.4.label")}
                       type={"text"}
                       id={"keywordType"}
                       name={"keywordType"}
                       placeholder={""}
-                      option1="Leitfaden"
-                      option2="Shop (Kategorie)"
-                      option3="Shop (Produkt)"
+                      option1="Guide"
+                      option2="Shop (Category)"
+                      option3="Shop (Product)"
                       option4="Definition/Wiki"
-                      option5="Shop (Startseite)"
-                      option6="CMS-Seite"
+                      option5="Shop (Homepage)"
+                      option6="CMS Page"
                       value={props.values.keywordType}
                       errors={props.errors.keywordType}
                       onChange={props.handleChange}
@@ -212,14 +209,12 @@ const OnboardingForm = () => {
 
               <div className="flex flex-col gap-5">
                 <h2 className="text-custom-black text-base font-semibold lg:mt-3.5">
-                  2. Informationen zum Unternehmen:
+                {t("onboardingPage.onboardingForm.sections.1.title")}
                 </h2>
                 <GroupTextArea
-                  label={"Hintergrundinformationen zum Unternehmen"}
+                  label={t("onboardingPage.onboardingForm.sections.1.fields.0.label")}
                   type={"text"}
-                  placeholder={
-                    "Bitte beschreiben Sie hier, idealerweise in nur einem Satz, was Ihr Unternehmen tut, was es anbietet und wie es dem Kunden hilft."
-                  }
+                  placeholder={t("onboardingPage.onboardingForm.sections.1.fields.0.placeholder")}
                   id={"companyInfo"}
                   name={"companyInfo"}
                   value={props.values.companyInfo}
@@ -232,13 +227,9 @@ const OnboardingForm = () => {
                 />
 
                 <GroupTextArea
-                  label={
-                    "Welche Attribute beschreiben euch als Unternehmen/eure Produkte/eure Leistung am besten?"
-                  }
+                  label={t("onboardingPage.onboardingForm.sections.1.fields.1.label")}
                   type={"text"}
-                  placeholder={
-                    "Bitte nennen Sie so viele Merkmale, wie Sie möchten, die Leser über Ihr Unternehmen und Ihre Produkte wahrnehmen sollen."
-                  }
+                  placeholder={t("onboardingPage.onboardingForm.sections.1.fields.1.placeholder")}
                   id={"companyAttributes"}
                   name={"companyAttributes"}
                   value={props.values.companyAttributes}
@@ -250,11 +241,9 @@ const OnboardingForm = () => {
                   }}
                 />
                 <GroupTextArea
-                  label={"Was sind eure Leistungen?"}
+                  label={t("onboardingPage.onboardingForm.sections.1.fields.2.label")}
                   type={"text"}
-                  placeholder={
-                    "Bitte listen Sie alle online angebotenen Dienstleistungen auf."
-                  }
+                  placeholder={t("onboardingPage.onboardingForm.sections.1.fields.2.placeholder")}
                   id={"services"}
                   name={"services"}
                   value={props.values.services}
@@ -269,14 +258,12 @@ const OnboardingForm = () => {
 
               <div className="flex flex-col gap-5">
                 <h2 className="text-custom-black text-base font-semibold lg:mt-3.5">
-                  3. Informationen zu den Zielkunden:
+                {t("onboardingPage.onboardingForm.sections.2.title")}
                 </h2>
                 <GroupTextArea
-                  label={"Für wen sind die Inhalte geschrieben?"}
+                  label={t("onboardingPage.onboardingForm.sections.2.fields.0.label")}
                   type={"text"}
-                  placeholder={
-                    "Bitte beschreiben Sie die Zielgruppe so genau wie möglich."
-                  }
+                  placeholder={t("onboardingPage.onboardingForm.sections.2.fields.0.placeholder")}
                   id={"content"}
                   name={"content"}
                   value={props.values.content}
@@ -289,13 +276,9 @@ const OnboardingForm = () => {
                 />
 
                 <GroupTextArea
-                  label={
-                    "Kunden, die wir ansprechen möchten, haben ein Interesse daran..."
-                  }
+                  label={t("onboardingPage.onboardingForm.sections.2.fields.1.label")}
                   type={"text"}
-                  placeholder={
-                    "Bitte listen Sie hier in Bullet-Points auf, welche Probleme Sie für die Kunden lösen."
-                  }
+                  placeholder={t("onboardingPage.onboardingForm.sections.2.fields.1.placeholder")}
                   id={"customers"}
                   name={"customers"}
                   value={props.values.customers}
@@ -310,14 +293,12 @@ const OnboardingForm = () => {
 
               <div className="flex flex-col gap-5">
                 <h2 className="text-custom-black text-base font-semibold lg:mt-3.5">
-                  4. Ziel des Inhalts
+                {t("onboardingPage.onboardingForm.sections.3.title")}
                 </h2>
                 <GroupTextArea
-                  label={"Was ist das Ziel der Inhalte?"}
+                  label={t("onboardingPage.onboardingForm.sections.3.fields.0.label")}
                   type={"text"}
-                  placeholder={
-                    "Bitte beschreiben Sie hier kurz, wie die organischen Kunden/Leser idealerweise reagieren sollten, wenn sie auf Ihrer Seite landen."
-                  }
+                  placeholder={t("onboardingPage.onboardingForm.sections.3.fields.0.placeholder")}
                   id={"contentPurpose"}
                   name={"contentPurpose"}
                   value={props.values.contentPurpose}
@@ -330,11 +311,9 @@ const OnboardingForm = () => {
                 />
 
                 <GroupTextArea
-                  label={"Informationen über deine Marke und deine Inhaltet"}
+                  label={t("onboardingPage.onboardingForm.sections.3.fields.1.label")}
                   type={"text"}
-                  placeholder={
-                    "Bitte geben Sie uns Bullet-Points, wie potenzielle Leser den Inhalt beschreiben sollten, den sie konsumieren."
-                  }
+                  placeholder={t("onboardingPage.onboardingForm.sections.3.fields.1.placeholder")}
                   id={"brand"}
                   name={"brand"}
                   value={props.values.brand}
@@ -358,7 +337,7 @@ const OnboardingForm = () => {
                       <div className="w-6 h-6 border-2 border-white border-solid rounded-full border-t-transparent animate-spin" />
                     </div>
                   ) : (
-                    "Jetzt absenden"
+                    t("onboardingPage.onboardingForm.buttons.submit")
                   )}
                 </button>
 
@@ -369,7 +348,7 @@ const OnboardingForm = () => {
                 )}
               </div>
               <p className="text-custom-black text-sm 3xl:text-base font-medium text-center">
-                Bitte überprüfe deine Daten vor dem Absenden auf Richtigkeit.
+                {t("onboardingPage.onboardingForm.formReminder")}
               </p>
             </div>
           </Form>

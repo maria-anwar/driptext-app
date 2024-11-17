@@ -500,7 +500,7 @@
     }
   },
   "clientRegister": {
-    "pageTitle": "Order Sample Text",    
+    "pageTitle": "Order Sample Text",
     "title": "Order Your Free Sample Text Worth €105.00",
     "description": "Please send us all the information about your sample text. We will get to work right away to create an excellent sample text for you!",
     "subheading": "Please answer the following questions for the briefing:",
@@ -525,7 +525,7 @@
         "project": "Please enter your project",
         "keyword": "Please enter a keyword",
         "email": "Please enter a email address",
-        "emailValid":"Enter a valid email",
+        "emailValid": "Enter a valid email",
         "fname": "Please enter your first name",
         "lname": "Please enter your last name"
       },
@@ -538,36 +538,311 @@
       }
     }
   },
-  "header": "Order Free Sample Text"
-  ,
+  "header": "Order Free Sample Text",
+  "footer": {
+    "companyDescription": "DripText is your reliable partner for high-quality, SEO-optimized content that your users and the search engine like – guaranteed!",
+    "navigation": {
+      "title": "Navigation",
+      "links": [
+        "Home",
+        "Magazine",
+        "Services",
+        "The Team",
+        "Authors"
+      ]
+    },
+    "address": {
+      "title": "Address",
+      "line1": "DripText Ltd.",
+      "line2": "Makariou Avenue 59,",
+      "line3": "Mouyias Tower, 3rd Floor,",
+      "line4": "Office 301",
+      "line5": "6017 Larnaca, Cyprus"
+    },
+    "legal": {
+      "title": "Legal",
+      "links": [
+        "Conditions",
+        "Imprint",
+        "Data Protection",
+        "Cookie Settings"
+      ]
+    }
+  },
+  "onboardingPage": {
+    "title": "Onboarding for Clients",
+    "thankYouMessage": {
+      "heading": "Thank you for your booking!",
+      "subheading": "Here’s what’s next:",
+      "description": "Please fill out the onboarding form below so we can better understand your company and your content goals."
+    },
+    "welcomeMessage": {
+      "heading": "Welcome to our platform!",
+      "subheading": "To access your account and explore more:",
+      "description": "Please log in to your account or register if you don't have one yet. This will give you access to your personal dashboard and allow you to manage your bookings."
+    },
+    "buttons": {
+      "register": "Register",
+      "login": "Login"
+    },
+    "onboardingForm": {
+      "sections": [
+        {
+          "title": "1. General Information",
+          "fields": [
+            {
+              "label": "Salutation",
+              "options": [
+                "You (formal)",
+                "You (with a capital Y)",
+                "you (with a lowercase y)",
+                "you",
+                "no direct address"
+              ]
+            },
+            {
+              "label": "Writing Perspective",
+              "options": [
+                "we/our shop/our company",
+                "the company/the shop",
+                "the editorial team",
+                "I",
+                "neutral",
+                "uniform/but generally irrelevant"
+              ]
+            },
+            {
+              "label": "Project",
+              "required": true,
+              "placeholder": "Example.com"
+            },
+            {
+              "label": "Desired Keyword",
+              "required": false,
+              "placeholder": "Example Keyword"
+            },
+            {
+              "label": "Keyword Type",
+              "options": [
+                "Guide",
+                "Shop (Category)",
+                "Shop (Product)",
+                "Definition/Wiki",
+                "Shop (Homepage)",
+                "CMS Page"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "2. Company Information",
+          "fields": [
+            {
+              "label": "Background Information about the Company",
+              "placeholder": "Please describe here, ideally in one sentence, what your company does, what it offers, and how it helps the customer."
+            },
+            {
+              "label": "What attributes best describe your company/your products/your services?",
+              "placeholder": "Please list as many characteristics as you want that you would like readers to perceive about your company and your products."
+            },
+            {
+              "label": "What are your services?",
+              "placeholder": "Please list all online services offered."
+            }
+          ]
+        },
+        {
+          "title": "3. Information about Target Customers",
+          "fields": [
+            {
+              "label": "Who are the contents written for?",
+              "placeholder": "Please describe the target audience as precisely as possible."
+            },
+            {
+              "label": "Customers we want to target are interested in...",
+              "placeholder": "Please list here, in bullet points, the problems you are solving for customers."
+            }
+          ]
+        },
+        {
+          "title": "4. Purpose of the Content",
+          "fields": [
+            {
+              "label": "What is the goal of the content?",
+              "placeholder": "Please briefly describe how organic customers/readers should ideally react when they land on your page."
+            },
+            {
+              "label": "Information about your brand and your content",
+              "placeholder": "Please provide bullet points on how potential readers should describe the content they consume."
+            }
+          ]
+        }
+      ],
+      "buttons": {
+        "submit": "Submit Now",
+        "loading": "Loading...",
+        "error": "The server responded with an error"
+      },
+      "validationMessages": {
+        "speech": "Please select the salutation",
+        "perspective": "Please specify the perspective",
+        "companyInfo": "Please provide information about the company",
+        "companyAttributes": "Please provide the attributes of the company",
+        "services": "Please provide the services of the company",
+        "content": "The information above is required",
+        "customers": "The information above is required",
+        "contentPurpose": "The information above is required",
+        "brand": "The information above is required"
+      },
+      "errorMessages": {
+        "generalError": "The server responded with an error",
+        "validationError": "Error in validating the data"
+      },
+      "formReminder": "Please check your data for accuracy before submitting."
+    }
+  },
+  "packageBooking": {
+    "logoAltText": "Logo",
+    "pageTitle":"Package Booking",
+    "header": {
+      "title": "Book the DripText package of your choice now",
+      "description": "If you have any questions or problems when booking, please contact us by email."
+    },
+    "buttonLabels": [
+      "texts per month"
+    ],
+    "plansForTexts": {
+      "4": [
+        {
+          "name": "3 months duration",
+          "price": "420€",
+          "month": "per month",
+          "wordPrice": "Word price: 0.07 EUR/net",
+          "features": 4
+        },
+        {
+          "name": "6 months term",
+          "price": "360€",
+          "month": "per month",
+          "wordPrice": "Word price: 0.06 EUR/net",
+          "features": 4
+        },
+        {
+          "name": "12 months term",
+          "price": "300€",
+          "month": "per month",
+          "wordPrice": "Word price: 0.05 EUR/net",
+          "features": 4,
+          "bestValue": true
+        }
+      ],
+      "8": [
+        {
+          "name": "3 months duration",
+          "price": "840€",
+          "month": "per month",
+          "wordPrice": "Word price: 0.07 EUR/net",
+          "features": 8
+        },
+        {
+          "name": "6 months term",
+          "price": "720€",
+          "month": "per month",
+          "wordPrice": "Word price: 0.06 EUR/net",
+          "features": 8
+        },
+        {
+          "name": "12 months term",
+          "price": "600€",
+          "month": "per month",
+          "wordPrice": "Word price: 0.05 EUR/net",
+          "features": 8,
+          "bestValue": true
+        }
+      ],
+      "12": [
+        {
+          "name": "3 months duration",
+          "price": "1260€",
+          "month": "per month",
+          "wordPrice": "Word price: 0.07 EUR/net",
+          "features": 12
+        },
+        {
+          "name": "6 months term",
+          "price": "1080€",
+          "month": "per month",
+          "wordPrice": "Word price: 0.06 EUR/net",
+          "features": 12
+        },
+        {
+          "name": "12 months term",
+          "price": "900€",
+          "month": "per month",
+          "wordPrice": "Word price: 0.05 EUR/net",
+          "features": 12,
+          "bestValue": true
+        }
+      ]
+    },
     "footer": {
-      "companyDescription": "DripText is your reliable partner for high-quality, SEO-optimized content that your users and the search engine like – guaranteed!",
-      "navigation": {
-        "title": "Navigation",
-        "links": [
-          "Home",
-          "Magazine",
-          "Services",
-          "The Team",
-          "Authors"
-        ]
+      "disclaimer": {
+        "text": "By submitting the order, I agree to the",
+        "termsLinkText": "general terms and conditions",
+        "additionalText": "of DripText Ltd. and understand that our offers are aimed exclusively at commercial customers. All prices are exclusive of VAT. Sales only to entrepreneurs, tradespeople, associations, authorities or self-employed persons (§ 14 BGB). No sales to consumers within the meaning of § 13 BGB."
       },
-      "address": {
-        "title": "Address",
-        "line1": "DripText Ltd.",
-        "line2": "Makariou Avenue 59,",
-        "line3": "Mouyias Tower, 3rd Floor,",
-        "line4": "Office 301",
-        "line5": "6017 Larnaca, Cyprus"
+      "footerLinks": [
+        {
+          "label": "Conditions",
+          "href": "/conditions"
+        },
+        {
+          "label": "Imprint",
+          "href": "/imprint"
+        },
+        {
+          "label": "Data protection",
+          "href": "/data-protection"
+        },
+        {
+          "label": "Cookie settings",
+          "href": "/cookie-settings"
+        }
+      ]
+    },
+    "pricingCard": {
+      "popularLabel": "POPULAR",
+      "cardHeading": {
+        "title": "Plan Name",
+        "wordPrice": "Word price: 0.07 EUR/net"
       },
-      "legal": {
-        "title": "Legal",
-        "links": [
-          "Conditions",
-          "Imprint",
-          "Data Protection",
-          "Cookie Settings"
-        ]
+      "priceDetails": {
+        "price": "420€",
+        "month": "per month"
+      },
+      "features": {
+        "seoText": ["SEO-optimized texts","per month with at least 1,500 words per text"],
+        "proofreading": ["Proofreading","using the 6-eyes principle"],
+        "keywordAnalysis": ["Detailed","keyword analysis"],
+        "editorialPlan": ["Creation of an","editorial plan"],
+        "customerBackend": ["Own", "customer backend"],
+        "reliability": ["100%","reliability"],
+        "satisfactionGuarantee": ["Incl.","satisfaction guarantee"]
+      },
+      "buttons": {
+        "orderNow": "Order now"
+      },
+      "propTypes": {
+        "plan": {
+          "name": "string",
+          "month": "string",
+          "price": "string",
+          "wordPrice": "string",
+          "description": "string",
+          "features": "number",
+          "bestValue": "boolean"
+        }
       }
-    }  
+    }
+  }
 }

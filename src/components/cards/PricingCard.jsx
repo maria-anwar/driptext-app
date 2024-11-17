@@ -1,23 +1,23 @@
 import PropTypes from "prop-types";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 const PricingCard = ({ plan }) => {
-  
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
 
-
   const handleSelectPlan = () => {
-
-    const duration = plan.name.split(" months")[0] + (" months")
+    const duration = plan.name.split(" months")[0] + " months";
     navigate(
       `/bestellformular?texts=${plan.features} texts per month with at least 1,500 words per text&duration=${duration}`
     );
-  }
+  };
 
   return (
     <div className="relative mx-3 rounded-lg my-4 justify-self-center shadow-2xl shadow-slate-400 bg-blend-multiply overflow-hidden">
       {plan.bestValue && (
         <div className="absolute -left-7.5 top-4.5 -rotate-45 bg-black text-white text-xs px-8 py-1 font-semibold">
-          POPULAR
+          {t("packageBooking.pricingCard.popularLabel")}
         </div>
       )}
       <div className="bg-cardHeading text-white text-center py-6 rounded-t-lg w-full">
@@ -35,41 +35,48 @@ const PricingCard = ({ plan }) => {
           <li className="text-gray-700 pt-4">
             {" "}
             <span className="text-slate-900 font-semibold">
-              {plan.features} SEO-optimized texts
+              {plan.features}{" "}
+              {t("packageBooking.pricingCard.features.seoText.0")}
             </span>{" "}
-            per month with at least 1,500 words per text
+            {t("packageBooking.pricingCard.features.seoText.1")}
           </li>
           <li className="text-gray-700 pt-4">
             {" "}
             <span className="text-slate-900 font-semibold">
-              Proofreading
+              {t("packageBooking.pricingCard.features.proofreading.0")}
             </span>{" "}
-            using the 6-eyes principle
+            {t("packageBooking.pricingCard.features.proofreading.1")}
           </li>
           <li className="text-gray-700 pt-4">
-            Detailed{" "}
+            {t("packageBooking.pricingCard.features.keywordAnalysis.0")}{" "}
             <span className="text-slate-900 font-semibold">
-              keyword analysis
+              {t("packageBooking.pricingCard.features.keywordAnalysis.1")}
             </span>
           </li>
           <li className="text-gray-700 pt-4">
-            Creation of an{" "}
-            <span className="text-slate-900 font-semibold">editorial plan</span>
-          </li>
-          <li className="text-gray-700 pt-4">
-            Own{" "}
+            {t("packageBooking.pricingCard.features.editorialPlan.0")}{" "}
             <span className="text-slate-900 font-semibold">
-              customer backend
+              {" "}
+              {t("packageBooking.pricingCard.features.editorialPlan.1")}
             </span>
           </li>
           <li className="text-gray-700 pt-4">
-            100%{" "}
-            <span className="text-slate-900 font-semibold">reliability</span>
+            {t("packageBooking.pricingCard.features.customerBackend.0")}{" "}
+            <span className="text-slate-900 font-semibold">
+              {t("packageBooking.pricingCard.features.customerBackend.1")}
+            </span>
           </li>
           <li className="text-gray-700 pt-4">
-            Incl.{" "}
+            {t("packageBooking.pricingCard.features.reliability.0")}{" "}
             <span className="text-slate-900 font-semibold">
-              satisfaction guarantee
+              {" "}
+              {t("packageBooking.pricingCard.features.reliability.1")}
+            </span>
+          </li>
+          <li className="text-gray-700 pt-4">
+            {t("packageBooking.pricingCard.features.satisfactionGuarantee.0")}{" "}
+            <span className="text-slate-900 font-semibold">
+              {t("packageBooking.pricingCard.features.satisfactionGuarantee.1")}
             </span>
           </li>
         </ul>
@@ -77,12 +84,12 @@ const PricingCard = ({ plan }) => {
           onClick={handleSelectPlan}
           className="w-2/3 mt-4 bg-gradient-to-r from-buttonStart to-buttonEnd text-white py-4 px-4 rounded-lg font-medium "
         >
-          Order now
+          {t("packageBooking.pricingCard.buttons.orderNow")}
         </button>
       </div>
     </div>
   );
-}
+};
 
 PricingCard.propTypes = {
   plan: PropTypes.shape({

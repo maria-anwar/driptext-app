@@ -24,10 +24,15 @@ const OrderBooking = () => {
             Bestellformular für Ihre DripText
           </h1>
           <p className="text-center text-custom-black text-lg px-2">
-            Füllen Sie das untenstehende Formular aus, um die gewünschte Anzahl an DripText jeden Monat zu erhalten.
+            Füllen Sie das untenstehende Formular aus, um die gewünschte Anzahl
+            an DripText jeden Monat zu erhalten.
           </p>
           <p className="text-center text-dark-blue text-lg px-2">
-            <span className="text-center text-custom-black font-bold">Hinweis:&nbsp;</span>Unser Service richtet sich ausschließlich an Unternehmen. Wir verkaufen nicht an Privatpersonen.
+            <span className="text-center text-custom-black font-bold">
+              Hinweis:&nbsp;
+            </span>
+            Unser Service richtet sich ausschließlich an Unternehmen. Wir
+            verkaufen nicht an Privatpersonen.
           </p>
         </div>
         <OrderForm />
