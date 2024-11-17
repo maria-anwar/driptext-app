@@ -3,86 +3,90 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import PricingCard from "../../components/cards/PricingCard";
 import useTitle from "../../hooks/useTitle";
+import { useTranslation } from "react-i18next";
 
-const plansForTexts = {
-  4: [
-    {
-      name: "3 months duration",
-      price: "420€ ",
-      month: "per month",
-      wordPrice: "Word price: 0.07 EUR/net",
-      features: 4
-    },
-    {
-      name: "6 months term",
-      price: "360€ ",
-      month: "per month",
-      wordPrice: "Word price: 0.06 EUR/net",
-      features: 4
-    },
-    {
-      name: "12 months term",
-      price: "300€",
-      month: "per month",
-      wordPrice: "Word price: 0.05 EUR/net",
-      features: 4,
-      bestValue: true,
-    },
-  ],
-  8: [
-    {
-      name: "3 months duration",
-      price: "840€ ",
-      month: "per month",
-      wordPrice: "Word price: 0.07 EUR/net",
-      features: 8
-    },
-    {
-      name: "6 months term",
-      price: "720€ ",
-      month: "per month",
-      wordPrice: "Word price: 0.06 EUR/net",
-      features: 8
-    },
-    {
-      name: "12 months term",
-      price: "600€ ",
-      month: "per month",
-      wordPrice: "Word price: 0.05 EUR/net",
-      features: 8,
-      bestValue: true,
-    },
-  ],
-  12: [
-    {
-      name: "3 months duration",
-      price: "1260€ ",
-      month: "per month",
-      wordPrice: "Word price: 0.07 EUR/net",
-      features: 12
-    },
-    {
-      name: "6 months term",
-      price: "1080€ ",
-      month: "per month",
-      wordPrice: "Word price: 0.06 EUR/net",
-      features:12
-    },
-    {
-      name: "12 months term",
-      price: "900€ ",
-      month: "per month",
-      wordPrice: "Word price: 0.05 EUR/net",
-      features: 12,
-      bestValue: true,
-    },
-  ],
-};
+
 
 const PackageBooking = () => {
-  useTitle("Package Booking");
+  const {t} = useTranslation();
+  useTitle(t("packageBooking.pageTitle"));
   const [selectedTexts, setSelectedTexts] = useState(8);
-
+  const plansForTexts = {
+    4: [
+      {
+        name: t("packageBooking.plansForTexts.4.0.name"),
+        price: t("packageBooking.plansForTexts.4.0.price"),
+        month: t("packageBooking.plansForTexts.4.0.month"),
+        wordPrice: t("packageBooking.plansForTexts.4.0.wordPrice"),
+        features: t("packageBooking.plansForTexts.4.0.features"),
+      },
+      {
+        name: t("packageBooking.plansForTexts.4.1.name"),
+        price: t("packageBooking.plansForTexts.4.1.price"),
+        month: t("packageBooking.plansForTexts.4.1.month"),
+        wordPrice: t("packageBooking.plansForTexts.4.1.wordPrice"),
+        features: t("packageBooking.plansForTexts.4.1.features"),
+      },
+      {
+        name: t("packageBooking.plansForTexts.4.2.name"),
+        price: t("packageBooking.plansForTexts.4.2.price"),
+        month: t("packageBooking.plansForTexts.4.2.month"),
+        wordPrice: t("packageBooking.plansForTexts.4.2.wordPrice"),
+        features: t("packageBooking.plansForTexts.4.2.features"),
+        bestValue: true,
+      },
+    ],
+    8: [
+      {
+       name: t("packageBooking.plansForTexts.8.0.name"),
+        price: t("packageBooking.plansForTexts.8.0.price"),
+        month: t("packageBooking.plansForTexts.8.0.month"),
+        wordPrice: t("packageBooking.plansForTexts.8.0.wordPrice"),
+        features: t("packageBooking.plansForTexts.8.0.features"),
+      },
+      {
+        name: t("packageBooking.plansForTexts.8.1.name"),
+        price: t("packageBooking.plansForTexts.8.1.price"),
+        month: t("packageBooking.plansForTexts.8.1.month"),
+        wordPrice: t("packageBooking.plansForTexts.8.1.wordPrice"),
+        features: t("packageBooking.plansForTexts.8.1.features"),
+      },
+      {
+        
+        name: t("packageBooking.plansForTexts.8.2.name"),
+        price: t("packageBooking.plansForTexts.8.2.price"),
+        month: t("packageBooking.plansForTexts.8.2.month"),
+        wordPrice: t("packageBooking.plansForTexts.8.2.wordPrice"),
+        features: t("packageBooking.plansForTexts.8.2.features"),
+        bestValue: true,
+      },
+    ],
+    12: [
+      {
+        name: t("packageBooking.plansForTexts.12.0.name"),
+        price: t("packageBooking.plansForTexts.12.0.price"),
+        month: t("packageBooking.plansForTexts.12.0.month"),
+        wordPrice: t("packageBooking.plansForTexts.12.0.wordPrice"),
+        features: t("packageBooking.plansForTexts.12.0.features"),
+      },
+      {
+        name: t("packageBooking.plansForTexts.12.1.name"),
+        price: t("packageBooking.plansForTexts.12.1.price"),
+        month: t("packageBooking.plansForTexts.12.1.month"),
+        wordPrice: t("packageBooking.plansForTexts.12.1.wordPrice"),
+        features: t("packageBooking.plansForTexts.12.1.features"),
+      },
+      {
+       
+        name: t("packageBooking.plansForTexts.12.2.name"),
+        price: t("packageBooking.plansForTexts.12.2.price"),
+        month: t("packageBooking.plansForTexts.12.2.month"),
+        wordPrice: t("packageBooking.plansForTexts.12.2.wordPrice"),
+        features: t("packageBooking.plansForTexts.12.2.features"),
+        bestValue: true,
+      },
+    ],
+  };
   return (
     <div>
       <Link to="/" className=" items-center ">
@@ -96,11 +100,10 @@ const PackageBooking = () => {
       <div className="w-full flex-col justify-center px-1 xxs:px-2 xs:px-3 sm:px-5 md:px-6 lg:px-7 xl:px-9 2xl:px-14 3xl:px-20 4xl:px-52">
         <div className="text-center mb-8  ">
           <h1 className="text-3xl font-bold my-4 text-slate-700">
-            Book the DripText package of your choice now
+           {t("packageBooking.header.title")}
           </h1>
           <p className="text-lg text-slate-700">
-            If you have any questions or problems when booking, please contact
-            us by email .
+          {t("packageBooking.header.description")}
           </p>
           <div className="flex flex-col sm:flex-row justify-center mt-10 ">
             {[4, 8, 12].map((plan) => (
@@ -113,7 +116,7 @@ const PackageBooking = () => {
                     : " bg-slate-200 text-gray-700 text-slate-700"
                 } mx-2 mb-2 sm:mb-0`}
               >
-                {`${plan} texts per month`}
+                {`${plan} ${t("packageBooking.buttonLabels.0")}`}
               </button>
             ))}
           </div>
@@ -126,12 +129,8 @@ const PackageBooking = () => {
 
         <div className="xxs:px-6 2xl:px-40 mt-8">
           <p className="text-sm text-center text-slate-700 lg:px-12">
-            By submitting the order, I agree to the<span className="text-sky-600"> general terms and conditions </span> 
-            of DripText Ltd. and understand that our offers are aimed
-            exclusively at commercial customers. All prices are exclusive of
-            VAT. Sales only to entrepreneurs, tradespeople, associations,
-            authorities or self-employed persons (§ 14 BGB). No sales to
-            consumers within the meaning of § 13 BGB.
+            {t('packageBooking.footer.disclaimer.text')}<span className="text-sky-600"> {t('packageBooking.footer.disclaimer.termsLinkText')} </span> 
+            {t('packageBooking.footer.disclaimer.additionalText')}
           </p>
         </div>
         <div className="w-full mt-24 flex flex-col md:flex-row justify-between items-center py-8  border-gray-300 ">
@@ -141,22 +140,22 @@ const PackageBooking = () => {
 
           <div className="flex flex-col md:flex-row gap-2 md:gap-6 text-center md:text-left">
             <a href="/conditions" className="text-gray-600 hover:text-gray-800">
-              Conditions
+              {t('packageBooking.footer.footerLinks.0.label')}
             </a>
             <a href="/imprint" className="text-gray-600 hover:text-gray-800">
-              Imprint
+            {t('packageBooking.footer.footerLinks.1.label')}
             </a>
             <a
               href="/data-protection"
               className="text-gray-600 hover:text-gray-800"
             >
-              Data protection
+             {t('packageBooking.footer.footerLinks.2.label')}
             </a>
             <a
               href="/cookie-settings"
               className="text-gray-600 hover:text-gray-800"
             >
-              Cookie settings
+              {t('packageBooking.footer.footerLinks.3.label')}
             </a>
           </div>
         </div>

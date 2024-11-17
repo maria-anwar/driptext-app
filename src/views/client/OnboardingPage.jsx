@@ -3,9 +3,11 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Logo from "../../assets/homeimages/driptext.png";
 import OnboardingForm from "../../components/client-forms/OnboardingForm";
 import useTitle from "../../hooks/useTitle";
+import { useTranslation } from "react-i18next";
 
 const OnboardingPage = () => {
-  useTitle("Onboarding für Kunden");
+  const {t} = useTranslation();
+  useTitle(t("onboardingPage.title"));
   const location = useLocation();
   const { projectName, userId,role } = location.state || {};
   const navigate = useNavigate();
@@ -34,14 +36,13 @@ const OnboardingPage = () => {
           <div className="w-full flex d-flex flex-col gap-10">
             <div className="flex flex-col gap-4 px-4 xs:px-6 md:px-9">
               <h1 className="text-dark-blue text-2xl md:text-3xl font-bold text-center md:px-8">
-                Vielen Dank für deine Buchung!
+                {t("onboardingPage.thankYouMessage.heading")}
               </h1>
               <h3 className="text-center text-dark-blue text-xl font-bold">
-                So geht’s jetzt weiter:
+              {t("onboardingPage.thankYouMessage.subheading")}
               </h3>
               <p className="text-center text-dark-blue text-lg px-2">
-                Fülle das folgende Onboarding Formular aus, damit wir dein
-                Unternehmen und deine Content-Ziele besser kennenlernen.
+              {t("onboardingPage.thankYouMessage.description")}
               </p>
             </div>
             <OnboardingForm projectName={projectName} userId={userId}  />
@@ -62,16 +63,13 @@ const OnboardingPage = () => {
           <div className="w-full flex flex-col gap-10">
             <div className="flex flex-col gap-4 px-4 xs:px-6 md:px-9">
               <h1 className="text-dark-blue text-2xl md:text-3xl font-bold text-center md:px-8">
-                Willkommen auf unserer Plattform!
+              {t("onboardingPage.welcomeMessage.heading")}
               </h1>
               <h3 className="text-center text-dark-blue text-xl font-bold">
-                Um auf Ihr Konto zuzugreifen und mehr zu entdecken:
+              {t("onboardingPage.welcomeMessage.subheading")}
               </h3>
               <p className="text-center text-dark-blue text-lg px-2">
-                Bitte melden Sie sich in Ihrem Konto an oder registrieren Sie
-                sich, wenn Sie noch keines haben. Dadurch erhalten Sie Zugriff
-                auf Ihr persönliches Dashboard und können Ihre Buchungen
-                verwalten.
+              {t("onboardingPage.welcomeMessage.description")}
               </p>
             </div>
           </div>
@@ -81,13 +79,13 @@ const OnboardingPage = () => {
               onClick={() => navigate("/probetext")}
               className="w-full md:w-[50%] bg-[#07B6D4] rounded-full mx-auto text-center text-white py-2 mb-3"
             >
-              Registrieren
+               {t("onboardingPage.buttons.register")}
             </button>
             <button
               onClick={() => navigate("/")}
               className="w-full md:w-[50%] bg-[#07B6D4] rounded-full mx-auto text-center text-white py-2 mb-2"
             >
-              Anmelden
+              {t("onboardingPage.buttons.login")}
             </button>
           </div>
         </div>
