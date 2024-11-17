@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import DropdownUser from "./DropdownUser";
 import DropdownNotification from "./DropdownNotification";
@@ -13,20 +13,41 @@ const Header = (props: {
   sidebarOpen: string | boolean | undefined;
   setSidebarOpen: (arg0: boolean) => void;
 }) => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState("English");
+
+  // Ref for dropdown menu
+  const dropdownRef = useRef(null);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
-  const changeYourLanguage = (language) => {
+  const changeYourLanguage = (language: string) => {
     setSelectedLanguage(language);
     changeLanguage(language);
     localStorage.setItem("Userlanguage", language);
     setIsOpen(false);
   };
+
+  // Handle click outside to close dropdown
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);  // Close dropdown if clicked outside
+      }
+    };
+
+    // Add event listener
+    document.addEventListener("mousedown", handleClickOutside);
+
+    // Cleanup event listener on component unmount
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   const tasks = [
     {
       id: "1",
@@ -41,13 +62,16 @@ const Header = (props: {
       domain: "Driptext.com | 62 - DT",
     },
   ];
+
   const [searchTerm, setSearchTerm] = useState('');
-  const handleSearchChange = (event) => {
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
   };
+
   const filteredTasks = tasks.filter(task =>
     task.domain.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
   return (
     <header className="sticky top-0 z-999 flex w-full bg-white drop-shadow-1 dark:bg-boxdark dark:drop-shadow-none">
       <div className="flex flex-grow items-center justify-between px-4 py-4 shadow-2 md:px-6 2xl:px-11">
@@ -98,7 +122,9 @@ const Header = (props: {
         </div>
 
         <div className="hidden sm:block">
+          {/* Add any content here */}
         </div>
+
         <div className="flex items-center gap-5 2xsm:gap-2">
           <ul className="flex items-center gap-y-5 gap-x-3 2xsm:gap-4">
             {/* <!-- Dark Mode Toggler --> */}
@@ -109,18 +135,18 @@ const Header = (props: {
             {/* <DropdownNotification /> */}
             {/* <!-- Notification Menu Area --> */}
           </ul>
-          {/* <!-- User Area --> */}
-          <div className="relative">
+
+          {/* Language Dropdown */}
+          <div className="relative" ref={dropdownRef}>
             <button
               onClick={toggleDropdown}
-              className="text-2xl bg-boxdark dark:bg-white  border-2 border-boxdark dark:border-white flex justify-center items-center  rounded-full"
+              className="text-2xl bg-boxdark dark:bg-white  border-2 border-boxdark dark:border-white flex justify-center items-center rounded-full"
               title="Select Language"
             >
               <FontAwesomeIcon
                 icon={faGlobe}
                 className="dark:text-black text-white"
-              />{" "}
-              {/* Font Awesome globe icon */}
+              />
             </button>
             {isOpen && (
               <div className="absolute right-0 mt-2 bg-white dark:bg-boxdark ring-1 p-4 shadow-md rounded py-2">
@@ -129,7 +155,7 @@ const Header = (props: {
                   className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left hover:text-primary"
                   title="Switch to English"
                 >
-                  English
+                  {t("English")}
                 </button>
                 <span className="block border-t border-gray-200 my-2"></span>
                 <button
@@ -137,12 +163,13 @@ const Header = (props: {
                   className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left hover:text-primary"
                   title="Switch to German"
                 >
-                  German
+                  {t("German")}
                 </button>
               </div>
             )}
           </div>
 
+          {/* User Area */}
           <DropdownUser />
           {/* <GoogleTranslate/> */}
           {/* <!-- User Area --> */}
