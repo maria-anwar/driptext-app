@@ -139,20 +139,20 @@ const PackageBooking = () => {
           </div>
 
           <div className="flex flex-col md:flex-row gap-2 md:gap-6 text-center md:text-left">
-            <a href="/conditions" className="text-gray-600 hover:text-gray-800">
+            <a target="_blank" href="https://driptext.de/agb/"className="text-gray-600 hover:text-gray-800">
               {t('packageBooking.footer.footerLinks.0.label')}
             </a>
-            <a href="/imprint" className="text-gray-600 hover:text-gray-800">
+            <a target="_blank" href="https://driptext.de/impressum/"className="text-gray-600 hover:text-gray-800">
             {t('packageBooking.footer.footerLinks.1.label')}
             </a>
             <a
-              href="/data-protection"
+              target="_blank" href="https://driptext.de/datenschutz/"
               className="text-gray-600 hover:text-gray-800"
             >
              {t('packageBooking.footer.footerLinks.2.label')}
             </a>
             <a
-              href="/cookie-settings"
+              target="_blank" href="https://driptext.de/datenschutz/" 
               className="text-gray-600 hover:text-gray-800"
             >
               {t('packageBooking.footer.footerLinks.3.label')}

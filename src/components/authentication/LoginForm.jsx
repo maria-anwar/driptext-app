@@ -198,12 +198,12 @@ const LoginForm = () => {
       </Formik>
 
       <div className="xl:hidden w-full flex justify-center gap-2.5 p-4 text-sm text-gray-700  border-gray-200">
-        <Link to="/imprint" className="hover:underline">
+        <a href="https://driptext.de/impressum/" target="_blank" className="hover:underline">
           {t("signIn.links.imprint")}
-        </Link>
-        <Link to="/privacy-policy" className=" hover:underline">
+        </a>
+        <a href="https://driptext.de/datenschutz/"  target="_blank" className=" hover:underline">
           {t("signIn.links.privacyPolicy")}
-        </Link>
+        </a>
       </div>
     </div>
   );
