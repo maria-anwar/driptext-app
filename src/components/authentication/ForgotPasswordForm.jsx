@@ -14,8 +14,10 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { useTranslation } from "react-i18next";
 
 const ForgotPasswordForm = () => {
+  const { t } = useTranslation();
   const [token, setToken] = useState("");
   const navigate = useNavigate();
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -46,14 +48,15 @@ const ForgotPasswordForm = () => {
 
   const validationSchema = Yup.object().shape({
     password: Yup.string()
-      .min(8, "Das Passwort muss mindestens 8 Zeichen lang sein")
-      .required("Passwort ist erforderlich"),
-      
+      .min(8, t("forgotPasswordPage.forgotPasswordForm.password.error"))
+      .required(t("forgotPasswordPage.forgotPasswordForm.password.required")),
+
     reEnterPass: Yup.string()
-      .min(8, "Das Passwort muss mindestens 8 Zeichen lang sein")
-      .required("Bitte Passwort erneut eingeben"),
+      .min(8, t("forgotPasswordPage.forgotPasswordForm.reEnterPassword.error"))
+      .required(
+        t("forgotPasswordPage.forgotPasswordForm.reEnterPassword.required")
+      ),
   });
-  
 
   const onSubmit = async (values) => {
     setError(false);
@@ -63,19 +66,26 @@ const ForgotPasswordForm = () => {
     };
 
     if (values.password !== values.reEnterPass) {
-      const errorMessage = 'Beide Passwörter stimmen nicht überein';
+      const errorMessage = t(
+        "forgotPasswordPage.forgotPasswordForm.errorMessages.passwordMismatch"
+      );
       setError(true);
       setErrorMesssage(errorMessage);
       return;
     }
     try {
-      const response = await axios.post(`${import.meta.env.VITE_DB_URL}/auth/reset/password/${token}`, passwordValue);
-      localStorage.removeItem('key')
-      localStorage.removeItem('auth')
+      const response = await axios.post(
+        `${import.meta.env.VITE_DB_URL}/auth/reset/password/${token}`,
+        passwordValue
+      );
+      localStorage.removeItem("key");
+      localStorage.removeItem("auth");
       navigate("/");
     } catch (error) {
       const errorMessage =
-        error.response?.data?.message || error.message || "Fehler beim Einloggen";
+        error.response?.data?.message ||
+        error.message ||
+        t("forgotPasswordPage.forgotPasswordForm.errorMessages.generalError");
       setError(true);
       setErrorMesssage(errorMessage);
     }
@@ -98,7 +108,7 @@ const ForgotPasswordForm = () => {
                 color="blue-gray"
                 className="-mb-3 font-medium"
               >
-                Passwort
+                {t("forgotPasswordPage.forgotPasswordForm.password.label")}
               </Typography>
               <div className="relative">
                 <Input
@@ -112,11 +122,13 @@ const ForgotPasswordForm = () => {
                     setErrorMesssage("");
                   }}
                   size="lg"
-                  placeholder="********"
+                  placeholder={t(
+                    "forgotPasswordPage.forgotPasswordForm.password.placeholder"
+                  )}
                   className="outline-none ring-1 ring-black border-none focus:ring-2 focus:ring-black"
-                labelProps={{
-                  className: "before:content-none after:content-none",
-                }}
+                  labelProps={{
+                    className: "before:content-none after:content-none",
+                  }}
                 />
                 <FontAwesomeIcon
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
@@ -134,7 +146,9 @@ const ForgotPasswordForm = () => {
                 color="blue-gray"
                 className="-mb-3 font-medium"
               >
-                Passwort erneut eingeben
+                {t(
+                  "forgotPasswordPage.forgotPasswordForm.reEnterPassword.label"
+                )}
               </Typography>
               <div className="relative">
                 <Input
@@ -148,11 +162,13 @@ const ForgotPasswordForm = () => {
                     setErrorMesssage("");
                   }}
                   size="lg"
-                  placeholder="********"
+                  placeholder={t(
+                    "forgotPasswordPage.forgotPasswordForm.reEnterPassword.placeholder"
+                  )}
                   className="outline-none ring-1 ring-black border-none focus:ring-2 focus:ring-black"
-                labelProps={{
-                  className: "before:content-none after:content-none",
-                }}
+                  labelProps={{
+                    className: "before:content-none after:content-none",
+                  }}
                 />
                 <FontAwesomeIcon
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
@@ -171,7 +187,7 @@ const ForgotPasswordForm = () => {
               fullWidth
               type="submit"
             >
-              Absenden
+              {t("forgotPasswordPage.forgotPasswordForm.submitButton")}
             </Button>
             {error && (
               <div id="email" className="mt-4 text-sm text-red-500">

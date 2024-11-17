@@ -3,11 +3,13 @@ import Auth2 from '../../components/authentication/Auth2'
 import LoginForm from '../../components/authentication/LoginForm'
 import PassRequestForm from '../../components/authentication/PassRequestForm'
 import useTitle from '../../hooks/useTitle'
+import { useTranslation } from 'react-i18next'
 
 const PassRequest = () => {
-  useTitle('Passwort zurücksetzen')
+  const { t } = useTranslation();
+  useTitle(t('passRequestPage.pageTitle'))
   return (
-    <Auth2 authline={'Bitte geben Sie Ihre E-Mail-Adresse ein, damit wir Ihnen einen Link zum Zurücksetzen Ihres Passworts senden können.'}>
+    <Auth2 authline={t('passRequestPage.authline')}>
        <PassRequestForm/>
     </Auth2>
   )
