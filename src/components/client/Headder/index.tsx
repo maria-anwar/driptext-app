@@ -3,16 +3,20 @@ import { Link } from "react-router-dom";
 import DropdownUser from "./DropdownUser";
 import DropdownNotification from "./DropdownNotification";
 import DarkModeSwitcher from "./DarkModeSwitcher";
-import GoogleTranslate from '../../../GoogleTransalation';
+import GoogleTranslate from "../../../GoogleTransalation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGlobe } from "@fortawesome/free-solid-svg-icons";
-import { changeLanguage } from "../../../i18n";
+import usei18n from "../../../i18n";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import axios from "axios";
 
 const Header = (props: {
   sidebarOpen: string | boolean | undefined;
   setSidebarOpen: (arg0: boolean) => void;
 }) => {
+  const { changeLanguage } = usei18n();
+  const user = useSelector((state: any) => state.user);
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState("English");
@@ -24,18 +28,31 @@ const Header = (props: {
     setIsOpen(!isOpen);
   };
 
-  const changeYourLanguage = (language: string) => {
+  const changeYourLanguage = async (language: string) => {
     setSelectedLanguage(language);
     changeLanguage(language);
-    localStorage.setItem("Userlanguage", language);
-    setIsOpen(false);
+    const userId = {
+      userId: user.user.data.user._id,
+      language: language,
+    };
+    const res = await axios.post(
+      `${import.meta.env.VITE_DB_URL}/language/updateLanguage`,
+      userId
+    );
+    if (res.status === 200) {
+      localStorage.setItem("Userlanguage", language);
+      setIsOpen(false);
+    }
   };
 
   // Handle click outside to close dropdown
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false);  // Close dropdown if clicked outside
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false); // Close dropdown if clicked outside
       }
     };
 
@@ -63,12 +80,12 @@ const Header = (props: {
     },
   ];
 
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
   };
 
-  const filteredTasks = tasks.filter(task =>
+  const filteredTasks = tasks.filter((task) =>
     task.domain.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
@@ -121,9 +138,7 @@ const Header = (props: {
           </Link>
         </div>
 
-        <div className="hidden sm:block">
-          {/* Add any content here */}
-        </div>
+        <div className="hidden sm:block">{/* Add any content here */}</div>
 
         <div className="flex items-center gap-5 2xsm:gap-2">
           <ul className="flex items-center gap-y-5 gap-x-3 2xsm:gap-4">

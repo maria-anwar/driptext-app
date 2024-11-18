@@ -117,12 +117,24 @@ const RegisterForm = () => {
     };
 
     try {
-      await axios.post(
+      const response = await axios.post(
         `${import.meta.env.VITE_DB_URL}/freelancer/create`,
         registerData
       );
+      const userId = 
+      {
+        userId:response.data.freelancer._id,
+        language: "de"
+      }
+      const res = await axios.post(
+        `${import.meta.env.VITE_DB_URL}/language/updateLanguage`,
+         userId
+      );
+      console.log(res);
+      localStorage.setItem("Userlanguage", 'de');
+      
       setLoading(false);
-      window.location.href = "https://driptext.de/danke-freelancer/";
+      // window.location.href = "https://driptext.de/danke-freelancer/";
     } catch (error) {
       setLoading(false);
       const errorMessage =

@@ -88,6 +88,16 @@ const RegistrationForm = () => {
           `${import.meta.env.VITE_DB_URL}/users/create`,
           registerData
         );
+        const userId = 
+        {
+          userId:response.data.data._id,
+          language: "de"
+        }
+        await axios.post(
+          `${import.meta.env.VITE_DB_URL}/language/updateLanguage`,
+           userId
+        );
+        localStorage.setItem("Userlanguage", 'de');
 
         setLoading(false);
         navigate("/onboarding-probetext", {

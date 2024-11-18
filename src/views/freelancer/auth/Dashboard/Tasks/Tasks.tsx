@@ -9,8 +9,10 @@ import axios from "axios";
 import Breadcrumb from "../../../../../components/freelancer/breeadcrumbs/Breadcrumb";
 import useTitle from "../../../../../hooks/useTitle";
 import { useTranslation } from "react-i18next";
+import usei18n from "../../../../../i18n";
 
 const Tasks: React.FC = () => {
+  usei18n();
   const { t } = useTranslation();
   useTitle(t("task.pageTitle"));
   const user = useSelector((state) => state.user);
