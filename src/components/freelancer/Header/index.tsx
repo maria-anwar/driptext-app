@@ -6,12 +6,16 @@ import DarkModeSwitcher from "./DarkModeSwitcher";
 import GoogleTranslation from "../../../GoogleTransalation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGlobe } from "@fortawesome/free-solid-svg-icons";
-import { changeLanguage } from "../../../i18n";
+import usei18n  from "../../../i18n";
+import { useSelector } from "react-redux";
+import axios from "axios";
 
 const Header = (props: {
   sidebarOpen: string | boolean | undefined;
   setSidebarOpen: (arg0: boolean) => void;
 }) => {
+  const { changeLanguage } = usei18n();
+  const user = useSelector((state: any) => state.user);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState("English");
 
@@ -24,12 +28,23 @@ const Header = (props: {
   };
 
   // Change the language and close the dropdown
-  const changeYourLanguage = (language) => {
+  const changeYourLanguage = async (language: string) => {
     setSelectedLanguage(language);
     changeLanguage(language);
-    localStorage.setItem("language", language);
-    setIsOpen(false); // Close dropdown after language selection
+    const userId = {
+      userId:user.user.data.user._id,
+      language: language
+    }
+    const res = await axios.post(
+      `${import.meta.env.VITE_DB_URL}/language/updateLanguage`,
+       userId
+    );
+    if(res.status === 200){
+      setIsOpen(false);
+      localStorage.setItem("Userlanguage", language);
+    }
   };
+
 
   // Close dropdown if clicked outside of the dropdown
   useEffect(() => {

@@ -60,11 +60,22 @@ const LoginForm = () => {
           expiration: expirationTime,
         })
       );
-
+      console.log(response.data.data.user._id);
+      const userId = 
       {
-        response.data.data.user.role.title.toLowerCase() == "freelancer"
-          ? navigate("/freelancer-dashboard")
-          : navigate("/client-dashboard");
+        userId:response.data.data.user._id
+      }
+      const res = await axios.post(
+        `${import.meta.env.VITE_DB_URL}/language/getLanguage`,
+         userId
+      );
+      localStorage.setItem("Userlanguage", res.data.language.language);
+
+      const role = response.data.data.user.role.title.toLowerCase();
+      if (role === "freelancer") {
+        navigate("/freelancer-dashboard");
+      } else {
+        navigate("/client-dashboard");
       }
     } catch (error) {
       const errorMessage =
@@ -198,10 +209,18 @@ const LoginForm = () => {
       </Formik>
 
       <div className="xl:hidden w-full flex justify-center gap-2.5 p-4 text-sm text-gray-700  border-gray-200">
-        <a href="https://driptext.de/impressum/" target="_blank" className="hover:underline">
+        <a
+          href="https://driptext.de/impressum/"
+          target="_blank"
+          className="hover:underline"
+        >
           {t("signIn.links.imprint")}
         </a>
-        <a href="https://driptext.de/datenschutz/"  target="_blank" className=" hover:underline">
+        <a
+          href="https://driptext.de/datenschutz/"
+          target="_blank"
+          className=" hover:underline"
+        >
           {t("signIn.links.privacyPolicy")}
         </a>
       </div>

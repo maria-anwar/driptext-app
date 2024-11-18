@@ -8,8 +8,10 @@ import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
 import useTitle from "../../../hooks/useTitle";
 import { useTranslation } from "react-i18next";
+import usei18n from "../../../i18n";
 
 const Projects: React.FC = () => {
+  usei18n();
   const { t } = useTranslation();
   useTitle(t("project.title"));
   const navigate = useNavigate();
