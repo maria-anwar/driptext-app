@@ -134,7 +134,7 @@ const RegisterForm = () => {
       localStorage.setItem("Userlanguage", 'de');
       
       setLoading(false);
-      // window.location.href = "https://driptext.de/danke-freelancer/";
+      window.location.href = "https://driptext.de/danke-freelancer/";
     } catch (error) {
       setLoading(false);
       const errorMessage =

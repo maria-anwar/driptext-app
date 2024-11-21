@@ -60,7 +60,7 @@ const LoginForm = () => {
           expiration: expirationTime,
         })
       );
-      console.log(response.data.data.user._id);
+      
       const userId = 
       {
         userId:response.data.data.user._id
