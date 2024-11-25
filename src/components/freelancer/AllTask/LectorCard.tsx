@@ -174,6 +174,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
   };
 
   const handleFinish = () => {
+    localStorage.removeItem("startTaskLectorId");
     setShowProjectInfo(false);
     setShowFinishDialog(true);
   };
@@ -193,6 +194,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
   };
 
   const confirmFinish = (taskId: string) => {
+
     let payload;
     if (!allChecked && comment) {
       payload = {
@@ -367,6 +369,12 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
             </div>
             <div className="flex justify-between items-center space-x-2 my-4">
               <ProjectHeader />
+              <button
+              className="mx-2.5 bg-purple-500 text-white font-bold py-2 px-4 rounded hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
+              onClick={handleFinish}
+            >
+              {t("task.taskbuttons.finishButton")}
+            </button>
             </div>
             {showInfo && (
               <TaskInfoCard
