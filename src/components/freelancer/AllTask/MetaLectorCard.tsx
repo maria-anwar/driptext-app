@@ -177,6 +177,7 @@ const MetaLectorCard: React.FC<MetaLectorCardProps> = ({
   };
 
   const handleFinish = () => {
+    localStorage.removeItem("startTaskMetaId");
     setShowProjectInfo(false);
     setShowFinishDialog(true);
   };
@@ -370,6 +371,12 @@ const MetaLectorCard: React.FC<MetaLectorCardProps> = ({
             </div>
             <div className="flex justify-between items-center space-x-2 my-4">
               <ProjectHeader />
+              <button
+                className="mx-2.5 bg-purple-500 text-white font-bold py-2 px-4 rounded hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
+                onClick={handleFinish}
+              >
+                {t("task.taskbuttons.finishButton")}
+              </button>
             </div>
             {showInfo && (
               <TaskInfoCard

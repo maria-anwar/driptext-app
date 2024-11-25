@@ -181,6 +181,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
   };
 
   const handleFinish = () => {
+    localStorage.removeItem("startTaskId");
     getWordCount();
     setShowProjectInfo(false);
     setShowFinishDialog(true);
@@ -246,9 +247,9 @@ const TaskCard: React.FC<TaskCardProps> = ({
 
   const ProjectHeader = () => {
     return (
-      <div>
+      <div >
         <button
-          className={`px-4 py-2 mb-3 rounded mr-2 cursor-pointer ${
+          className={`px-4 py-2  rounded mr-2 cursor-pointer ${
             showFeedback
               ? "bg-white dark:bg-transparent dark:text-white dark:ring-1 hover:bg-slate-100 dark:ring-slate-50 text-blue-500 ring-1 ring-blue-500 dark:hover:bg-blue-500"
               : "bg-blue-500 text-white"
@@ -369,6 +370,12 @@ const TaskCard: React.FC<TaskCardProps> = ({
             </div>
             <div className="flex justify-between items-center space-x-2 my-4">
               <ProjectHeader />
+              <button
+              className="mx-2.5 bg-purple-500 text-white font-bold py-2 px-4 rounded hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
+              onClick={handleFinish}
+            >
+              {t("task.taskbuttons.finishButton")}
+            </button>
             </div>
             {showInfo && (
               <TaskInfoCard
