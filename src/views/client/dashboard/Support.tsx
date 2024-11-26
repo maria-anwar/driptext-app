@@ -1,17 +1,8 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import Breadcrumb from "../../../components/client/breeadcrumbs/Breadcrumb";
-import SidebarIcons from "../../../components/client/icons/SidebarIcons";
 import { useSelector } from "react-redux";
-import emailjs from "emailjs-com";
-import {
-  EMAILJS_SERVICE_ID,
-  EMAILJS_TEMPLATE_ID,
-  EMAILJS_USER_ID,
-} from "./emailjs-config";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useForm, ValidationError } from "@formspree/react";
 import axios from "axios";
 import useTitle from "../../../hooks/useTitle";
 import { useTranslation } from "react-i18next";
@@ -27,7 +18,6 @@ const Support = () => {
   const [lastName, setLastName] = useState(user.user.data.user.lastName || "");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
-  const [status, setStatus] = useState("");
 
   const handleEmailSubmit = async (e) => {
     e.preventDefault();
@@ -278,18 +268,6 @@ const Support = () => {
             </div>
           </div>
         </div>
-        {/* <div className="flex flex-col gap-4 mt-6.5">
-          <h2 className="text-title-md2 font-semibold text-black dark:text-white ">
-            Security
-          </h2>
-          <Link
-            to="#"
-            className="inline-flex items-center justify-center gap-2.5 bg-black py-4 px-10 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
-          >
-            <span>{SidebarIcons[3].auth}</span>
-            Reset Password
-          </Link>
-        </div> */}
       </div>
     </>
   );
