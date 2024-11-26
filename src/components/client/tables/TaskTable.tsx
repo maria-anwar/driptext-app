@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import useTitle from "../../../hooks/useTitle";
 import { format } from "date-fns";
 import { useTranslation } from "react-i18next";
+import { Task } from "../Type/types";
 
 const TaskTable = () => {
   const { t } = useTranslation();
@@ -17,7 +18,7 @@ const TaskTable = () => {
   const projectId = localStorage.getItem("projectId");
   const user = useSelector((state) => state.user);
   const [loading, setLoading] = useState(true);
-  const [taskData, setTaskData] = useState([]);
+  const [taskData, setTaskData] = useState<Task[]>([]);
   const [userToken, setUserToken] = useState(user.user.token);
   const [openBarIndex, setOpenBarIndex] = useState(null); // Track the index of the currently open task
   const [refreshTrigger, setRefreshTrigger] = useState(0);
@@ -72,11 +73,11 @@ const TaskTable = () => {
       });
   };
 
-  const handleCheckboxClick = (index) => {
+  const handleCheckboxClick = (index: any) => {
     setOpenBarIndex(openBarIndex === index ? null : index); // Toggle the clicked task's index
   };
 
-  const handleCrossApi = (projectTaskId) => {
+  const handleCrossApi = (projectTaskId:string) => {
     let token = userToken;
     axios.defaults.headers.common["access-token"] = token;
     let payload = {
@@ -97,7 +98,7 @@ const TaskTable = () => {
       });
   };
 
-  const handleTickApi = (projectTaskId) => {
+  const handleTickApi = (projectTaskId:string) => {
     let token = userToken;
     axios.defaults.headers.common["access-token"] = token;
     let payload = {
@@ -151,7 +152,7 @@ const TaskTable = () => {
     }
   };
 
-  const formatDate = (dateString) => {
+  const formatDate = (dateString:Date | string) => {
     if (!dateString) {
       return "";
     }

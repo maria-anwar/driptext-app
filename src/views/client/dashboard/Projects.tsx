@@ -5,7 +5,6 @@ import DarkBtn from "../../../components/client/buttons/DarkBtn";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { format } from "date-fns";
-import { useNavigate } from "react-router-dom";
 import useTitle from "../../../hooks/useTitle";
 import { useTranslation } from "react-i18next";
 import usei18n from "../../../i18n";
@@ -14,7 +13,6 @@ const Projects: React.FC = () => {
   usei18n();
   const { t } = useTranslation();
   useTitle(t("project.title"));
-  const navigate = useNavigate();
   const user = useSelector<any>((state) => state.user);
   const [loading, setLoading] = useState(true);
 
@@ -92,6 +90,9 @@ const Projects: React.FC = () => {
       </div>
       {loading ? (
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 2xl:grid-cols-3 5xl:grid-cols-4 4xl:px-14">
+          <div className="rounded-sm border border-stroke  pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark px-7.5 xl:pb-1  w-full bg-slate-200 h-[300px] animate-pulse"></div>
+          <div className="rounded-sm border border-stroke  pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark px-7.5 xl:pb-1  w-full bg-slate-200 h-[300px] animate-pulse"></div>
+          <div className="rounded-sm border border-stroke  pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark px-7.5 xl:pb-1  w-full bg-slate-200 h-[300px] animate-pulse"></div>
           <div className="rounded-sm border border-stroke  pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark px-7.5 xl:pb-1  w-full bg-slate-200 h-[300px] animate-pulse"></div>
           <div className="rounded-sm border border-stroke  pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark px-7.5 xl:pb-1  w-full bg-slate-200 h-[300px] animate-pulse"></div>
           <div className="rounded-sm border border-stroke  pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark px-7.5 xl:pb-1  w-full bg-slate-200 h-[300px] animate-pulse"></div>

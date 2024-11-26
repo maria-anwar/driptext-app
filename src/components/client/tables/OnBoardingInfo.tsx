@@ -6,13 +6,12 @@ import { useSelector } from "react-redux";
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
 import GroupTextArea from "../../client/Forms/GroupTextArea";
-import { GroupField } from "../../client/Forms/GroupField";
 import GroupDropdownField from "../../client/Forms/GroupDropdownField";
 import { useTranslation } from "react-i18next";
 
 interface EditProjectProps {
   closeModel: () => void;
-  handleRefresh?: () => void;
+  handleRefresh: () => void;
   projectId: string;
   domain: string;
   speech: string;
@@ -43,7 +42,7 @@ const OnBoardingInfo: React.FC<EditProjectProps> = ({
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  // Initial values for form fields
+
   const initialFormData = {
     speech: speech,
     perspective: perspective,
@@ -58,7 +57,6 @@ const OnBoardingInfo: React.FC<EditProjectProps> = ({
     brand: onBoarding?.contentInfo || "",
   };
 
-  // Validation schema for form fields
   const validationSchema = Yup.object().shape({
     speech: Yup.string().required(
       t("project.onboarding.formErrors.speechRequired")
@@ -114,8 +112,8 @@ const OnBoardingInfo: React.FC<EditProjectProps> = ({
       .post(`${import.meta.env.VITE_DB_URL}/projects/updateOnBoarding`, payload)
       .then(() => {
         setLoading(false);
-        closeModel(); // Close the modal after successful submission
-        handleRefresh(); // Refresh the project details
+        closeModel(); 
+        handleRefresh(); 
       })
       .catch((err) => {
         const error =
@@ -181,7 +179,6 @@ const OnBoardingInfo: React.FC<EditProjectProps> = ({
                   placeholder={""}
                 />
 
-                {/* Company Information Section */}
                 <h2 className="text-black dark:text-white text-base font-semibold lg:mt-3">
                   {t("project.onboarding.onBoarding")}
                 </h2>
@@ -241,7 +238,6 @@ const OnBoardingInfo: React.FC<EditProjectProps> = ({
                     />
                   </div>
 
-                  {/* Content Purpose Section */}
                   <div className="flex flex-col gap-3 py-3">
                     <h2 className="text-black dark:text-white text-base font-semibold lg:mt-3.5">
                       {t("project.onboarding.aimOfContent")}
