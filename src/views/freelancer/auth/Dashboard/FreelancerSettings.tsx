@@ -192,6 +192,7 @@ const ProfilePage = () => {
                           value={props.values.email}
                           errors={props.errors.email}
                           onChange={props.handleChange}
+                          disabled = {true}
                         />
                         <GroupField
                           label={t(
@@ -315,7 +316,7 @@ const ProfilePage = () => {
 
                       <div className="mt-8 mb-4">
                         <button
-                          className={`w-full py-2 rounded text-white font-medium bg-blue-500 ${
+                          className={`w-full py-2 rounded text-white font-medium bg-blue-500 hover:bg-blue-600 ${
                             updateLoading
                               ? "cursor-not-allowed"
                               : "cursor-pointer"
