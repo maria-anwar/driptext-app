@@ -20,8 +20,8 @@ import React from "react";
   console.log("value select: ", value)
   return (
     <>
-      <div className="w-full flex flex-col gap-1">
-        <label className="pb-3 block text-sm font-medium text-black dark:text-white pt-6"
+      <div className="w-full flex flex-col gap-x-1">
+        <label className="pb-3 block text-sm font-medium text-black dark:text-white pt-4"
 >
           {label}
           <span className="text-red-600 text:lg 2xl:text-[17px] -mb-10 pl-1">*</span>
