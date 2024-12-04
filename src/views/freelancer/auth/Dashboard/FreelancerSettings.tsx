@@ -156,7 +156,7 @@ const ProfilePage = () => {
                       <h2 className="text-lg font-semibold text-gray-800 pt-6 text-black dark:text-white">
                         {t("profilePage.form.personalData.title")}
                       </h2>
-                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-4">
                         <GroupField
                           label={t(
                             "profilePage.form.personalData.fields.firstName"
@@ -180,7 +180,7 @@ const ProfilePage = () => {
                           onChange={props.handleChange}
                         />
                       </div>
-                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-2">
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-4 ">
                         <GroupField
                           label={t(
                             "profilePage.form.personalData.fields.email"
@@ -217,7 +217,7 @@ const ProfilePage = () => {
                         onChange={props.handleChange}
                         className="mt-4"
                       />
-                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-2">
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-4 ">
                         <GroupField
                           label={t(
                             "profilePage.form.personalData.fields.postcode"
@@ -252,8 +252,8 @@ const ProfilePage = () => {
                         onChange={props.handleChange}
                         className="mt-4"
                       />
-
-                      <h2 className="text-lg font-semibold text-gray-800 pt-8 text-black dark:text-white">
+                      
+                      <h2 className="text-lg font-semibold text-gray-800 pt-6 text-black dark:text-white">
                         {t("profilePage.form.billingInformation.title")}
                       </h2>
                       <GroupField
@@ -283,7 +283,7 @@ const ProfilePage = () => {
                         className="mt-4"
                       />
 
-                      <h2 className="text-lg font-semibold text-gray-800 pt-8 text-black dark:text-white">
+                      <h2 className="text-lg font-semibold text-gray-800 pt-6 text-black dark:text-white">
                         {t("profilePage.form.companyDetails.title")}
                       </h2>
                       <GroupField

@@ -50,9 +50,9 @@ const AccordionData: React.FC<AccordionDataProps> = ({
                   {t("task.taskModel.onBoardingInfo.generalInformation")}
                 </h2>
                 <div className="px-2">
-                  <p className="dark:text-white font-medium pb-2">Speech</p>
+                  <p className="dark:text-white font-medium pb-2">{t("task.taskModel.onBoardingInfo.speech")}</p>
                   <p className="dark:text-white bg-slate-200 dark:bg-meta-4 py-2 px-4 mb-2 rounded">
-                    {t("task.taskModel.onBoardingInfo.speech")}
+                  {speech}
                   </p>
                 </div>
                 <div className="px-2">
