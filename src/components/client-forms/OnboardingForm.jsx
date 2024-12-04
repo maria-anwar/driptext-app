@@ -20,7 +20,7 @@ const OnboardingForm = () => {
   const userRole = user?.user?.data?.user?.role?.title.toLowerCase() || role;
 
   const initialValues = {
-    speech: "You (formal)",
+    speech: "She",
     project: projectName,
     perspective: "we/our shop/our company",
     companyInfo: "",
@@ -129,9 +129,9 @@ const OnboardingForm = () => {
                   id={"speech"}
                   name={"speech"}
                   placeholder={""}
-                  option1={"You (formal)"}
+                  option1={"She"}
                   option2={"You (with a capital Y)"}
-                  option3={"you (with a lowercase y)"}
+                  option3={"you (with a lower y)"}
                   option4={"you"}
                   option5={"no direct address"}
                   value={props.values.speech}
