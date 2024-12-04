@@ -19,9 +19,9 @@ const Card: React.FC<TaskProps> = ({ task, Upcomming, clickableLink }) => {
     task?.actualNumberOfWords
   );
   return (
-    <div className="grid grid-cols-2 gap-x-4  gap-y-0 sm:grid-cols-2 md:grid-cols-3 md:grid-rows-2 2xl:grid-cols-3 3xl:grid-cols-6 3xl:grid-rows-1">
+    <div className="grid grid-cols-2 gap-x-4  gap-y-4 sm:grid-cols-2 md:grid-cols-3 md:grid-rows-2 2xl:grid-cols-3 3xl:grid-cols-6 3xl:grid-rows-1">
       <div className="flex flex-col pr-3">
-        <span className="text-base font-semibold text-dark-gray dark:text-slate-200 py-4 uppercase">
+        <span className="text-base font-semibold text-dark-gray dark:text-slate-200 py-2 uppercase">
           {t("task.cardLabels.task")}
         </span>
         <span className="text-sky-500">
@@ -46,7 +46,7 @@ const Card: React.FC<TaskProps> = ({ task, Upcomming, clickableLink }) => {
         </span>
       </div>
       <div className="flex flex-col pr-3">
-        <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-4 uppercase">
+        <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-2 uppercase">
           {t("task.cardLabels.deadline")}
         </span>
         <span
@@ -63,7 +63,7 @@ const Card: React.FC<TaskProps> = ({ task, Upcomming, clickableLink }) => {
         </span>
       </div>
       <div className="flex flex-col pr-3">
-        <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-4 uppercase">
+        <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-2 uppercase">
           {t("task.cardLabels.status")}
         </span>
         <span
@@ -95,7 +95,7 @@ const Card: React.FC<TaskProps> = ({ task, Upcomming, clickableLink }) => {
         </span>
       </div>
       <div className="flex flex-col pr-3">
-        <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-4 uppercase">
+        <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-2 uppercase">
           {t("task.cardLabels.activeRole")}
         </span>
         <span className="uppercase">
@@ -123,14 +123,14 @@ const Card: React.FC<TaskProps> = ({ task, Upcomming, clickableLink }) => {
         </span>
       </div>
       <div className="flex flex-col pr-3">
-        <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-4 uppercase">
+        <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-2 uppercase">
           {t("task.cardLabels.yourRole")}
         </span>
         <span className="uppercase">{task?.activeRole}</span>
       </div>
 
       <div className="flex flex-col pr-3">
-        <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-4 uppercase">
+        <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-2 uppercase">
           {t("task.cardLabels.wordCount")}
         </span>
         <span className="font-medium">
