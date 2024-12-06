@@ -328,7 +328,7 @@ const OnboardingForm = () => {
                 <button
                   className={`${
                     loading ? "cursor-not-allowed" : "cursor-pointer"
-                  } border-none text-white font-medium text-base w-full bg-custom-black flex justify-center py-2 xs:py-2.5 mt-1 rounded-xl`}
+                  } border-none text-white font-medium text-base w-full bg-custom-black hover:bg-custom-black/90 flex justify-center py-2 xs:py-2.5 mt-1 rounded-xl`}
                   type="submit"
                   disabled={loading}
                 >
