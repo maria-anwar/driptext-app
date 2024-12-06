@@ -127,7 +127,7 @@
       "title": "Enable Email",
       "enabled": "Email subscription enabled",
       "disabled": "Email subscription disabled",
-      "description": "You won't receive any notification from Driptext via email"
+      "description": "If you turn off email enabled, you won't receive any notification from DripText via email."
     },
     "security": {
       "title": "Security",
