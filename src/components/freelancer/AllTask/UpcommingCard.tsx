@@ -70,15 +70,14 @@ const UpcommingTasks: React.FC<LectorCardProps> = ({ task, Upcomming }) => {
   };
 
   return (
-    <div className="w-full mb-10 mt-3 rounded-sm ring-1 ring-slate-200 dark:border-stroke  py-1 px-7.5 shadow-2 dark:border-strokedark  dark:bg-boxdark">
-     <div className="py-2 dark:text-white text-xl font-semibold pt-6 flex flex-row">
+<div className="w-full mb-10 mt-3 rounded-sm ring-1 ring-slate-300 dark:border-stroke py-1 px-7.5 shadow-2 dark:border-strokedark dark:bg-boxdark opacity-50 pointer-events-none">     <div className="py-2 dark:text-white text-xl font-semibold pt-6 flex flex-row">
         <h4>{task?.project?.projectId}:</h4>
         <h4 className="pl-1">{task?.project?.projectName}</h4>
       </div>
       <div className="pb-4">
         <Card task={task} Upcomming={Upcomming} clickableLink={false} />
       </div>
-      <div
+      {/* <div
         onClick={hanldeShowAllInfo}
         className="flex justify-center items-center border-t mt-1 py-2 lg:py-4 border-slate-300 dark:border-slate-200 cursor-pointer font-medium"
       >
@@ -112,7 +111,7 @@ const UpcommingTasks: React.FC<LectorCardProps> = ({ task, Upcomming }) => {
             </div>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 };

@@ -87,7 +87,7 @@ const Tasks: React.FC = () => {
         return (
           <TexterTasks
             activeTasks={tasks.currentTasks}
-            //upcommingTasks={tasks.upcomingTasks}
+            upcommingTasks={tasks.upcomingTasks}
             userId={userId}
             getRefreshTask={getProjects}
           />
@@ -96,7 +96,7 @@ const Tasks: React.FC = () => {
         return (
           <LectorTasks
             activeTasks={tasks.currentTasks}
-            //upcommingTasks={tasks.upcomingTasks}
+            upcommingTasks={tasks.upcomingTasks}
             userId={userId}
             getRefreshTask={getProjects}
           />
@@ -105,7 +105,7 @@ const Tasks: React.FC = () => {
         return (
           <SeoTasks
             activeTasks={tasks.currentTasks}
-            //upcommingTasks={tasks.upcomingTasks}
+            upcommingTasks={tasks.upcomingTasks}
             userId={userId}
             getRefreshTask={getProjects}
           />
@@ -114,7 +114,7 @@ const Tasks: React.FC = () => {
         return (
           <MetaLector
           activeTasks={tasks.currentTasks}
-          //upcommingTasks={tasks.upcomingTasks}
+          upcommingTasks={tasks.upcomingTasks}
           userId={userId}
           getRefreshTask={getProjects}
           />
@@ -123,7 +123,7 @@ const Tasks: React.FC = () => {
         return (
           <AllTasks
             activeTasks={tasks.currentTasks}
-            //upcommingTasks={tasks.upcomingTasks}
+            upcommingTasks={tasks.upcomingTasks}
             userId={userId}
             getRefreshTask={getProjects}
           />
