@@ -77,13 +77,13 @@ const OnboardingPage = () => {
           <div className="flex justify-center items-center flex-col my-8">
             <button
               onClick={() => navigate("/probetext")}
-              className="w-full md:w-[50%] bg-[#07B6D4] rounded-full mx-auto text-center text-white py-2 mb-3"
+              className="w-2/3 md:w-[30%] bg-[#07B6D4] rounded-full mx-auto text-center text-white py-2 mb-3 hover:bg-[#07B6D4]/80"
             >
                {t("onboardingPage.buttons.register")}
             </button>
             <button
               onClick={() => navigate("/")}
-              className="w-full md:w-[50%] bg-[#07B6D4] rounded-full mx-auto text-center text-white py-2 mb-2"
+              className="w-2/3 md:w-[30%] bg-[#07B6D4] rounded-full mx-auto text-center text-white py-2 mb-2 hover:bg-[#07B6D4]/80"
             >
               {t("onboardingPage.buttons.login")}
             </button>
