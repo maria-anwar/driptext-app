@@ -127,7 +127,7 @@
       "title": "E-Mail aktivieren",
       "enabled": "E-Mail-Subscription aktiviert",
       "disabled": "E-Mail-Subscription deaktiviert",
-      "description": "Sie erhalten keine Benachrichtigungen von Driptext per E-Mail"
+      "description":"Wenn Sie die E-Mail-Benachrichtigungen deaktivieren, erhalten Sie keine Benachrichtigungen von DripText per E-Mail."
     },
     "security": {
       "title": "Sicherheit",

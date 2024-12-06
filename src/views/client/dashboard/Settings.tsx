@@ -7,8 +7,8 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import useTitle from "../../../hooks/useTitle";
-import { toast ,ToastContainer} from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useTranslation } from "react-i18next";
 
 const Settings = () => {
@@ -28,7 +28,7 @@ const Settings = () => {
     setLoading(true);
     e.preventDefault();
 
-    if(firstName === "" || lastName === "") {
+    if (firstName === "" || lastName === "") {
       toast.error(t("settings.allFieldsRequired"));
       setLoading(false);
       return;
@@ -68,44 +68,46 @@ const Settings = () => {
   const handleEmailSubscription = async () => {
     const newToggle = !toggle;
     setToggle(newToggle);
-  
+
     let token = user.user.token;
     axios.defaults.headers.common["access-token"] = token;
     let payload = {
       userId: user?.user?.data?.user?._id,
       emailSubscription: newToggle,
     };
-  
+
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_DB_URL}/users/emailSubscription`,
         payload
       );
       dispatch(
-        updateUserFields({ path: "data.user.emailSubscription", value: newToggle })
+        updateUserFields({
+          path: "data.user.emailSubscription",
+          value: newToggle,
+        })
       );
-       if (newToggle) {
+      if (newToggle) {
         toast.success(t("settings.emailSubscription.enabled"));
-       } else {
+      } else {
         toast.success(t("settings.emailSubscription.disabled"));
-       }
+      }
     } catch (err) {
       console.error("Error in email subscription:", err);
     }
   };
-  
 
   return (
     <>
       <div className="mx-auto max-w-270 3xl:px-6">
-        <Breadcrumb pageName={t('settings.title')} />
-        <ToastContainer/>
+        <Breadcrumb pageName={t("settings.title")} />
+        <ToastContainer />
         <div className="grid grid-cols-5  gap-8">
           <div className="col-span-5 3xl:col-span-8  xl:col-span-8">
             <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
               <div className="border-b border-stroke py-4 px-7 dark:border-strokedark">
                 <h3 className="font-medium text-black dark:text-white">
-                {t('settings.personalInformation.title')} 
+                  {t("settings.personalInformation.title")}
                 </h3>
               </div>
               <div className="p-7">
@@ -116,7 +118,7 @@ const Settings = () => {
                         className="mb-3 block text-sm font-medium text-black dark:text-white"
                         htmlFor="firstName"
                       >
-                        {t('settings.personalInformation.firstName.label')} 
+                        {t("settings.personalInformation.firstName.label")}
                       </label>
                       <div className="relative">
                         <span className="absolute left-4.5 top-4">
@@ -149,7 +151,9 @@ const Settings = () => {
                           type="text"
                           name="firstName"
                           id="firstName"
-                          placeholder={t('settings.personalInformation.firstName.placeholder')} 
+                          placeholder={t(
+                            "settings.personalInformation.firstName.placeholder"
+                          )}
                           onChange={(e) => setFirstName(e.target.value)}
                           value={firstName}
                         />
@@ -161,8 +165,7 @@ const Settings = () => {
                         className="mb-3 block text-sm font-medium text-black dark:text-white"
                         htmlFor="lastName"
                       >
-                                               {t('settings.personalInformation.lastName.label')} 
-
+                        {t("settings.personalInformation.lastName.label")}
                       </label>
                       <div className="relative">
                         <span className="absolute left-4.5 top-4">
@@ -195,7 +198,9 @@ const Settings = () => {
                           type="text"
                           name="lastName"
                           id="lastName"
-                          placeholder={t('settings.personalInformation.lastName.placeholder')} 
+                          placeholder={t(
+                            "settings.personalInformation.lastName.placeholder"
+                          )}
                           onChange={(e) => setLastName(e.target.value)}
                           value={lastName}
                         />
@@ -208,8 +213,7 @@ const Settings = () => {
                       className="mb-3 block text-sm font-medium text-black dark:text-white"
                       htmlFor="emailAddress"
                     >
-                                             {t('settings.personalInformation.email.label')} 
-
+                      {t("settings.personalInformation.email.label")}
                     </label>
                     <div className="relative">
                       <span className="absolute left-4.5 top-4">
@@ -242,7 +246,9 @@ const Settings = () => {
                         type="email"
                         name="emailAddress"
                         id="emailAddress"
-                        placeholder={t('settings.personalInformation.email.placeholder')} 
+                        placeholder={t(
+                          "settings.personalInformation.email.placeholder"
+                        )}
                         defaultValue={user.user.data.user.email || ""}
                         disabled={true}
                       />
@@ -255,7 +261,7 @@ const Settings = () => {
                       type="submit"
                       onClick={handleCancel}
                     >
-                      {t('settings.personalInformation.cancelButton')}
+                      {t("settings.personalInformation.cancelButton")}
                     </button>
                     <button
                       onClick={handleUpdate}
@@ -263,7 +269,11 @@ const Settings = () => {
                       type="submit"
                       disabled={loading}
                     >
-                      {loading ? t('settings.personalInformation.saveButton.loadingText'): t('settings.personalInformation.saveButton.text')}
+                      {loading
+                        ? t(
+                            "settings.personalInformation.saveButton.loadingText"
+                          )
+                        : t("settings.personalInformation.saveButton.text")}
                     </button>
                   </div>
                 </form>
@@ -272,49 +282,53 @@ const Settings = () => {
           </div>
         </div>
         <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark mt-8">
-              <div className="border-b border-stroke py-4 px-7 dark:border-strokedark">
-        <div className=" my-2 flex items-center justify-between gap-4">
-          <h2 className="sm:text-[16px] lg:text-[18px] 4xl:text-[20px] 5xl:text-[22px] font-medium text-black dark:text-white ">
-            {t('settings.emailSubscription.title')}
-          </h2>
-          <label className="relative inline-flex items-center cursor-pointer">
-            <input
-              type="checkbox"
-              className="sr-only peer"
-              checked={toggle}
-              onChange={handleEmailSubscription}
-            />
-            <div
-              className={`flex ${
-                toggle
-                  ? "justify-start pl-1.5 peer-checked:bg-blue-600"
-                  : "justify-end pr-1.5 dark:bg-graydark bg-slate-200"
-              } items-center w-11 h-6 bg-gray-200 rounded-full peer peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all`}
-            >
-              <FontAwesomeIcon
-                icon={faCheck}
-                className={`text-current ${toggle ? 'text-white':'dark:text-white text-black'}` }
-                width="12"
-                height="12"
-              />
+          <div className="border-b border-stroke py-4 px-7 dark:border-strokedark">
+            <div className=" my-2 flex items-center justify-between gap-4">
+              <h2 className="sm:text-[16px] lg:text-[18px] 4xl:text-[20px] 5xl:text-[22px] font-medium text-black dark:text-white ">
+                {t("settings.emailSubscription.title")}
+              </h2>
+              <label className="relative inline-flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  className="sr-only peer"
+                  checked={toggle}
+                  onChange={handleEmailSubscription}
+                />
+                <div
+                  className={`flex ${
+                    toggle
+                      ? "justify-start pl-1.5 peer-checked:bg-blue-600"
+                      : "justify-end pr-1.5 dark:bg-graydark bg-slate-200"
+                  } items-center w-11 h-6 bg-gray-200 rounded-full peer peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all`}
+                >
+                  <FontAwesomeIcon
+                    icon={faCheck}
+                    className={`text-current ${
+                      toggle ? "text-white" : "dark:text-white text-black"
+                    }`}
+                    width="12"
+                    height="12"
+                  />
+                </div>
+              </label>
             </div>
-          </label>
-        </div>
-        {!toggle ? <p className="text-dark-gray dark:text-slate-400">    {t('settings.emailSubscription.description')}
-        </p>:null}
-        </div>
+            <p className="text-dark-gray dark:text-slate-400">
+              {" "}
+              {t("settings.emailSubscription.description")}
+            </p>
+          </div>
         </div>
 
         <div className="flex flex-col gap-4 mt-6.5">
           <h2 className="text-title-md2 font-semibold text-black dark:text-white ">
-            {t('settings.security.title')}
+            {t("settings.security.title")}
           </h2>
           <Link
             to="/auth/lost/request"
             className="inline-flex items-center justify-center gap-2.5 bg-black py-4 px-10 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
           >
             {/* <span>{SidebarIcons[3].auth}</span> */}
-            {t('settings.security.resetPassword')}
+            {t("settings.security.resetPassword")}
           </Link>
         </div>
       </div>
