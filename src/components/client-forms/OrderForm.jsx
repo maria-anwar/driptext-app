@@ -426,7 +426,7 @@ const OrderForm = () => {
               <h2 className="text-custom-black text-base font-semibold -mb-5">
                 {t("orderPage.orderForm.formTitle")}
               </h2>
-              <div className="flex flex-col gap-y-2 -mb-2">
+              <div className="flex flex-col gap-y-3 bg-red-500 -mb-2">
                 <ToastContainer />
                 <GroupDropdownField
                   label= {t("orderPage.orderForm.textsDropdownLabel")}
@@ -489,7 +489,7 @@ const OrderForm = () => {
               <h2 className="text-custom-black text-base font-semibold -mb-3 ">
                 {t("orderPage.orderForm.formTitle1")}
               </h2>
-              <div className="flex flex-col gap-y-3">
+              <div className="flex flex-col gap-y-3 bg-red-500">
                 <GroupField
                   label={t("orderPage.orderForm.companyLabel")}
                   placeholder={t("orderPage.orderForm.companyPlaceholder")}
@@ -500,7 +500,7 @@ const OrderForm = () => {
                   errors={props.errors.company}
                   onChange={props.handleChange}
                 />
-                <div className="w-full flex flex-col lg:flex-row lg:justify-between lg:gap-3 gap-5">
+                <div className="w-full flex flex-col lg:flex-row lg:justify-between gap-3">
                   <GroupField
                     label={t("orderPage.orderForm.fnameLabel")}
                     placeholder={t("orderPage.orderForm.fnamePlaceholder")}
@@ -558,7 +558,7 @@ const OrderForm = () => {
                 <button
                   className={`${
                     loading ? "cursor-not-allowed" : "cursor-pointer"
-                  } border-none text-white font-medium text-base w-full bg-custom-black flex justify-center py-2 xs:py-2.5 mt-1 rounded-xl`}
+                  } border-none text-white font-medium text-base w-full bg-custom-black hover:bg-custom-black/90 flex justify-center py-2 xs:py-2.5 mt-1 rounded-xl`}
                   type="submit"
                   disabled={loading}
                 >
