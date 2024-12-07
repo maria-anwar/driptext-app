@@ -154,11 +154,11 @@ const RegisterForm = () => {
         {(props) => (
           <Form>
             <div className="w-full bg-gradient-to-r from-custom-gray to-[#F7F7F7] flex flex-col gap-6 px-3 xs:px-8 xs:py-10  md:px-9 md:py-14 lg:px-10  mb-8 rounded-xl">
-              <div className="flex flex-col gap-3">
-                <h2 className="text-custom-black text-base font-semibold">
+              <div className="flex flex-col gap-y-3  ">
+                <h2 className="text-custom-black text-base font-semibold  ">
                   {t("registerFreelancerPage.registerFormPage.section1.title")}
                 </h2>
-                <div className="w-full flex flex-col lg:flex-row lg:justify-between lg:gap-3 gap-5">
+                <div className="w-full flex flex-col lg:flex-row lg:justify-between gap-3 ">
                   <GroupField
                     label={t(
                       "registerFreelancerPage.registerFormPage.section1.fields.fname.label"
@@ -305,8 +305,8 @@ const RegisterForm = () => {
                 />
               </div>
 
-              <div className="flex flex-col gap-3 -mt-2">
-                <h2 className="text-custom-black text-base font-semibold lg:mt-3.5">
+              <div className="flex flex-col gap-y-3 -mt-2  ">
+                <h2 className="text-custom-black text-base font-semibold lg:mt-3.5  ">
                   {t("registerFreelancerPage.registerFormPage.section2.title")}
                 </h2>
                 <GroupField
@@ -348,8 +348,8 @@ const RegisterForm = () => {
                 />
               </div>
 
-              <div className="flex flex-col gap-3 -mt-2">
-                <h2 className="text-custom-black text-base font-semibold lg:mt-3.5">
+              <div className="flex flex-col gap-y-3   -mt-2">
+                <h2 className="text-custom-black text-base font-semibold lg:mt-3.5  ">
                   {t("registerFreelancerPage.registerFormPage.section3.title")}
                 </h2>
                 <GroupField
@@ -394,7 +394,7 @@ const RegisterForm = () => {
                 <button
                   className={`${
                     loading ? "cursor-not-allowed" : "cursor-pointer"
-                  } border-none text-white font-medium text-base w-full bg-custom-black flex justify-center py-2 xs:py-2.5 mt-1 rounded-xl`}
+                  } border-none text-white font-medium text-base w-full bg-custom-black hover:bg-custom-black/90 flex justify-center py-2 xs:py-2.5 mt-1 rounded-xl`}
                   disabled={loading}
                 >
                   {loading
