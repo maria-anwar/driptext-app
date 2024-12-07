@@ -154,7 +154,7 @@ const TaskTable = () => {
 
   const formatDate = (dateString:Date | string) => {
     if (!dateString) {
-      return "";
+      return "N/A";
     }
     const date = new Date(dateString);
     return format(date, "MMMM yyyy");
@@ -213,7 +213,7 @@ const TaskTable = () => {
                     <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
                       {t("taskTable.columns.keyword")}
                     </th>
-                    <th className="min-w-[100px] py-4 px-4 font-medium text-black dark:text-white">
+                    <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
                       {t("taskTable.columns.published")}
                     </th>
                   </tr>
@@ -309,7 +309,7 @@ const TaskTable = () => {
                             <Checkbox2 />
                           )}
                           {openBarIndex === index && (
-                            <div className="relative ml-0 mt-4">
+                            <div className="relative ml-5 mt-4">
                               <div className="absolute right-0">
                                 <div className="w-full py-2 pl-3 flex mt-2 space-x-2 border border-zinc-200 bg-white shadow-md">
                                   <div
