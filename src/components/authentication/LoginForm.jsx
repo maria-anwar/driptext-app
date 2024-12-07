@@ -156,7 +156,7 @@ const LoginForm = () => {
                 <FontAwesomeIcon
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
                   onClick={togglePasswordVisibility}
-                  icon={passwordVisible ? faEye : faEyeSlash}
+                  icon={passwordVisible ?  faEyeSlash: faEye}
                 />{" "}
               </div>
               {props.errors.password && (
@@ -185,7 +185,7 @@ const LoginForm = () => {
               </Typography>
             </div>
             <Button
-              className={`mt-6 bg-black text-white text-sm ${
+              className={`mt-6 bg-custom-black hover:bg-custom-black/90 text-white text-sm ${
                 loading ? "cursor-not-allowed" : "cursor-pointer"
               }`}
               fullWidth

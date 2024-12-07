@@ -183,7 +183,7 @@ const ForgotPasswordForm = () => {
               )}
             </div>
             <Button
-              className="mt-6 bg-black text-white text-sm"
+              className="mt-6 bg-custom-black hover:bg-custom-black/90 text-white text-sm"
               fullWidth
               type="submit"
             >

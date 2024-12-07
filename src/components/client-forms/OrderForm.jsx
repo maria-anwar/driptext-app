@@ -426,7 +426,7 @@ const OrderForm = () => {
               <h2 className="text-custom-black text-base font-semibold -mb-5">
                 {t("orderPage.orderForm.formTitle")}
               </h2>
-              <div className="flex flex-col gap-y-3 bg-red-500 -mb-2">
+              <div className="flex flex-col gap-y-3  -mb-2">
                 <ToastContainer />
                 <GroupDropdownField
                   label= {t("orderPage.orderForm.textsDropdownLabel")}
@@ -489,7 +489,7 @@ const OrderForm = () => {
               <h2 className="text-custom-black text-base font-semibold -mb-3 ">
                 {t("orderPage.orderForm.formTitle1")}
               </h2>
-              <div className="flex flex-col gap-y-3 bg-red-500">
+              <div className="flex flex-col gap-y-3 ">
                 <GroupField
                   label={t("orderPage.orderForm.companyLabel")}
                   placeholder={t("orderPage.orderForm.companyPlaceholder")}
