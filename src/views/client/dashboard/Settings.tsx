@@ -15,7 +15,6 @@ const Settings = () => {
   const { t } = useTranslation();
   useTitle(t("settings.pagetitle"));
   const user = useSelector((state) => state.user);
-  console.log(user);
   const dispatch = useDispatch();
   const [firstName, setFirstName] = useState(
     user.user.data.user.firstName || ""
