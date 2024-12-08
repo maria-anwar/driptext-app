@@ -50,7 +50,7 @@ const LoginForm = () => {
         `${import.meta.env.VITE_DB_URL}/auth/login`,
         userData
       );
-      dispatch(setUser(response?.data));
+
       const expirationTime = Date.now() + 12 * 60 * 60 * 1000;
       localStorage.setItem(
         "key",
@@ -60,23 +60,32 @@ const LoginForm = () => {
           expiration: expirationTime,
         })
       );
-      
-      const userId = 
-      {
-        userId:response.data.data.user._id
-      }
+
+      const userId = {
+        userId: response.data.data.user._id,
+      };
       const res = await axios.post(
         `${import.meta.env.VITE_DB_URL}/language/getLanguage`,
-         userId
+        userId
       );
       localStorage.setItem("Userlanguage", res.data.language.language);
-
+      console.log(response);
       const role = response.data.data.user.role.title.toLowerCase();
       if (role === "freelancer") {
+        dispatch(setUser(response?.data));
         navigate("/freelancer-dashboard");
+      } else if (role === "projectmanger") {
+        console.log(response.data.data.user.role.title.toLowerCase());
+        const data = JSON.stringify(response); // Serialize the data object to a string
+        window.open(
+          `https://driptext-admin-panel.vercel.app/redirectroute?data=${data}`,
+          "_self"
+        );
       } else {
+        dispatch(setUser(response?.data));
         navigate("/client-dashboard");
       }
+      setLoading(false);
     } catch (error) {
       const errorMessage =
         error.response?.data?.message ||
@@ -156,7 +165,7 @@ const LoginForm = () => {
                 <FontAwesomeIcon
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
                   onClick={togglePasswordVisibility}
-                  icon={passwordVisible ?  faEyeSlash: faEye}
+                  icon={passwordVisible ? faEyeSlash : faEye}
                 />{" "}
               </div>
               {props.errors.password && (
