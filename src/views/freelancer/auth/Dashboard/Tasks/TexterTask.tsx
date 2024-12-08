@@ -30,7 +30,6 @@ const TexterTasks: React.FC<TexterTasksProps> = ({
       <NoTask label="There are no any Active and Upcoming tasks to show" />
     );
   }
-  console.log(filterActiveTask);
   return (
     <>
       <div>
