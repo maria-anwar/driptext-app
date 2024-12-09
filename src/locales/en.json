@@ -153,6 +153,11 @@
       "heading": "Active Tasks",
       "noTasksLabel": "There is no any Active Task to show"
     },
+    "upcomingTasks": {
+      "heading": "Upcoming Tasks",
+      "noTasksLabel": "There is no any Upcoming Task to show"
+    },
+    "noTasks": "There are no any Active and Upcoming tasks to show",
     "cardLabels": {
       "task": "Task",
       "deadline": "Deadline",
