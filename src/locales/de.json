@@ -127,7 +127,7 @@
       "title": "E-Mail aktivieren",
       "enabled": "E-Mail-Subscription aktiviert",
       "disabled": "E-Mail-Subscription deaktiviert",
-      "description":"Wenn Sie die E-Mail-Benachrichtigungen deaktivieren, erhalten Sie keine Benachrichtigungen von DripText per E-Mail."
+      "description": "Wenn Sie die E-Mail-Benachrichtigungen deaktivieren, erhalten Sie keine Benachrichtigungen von DripText per E-Mail."
     },
     "security": {
       "title": "Sicherheit",
@@ -153,6 +153,11 @@
       "heading": "Aktive Aufgaben",
       "noTasksLabel": "Es gibt keine aktiven Aufgaben anzuzeigen"
     },
+    "upcomingTasks": {
+      "heading": "Bevorstehende Aufgaben",
+      "noTasksLabel": "Es gibt keine bevorstehenden Aufgaben anzuzeigen"
+    },
+    "noTasks": "Es gibt keine aktiven und bevorstehenden Aufgaben anzuzeigen",
     "cardLabels": {
       "task": "Aufgabe",
       "deadline": "Frist",

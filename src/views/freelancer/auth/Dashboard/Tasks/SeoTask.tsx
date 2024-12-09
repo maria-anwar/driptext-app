@@ -26,7 +26,7 @@ const SeoTasks: React.FC<SeoTasksProps> = ({
     (task) => task.seo === userId
   );
   if (filterActiveTask.length === 0 && filterUpcommingTask.length === 0) {
-    return <NoTask label="There are no any Active and Upcoming tasks to show" />;
+    return <NoTask label= {t("task.noTasks")} />;
   }
   return (
     <>
@@ -53,14 +53,14 @@ const SeoTasks: React.FC<SeoTasksProps> = ({
         {filterUpcommingTask.length > 0 ? (
           <>
             <h1 className="text-[20px] 4xl:text-[22px] 5xl:text-[24px] font-medium text-center text-black dark:text-white pt-10">
-              Upcoming Tasks
+            {t("task.upcomingTasks.heading")}
             </h1>
             {filterUpcommingTask.map((task) => (
               <UpcommingTasks key={task._id} task={task} Upcomming={true} />
             ))}
           </>
         ) : (
-          <NoTask label="There is no any Upcoming Task to show" />
+          <NoTask label={t("task.upcomingTasks.noTasksLabel")} />
         )}
       </div>
     </>
