@@ -429,7 +429,7 @@
         "title": "Firmendaten",
         "fields": {
           "companyName": "Firmenname",
-          "vatIdNo": "USt-IdNr."
+          "vatIdNo": "USt-Id."
         }
       },
       "buttons": {
@@ -450,11 +450,11 @@
       "country": "Bitte geben Sie Ihr Land ein",
       "iban": "Bitte geben Sie Ihre IBAN ein",
       "companyName": "Bitte geben Sie Ihren Firmennamen ein",
-      "vatIdNo": "USt-IdNr. ist erforderlich"
+      "vatIdNo": "USt-Id. ist erforderlich"
     },
     "placeholders": {
-      "firstName": "Ihr Vorname",
-      "lastName": "Ihr Nachname",
+      "firstName": "Max",
+      "lastName": "Mustermann",
       "email": "Ihre E-Mail-Adresse",
       "phone": "Ihre Telefonnummer",
       "street": "Ihre Straße",
@@ -493,10 +493,10 @@
   },
   "signIn": {
     "slogan": "Wir lieben SEO & Content",
-    "authLine": "Geben Sie Ihre E-Mail-Adresse und Ihr Passwort ein, um sich anzumelden.",
+    "authLine": "Gib deine E-Mail-Adresse und dein Passwort ein, um dich anzumelden.",
     "title": "Anmelden",
-    "emailLabel": "Ihre E-Mail-Adresse",
-    "emailPlaceholder": "jhon@gmail.com",
+    "emailLabel": "E-Mail-Adresse",
+    "emailPlaceholder": "mail@beispiel.de",
     "passwordLabel": "Passwort",
     "passwordPlaceholder": "********",
     "forgotPassword": "Passwort vergessen",
@@ -521,17 +521,17 @@
         "title": "1. Informationen zum Text",
         "projectLabel": "Dein Projekt",
         "projectPlaceholder": "beispiel.com",
-        "keywordLabel": "Gewünschtes Stichwort",
-        "keywordPlaceholder": "Beispiel-Stichwort"
+        "keywordLabel": "Gewünschtes Keyword",
+        "keywordPlaceholder": "Beispiel-Keyword"
       },
       "step2": {
         "title": "2. Kontaktdaten des Rechnungsempfängers",
         "emailLabel": "E-Mail",
-        "emailPlaceholder": "Ihre E-Mail-Adresse",
+        "emailPlaceholder": "mail@beispiel.de",
         "fnameLabel": "Vorname",
-        "fnamePlaceholder": "Ihr Vorname",
+        "fnamePlaceholder": "Max",
         "lnameLabel": "Nachname",
-        "lnamePlaceholder": "Ihr Nachname"
+        "lnamePlaceholder": "Mustermann"
       },
       "validationSchema": {
         "project": "Bitte geben Sie Ihr Projekt ein",
@@ -541,7 +541,7 @@
         "fname": "Bitte geben Sie Ihren Vornamen ein",
         "lname": "Bitte geben Sie Ihren Nachnamen ein"
       },
-      "submitButton": "Bestellung Absenden",
+      "submitButton": "Probetext erhalten",
       "terms": {
         "text": "Durch die Bestellung erkläre ich mich mit den ",
         "linkText": "Allgemeinen Geschäftsbedingungen",
@@ -629,12 +629,12 @@
               "placeholder": "Beispiel.com"
             },
             {
-              "label": "Gewünschtes Stichwort",
+              "label": "Gewünschtes Keyword",
               "required": false,
-              "placeholder": "Beispiel-Stichwort"
+              "placeholder": "Beispiel-Keyword"
             },
             {
-              "label": "Schlüsselworttyp",
+              "label": "Text Art",
               "options": [
                 "Leitfaden",
                 "Shop (Kategorie)",
@@ -651,15 +651,15 @@
           "fields": [
             {
               "label": "Hintergrundinformationen zum Unternehmen",
-              "placeholder": "Bitte beschreiben Sie hier, idealerweise in nur einem Satz, was Ihr Unternehmen tut, was es anbietet und wie es dem Kunden hilft."
+              "placeholder": "Bitte hier im Idealfall in genau einem Satz beschreiben, was ihr als Unternehmen tut, was euer Angebot ist und wie es dem Kunden hilft."
             },
             {
               "label": "Welche Attribute beschreiben euch als Unternehmen/eure Produkte/eure Leistung am besten?",
-              "placeholder": "Bitte nennen Sie so viele Merkmale, wie Sie möchten, die Leser über Ihr Unternehmen und Ihre Produkte wahrnehmen sollen."
+              "placeholder": "Bitte gib uns hier in Stichpunkten so viele Attribute, wie Du möchtest, dass Lese:innen euch und euer Unternehmen wahrnehmen."
             },
             {
               "label": "Was sind eure Leistungen?",
-              "placeholder": "Bitte listen Sie alle online angebotenen Dienstleistungen auf."
+              "placeholder": "Bitte hier alle Leistungen auflisten, die online angeboten werden."
             }
           ]
         },
@@ -668,11 +668,11 @@
           "fields": [
             {
               "label": "Für wen sind die Inhalte geschrieben?",
-              "placeholder": "Bitte beschreiben Sie die Zielgruppe so genau wie möglich."
+              "placeholder": "Bitte hier die Zielgruppe so genau wie möglich beschreiben. Wer kauft die Produkte/nimmt eure Dienstleistung in Anspruch? Welchen Schmerz verspüren diese Kunden momentan und was erhoffen sie sich von euch?"
             },
             {
               "label": "Kunden, die wir ansprechen möchten, haben ein Interesse daran...",
-              "placeholder": "Bitte listen Sie hier in Bullet-Points auf, welche Probleme Sie für die Kunden lösen."
+              "placeholder": "Bitte hier stichpunktartig auflisten, welche Probleme ihr für eure Kunden löst."
             }
           ]
         },
@@ -681,11 +681,11 @@
           "fields": [
             {
               "label": "Was ist das Ziel der Inhalte?",
-              "placeholder": "Bitte beschreiben Sie hier kurz, wie die organischen Kunden/Leser idealerweise reagieren sollten, wenn sie auf Ihrer Seite landen."
+              "placeholder": "Bitte hier kurz beschreiben, wie organische Kunden/Leser im Idealfall reagieren sollen, wenn sie auf eurer Seite gelandet sind."
             },
             {
               "label": "Informationen über deine Marke und deine Inhalte",
-              "placeholder": "Bitte geben Sie uns Bullet-Points, wie potenzielle Leser den Inhalt beschreiben sollten, den sie konsumieren."
+              "placeholder": "Bitte gebt uns in Stichpunkten an, wie potenzielle Leser:innen die konsumierten Inhalte beschreiben sollten."
             }
           ]
         }
@@ -891,17 +891,17 @@
       "companyLabel": "Firma",
       "companyPlaceholder": "Ihr Firmenname",
       "fnameLabel": "Vorname",
-      "fnamePlaceholder": "Ihr Vorname",
+      "fnamePlaceholder": "Max",
       "lnameLabel": "Nachname",
-      "lnamePlaceholder": "Ihr Nachname",
+      "lnamePlaceholder": "Mustermann",
       "telNoLabel": "Telefonnummer",
       "telNoPlaceholder": "Ihre Telefonnummer",
       "emailLabel": "E-Mail",
-      "emailPlaceholder": "Ihre E-Mail-Adresse",
+      "emailPlaceholder": "mail@beispiel.de",
       "countryLabel": "Land",
       "countryPlaceholder": "Beispiel.de",
       "submitButtonText": {
-        "default": "Bestellung absenden",
+        "default": "Probetext erhalten",
         "loading": "Bestellung wird gesendet"
       },
       "successMessage": "Bestellinformationen wurden erfolgreich gespeichert",
@@ -986,7 +986,7 @@
   },
   "forgotPasswordPage": {
     "pageTitle": "Passwort vergessen",
-    "authline": "Geben Sie Ihr Passwort ein, um sich anzumelden.",
+    "authline": "Bitte lege ein Passwort fest, um Zugriff auf dein Dashboard zu erhalten.",
     "forgotPasswordForm": {
       "password": {
         "label": "Passwort",
@@ -1010,12 +1010,12 @@
   },
   "passRequestPage": {
     "pageTitle": "Passwort zurücksetzen",
-    "authline": "Bitte geben Sie Ihre E-Mail-Adresse ein, damit wir Ihnen einen Link zum Zurücksetzen Ihres Passworts senden können.",
+    "authline": "Bitte gib deine E-Mail-Adresse ein, damit wir dir einen Link zum Zurücksetzen deines Passworts senden können.",
     "passRequestForm": {
       "pageTitle": "Passwort zurücksetzen",
       "form": {
-        "emailLabel": "Ihre E-Mail",
-        "emailPlaceholder": "jhon@gmail.com",
+        "emailLabel": "E-Mail-Adresse",
+        "emailPlaceholder": "mail@beispiel.de",
         "emailRequiredError": "E-Mail wird benötigt",
         "submitButtonText": "Link anfordern",
         "successMessage": "Link wurde erfolgreich gesendet. Klicken Sie auf den Link, um Ihr Passwort zurückzusetzen.",
@@ -1028,10 +1028,10 @@
     }
   },
   "notFoundPage": {
-    "mainTitle": "Sie scheinen verloren zu sein",
-    "errorMessage": "404 Fehler",
+    "mainTitle": "404 - Seite konnte nicht gefunden werden",
+    "errorMessage": "Die Seite, die du aufrufen wolltest, existiert leider nicht mehr. Bitte gehe zurück auf die Startseite:",
     "backToHomeButton": {
-      "text": "Zurück zur Startseite"
+      "text": "Zur Startseite"
     }
   },
   "registerFreelancerPage": {
@@ -1090,7 +1090,7 @@
         "fields": {
           "iban": {
             "label": "IBAN",
-            "placeholder": "Esp. DE68500105178297336485",
+            "placeholder": "Bsp. DE68500105178297336485",
             "errorMessage": "Bitte geben Sie Ihre IBAN ein"
           },
           "vatRegulation": {
@@ -1111,9 +1111,9 @@
             "errorMessage": "Bitte geben Sie den Namen Ihres Unternehmens ein"
           },
           "vatId": {
-            "label": "USt-IdNr",
-            "placeholder": "Esp. DE238443776",
-            "errorMessage": "USt-IdNr. ist erforderlich"
+            "label": "USt-Id",
+            "placeholder": "Bsp. DE238443776",
+            "errorMessage": "USt-Id. ist erforderlich"
           }
         }
       },

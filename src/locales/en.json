@@ -520,10 +520,10 @@
       "step2": {
         "title": "2. Contact Details of the Invoice Recipient",
         "emailLabel": "Email",
-        "emailPlaceholder": "Your Email Address",
-        "fnameLabel": "First Name",
+        "emailPlaceholder": "jhon@gmail.com",
+        "fnameLabel": "Max",
         "fnamePlaceholder": "Your First Name",
-        "lnameLabel": "Last Name",
+        "lnameLabel": "Mustermann",
         "lnamePlaceholder": "Your Last Name"
       },
       "validationSchema": {
@@ -890,7 +890,7 @@
       "telNoLabel": "Phone Number",
       "telNoPlaceholder": "Your Phone Number",
       "emailLabel": "Email",
-      "emailPlaceholder": "Your Email Address",
+      "emailPlaceholder": "jhon@gmail.com",
       "countryLabel": "Country",
       "countryPlaceholder": "example.de",
       "submitButtonText": {
