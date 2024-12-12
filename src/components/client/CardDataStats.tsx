@@ -230,10 +230,13 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
           <div className="text-sm font-medium text-dark-gray  ">
           {t('project.projectDetails.projectDuration')}{" "}
             <div className="text-meta-5 text-left">
-              {projectDuration === null
+              {/* {projectDuration === null
                 ? `${new Date().toLocaleString("default", {
                     month: "long",
                   })}(no subscription)`
+                : projectDuration + " Month"} */}
+                {projectDuration === null
+                ? `1 Month (no subscription)`
                 : projectDuration + " Month"}
             </div>
           </div>
