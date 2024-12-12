@@ -8,6 +8,13 @@ import { Formik, Form } from "formik";
 import GroupTextArea from "../../client/Forms/GroupTextArea";
 import GroupDropdownField from "../../client/Forms/GroupDropdownField";
 import { useTranslation } from "react-i18next";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+} from "@chakra-ui/react";
+import { AddIcon, MinusIcon } from "@chakra-ui/icons";
 
 interface EditProjectProps {
   closeModel: () => void;
@@ -36,14 +43,13 @@ const OnBoardingInfo: React.FC<EditProjectProps> = ({
   onBoarding,
   closeModel,
   handleRefresh,
-  projectID
+  projectID,
 }) => {
   const { t } = useTranslation();
   const user = useSelector<any>((state) => state.user);
   const [userToken, setUserToken] = useState(user?.user?.token);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-
 
   const initialFormData = {
     speech: speech,
@@ -114,8 +120,8 @@ const OnBoardingInfo: React.FC<EditProjectProps> = ({
       .post(`${import.meta.env.VITE_DB_URL}/projects/updateOnBoarding`, payload)
       .then(() => {
         setLoading(false);
-        closeModel(); 
-        handleRefresh(); 
+        closeModel();
+        handleRefresh();
       })
       .catch((err) => {
         const error =
@@ -137,7 +143,8 @@ const OnBoardingInfo: React.FC<EditProjectProps> = ({
             <div className="bg-white dark:bg-black p-6 rounded shadow-lg lg:w-10/12 xl:w-10/12 2xl:w-6/12 max-h-[90vh] overflow-y-auto scrollbar-hide">
               <div className="flex justify-between items-center mb-5">
                 <h2 className="text-xl font-bold dark:text-white">
-                  {t("project.onboarding.editProject")} {projectID} ({domain}) {t("project.onboarding.edit")}
+                  {t("project.onboarding.editProject")} {projectID} ({domain}){" "}
+                  {t("project.onboarding.edit")}
                 </h2>
                 <FontAwesomeIcon
                   className="cursor-pointer text-lg text-red-500"
@@ -145,6 +152,7 @@ const OnBoardingInfo: React.FC<EditProjectProps> = ({
                   icon={faTimes}
                 />
               </div>
+
               <div>
                 <h2 className="text-black dark:text-white text-base font-semibold">
                   {t("project.onboarding.generalInformation")}
@@ -180,91 +188,131 @@ const OnBoardingInfo: React.FC<EditProjectProps> = ({
                   type={""}
                   placeholder={""}
                 />
-
-                <h2 className="text-black dark:text-white text-base font-semibold lg:mt-3">
-                  {t("project.onboarding.onBoarding")}
-                </h2>
-                <div className="bg-slate-300/90 dark:bg-boxdark rounded py-2 px-4 mt-3">
-                  <h2 className="text-black dark:text-white text-base font-semibold lg:mt-3">
-                    {t("project.onboarding.companyInformation")}
-                  </h2>
-                  <div className="flex flex-col gap-3 py-3">
-                    <GroupTextArea
-                      label={t("project.onboarding.companyInfoLabel")}
-                      id="companyInfo"
-                      name="companyInfo"
-                      value={values.companyInfo}
-                      errors={touched.companyInfo ? errors.companyInfo : ""}
-                      onChange={handleChange}
-                    />
-                    <GroupTextArea
-                      label={t("project.onboarding.companyAttributesLabel")}
-                      id="companyAttributes"
-                      name="companyAttributes"
-                      value={values.companyAttributes}
-                      errors={
-                        touched.companyAttributes
-                          ? errors.companyAttributes
-                          : ""
-                      }
-                      onChange={handleChange}
-                    />
-                    <GroupTextArea
-                      label={t("project.onboarding.servicesLabel")}
-                      id="services"
-                      name="services"
-                      value={values.services}
-                      errors={touched.services ? errors.services : ""}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div className="flex flex-col gap-3 py-3">
-                    <h2 className="text-black dark:text-white text-base font-semibold lg:mt-3.5">
-                      {t("project.onboarding.targetCustomerInformation")}
-                    </h2>
-                    <GroupTextArea
-                      label={t("project.onboarding.contentWrittenForLabel")}
-                      id="content"
-                      name="content"
-                      value={values.content}
-                      errors={touched.content ? errors.content : ""}
-                      onChange={handleChange}
-                    />
-                    <GroupTextArea
-                      label={t("project.onboarding.customerInterestsLabel")}
-                      id="customers"
-                      name="customers"
-                      value={values.customers}
-                      errors={touched.customers ? errors.customers : ""}
-                      onChange={handleChange}
-                    />
-                  </div>
-
-                  <div className="flex flex-col gap-3 py-3">
-                    <h2 className="text-black dark:text-white text-base font-semibold lg:mt-3.5">
-                      {t("project.onboarding.aimOfContent")}
-                    </h2>
-                    <GroupTextArea
-                      label={t("project.onboarding.contentPurposeLabel")}
-                      id="contentPurpose"
-                      name="contentPurpose"
-                      value={values.contentPurpose}
-                      errors={
-                        touched.contentPurpose ? errors.contentPurpose : ""
-                      }
-                      onChange={handleChange}
-                    />
-                    <GroupTextArea
-                      label={t("project.onboarding.brandAndContentInfoLabel")}
-                      id="brand"
-                      name="brand"
-                      value={values.brand}
-                      errors={touched.brand ? errors.brand : ""}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </div>
               </div>
+
+              <Accordion
+                allowToggle
+                className={`appearance-none border-none py-4 rounded `}
+              >
+                <AccordionItem
+                  className={`border-none bg-slate-100 dark:bg-meta-4 rounded`}
+                >
+                  {({ isExpanded }) => (
+                    <>
+                      <h2>
+                        <AccordionButton className="flex justify-between items-center bg-slate-200 dark:bg-meta-4 rounded ">
+                          <p className="font-semibold text-black dark:text-white ">
+                            {t("task.taskModel.onBoardingInfo.onBoarding")}
+                          </p>
+                          {isExpanded ? (
+                            <MinusIcon fontSize="12px" />
+                          ) : (
+                            <AddIcon fontSize="12px" />
+                          )}
+                        </AccordionButton>
+                      </h2>
+                      <AccordionPanel className="" pb={4}>
+                        <div className="bg-slate-300/90 dark:bg-boxdark rounded py-2 px-4 ">
+                          <h2 className="text-black dark:text-white text-base font-semibold lg:mt-3">
+                            {t("project.onboarding.companyInformation")}
+                          </h2>
+                          <div className="flex flex-col gap-3 py-3">
+                            <GroupTextArea
+                              label={t("project.onboarding.companyInfoLabel")}
+                              id="companyInfo"
+                              name="companyInfo"
+                              value={values.companyInfo}
+                              errors={
+                                touched.companyInfo ? errors.companyInfo : ""
+                              }
+                              onChange={handleChange}
+                            />
+                            <GroupTextArea
+                              label={t(
+                                "project.onboarding.companyAttributesLabel"
+                              )}
+                              id="companyAttributes"
+                              name="companyAttributes"
+                              value={values.companyAttributes}
+                              errors={
+                                touched.companyAttributes
+                                  ? errors.companyAttributes
+                                  : ""
+                              }
+                              onChange={handleChange}
+                            />
+                            <GroupTextArea
+                              label={t("project.onboarding.servicesLabel")}
+                              id="services"
+                              name="services"
+                              value={values.services}
+                              errors={touched.services ? errors.services : ""}
+                              onChange={handleChange}
+                            />
+                          </div>
+                          <div className="flex flex-col gap-3 py-3">
+                            <h2 className="text-black dark:text-white text-base font-semibold lg:mt-3.5">
+                              {t(
+                                "project.onboarding.targetCustomerInformation"
+                              )}
+                            </h2>
+                            <GroupTextArea
+                              label={t(
+                                "project.onboarding.contentWrittenForLabel"
+                              )}
+                              id="content"
+                              name="content"
+                              value={values.content}
+                              errors={touched.content ? errors.content : ""}
+                              onChange={handleChange}
+                            />
+                            <GroupTextArea
+                              label={t(
+                                "project.onboarding.customerInterestsLabel"
+                              )}
+                              id="customers"
+                              name="customers"
+                              value={values.customers}
+                              errors={touched.customers ? errors.customers : ""}
+                              onChange={handleChange}
+                            />
+                          </div>
+
+                          <div className="flex flex-col gap-3 py-3">
+                            <h2 className="text-black dark:text-white text-base font-semibold lg:mt-3.5">
+                              {t("project.onboarding.aimOfContent")}
+                            </h2>
+                            <GroupTextArea
+                              label={t(
+                                "project.onboarding.contentPurposeLabel"
+                              )}
+                              id="contentPurpose"
+                              name="contentPurpose"
+                              value={values.contentPurpose}
+                              errors={
+                                touched.contentPurpose
+                                  ? errors.contentPurpose
+                                  : ""
+                              }
+                              onChange={handleChange}
+                            />
+                            <GroupTextArea
+                              label={t(
+                                "project.onboarding.brandAndContentInfoLabel"
+                              )}
+                              id="brand"
+                              name="brand"
+                              value={values.brand}
+                              errors={touched.brand ? errors.brand : ""}
+                              onChange={handleChange}
+                            />
+                          </div>
+                        </div>
+                      </AccordionPanel>
+                    </>
+                  )}
+                </AccordionItem>
+              </Accordion>
               <div className="flex justify-end items-end flex-row gap-x-4 mt-4">
                 {" "}
                 <button
