@@ -164,7 +164,7 @@ const RegisterForm = () => {
                       "registerFreelancerPage.registerFormPage.section1.fields.fname.label"
                     )}
                     placeholder={t(
-                      "registerFreelancerPage.registerFormPage.section1.fields.fname.errorMessage"
+                      "registerFreelancerPage.registerFormPage.section1.fields.fname.placeholder"
                     )}
                     id={"fname"}
                     name={"fname"}
@@ -327,25 +327,7 @@ const RegisterForm = () => {
                     setErrorMesssage("");
                   }}
                 />
-                <GroupDropdownField
-                  label={t(
-                    "registerFreelancerPage.registerFormPage.section2.fields.vatRegulation.label"
-                  )}
-                  type={"text"}
-                  id={"vatRegulation"}
-                  name={"vatRegulation"}
-                  placeholder={""}
-                  option1={"Small Business (0%)"}
-                  option2={"CY Ltd (19%)"}
-                  option3={"Non-EU Foreign (0%)"}
-                  option4={"Reverse Charge (0%)"}
-                  value={props.values.vatRegulation}
-                  onChange={(e) => {
-                    props.handleChange(e);
-                    setError(false);
-                    setErrorMesssage("");
-                  }}
-                />
+               
               </div>
 
               <div className="flex flex-col gap-y-3   -mt-2">
@@ -370,8 +352,27 @@ const RegisterForm = () => {
                     setErrorMesssage("");
                   }}
                 />
+                 <GroupDropdownField
+                  label={t(
+                    "registerFreelancerPage.registerFormPage.section2.fields.vatRegulation.label"
+                  )}
+                  type={"text"}
+                  id={"vatRegulation"}
+                  name={"vatRegulation"}
+                  placeholder={""}
+                  option1={"Small Business (0%)"}
+                  option2={"CY Ltd (19%)"}
+                  option3={"Non-EU Foreign (0%)"}
+                  option4={"Reverse Charge (0%)"}
+                  value={props.values.vatRegulation}
+                  onChange={(e) => {
+                    props.handleChange(e);
+                    setError(false);
+                    setErrorMesssage("");
+                  }}
+                />
                 {props.values.vatRegulation === "CY Ltd (19%)" ||
-                props.values.vatRegulation === "Reverse charge (0%)" ? (
+                props.values.vatRegulation === "Reverse Charge (0%)" ? (
                   <GroupField
                     label={t(
                       "registerFreelancerPage.registerFormPage.section3.fields.vatId.label"

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import Checkbox1 from "../buttons/CheckboxThree";
@@ -12,6 +12,9 @@ import { useTranslation } from "react-i18next";
 import { Task } from "../Type/types";
 
 const TaskTable = () => {
+  const { state } = useLocation(); // Assuming you are using React Router
+const productUniqueID = state?.productUniqueID;
+const domain = state?.domain;
   const { t } = useTranslation();
   useTitle(t("taskTable.title"));
   const navigate = useNavigate();
@@ -171,7 +174,7 @@ const TaskTable = () => {
               </Link>
             </li>
             <li className="font-medium text-primary">
-              {t("taskTable.breadcrumb.currentPage")}
+              {productUniqueID}: {domain}
             </li>
           </ol>
           {/* <DarkBtn
@@ -184,7 +187,7 @@ const TaskTable = () => {
         </div>
         <div className="flex justify-between items-center flex-row mb-6 mt-4 ">
           <h2 className="text-title-md2 font-semibold text-black dark:text-white ">
-            {t("taskTable.projectTexts")}
+            {t("taskTable.projectTexts")} {productUniqueID}: {domain}
           </h2>
           <div>
             <DarkBtn

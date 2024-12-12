@@ -403,7 +403,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
           <div className="bg-white dark:bg-black p-6 rounded shadow-lg  lg:w-8/12 xl:w-8/12 2xl:w-8/12 3xl:w-6/12 max-h-[90vh] overflow-y-auto scrollbar-hide">
             <div className="flex justify-between items-center mb-2">
               <h2 className="text-xl font-bold dark:text-white">
-                {t("task.texterCard.dialog.finishOrderDialog.title")}
+                {task?.taskName} ({task?.keywords}) {t("task.texterCard.dialog.finishOrderDialog.title")}
               </h2>
               <FontAwesomeIcon
                 className="cursor-pointer text-lg dark:text-white text-black"
@@ -446,7 +446,8 @@ const TaskCard: React.FC<TaskCardProps> = ({
                   <CrossCheck isChecked={false} />
                 )}
                 <label className="dark:text-white">
-                  <strong>{t("task.texterCard.dialog.finishOrderDialog.minWordCount.header")}</strong>
+                  <strong>{t("task.texterCard.dialog.finishOrderDialog.minWordCount.header")}: {Number(task?.actualNumberOfWords) === 1 ? 0 : task?.actualNumberOfWords}/
+                  {task?.desiredNumberOfWords}</strong>
                 </label>
               </div>
               <p className="pl-8">

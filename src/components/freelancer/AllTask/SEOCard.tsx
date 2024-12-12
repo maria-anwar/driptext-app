@@ -315,7 +315,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
           <div className="bg-white dark:bg-black p-6 rounded shadow-lg">
             <div className="flex justify-between items-center mb-2">
               <h2 className="text-xl font-bold  dark:text-white">
-              {t("task.seoCard.finishDialog.title")}
+              {task?.taskName} ({task?.keywords}) {t("task.seoCard.finishDialog.title")}
               </h2>
               <FontAwesomeIcon
                 className="cursor-pointer text-lg text-red-500"

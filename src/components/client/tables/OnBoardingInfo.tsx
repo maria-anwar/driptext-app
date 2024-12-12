@@ -25,6 +25,7 @@ interface EditProjectProps {
     contentPurpose?: string;
     contentInfo?: string;
   };
+  projectID: string;
 }
 
 const OnBoardingInfo: React.FC<EditProjectProps> = ({
@@ -35,6 +36,7 @@ const OnBoardingInfo: React.FC<EditProjectProps> = ({
   onBoarding,
   closeModel,
   handleRefresh,
+  projectID
 }) => {
   const { t } = useTranslation();
   const user = useSelector<any>((state) => state.user);
@@ -135,7 +137,7 @@ const OnBoardingInfo: React.FC<EditProjectProps> = ({
             <div className="bg-white dark:bg-black p-6 rounded shadow-lg lg:w-10/12 xl:w-10/12 2xl:w-6/12 max-h-[90vh] overflow-y-auto scrollbar-hide">
               <div className="flex justify-between items-center mb-5">
                 <h2 className="text-xl font-bold dark:text-white">
-                  {t("project.onboarding.editProject")}
+                  {t("project.onboarding.editProject")} {projectID} ({domain}) {t("project.onboarding.edit")}
                 </h2>
                 <FontAwesomeIcon
                   className="cursor-pointer text-lg text-red-500"

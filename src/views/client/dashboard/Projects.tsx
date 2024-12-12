@@ -44,6 +44,7 @@ const Projects: React.FC = () => {
 
         if (allProjects.length > 0) {
           setProjectData(allProjects);
+          console.log("Project data:", allProjects);
           setLoading(false);
         }
       })
@@ -55,7 +56,7 @@ const Projects: React.FC = () => {
 
   return (
     <>
-      <div className="w-full flex flex-row justify-start items-center   4xl:px-14">
+      {/* <div className="w-full flex flex-row justify-start items-center   4xl:px-14">
         <div className="flex items-center justify-between space-x-4 mb-4 mt-2">
           <ol className="flex items-center gap-2 text-left">
             <li>
@@ -71,15 +72,15 @@ const Projects: React.FC = () => {
             </li>
           </ol>
         </div>
-      </div>
-      <div className="w-full flex flex-col gap-3 2xl:gap-0 2xl:flex-row 2xl:justify-between items-center 4xl:px-14 mb-3 4xl:mb-6 mt-2 lg:mt-1">
-        <div className="w-full 2xl:max-w-max">
+      </div> */}
+      <div className="w-full flex flex-col gap-3 2xl:gap-0 2xl:flex-row 2xl:justify-between items-center 4xl:px-8 mb-3 4xl:mb-6 mt-2 lg:mt-1">
+        <div className="w-full 2xl:max-w-max 3xl:px-6">
           <h1 className="text-title-md font-bold text-black dark:text-white mb-2">
             {t("project.header.mainTitle")}
           </h1>
           <p className="text-dark-gray">{t("project.header.subTitle")}</p>
         </div>
-        <div className=" w-full 2xl:max-w-max flex justify-start 2xl:justify-end mt-2 gap-2 ">
+        <div className=" w-full 2xl:max-w-max flex justify-start 2xl:justify-end mt-2 gap-2 3xl:px-6 ">
           <div>
             <DarkBtn
               name={t("project.buttons.addProject")}
@@ -89,7 +90,7 @@ const Projects: React.FC = () => {
         </div>
       </div>
       {loading ? (
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 2xl:grid-cols-3 5xl:grid-cols-4 4xl:px-14">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 2xl:grid-cols-3 5xl:grid-cols-4 4xl:px-14 3xl:px-6">
           <div className="rounded-sm border border-stroke  pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark px-7.5 xl:pb-1  w-full bg-slate-200 h-[300px] animate-pulse"></div>
           <div className="rounded-sm border border-stroke  pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark px-7.5 xl:pb-1  w-full bg-slate-200 h-[300px] animate-pulse"></div>
           <div className="rounded-sm border border-stroke  pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark px-7.5 xl:pb-1  w-full bg-slate-200 h-[300px] animate-pulse"></div>
@@ -98,7 +99,7 @@ const Projects: React.FC = () => {
           <div className="rounded-sm border border-stroke  pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark px-7.5 xl:pb-1  w-full bg-slate-200 h-[300px] animate-pulse"></div>
         </div>
       ) : (
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 2xl:grid-cols-3 5xl:grid-cols-4 4xl:px-14 z-99">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 2xl:grid-cols-3 5xl:grid-cols-4 4xl:px-14 z-99 3xl:px-6">
           {projectData
             .filter((project) => project?.isActive === "Y") // Filter only active projects
             .map((project) => (
@@ -108,13 +109,14 @@ const Projects: React.FC = () => {
                 texts={project?.plan?.textsCount}
                 productUniqueID={project.projectId}
                 domain={project.projectName}
+                projectID={project.projectId}
                 keywords={project.keywords}
                 projectStatus={project.projectStatus}
                 createdOn={formatDate(project.createdAt)}
                 totalTexts={project?.plan?.totalTexts}
                 servicePeriod={project.servicePeriod || ""}
                 ordersPerMonth={project?.plan?.tasksPerMonth}
-                usedordersPerMonth={project?.plan?.tasksPerMonthCount}
+                usedordersPerMonth={project?.plan?.textsCount}
                 projectDuration={project?.plan?.duration}
                 onBoarding={project?.onBoarding}
                 plan={project?.plan?.subscription}

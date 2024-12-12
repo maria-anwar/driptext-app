@@ -23,6 +23,7 @@ interface CardDataStatsProps {
   speech: string;
   prespective: string;
   projectRefresh: () => void;
+  projectID: string;
 }
 
 const CardDataStats: React.FC<CardDataStatsProps> = ({
@@ -44,6 +45,7 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
   prespective,
   speech,
   projectRefresh,
+  projectID
 }) => {
   const {t} = useTranslation();
   const navigate = useNavigate();
@@ -79,7 +81,7 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
   const handleProjectTask = () => {
     localStorage.setItem("projectName", domain);
     localStorage.setItem("projectId", id.toString());
-    navigate("task-table", { state: { projectId: id } });
+    navigate("task-table", { state: { projectId: id ,productUniqueID:productUniqueID,domain:domain} });
   };
 
   const handleNothing = () => {};
@@ -180,6 +182,7 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
           projectId={id.toString()}
           domain={domain}
           speech={speech}
+          projectID={projectID}
           perspective={prespective}
           closeModel={() => {
             setonBoardingModel(false);
@@ -205,7 +208,7 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
         <div className="my-6">
           <hr className="text-custom-gray" />
         </div>
-        <div className="mt-3 mb-3 flex items-end justify-between">
+        {/* <div className="mt-3 mb-3 flex items-end justify-between">
           <div className="text-sm font-medium text-dark-gray ">
             {t('project.projectDetails.text')}{" "}
             <div className="text-meta-5">
@@ -216,17 +219,17 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
           {t('project.projectDetails.createdOn')}{" "}
             <div className="text-meta-3 flex justify-end">{createdOn}</div>
           </div>
-        </div>
-        <div className="mt-8 mb-3 flex items-end justify-between w-full">
+        </div> */}
+        <div className="mt-8 mb-3 flex flex-col items-start justify-start w-full gap-y-3">
           <div className="text-sm font-medium text-dark-gray ">
           {t('project.projectDetails.ordersPerMonth')}{" "}
             <p className="text-meta-5  ">
               {usedordersPerMonth}/{ordersPerMonth}
             </p>
           </div>
-          <div className="text-sm font-medium text-dark-gray flex items-end justify-end flex-col ">
+          <div className="text-sm font-medium text-dark-gray  ">
           {t('project.projectDetails.projectDuration')}{" "}
-            <div className="text-meta-5 text-right">
+            <div className="text-meta-5 text-left">
               {projectDuration === null
                 ? `${new Date().toLocaleString("default", {
                     month: "long",

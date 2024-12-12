@@ -2,8 +2,8 @@
   "clientsidebar": {
     "slogan": "We love SEO & Content",
     "menu": {
-      "myProjects": "My Projects",
-      "contactSupport": "Contact Support",
+      "myProjects": "Projects",
+      "contactSupport": "Contact",
       "settings": "Settings",
       "accountSetting": "Account Settings",
       "signOut": "Sign out"
@@ -17,7 +17,7 @@
     },
     "header": {
       "mainTitle": "Projects",
-      "subTitle": "Here you can see all the projects for which DripTexts are created."
+      "subTitle": "Here are all the projects listed for which texts are being created."
     },
     "buttons": {
       "addProject": "Add Project"
@@ -28,11 +28,12 @@
     "projectDetails": {
       "text": "Text",
       "createdOn": "Created on:",
-      "ordersPerMonth": "Orders per month",
+      "ordersPerMonth": "Texts per month",
       "projectDuration": "Project Duration"
     },
     "onboarding": {
-      "editProject": "Edit Project",
+      "editProject": "OnBoarding for",
+      "edit": "edit",
       "generalInformation": "1. General information:",
       "speech": "Speech",
       "writingPerspective": "Writing Perspective",
@@ -68,22 +69,22 @@
   "taskTable": {
     "title": "Client (Tasks)",
     "breadcrumb": {
-      "dashboard": "Dashboard /",
-      "currentPage": "Project Texts"
+      "dashboard": "Project /",
+      "currentPage": "Project"
     },
     "addSubscriptionButton": "Add Subscription",
-    "projectTexts": "Project Texts",
+    "projectTexts": "All texts for",
     "columns": {
       "textNumber": "Text #",
       "status": "Status",
-      "serviceDuration": "Service Duration",
+      "serviceDuration": "Performance Period",
       "keyword": "Keyword",
       "published": "Published"
     }
   },
   "support": {
     "pagetitle": "Client (Support)",
-    "breadcrumb": "Our Support",
+    "breadcrumb": "Contact support",
     "contacttitle": "Contact Our Team",
     "firstnamelabel": "First Name",
     "firstnameplaceholder": "firstname",
@@ -91,8 +92,8 @@
     "lastnameplaceholder": "lastname",
     "emaillabel": "Email Address",
     "emailplaceholder": "example@gmail.com",
-    "messagelabel": "Your Message",
-    "messageplaceholder": "Write your message here...",
+    "messagelabel": "Message",
+    "messageplaceholder": "Enter message here…",
     "submitbuttontext": "Submit",
     "loadingbuttontext": "Submitting...",
     "erroremptyfields": "Please fill in all fields.",
@@ -125,7 +126,7 @@
     "allFieldsRequired": "Please enter data in all fields",
     "emailSubscription": {
       "title": "Enable Email",
-      "enabled": "Email subscription enabled",
+      "enabled": "Enable email notification",
       "disabled": "Email subscription disabled",
       "description": "If you turn off email enabled, you won't receive any notification from DripText via email."
     },
@@ -186,39 +187,135 @@
           "closeButton": "Close"
         },
         "finishOrderDialog": {
-          "title": "Finish order",
-          "message": "You're about to complete the order, are you sure?",
+          "title": "Complete",
+          "message": "Please carefully review your created text to ensure it meets our quality guidelines. Mark each item with a checkmark. Once you click the 'Submit Text' button, the task will be considered complete.",
           "checkboxes": {
             "careAccuracy": {
-              "header": "Care and accuracy",
-              "description": "(consistency of words, figures/facts are correct)"
+              "header": "Structural guidelines followed",
+              "description": "Structure, paragraphs, clear flow, plagiarism check"
             },
             "contentSpecification": {
-              "header": "Content specification",
-              "description": "(text fits the customer/context, special requests adhered to)"
+              "header": "Content guidelines followed",
+              "description": "Text matches the client/context, special requests fulfilled"
             },
             "formalRequirements": {
-              "header": "Formal requirements",
-              "description": "(saturations, writing perspective, tone of voice)"
+              "header": "Formal guidelines followed",
+              "description": "Salutation, writing perspective, tone of voice"
             },
             "structuralGuidelines": {
-              "header": "Structural guidelines",
-              "description": "(structure, paragraph, common thread, plagiarism)"
+              "header": "Text inflation and duplication avoided",
+              "description": "Conciseness, added value, no repetition"
             },
             "textBloatDuplication": {
-              "header": "Text bloat and duplication",
-              "description": "(conciseness, added value, no duplication)"
+              "header": "Care and accuracy",
+              "description": "Consistency in words, numbers/facts are correct"
             },
             "errorFreeText": {
               "header": "Text is error-free",
-              "description": "(spelling, punctuation, grammar)"
+              "description": "Spelling, punctuation, grammar"
             }
+          }
+        },
+        "minWordCount": {
+          "header": "Minimum Word Count",
+          "description": "Please carefully review your created text to ensure it meets our quality guidelines. Mark each item with a checkmark. Once you click the 'Submit Text' button, the task will be considered complete."
+        },
+        "confirmFinishButton": "Submit text"
+      }
+    },
+    "projectHeader": {
+      "title": "Task Details",
+      "infoTab": "Briefing Overview",
+      "feedbackTab": "Feedback",
+      "feedbackNoFeedback": "No feedback available"
+    },
+    "completionLabels": {
+      "completionMessage": "You're about to complete the order, are you sure?",
+      "minimumWordCountMessage": "Ensure that the text meets or exceeds the required minimum word count."
+    }
+  },
+  "taskModel": {
+    "taskModellabels": {
+      "task": "Task",
+      "taskId": "Task",
+      "deadline": "Deadline",
+      "taskStatus": "Task Status",
+      "activeRole": "Active Role",
+      "yourRole": "Your Role",
+      "wordCount": "Word Count",
+      "comment": "Comment"
+    },
+    "onBoardingInfo": {
+      "onBoarding": "OnBoarding",
+      "generalInformation": "1. General information",
+      "speech": "Speech",
+      "perspective": "Perspective",
+      "website": "Website",
+      "companyInformation": "2. Company Information",
+      "companyBackground": "Background information about the company",
+      "companyAttributes": "Which attributes best describe you as a company/your products/your services?",
+      "companyServices": "What are your services?",
+      "targetCustomerInformation": "3. Information About the Target Customers",
+      "contentTargetAudience": "Who is the content written for?",
+      "customerInterest": "Customers we want to address have an interest in...",
+      "contentAim": "4. Aim of the Content",
+      "contentPurpose": "What is the purpose of the content?",
+      "brandAndContentInfo": "Information about your brand and your content"
+    }
+  },
+  "lectorCard": {
+    "actions": {
+      "accept": "Accept",
+      "decline": "Decline",
+      "start": "Start",
+      "finish": "Finish",
+      "showDetails": "Show more details",
+      "acceptConfirmation": {
+        "title": "Accept order",
+        "message": "You are about to accept the order after which you have 24 hours to complete it, are you sure?",
+        "confirm": "Confirm",
+        "close": "Close"
+      },
+      "finishConfirmation": {
+        "title": "Finish order",
+        "message": "Please carefully check the text from the writer to see if it meets our quality guidelines. Mark each point with a checkmark. Once you click the “Submit Text” button, the task is completed. If something is not right, the text will be returned to the writer. Please write him a brief feedback on what needs to be improved.",
+        "details": {
+          "format1": {
+            "heading": "Care and accuracy",
+            "description": "(consistency of words, figures/facts are correct)"
           },
-          "minWordCount": {
-            "header": "Minimum Word Count",
-            "description": "Ensure that the text meets or exceeds the required minimum word count."
+          "format2": {
+            "heading": "Content specification",
+            "description": "(text fits the customer/context, special requests adhered to)"
           },
-          "confirmFinishButton": "Confirm Finish"
+          "format3": {
+            "heading": "Formal requirements",
+            "description": "(saturations, writing perspective, tone of voice)"
+          },
+          "format4": {
+            "heading": "Structural guidelines",
+            "description": "(structure, paragraph, common thread, plagiarism)"
+          },
+          "format5": {
+            "heading": "Text bloat and duplication",
+            "description": "(conciseness, added value, no duplication)"
+          },
+          "format6": {
+            "heading": "Text is error-free",
+            "description": "(spelling, punctuation, grammar)"
+          }
+        },
+        "renewRequired": {
+          "heading": "Renew Required",
+          "message": "With this input, the text does not meet our quality criteria and will be sent back to the copywriter for revision. Please describe briefly in a comment what should be improved."
+        },
+        "commentPrompt": {
+          "label": "Comment *",
+          "textareaPlaceholder": "Write your comment here"
+        },
+        "confirmFinish": {
+          "buttonText": "Confirm Finish",
+          "disabledMessage": "You must check all boxes or write a comment to finish."
         }
       },
       "projectHeader": {
@@ -226,127 +323,9 @@
         "infoTab": "Info",
         "feedbackTab": "Feedback",
         "feedbackNoFeedback": "No feedback available"
-      },
-      "completionLabels": {
-        "completionMessage": "You're about to complete the order, are you sure?",
-        "minimumWordCountMessage": "Ensure that the text meets or exceeds the required minimum word count."
       }
     },
-    "taskModel": {
-      "taskModellabels": {
-        "task": "Task",
-        "taskId": "Task Id",
-        "deadline": "Deadline",
-        "taskStatus": "Task Status",
-        "activeRole": "Active Role",
-        "yourRole": "Your Role",
-        "wordCount": "Word Count",
-        "comment": "Comment"
-      },
-      "onBoardingInfo": {
-        "onBoarding": "OnBoarding",
-        "generalInformation": "1. General information",
-        "speech": "Speech",
-        "perspective": "Perspective",
-        "website": "Website",
-        "companyInformation": "2. Company Information",
-        "companyBackground": "Background information about the company",
-        "companyAttributes": "Which attributes best describe you as a company/your products/your services?",
-        "companyServices": "What are your services?",
-        "targetCustomerInformation": "3. Information About the Target Customers",
-        "contentTargetAudience": "Who is the content written for?",
-        "customerInterest": "Customers we want to address have an interest in...",
-        "contentAim": "4. Aim of the Content",
-        "contentPurpose": "What is the purpose of the content?",
-        "brandAndContentInfo": "Information about your brand and your content"
-      }
-    },
-    "lectorCard": {
-      "actions": {
-        "accept": "Accept",
-        "decline": "Decline",
-        "start": "Start",
-        "finish": "Finish",
-        "showDetails": "Show more details",
-        "acceptConfirmation": {
-          "title": "Accept order",
-          "message": "You are about to accept the order after which you have 24 hours to complete it, are you sure?",
-          "confirm": "Confirm",
-          "close": "Close"
-        },
-        "finishConfirmation": {
-          "title": "Finish order",
-          "message": "You're about to complete the order, are you sure?",
-          "details": {
-            "format1": {
-              "heading": "Care and accuracy",
-              "description": "(consistency of words, figures/facts are correct)"
-            },
-            "format2": {
-              "heading": "Content specification",
-              "description": "(text fits the customer/context, special requests adhered to)"
-            },
-            "format3": {
-              "heading": "Formal requirements",
-              "description": "(saturations, writing perspective, tone of voice)"
-            },
-            "format4": {
-              "heading": "Structural guidelines",
-              "description": "(structure, paragraph, common thread, plagiarism)"
-            },
-            "format5": {
-              "heading": "Text bloat and duplication",
-              "description": "(conciseness, added value, no duplication)"
-            },
-            "format6": {
-              "heading": "Text is error-free",
-              "description": "(spelling, punctuation, grammar)"
-            }
-          },
-          "renewRequired": {
-            "heading": "Renew Required",
-            "message": "With this input, the text does not meet our quality criteria and will be sent back to the copywriter for revision. Please describe briefly in a comment what should be improved."
-          },
-          "commentPrompt": {
-            "label": "Comment *",
-            "textareaPlaceholder": "Write your comment here"
-          },
-          "confirmFinish": {
-            "buttonText": "Confirm Finish",
-            "disabledMessage": "You must check all boxes or write a comment to finish."
-          }
-        },
-        "projectHeader": {
-          "title": "Task Details",
-          "infoTab": "Info",
-          "feedbackTab": "Feedback",
-          "feedbackNoFeedback": "No feedback available"
-        }
-      },
-      "dialogs": {
-        "acceptDialog": {
-          "title": "Accept order",
-          "message": "You are about to accept the order after which you have 24 hours to complete it, are you sure?",
-          "confirmButton": "Confirm",
-          "closeButton": "Close"
-        },
-        "finishDialog": {
-          "title": "Finish order",
-          "message": "You're about to complete the order, are you sure?"
-        },
-        "projectInfoDialog": {
-          "title": "Task Details",
-          "closeButton": "Close"
-        }
-      }
-    },
-    "seoCard": {
-      "projectHeader": {
-        "title": "Task Details",
-        "infoButton": "Info",
-        "feedbackButton": "Feedback",
-        "noFeedback": "No feedback available"
-      },
+    "dialogs": {
       "acceptDialog": {
         "title": "Accept order",
         "message": "You are about to accept the order after which you have 24 hours to complete it, are you sure?",
@@ -355,31 +334,53 @@
       },
       "finishDialog": {
         "title": "Finish order",
-        "message": "You're about to complete the order, are you sure?",
-        "confirmButton": "Confirm Finish"
+        "message": "You're about to complete the order, are you sure?"
       },
-      "taskInfo": {
-        "showMoreDetails": "Show more details"
-      },
-      "taskActions": {
-        "acceptButton": "Accept",
-        "declineButton": "Decline",
-        "startButton": "Start",
-        "finishButton": "Finish"
+      "projectInfoDialog": {
+        "title": "Task Details",
+        "closeButton": "Close"
       }
+    }
+  },
+  "seoCard": {
+    "projectHeader": {
+      "title": "Task Details",
+      "infoButton": "Info",
+      "feedbackButton": "Feedback",
+      "noFeedback": "No feedback available"
+    },
+    "acceptDialog": {
+      "title": "Accept order",
+      "message": "You are about to accept the order after which you have 24 hours to complete it, are you sure?",
+      "confirmButton": "Confirm",
+      "closeButton": "Close"
+    },
+    "finishDialog": {
+      "title": "Finish order",
+      "message": "Are you sure you want to complete the task?",
+      "confirmButton": "Confirm Finish"
+    },
+    "taskInfo": {
+      "showMoreDetails": "Show more details"
+    },
+    "taskActions": {
+      "acceptButton": "Accept",
+      "declineButton": "Decline",
+      "startButton": "Start",
+      "finishButton": "Finish"
     }
   },
   "earning": {
     "pageTitle": "Freelancer (Earnings)",
     "breadcrumb": {
       "pageName": "Earnings",
-      "pageData": "Here you can see all the earning from all your DripTexts projects."
+      "pageData": "Here, all texts will be listed as soon as they are completed by all involved freelancers."
     },
     "tableHeaders": {
-      "taskId": "Task Id",
+      "taskId": "Task",
       "date": "Date",
       "role": "Role",
-      "articleKeyword": "Article/Keyword",
+      "articleKeyword": "Keyword",
       "targetWords": "Target Number of Words",
       "actualWords": "Actual Number of Words",
       "difference": "Difference",
@@ -520,10 +521,10 @@
       "step2": {
         "title": "2. Contact Details of the Invoice Recipient",
         "emailLabel": "Email",
-        "emailPlaceholder": "Your Email Address",
-        "fnameLabel": "First Name",
+        "emailPlaceholder": "jhon@gmail.com",
+        "fnameLabel": "Max",
         "fnamePlaceholder": "Your First Name",
-        "lnameLabel": "Last Name",
+        "lnameLabel": "Mustermann",
         "lnamePlaceholder": "Your Last Name"
       },
       "validationSchema": {
@@ -890,7 +891,7 @@
       "telNoLabel": "Phone Number",
       "telNoPlaceholder": "Your Phone Number",
       "emailLabel": "Email",
-      "emailPlaceholder": "Your Email Address",
+      "emailPlaceholder": "jhon@gmail.com",
       "countryLabel": "Country",
       "countryPlaceholder": "example.de",
       "submitButtonText": {
