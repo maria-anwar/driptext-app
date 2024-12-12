@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Task } from "../../Type/types";
-import { formatDate } from "../../Helper/formatDate";
 import AccordionData from "./AccordionData";
 import { useTranslation } from "react-i18next";
+import moment from "moment";
 
 interface TaskProps {
   task: Task;
@@ -22,10 +22,15 @@ const TaskInfoCard: React.FC<TaskProps> = ({
   getWordCount();
   const [actualNumber, setActualNumber] = useState<string>(task?.actualNumberOfWords)
 
+  const formatDate = (date: string, format: string = "DD.MM.YYYY") => {
+    if (!date) return "";
+    return moment(date).format(format);
+  };
+
   return (
     <>
       <div className="bg-slate-200 dark:bg-boxdark rounded py-4 px-4">
-        <p className="dark:text-white font-semibold text-lg">{t('task.taskModel.taskModellabels.task')}</p>
+        <p className="dark:text-white font-semibold text-lg">Details zu {task?.taskName}({task?.keywords})</p>
         <p className="dark:text-white">
         {t('task.taskModel.taskModellabels.taskId')}:{" "}
           <a

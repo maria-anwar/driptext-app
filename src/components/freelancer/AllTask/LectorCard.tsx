@@ -404,7 +404,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
           <div className="bg-white dark:bg-black p-6 rounded shadow-lg  lg:w-8/12 xl:w-8/12 2xl:w-8/12 3xl:w-6/12 max-h-[90vh] overflow-y-auto scrollbar-hide">
             <div className="flex justify-between items-center mb-2">
               <h2 className="text-xl font-bold dark:text-white">
-                {t("task.lectorCard.actions.finishConfirmation.title")}
+               {task?.taskName} ({task?.keywords}) {t("task.lectorCard.actions.finishConfirmation.title")}
               </h2>
               <FontAwesomeIcon
                 className="cursor-pointer text-lg text-red-500"

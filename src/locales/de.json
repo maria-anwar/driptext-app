@@ -2,8 +2,8 @@
   "clientsidebar": {
     "slogan": "Wir lieben SEO & Content",
     "menu": {
-      "myProjects": "Meine Projekte",
-      "contactSupport": "Support kontaktieren",
+      "myProjects": "Projekte",
+      "contactSupport": "Kontakt",
       "settings": "Einstellungen",
       "accountSetting": "Kontoeinstellungen",
       "signOut": "Abmelden"
@@ -17,7 +17,7 @@
     },
     "header": {
       "mainTitle": "Projekte",
-      "subTitle": "Hier können Sie alle Projekte sehen, für die DripTexts erstellt wurden."
+      "subTitle": "Hier sind alle Projekte aufgelistet, für die Textes erstellt werden."
     },
     "buttons": {
       "addProject": "Projekt hinzufügen"
@@ -28,11 +28,12 @@
     "projectDetails": {
       "text": "Text",
       "createdOn": "Erstellt am:",
-      "ordersPerMonth": "Bestellungen pro Monat",
+      "ordersPerMonth": "Texte pro Monat",
       "projectDuration": "Projektdauer"
     },
     "onboarding": {
-      "editProject": "Projekt bearbeiten",
+      "editProject": "Onboarding für",
+      "edit": "bearbeiten",
       "generalInformation": "1. Allgemeine Informationen:",
       "speech": "Sprache",
       "writingPerspective": "Schreibperspektive",
@@ -66,24 +67,24 @@
     }
   },
   "taskTable": {
-    "title": "Kunde (Aufgaben)",
+    "title": "Kunde (Tasks)",
     "breadcrumb": {
-      "dashboard": "Dashboard /",
-      "currentPage": "Projekttexte"
+      "dashboard": "Projekte /",
+      "currentPage": "Projekte"
     },
     "addSubscriptionButton": "Abonnement hinzufügen",
-    "projectTexts": "Projekt texte",
+    "projectTexts": "Alle Texte für",
     "columns": {
       "textNumber": "Text #",
       "status": "Status",
-      "serviceDuration": "Service-Dauer",
-      "keyword": "Schlüsselwort",
+      "serviceDuration": "Performance Period",
+      "keyword": "Keyword",
       "published": "Veröffentlicht"
     }
   },
   "support": {
     "pagetitle": "Kunde (Support)",
-    "breadcrumb": "Unser Support",
+    "breadcrumb": "Support kontaktieren",
     "contacttitle": "Kontaktieren Sie unser Team",
     "firstnamelabel": "Vorname",
     "firstnameplaceholder": "Vorname",
@@ -91,8 +92,8 @@
     "lastnameplaceholder": "Nachname",
     "emaillabel": "E-Mail-Adresse",
     "emailplaceholder": "beispiel@gmail.com",
-    "messagelabel": "Ihre Nachricht",
-    "messageplaceholder": "Schreiben Sie hier Ihre Nachricht...",
+    "messagelabel": "Nachricht",
+    "messageplaceholder": "Nachricht hier eingeben…",
     "submitbuttontext": "Absenden",
     "loadingbuttontext": "Wird gesendet...",
     "erroremptyfields": "Bitte füllen Sie alle Felder aus.",
@@ -124,10 +125,10 @@
     },
     "allFieldsRequired": "Bitte geben Sie Daten in allen Feldern ein",
     "emailSubscription": {
-      "title": "E-Mail aktivieren",
+      "title": "E-Mail Benachrichtigung aktivieren",
       "enabled": "E-Mail-Subscription aktiviert",
       "disabled": "E-Mail-Subscription deaktiviert",
-      "description": "Wenn Sie die E-Mail-Benachrichtigungen deaktivieren, erhalten Sie keine Benachrichtigungen von DripText per E-Mail."
+      "description": "Wenn die E-Mail-Benachrichtigung deaktiviert ist, können wir keine Benachrichtigung schicken, dass Texte fertig und bereits zur Veröffentlichung sind."
     },
     "security": {
       "title": "Sicherheit",
@@ -135,11 +136,11 @@
     }
   },
   "task": {
-    "pageTitle": "Freelancer (Aufgaben)",
+    "pageTitle": "Freelancer (Tasks)",
     "breadcrumb": {
       "dashboard": "Dashboard /",
-      "pageName": "Aufgaben",
-      "pageData": "Hier kannst du deine Aufgaben einsehen"
+      "pageName": "Deine zugewiesenen Tasks",
+      "pageData": "Hier kannst du deine aktuellen Task sehen, die dir für diesen Monat zugewiesen wurden."
     },
     "buttons": {
       "all": "Alle",
@@ -150,17 +151,17 @@
       "none": "keine"
     },
     "activeTasks": {
-      "heading": "Aktive Aufgaben",
-      "noTasksLabel": "Es gibt keine aktiven Aufgaben anzuzeigen"
+      "heading": "Aktive Tasks",
+      "noTasksLabel": "Es gibt keine aktiven Tasks anzuzeigen"
     },
     "upcomingTasks": {
-      "heading": "Bevorstehende Aufgaben",
-      "noTasksLabel": "Es gibt keine bevorstehenden Aufgaben anzuzeigen"
+      "heading": "Bevorstehende Tasks",
+      "noTasksLabel": "Es gibt keine bevorstehenden Tasks anzuzeigen"
     },
-    "noTasks": "Es gibt keine aktiven und bevorstehenden Aufgaben anzuzeigen",
+    "noTasks": "Aktuell hast du keine zugewiesenen Tasks für diesen Monat.",
     "cardLabels": {
       "task": "Aufgabe",
-      "deadline": "Frist",
+      "deadline": "Target Date",
       "status": "Status",
       "activeRole": "Aktive Rolle",
       "yourRole": "Deine Rolle",
@@ -170,13 +171,13 @@
       "acceptButton": "Akzeptieren",
       "declineButton": "Ablehnen",
       "startButton": "Starten",
-      "finishButton": "Abschließen",
+      "finishButton": "Task abschließen",
       "showMoreDetailsButton": "Weitere Details anzeigen",
       "acceptOrderDialog": {
-        "title": "Bestellung annehmen",
-        "message": "Du bist dabei, die Bestellung anzunehmen. Danach hast du 24 Stunden Zeit, um sie abzuschließen. Bist du sicher?",
-        "confirmButton": "Bestätigen",
-        "closeButton": "Schließen"
+        "title": "Task starten",
+        "message": "Du bist gerade dabei, den Task zu starten. Danach hast du 24 Stunden Zeit für die Texterstellung. Willst du fortfahren?",
+        "confirmButton": "Task starten",
+        "closeButton": "Abbrechen"
       }
     },
     "texterCard": {
@@ -186,44 +187,44 @@
           "closeButton": "Schließen"
         },
         "finishOrderDialog": {
-          "title": "Bestellung abschließen",
-          "message": "Du bist dabei, die Bestellung abzuschließen. Bist du sicher?",
+          "title": "abschließen",
+          "message": "Bitte prüfe deinen erstellen Text sorgfältig, ob er unseren Qualitätsrichtlinien entspricht. Markiere die einzelnen Punkte mit einem Haken. Sobald du den Button “Text abgeben” klickst, ist der Task für dich abgeschlossen.",
           "checkboxes": {
             "careAccuracy": {
-              "header": "Sorgfalt und Genauigkeit",
-              "description": "(Konsistenz der Wörter, Zahlen/Fakten sind korrekt)"
+              "header": "Strukturelle Vorgaben eingehalten",
+              "description": "Aufbau, Absätze, Roter Faden, Plagiatscheck"
             },
             "contentSpecification": {
-              "header": "Inhaltsvorgaben",
-              "description": "(Der Text passt zum Kunden/Kontext, besondere Anforderungen wurden beachtet)"
+              "header": "Inhaltliche Vorgaben eingehalten",
+              "description": "Text passt zum Kunden/Kontext, Sonderwünsche eingehalten"
             },
             "formalRequirements": {
-              "header": "Formale Anforderungen",
-              "description": "(Sättigungen, Schreibperspektive, Tonalität)"
+              "header": "Formale Vorgaben eingehalten",
+              "description": "Anrede, Schreibperspektive, Tone of Voice"
             },
             "structuralGuidelines": {
-              "header": "Strukturelle Vorgaben",
-              "description": "(Struktur, Absätze, roter Faden, Plagiat)"
+              "header": "Text-Aufblähungen und Doppelungen vermieden ",
+              "description": "Prägnanz, Mehrwert, keine Doppelungen"
             },
             "textBloatDuplication": {
-              "header": "Textaufblähung und Duplikation",
-              "description": "(Kürze, Mehrwert, keine Duplikation)"
+              "header": "Sorgfalt und Genauigkeit ",
+              "description": "Konsistenz bei Wörtern, Zahlen/Fakten sind korrekt"
             },
             "errorFreeText": {
-              "header": "Fehlerfreier Text",
-              "description": "(Rechtschreibung, Zeichensetzung, Grammatik)"
+              "header": "Text ist fehlerfrei",
+              "description": "Rechtschreibung, Zeichensetzung, Grammatik"
             }
           },
           "minWordCount": {
-            "header": "Minimale Wortzahl",
-            "description": "Stelle sicher, dass der Text die erforderliche minimale Wortzahl erreicht oder überschreitet."
+            "header": "Mindestanzahl der Wörter erreicht",
+            "description": "Stelle sicher, dass der Text die erforderliche Mindestanzahl an Wörtern erreicht oder überschreitet."
           },
-          "confirmFinishButton": "Abschließen bestätigen"
+          "confirmFinishButton": "Text abgeben"
         }
       },
       "projectHeader": {
         "title": "Aufgabendetails",
-        "infoTab": "Info",
+        "infoTab": "Briefing Overview",
         "feedbackTab": "Feedback",
         "feedbackNoFeedback": "Kein Feedback verfügbar"
       },
@@ -235,9 +236,9 @@
     "taskModel": {
       "taskModellabels": {
         "task": "Aufgabe",
-        "taskId": "Aufgaben-ID",
-        "deadline": "Frist",
-        "taskStatus": "Aufgabenstatus",
+        "taskId": "Tasks",
+        "deadline": "Target Date",
+        "taskStatus": "Task Status",
         "activeRole": "Aktive Rolle",
         "yourRole": "Deine Rolle",
         "wordCount": "Wortzahl",
@@ -280,8 +281,8 @@
           "close": "Schließen"
         },
         "finishConfirmation": {
-          "title": "Bestellung abschließen",
-          "message": "Du bist dabei, die Bestellung abzuschließen. Bist du sicher?",
+          "title": "abschließen",
+          "message": "Bitte prüfe den Text des Texters sorgfältig, ob er unseren Qualitätsrichtlinien entspricht. Markiere die einzelnen Punkte mit einem Haken. Sobald du den Button “Text abgeben” klickst, ist der Task abgeschlossen. Wenn etwas nicht passt, wird der Text zurück an den Texter gegeben. Bitte schreibe ihm ein kurzes Feedback, was verbessert werden soll.",
           "details": {
             "format1": {
               "heading": "Sorgfalt und Genauigkeit",
@@ -313,11 +314,11 @@
             "message": "Mit diesem Input erfüllt der Text nicht unsere Qualitätskriterien und wird zur Überarbeitung an den Texter zurückgesendet. Bitte beschreibe kurz, was verbessert werden soll."
           },
           "commentPrompt": {
-            "label": "Kommentar *",
+            "label": "Kommentar ",
             "textareaPlaceholder": "Schreibe hier deinen Kommentar"
           },
           "confirmFinish": {
-            "buttonText": "Abschließen bestätigen",
+            "buttonText": "Text abschließen",
             "disabledMessage": "Du musst alle Kästchen ankreuzen oder einen Kommentar schreiben, um abzuschließen."
           }
         },
@@ -336,7 +337,7 @@
           "closeButton": "Schließen"
         },
         "finishDialog": {
-          "title": "Bestellung abschließen",
+          "title": "abschließen",
           "message": "Du bist dabei, die Bestellung abzuschließen. Bist du sicher?"
         },
         "projectInfoDialog": {
@@ -359,9 +360,9 @@
         "closeButton": "Schließen"
       },
       "finishDialog": {
-        "title": "Bestellung abschließen",
-        "message": "Du bist dabei, die Bestellung abzuschließen. Bist du sicher?",
-        "confirmButton": "Abschließen bestätigen"
+        "title": "abschließen",
+        "message": "Bist du sicher, dass du den Task abschließen möchtest?",
+        "confirmButton": "Text abschließen"
       },
       "taskInfo": {
         "showMoreDetails": "Weitere Details anzeigen"
@@ -377,19 +378,19 @@
   "earning": {
     "pageTitle": "Freelancer (Einnahmen)",
     "breadcrumb": {
-      "pageName": "Einnahmen",
-      "pageData": "Hier können Sie alle Einnahmen aus Ihren DripTexts-Projekten sehen."
+      "pageName": "Abrechnung",
+      "pageData": "Hier werden alle Texte aufgelistet, sobald sie von allen beteiligten Freelancern abgeschlossen wurden."
     },
     "tableHeaders": {
-      "taskId": "Aufgaben-ID",
+      "taskId": "Task",
       "date": "Datum",
       "role": "Rolle",
-      "articleKeyword": "Artikel/Keyword",
-      "targetWords": "Ziel-Wortanzahl",
-      "actualWords": "Tatsächliche Wortanzahl",
+      "articleKeyword": "Keyword",
+      "targetWords": "Anzahl Wörter (SOLL)",
+      "actualWords": "Anzahl Wörter (IST)",
       "difference": "Differenz",
-      "billedWords": "Abgerechnete Wörter",
-      "price": "Preis"
+      "billedWords": "Anzahl Wörter (abgerechnet)",
+      "price": "Gutschrift"
     },
     "noEarnings": "Keine Einnahmendaten verfügbar",
     "finalizeText": {
@@ -483,8 +484,8 @@
     "dripText": "DRIPTEXT",
     "slogan": "Wir lieben SEO & Content",
     "menu": {
-      "dashboard": "Aufgaben",
-      "earnings": "Verdienste",
+      "dashboard": "Zugewiesene Tasks",
+      "earnings": "Abrechnung",
       "academy": "Driptext Academy",
       "settings": "Einstellungen",
       "accountSetting": "Kontoeinstellungen",

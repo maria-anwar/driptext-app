@@ -40,8 +40,19 @@ const Earning: React.FC = () => {
     }
   };
   
-  const formatDate = (date: string, format: string = "MMM  YYYY") => {
+  const formatDate = (date: string, format: string = "DD.MM.YYYY") => {
     return moment(date).format(format);
+  };
+  const formatCurrency = (value) => {
+    try {
+      if (value == null || isNaN(value)) return `${value} €`;
+      const number = parseFloat(value).toFixed(2); 
+      let [integer, decimal] = number.split('.'); 
+      integer = integer.replace(/\B(?=(\d{3})+(?!\d))/g, '.'); 
+      return `${integer},${decimal} €`; 
+    } catch (error) {
+      return  `${value} €`; 
+    }
   };
 
   return (
@@ -134,13 +145,13 @@ const Earning: React.FC = () => {
                         </p>
                         </td>
                         <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                        <p className={`${earn?.finalize? "text-yellow-500":"text-black dark:text-white"}`}>
+                        <p className={`text-black dark:text-white`}>
                             {earn?.finalize ? Number(earn?.billedWords)?.toFixed(0) : t("earning.finalizeText.price")}
                           </p>
                         </td>
                         <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                          <p className={`${earn?.finalize? "text-green-500":"text-black dark:text-white"}`}>
-                          {earn?.finalize ? '€ ' +earn?.price.toFixed(4) : t("earning.finalizeText.price")}
+                          <p className={`text-black dark:text-white`}>
+                          {earn?.finalize ? formatCurrency(earn?.price) : t("earning.finalizeText.price")}
                           </p>
                         </td>
                       </tr>
