@@ -187,7 +187,7 @@
           "closeButton": "Close"
         },
         "finishOrderDialog": {
-          "title": "Complete",
+          "title": "Finish",
           "message": "Please check your created text carefully to ensure it meets our quality guidelines. Mark each item with a check. Once you click the 'Submit Text' button, the task is completed for you.",
           "checkboxes": {
             "careAccuracy": {
@@ -272,7 +272,7 @@
         "accept": "Accept",
         "decline": "Decline",
         "start": "Start",
-        "finish": "Complete",
+        "finish": "Finish",
         "showDetails": "Show More Details",
         "acceptConfirmation": {
           "title": "Accept Order",
@@ -281,7 +281,7 @@
           "close": "Close"
         },
         "finishConfirmation": {
-          "title": "Complete",
+          "title": "Finish",
           "message": "Please check the copywriter's text carefully to ensure it meets our quality guidelines. Mark each item with a check. Once you click the 'Submit Text' button, the task is completed. If something is wrong, the text will be returned to the copywriter. Please write them a brief feedback on what should be improved.",
           "details": {
             "format1": {
@@ -318,7 +318,7 @@
             "textareaPlaceholder": "Write your comment here"
           },
           "confirmFinish": {
-            "buttonText": "Complete Text",
+            "buttonText": "Finish Text",
             "disabledMessage": "You must check all boxes or write a comment to complete."
           }
         },
@@ -337,7 +337,7 @@
           "closeButton": "Close"
         },
         "finishDialog": {
-          "title": "Complete",
+          "title": "Finish",
           "message": "You are about to complete the order. Are you sure?"
         },
         "projectInfoDialog": {
@@ -360,9 +360,9 @@
         "closeButton": "Close"
       },
       "finishDialog": {
-        "title": "Complete",
+        "title": "Finish",
         "message": "Are you sure you want to complete the task?",
-        "confirmButton": "Complete Text"
+        "confirmButton": "Finish Text"
       },
       "taskInfo": {
         "showMoreDetails": "Show More Details"
