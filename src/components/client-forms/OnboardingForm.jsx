@@ -10,7 +10,7 @@ import { GroupField } from "./GroupField";
 import { useTranslation } from "react-i18next";
 
 const OnboardingForm = () => {
-  const {t} = useTranslation();
+  const { t, i18n } = useTranslation();
   const [loading, setLoading] = useState(false);
   const user = useSelector((state) => state.user);
   const location = useLocation();
@@ -19,10 +19,13 @@ const OnboardingForm = () => {
   const [errorMessage, setErrorMesssage] = useState("");
   const userRole = user?.user?.data?.user?.role?.title.toLowerCase() || role;
 
+  const currentLanguage = i18n.language;
+
   const initialValues = {
-    speech: "She",
+    speech: currentLanguage === "en" ? "She" : "Sie",
     project: projectName,
-    perspective: "we/our shop/our company",
+    perspective:
+      currentLanguage === "en" ? "the company/the shop" : "die Firma/der Shop",
     companyInfo: "",
     companyAttributes: "",
     services: "",
@@ -30,13 +33,17 @@ const OnboardingForm = () => {
     customers: "",
     contentPurpose: "",
     brand: "",
-    keywordType: "Guide",
+    keywordType: currentLanguage === "en" ? "Guide text" : "Ratgebertext",
     keyword: null,
   };
 
   const validationSchema = Yup.object().shape({
-    speech: Yup.string().required(t("onboardingPage.onboardingForm.validationMessages.speech")),
-    perspective: Yup.string().required(t("onboardingPage.onboardingForm.validationMessages.perspective")),
+    speech: Yup.string().required(
+      t("onboardingPage.onboardingForm.validationMessages.speech")
+    ),
+    perspective: Yup.string().required(
+      t("onboardingPage.onboardingForm.validationMessages.perspective")
+    ),
     companyInfo: Yup.string().required(
       t("onboardingPage.onboardingForm.validationMessages.companyInfo")
     ),
@@ -61,6 +68,63 @@ const OnboardingForm = () => {
   });
 
   const onSubmit = async (values) => {
+    if (currentLanguage === "de") {
+      if (values.speech === "Sie") {
+        values.speech = "She";
+      } else if (values.speech === "Du (groß geschrieben)") {
+        values.speech = "You (capitalized)";
+      } else if (values.speech === "du (klein geschrieben)") {
+        values.speech = "you (lowercase)";
+      } else if (values.speech === "ihr/euch") {
+        values.speech = "you (plural / informal)";
+      } else if (values.speech === "divers") {
+        values.speech = "divers";
+      }  else if (values.speech === "Keine direkte Ansprache") {
+        values.speech = "No direct address";
+      }
+
+    }
+    if (currentLanguage === "de") {
+      if (values.perspective === "die Firma/der Shop") {
+        values.perspective = "the company/the shop";
+      } else if (values.perspective === "die Redaktion") {
+        values.perspective = "the editorial team";
+      } else if (values.perspective === "ich") {
+        values.perspective = "I";
+      } else if (values.perspective === "neutral") {
+        values.perspective = "neutral";
+      } else if (
+        values.perspective === "einheitlich, aber grundsätzlich egal"
+      ) {
+        values.perspective = "uniform, but generally irrelevant";
+      } else if (values.perspective === "wir/unser Shop/unser Unternehmen") {
+        values.perspective = "we/our shop/our company";
+      } else if (values.perspective === "divers") {
+        values.perspective = "divers";
+      }
+    }
+
+    if(values.keywords !== null && currentLanguage === "de") {
+      if (values.keywordType === "Ratgebertext") {
+        values.keywordType = "Guide text";
+      }
+      else if (values.keywordType === "Shop (Kategorie)") {
+        values.keywordType = "Shop (Category)";
+      }
+      else if (values.keywordType === "Shop (Produkt)") {
+        values.keywordType = "Shop (Product)";
+      }
+      else if (values.keywordType === "Definition/Wiki") {
+        values.keywordType = "Definition/Wiki";
+      }
+      else if (values.keywordType === "Shop (Startseite)") {
+        values.keywordType = "Shop (Homepage)";
+      }
+      else if (values.keywordType === "CMS-Seite") {
+        values.keywordType = "CMS Page";
+      }
+    }
+
     setLoading(true);
     const onBoardingData = {
       speech: values.speech,
@@ -121,42 +185,85 @@ const OnboardingForm = () => {
             <div className="w-full bg-gradient-to-r from-custom-gray to-[#F7F7F7] flex flex-col gap-6 px-3 xs:px-8 xs:py-10 md:px-9 md:py-14 lg:px-10 mt-6 mb-8 rounded-xl">
               <div className="flex flex-col gap-y-4">
                 <h2 className="text-custom-black text-base font-semibold -mb-2">
-                 {t("onboardingPage.onboardingForm.sections.0.title")}
+                  {t("onboardingPage.onboardingForm.sections.0.title")}
                 </h2>
                 <GroupDropdownField
-                  label={t("onboardingPage.onboardingForm.sections.0.fields.0.label")}
+                  label={t(
+                    "onboardingPage.onboardingForm.sections.0.fields.0.label"
+                  )}
                   type={"text"}
                   id={"speech"}
                   name={"speech"}
                   placeholder={""}
-                  option1={"She"}
-                  option2={"You (with a capital Y)"}
-                  option3={"you (with a lower y)"}
-                  option4={"you"}
-                  option5={"no direct address"}
+                  option1={currentLanguage === "en" ? "She" : "Sie"}
+                  option2={
+                    currentLanguage === "en"
+                      ? "You (capitalized)"
+                      : "Du (groß geschrieben)"
+                  }
+                  option3={
+                    currentLanguage === "en"
+                      ? "you (lowercase)"
+                      : "du (klein geschrieben)"
+                  }
+                  option4={
+                    currentLanguage === "en"
+                      ? "you (plural / informal)"
+                      : "ihr/euch"
+                  }
+                  option5={
+                    currentLanguage === "en"
+                      ? "No direct address"
+                      : "Keine direkte Ansprache"
+                  }
+                  option6={currentLanguage === "en" ? "divers" : "divers"}
                   value={props.values.speech}
                   errors={props.errors.speech}
                   onChange={props.handleChange}
                 />
                 <GroupDropdownField
-                  label={t("onboardingPage.onboardingForm.sections.0.fields.1.label")}
-                  placeholder={"Hier schreiben"}
+                  label={t(
+                    "onboardingPage.onboardingForm.sections.0.fields.1.label"
+                  )}
+                  placeholder={
+                    currentLanguage === "en" ? "Write here" : "Hier schreiben"
+                  }
                   type={"text"}
                   id={"perspective"}
                   name={"perspective"}
                   value={props.values.perspective}
                   errors={props.errors.perspective}
                   onChange={props.handleChange}
-                  option1={"we/our shop/our company"}
-                  option2={"the company/the shop"}
-                  option3={"the editorial team"}
-                  option4={"I"}
-                  option5={"neutral"}
-                  option6={"uniform/but generally irrelevant"}
+                  option1={
+                    currentLanguage === "en"
+                      ? "the company/the shop"
+                      : "die Firma/der Shop"
+                  }
+                  option2={
+                    currentLanguage === "en"
+                      ? "the editorial team"
+                      : "die Redaktion"
+                  }
+                  option3={currentLanguage === "en" ? "I" : "ich"}
+                  option4={currentLanguage === "en" ? "neutral" : "neutral"}
+                  option5={
+                    currentLanguage === "en"
+                      ? "uniform, but generally irrelevant"
+                      : "einheitlich, aber grundsätzlich egal"
+                  }
+                  option6={currentLanguage === "en" ? "divers" : "divers"}
+                  option7={
+                    currentLanguage === "en"
+                      ? "we/our shop/our company"
+                      : "wir/unser Shop/unser Unternehmen"
+                  }
                 />
+
                 <div className="w-full flex flex-col gap-y-1">
                   <label className="text-custom-black text-sm lg:text-sm font-semibold 2xl:font-semibold">
-                  {t("onboardingPage.onboardingForm.sections.0.fields.2.label")}
+                    {t(
+                      "onboardingPage.onboardingForm.sections.0.fields.2.label"
+                    )}
                     <span className="text-red-600 text:lg 2xl:text-[17px] mt-6 pl-1">
                       *
                     </span>
@@ -166,7 +273,9 @@ const OnboardingForm = () => {
                     type={"text"}
                     id={"project"}
                     name={"project"}
-                    placeholder= {t("onboardingPage.onboardingForm.sections.0.fields.2.placeholder")}
+                    placeholder={t(
+                      "onboardingPage.onboardingForm.sections.0.fields.2.placeholder"
+                    )}
                     value={projectName}
                     disabled={projectName ? true : false}
                   />
@@ -174,8 +283,12 @@ const OnboardingForm = () => {
                 {plan === null ? (
                   <>
                     <GroupField
-                      label={t("onboardingPage.onboardingForm.sections.0.fields.3.label")}
-                      placeholder={t("onboardingPage.onboardingForm.sections.0.fields.3.placeholder")}
+                      label={t(
+                        "onboardingPage.onboardingForm.sections.0.fields.3.label"
+                      )}
+                      placeholder={t(
+                        "onboardingPage.onboardingForm.sections.0.fields.3.placeholder"
+                      )}
                       id={"keyword"}
                       name={"keyword"}
                       value={props.values.keyword}
@@ -188,17 +301,39 @@ const OnboardingForm = () => {
                     />
 
                     <GroupDropdownField
-                      label={t("onboardingPage.onboardingForm.sections.0.fields.4.label")}
+                      label={t(
+                        "onboardingPage.onboardingForm.sections.0.fields.4.label"
+                      )}
                       type={"text"}
                       id={"keywordType"}
                       name={"keywordType"}
                       placeholder={""}
-                      option1="Guide"
-                      option2="Shop (Category)"
-                      option3="Shop (Product)"
-                      option4="Definition/Wiki"
-                      option5="Shop (Homepage)"
-                      option6="CMS Page"
+                      option1={
+                        currentLanguage === "en" ? "Guide text" : "Ratgebertext"
+                      }
+                      option2={
+                        currentLanguage === "en"
+                          ? "Shop (Category)"
+                          : "Shop (Kategorie)"
+                      }
+                      option3={
+                        currentLanguage === "en"
+                          ? "Shop (Product)"
+                          : "Shop (Produkt)"
+                      }
+                      option4={
+                        currentLanguage === "en"
+                          ? "Definition/Wiki"
+                          : "Definition/Wiki"
+                      }
+                      option5={
+                        currentLanguage === "en"
+                          ? "Shop (Homepage)"
+                          : "Shop (Startseite)"
+                      }
+                      option6={
+                        currentLanguage === "en" ? "CMS Page" : "CMS-Seite"
+                      }
                       value={props.values.keywordType}
                       errors={props.errors.keywordType}
                       onChange={props.handleChange}
@@ -209,12 +344,16 @@ const OnboardingForm = () => {
 
               <div className="flex flex-col gap-y-4 -mt-3">
                 <h2 className="text-custom-black text-base font-semibold lg:mt-3.5 -mb-2">
-                {t("onboardingPage.onboardingForm.sections.1.title")}
+                  {t("onboardingPage.onboardingForm.sections.1.title")}
                 </h2>
                 <GroupTextArea
-                  label={t("onboardingPage.onboardingForm.sections.1.fields.0.label")}
+                  label={t(
+                    "onboardingPage.onboardingForm.sections.1.fields.0.label"
+                  )}
                   type={"text"}
-                  placeholder={t("onboardingPage.onboardingForm.sections.1.fields.0.placeholder")}
+                  placeholder={t(
+                    "onboardingPage.onboardingForm.sections.1.fields.0.placeholder"
+                  )}
                   id={"companyInfo"}
                   name={"companyInfo"}
                   value={props.values.companyInfo}
@@ -227,9 +366,13 @@ const OnboardingForm = () => {
                 />
 
                 <GroupTextArea
-                  label={t("onboardingPage.onboardingForm.sections.1.fields.1.label")}
+                  label={t(
+                    "onboardingPage.onboardingForm.sections.1.fields.1.label"
+                  )}
                   type={"text"}
-                  placeholder={t("onboardingPage.onboardingForm.sections.1.fields.1.placeholder")}
+                  placeholder={t(
+                    "onboardingPage.onboardingForm.sections.1.fields.1.placeholder"
+                  )}
                   id={"companyAttributes"}
                   name={"companyAttributes"}
                   value={props.values.companyAttributes}
@@ -241,9 +384,13 @@ const OnboardingForm = () => {
                   }}
                 />
                 <GroupTextArea
-                  label={t("onboardingPage.onboardingForm.sections.1.fields.2.label")}
+                  label={t(
+                    "onboardingPage.onboardingForm.sections.1.fields.2.label"
+                  )}
                   type={"text"}
-                  placeholder={t("onboardingPage.onboardingForm.sections.1.fields.2.placeholder")}
+                  placeholder={t(
+                    "onboardingPage.onboardingForm.sections.1.fields.2.placeholder"
+                  )}
                   id={"services"}
                   name={"services"}
                   value={props.values.services}
@@ -258,12 +405,16 @@ const OnboardingForm = () => {
 
               <div className="flex flex-col gap-y-4  -mt-3">
                 <h2 className="text-custom-black text-base font-semibold lg:mt-3.5 -mb-2">
-                {t("onboardingPage.onboardingForm.sections.2.title")}
+                  {t("onboardingPage.onboardingForm.sections.2.title")}
                 </h2>
                 <GroupTextArea
-                  label={t("onboardingPage.onboardingForm.sections.2.fields.0.label")}
+                  label={t(
+                    "onboardingPage.onboardingForm.sections.2.fields.0.label"
+                  )}
                   type={"text"}
-                  placeholder={t("onboardingPage.onboardingForm.sections.2.fields.0.placeholder")}
+                  placeholder={t(
+                    "onboardingPage.onboardingForm.sections.2.fields.0.placeholder"
+                  )}
                   id={"content"}
                   name={"content"}
                   value={props.values.content}
@@ -276,9 +427,13 @@ const OnboardingForm = () => {
                 />
 
                 <GroupTextArea
-                  label={t("onboardingPage.onboardingForm.sections.2.fields.1.label")}
+                  label={t(
+                    "onboardingPage.onboardingForm.sections.2.fields.1.label"
+                  )}
                   type={"text"}
-                  placeholder={t("onboardingPage.onboardingForm.sections.2.fields.1.placeholder")}
+                  placeholder={t(
+                    "onboardingPage.onboardingForm.sections.2.fields.1.placeholder"
+                  )}
                   id={"customers"}
                   name={"customers"}
                   value={props.values.customers}
@@ -293,12 +448,16 @@ const OnboardingForm = () => {
 
               <div className="flex flex-col gap-y-4  -mt-3">
                 <h2 className="text-custom-black text-base font-semibold lg:mt-3.5 -mb-2">
-                {t("onboardingPage.onboardingForm.sections.3.title")}
+                  {t("onboardingPage.onboardingForm.sections.3.title")}
                 </h2>
                 <GroupTextArea
-                  label={t("onboardingPage.onboardingForm.sections.3.fields.0.label")}
+                  label={t(
+                    "onboardingPage.onboardingForm.sections.3.fields.0.label"
+                  )}
                   type={"text"}
-                  placeholder={t("onboardingPage.onboardingForm.sections.3.fields.0.placeholder")}
+                  placeholder={t(
+                    "onboardingPage.onboardingForm.sections.3.fields.0.placeholder"
+                  )}
                   id={"contentPurpose"}
                   name={"contentPurpose"}
                   value={props.values.contentPurpose}
@@ -311,9 +470,13 @@ const OnboardingForm = () => {
                 />
 
                 <GroupTextArea
-                  label={t("onboardingPage.onboardingForm.sections.3.fields.1.label")}
+                  label={t(
+                    "onboardingPage.onboardingForm.sections.3.fields.1.label"
+                  )}
                   type={"text"}
-                  placeholder={t("onboardingPage.onboardingForm.sections.3.fields.1.placeholder")}
+                  placeholder={t(
+                    "onboardingPage.onboardingForm.sections.3.fields.1.placeholder"
+                  )}
                   id={"brand"}
                   name={"brand"}
                   value={props.values.brand}

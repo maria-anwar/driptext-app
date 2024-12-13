@@ -11,7 +11,7 @@ const Register = () => {
   const { t } = useTranslation();
   useTitle(t("registerFreelancerPage.pageTitle"));
   return (
-    <div className="px-4 sm:px-6 md-px-10 lg:px-14 xl:px-20 2xl:px-56 3xl:px-80 4xl:px-96 py-10">
+    <div className="px-4 sm:px-6 md-px-10 lg:px-14 xl:px-20 2xl:px-56 3xl:px-80 4xl:px-96 py-6">
       <Link
         to="/"
         className="w-full flex items-center justify-center py-2 pb-5 sm:pb-7 md:pb-8 xl:pb-10 2xl:pb-18 3xl:pb-18 4xl:pb-20"
@@ -19,7 +19,7 @@ const Register = () => {
         <img
           src={Logo}
           alt="driptext"
-          className=" w-20 xs:w-24 md:w-28 xl:w-32 3xl:w-36 4xl:w-40"
+          className="h-[23.5px] w-[120px]  md:w-[180px] md:h-[35.5px]"
         />
       </Link>
       <div className="w-full flex d-flex flex-col gap-10">
@@ -35,13 +35,17 @@ const Register = () => {
         {/* <OrderForm /> */}
       </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="w-full flex  gap-y-6 justify-between items-center py-4 border-gray-300 ">
+        <div className="w-full  flex flex-col md:flex-row gap-y-6 justify-between items-center py-4 border-gray-300 ">
           <div className="flex items-center">
-            <img src={Logo} alt="Footer Logo" className="h-6 w-auto mr-2" />
+            <img
+              src={Logo}
+              alt="Footer Logo"
+              className="h-[17.5px] w-[90px]  mr-2"
+            />
             <span className="text-gray-700 font-semibold"></span>
           </div>
 
-          <div className="flex  flex-col md:flex-row gap-y-2 gap-x-4">
+          <div className="flex flex-row gap-y-2 gap-x-4">
             <a
               target="_blank"
               href="https://driptext.de/agb/"

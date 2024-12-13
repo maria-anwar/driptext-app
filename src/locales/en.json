@@ -145,9 +145,9 @@
     "buttons": {
       "all": "All",
       "texter": "Texter",
-      "lector": "Editor",
+      "lector": "Lector",
       "seo": "SEO Optimizer",
-      "metaLector": "Meta Editor",
+      "metaLector": "Meta Lector",
       "none": "none"
     },
     "activeTasks": {

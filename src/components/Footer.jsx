@@ -43,13 +43,13 @@ const Footer = () => {
                         </ul>
                     </div>
                 </div> */}
-        <div className="w-full flex  gap-y-6 justify-between items-center py-4 border-gray-300 ">
+        <div className="w-full px-8 flex flex-col md:flex-row gap-y-6 justify-between items-center py-4 border-gray-300 ">
           <div className="flex items-center">
-            <img src={logo} alt="Footer Logo" className="h-6 w-auto mr-2" />
+            <img src={logo}  alt="Footer Logo"  className="h-[17.5px] w-[90px]  mr-2" />
             <span className="text-gray-700 font-semibold"></span>
           </div>
 
-          <div className="flex  flex-col md:flex-row gap-y-2 gap-x-4">
+          <div className="flex flex-row gap-y-2 gap-x-4">
             <a
               target="_blank"
               href="https://driptext.de/agb/"
