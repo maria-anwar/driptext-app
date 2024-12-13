@@ -60,7 +60,7 @@ const ProfilePage = () => {
     country: userData?.country || "",
     iban: userData?.billingInfo?.iban || "",
     vatRegulation:
-      userData?.billingInfo?.vatRegulation || "Small business owner (0%)",
+      userData?.billingInfo?.vatRegulation || "CY Company (19% MwSt.)",
     companyName: userData?.companyName || "",
     vatIdNo: userData?.vatIdNo || "null",
   };
@@ -192,7 +192,7 @@ const ProfilePage = () => {
                           value={props.values.email}
                           errors={props.errors.email}
                           onChange={props.handleChange}
-                          disabled = {true}
+                          disabled={true}
                         />
                         <GroupField
                           label={t(
@@ -252,7 +252,7 @@ const ProfilePage = () => {
                         onChange={props.handleChange}
                         className="mt-4"
                       />
-                      
+
                       <h2 className="text-lg font-semibold text-gray-800 pt-6 text-black dark:text-white">
                         {t("profilePage.form.billingInformation.title")}
                       </h2>
@@ -267,20 +267,6 @@ const ProfilePage = () => {
                         value={props.values.iban}
                         errors={props.errors.iban}
                         onChange={props.handleChange}
-                      />
-                      <GroupDropdownField
-                        label={t(
-                          "profilePage.form.billingInformation.fields.vatRegulation"
-                        )}
-                        id={"vatRegulation"}
-                        name={"vatRegulation"}
-                        option1={"Small business owner (0%)"}
-                        option2={"CY Ltd (19%)"}
-                        option3={"EU countries (0%)"}
-                        option4={"Reverse charge (0%)"}
-                        value={props.values.vatRegulation}
-                        onChange={props.handleChange}
-                        className="mt-4"
                       />
 
                       <h2 className="text-lg font-semibold text-gray-800 pt-6 text-black dark:text-white">
@@ -298,8 +284,24 @@ const ProfilePage = () => {
                         errors={props.errors.companyName}
                         onChange={props.handleChange}
                       />
-                      {props.values.vatRegulation === "CY Ltd (19%)" ||
-                      props.values.vatRegulation === "Reverse charge (0%)" ? (
+                      <GroupDropdownField
+                        label={t(
+                          "profilePage.form.billingInformation.fields.vatRegulation"
+                        )}
+                        id={"vatRegulation"}
+                        name={"vatRegulation"}
+                        option1={"CY Company (19% MwSt.)"}
+                        option2={"EU Reverse-Charge (0% MwSt.)"}
+                        option3={"Kleinunternehmer (0% MwSt.)"}
+                        option4={"Non-EU Company (0% MwSt.)"}
+                        value={props.values.vatRegulation}
+                        onChange={props.handleChange}
+                        className="mt-4"
+                      />
+                      {props.values.vatRegulation ===
+                        "CY Company (19% MwSt.)" ||
+                      props.values.vatRegulation ===
+                        "EU Reverse-Charge (0% MwSt.)" ? (
                         <GroupField
                           label={t(
                             "profilePage.form.companyDetails.fields.vatIdNo"

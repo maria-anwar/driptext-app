@@ -27,7 +27,7 @@ const RegisterForm = () => {
     city: "",
     country: "",
     iban: "",
-    vatRegulation: "Small business owner (0%)",
+    vatRegulation: "CY Company (19% MwSt.)",
     company: "",
     vatId: "",
   };
@@ -121,18 +121,17 @@ const RegisterForm = () => {
         `${import.meta.env.VITE_DB_URL}/freelancer/create`,
         registerData
       );
-      const userId = 
-      {
-        userId:response.data.freelancer._id,
-        language: "de"
-      }
+      const userId = {
+        userId: response.data.freelancer._id,
+        language: "de",
+      };
       const res = await axios.post(
         `${import.meta.env.VITE_DB_URL}/language/updateLanguage`,
-         userId
+        userId
       );
       console.log(res);
-      localStorage.setItem("Userlanguage", 'de');
-      
+      localStorage.setItem("Userlanguage", "de");
+
       setLoading(false);
       window.location.href = "https://driptext.de/danke-freelancer/";
     } catch (error) {
@@ -327,7 +326,6 @@ const RegisterForm = () => {
                     setErrorMesssage("");
                   }}
                 />
-               
               </div>
 
               <div className="flex flex-col gap-y-3   -mt-2">
@@ -352,7 +350,7 @@ const RegisterForm = () => {
                     setErrorMesssage("");
                   }}
                 />
-                 <GroupDropdownField
+                <GroupDropdownField
                   label={t(
                     "registerFreelancerPage.registerFormPage.section2.fields.vatRegulation.label"
                   )}
@@ -360,10 +358,10 @@ const RegisterForm = () => {
                   id={"vatRegulation"}
                   name={"vatRegulation"}
                   placeholder={""}
-                  option1={"Small Business (0%)"}
-                  option2={"CY Ltd (19%)"}
-                  option3={"Non-EU Foreign (0%)"}
-                  option4={"Reverse Charge (0%)"}
+                  option1={"CY Company (19% MwSt.)"}
+                  option2={"EU Reverse-Charge (0% MwSt.)"}
+                  option3={"Kleinunternehmer (0% MwSt.)"}
+                  option4={"Non-EU Company (0% MwSt.)"}
                   value={props.values.vatRegulation}
                   onChange={(e) => {
                     props.handleChange(e);
@@ -371,8 +369,9 @@ const RegisterForm = () => {
                     setErrorMesssage("");
                   }}
                 />
-                {props.values.vatRegulation === "CY Ltd (19%)" ||
-                props.values.vatRegulation === "Reverse Charge (0%)" ? (
+                {props.values.vatRegulation === "CY Company (19% MwSt.)" ||
+                props.values.vatRegulation ===
+                  "EU Reverse-Charge (0% MwSt.)" ? (
                   <GroupField
                     label={t(
                       "registerFreelancerPage.registerFormPage.section3.fields.vatId.label"
