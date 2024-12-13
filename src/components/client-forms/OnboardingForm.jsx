@@ -77,8 +77,8 @@ const OnboardingForm = () => {
         values.speech = "you (lowercase)";
       } else if (values.speech === "ihr/euch") {
         values.speech = "you (plural / informal)";
-      } else if (values.speech === "divers") {
-        values.speech = "divers";
+      } else if (values.speech === "Divers") {
+        values.speech = "Divers";
       }  else if (values.speech === "Keine direkte Ansprache") {
         values.speech = "No direct address";
       }
@@ -89,18 +89,18 @@ const OnboardingForm = () => {
         values.perspective = "the company/the shop";
       } else if (values.perspective === "die Redaktion") {
         values.perspective = "the editorial team";
-      } else if (values.perspective === "ich") {
+      } else if (values.perspective === "Ich") {
         values.perspective = "I";
-      } else if (values.perspective === "neutral") {
-        values.perspective = "neutral";
+      } else if (values.perspective === "Neutral") {
+        values.perspective = "Neutral";
       } else if (
         values.perspective === "einheitlich, aber grundsätzlich egal"
       ) {
         values.perspective = "uniform, but generally irrelevant";
       } else if (values.perspective === "wir/unser Shop/unser Unternehmen") {
         values.perspective = "we/our shop/our company";
-      } else if (values.perspective === "divers") {
-        values.perspective = "divers";
+      } else if (values.perspective === "Divers") {
+        values.perspective = "Divers";
       }
     }
 
@@ -216,7 +216,7 @@ const OnboardingForm = () => {
                       ? "No direct address"
                       : "Keine direkte Ansprache"
                   }
-                  option6={currentLanguage === "en" ? "divers" : "divers"}
+                  option6={currentLanguage === "en" ? "Divers" : "Divers"}
                   value={props.values.speech}
                   errors={props.errors.speech}
                   onChange={props.handleChange}
@@ -244,14 +244,14 @@ const OnboardingForm = () => {
                       ? "the editorial team"
                       : "die Redaktion"
                   }
-                  option3={currentLanguage === "en" ? "I" : "ich"}
-                  option4={currentLanguage === "en" ? "neutral" : "neutral"}
+                  option3={currentLanguage === "en" ? "I" : "Ich"}
+                  option4={currentLanguage === "en" ? "Neutral" : "Neutral"}
                   option5={
                     currentLanguage === "en"
                       ? "uniform, but generally irrelevant"
                       : "einheitlich, aber grundsätzlich egal"
                   }
-                  option6={currentLanguage === "en" ? "divers" : "divers"}
+                  option6={currentLanguage === "en" ? "Divers" : "Divers"}
                   option7={
                     currentLanguage === "en"
                       ? "we/our shop/our company"

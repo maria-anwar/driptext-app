@@ -75,6 +75,7 @@ export default {
         buttonStart: '#33669A',
         buttonEnd: '#63B4D0',
       },
+      
       gradientColorStops: {
         'button-gradient-start': '#33669A',
         'button-gradient-end': '#63B4D0',
