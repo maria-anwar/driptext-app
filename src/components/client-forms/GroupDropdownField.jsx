@@ -15,6 +15,7 @@ export const GroupDropdownField = ({
   option4,
   option5,
   option6,
+  option7,
   disabled
 }) => {
   console.log("value select: ", value)
@@ -43,6 +44,7 @@ export const GroupDropdownField = ({
             {option4 && (<option value={option4}>{option4}</option>)}
             {option5 && (<option value={option5}>{option5}</option>)}
             {option6 && (<option value={option6}>{option6}</option>)}
+            {option7 && (<option value={option7}>{option7}</option>)}
             
           </select>
           <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">

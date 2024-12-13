@@ -6,8 +6,8 @@ const Header = () => {
   const {t} = useTranslation();
   return (
     <header className="w-full flex justify-center items-center px-1 xxs:px-2 xs:px-3 sm:px-5 md:px-6 lg:px-7 xl:px-9 2xl:px-14 3xl:px-20 4xl:px-52 py-4 ">
-      <Link to='/' className="flex items-center">
-        <img src={Logo} alt="Logo" className="xxs:h-6 lg:h-8 " />
+      <Link to='/' className="flex items-center mt-3">
+        <img src={Logo} alt="Logo" className="h-[23.5px] w-[120px]  md:w-[180px] md:h-[35.5px]" />
       </Link>
       {/* <div>
         <Link
