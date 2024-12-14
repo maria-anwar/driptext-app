@@ -17,7 +17,8 @@ const TaskInfoCard: React.FC<TaskProps> = ({
   getWordCount,
   clickableLink,
 }) => {
-  const {t} = useTranslation();
+  const {t, i18n} = useTranslation();
+  const currentLanguage = i18n.language;
   const project = task?.project;
   getWordCount();
   const [actualNumber, setActualNumber] = useState<string>(task?.actualNumberOfWords)
@@ -25,6 +26,28 @@ const TaskInfoCard: React.FC<TaskProps> = ({
   const formatDate = (date: string, format: string = "DD.MM.YYYY") => {
     if (!date) return "";
     return moment(date).format(format);
+  };
+  const statusMap: { [key: string]: string } = {
+    "ready to work": "Bereit zu starten",
+    "in progress": "In Bearbeitung",
+    "ready for rivision (lector)": "Bereit für Revision (Lektor)",
+    "in rivision (lector)": "In Revision (Lektor)",
+    "ready for rivision (meta lector)": "Bereit für Revision (Meta-Lektor)",
+    "in rivision (meta lector)": "In Revision (Meta-Lektor)",
+    "ready for proofreading": "Wird lektoriert",
+    "proofreading in progress": "Im Lektorat",
+    "ready for seo optimization": "Bereit für SEO-Optimierung",
+    "seo optimization in progress": "Wird SEO-optimiert",
+    "ready for 2nd proofreading": "Im Meta-Lektorat",
+    "2nd proofreading in progress": "Im Meta-Lektorat",
+    "free trial": "Kostenlose Testversion",
+    "final": "Texterstellung abgeschlossen"
+  };
+  
+  const handleStatusGerman = (statusFilter: string): string => {
+    return currentLanguage === "de" && statusMap[statusFilter]
+      ? statusMap[statusFilter]  
+      : statusFilter;           
   };
 
   return (
@@ -70,7 +93,7 @@ const TaskInfoCard: React.FC<TaskProps> = ({
         <p className="dark:text-white">
         {t('task.taskModel.taskModellabels.taskStatus')}:{" "}
           <span
-            className={` rounded-full text-left   ${
+            className={` rounded-full text-left capitalize   ${
               task?.status.toUpperCase() === "FINAL"
                 ? " text-green-500"
                 : task.status.toUpperCase() === "FREE TRIAL"
@@ -94,7 +117,7 @@ const TaskInfoCard: React.FC<TaskProps> = ({
                 : " text-red-500"
             }`}
           >
-            {task?.status}
+            {handleStatusGerman(task?.status.toLowerCase())}
           </span>
         </p>
         <p className="dark:text-white">
