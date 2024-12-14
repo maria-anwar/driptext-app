@@ -15,7 +15,7 @@ const TaskTable = () => {
   const { state } = useLocation(); // Assuming you are using React Router
 const productUniqueID = state?.productUniqueID;
 const domain = state?.domain;
-  const { t } = useTranslation();
+  const { t ,i18n} = useTranslation();
   useTitle(t("taskTable.title"));
   const navigate = useNavigate();
   const projectId = localStorage.getItem("projectId");
@@ -26,6 +26,7 @@ const domain = state?.domain;
   const [openBarIndex, setOpenBarIndex] = useState(null); // Track the index of the currently open task
   const [refreshTrigger, setRefreshTrigger] = useState(0);
   const [userId, setUserID] = useState(user.user.data.user._id);
+  const currentLanguage = i18n.language;
 
   useEffect(() => {
     TaskDetails();
@@ -157,10 +158,33 @@ const domain = state?.domain;
 
   const formatDate = (dateString:Date | string) => {
     if (!dateString) {
-      return "N/A";
+      return "Finished";
     }
     const date = new Date(dateString);
     return format(date, "MMMM yyyy");
+  };
+
+  const statusMap: { [key: string]: string } = {
+    "ready to work": "Bereit zu starten",
+    "in progress": "In Bearbeitung",
+    "ready for rivision (lector)": "Bereit für Revision (Lektor)",
+    "in rivision (lector)": "In Revision (Lektor)",
+    "ready for rivision (meta lector)": "Bereit für Revision (Meta-Lektor)",
+    "in rivision (meta lector)": "In Revision (Meta-Lektor)",
+    "ready for proofreading": "Wird lektoriert",
+    "proofreading in progress": "Im Lektorat",
+    "ready for seo optimization": "Bereit für SEO-Optimierung",
+    "seo optimization in progress": "Wird SEO-optimiert",
+    "ready for 2nd proofreading": "Im Meta-Lektorat",
+    "2nd proofreading in progress": "Im Meta-Lektorat",
+    "free trial": "Kostenlose Testversion",
+    "final": "Texterstellung abgeschlossen"
+  };
+  
+  const handleStatusGerman = (statusFilter: string): string => {
+    return currentLanguage === "de" && statusMap[statusFilter]
+      ? statusMap[statusFilter]  
+      : statusFilter;           
   };
 
   return (
@@ -204,10 +228,10 @@ const domain = state?.domain;
               <table className="w-full table-auto mb-4">
                 <thead>
                   <tr className="bg-gray-2 text-left dark:bg-meta-4">
-                    <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
+                    <th className="min-w-[100px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
                       {t("taskTable.columns.textNumber")}
                     </th>
-                    <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
+                    <th className="min-w-[200px] py-4 px-4 font-medium text-black dark:text-white">
                       {t("taskTable.columns.status")}
                     </th>
                     <th className="min-w-[170px] py-4 px-4 font-medium text-black dark:text-white">
@@ -284,7 +308,7 @@ const domain = state?.domain;
                               : "bg-red-500/20 text-red-500"
                           }`}
                         >
-                          {task.status}
+                          {handleStatusGerman(task.status.toLowerCase())}
                         </p>
                       </td>
                       <td className="border-b border-[#eee] py-5 px-4 pl-5  dark:border-strokedark ">

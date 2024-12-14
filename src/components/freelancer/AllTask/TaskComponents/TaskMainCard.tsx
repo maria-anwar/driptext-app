@@ -10,7 +10,8 @@ interface TaskProps {
 }
 
 const Card: React.FC<TaskProps> = ({ task, Upcomming, clickableLink }) => {
-  const { t } = useTranslation();
+  const { t , i18n} = useTranslation();
+  const currentLanguage = i18n.language;
   const formatDate = (date: string, format: string = "DD.MM.YYYY") => {
     if (!date) return "";
     return moment(date).format(format);
@@ -18,6 +19,29 @@ const Card: React.FC<TaskProps> = ({ task, Upcomming, clickableLink }) => {
   const [actualNumber, setActualNumber] = useState<string>(
     task?.actualNumberOfWords
   );
+
+  const statusMap: { [key: string]: string } = {
+    "ready to work": "Bereit zu starten",
+    "in progress": "In Bearbeitung",
+    "ready for rivision (lector)": "Bereit für Revision (Lektor)",
+    "in rivision (lector)": "In Revision (Lektor)",
+    "ready for rivision (meta lector)": "Bereit für Revision (Meta-Lektor)",
+    "in rivision (meta lector)": "In Revision (Meta-Lektor)",
+    "ready for proofreading": "Wird lektoriert",
+    "proofreading in progress": "Im Lektorat",
+    "ready for seo optimization": "Bereit für SEO-Optimierung",
+    "seo optimization in progress": "Wird SEO-optimiert",
+    "ready for 2nd proofreading": "Im Meta-Lektorat",
+    "2nd proofreading in progress": "Im Meta-Lektorat",
+    "free trial": "Kostenlose Testversion",
+    "final": "Texterstellung abgeschlossen"
+  };
+  
+  const handleStatusGerman = (statusFilter: string): string => {
+    return currentLanguage === "de" && statusMap[statusFilter]
+      ? statusMap[statusFilter]  
+      : statusFilter;           
+  };
   return (
     <div className="grid grid-cols-2 gap-x-4  gap-y-4 sm:grid-cols-2 md:grid-cols-3 md:grid-rows-2 2xl:grid-cols-3 3xl:grid-cols-6 3xl:grid-rows-1">
       <div className="flex flex-col pr-3">
@@ -67,7 +91,7 @@ const Card: React.FC<TaskProps> = ({ task, Upcomming, clickableLink }) => {
           {t("task.cardLabels.status")}
         </span>
         <span
-          className={` rounded-full text-left   ${
+          className={` rounded-full text-left capitalize  ${
             task?.status.toUpperCase() === "FINAL"
               ? " text-green-500"
               : task.status.toUpperCase() === "FREE TRIAL"
@@ -91,7 +115,7 @@ const Card: React.FC<TaskProps> = ({ task, Upcomming, clickableLink }) => {
               : " text-red-500"
           }`}
         >
-          {task?.status}
+          {handleStatusGerman(task?.status.toLowerCase())}
         </span>
       </div>
       <div className="flex flex-col pr-3">
