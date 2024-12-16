@@ -17,6 +17,7 @@ const ProtectedRoute = ({ element, allowedRoles }) => {
   }
 
   if (allowedRoles && !allowedRoles.includes(storedData.role.toLowerCase())) {
+    localStorage.removeItem("key");
     return <Navigate to="/" replace />;
   }
 
