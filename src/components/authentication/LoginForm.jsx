@@ -52,14 +52,6 @@ const LoginForm = () => {
       );
 
       const expirationTime = Date.now() + 12 * 60 * 60 * 1000;
-      localStorage.setItem(
-        "key",
-        JSON.stringify({
-          token: response.data.token,
-          role: response.data.data.user.role.title,
-          expiration: expirationTime,
-        })
-      );
 
       const userId = {
         userId: response.data.data.user._id,
@@ -69,19 +61,34 @@ const LoginForm = () => {
         userId
       );
       localStorage.setItem("Userlanguage", res.data.language.language);
-      console.log(response);
+
       const role = response.data.data.user.role.title.toLowerCase();
       if (role === "freelancer") {
+        localStorage.setItem(
+          "key",
+          JSON.stringify({
+            token: response.data.token,
+            role: response.data.data.user.role.title,
+            expiration: expirationTime,
+          })
+        );
         dispatch(setUser(response?.data));
         navigate("/freelancer-dashboard");
       } else if (role === "projectmanger") {
-        console.log(response.data.data.user.role.title.toLowerCase());
         const data = JSON.stringify(response); // Serialize the data object to a string
         window.open(
           `https://driptext-admin-panel.vercel.app/redirectroute?data=${data}`,
           "_self"
         );
       } else {
+        localStorage.setItem(
+          "key",
+          JSON.stringify({
+            token: response.data.token,
+            role: response.data.data.user.role.title,
+            expiration: expirationTime,
+          })
+        );
         dispatch(setUser(response?.data));
         navigate("/client-dashboard");
       }
