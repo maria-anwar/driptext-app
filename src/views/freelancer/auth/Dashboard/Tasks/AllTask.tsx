@@ -27,6 +27,8 @@ const AllTasks: React.FC<AllTasksProps> = ({
   if (activeTasks.length === 0 && upcommingTasks.length === 0) {
     return <NoTask label= {t("task.noTasks")} />;
   }
+  console.log(activeTasks);
+  console.log(userId)
   return (
     <>
       <div>
@@ -129,7 +131,11 @@ const AllTasks: React.FC<AllTasksProps> = ({
                 );
               }
 
-              return TaskCard ? TaskCard : null;
+              return TaskCard ? TaskCard :  <TasksCard
+              key={task._id}
+              task={task}
+              getRefreshTask={getRefreshTask}
+            />;
             })}
           </>
         ) : (
