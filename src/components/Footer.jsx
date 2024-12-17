@@ -44,10 +44,10 @@ const Footer = () => {
                     </div>
                 </div> */}
         <div className="w-full px-8 flex flex-col md:flex-row gap-y-6 justify-between items-center py-4 border-gray-300 ">
-          <div className="flex items-center">
+          <a href='https://driptext.de/' target="_self" className="flex items-center">
             <img src={logo}  alt="Footer Logo"  className="h-[17.5px] w-[90px]  mr-2" />
             <span className="text-gray-700 font-semibold"></span>
-          </div>
+          </a>
 
           <div className="flex flex-row gap-y-2 gap-x-4">
             <a
