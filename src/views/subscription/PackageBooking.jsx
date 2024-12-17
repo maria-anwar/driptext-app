@@ -89,13 +89,13 @@ const PackageBooking = () => {
   };
   return (
     <div>
-      <Link to="/" className=" items-center ">
+      <a href='https://driptext.de/' target="_self" className=" items-center ">
         <img
           src={logo}
           alt="Logo"
           className="mx-auto h-8 4xl:h-10 w-44 mt-6 mb-24"
         />
-      </Link>
+      </a>
 
       <div className="w-full flex-col justify-center px-1 xxs:px-2 xs:px-3 sm:px-5 md:px-6 lg:px-7 xl:px-9 2xl:px-14 3xl:px-20 4xl:px-52">
         <div className="text-center mb-8  ">
@@ -134,9 +134,9 @@ const PackageBooking = () => {
           </p>
         </div>
         <div className="w-full mt-24 flex flex-col md:flex-row justify-between items-center py-8  border-gray-300 ">
-          <div className="flex items-center mb-4 md:mb-0">
-            <img src={logo} alt="Footer Logo" className="h-6 w-auto mr-2" />
-          </div>
+          <a href='https://driptext.de/' target="_self" className="flex items-center mb-4 md:mb-0">
+            <img src={logo} alt="Footer Logo"  className="h-[17.5px] w-[90px]  mr-2" />
+          </a>
 
           <div className="flex flex-col md:flex-row gap-2 md:gap-6 text-center md:text-left">
             <a target="_blank" href="https://driptext.de/agb/"className="text-gray-600 hover:text-gray-800">

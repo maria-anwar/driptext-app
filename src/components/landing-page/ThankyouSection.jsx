@@ -123,9 +123,9 @@ const ThankYouPage = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center pt-5 pb-12 px-4 sm:px-6 lg:px-6">
       {/* Top section with logo */}
-      <Link to="/" className="w-full max-w-xl text-center mb-8">
+      <a href='https://driptext.de/' target="_self" className="w-full max-w-xl text-center mb-8">
         <img src={logo} alt="Logo" className="mx-auto h-8 4xl:h-10 w-44 " />
-      </Link>
+      </a>
 
       {/* Main text content */}
       <ToastContainer />
@@ -230,10 +230,10 @@ const ThankYouPage = () => {
       </div>
 
       <div className="w-full max-w-4xl mt-24 flex justify-between items-center py-4 border-gray-300 ">
-        <div className="flex items-center">
-          <img src={logo} alt="Footer Logo" className="h-6 w-auto mr-2" />
+        <a href='https://driptext.de/' target="_self" className="flex items-center">
+          <img src={logo} alt="Footer Logo" className="h-[17.5px] w-[90px]  mr-2"  />
           <span className="text-gray-700 font-semibold"></span>
-        </div>
+        </a>
 
         <div className="flex space-x-4">
           <a target="_blank" href="https://driptext.de/agb/" className="text-gray-600 ">
