@@ -324,7 +324,7 @@
         },
         "projectHeader": {
           "title": "Task Details",
-          "infoTab": "Info",
+          "infoTab": "Briefing Overview",
           "feedbackTab": "Feedback",
           "feedbackNoFeedback": "No feedback available"
         }

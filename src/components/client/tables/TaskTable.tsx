@@ -156,12 +156,33 @@ const domain = state?.domain;
     }
   };
 
-  const formatDate = (dateString:Date | string) => {
-    if (!dateString) {
-      return "Finished";
-    }
+  const formatDate = (dateString: Date | string) => {
+    if (!dateString) return "Finished";
+    
     const date = new Date(dateString);
-    return format(date, "MMMM yyyy");
+    const status = format(date, "MMMM yyyy");
+    
+    if (currentLanguage === "en") {
+      return status;
+    }
+  
+    const [month, year] = status.split(" ");
+    const monthTranslations: { [key: string]: string } = {
+      January: "Januar",
+      February: "Februar",
+      March: "März",
+      April: "April",
+      May: "Mai",
+      June: "Juni",
+      July: "Juli",
+      August: "August",
+      September: "September",
+      October: "Oktober",
+      November: "November",
+      December: "Dezember",
+    };
+  
+    return monthTranslations[month] ? `${monthTranslations[month]} ${year}` : "Invalid month";
   };
 
   const statusMap: { [key: string]: string } = {

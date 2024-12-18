@@ -324,7 +324,7 @@
         },
         "projectHeader": {
           "title": "Aufgabendetails",
-          "infoTab": "Info",
+          "infoTab": "Briefing Overview",
           "feedbackTab": "Feedback",
           "feedbackNoFeedback": "Kein Feedback verfügbar"
         }
