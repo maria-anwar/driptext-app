@@ -124,7 +124,7 @@ const ThankYouPage = () => {
     <div className="min-h-screen flex flex-col items-center justify-center pt-5 pb-12 px-4 sm:px-6 lg:px-6">
       {/* Top section with logo */}
       <a href='https://driptext.de/' target="_self" className="w-full max-w-xl text-center mb-8">
-        <img src={logo} alt="Logo" className="mx-auto h-8 4xl:h-10 w-44 " />
+      <img src={Logo} alt="Logo" className="h-[23.5px] w-[120px]  md:w-[180px] md:h-[35.5px]" />
       </a>
 
       {/* Main text content */}
