@@ -349,7 +349,7 @@
     "seoCard": {
       "projectHeader": {
         "title": "Aufgabendetails",
-        "infoButton": "Info",
+        "infoButton": "Briefing Overview",
         "feedbackButton": "Feedback",
         "noFeedback": "Kein Feedback verfügbar"
       },
