@@ -256,8 +256,8 @@ const Settings = () => {
 
                   <div className="flex justify-end gap-4.5">
                     <button
-                      className="flex justify-center rounded border border-stroke py-2 px-6 font-medium text-black hover:shadow-1 dark:border-strokedark dark:text-white"
-                      type="submit"
+                  className="flex justify-center bg-transparent rounded border border-stroke py-2 px-6 font-medium text-black hover:shadow-1 dark:border-strokedark dark:text-white hover:border-primary transition-all duration-300"
+                  type="submit"
                       onClick={handleCancel}
                     >
                       {t("settings.personalInformation.cancelButton")}
