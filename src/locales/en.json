@@ -4,6 +4,7 @@
     "menu": {
       "myProjects": "Projects",
       "contactSupport": "Contact",
+      "invoice": "Invoice",
       "settings": "Settings",
       "accountSetting": "Account Settings",
       "signOut": "Sign out"
@@ -1122,5 +1123,15 @@
       "errorMessage": "Error",
       "dataCheckMessage": "Please double-check your data for accuracy before submitting."
     }
+  },
+  "Invoice": {
+    "invoice": "Invoice",
+    "invoiceId": "Invoice id",
+    "name": "Name",
+    "date": "Date",
+    "plan": "Plan",
+    "amountPaid": "Amount paid",
+    "downloadInvoice": "Download invoice",
+    "download": "Download"
   }
 }

@@ -4,6 +4,7 @@
     "menu": {
       "myProjects": "Projekte",
       "contactSupport": "Kontakt",
+      "invoice": "Rechnungen",
       "settings": "Einstellungen",
       "accountSetting": "Kontoeinstellungen",
       "signOut": "Abmelden"
@@ -1125,5 +1126,15 @@
       "errorMessage": "Error",
       "dataCheckMessage": "Bitte überprüfe deine Daten vor dem Absenden auf Richtigkeit."
     }
-  }
+  },
+    "Invoice": {
+      "invoice": "Rechnung",
+      "invoiceId": "Rechnung id",
+      "name": "Name",
+      "date": "Datum",
+      "plan": "Plan",
+      "amountPaid": "Bezahlter Betrag",
+      "downloadInvoice": "Rechnung herunterladen",
+      "download": "Herunterladen"
+    }
 }
