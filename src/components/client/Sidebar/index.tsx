@@ -133,6 +133,19 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     {t("clientsidebar.menu.myProjects")}
                   </NavLink>
                 </li>
+                
+                <li>
+                  <NavLink
+                    to="invoice"
+                    className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                      pathname.includes("invoice") &&
+                      "bg-graydark dark:bg-meta-4"
+                    }`}
+                  >
+                    {SidebarIcons[6].invoice}
+                    {t("clientsidebar.menu.invoice")}
+                  </NavLink>
+                </li>
                 <li>
                   <NavLink
                     to="contact"

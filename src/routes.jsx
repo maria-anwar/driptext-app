@@ -20,6 +20,7 @@ import Register from "./views/freelancer/auth/Register";
 import RedirectHandler from "./views/auth/RedirectHandler";
 import ProtectedRoute from "./ProtectedRoutes";
 import ProtectedRegsiter from "./ProtectRegister";
+import Invoice from "./views/client/dashboard/Invoice";
 
 // Freelancer import
 import FreelancerLayout from "./layouts/freelancer/FreelancerDashboardLayout";
@@ -80,6 +81,7 @@ const WebRoutes = () => {
             <Route index element={<Projects />} />
             <Route path="task-table" element={<TaskTable />} />
             <Route path="contact" element={<Support />} />
+            <Route path="invoice" element={<Invoice />} />
             <Route path="settings" element={<Settings />} />
           </Route>
 
