@@ -1127,14 +1127,14 @@
       "dataCheckMessage": "Bitte überprüfe deine Daten vor dem Absenden auf Richtigkeit."
     }
   },
-    "Invoice": {
-      "invoice": "Rechnung",
-      "invoiceId": "Rechnung id",
-      "name": "Name",
-      "date": "Datum",
-      "plan": "Plan",
-      "amountPaid": "Bezahlter Betrag",
-      "downloadInvoice": "Rechnung herunterladen",
-      "download": "Herunterladen"
-    }
+  "Invoice": {
+    "invoice": "Rechnung",
+    "invoiceId": "Rechnung id",
+    "name": "Name",
+    "date": "Datum",
+    "plan": "Plan",
+    "amountPaid": "Bezahlter Betrag",
+    "downloadInvoice": "Rechnung herunterladen",
+    "download": "Herunterladen"
+  }
 }
