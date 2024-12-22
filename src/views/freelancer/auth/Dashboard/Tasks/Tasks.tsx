@@ -23,13 +23,14 @@ const Tasks: React.FC = () => {
   const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
-
   
     if (user) {
       getWordCount();
       getProjects();
     }
   }, [user]);
+
+
   
   const getProjects = async () => {
     setLoading(true);
