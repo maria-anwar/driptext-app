@@ -14,7 +14,7 @@ import { useTranslation } from "react-i18next";
 interface TaskCardProps {
   task: Task;
   Upcomming?: boolean;
-  getRefreshTask: () => void;
+  getRefreshTask: (val:boolean) => void;
 }
 
 const TaskCard: React.FC<TaskCardProps> = ({
@@ -143,7 +143,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
       .post(`${import.meta.env.VITE_DB_URL}/freelancer/taskDecline`, payload)
       .then((response) => {
         console.log("Task Declined", response);
-        getRefreshTask();
+        getRefreshTask(true);
       })
       .catch((err) => {
         console.error("Error task decline", err);
@@ -159,7 +159,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
     axios
       .post(`${import.meta.env.VITE_DB_URL}/freelancer/taskStart`, payload)
       .then((response) => {
-        getRefreshTask();
+        getRefreshTask(true);
         setIsStart(true);
         setShowDialog(false);
         localStorage.setItem("startTaskId", taskId);
@@ -210,7 +210,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
     axios
       .post(`${import.meta.env.VITE_DB_URL}/freelancer/taskFinish`, payload)
       .then((response) => {
-        getRefreshTask();
+        getRefreshTask(true);
         setShowFinishDialog(false);
       })
       .catch((err) => {

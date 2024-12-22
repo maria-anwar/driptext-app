@@ -10,7 +10,7 @@ interface SeoTasksProps {
   activeTasks: Task[];
   upcommingTasks: Task[];
   userId: string;
-  getRefreshTask: () => void;
+  getRefreshTask: (val:boolean) => void;
 }
 
 const SeoTasks: React.FC<SeoTasksProps> = ({

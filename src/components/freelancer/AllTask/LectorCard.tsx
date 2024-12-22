@@ -16,7 +16,7 @@ import { useTranslation } from "react-i18next";
 
 interface LectorCardProps {
   task: Task;
-  getRefreshTask: () => void;
+  getRefreshTask: (val:boolean) => void;
 }
 
 const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
@@ -136,7 +136,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
       .post(`${import.meta.env.VITE_DB_URL}/freelancer/taskDecline`, payload)
       .then((response) => {
         console.log("Task Declined", response);
-        getRefreshTask();
+        getRefreshTask(true);
       })
       .catch((err) => {
         console.error("Error task decline", err);
@@ -152,7 +152,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
     axios
       .post(`${import.meta.env.VITE_DB_URL}/freelancer/taskStart`, payload)
       .then((response) => {
-        getRefreshTask();
+        getRefreshTask(true);
         localStorage.setItem("startTaskLectorId", taskId);
       })
       .catch((err) => {
@@ -211,7 +211,7 @@ const LectorCard: React.FC<LectorCardProps> = ({ task, getRefreshTask }) => {
     axios
       .post(`${import.meta.env.VITE_DB_URL}/freelancer/taskFinish`, payload)
       .then((response) => {
-        getRefreshTask();
+        getRefreshTask(true);
         setShowFinishDialog(false);
       })
       .catch((err) => {

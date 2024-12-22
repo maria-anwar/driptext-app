@@ -13,7 +13,7 @@ interface AllTasksProps {
   activeTasks: Task[];
   upcommingTasks: Task[];
   userId: string;
-  getRefreshTask: () => void;
+  getRefreshTask: (val:boolean) => void;
 }
 
 const AllTasks: React.FC<AllTasksProps> = ({

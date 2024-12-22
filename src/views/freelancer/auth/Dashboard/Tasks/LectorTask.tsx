@@ -10,7 +10,7 @@ interface LectorTasksProps {
   activeTasks: Task[];
   upcommingTasks: Task[];
   userId: string;
-  getRefreshTask: () => void;
+  getRefreshTask: (val:boolean) => void;
 }
 
 const LectorTasks: React.FC<LectorTasksProps> = ({
