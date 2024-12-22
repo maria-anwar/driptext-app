@@ -9,7 +9,7 @@ interface TexterTasksProps {
   activeTasks: Task[];
   upcommingTasks: Task[];
   userId: string;
-  getRefreshTask: () => void;
+  getRefreshTask: (val:boolean) => void;
 }
 
 const TexterTasks: React.FC<TexterTasksProps> = ({

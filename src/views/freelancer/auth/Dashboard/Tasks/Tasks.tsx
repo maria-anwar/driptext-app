@@ -22,18 +22,23 @@ const Tasks: React.FC = () => {
   const [activeButton, setActiveButton] = useState("All");
   const [loading, setLoading] = useState(true); 
 
+  
   useEffect(() => {
+    getWordCount();
+    getProjects(true);
   
-    if (user) {
+    const intervalId = setInterval(() => {
       getWordCount();
-      getProjects();
-    }
-  }, [user]);
-
-
+      getProjects(false);
+    }, 60000);
   
-  const getProjects = async () => {
-    setLoading(true);
+    return () => clearInterval(intervalId);
+  }, []);
+  
+  
+  const getProjects = async (val:boolean) => {
+    setLoading(val)
+    
     try {
       axios.defaults.headers.common["access-token"] = userToken;
       const payload = { freelancerId: userId };
