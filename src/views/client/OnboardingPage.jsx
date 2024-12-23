@@ -22,11 +22,11 @@ const OnboardingPage = () => {
   return (
     <>
       {show ? (
-        <div className="px-4 sm:px-6 md-px-10 lg:px-14 xl:px-20 2xl:px-56 4xl:px-80 py-10">
+        <div className="px-4 sm:px-6 md-px-10 lg:px-14 xl:px-20 2xl:px-56 4xl:px-80 pb-10">
           <a
             href="https://driptext.de/"
             target="_self"
-            className="w-full flex items-center justify-center py-2 pb-5 sm:pb-7 md:pb-8"
+            className="w-full flex items-center justify-center pt-5 pb-5 sm:pb-7 md:pb-22"
           >
             <img
               src={Logo}
@@ -48,6 +48,51 @@ const OnboardingPage = () => {
             </div>
             <OnboardingForm projectName={projectName} userId={userId} />
           </div>
+          <div className="w-full mt-20 flex flex-col md:flex-row justify-between items-center py-8  border-gray-300 ">
+          <a
+            href="https://driptext.de/"
+            target="_self"
+            className="flex items-center mb-4 md:mb-0"
+          >
+            <img
+              src={Logo}
+              alt="Footer Logo"
+              className="h-[17.5px] w-[90px]  mr-2"
+            />
+          </a>
+
+          <div className="flex flex-col md:flex-row gap-2 md:gap-6 text-center md:text-left">
+            <a
+              target="_blank"
+              href="https://driptext.de/agb/"
+              className="text-gray-600 hover:text-gray-800"
+            >
+              {t("packageBooking.footer.footerLinks.0.label")}
+            </a>
+            <a
+              target="_blank"
+              href="https://driptext.de/impressum/"
+              className="text-gray-600 hover:text-gray-800"
+            >
+              {t("packageBooking.footer.footerLinks.1.label")}
+            </a>
+            <a
+              target="_blank"
+              href="https://driptext.de/datenschutz/"
+              className="text-gray-600 hover:text-gray-800"
+            >
+              {t("packageBooking.footer.footerLinks.2.label")}
+            </a>
+            <a
+              target="_blank"
+              href="https://driptext.de/datenschutz/"
+              className="text-gray-600 hover:text-gray-800"
+            >
+              {t("packageBooking.footer.footerLinks.3.label")}
+            </a>
+          </div>
+        </div>
+          
         </div>
       ) : (
         <div className="text-2xl text-center px-4 sm:px-6 md:px-10 lg:px-14 xl:px-20 2xl:px-56 4xl:px-80 py-10">
