@@ -79,7 +79,7 @@ const RegisterForm = () => {
         "registerFreelancerPage.registerFormPage.section2.fields.iban.errorMessage"
       )
     ),
-    company: Yup.string().required(
+    company: Yup.string().optional(
       t(
         "registerFreelancerPage.registerFormPage.section3.fields.company.errorMessage"
       )
