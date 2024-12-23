@@ -12,6 +12,7 @@ const Register = () => {
   const { t } = useTranslation();
   useTitle(t("registerFreelancerPage.pageTitle"));
   return (
+    <>
     <div className="px-4 sm:px-6 md-px-10 lg:px-14 xl:px-20 2xl:px-56 3xl:px-80 4xl:px-96 pb-10">
       <a
         href="https://driptext.de/"
@@ -35,8 +36,10 @@ const Register = () => {
         </div>
         <RegisterForm />
       </div>
-      <Footer />
+   
     </div>
+    <Footer />
+    </>
   );
 };
 
