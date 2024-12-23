@@ -4,11 +4,13 @@ import Logo from "../../assets/homeimages/driptext.png";
 import OrderForm from "../../components/client-forms/OrderForm";
 import useTitle from "../../hooks/useTitle";
 import { useTranslation } from "react-i18next";
+import Footer from "../../components/Footer";
 
 const OrderBooking = () => {
   const { t } = useTranslation();
   useTitle(t("orderPage.pageTitle"));
   return (
+    <>
     <div className="px-4 sm:px-6 md-px-10 lg:px-14 xl:px-20 2xl:px-56 3xl:px-80 4xl:px-96 pb-10">
       <a
         href="https://driptext.de/"
@@ -38,51 +40,9 @@ const OrderBooking = () => {
         </div>
         <OrderForm />
       </div>
-      <div className="w-full mt-20 flex flex-col md:flex-row justify-between items-center py-8  border-gray-300 ">
-          <a
-            href="https://driptext.de/"
-            target="_self"
-            className="flex items-center mb-4 md:mb-0"
-          >
-            <img
-              src={Logo}
-              alt="Footer Logo"
-              className="h-[17.5px] w-[90px]  mr-2"
-            />
-          </a>
-
-          <div className="flex flex-col md:flex-row gap-2 md:gap-6 text-center md:text-left">
-            <a
-              target="_blank"
-              href="https://driptext.de/agb/"
-              className="text-gray-600 hover:text-gray-800"
-            >
-              {t("packageBooking.footer.footerLinks.0.label")}
-            </a>
-            <a
-              target="_blank"
-              href="https://driptext.de/impressum/"
-              className="text-gray-600 hover:text-gray-800"
-            >
-              {t("packageBooking.footer.footerLinks.1.label")}
-            </a>
-            <a
-              target="_blank"
-              href="https://driptext.de/datenschutz/"
-              className="text-gray-600 hover:text-gray-800"
-            >
-              {t("packageBooking.footer.footerLinks.2.label")}
-            </a>
-            <a
-              target="_blank"
-              href="https://driptext.de/datenschutz/"
-              className="text-gray-600 hover:text-gray-800"
-            >
-              {t("packageBooking.footer.footerLinks.3.label")}
-            </a>
-          </div>
-        </div>
     </div>
+    <Footer />
+    </>
   );
 };
 

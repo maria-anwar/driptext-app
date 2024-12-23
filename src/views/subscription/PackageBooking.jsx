@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import PricingCard from "../../components/cards/PricingCard";
 import useTitle from "../../hooks/useTitle";
 import { useTranslation } from "react-i18next";
+import Footer from "../../components/Footer";
 
 const PackageBooking = () => {
   const { t } = useTranslation();
@@ -137,51 +138,8 @@ const PackageBooking = () => {
             {t("packageBooking.footer.disclaimer.additionalText")}
           </p>
         </div>
-        <div className="w-full mt-24 flex flex-col md:flex-row justify-between items-center py-8  border-gray-300 ">
-          <a
-            href="https://driptext.de/"
-            target="_self"
-            className="flex items-center mb-4 md:mb-0"
-          >
-            <img
-              src={logo}
-              alt="Footer Logo"
-              className="h-[17.5px] w-[90px]  mr-2"
-            />
-          </a>
-
-          <div className="flex flex-col md:flex-row gap-2 md:gap-6 text-center md:text-left">
-            <a
-              target="_blank"
-              href="https://driptext.de/agb/"
-              className="text-gray-600 hover:text-gray-800"
-            >
-              {t("packageBooking.footer.footerLinks.0.label")}
-            </a>
-            <a
-              target="_blank"
-              href="https://driptext.de/impressum/"
-              className="text-gray-600 hover:text-gray-800"
-            >
-              {t("packageBooking.footer.footerLinks.1.label")}
-            </a>
-            <a
-              target="_blank"
-              href="https://driptext.de/datenschutz/"
-              className="text-gray-600 hover:text-gray-800"
-            >
-              {t("packageBooking.footer.footerLinks.2.label")}
-            </a>
-            <a
-              target="_blank"
-              href="https://driptext.de/datenschutz/"
-              className="text-gray-600 hover:text-gray-800"
-            >
-              {t("packageBooking.footer.footerLinks.3.label")}
-            </a>
-          </div>
-        </div>
       </div>
+      <Footer />
     </div>
   );
 };

@@ -12,6 +12,7 @@ import { updateRoleTitle, updateUserFields } from "../../redux/userSlice";
 import localStorage from "redux-persist/es/storage";
 import useTitle from "../../hooks/useTitle";
 import { useTranslation } from "react-i18next";
+import Footer from "../Footer";
 
 const ThankYouPage = () => {
   const { t } = useTranslation();
@@ -121,6 +122,7 @@ const ThankYouPage = () => {
   // },[])
 
   return (
+    <>
     <div className="min-h-screen flex flex-col items-center justify-center  pb-10 px-4 sm:px-6 lg:px-6">
       {/* Top section with logo */}
       <a href='https://driptext.de/' target="_self" className="w-full flex items-center justify-center pt-5 pb-5 sm:pb-7 md:pb-22">
@@ -228,29 +230,9 @@ const ThankYouPage = () => {
           </div>
         </div>
       </div>
-
-      <div className="w-full max-w-4xl mt-24 flex justify-between items-center py-4 border-gray-300 ">
-        <a href='https://driptext.de/' target="_self" className="flex items-center">
-          <img src={logo} alt="Footer Logo" className="h-[17.5px] w-[90px]  mr-2"  />
-          <span className="text-gray-700 font-semibold"></span>
-        </a>
-
-        <div className="flex space-x-4">
-          <a target="_blank" href="https://driptext.de/agb/" className="text-gray-600 ">
-            {t("thankYouPage.footer.footerLinks.0.text")}
-          </a>
-          <a target="_blank" href="https://driptext.de/impressum/"  className="text-gray-600 ">
-            {t("thankYouPage.footer.footerLinks.1.text")}
-          </a>
-          <a target="_blank" href="https://driptext.de/datenschutz/"  className="text-gray-600 ">
-            {t("thankYouPage.footer.footerLinks.2.text")}
-          </a>
-          <a target="_blank" href="https://driptext.de/datenschutz/" className="text-gray-600 ">
-            {t("thankYouPage.footer.footerLinks.3.text")}
-          </a>
-        </div>
-      </div>
     </div>
+    <Footer />
+    </>
   );
 };
 

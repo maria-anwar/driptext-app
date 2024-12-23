@@ -246,7 +246,7 @@
         "comment": "Kommentar"
       },
       "onBoardingInfo": {
-        "onBoarding": "Onboarding",
+        "onBoarding": "Onboarding Daten",
         "generalInformation": "1. Allgemeine Informationen",
         "speech": "Sprache",
         "perspective": "Perspektive",
@@ -576,9 +576,9 @@
     "legal": {
       "title": "Rechtliches",
       "links": [
-        "Bedingungen",
+        "AGB",
         "Impressum",
-        "Datenschutz",
+        "Datenschutzerklärung",
         "Cookie-Einstellungen"
       ]
     }
@@ -807,7 +807,7 @@
       },
       "footerLinks": [
         {
-          "label": "Bedingungen",
+          "label": "AGB",
           "href": "/conditions"
         },
         {
@@ -815,7 +815,7 @@
           "href": "/imprint"
         },
         {
-          "label": "Datenschutz",
+          "label": "Datenschutzerklärung",
           "href": "/data-protection"
         },
         {
@@ -968,7 +968,7 @@
       "companyName": "DRIPTEXT",
       "footerLinks": [
         {
-          "text": "Bedingungen",
+          "text": "AGB",
           "href": "/conditions"
         },
         {
@@ -976,7 +976,7 @@
           "href": "/imprint"
         },
         {
-          "text": "Datenschutz",
+          "text": "Datenschutzerklärung",
           "href": "/data-protection"
         },
         {
