@@ -121,16 +121,16 @@ const ThankYouPage = () => {
   // },[])
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center pt-5 pb-12 px-4 sm:px-6 lg:px-6">
+    <div className="min-h-screen flex flex-col items-center justify-center  pb-10 px-4 sm:px-6 lg:px-6">
       {/* Top section with logo */}
-      <a href='https://driptext.de/' target="_self" className="w-full max-w-xl text-center mb-8">
+      <a href='https://driptext.de/' target="_self" className="w-full flex items-center justify-center pt-5 pb-5 sm:pb-7 md:pb-22">
       <img src={logo} alt="Logo" className="h-[23.5px] w-[120px]  md:w-[180px] md:h-[35.5px]" />
       </a>
 
       {/* Main text content */}
       <ToastContainer />
 
-      <div className="w-full max-w-4xl text-center 2xl:px-24 4xl:mt-14 mb-5">
+      <div className="w-full max-w-4xl text-center 2xl:px-24  mb-5">
         <h1 className="text-3xl font-bold text-gray-700">
           {t("thankYouPage.mainText.thankYouTitle")}
         </h1>
@@ -142,7 +142,7 @@ const ThankYouPage = () => {
         </p>
         <button
           onClick={() => navigate("/client-dashboard")}
-          className="w-1/2 md:w-[30%] bg-gradient-to-r from-buttonStart to-buttonEnd  rounded font-medium mx-auto text-center text-white py-2 mb-8"
+          className="w-1/2 md:w-[30%]  bg-gradient-to-r from-buttonStart to-buttonEnd  rounded font-medium mx-auto text-center text-white py-3 mb-8"
         >
           {t("thankYouPage.mainText.buttonText")}
         </button>

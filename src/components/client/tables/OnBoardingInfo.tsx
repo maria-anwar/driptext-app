@@ -314,7 +314,7 @@ const OnBoardingInfo: React.FC<EditProjectProps> = ({
                         </AccordionButton>
                       </h2>
                       <AccordionPanel className="" pb={4}>
-                        <div className="bg-slate-300/90 dark:bg-boxdark rounded py-2 px-4 ">
+                        <div className="bg-white dark:bg-boxdark rounded py-2 px-4 ">
                           <h2 className="text-black dark:text-white text-base font-semibold lg:mt-3">
                             {t("project.onboarding.companyInformation")}
                           </h2>
@@ -415,17 +415,17 @@ const OnBoardingInfo: React.FC<EditProjectProps> = ({
                   )}
                 </AccordionItem>
               </Accordion>
-              <div className="flex justify-end items-end flex-row gap-x-4 mt-4">
+              <div className="flex justify-end items-end flex-row gap-4.5 mt-4">
                 {" "}
                 <button
-                  className={` my-3 flex justify-center rounded bg-transparent ring-1 ring-primary py-1.5 px-6 font-medium text-black dark:text-white `}
+                  className={`flex justify-center bg-transparent rounded border border-stroke py-2 px-6 font-medium text-black hover:shadow-1 dark:border-strokedark dark:text-white hover:border-primary transition-all duration-300 `}
                   type="button"
                   onClick={closeModel}
                 >
                   {t("project.onboarding.cancelButton")}
                 </button>
                 <button
-                  className={` my-3 flex justify-center rounded bg-primary py-1.5 px-6 font-medium text-gray ${
+                  className={` flex justify-center rounded bg-primary py-2 px-6 font-medium text-gray hover:bg-opacity-90 ${
                     loading ? "cursor-not-allowed" : "cursor-pointer"
                   }`}
                   type="submit"

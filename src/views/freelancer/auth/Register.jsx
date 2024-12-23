@@ -11,11 +11,11 @@ const Register = () => {
   const { t } = useTranslation();
   useTitle(t("registerFreelancerPage.pageTitle"));
   return (
-    <div className="px-4 sm:px-6 md-px-10 lg:px-14 xl:px-20 2xl:px-56 3xl:px-80 4xl:px-96 py-6">
+    <div className="px-4 sm:px-6 md-px-10 lg:px-14 xl:px-20 2xl:px-56 3xl:px-80 4xl:px-96 pb-10">
       <a
         href="https://driptext.de/"
         target="_self"
-        className="w-full flex items-center justify-center py-2 pb-5 sm:pb-7 md:pb-8 xl:pb-10 2xl:pb-18 3xl:pb-18 4xl:pb-20"
+        className="w-full flex items-center justify-center pt-5 pb-5 sm:pb-7 md:pb-22"
       >
         <img
           src={Logo}
@@ -35,7 +35,7 @@ const Register = () => {
         <RegisterForm />
         {/* <OrderForm /> */}
       </div>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
         <div className="w-full  flex flex-col md:flex-row gap-y-6 justify-between items-center py-4 border-gray-300 ">
           <a
             href="https://driptext.de/"

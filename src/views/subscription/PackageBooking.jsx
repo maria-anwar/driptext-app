@@ -88,7 +88,7 @@ const PackageBooking = () => {
       <a
         href="https://driptext.de/"
         target="_self"
-        className=" flex items-center justify-center  mt-10 mb-24"
+        className=" flex items-center justify-center  pt-5 pb-5 sm:pb-7 md:pb-22"
       >
         <img
           src={logo}

@@ -528,10 +528,10 @@
         "title": "2. Contact Details of the Invoice Recipient",
         "emailLabel": "Email",
         "emailPlaceholder": "jhon@gmail.com",
-        "fnameLabel": "Max",
-        "fnamePlaceholder": "Your First Name",
-        "lnameLabel": "Mustermann",
-        "lnamePlaceholder": "Your Last Name"
+        "fnameLabel": "First Name",
+        "fnamePlaceholder": "John",
+        "lnameLabel": "Last Name",
+        "lnamePlaceholder": "Doe"
       },
       "validationSchema": {
         "project": "Please enter your project",
