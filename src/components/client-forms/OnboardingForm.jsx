@@ -4,12 +4,16 @@ import { GroupTextArea } from "./GroupTextArea";
 import { GroupDropdownField } from "./GroupDropdownField";
 import axios from "axios";
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { GroupField } from "./GroupField";
 import { useTranslation } from "react-i18next";
+import { toast,ToastContainer } from "react-toastify";
+
+
 
 const OnboardingForm = () => {
+  const navigate = useNavigate();
   const { t, i18n } = useTranslation();
   const [loading, setLoading] = useState(false);
   const user = useSelector((state) => state.user);
@@ -68,6 +72,24 @@ const OnboardingForm = () => {
   });
 
   const onSubmit = async (values) => {
+
+    const storedDataString = localStorage.getItem("key");
+    const storedData = storedDataString ? JSON.parse(storedDataString) : null;
+  
+    if (!storedData || !storedData.token || Date.now() > storedData.expiration) {
+      toast.error("Session expired. Please login again.");
+      localStorage.removeItem("key");
+      navigate("/");
+      return null;
+    }
+  
+    if (allowedRoles && !allowedRoles.includes(storedData.role.toLowerCase())) {
+      toast.error("You are not authorized to access this page.");
+      localStorage.removeItem("key");
+      navigate("/");
+      return null;
+    }
+
     if (currentLanguage === "de") {
       if (values.speech === "Sie") {
         values.speech = "She";
@@ -187,6 +209,7 @@ const OnboardingForm = () => {
                 <h2 className="text-custom-black text-base font-semibold -mb-2">
                   {t("onboardingPage.onboardingForm.sections.0.title")}
                 </h2>
+                <ToastContainer/>
                 <GroupDropdownField
                   label={t(
                     "onboardingPage.onboardingForm.sections.0.fields.0.label"
