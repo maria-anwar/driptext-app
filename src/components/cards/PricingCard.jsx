@@ -31,7 +31,7 @@ const PricingCard = ({ plan }) => {
           </p>
           <p className="text-lg -mt-12">{plan.month}</p>
         </div>
-        <ul className="text-center pb-4">
+        <ul className="text-center pb-0">
           <li className="text-gray-700 pt-0">
             {" "}
             <span className="text-slate-900 font-semibold">
