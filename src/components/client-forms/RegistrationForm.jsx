@@ -229,7 +229,7 @@ const RegistrationForm = () => {
                 <button
                   className={`${
                     loading ? "cursor-not-allowed" : "cursor-pointer"
-                  } border-none text-white font-medium text-base w-full bg-custom-black flex justify-center py-2 xs:py-2.5 mt-1 rounded-xl`}
+                  } border-none text-white font-medium text-base w-full bg-custom-black flex justify-center py-2 xs:py-2.5 mt-1 rounded-xl hover:bg-custom-black/90`}
                   type="submit"
                   disabled={loading}
                 >

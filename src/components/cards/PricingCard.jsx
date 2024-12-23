@@ -29,10 +29,10 @@ const PricingCard = ({ plan }) => {
           <p className="font-extrabold text-5xl text-cardHeading">
             {plan.price}
           </p>
-          <p className="text-lg">{plan.month}</p>
+          <p className="text-lg -mt-12">{plan.month}</p>
         </div>
-        <ul className="text-center pb-8">
-          <li className="text-gray-700 pt-4">
+        <ul className="text-center pb-4">
+          <li className="text-gray-700 pt-0">
             {" "}
             <span className="text-slate-900 font-semibold">
               {plan.features}{" "}
