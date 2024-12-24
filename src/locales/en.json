@@ -237,7 +237,7 @@
     "taskModel": {
       "taskModellabels": {
         "task": "Task",
-        "taskId": "Tasks",
+        "taskId": "Task",
         "deadline": "Target Date",
         "taskStatus": "Task Status",
         "activeRole": "Active Role",
@@ -253,11 +253,11 @@
         "website": "Domain",
         "companyInformation": "2. Company Information",
         "companyBackground": "Background information about the company",
-        "companyAttributes": "Which attributes best describe you as a company/your products/your services?",
+        "companyAttributes": "What characteristics best describe your company/products/services?",
         "companyServices": "What are your services?",
-        "targetCustomerInformation": "3. Information About the Target Customers",
+        "targetCustomerInformation": "3. Information About Target Customers",
         "contentTargetAudience": "Who is the content written for?",
-        "customerInterest": "Customers we want to address have an interest in...",
+        "customerInterest": "Customers we want to reach are interested in..",
         "contentAim": "4. Aim of the content",
         "contentPurpose": "What is the purpose of the content?",
         "brandAndContentInfo": "Information about your brand and your content"

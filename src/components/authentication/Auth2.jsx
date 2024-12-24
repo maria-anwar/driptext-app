@@ -34,9 +34,9 @@ const handleLogoClick = () =>{
         <div className=" mt-10">
           <div className="w-full flex items-center justify-center gap-1.5 mb-8 cursor-pointer" onClick={handleLogoClick}>
             <img src={logo} alt="Logo" className="w-12 h-12 rounded-md" />
-            <div>
-              <h1 className="text-[17px] 4xl:text-lg font-bold text-black">DRIPTEXT</h1>
-              <p className="text-gray-500 text-[13px] 4xl:text-sm">{t('signIn.slogan')}</p>
+            <div className="flex flex-col justify-center items-start">
+              <h1 className="text-[17px] 4xl:text-lg font-bold text-black pt-2 mt-2">DRIPTEXT</h1>
+              <p className="text-gray-500 text-[13px] 4xl:text-sm -mt-3">{t('signIn.slogan')}</p>
             </div>
           </div>
           <AuthTagline authline={authline}/>

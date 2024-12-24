@@ -161,7 +161,7 @@
     },
     "noTasks": "Aktuell hast du keine zugewiesenen Tasks für diesen Monat.",
     "cardLabels": {
-      "task": "Aufgabe",
+      "task": "Task",
       "deadline": "Target Date",
       "status": "Status",
       "activeRole": "Aktive Rolle",
@@ -184,7 +184,7 @@
     "texterCard": {
       "dialog": {
         "taskDetailsDialog": {
-          "title": "Aufgabendetails",
+          "title": "Task details",
           "closeButton": "Schließen"
         },
         "finishOrderDialog": {
@@ -224,7 +224,7 @@
         }
       },
       "projectHeader": {
-        "title": "Aufgabendetails",
+        "title": "Task details",
         "infoTab": "Briefing Overview",
         "feedbackTab": "Feedback",
         "feedbackNoFeedback": "Kein Feedback verfügbar"
@@ -236,8 +236,8 @@
     },
     "taskModel": {
       "taskModellabels": {
-        "task": "Aufgabe",
-        "taskId": "Tasks",
+        "task": "Task",
+        "taskId": "Task",
         "deadline": "Target Date",
         "taskStatus": "Task Status",
         "activeRole": "Aktive Rolle",
@@ -253,11 +253,11 @@
         "website": "Domain",
         "companyInformation": "2. Unternehmensinformationen",
         "companyBackground": "Hintergrundinformationen zum Unternehmen",
-        "companyAttributes": "Welche Attribute beschreiben Ihr Unternehmen/Ihre Produkte/Ihre Dienstleistungen am besten?",
+        "companyAttributes": "Welche Merkmale beschreiben am besten Ihr Unternehmen/Ihre Produkte/Ihre Dienstleistungen?",
         "companyServices": "Was sind Ihre Dienstleistungen?",
         "targetCustomerInformation": "3. Informationen über die Zielkunden",
         "contentTargetAudience": "Für wen wird der Inhalt geschrieben?",
-        "customerInterest": "Kunden, die wir ansprechen wollen, haben Interesse an...",
+        "customerInterest": "Kunden, die wir ansprechen möchten, haben Interesse an...",
         "contentAim": "4. Ziel des Inhalts",
         "contentPurpose": "Was ist der Zweck des Inhalts?",
         "brandAndContentInfo": "Informationen über Ihre Marke und Ihren Inhalt"
@@ -265,9 +265,9 @@
     },
     "lectorCard": {
       "taskInfo": {
-        "projectId": "Projekt-ID der Aufgabe",
-        "projectName": "Projektname der Aufgabe",
-        "projectDetails": "Aufgabendetails"
+        "projectId": "Projekt-ID der Task",
+        "projectName": "Projektname der Task",
+        "projectDetails": "Task details"
       },
       "actions": {
         "accept": "Akzeptieren",
@@ -324,7 +324,7 @@
           }
         },
         "projectHeader": {
-          "title": "Aufgabendetails",
+          "title": "Task details",
           "infoTab": "Briefing Overview",
           "feedbackTab": "Feedback",
           "feedbackNoFeedback": "Kein Feedback verfügbar"
@@ -342,14 +342,14 @@
           "message": "Du bist dabei, die Bestellung abzuschließen. Bist du sicher?"
         },
         "projectInfoDialog": {
-          "title": "Aufgabendetails",
+          "title": "Task details",
           "closeButton": "Schließen"
         }
       }
     },
     "seoCard": {
       "projectHeader": {
-        "title": "Aufgabendetails",
+        "title": "Task details",
         "infoButton": "Briefing Overview",
         "feedbackButton": "Feedback",
         "noFeedback": "Kein Feedback verfügbar"

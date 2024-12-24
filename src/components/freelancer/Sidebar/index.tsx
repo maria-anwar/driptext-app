@@ -78,11 +78,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
         <a href='https://driptext.de/' target="_self">
           <div className="w-full flex items-center justify-normal gap-1.5 cursor-pointer">
             <img src={logo} alt="Logo" className="w-12 h-12 rounded-md" />
-            <div>
-              <h1 className="text-[17px] 4xl:text-lg font-bold text-white">
+            <div className="flex flex-col justify-center items-start">
+              <h1 className="text-[17px] 4xl:text-lg font-bold text-white pt-2 mt-2">
                 DRIPTEXT
               </h1>
-              <p className="text-gray-900 text-bodydark2 text-[13px] 4xl:text-sm">
+              <p className="text-gray-900 text-bodydark2 text-[13px] 4xl:text-sm -mt-3">
                 {t("freelancersidebar.slogan")}
               </p>
             </div>
