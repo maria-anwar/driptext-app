@@ -67,8 +67,8 @@ const AccordionData: React.FC<AccordionDataProps> = ({
         {({ isExpanded }) => (
           <>
             <h2>
-              <AccordionButton className="flex justify-between items-center bg-slate-200 dark:bg-meta-4 rounded ">
-                <p className="font-semibold text-black dark:text-white ">
+              <AccordionButton className="flex justify-between items-center bg-slate-200 dark:bg-meta-4 rounded h-12 ">
+                <p className="font-semibold text-black dark:text-white pt-4 ">
                   {t("task.taskModel.onBoardingInfo.onBoarding")}
                 </p>
                 {isExpanded ? (
@@ -84,25 +84,25 @@ const AccordionData: React.FC<AccordionDataProps> = ({
                   {t("task.taskModel.onBoardingInfo.generalInformation")}
                 </h2>
                 <div className="px-2">
-                  <p className="dark:text-white font-medium pb-2">{t("task.taskModel.onBoardingInfo.speech")}</p>
-                  <p className="dark:text-white bg-slate-200 dark:bg-meta-4 py-2 px-4 mb-2 rounded">
+                  <p className="dark:text-white font-medium ">{t("task.taskModel.onBoardingInfo.speech")}</p>
+                  <p className="dark:text-white bg-slate-200 dark:bg-meta-4 py-2 px-4 mb-2 -mt-3 rounded">
                   {speech}
                   </p>
                 </div>
                 <div className="px-2">
-                  <p className="dark:text-white font-medium pb-2">
+                  <p className="dark:text-white font-medium pt-2">
                     {t("task.taskModel.onBoardingInfo.perspective")}
                   </p>
-                  <p className="dark:text-white bg-slate-200 dark:bg-meta-4 py-2 px-4 mb-2 rounded">
+                  <p className="dark:text-white bg-slate-200 dark:bg-meta-4 py-2 px-4 mb-2  -mt-3 rounded">
                     {perspective}
                   </p>
                 </div>
                 <div className="px-2">
-                  <p className="dark:text-white font-medium pb-2">
+                  <p className="dark:text-white font-medium pt-2">
                     {" "}
                     {t("task.taskModel.onBoardingInfo.website")}
                   </p>
-                  <p className="dark:text-white bg-slate-200 dark:bg-meta-4 py-2 px-4 mb-2 rounded">
+                  <p className="dark:text-white bg-slate-200 dark:bg-meta-4 py-2 px-4 mb-2  -mt-3 rounded">
                     {projectName}
                   </p>
                 </div>

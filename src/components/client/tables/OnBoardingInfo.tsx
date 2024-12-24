@@ -302,8 +302,8 @@ const OnBoardingInfo: React.FC<EditProjectProps> = ({
                   {({ isExpanded }) => (
                     <>
                       <h2>
-                        <AccordionButton className="flex justify-between items-center bg-slate-200 dark:bg-meta-4 rounded ">
-                          <p className="font-semibold text-black dark:text-white ">
+                        <AccordionButton className="flex justify-between items-center bg-slate-200 dark:bg-meta-4 rounded h-12">
+                          <p className="font-semibold text-black dark:text-white pt-4">
                             {t("task.taskModel.onBoardingInfo.onBoarding")}
                           </p>
                           {isExpanded ? (

@@ -133,7 +133,7 @@ const ForgotPasswordForm = () => {
                 <FontAwesomeIcon
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
                   onClick={togglePasswordVisibility}
-                  icon={passwordVisible ? faEye : faEyeSlash}
+                  icon={passwordVisible ? faEyeSlash :faEye}
                 />
               </div>
               {props.errors.password && (
@@ -173,7 +173,7 @@ const ForgotPasswordForm = () => {
                 <FontAwesomeIcon
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
                   onClick={toggleConfrimPasswordVisibility}
-                  icon={confirmPasswordVisible ? faEye : faEyeSlash}
+                  icon={confirmPasswordVisible ? faEyeSlash :  faEye}
                 />
               </div>
               {props.errors.reEnterPass && (
