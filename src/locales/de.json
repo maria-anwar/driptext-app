@@ -225,8 +225,8 @@
       },
       "projectHeader": {
         "title": "Task details",
-        "infoTab": "Briefing Overview",
-        "feedbackTab": "Feedback",
+        "infoTab": "Briefing Übersicht",
+        "feedbackTab": "Rückmeldung",
         "feedbackNoFeedback": "Kein Feedback verfügbar"
       },
       "completionLabels": {
@@ -256,7 +256,7 @@
         "companyAttributes": "Welche Merkmale beschreiben am besten Ihr Unternehmen/Ihre Produkte/Ihre Dienstleistungen?",
         "companyServices": "Was sind Ihre Dienstleistungen?",
         "targetCustomerInformation": "3. Informationen über die Zielkunden",
-        "contentTargetAudience": "Für wen wird der Inhalt geschrieben?",
+        "contentTargetAudience": "Für wen ist der Inhalt geschrieben?",
         "customerInterest": "Kunden, die wir ansprechen möchten, haben Interesse an...",
         "contentAim": "4. Ziel des Inhalts",
         "contentPurpose": "Was ist der Zweck des Inhalts?",
@@ -325,8 +325,8 @@
         },
         "projectHeader": {
           "title": "Task details",
-          "infoTab": "Briefing Overview",
-          "feedbackTab": "Feedback",
+          "infoTab": "Briefing Übersicht",
+          "feedbackTab": "Rückmeldung",
           "feedbackNoFeedback": "Kein Feedback verfügbar"
         }
       },
@@ -350,8 +350,8 @@
     "seoCard": {
       "projectHeader": {
         "title": "Task details",
-        "infoButton": "Briefing Overview",
-        "feedbackButton": "Feedback",
+        "infoButton": "Briefing Übersicht",
+        "feedbackButton": "Rückmeldung",
         "noFeedback": "Kein Feedback verfügbar"
       },
       "acceptDialog": {

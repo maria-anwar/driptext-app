@@ -30,7 +30,7 @@ const Tasks: React.FC = () => {
     const intervalId = setInterval(() => {
       getWordCount();
       getProjects(false);
-    }, 60000);
+    }, 30000);
   
     return () => clearInterval(intervalId);
   }, []);

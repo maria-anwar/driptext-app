@@ -114,7 +114,7 @@ const SidebarIcons = [
         xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink"
         stroke="#DEE4EE"
-        stroke-width="0.6"
+        stroke-width="1"
       >
         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
         <g
