@@ -11,11 +11,12 @@ import axios from "axios";
 import { useTranslation } from "react-i18next";
 
 const RegisterForm = () => {
-  const { t } = useTranslation();
+  const { t,i18n } = useTranslation();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMesssage] = useState("");
+  const currentLanguage = i18n.language;
 
   const initialValues = {
     fname: "",
@@ -139,7 +140,24 @@ const RegisterForm = () => {
       const errorMessage =
         error.response?.data?.message || error.message || "Error";
       setError(true);
-      setErrorMesssage(errorMessage);
+
+      if (currentLanguage === "de") {
+        const errorMessageLower = errorMessage.toLowerCase(); 
+        if (errorMessageLower === "freelancer role does not exists") {
+          setErrorMesssage(
+            "Freelancer-Rolle existiert nicht"
+          );
+        } else if (errorMessageLower === "email already exists") {
+          setErrorMesssage(
+            "E-Mail existiert bereits"
+          );
+        } else {
+          setErrorMesssage(errorMessage); 
+        }
+      } else {
+        setErrorMesssage(errorMessage);
+      }
+      
     }
   };
 

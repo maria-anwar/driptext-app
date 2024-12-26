@@ -16,13 +16,14 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 const PassRequestForm = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMesssage] = useState("");
   const initialValues = {
     email: "",
   };
+  const currentLanguage = i18n.language;
 
   const validationSchema = Yup.object().shape({
     email: Yup.string()
@@ -49,8 +50,25 @@ const PassRequestForm = () => {
         error.message ||
         "Fehler beim Senden des Links";
       setError(true);
-      setErrorMesssage(errorMessage);
+    
+      if (currentLanguage === "de") {
+        const errorMessageLower = errorMessage.toLowerCase(); 
+        if (errorMessageLower === "email does not exist in our system, please verify you have entered correct email.") {
+          setErrorMesssage(
+            "E-Mail existiert nicht in unserem System, bitte überprüfen Sie, ob Sie die richtige E-Mail eingegeben haben."
+          );
+        } else if (errorMessageLower === "error while reset user password") {
+          setErrorMesssage(
+            "Fehler beim Zurücksetzen des Passworts des Benutzers"
+          );
+        } else {
+          setErrorMesssage(errorMessage); 
+        }
+      } else {
+        setErrorMesssage(errorMessage);
+      }
     }
+    
   };
 
   return (

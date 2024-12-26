@@ -17,13 +17,14 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
 
 const ForgotPasswordForm = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [token, setToken] = useState("");
   const navigate = useNavigate();
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfrimPasswordVisible] = useState(false);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMesssage] = useState("");
+  const currentLanguage = i18n.language;
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -87,7 +88,23 @@ const ForgotPasswordForm = () => {
         error.message ||
         t("forgotPasswordPage.forgotPasswordForm.errorMessages.generalError");
       setError(true);
-      setErrorMesssage(errorMessage);
+
+      if (currentLanguage === "de") {
+        const errorMessageLower = errorMessage.toLowerCase(); 
+        if (errorMessageLower === "email does not exist in our system, please verify you have entered correct email.") {
+          setErrorMesssage(
+            "E-Mail existiert nicht in unserem System, bitte überprüfen Sie, ob Sie die richtige E-Mail eingegeben haben."
+          );
+        } else if (errorMessageLower === "error while reset user password") {
+          setErrorMesssage(
+            "Fehler beim Zurücksetzen des Passworts des Benutzers"
+          );
+        } else {
+          setErrorMesssage(errorMessage); 
+        }
+      } else {
+        setErrorMesssage(errorMessage);
+      }
     }
   };
 
@@ -133,7 +150,7 @@ const ForgotPasswordForm = () => {
                 <FontAwesomeIcon
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
                   onClick={togglePasswordVisibility}
-                  icon={passwordVisible ? faEyeSlash :faEye}
+                  icon={passwordVisible ? faEyeSlash : faEye}
                 />
               </div>
               {props.errors.password && (
@@ -173,7 +190,7 @@ const ForgotPasswordForm = () => {
                 <FontAwesomeIcon
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
                   onClick={toggleConfrimPasswordVisibility}
-                  icon={confirmPasswordVisible ? faEyeSlash :  faEye}
+                  icon={confirmPasswordVisible ? faEyeSlash : faEye}
                 />
               </div>
               {props.errors.reEnterPass && (

@@ -9,12 +9,13 @@ import { useTranslation } from "react-i18next";
 //https://driptext-api.vercel.app/api/users/create
 
 const RegistrationForm = () => {
-  const { t } = useTranslation();
+  const { t,i18n } = useTranslation();
   const navigate = useNavigate();
   const [roleID, setRoleID] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMesssage] = useState("");
+  const currentLanguage = i18n.language;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -110,7 +111,38 @@ const RegistrationForm = () => {
           },
         });
       } else {
-        setErrorMesssage(response.data.message);
+        if (currentLanguage === "de") {
+          const errorMessageLower = response.data.message.toLowerCase(); 
+          if (errorMessageLower === "you are a already registered user") {
+            setErrorMesssage(
+              "Sie sind bereits ein registrierter Benutzer"
+            );
+          } else if (errorMessageLower === "user already exists") {
+            setErrorMesssage(
+              "Benutzer existiert bereits"
+            );
+          } else if (errorMessageLower === "this project's subscription already exists") {
+            setErrorMesssage(
+              "Das Abonnement dieses Projekts existiert bereits"
+            );
+          } else if (errorMessageLower === "unauthorized for this action.") {
+            setErrorMesssage(
+              "Unbefugt für diese Aktion"
+            );
+          } else if (errorMessageLower === "this email already exists") {
+            setErrorMesssage(
+              "Diese E-Mail existiert bereits"
+            );
+          } else if (errorMessageLower === "this email exists as freelancer") {
+            setErrorMesssage(
+              "Diese E-Mail existiert als Freelancer"
+            );
+          } else {
+            setErrorMesssage(response.data.message); 
+          }
+        } else {
+          setErrorMesssage(response.data.message);
+        }
         setLoading(false);
       }
     } catch (error) {
@@ -118,7 +150,39 @@ const RegistrationForm = () => {
       const errorMessage =
         error.response?.data?.message || error.message || "Fehler";
       setError(true);
-      setErrorMesssage(errorMessage);
+      if (currentLanguage === "de") {
+        const errorMessageLower = errorMessage.toLowerCase(); 
+        if (errorMessageLower === "you are a already registered user") {
+          setErrorMesssage(
+            "Sie sind bereits ein registrierter Benutzer"
+          );
+        } else if (errorMessageLower === "user already exists") {
+          setErrorMesssage(
+            "Benutzer existiert bereits"
+          );
+        } else if (errorMessageLower === "this project's subscription already exists") {
+          setErrorMesssage(
+            "Das Abonnement dieses Projekts existiert bereits"
+          );
+        } else if (errorMessageLower === "unauthorized for this action.") {
+          setErrorMesssage(
+            "Unbefugt für diese Aktion"
+          );
+        } else if (errorMessageLower === "this email already exists") {
+          setErrorMesssage(
+            "Diese E-Mail existiert bereits"
+          );
+        } else if (errorMessageLower === "this email exists as freelancer") {
+          setErrorMesssage(
+            "Diese E-Mail existiert als Freelancer"
+          );
+        } else {
+          setErrorMesssage(errorMessage); 
+        }
+      } else {
+        setErrorMesssage(errorMessage);
+      }
+      
     }
   };
   return (

@@ -12,13 +12,14 @@ import useAuth from "../../views/auth/useAuth.jsx";
 import { useTranslation } from "react-i18next";
 
 const LoginForm = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMesssage] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const currentLanguage = i18n.language;
   useAuth();
 
   const togglePasswordVisibility = () => {
@@ -99,7 +100,23 @@ const LoginForm = () => {
         error.message ||
         "Fehler beim Einloggen";
       setError(true);
-      setErrorMesssage(errorMessage);
+      if (currentLanguage === "de") {
+        if (errorMessage.toLowerCase() === "email or password is incorrect") {
+          setErrorMesssage("E-Mail oder Passwort ist falsch");
+        } else if (
+          errorMessage.toLowerCase() ===
+          "email does not exist in our system, please verify you have entered correct email."
+        ) {
+          setErrorMesssage(
+            "E-Mail existiert nicht in unserem System, bitte überprüfen Sie, ob Sie die richtige E-Mail eingegeben haben."
+          );
+        } else {
+          setErrorMesssage(errorMessage);
+        }
+      } else {
+        setErrorMesssage(errorMessage);
+      }
+
       setLoading(false);
     }
   };
