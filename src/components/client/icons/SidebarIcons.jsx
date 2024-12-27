@@ -107,7 +107,7 @@ const SidebarIcons = [
     contact: (
       <svg
         fill="#DEE4EE"
-        className="w-5.5 h-5.5"
+        className="w-5.4 h-5.5"
         viewBox="0 0 64 64"
         version="1.1"
         xml:space="preserve"
