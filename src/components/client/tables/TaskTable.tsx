@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
@@ -13,9 +13,9 @@ import { Task } from "../Type/types";
 
 const TaskTable = () => {
   const { state } = useLocation(); // Assuming you are using React Router
-const productUniqueID = state?.productUniqueID;
-const domain = state?.domain;
-  const { t ,i18n} = useTranslation();
+  const productUniqueID = state?.productUniqueID;
+  const domain = state?.domain;
+  const { t, i18n } = useTranslation();
   useTitle(t("taskTable.title"));
   const navigate = useNavigate();
   const projectId = localStorage.getItem("projectId");
@@ -27,6 +27,22 @@ const domain = state?.domain;
   const [refreshTrigger, setRefreshTrigger] = useState(0);
   const [userId, setUserID] = useState(user.user.data.user._id);
   const currentLanguage = i18n.language;
+
+  const dropdownRef = useRef(null);
+
+ 
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setOpenBarIndex(null);  // Close dropdown if clicked outside
+      }
+    }; 
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   useEffect(() => {
     TaskDetails();
@@ -81,7 +97,7 @@ const domain = state?.domain;
     setOpenBarIndex(openBarIndex === index ? null : index); // Toggle the clicked task's index
   };
 
-  const handleCrossApi = (projectTaskId:string) => {
+  const handleCrossApi = (projectTaskId: string) => {
     let token = userToken;
     axios.defaults.headers.common["access-token"] = token;
     let payload = {
@@ -102,7 +118,7 @@ const domain = state?.domain;
       });
   };
 
-  const handleTickApi = (projectTaskId:string) => {
+  const handleTickApi = (projectTaskId: string) => {
     let token = userToken;
     axios.defaults.headers.common["access-token"] = token;
     let payload = {
@@ -158,14 +174,14 @@ const domain = state?.domain;
 
   const formatDate = (dateString: Date | string) => {
     if (!dateString) return "Finished";
-    
+
     const date = new Date(dateString);
     const status = format(date, "MMMM yyyy");
-    
+
     if (currentLanguage === "en") {
       return status;
     }
-  
+
     const [month, year] = status.split(" ");
     const monthTranslations: { [key: string]: string } = {
       January: "Januar",
@@ -181,8 +197,10 @@ const domain = state?.domain;
       November: "November",
       December: "Dezember",
     };
-  
-    return monthTranslations[month] ? `${monthTranslations[month]} ${year}` : "Invalid month";
+
+    return monthTranslations[month]
+      ? `${monthTranslations[month]} ${year}`
+      : "Invalid month";
   };
 
   const statusMap: { [key: string]: string } = {
@@ -199,13 +217,13 @@ const domain = state?.domain;
     "ready for 2nd proofreading": "Im Meta-Lektorat",
     "2nd proofreading in progress": "Im Meta-Lektorat",
     "free trial": "Kostenlose Testversion",
-    "final": "Texterstellung abgeschlossen"
+    final: "Texterstellung abgeschlossen",
   };
-  
+
   const handleStatusGerman = (statusFilter: string): string => {
     return currentLanguage === "de" && statusMap[statusFilter]
-      ? statusMap[statusFilter]  
-      : statusFilter;           
+      ? statusMap[statusFilter]
+      : statusFilter;
   };
 
   return (
@@ -322,10 +340,10 @@ const domain = state?.domain;
                               ? "bg-pink-500/20 text-pink-500"
                               : task.status.toUpperCase() ===
                                 "READY FOR 2ND PROOFREADING"
-                              ? "bg-violet-500/20 text-violet-500" // New color for "READY FOR 2ND PROOFREADING"
+                              ? "bg-violet-500/20 text-violet-500" 
                               : task.status.toUpperCase() ===
                                 "2ND PROOFREADING IN PROGRESS"
-                              ? "bg-lime-300/20 text-lime-700" // Different color for "2ND PROOFREADING IN PROGRESS"
+                              ? "bg-lime-300/20 text-lime-700" 
                               : "bg-red-500/20 text-red-500"
                           }`}
                         >
@@ -344,11 +362,7 @@ const domain = state?.domain;
                       </td>
                       <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark  ">
                         <div
-                          onClick={() =>
-                            task?.status.toLowerCase() === "ready to work"
-                              ? handleCheckboxClick(index)
-                              : null
-                          }
+                          onClick={() => handleCheckboxClick(index)}
                           className="cursor-pointer flex items-center ml-7"
                         >
                           {task.published === false ? (
@@ -357,7 +371,7 @@ const domain = state?.domain;
                             <Checkbox2 />
                           )}
                           {openBarIndex === index && (
-                            <div className="relative ml-5 mt-4">
+                            <div ref={dropdownRef} className="relative ml-5 mt-4">
                               <div className="absolute right-0">
                                 <div className="w-full py-2 pl-3 flex mt-2 space-x-2 border border-zinc-200 bg-white shadow-md">
                                   <div
