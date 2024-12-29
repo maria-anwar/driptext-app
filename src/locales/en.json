@@ -29,7 +29,7 @@
     "projectDetails": {
       "text": "Text",
       "createdOn": "Created on:",
-      "ordersPerMonth": "Texts per month",
+      "ordersPerMonth": "Number of texts per month",
       "projectDuration": "Project Duration"
     },
     "onboarding": {
