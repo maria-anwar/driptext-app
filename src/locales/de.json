@@ -1128,7 +1128,7 @@
     }
   },
   "Invoice": {
-    "invoice": "Rechnung",
+    "invoice": "Abrechnung",
     "invoiceId": "Rechnung id",
     "name": "Name",
     "date": "Datum",
