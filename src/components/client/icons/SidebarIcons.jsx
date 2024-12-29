@@ -5,7 +5,7 @@ const SidebarIcons = [
         className="fill-current"
         width="18"
         height="18"
-        viewBox="0 0 18 18"
+        viewBox="0 0 19 19"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -107,8 +107,8 @@ const SidebarIcons = [
     contact: (
       <svg
         fill="#DEE4EE"
-        className="w-5.4 h-5.5"
-        viewBox="0 0 64 64"
+        className="w-5.4 h-5.5 -ml-0.5"
+        viewBox="0 0 63 63"
         version="1.1"
         xml:space="preserve"
         xmlns="http://www.w3.org/2000/svg"
@@ -171,7 +171,7 @@ const SidebarIcons = [
   {
     invoice: (
       <svg
-        className="fill-current"
+        className="fill-current -ml-0.5"
         width="22"
         height="22"
         viewBox="0 0 22 22"
