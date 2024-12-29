@@ -29,7 +29,7 @@
     "projectDetails": {
       "text": "Text",
       "createdOn": "Erstellt am:",
-      "ordersPerMonth": "Texte pro Monat",
+      "ordersPerMonth": "Anzahl Texte pro Monat",
       "projectDuration": "Projektdauer"
     },
     "onboarding": {
