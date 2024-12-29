@@ -436,7 +436,7 @@ const MetaLectorCard: React.FC<MetaLectorCardProps> = ({
                   <label htmlFor={key} className="ml-0 dark:text-white">
                     <strong>{h}</strong>
                   </label>
-                  <p className="pl-2">{p}</p>
+                  <p className="">{p}</p>
                 </div>
               </div>
             ))}
