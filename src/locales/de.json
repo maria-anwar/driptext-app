@@ -515,7 +515,7 @@
   },
   "clientRegister": {
     "pageTitle": "Probetext bestellen",
-    "title": "Bestelle Deinen kostenlosen Probetext im Wert von 105,00 €",
+    "title": "Bestelle deinen kostenlosen Probetext im Wert von 105,00 €",
     "description": "Bitte sende uns alle Informationen zu deinem Probetext. Wir werden sofort mit der Arbeit beginnen, um einen hervorragenden Probetext für dich zu erstellen!",
     "subheading": "Bitte beantworte die folgenden Fragen für das Briefing:",
     "registrationForm": {
@@ -527,7 +527,7 @@
         "keywordPlaceholder": "Beispiel-Keyword"
       },
       "step2": {
-        "title": "2. Kontaktdaten des Rechnungsempfängers",
+        "title": "2. Kontaktdaten",
         "emailLabel": "E-Mail",
         "emailPlaceholder": "mail@beispiel.de",
         "fnameLabel": "Vorname",

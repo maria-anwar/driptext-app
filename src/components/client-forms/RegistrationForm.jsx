@@ -108,6 +108,7 @@ const RegistrationForm = () => {
             userId: response.data.data._id,
             role: "leads",
             plan: response.data.project.plan,
+            keywords: values.keyword,
           },
         });
       } else {
@@ -314,9 +315,9 @@ const RegistrationForm = () => {
               </div>
               <p className="text-custom-black text-sm font-medium">
                 {t("clientRegister.registrationForm.terms.text")}{" "}
-                <Link className="text-[#63B4D0]">
+                <a href="https://driptext.de/agb/ " target="_blank" className="text-[#63B4D0]">
                   {t("clientRegister.registrationForm.terms.linkText")}
-                </Link>{" "}
+                </a>{" "}
                 {t("clientRegister.registrationForm.terms.disclaimer")}
               </p>
             </div>

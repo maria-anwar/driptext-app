@@ -17,7 +17,7 @@ import React from "react";
         <label                className="pb-2 block text-sm font-medium text-black dark:text-white pt-4"
 >
           {label}
-          <span className="text-red-600 text:lg 2xl:text-[17px] mt-6 pl-1">*</span>
+          {id!=="companyName" &&<span className="text-red-600 text:lg 2xl:text-[17px] mt-6 pl-1">*</span>}
         </label>
         <input
                           className="w-full rounded border border-stroke bg-gray py-3 pl-6 pr-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"

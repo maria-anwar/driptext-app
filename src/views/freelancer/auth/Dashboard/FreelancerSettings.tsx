@@ -79,9 +79,7 @@ const ProfilePage = () => {
     city: Yup.string().required(t("profilePage.validationErrors.city")),
     country: Yup.string().required(t("profilePage.validationErrors.country")),
     iban: Yup.string().required(t("profilePage.validationErrors.iban")),
-    companyName: Yup.string().required(
-      t("profilePage.validationErrors.companyName")
-    ),
+    companyName: Yup.string().optional(),
     vatIdNo: Yup.string().when(["vatRegulation"], ([vatRegulation], schema) => {
       if (
         vatRegulation === "CY Ltd (19%)" ||
