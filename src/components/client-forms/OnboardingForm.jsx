@@ -18,7 +18,7 @@ const OnboardingForm = () => {
   const [loading, setLoading] = useState(false);
   const user = useSelector((state) => state.user);
   const location = useLocation();
-  const { projectName, projectId, userId, role, plan } = location.state || {};
+  const { projectName, projectId, userId, role, plan,keywords } = location.state || {};
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMesssage] = useState("");
   const userRole = user?.user?.data?.user?.role?.title.toLowerCase() || role;
@@ -38,7 +38,7 @@ const OnboardingForm = () => {
     contentPurpose: "",
     brand: "",
     keywordType: currentLanguage === "en" ? "Guide text" : "Ratgebertext",
-    keyword: null,
+    keyword: keywords || null,
   };
 
   const validationSchema = Yup.object().shape({
@@ -73,22 +73,22 @@ const OnboardingForm = () => {
 
   const onSubmit = async (values) => {
 
-    const storedDataString = localStorage.getItem("key");
-    const storedData = storedDataString ? JSON.parse(storedDataString) : null;
+    // const storedDataString = localStorage.getItem("key");
+    // const storedData = storedDataString ? JSON.parse(storedDataString) : null;
   
-    if (!storedData || !storedData.token || Date.now() > storedData.expiration) {
-      toast.error("Session expired. Please login again.");
-      localStorage.removeItem("key");
-      navigate("/");
-      return null;
-    }
+    // if (!storedData || !storedData.token || Date.now() > storedData.expiration) {
+    //   toast.error("Session expired. Please login again.");
+    //   localStorage.removeItem("key");
+    //   navigate("/");
+    //   return null;
+    // }
   
-    if (allowedRoles && !allowedRoles.includes(storedData.role.toLowerCase())) {
-      toast.error("You are not authorized to access this page.");
-      localStorage.removeItem("key");
-      navigate("/");
-      return null;
-    }
+    // if (allowedRoles && !allowedRoles.includes(storedData.role.toLowerCase())) {
+    //   toast.error("You are not authorized to access this page.");
+    //   localStorage.removeItem("key");
+    //   navigate("/");
+    //   return null;
+    // }
 
     if (currentLanguage === "de") {
       if (values.speech === "Sie") {
@@ -321,6 +321,7 @@ const OnboardingForm = () => {
                         setError(false);
                         setErrorMesssage("");
                       }}
+                      disabled={true}
                     />
 
                     <GroupDropdownField
