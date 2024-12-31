@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Task } from "../../Type/types";
 import moment from "moment";
 import { useTranslation } from "react-i18next";
@@ -10,15 +10,22 @@ interface TaskProps {
 }
 
 const Card: React.FC<TaskProps> = ({ task, Upcomming, clickableLink }) => {
-  const { t , i18n} = useTranslation();
+  const { t, i18n } = useTranslation();
   const currentLanguage = i18n.language;
   const formatDate = (date: string, format: string = "DD.MM.YYYY") => {
     if (!date) return "";
     return moment(date).format(format);
   };
-  const [actualNumber, setActualNumber] = useState<string>(
-    task?.actualNumberOfWords
-  );
+
+  // Initialize state for actual number of words
+  const [actualNumber, setActualNumber] = useState<string>(task?.actualNumberOfWords || "0");
+
+  // Update actualNumber whenever task changes
+  useEffect(() => {
+    if (task?.actualNumberOfWords !== actualNumber) {
+      setActualNumber(task?.actualNumberOfWords || "0");
+    }
+  }, [task]);
 
   const statusMap: { [key: string]: string } = {
     "ready to work": "Bereit zu starten",
@@ -36,14 +43,14 @@ const Card: React.FC<TaskProps> = ({ task, Upcomming, clickableLink }) => {
     "free trial": "Kostenlose Testversion",
     "final": "Texterstellung abgeschlossen"
   };
-  
+
   const handleStatusGerman = (statusFilter: string): string => {
-    return currentLanguage === "de" && statusMap[statusFilter]
-      ? statusMap[statusFilter]  
-      : statusFilter;           
+    return currentLanguage === "de" && statusMap[statusFilter] ? statusMap[statusFilter] : statusFilter;
   };
+
   return (
-    <div className="grid grid-cols-2 gap-x-4  gap-y-4 sm:grid-cols-2 md:grid-cols-3 md:grid-rows-2 2xl:grid-cols-3 3xl:grid-cols-6 3xl:grid-rows-1">
+    <div className="grid grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-2 md:grid-cols-3 md:grid-rows-2 2xl:grid-cols-3 3xl:grid-cols-6 3xl:grid-rows-1">
+      {/* Task Name */}
       <div className="flex flex-col pr-3">
         <span className="text-base font-semibold text-dark-gray dark:text-slate-200 py-2 capitalize">
           {t("task.cardLabels.task")}
@@ -55,9 +62,7 @@ const Card: React.FC<TaskProps> = ({ task, Upcomming, clickableLink }) => {
             rel="noopener noreferrer"
             aria-disabled={Upcomming || !clickableLink}
             className={`${
-              !Upcomming && clickableLink
-                ? "text-blue-500"
-                : "cursor-not-allowed text-gray-500"
+              !Upcomming && clickableLink ? "text-blue-500" : "cursor-not-allowed text-gray-500"
             }`}
             onClick={(e) => {
               if (Upcomming || !clickableLink) {
@@ -69,55 +74,55 @@ const Card: React.FC<TaskProps> = ({ task, Upcomming, clickableLink }) => {
           </a>
         </span>
       </div>
+
+      {/* Deadline */}
       <div className="flex flex-col pr-3">
         <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-2 capitalize">
           {t("task.cardLabels.deadline")}
         </span>
         <span
-          className={`w-fit 
-      ${
-        new Date(task?.dueDate).setHours(0, 0, 0, 0) >=
-        new Date().setHours(0, 0, 0, 0)
-          ? "bg-green-600"
-          : "bg-red-600"
-      }
-      text-white px-3 text-center rounded-full`}
+          className={`w-fit ${new Date(task?.dueDate).setHours(0, 0, 0, 0) >= new Date().setHours(0, 0, 0, 0)
+            ? "bg-green-600"
+            : "bg-red-600"} text-white px-3 text-center rounded-full`}
         >
           {formatDate(task?.dueDate) ?? "no set"}
         </span>
       </div>
+
+      {/* Status */}
       <div className="flex flex-col pr-3">
         <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-2 capitalize">
           {t("task.cardLabels.status")}
         </span>
         <span
-          className={` rounded-full text-left capitalize  ${
-            task?.status.toUpperCase() === "FINAL"
-              ? " text-green-500"
-              : task.status.toUpperCase() === "FREE TRIAL"
-              ? " text-yellow-500"
+          className={`rounded-full text-left capitalize ${task?.status.toUpperCase() === "FINAL"
+            ? "text-green-500"
+            : task.status.toUpperCase() === "FREE TRIAL"
+              ? "text-yellow-500"
               : task.status.toUpperCase() === "READY TO WORK"
-              ? " text-yellow-500"
-              : task.status.toUpperCase() === "IN PROGRESS"
-              ? " text-blue-500"
-              : task.status.toUpperCase() === "READY FOR PROOFREADING"
-              ? " text-orange-500"
-              : task.status.toUpperCase() === "PROOFREADING IN PROGRESS"
-              ? " text-purple-500"
-              : task.status.toUpperCase() === "READY FOR SEO OPTIMIZATION"
-              ? " text-indigo-500"
-              : task.status.toUpperCase() === "SEO OPTIMIZATION IN PROGRESS"
-              ? " text-pink-500"
-              : task.status.toUpperCase() === "READY FOR 2ND PROOFREADING"
-              ? " text-violet-500" // New color for "READY FOR 2ND PROOFREADING"
-              : task.status.toUpperCase() === "2ND PROOFREADING IN PROGRESS"
-              ? " text-lime-700" // Different color for "2ND PROOFREADING IN PROGRESS"
-              : " text-red-500"
-          }`}
+                ? "text-yellow-500"
+                : task.status.toUpperCase() === "IN PROGRESS"
+                  ? "text-blue-500"
+                  : task.status.toUpperCase() === "READY FOR PROOFREADING"
+                    ? "text-orange-500"
+                    : task.status.toUpperCase() === "PROOFREADING IN PROGRESS"
+                      ? "text-purple-500"
+                      : task.status.toUpperCase() === "READY FOR SEO OPTIMIZATION"
+                        ? "text-indigo-500"
+                        : task.status.toUpperCase() === "SEO OPTIMIZATION IN PROGRESS"
+                          ? "text-pink-500"
+                          : task.status.toUpperCase() === "READY FOR 2ND PROOFREADING"
+                            ? "text-violet-500"
+                            : task.status.toUpperCase() === "2ND PROOFREADING IN PROGRESS"
+                              ? "text-lime-700"
+                              : "text-red-500"
+            }`}
         >
           {handleStatusGerman(task?.status.toLowerCase())}
         </span>
       </div>
+
+      {/* Active Role */}
       <div className="flex flex-col pr-3">
         <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-2 capitalize">
           {t("task.cardLabels.activeRole")}
@@ -129,8 +134,7 @@ const Card: React.FC<TaskProps> = ({ task, Upcomming, clickableLink }) => {
               task.status.toUpperCase() === "READY TO WORK" ||
               task.status.toUpperCase() === "IN PROGRESS" ||
               task.status.toUpperCase() === "READY FOR RIVISION (LECTOR)" ||
-              task.status.toUpperCase() ===
-                "READY FOR RIVISION (META LECTOR)" ||
+              task.status.toUpperCase() === "READY FOR RIVISION (META LECTOR)" ||
               task.status.toUpperCase() === "IN RIVISION (LECTOR)" ||
               task.status.toUpperCase() === "IN RIVISION (META LECTOR)"
             ? t("task.buttons.texter")
@@ -146,6 +150,8 @@ const Card: React.FC<TaskProps> = ({ task, Upcomming, clickableLink }) => {
             : t("task.buttons.none")}
         </span>
       </div>
+
+      {/* Your Role */}
       <div className="flex flex-col pr-3">
         <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-2 capitalize">
           {t("task.cardLabels.yourRole")}
@@ -153,13 +159,13 @@ const Card: React.FC<TaskProps> = ({ task, Upcomming, clickableLink }) => {
         <span className="capitalize">{task?.activeRole}</span>
       </div>
 
+      {/* Word Count */}
       <div className="flex flex-col pr-3">
         <span className="text-base font-medium text-dark-gray dark:text-slate-200 py-2 capitalize">
           {t("task.cardLabels.wordCount")}
         </span>
         <span className="font-medium">
-          {Number(actualNumber) === 1 ? 0 : task?.actualNumberOfWords}/
-          {task?.desiredNumberOfWords}
+          {Number(actualNumber) === 1 ? 0 : actualNumber}/{task?.desiredNumberOfWords}
         </span>
       </div>
     </div>
