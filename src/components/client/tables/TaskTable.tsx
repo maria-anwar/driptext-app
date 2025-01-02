@@ -80,6 +80,7 @@ const TaskTable = () => {
         if (Array.isArray(tasks)) {
           localStorage.setItem("tasks", JSON.stringify(tasks));
           setTaskData(tasks);
+          console.log("tasks", tasks);
           setLoading(false);
         } else {
           console.error("Received data is not an array");
@@ -221,10 +222,14 @@ const TaskTable = () => {
   };
 
   const handleStatusGerman = (statusFilter: string): string => {
-    return currentLanguage === "de" && statusMap[statusFilter]
+    const status = currentLanguage === "de" && statusMap[statusFilter] 
       ? statusMap[statusFilter]
       : statusFilter;
+  
+    // Capitalize the first letter of the status
+    return status.charAt(0).toUpperCase() + status.slice(1);
   };
+  
 
   return (
     <>
@@ -267,19 +272,19 @@ const TaskTable = () => {
               <table className="w-full table-auto mb-4">
                 <thead>
                   <tr className="bg-gray-2 text-left dark:bg-meta-4">
-                    <th className="min-w-[100px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
+                    <th className="min-w-[180px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
                       {t("taskTable.columns.textNumber")}
                     </th>
-                    <th className="min-w-[200px] py-4 px-4 font-medium text-black dark:text-white">
+                    <th className="min-w-[180px] py-4 px-4 font-medium text-black dark:text-white">
                       {t("taskTable.columns.status")}
                     </th>
-                    <th className="min-w-[170px] py-4 px-4 font-medium text-black dark:text-white">
+                    <th className="min-w-[180px] py-4 px-4 font-medium text-black dark:text-white">
                       {t("taskTable.columns.serviceDuration")}
                     </th>
-                    <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
+                    <th className="min-w-[180px] py-4 px-4 font-medium text-black dark:text-white">
                       {t("taskTable.columns.keyword")}
                     </th>
-                    <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
+                    <th className="min-w-[180px] py-4 px-4 font-medium text-black dark:text-white">
                       {t("taskTable.columns.published")}
                     </th>
                   </tr>
@@ -317,7 +322,7 @@ const TaskTable = () => {
                       </td>
                       <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                         <p
-                          className={`inline-flex rounded-full bg-opacity-10 py-1 px-3 text-sm font-medium text-center  ${
+                          className={`inline-flex rounded-full bg-opacity-10 py-1 px-3 text-sm font-medium text-center   ${
                             task?.status.toUpperCase() === "FINAL"
                               ? "bg-green-500/20 text-green-500"
                               : task.status.toUpperCase() === "FREE TRIAL"
@@ -352,7 +357,7 @@ const TaskTable = () => {
                       </td>
                       <td className="border-b border-[#eee] py-5 px-4 pl-5  dark:border-strokedark ">
                         <p className="text-sm text-black dark:text-white">
-                          {formatDate(task?.dueDate)}
+                          {task?.dueDate ? formatDate(task?.dueDate) : formatDate(task?.finishedDate)}
                         </p>
                       </td>
                       <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
