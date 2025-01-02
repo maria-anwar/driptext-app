@@ -113,6 +113,7 @@ export interface Plan {
     updatedAt: string; // ISO 8601 date string
     __v: number;
     _id: string; // or a more specific type if it's an ObjectId
+    finishedDate: string | null;
   }
 
 
